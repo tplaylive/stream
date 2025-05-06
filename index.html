@@ -10,9 +10,9 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://i.ibb.co/bmft3zF/water-bg.gif') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
       color: #fff;
+      cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
     }
 
     .glass {
@@ -76,12 +76,13 @@
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
-      cursor: pointer;
       transition: background 0.3s ease;
     }
 
-    .next-button:hover {
+    .next-button:hover,
+    .channel-card:hover {
       background: #e64a19;
+      cursor: pointer;
     }
 
     .channel-list {
@@ -95,12 +96,7 @@
       align-items: center;
       padding: 10px;
       gap: 10px;
-      cursor: pointer;
       transition: 0.3s;
-    }
-
-    .channel-card:hover {
-      transform: translateY(-2px);
     }
 
     .channel-card.active {
@@ -165,9 +161,7 @@
 
     <div class="right-panel">
       <h2>Available Channels</h2>
-      <div class="channel-list" id="channel-list">
-        <!-- Channel cards will be generated -->
-      </div>
+      <div class="channel-list" id="channel-list"></div>
     </div>
   </div>
 
@@ -256,7 +250,9 @@
       console.error('Player error:', player.error());
     });
 
+    // Initialize page
     renderChannels();
+    changeChannel(0); // Auto-play the first channel
   </script>
 </body>
 </html>
