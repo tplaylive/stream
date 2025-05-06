@@ -10,65 +10,66 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #004e92, #000428);
+      background: linear-gradient(to right, #000428, #004e92);
       color: #fff;
       cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
     }
 
     .glass {
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 128, 0.3);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 128, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .container {
       display: flex;
-      flex-direction: row;
+      flex-wrap: wrap;
       max-width: 1400px;
-      margin: auto;
+      margin: 30px auto;
       padding: 20px;
+      gap: 20px;
     }
 
     .left-panel {
       flex: 2;
-      padding-right: 20px;
+      min-width: 300px;
     }
 
     .right-panel {
       flex: 1;
-      padding-left: 20px;
+      min-width: 250px;
     }
 
     .player-container {
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 10px;
     }
 
     .video-js {
       width: 100%;
-      height: 500px;
-      border-radius: 10px;
+      height: 480px;
+      border-radius: 12px;
     }
 
     .player-controls {
+      margin: 20px 0;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin: 10px 0 30px;
       flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .now-playing {
-      background: rgba(0, 102, 255, 0.6);
+      background: rgba(0, 102, 255, 0.65);
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: bold;
-      flex: 1;
+      flex: 1 1 auto;
+      min-width: 200px;
     }
 
     .control-button {
@@ -77,8 +78,9 @@
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
-      transition: background 0.3s ease;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
 
     .control-button:hover {
@@ -95,12 +97,15 @@
       display: flex;
       align-items: center;
       padding: 10px;
-      gap: 10px;
-      transition: 0.3s;
+      gap: 12px;
+      border-radius: 10px;
+      transition: background 0.3s, transform 0.2s;
+      background-color: rgba(255, 255, 255, 0.05);
     }
 
     .channel-card:hover {
-      background-color: rgba(255, 255, 255, 0.08);
+      background-color: rgba(255, 255, 255, 0.12);
+      transform: scale(1.01);
       cursor: pointer;
     }
 
@@ -109,8 +114,8 @@
     }
 
     .channel-thumb {
-      width: 100px;
-      height: 70px;
+      width: 90px;
+      height: 65px;
       object-fit: contain;
       background: #000;
       padding: 5px;
@@ -122,28 +127,29 @@
     }
 
     .channel-name {
-      font-weight: bold;
+      font-weight: 600;
       font-size: 16px;
-      color: #fff;
     }
 
     .channel-desc {
       font-size: 13px;
-      color: #cde0ff;
+      color: #d0e2ff;
     }
 
     h2 {
       color: #fff;
       text-align: center;
+      margin-bottom: 15px;
     }
 
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
+        padding: 10px;
       }
 
       .video-js {
-        height: 300px;
+        height: 260px;
       }
 
       .player-controls {
@@ -151,9 +157,8 @@
         align-items: flex-start;
       }
 
-      .right-panel {
-        margin-top: 20px;
-        padding-left: 0;
+      .now-playing {
+        width: 100%;
       }
     }
   </style>
@@ -179,7 +184,6 @@
 
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
   <script>
     const player = videojs('live-tv-player', {
       controls: true,
@@ -212,12 +216,13 @@
     ];
 
     let currentIndex = -1;
+    let hls;
 
     function renderChannels() {
       const list = document.getElementById('channel-list');
       channels.forEach((channel, index) => {
         const card = document.createElement('div');
-        card.className = 'channel-card glass';
+        card.className = 'channel-card';
         card.innerHTML = `
           <img class="channel-thumb" src="${channel.logo}" alt="${channel.name}" />
           <div class="channel-info">
@@ -225,7 +230,7 @@
             <div class="channel-desc">${channel.desc}</div>
           </div>
         `;
-        card.onclick = () => changeChannel(index);
+        card.addEventListener('click', () => changeChannel(index));
         list.appendChild(card);
       });
     }
@@ -233,33 +238,36 @@
     function changeChannel(index) {
       currentIndex = index;
       const channel = channels[index];
-      document.getElementById('now-playing').textContent = `Now Playing: ${channel.name}`;
 
-      document.querySelectorAll('.channel-card').forEach(card => card.classList.remove('active'));
-      document.querySelectorAll('.channel-card')[index].classList.add('active');
+      document.getElementById('now-playing').textContent = `Now Playing: ${channel.name}`;
+      document.querySelectorAll('.channel-card').forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+      });
+
+      if (hls) {
+        hls.destroy();
+      }
 
       if (Hls.isSupported()) {
-        const hls = new Hls();
+        hls = new Hls();
         hls.loadSource(channel.url);
         hls.attachMedia(player.el().querySelector('video'));
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          player.play();
-        });
+        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
       } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
         player.src({ src: channel.url, type: 'application/x-mpegURL' });
         player.play();
       } else {
-        alert('Error: HLS not supported in this browser.');
+        alert('HLS not supported in this browser.');
       }
     }
 
     function playNextChannel() {
-      let nextIndex = (currentIndex + 1) % channels.length;
+      const nextIndex = (currentIndex + 1) % channels.length;
       changeChannel(nextIndex);
     }
 
     function playPreviousChannel() {
-      let prevIndex = (currentIndex - 1 + channels.length) % channels.length;
+      const prevIndex = (currentIndex - 1 + channels.length) % channels.length;
       changeChannel(prevIndex);
     }
 
@@ -267,7 +275,6 @@
       console.error('Player error:', player.error());
     });
 
-    // Load UI and autoplay first channel
     renderChannels();
     changeChannel(0);
   </script>
