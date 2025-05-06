@@ -10,18 +10,18 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://i.ibb.co/r7rtdnM/blue-abstract.gif') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(to right, #004e92, #000428);
       color: #fff;
+      cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
     }
 
     .glass {
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 128, 0.3);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
     }
 
     .container {
@@ -43,7 +43,7 @@
     }
 
     .player-container {
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       margin-bottom: 10px;
     }
@@ -51,38 +51,38 @@
     .video-js {
       width: 100%;
       height: 500px;
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
     .player-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
       margin: 10px 0 30px;
       flex-wrap: wrap;
     }
 
     .now-playing {
-      background: rgba(33, 150, 243, 0.6);
+      background: rgba(0, 102, 255, 0.6);
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: bold;
       flex: 1;
     }
 
-    .channel-button {
-      background: #2196f3;
+    .control-button {
+      background: #007bff;
       border: none;
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
-      cursor: pointer;
       transition: background 0.3s ease;
+      cursor: pointer;
     }
 
-    .channel-button:hover {
-      background: #1976d2;
+    .control-button:hover {
+      background: #0056b3;
     }
 
     .channel-list {
@@ -96,16 +96,16 @@
       align-items: center;
       padding: 10px;
       gap: 10px;
-      cursor: pointer;
       transition: 0.3s;
     }
 
     .channel-card:hover {
-      transform: translateY(-2px);
+      background-color: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
     }
 
     .channel-card.active {
-      border: 2px solid #2196f3;
+      border: 2px solid #007bff;
     }
 
     .channel-thumb {
@@ -129,7 +129,12 @@
 
     .channel-desc {
       font-size: 13px;
-      color: #dbe9ff;
+      color: #cde0ff;
+    }
+
+    h2 {
+      color: #fff;
+      text-align: center;
     }
 
     @media (max-width: 768px) {
@@ -160,22 +165,21 @@
         <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto"></video>
       </div>
       <div class="player-controls">
-        <button class="channel-button" onclick="playPreviousChannel()">Previous</button>
-        <div id="now-playing" class="now-playing">Loading...</div>
-        <button class="channel-button" onclick="playNextChannel()">Next</button>
+        <div id="now-playing" class="now-playing">Select a channel</div>
+        <button class="control-button" onclick="playPreviousChannel()">Previous</button>
+        <button class="control-button" onclick="playNextChannel()">Next</button>
       </div>
     </div>
 
     <div class="right-panel">
-      <h2 style="color:white;">Available Channels</h2>
-      <div class="channel-list" id="channel-list">
-        <!-- Channel cards will be generated -->
-      </div>
+      <h2>Available Channels</h2>
+      <div class="channel-list" id="channel-list"></div>
     </div>
   </div>
 
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
   <script>
     const player = videojs('live-tv-player', {
       controls: true,
@@ -207,11 +211,10 @@
       }
     ];
 
-    let currentIndex = 0;
+    let currentIndex = -1;
 
     function renderChannels() {
       const list = document.getElementById('channel-list');
-      list.innerHTML = "";
       channels.forEach((channel, index) => {
         const card = document.createElement('div');
         card.className = 'channel-card glass';
@@ -251,12 +254,12 @@
     }
 
     function playNextChannel() {
-      const nextIndex = (currentIndex + 1) % channels.length;
+      let nextIndex = (currentIndex + 1) % channels.length;
       changeChannel(nextIndex);
     }
 
     function playPreviousChannel() {
-      const prevIndex = (currentIndex - 1 + channels.length) % channels.length;
+      let prevIndex = (currentIndex - 1 + channels.length) % channels.length;
       changeChannel(prevIndex);
     }
 
@@ -264,8 +267,9 @@
       console.error('Player error:', player.error());
     });
 
+    // Load UI and autoplay first channel
     renderChannels();
-    changeChannel(0); // ✅ Autoplay first channel on load
+    changeChannel(0);
   </script>
 </body>
 </html>
