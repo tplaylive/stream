@@ -10,17 +10,17 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
+      background: linear-gradient(to right, #004e92, #000428);
       color: #fff;
       cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
     }
 
     .glass {
       background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 128, 0.3);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 10px;
     }
 
@@ -60,29 +60,29 @@
       align-items: center;
       gap: 15px;
       margin: 10px 0 30px;
+      flex-wrap: wrap;
     }
 
     .now-playing {
-      background: rgba(255, 87, 34, 0.6);
+      background: rgba(0, 102, 255, 0.6);
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: bold;
       flex: 1;
     }
 
-    .next-button {
-      background: #ff5722;
+    .control-button {
+      background: #007bff;
       border: none;
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
       transition: background 0.3s ease;
+      cursor: pointer;
     }
 
-    .next-button:hover,
-    .channel-card:hover {
-      background: #e64a19;
-      cursor: pointer;
+    .control-button:hover {
+      background: #0056b3;
     }
 
     .channel-list {
@@ -99,8 +99,13 @@
       transition: 0.3s;
     }
 
+    .channel-card:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+    }
+
     .channel-card.active {
-      border: 2px solid #ff5722;
+      border: 2px solid #007bff;
     }
 
     .channel-thumb {
@@ -119,11 +124,17 @@
     .channel-name {
       font-weight: bold;
       font-size: 16px;
+      color: #fff;
     }
 
     .channel-desc {
       font-size: 13px;
-      color: #ccc;
+      color: #cde0ff;
+    }
+
+    h2 {
+      color: #fff;
+      text-align: center;
     }
 
     @media (max-width: 768px) {
@@ -155,7 +166,8 @@
       </div>
       <div class="player-controls">
         <div id="now-playing" class="now-playing">Select a channel</div>
-        <button class="next-button" onclick="playNextChannel()">Next Channel</button>
+        <button class="control-button" onclick="playPreviousChannel()">Previous</button>
+        <button class="control-button" onclick="playNextChannel()">Next</button>
       </div>
     </div>
 
@@ -246,13 +258,18 @@
       changeChannel(nextIndex);
     }
 
+    function playPreviousChannel() {
+      let prevIndex = (currentIndex - 1 + channels.length) % channels.length;
+      changeChannel(prevIndex);
+    }
+
     player.on('error', () => {
       console.error('Player error:', player.error());
     });
 
-    // Initialize page
+    // Load UI and autoplay first channel
     renderChannels();
-    changeChannel(0); // Auto-play the first channel
+    changeChannel(0);
   </script>
 </body>
 </html>
