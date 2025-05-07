@@ -13,6 +13,8 @@
       background: linear-gradient(120deg, #000428, #004e92);
       color: #fff;
       cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .glass {
@@ -22,30 +24,48 @@
       -webkit-backdrop-filter: blur(10px);
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
     }
 
     .container {
       display: flex;
-      flex-wrap: wrap;
-      max-width: 1400px;
-      margin: 30px auto;
-      padding: 20px;
-      gap: 20px;
+      width: 100%;
     }
 
     .left-panel {
       flex: 2;
       min-width: 300px;
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      z-index: 10;
+      padding: 20px;
     }
 
     .right-panel {
       flex: 1;
       min-width: 250px;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .right-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .right-panel::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
     }
 
     .player-container {
       border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 150, 255, 0.6);
     }
 
     .video-js {
@@ -140,13 +160,26 @@
     }
 
     @media (max-width: 768px) {
-      .container {
+      body {
+        overflow: auto;
+      }
+
+      .glass {
         flex-direction: column;
+        height: auto;
+      }
+
+      .left-panel {
+        position: relative;
         padding: 10px;
       }
 
       .video-js {
         height: 260px;
+      }
+
+      .right-panel {
+        max-height: none;
       }
 
       .player-controls {
@@ -165,7 +198,7 @@
   </style>
 </head>
 <body>
-  <div class="container glass">
+  <div class="glass container">
     <div class="left-panel">
       <div class="player-container">
         <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto"></video>
