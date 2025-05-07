@@ -9,296 +9,181 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #000428, #004e92);
+      font-family: sans-serif;
+      background: #001f3f;
       color: #fff;
-      cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
-    }
-
-    .glass {
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 8px 32px rgba(0, 0, 128, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 1400px;
-      margin: 30px auto;
-      padding: 20px;
-      gap: 20px;
+      max-width: 960px;
+      margin: auto;
+      padding: 10px;
     }
 
-    .left-panel {
-      flex: 2;
-      min-width: 300px;
-    }
-
-    .right-panel {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .player-container {
-      border-radius: 12px;
-      overflow: hidden;
+    .video-container {
+      margin-bottom: 12px;
     }
 
     .video-js {
       width: 100%;
-      height: 480px;
-      border-radius: 12px;
+      height: 240px;
+      border-radius: 8px;
     }
 
-    .player-controls {
-      margin: 20px 0;
+    .controls {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
     }
 
     .now-playing {
-      background: rgba(0, 102, 255, 0.65);
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      flex: 1 1 auto;
-      min-width: 200px;
+      font-size: 14px;
+      background: #004080;
+      padding: 6px 10px;
+      border-radius: 6px;
     }
 
-    .control-button {
-      background: #007bff;
+    .btn {
+      padding: 6px 14px;
       border: none;
+      background: #007bff;
       color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
 
-    .control-button:hover {
+    .btn:hover {
       background: #0056b3;
     }
 
-    .channel-list {
+    .channels {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
     }
 
-    .channel-card {
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 12px;
-      transition: background 0.3s ease, transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .channel {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 6px;
       text-align: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
       border: 2px solid transparent;
     }
 
-    .channel-card:hover {
-      background-color: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
-      cursor: pointer;
+    .channel:hover {
+      background: rgba(255, 255, 255, 0.15);
     }
 
-    .channel-card.active {
+    .channel.active {
       border: 2px solid #00bfff;
     }
 
-    .channel-thumb {
+    .channel img {
       width: 100%;
-      height: 120px;
+      height: 80px;
+      background: white;
       object-fit: contain;
-      background: #000;
-      padding: 5px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .channel-name {
-      font-weight: 600;
-      font-size: 16px;
+      border-radius: 6px;
       margin-bottom: 4px;
     }
 
-    .channel-desc {
+    .channel-name {
       font-size: 13px;
-      color: #d0e2ff;
-    }
-
-    h2 {
+      font-weight: bold;
       color: #fff;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        padding: 10px;
-      }
-
-      .video-js {
-        height: 260px;
-      }
-
-      .player-controls {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .now-playing {
-        width: 100%;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="container glass">
-    <div class="left-panel">
-      <div class="player-container">
-        <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto"></video>
-      </div>
-      <div class="player-controls">
-        <div id="now-playing" class="now-playing">Select a channel</div>
-        <button class="control-button" onclick="playPreviousChannel()">Previous</button>
-        <button class="control-button" onclick="playNextChannel()">Next</button>
+  <div class="container">
+    <div class="video-container">
+      <video id="player" class="video-js vjs-default-skin" controls preload="auto"></video>
+    </div>
+
+    <div class="controls">
+      <div id="nowPlaying" class="now-playing">Select a channel</div>
+      <div>
+        <button class="btn" onclick="prevChannel()">Prev</button>
+        <button class="btn" onclick="nextChannel()">Next</button>
       </div>
     </div>
 
-    <div class="right-panel">
-      <h2>Available Channels</h2>
-      <div class="channel-list" id="channel-list"></div>
-    </div>
+    <div class="channels" id="channelList"></div>
   </div>
 
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    const player = videojs('live-tv-player', {
-      controls: true,
+    const player = videojs('player', {
       autoplay: true,
-      fluid: true,
+      controls: true,
       responsive: true,
-      liveui: true,
-      techOrder: ['html5']
+      fluid: true
     });
 
     const channels = [
-      {
-        name: "T Play Music Bangla",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Bangla Songs"
-      },
-      {
-        name: "T Play Music Hindi",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Hindi Songs"
-      },
-      {
-        name: "T Play Natok",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Bangla Natok"
-      },
-      {
-        name: "T Play Movies",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Movies"
-      },
-      {
-        name: "T Play Kids",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Gopal Bhar"
-      },
-      {
-        name: "T Play Waz",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Bangla Waz"
-      },
-      {
-        name: "T Play Kirtan",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8",
-        logo: "https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png",
-        desc: "24/7 Bangla Kirtan"
-      }
+      { name: "T Play Music Bangla", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" },
+      { name: "T Play Music Hindi",  url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8" },
+      { name: "T Play Natok",        url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8" },
+      { name: "T Play Movies",       url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
+      { name: "T Play Kids",         url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8" },
+      { name: "T Play Waz",          url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8" },
+      { name: "T Play Kirtan",       url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8" }
     ];
 
-    let currentIndex = -1;
+    const channelList = document.getElementById("channelList");
+    const nowPlaying = document.getElementById("nowPlaying");
+    let currentIndex = 0;
     let hls;
 
-    function renderChannels() {
-      const list = document.getElementById('channel-list');
-      channels.forEach((channel, index) => {
-        const card = document.createElement('div');
-        card.className = 'channel-card';
-        card.innerHTML = `
-          <img class="channel-thumb" src="${channel.logo}" alt="${channel.name}" />
-          <div class="channel-name">${channel.name}</div>
-          <div class="channel-desc">${channel.desc}</div>
-        `;
-        card.addEventListener('click', () => changeChannel(index));
-        list.appendChild(card);
-      });
-    }
-
-    function changeChannel(index) {
+    function loadChannel(index) {
       currentIndex = index;
       const channel = channels[index];
+      nowPlaying.textContent = `Now Playing: ${channel.name}`;
 
-      document.getElementById('now-playing').textContent = `Now Playing: ${channel.name}`;
-      document.querySelectorAll('.channel-card').forEach((card, i) => {
-        card.classList.toggle('active', i === index);
+      document.querySelectorAll(".channel").forEach((el, i) => {
+        el.classList.toggle("active", i === index);
       });
 
-      if (hls) {
-        hls.destroy();
-      }
-
+      if (hls) hls.destroy();
       if (Hls.isSupported()) {
         hls = new Hls();
         hls.loadSource(channel.url);
-        hls.attachMedia(player.el().querySelector('video'));
-        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
-      } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
-        player.src({ src: channel.url, type: 'application/x-mpegURL' });
-        player.play();
+        hls.attachMedia(player.tech().el_);
       } else {
-        alert('HLS not supported in this browser.');
+        player.src({ src: channel.url, type: 'application/x-mpegURL' });
       }
+      player.play();
     }
 
-    function playNextChannel() {
-      const nextIndex = (currentIndex + 1) % channels.length;
-      changeChannel(nextIndex);
+    function renderChannels() {
+      channels.forEach((ch, idx) => {
+        const div = document.createElement("div");
+        div.className = "channel";
+        div.innerHTML = `
+          <img src="https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png" alt="${ch.name}" />
+          <div class="channel-name">${ch.name}</div>
+        `;
+        div.onclick = () => loadChannel(idx);
+        channelList.appendChild(div);
+      });
     }
 
-    function playPreviousChannel() {
-      const prevIndex = (currentIndex - 1 + channels.length) % channels.length;
-      changeChannel(prevIndex);
+    function nextChannel() {
+      let next = (currentIndex + 1) % channels.length;
+      loadChannel(next);
     }
 
-    player.on('error', () => {
-      console.error('Player error:', player.error());
-    });
+    function prevChannel() {
+      let prev = (currentIndex - 1 + channels.length) % channels.length;
+      loadChannel(prev);
+    }
 
     renderChannels();
-    changeChannel(0);
+    loadChannel(0);
   </script>
 </body>
 </html>
