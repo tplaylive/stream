@@ -10,26 +10,48 @@
             height: 100%;
             overflow: hidden;
             background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #video-container {
             width: 100%;
             height: 100%;
+            display: none;
         }
         video {
             width: 100%;
             height: 100%;
-            object-fit: fill; /* This will stretch the video to fill the container */
+            object-fit: fill;
+        }
+        #playButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #playButton:hover {
+            background: #cc0000;
         }
     </style>
 </head>
 <body>
+    <button id="playButton">PLAY STREAM</button>
+    
     <div id="video-container">
-        <video id="videoPlayer" autoplay muted playsinline></video>
+        <video id="videoPlayer" playsinline></video>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('playButton').addEventListener('click', function() {
+            // Hide the button and show the video
+            this.style.display = 'none';
+            document.getElementById('video-container').style.display = 'block';
+            
             const video = document.getElementById('videoPlayer');
             const videoSrc = 'http://gotit14.xyz/live/2F635BX/ZJX02CY/34747.m3u8';
             
@@ -38,24 +60,19 @@
                 hls.loadSource(videoSrc);
                 hls.attachMedia(video);
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.muted = true; // Mute is often required for autoplay
                     video.play().catch(e => {
-                        console.error("Autoplay failed:", e);
-                        // Fallback for browsers that block autoplay
-                        video.muted = true;
-                        video.play();
+                        console.error("Play failed:", e);
                     });
                 });
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 // For Safari
                 video.src = videoSrc;
-                video.muted = true;
                 video.addEventListener('loadedmetadata', function() {
                     video.play();
                 });
             }
             
-            // Attempt to enter fullscreen (may not work without user interaction)
+            // Attempt to enter fullscreen (now allowed because of user interaction)
             function requestFullscreen() {
                 const elem = document.documentElement;
                 if (elem.requestFullscreen) {
@@ -67,8 +84,8 @@
                 }
             }
             
-            // Try to go fullscreen after a short delay
-            setTimeout(requestFullscreen, 1000);
+            // Go fullscreen after starting playback
+            setTimeout(requestFullscreen, 500);
         });
     </script>
 </body>
