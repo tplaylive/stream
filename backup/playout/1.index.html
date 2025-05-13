@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9XM Live TV</title>
-  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <title>Live TV - 9XM</title>
   <style>
     body {
       margin: 0;
@@ -14,29 +13,40 @@
       align-items: center;
       height: 100vh;
     }
-    .video-container {
+    video {
       width: 90%;
       max-width: 960px;
+      border: 2px solid #444;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <video
-      id="live-tv"
-      class="video-js vjs-default-skin"
-      controls
-      autoplay
-      muted
-      playsinline
-      width="960"
-      height="540"
-    >
-      <source src="https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" type="application/x-mpegURL" />
-      Your browser does not support the video tag.
-    </video>
-  </div>
 
-  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <video id="video" controls autoplay muted playsinline></video>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const videoSrc = 'https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8';
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari support
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    } else {
+      alert("Your browser does not support HLS streaming.");
+    }
+  </script>
+
 </body>
 </html>
