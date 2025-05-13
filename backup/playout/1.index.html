@@ -93,6 +93,7 @@
       <label for="channel-list">Select Channel:</label>
       <select id="channel-list">
         <option value="https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8">9XM (Default)</option>
+        <option value="https://tv.bongoflix.top/play.php?id=14">BongoFlix Channel 14 (Unknown)</option>
         <option value="placeholder://jamuna-tv.m3u8">Jamuna Television</option>
         <option value="placeholder://somoy-tv.m3u8">SOMOY TV</option>
         <option value="placeholder://channel-24.m3u8">Channel 24</option>
@@ -106,7 +107,8 @@
       <input
         type="text"
         id="stream-url"
-        placeholder="Enter HLS URL (e.g., www.dertim.mtv.domory/channel.m3u8)"
+        placeholder="Enter HLS URL (e.g., https://tv.bongoflix.top/play.php?id=14)"
+        value="https://tv.bongoflix.top/play.php?id=14"
       />
       <button id="play-btn">Play</button>
     </div>
@@ -134,13 +136,11 @@
     }
 
     function loadStream(videoSrc) {
-      // Clean up any existing HLS instance
       if (hls) {
         hls.destroy();
         hls = null;
       }
 
-      // Skip loading if the URL is a placeholder
       if (videoSrc.startsWith('placeholder://')) {
         showError('This channel URL is a placeholder. Please enter a valid HLS URL.');
         return;
@@ -171,12 +171,12 @@
       }
     }
 
-    // Load the default stream (9XM) on page load
-    loadStream(channelList.value);
+    // Load the default stream (BongoFlix ID 14) on page load
+    loadStream(streamUrlInput.value);
 
     // Update stream when a channel is selected from the dropdown
     channelList.addEventListener('change', () => {
-      streamUrlInput.value = ''; // Clear the custom URL input
+      streamUrlInput.value = channelList.value;
       loadStream(channelList.value);
     });
 
@@ -184,10 +184,8 @@
     playBtn.addEventListener('click', () => {
       const videoSrc = streamUrlInput.value.trim();
       if (!videoSrc) {
-        // If no custom URL, use the selected channel
         loadStream(channelList.value);
       } else {
-        // Use the custom URL if provided
         loadStream(videoSrc);
       }
     });
