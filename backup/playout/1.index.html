@@ -7,26 +7,32 @@
   <style>
     body {
       margin: 0;
-      background-color: black;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
     video {
       width: 90%;
       max-width: 960px;
-      height: auto;
-      background-color: #000;
+      background-color: black;
     }
   </style>
 </head>
 <body>
-  <video id="video" controls autoplay></video>
+  <div>
+    <video id="video" controls autoplay></video>
+    <p id="message" style="margin-top: 20px;"></p>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const video = document.getElementById('video');
+    const message = document.getElementById('message');
     const videoSrc = 'http://gotit14.xyz/live/2F635BX/ZJX02CY/34747.m3u8';
 
     if (Hls.isSupported()) {
@@ -36,6 +42,9 @@
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
         video.play();
       });
+      hls.on(Hls.Events.ERROR, function (event, data) {
+        message.innerText = "⚠️ Error loading stream. It might be blocked by CORS or offline.";
+      });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       // For Safari
       video.src = videoSrc;
@@ -43,7 +52,7 @@
         video.play();
       });
     } else {
-      alert('Your browser does not support HLS playback.');
+      message.innerText = "🚫 Your browser does not support HLS playback.";
     }
   </script>
 </body>
