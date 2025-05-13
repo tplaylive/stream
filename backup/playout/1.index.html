@@ -33,7 +33,7 @@
   <script>
     const video = document.getElementById('video');
     const message = document.getElementById('message');
-    const videoSrc = 'http://gotit14.xyz/live/2F635BX/ZJX02CY/34747.m3u8';
+    const videoSrc = 'https://cors-proxy.elfsight.com/http://gotit14.xyz/live/2F635BX/ZJX02CY/34747.m3u8';
 
     if (Hls.isSupported()) {
       const hls = new Hls();
@@ -43,10 +43,9 @@
         video.play();
       });
       hls.on(Hls.Events.ERROR, function (event, data) {
-        message.innerText = "⚠️ Error loading stream. It might be blocked by CORS or offline.";
+        message.innerText = "⚠️ Error loading stream. It might be blocked or offline.";
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // For Safari
       video.src = videoSrc;
       video.addEventListener('loadedmetadata', function () {
         video.play();
