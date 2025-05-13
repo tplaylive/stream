@@ -13,6 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: Arial, sans-serif;
         }
         #video-container {
             width: 100%;
@@ -33,13 +34,25 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        #playButton:hover {
-            background: #cc0000;
+        #errorMessage {
+            color: white;
+            text-align: center;
+            display: none;
+            padding: 20px;
+        }
+        #loading {
+            color: white;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <button id="playButton">PLAY STREAM</button>
+    <div id="initial-screen">
+        <button id="playButton">PLAY STREAM</button>
+        <div id="errorMessage"></div>
+    </div>
+    
+    <div id="loading">Loading stream...</div>
     
     <div id="video-container">
         <video id="videoPlayer" playsinline></video>
@@ -47,46 +60,94 @@
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        document.getElementById('playButton').addEventListener('click', function() {
-            // Hide the button and show the video
-            this.style.display = 'none';
-            document.getElementById('video-container').style.display = 'block';
+        const playButton = document.getElementById('playButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const loading = document.getElementById('loading');
+        const videoContainer = document.getElementById('video-container');
+        const initialScreen = document.getElementById('initial-screen');
+        
+        playButton.addEventListener('click', function() {
+            // Show loading, hide other elements
+            initialScreen.style.display = 'none';
+            loading.style.display = 'block';
             
             const video = document.getElementById('videoPlayer');
             const videoSrc = 'http://gotit14.xyz/live/2F635BX/ZJX02CY/34747.m3u8';
             
+            // First try with HLS.js
             if (Hls.isSupported()) {
-                const hls = new Hls();
+                const hls = new Hls({
+                    maxMaxBufferLength: 30,
+                    maxBufferSize: 6000000,
+                    maxBufferLength: 30
+                });
+                
                 hls.loadSource(videoSrc);
                 hls.attachMedia(video);
+                
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play().catch(e => {
-                        console.error("Play failed:", e);
-                    });
+                    startPlayback(video);
                 });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // For Safari
+                
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    handleError(data);
+                });
+            } 
+            // Fallback for Safari
+            else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 video.src = videoSrc;
                 video.addEventListener('loadedmetadata', function() {
-                    video.play();
+                    startPlayback(video);
                 });
+                video.addEventListener('error', function() {
+                    handleError({ type: 'mediaError' });
+                });
+            } 
+            // No HLS support
+            else {
+                handleError({ type: 'noSupport' });
             }
-            
-            // Attempt to enter fullscreen (now allowed because of user interaction)
-            function requestFullscreen() {
-                const elem = document.documentElement;
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) { /* Safari */
-                    elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) { /* IE11 */
-                    elem.msRequestFullscreen();
-                }
-            }
-            
-            // Go fullscreen after starting playback
-            setTimeout(requestFullscreen, 500);
         });
+        
+        function startPlayback(video) {
+            loading.style.display = 'none';
+            videoContainer.style.display = 'block';
+            
+            video.play()
+                .then(() => {
+                    // Success - try fullscreen
+                    try {
+                        document.documentElement.requestFullscreen().catch(e => {});
+                    } catch(e) {}
+                })
+                .catch(e => {
+                    handleError({ type: 'playbackFailed', details: e });
+                });
+        }
+        
+        function handleError(error) {
+            loading.style.display = 'none';
+            initialScreen.style.display = 'flex';
+            errorMessage.style.display = 'block';
+            
+            let message = "Failed to load stream. ";
+            
+            if (error.type === 'networkError') {
+                message += "Network problem. Please check your connection.";
+            } 
+            else if (error.type === 'mediaError') {
+                message += "Stream error. The channel might be unavailable.";
+            }
+            else if (error.type === 'noSupport') {
+                message += "Your browser doesn't support this stream format.";
+            }
+            else {
+                message += "Please try again later.";
+            }
+            
+            errorMessage.textContent = message;
+            playButton.style.display = 'block';
+        }
     </script>
 </body>
 </html>
