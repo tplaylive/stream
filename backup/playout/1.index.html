@@ -1,146 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Player</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .player-container {
-            width: 320px;
-            height: 180px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin: 20px auto;
-        }
-        .video-container {
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            position: relative;
-        }
-        video {
-            width: 100%;
-            height: 100%;
-        }
-        .controls {
-            padding: 10px;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: #e0e0e0;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .progress-bar {
-            height: 100%;
-            background-color: #4285f4;
-            width: 0%;
-        }
-        button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            color: #555;
-            padding: 5px;
-        }
-        button:hover {
-            color: #4285f4;
-        }
-        .time-display {
-            font-size: 12px;
-            color: #777;
-            margin: 0 10px;
-        }
-        .volume-control {
-            width: 80px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live TV Player</title>
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .video-container {
+      width: 90%;
+      max-width: 960px;
+    }
+  </style>
 </head>
 <body>
-    <div class="player-container">
-        <div class="video-container">
-            <video id="videoPlayer" src=""></video>
-        </div>
-        <div class="progress-container" id="progressContainer">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="controls">
-            <button id="playPauseBtn">▶</button>
-            <span class="time-display" id="timeDisplay">00:00 / 00:00</span>
-            <input type="range" class="volume-control" id="volumeControl" min="0" max="1" step="0.1" value="1">
-        </div>
-    </div>
+  <div class="video-container">
+    <video id="my-video" class="video-js vjs-default-skin" controls autoplay muted playsinline width="960" height="540">
+      <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-    <script>
-        const videoPlayer = document.getElementById('videoPlayer');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const progressBar = document.getElementById('progressBar');
-        const progressContainer = document.getElementById('progressContainer');
-        const timeDisplay = document.getElementById('timeDisplay');
-        const volumeControl = document.getElementById('volumeControl');
-
-        // For demo purposes, let's load a sample video
-        videoPlayer.src = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-
-        // Play/Pause functionality
-        playPauseBtn.addEventListener('click', () => {
-            if (videoPlayer.paused) {
-                videoPlayer.play();
-                playPauseBtn.textContent = '❚❚';
-            } else {
-                videoPlayer.pause();
-                playPauseBtn.textContent = '▶';
-            }
-        });
-
-        // Update progress bar
-        videoPlayer.addEventListener('timeupdate', () => {
-            const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
-            progressBar.style.width = `${progress}%`;
-            
-            // Update time display
-            const currentTime = formatTime(videoPlayer.currentTime);
-            const duration = formatTime(videoPlayer.duration);
-            timeDisplay.textContent = `${currentTime} / ${duration}`;
-        });
-
-        // Click on progress bar to seek
-        progressContainer.addEventListener('click', (e) => {
-            const width = progressContainer.clientWidth;
-            const clickX = e.offsetX;
-            const duration = videoPlayer.duration;
-            videoPlayer.currentTime = (clickX / width) * duration;
-        });
-
-        // Volume control
-        volumeControl.addEventListener('input', () => {
-            videoPlayer.volume = volumeControl.value;
-        });
-
-        // Format time as MM:SS
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        // Initialize
-        videoPlayer.volume = volumeControl.value;
-    </script>
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 </body>
 </html>
