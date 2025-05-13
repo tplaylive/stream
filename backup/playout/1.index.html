@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Live TV Player</title>
+  <title>9XM Live TV</title>
   <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
   <style>
     body {
@@ -22,8 +22,17 @@
 </head>
 <body>
   <div class="video-container">
-    <video id="my-video" class="video-js vjs-default-skin" controls autoplay muted playsinline width="960" height="540">
-      <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL" />
+    <video
+      id="live-tv"
+      class="video-js vjs-default-skin"
+      controls
+      autoplay
+      muted
+      playsinline
+      width="960"
+      height="540"
+    >
+      <source src="https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" type="application/x-mpegURL" />
       Your browser does not support the video tag.
     </video>
   </div>
