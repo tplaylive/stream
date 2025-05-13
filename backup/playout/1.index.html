@@ -9,44 +9,141 @@
       margin: 0;
       background-color: #000;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      font-family: Arial, sans-serif;
     }
     video {
       width: 90%;
       max-width: 960px;
       border: 2px solid #444;
       border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .player-controls {
+      display: flex;
+      align-items: center;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 960px;
+    }
+    .player-controls input {
+      flex: 1;
+      padding: 8px;
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 4px;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+    .player-controls button {
+      padding: 8px 16px;
+      background-color: #1e90ff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .player-controls button:hover {
+      background-color: #1c86ee;
+    }
+    .error {
+      display: none;
+      color: #fff;
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+  <video id="video" controls autoplay muted playsinline aria-label="Live stream of 9XM channel"></video>
+  <div class="player-controls">
+    <input
+      type="text"
+      id="stream-url"
+      placeholder="Enter HLS URL (e.g., www.dertim.mtv.domory/channel.m3u8)"
+      value="https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8"
+    />
+    <button id="play-btn">Play</button>
+  </div>
+  <div id="error" class="error">Unable to load the stream. Please try again later.</div>
 
-  <video id="video" controls autoplay muted playsinline></video>
-
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15"></script>
   <script>
     const video = document.getElementById('video');
-    const videoSrc = 'https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8';
+    const streamUrlInput = document.getElementById('stream-url');
+    const playBtn = document.getElementById('play-btn');
+    const errorDiv = document.getElementById('error');
+    let hls = null;
 
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        video.play();
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // Safari support
-      video.src = videoSrc;
-      video.addEventListener('loadedmetadata', function () {
-        video.play();
-      });
-    } else {
-      alert("Your browser does not support HLS streaming.");
+    function showError(message) {
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      video.style.display = 'none';
     }
-  </script>
 
+    function hideError() {
+      errorDiv.style.display = 'none';
+      video.style.display = 'block';
+    }
+
+    function loadStream(videoSrc) {
+      // Clean up any existing HLS instance
+      if (hls) {
+        hls.destroy();
+        hls = null;
+      }
+
+      if (Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          hideError();
+          video.play().catch(err => console.error('Autoplay failed:', err));
+        });
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          if (data.fatal) {
+            showError('Streaming failed. Please check the URL or try again later.');
+          }
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        video.addEventListener('loadedmetadata', () => {
+          hideError();
+          video.play().catch(err => console.error('Autoplay failed:', err));
+        });
+        video.addEventListener('error', () => showError('Failed to load the stream.'));
+      } else {
+        showError('Your browser does not support HLS streaming.');
+      }
+    }
+
+    // Load the default stream on page load
+    loadStream(streamUrlInput.value);
+
+    // Play button click handler
+    playBtn.addEventListener('click', () => {
+      const videoSrc = streamUrlInput.value.trim();
+      if (!videoSrc) {
+        showError('Please enter a valid HLS URL.');
+        return;
+      }
+      loadStream(videoSrc);
+    });
+
+    // Allow pressing Enter to play the stream
+    streamUrlInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        playBtn.click();
+      }
+    });
+  </script>
 </body>
 </html>
