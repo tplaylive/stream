@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T Play Live TV</title>
+  <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #000428, #004e92);
+      color: #fff;
+      cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
+      overflow: hidden;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px rgba(0, 0, 128, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left-panel {
+      flex: 2;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .player-container {
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .video-js {
+      width: 100%;
+      height: 480px;
+      border-radius: 12px;
+    }
+
+    .player-controls {
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .now-playing {
+      background: rgba(0, 102, 255, 0.65);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      min-width: 200px;
+    }
+
+    .control-button {
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .control-button:hover {
+      background: #0056b3;
+    }
+
+    .right-panel {
+      flex: 1;
+      min-width: 250px;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .channels {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .channel {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .channel:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.02);
+    }
+
+    .channel.active {
+      border: 2px solid #00bfff;
+    }
+
+    .channel img {
+      width: 100%;
+      height: 70px;
+      background: white;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    .channel-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .channel-subtitle {
+      font-size: 11px;
+      color: #cccccc;
+      margin-top: 2px;
+    }
+
+    h2 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-panel {
+        height: auto;
+        padding: 10px;
+      }
+
+      .video-js {
+        height: 260px;
+      }
+
+      .channels {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container glass">
+    <div class="left-panel">
+      <div class="player-container">
+        <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto"></video>
+      </div>
+      <div class="player-controls">
+        <div id="now-playing" class="now-playing">Select a channel</div>
+        <button class="control-button" onclick="playPreviousChannel()">Previous</button>
+        <button class="control-button" onclick="playNextChannel()">Next</button>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <h2>Available Channels</h2>
+      <div class="channels" id="channelList"></div>
+    </div>
+  </div>
+
+  <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const player = videojs('live-tv-player', {
+      controls: true,
+      autoplay: true,
+      fluid: true,
+      responsive: true,
+      liveui: true,
+      techOrder: ['html5']
+    });
+
+    const channels = [
+      { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
+      { name: "T Play Movies", subtitle: "24/7 Bangla Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8" },
+      { name: "T Play Dramas", subtitle: "24/7 Bangla Dramas", url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8" },
+      { name: "T Play Waz", subtitle: "24/7 Bangla Waz", url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8" },
+      { name: "T Play Kirtan", subtitle: "24/7 Bangla Kirtan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Gopal Bhar", url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Motu Patlu", url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8" },
+      { name: "T Play Music", subtitle: "24/7 Hindi Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8" },
+      { name: "T Play Music", subtitle: "24/7 Bangla Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" }
+    ];
+
+    let currentIndex = -1;
+    let hls;
+
+    function renderChannels() {
+      const list = document.getElementById('channelList');
+      channels.forEach((channel, index) => {
+        const div = document.createElement("div");
+        div.className = "channel";
+        div.innerHTML = `
+          <img src="https://www.appcreator24.com/srv/imgs/gen/3563489_ico.png" alt="${channel.name}" />
+          <div class="channel-name">${channel.name}</div>
+          <div class="channel-subtitle">${channel.subtitle}</div>
+        `;
+        div.onclick = () => changeChannel(index);
+        list.appendChild(div);
+      });
+    }
+
+    function changeChannel(index) {
+      currentIndex = index;
+      const channel = channels[index];
+
+      document.getElementById('now-playing').textContent = `Now Playing: ${channel.name}`;
+      document.querySelectorAll('.channel').forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+      });
+
+      if (hls) {
+        hls.destroy();
+      }
+
+      if (Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(channel.url);
+        hls.attachMedia(player.el().querySelector('video'));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
+      } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+        player.src({ src: channel.url, type: 'application/x-mpegURL' });
+        player.play();
+      } else {
+        alert('HLS not supported in this browser.');
+      }
+    }
+
+    function playNextChannel() {
+      const nextIndex = (currentIndex + 1) % channels.length;
+      changeChannel(nextIndex);
+    }
+
+    function playPreviousChannel() {
+      const prevIndex = (currentIndex - 1 + channels.length) % channels.length;
+      changeChannel(prevIndex);
+    }
+
+    player.on('error', () => {
+      console.error('Player error:', player.error());
+    });
+
+    renderChannels();
+    changeChannel(0);
+  </script>
+</body>
+</html>
