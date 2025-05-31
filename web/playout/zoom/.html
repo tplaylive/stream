@@ -2,9 +2,22 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+      }
+      #video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+      }
+    </style>
   </head>
   <body>
-    <video id="video" width="100%" autoplay></video>
+    <video id="video" autoplay></video>
     <script>
       async function initPlayer() {
         const video = document.getElementById('video');
@@ -38,8 +51,21 @@
           if (preferredTrack) {
             player.selectVariantTrack(preferredTrack, true);
           }
+          
+          // Attempt fullscreen (may not work without user interaction)
+          video.requestFullscreen().catch(e => {
+            console.log('Fullscreen error:', e);
+          });
         });
       }
+      
+      // Try to enter fullscreen when user interacts with page
+      document.addEventListener('click', function() {
+        const video = document.getElementById('video');
+        video.requestFullscreen().catch(e => {
+          console.log('Fullscreen error:', e);
+        });
+      }, {once: true});
       
       shaka.polyfill.installAll();
       initPlayer();
