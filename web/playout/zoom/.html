@@ -2,71 +2,22 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.js"></script>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: black;
-      }
-      #video {
-        width: 100vw;
-        height: 100vh;
-        object-fit: contain;
-      }
-    </style>
   </head>
   <body>
-    <video id="video" autoplay></video>
+    <video id="video" width="100%" controls autoplay></video>
     <script>
       async function initPlayer() {
         const video = document.getElementById('video');
         const player = new shaka.Player(video);
-        
-        // Remove controls from video element
-        video.controls = false;
-        
         await player.configure({
           drm: {
             clearKeys: {
               '86edec9e3b7d4042a4d4a1ca14f847ee': '9def4315f0004019a3705bcb3cf30ca3'
             }
-          },
-          abr: {
-            enabled: false // Disable adaptive bitrate to force specific resolution
-          },
-          streaming: {
-            bufferingGoal: 30
           }
         });
-        
         await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zoom2/default/manifest.mpd');
-        
-        // Set quality to 480p after load
-        player.addEventListener('trackschanged', () => {
-          const tracks = player.getVariantTracks();
-          const preferredTrack = tracks.find(track => 
-            track.height === 480 || (track.height <= 540 && track.height > 360)
-          );
-          if (preferredTrack) {
-            player.selectVariantTrack(preferredTrack, true);
-          }
-          
-          // Attempt fullscreen (may not work without user interaction)
-          video.requestFullscreen().catch(e => {
-            console.log('Fullscreen error:', e);
-          });
-        });
       }
-      
-      // Try to enter fullscreen when user interacts with page
-      document.addEventListener('click', function() {
-        const video = document.getElementById('video');
-        video.requestFullscreen().catch(e => {
-          console.log('Fullscreen error:', e);
-        });
-      }, {once: true});
-      
       shaka.polyfill.installAll();
       initPlayer();
     </script>
