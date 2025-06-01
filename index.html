@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>T Play Live TV</title>
   <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(120deg, #000428, #004e92);
       color: #fff;
-      cursor: url('https://cdn-icons-png.flaticon.com/512/892/892634.png') 16 16, auto;
-      overflow: hidden;
+      overflow-x: hidden;
+      touch-action: manipulation;
     }
 
     .glass {
@@ -27,63 +32,89 @@
 
     .container {
       display: flex;
-      height: 100vh;
-      overflow: hidden;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        height: 100vh;
+        padding: 20px;
+      }
     }
 
     .left-panel {
       flex: 2;
-      min-width: 300px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 10px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .left-panel {
+        padding: 20px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+      }
     }
 
     .player-container {
       border-radius: 12px;
       overflow: hidden;
       width: 100%;
-      max-width: 720px;
+      max-width: 800px;
+      aspect-ratio: 16/9;
     }
 
     .video-js {
       width: 100%;
-      height: 480px;
+      height: 100%;
       border-radius: 12px;
     }
 
     .player-controls {
-      margin: 20px 0;
+      margin: 15px 0;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
       justify-content: center;
+      width: 100%;
     }
 
     .now-playing {
       background: rgba(0, 102, 255, 0.65);
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 8px;
       font-weight: bold;
       min-width: 200px;
+      text-align: center;
+      font-size: 14px;
+      flex: 1;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .control-button {
       background: #007bff;
       border: none;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s ease;
+      font-size: 14px;
+      flex: 1;
+      max-width: 120px;
     }
 
     .control-button:hover {
@@ -92,16 +123,29 @@
 
     .right-panel {
       flex: 1;
-      min-width: 250px;
       overflow-y: auto;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 10px;
+      width: 100%;
+      max-height: 50vh;
+    }
+
+    @media (min-width: 768px) {
+      .right-panel {
+        max-height: none;
+        padding: 20px;
+      }
     }
 
     .channels {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .channels {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .channel {
@@ -121,11 +165,12 @@
 
     .channel.active {
       border: 2px solid #00bfff;
+      background: rgba(0, 191, 255, 0.15);
     }
 
     .channel img {
       width: 100%;
-      height: 70px;
+      height: 60px;
       background: white;
       object-fit: contain;
       border-radius: 6px;
@@ -147,27 +192,33 @@
     h2 {
       color: #fff;
       text-align: center;
-      margin-bottom: 15px;
+      margin: 10px 0 15px;
+      font-size: 18px;
     }
 
-    @media (max-width: 768px) {
-      .container {
+    /* Mobile specific optimizations */
+    @media (max-width: 767px) {
+      .player-controls {
         flex-direction: column;
-        height: auto;
       }
+      
+      .control-button {
+        width: 100%;
+        max-width: none;
+      }
+      
+      .now-playing {
+        margin-bottom: 10px;
+      }
+      
+      .video-js .vjs-control-bar {
+        font-size: 12px;
+      }
+    }
 
-      .left-panel {
-        height: auto;
-        padding: 10px;
-      }
-
-      .video-js {
-        height: 260px;
-      }
-
-      .channels {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    /* Prevent iOS zoom on input */
+    input, select, textarea {
+      font-size: 16px;
     }
   </style>
 </head>
@@ -175,7 +226,7 @@
   <div class="container glass">
     <div class="left-panel">
       <div class="player-container">
-        <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto"></video>
+        <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
       </div>
       <div class="player-controls">
         <div id="now-playing" class="now-playing">Select a channel</div>
@@ -193,14 +244,34 @@
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
+    // Detect mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Initialize player with mobile-friendly settings
     const player = videojs('live-tv-player', {
       controls: true,
-      autoplay: true,
+      autoplay: !isMobile, // Autoplay often blocked on mobile
       fluid: true,
       responsive: true,
       liveui: true,
-      techOrder: ['html5']
+      techOrder: ['html5'],
+      html5: {
+        hls: {
+          overrideNative: !isMobile,
+          enableLowInitialPlaylist: true,
+          smoothQualityChange: true,
+          maxBufferLength: 30,
+          maxMaxBufferLength: 600
+        }
+      }
     });
+
+    // Add mobile-specific player settings
+    if (isMobile) {
+      player.tech_.setPlaysinline(true);
+      player.tech_.overrideNativeAudioTracks(true);
+      player.tech_.overrideNativeVideoTracks(true);
+    }
 
     const channels = [
       { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
@@ -220,11 +291,13 @@
 
     function renderChannels() {
       const list = document.getElementById('channelList');
+      list.innerHTML = ''; // Clear existing channels
+      
       channels.forEach((channel, index) => {
         const div = document.createElement("div");
         div.className = "channel";
         div.innerHTML = `
-          <img src="https://raw.githubusercontent.com/tplaylive/stream/refs/heads/main/TPlay.png" alt="${channel.name}" />
+          <img src="https://raw.githubusercontent.com/tplaylive/stream/refs/heads/main/TPlay.png" alt="${channel.name}" loading="lazy" />
           <div class="channel-name">${channel.name}</div>
           <div class="channel-subtitle">${channel.subtitle}</div>
         `;
@@ -234,27 +307,82 @@
     }
 
     function changeChannel(index) {
+      if (index < 0 || index >= channels.length) return;
+      
       currentIndex = index;
       const channel = channels[index];
 
+      // Update UI
       document.getElementById('now-playing').textContent = `Now Playing: ${channel.name}`;
       document.querySelectorAll('.channel').forEach((card, i) => {
         card.classList.toggle('active', i === index);
       });
 
+      // Scroll to active channel on mobile
+      if (isMobile) {
+        const activeChannel = document.querySelector('.channel.active');
+        if (activeChannel) {
+          activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+
+      // Clean up previous HLS instance
       if (hls) {
         hls.destroy();
       }
 
+      // Try to play with HLS.js first
       if (Hls.isSupported()) {
-        hls = new Hls();
+        hls = new Hls({
+          maxBufferLength: 30,
+          maxMaxBufferLength: 600,
+          enableWorker: true,
+          lowLatencyMode: true
+        });
+        
         hls.loadSource(channel.url);
         hls.attachMedia(player.el().querySelector('video'));
-        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
-      } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          player.play().catch(e => {
+            console.log('Autoplay prevented:', e);
+            // Show play button for mobile users
+            if (isMobile) {
+              player.bigPlayButton.show();
+            }
+          });
+        });
+        
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          if (data.fatal) {
+            switch(data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                console.error('Fatal network error encountered, try to recover');
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                console.error('Fatal media error encountered, try to recover');
+                hls.recoverMediaError();
+                break;
+              default:
+                console.error('Cannot recover, next channel');
+                playNextChannel();
+                break;
+            }
+          }
+        });
+      } 
+      // Fallback to native HLS
+      else if (player.canPlayType('application/vnd.apple.mpegurl')) {
         player.src({ src: channel.url, type: 'application/x-mpegURL' });
-        player.play();
-      } else {
+        player.play().catch(e => {
+          console.log('Autoplay prevented:', e);
+          if (isMobile) {
+            player.bigPlayButton.show();
+          }
+        });
+      } 
+      else {
         alert('HLS not supported in this browser.');
       }
     }
@@ -269,12 +397,33 @@
       changeChannel(prevIndex);
     }
 
+    // Handle player errors
     player.on('error', () => {
       console.error('Player error:', player.error());
+      // Try to recover by playing next channel
+      setTimeout(playNextChannel, 2000);
     });
 
-    renderChannels();
-    changeChannel(0);
+    // Handle orientation changes on mobile
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        player.dimensions(player.el().offsetWidth, player.el().offsetHeight);
+      }, 200);
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderChannels();
+      changeChannel(0);
+      
+      // Add keyboard navigation for non-mobile
+      if (!isMobile) {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') playNextChannel();
+          if (e.key === 'ArrowLeft') playPreviousChannel();
+        });
+      }
+    });
   </script>
 </body>
 </html>
