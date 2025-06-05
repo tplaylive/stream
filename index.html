@@ -196,7 +196,7 @@
       font-size: 18px;
     }
 
-    /* Video.js custom buttons */
+    /* Video.js custom buttons and menu */
     .vjs-previous-button:before {
       content: "⏮";
       font-size: 1.8em;
@@ -207,6 +207,53 @@
       content: "⏭";
       font-size: 1.8em;
       line-height: 1.67;
+    }
+
+    .vjs-channels-button .vjs-icon-placeholder:before {
+      content: "📺";
+      font-size: 1.5em;
+      line-height: 1.67;
+    }
+
+    .vjs-channels-menu {
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 6px;
+    }
+
+    .vjs-channels-menu .vjs-menu-content {
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .vjs-channel-item {
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      transition: background 0.2s;
+    }
+
+    .vjs-channel-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .vjs-channel-item.active {
+      background: rgba(0, 102, 255, 0.5);
+    }
+
+    .vjs-channel-name {
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .vjs-channel-subtitle {
+      font-size: 11px;
+      color: #ccc;
     }
 
     .video-js .vjs-control-bar {
@@ -230,6 +277,11 @@
       
       .video-js .vjs-control-bar {
         font-size: 12px;
+      }
+      
+      .vjs-channels-menu {
+        width: 250px;
+        max-height: 300px;
       }
     }
 
@@ -267,7 +319,10 @@
     // Custom buttons for channel navigation
     const PreviousButton = videojs.getComponent('Button');
     const NextButton = videojs.getComponent('Button');
+    const MenuButton = videojs.getComponent('MenuButton');
+    const MenuItem = videojs.getComponent('MenuItem');
 
+    // Previous Channel Button
     videojs.registerComponent('PreviousButton', videojs.extend(PreviousButton, {
       handleClick: function() {
         playPreviousChannel();
@@ -277,12 +332,65 @@
       }
     }));
 
+    // Next Channel Button
     videojs.registerComponent('NextButton', videojs.extend(NextButton, {
       handleClick: function() {
         playNextChannel();
       },
       buildCSSClass: function() {
         return 'vjs-control vjs-button vjs-next-button';
+      }
+    }));
+
+    // Channels Menu Item
+    videojs.registerComponent('ChannelMenuItem', videojs.extend(MenuItem, {
+      handleClick: function() {
+        const index = parseInt(this.options_.index);
+        changeChannel(index);
+      }
+    }));
+
+    // Channels Menu Button
+    videojs.registerComponent('ChannelsButton', videojs.extend(MenuButton, {
+      buildCSSClass: function() {
+        return 'vjs-control vjs-button vjs-channels-button';
+      },
+      createItems: function() {
+        return channels.map((channel, index) => {
+          return new ChannelMenuItem(this.player_, {
+            index: index,
+            label: channel.name,
+            selected: index === currentIndex,
+            channel: channel
+          });
+        });
+      },
+      createMenu: function() {
+        const menu = new videojs.Menu(this.player_, {
+          menuButton: this
+        });
+        
+        this.items = this.createItems();
+        
+        this.items.forEach(item => {
+          menu.addItem(item);
+          
+          // Custom menu item content
+          const el = item.el();
+          el.innerHTML = `
+            <div class="vjs-channel-item ${currentIndex === parseInt(item.options_.index) ? 'active' : ''}">
+              <div class="vjs-channel-name">${item.options_.channel.name}</div>
+              <div class="vjs-channel-subtitle">${item.options_.channel.subtitle}</div>
+            </div>
+          `;
+          
+          el.onclick = () => {
+            changeChannel(parseInt(item.options_.index));
+            this.unpressButton();
+          };
+        });
+        
+        return menu;
       }
     }));
 
@@ -315,6 +423,7 @@
           'remainingTimeDisplay',
           'customControlSpacer',
           'PreviousButton',
+          'ChannelsButton',
           'NextButton',
           'fullscreenToggle'
         ]
@@ -374,6 +483,19 @@
       document.querySelectorAll('.channel').forEach((card, i) => {
         card.classList.toggle('active', i === index);
       });
+
+      // Update channels menu items
+      if (player.controlBar.getChild('ChannelsButton')) {
+        const menu = player.controlBar.getChild('ChannelsButton').menu;
+        menu.children().forEach((item, i) => {
+          const el = item.el();
+          if (i === index) {
+            el.querySelector('.vjs-channel-item').classList.add('active');
+          } else {
+            el.querySelector('.vjs-channel-item').classList.remove('active');
+          }
+        });
+      }
 
       // Scroll to active channel on mobile
       if (isMobile) {
