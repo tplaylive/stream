@@ -196,6 +196,23 @@
       font-size: 18px;
     }
 
+    /* Video.js custom buttons */
+    .vjs-previous-button:before {
+      content: "⏮";
+      font-size: 1.8em;
+      line-height: 1.67;
+    }
+
+    .vjs-next-button:before {
+      content: "⏭";
+      font-size: 1.8em;
+      line-height: 1.67;
+    }
+
+    .video-js .vjs-control-bar {
+      font-size: 14px;
+    }
+
     /* Mobile specific optimizations */
     @media (max-width: 767px) {
       .player-controls {
@@ -247,10 +264,32 @@
     // Detect mobile devices
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
+    // Custom buttons for channel navigation
+    const PreviousButton = videojs.getComponent('Button');
+    const NextButton = videojs.getComponent('Button');
+
+    videojs.registerComponent('PreviousButton', videojs.extend(PreviousButton, {
+      handleClick: function() {
+        playPreviousChannel();
+      },
+      buildCSSClass: function() {
+        return 'vjs-control vjs-button vjs-previous-button';
+      }
+    }));
+
+    videojs.registerComponent('NextButton', videojs.extend(NextButton, {
+      handleClick: function() {
+        playNextChannel();
+      },
+      buildCSSClass: function() {
+        return 'vjs-control vjs-button vjs-next-button';
+      }
+    }));
+
     // Initialize player with mobile-friendly settings
     const player = videojs('live-tv-player', {
       controls: true,
-      autoplay: !isMobile, // Autoplay often blocked on mobile
+      autoplay: !isMobile,
       fluid: true,
       responsive: true,
       liveui: true,
@@ -263,6 +302,22 @@
           maxBufferLength: 30,
           maxMaxBufferLength: 600
         }
+      },
+      controlBar: {
+        children: [
+          'playToggle',
+          'volumePanel',
+          'currentTimeDisplay',
+          'timeDivider',
+          'durationDisplay',
+          'progressControl',
+          'liveDisplay',
+          'remainingTimeDisplay',
+          'customControlSpacer',
+          'PreviousButton',
+          'NextButton',
+          'fullscreenToggle'
+        ]
       }
     });
 
