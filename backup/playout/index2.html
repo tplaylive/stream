@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>T Play Live TV</title>
+  <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000000, #434343);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      max-width: 1200px;
+      height: 90%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+
+    .left-panel, .right-panel {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .left-panel {
+      flex: 2;
+      justify-content: space-between;
+    }
+
+    .right-panel {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      overflow-y: auto;
+    }
+
+    .player-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-js {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+    }
+
+    .player-controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .control-button {
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #1e90ff;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .control-button:hover {
+      background-color: #0b78e3;
+    }
+
+    .now-playing {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .channels {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .channel {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .channel:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-panel, .right-panel {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .right-panel {
+        max-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="player-container">
+        <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
+      </div>
+      <div class="player-controls">
+        <div id="now-playing" class="now-playing">Select a channel</div>
+        <button class="control-button" onclick="playPreviousChannel()">Previous</button>
+        <button class="control-button" onclick="playNextChannel()">Next</button>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <h2>Available Channels</h2>
+      <div class="channels" id="channelList"></div>
+    </div>
+  </div>
+
+  <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const channels = [
+      {
+        name: "Channel 1",
+        url: "https://moiptvhls-i.akamaihd.net/hls/live/652316/secure/master.m3u8"
+      },
+      {
+        name: "Channel 2",
+        url: "https://dai2.xumo.com/amagi_hls_data_xumo1212A-redboxaction/CDN/master.m3u8"
+      },
+      {
+        name: "Channel 3",
+        url: "https://linear-7.frequency.stream/stream/43be5271-21f0-4c79-ae9c-023de59f5b71"
+      }
+    ];
+
+    let currentChannelIndex = 0;
+    const player = videojs("live-tv-player");
+
+    function playChannel(index) {
+      if (index >= 0 && index < channels.length) {
+        currentChannelIndex = index;
+        const channel = channels[index];
+        const videoEl = document.getElementById("live-tv-player_html5_api");
+
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(channel.url);
+          hls.attachMedia(videoEl);
+          hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            videoEl.play();
+          });
+        } else if (videoEl.canPlayType("application/vnd.apple.mpegurl")) {
+          videoEl.src = channel.url;
+          videoEl.addEventListener("loadedmetadata", function () {
+            videoEl.play();
+          });
+        }
+
+        document.getElementById("now-playing").textContent = `Now Playing: ${channel.name}`;
+      }
+    }
+
+    function playNextChannel() {
+      const nextIndex = (currentChannelIndex + 1) % channels.length;
+      playChannel(nextIndex);
+    }
+
+    function playPreviousChannel() {
+      const prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
+      playChannel(prevIndex);
+    }
+
+    function createChannelList() {
+      const listContainer = document.getElementById("channelList");
+      listContainer.innerHTML = "";
+      channels.forEach((channel, index) => {
+        const channelItem = document.createElement("div");
+        channelItem.className = "channel";
+        channelItem.textContent = channel.name;
+        channelItem.onclick = () => playChannel(index);
+        listContainer.appendChild(channelItem);
+      });
+    }
+
+    createChannelList();
+  </script>
+</body>
+</html>
