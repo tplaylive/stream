@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Your existing head content remains the same -->
+  <style>
+    /* Add these new styles to your existing style section */
+    
+    /* Channel List Overlay */
+    .channel-list-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      display: none;
+      overflow-y: auto;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+    
+    .channel-list-overlay h3 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .channel-list-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    
+    .channel-list-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .channel-list-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .channel-list-item.active {
+      background: rgba(0, 123, 255, 0.5);
+    }
+    
+    .channel-list-item img {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    
+    .channel-list-item-name {
+      font-size: 12px;
+      margin-top: 5px;
+      text-align: center;
+      color: white;
+    }
+    
+    .close-channel-list {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    /* Channel List Button in Control Bar */
+    .vjs-channel-button:before {
+      content: "📺";
+      font-size: 1.5em;
+      line-height: 1.67;
+    }
+  </style>
+</head>
+<body>
+  <!-- Your existing body content remains the same until the script section -->
+
+  <script>
+    // Add this new component registration before player initialization
+    const ChannelButton = videojs.getComponent('Button');
+    videojs.registerComponent('ChannelButton', videojs.extend(ChannelButton, {
+      handleClick: function() {
+        toggleChannelList();
+      },
+      buildCSSClass: function() {
+        return 'vjs-control vjs-button vjs-channel-button';
+      }
+    }));
+
+    // Update your player initialization config to include the new button
+    const player = videojs('live-tv-player', {
+      controls: true,
+      autoplay: !isMobile,
+      fluid: true,
+      responsive: true,
+      liveui: true,
+      techOrder: ['html5'],
+      html5: {
+        hls: {
+          overrideNative: !isMobile,
+          enableLowInitialPlaylist: true,
+          smoothQualityChange: true,
+          maxBufferLength: 30,
+          maxMaxBufferLength: 600
+        }
+      },
+      controlBar: {
+        children: [
+          'playToggle',
+          'volumePanel',
+          'currentTimeDisplay',
+          'timeDivider',
+          'durationDisplay',
+          'progressControl',
+          'liveDisplay',
+          'remainingTimeDisplay',
+          'customControlSpacer',
+          'PreviousButton',
+          'ChannelButton',  // Add this new button
+          'NextButton',
+          'fullscreenToggle'
+        ]
+      }
+    });
+
+    // Add these new functions to handle the channel list overlay
+    function createChannelListOverlay() {
+      const playerEl = player.el();
+      const overlay = document.createElement('div');
+      overlay.className = 'channel-list-overlay';
+      overlay.innerHTML = `
+        <button class="close-channel-list" onclick="toggleChannelList()">×</button>
+        <h3>Select Channel</h3>
+        <div class="channel-list-container" id="playerChannelList"></div>
+      `;
+      playerEl.appendChild(overlay);
+      return overlay;
+    }
+
+    function toggleChannelList() {
+      const overlay = document.querySelector('.channel-list-overlay') || createChannelListOverlay();
+      const isVisible = overlay.style.display === 'block';
+      overlay.style.display = isVisible ? 'none' : 'block';
+      
+      if (!isVisible) {
+        renderPlayerChannelList();
+      }
+    }
+
+    function renderPlayerChannelList() {
+      const container = document.getElementById('playerChannelList');
+      if (!container) return;
+      
+      container.innerHTML = '';
+      channels.forEach((channel, index) => {
+        const item = document.createElement('div');
+        item.className = `channel-list-item ${index === currentIndex ? 'active' : ''}`;
+        item.innerHTML = `
+          <img src="https://raw.githubusercontent.com/tplaylive/stream/refs/heads/main/TPlay.png" alt="${channel.name}" />
+          <div class="channel-list-item-name">${channel.name}</div>
+        `;
+        item.onclick = () => {
+          changeChannel(index);
+          toggleChannelList();
+        };
+        container.appendChild(item);
+      });
+    }
+
+    // Update your changeChannel function to also update the player channel list
+    function changeChannel(index) {
+      if (index < 0 || index >= channels.length) return;
+      
+      currentIndex = index;
+      const channel = channels[index];
+
+      // Update all UI elements
+      document.getElementById('now-playing').textContent = `Now Playing: ${channel.name}`;
+      
+      // Update channel list in right panel
+      document.querySelectorAll('.channel').forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+      });
+      
+      // Update channel list in player overlay
+      const playerChannelItems = document.querySelectorAll('.channel-list-item');
+      playerChannelItems.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+
+      // Rest of your existing changeChannel code...
+    }
+
+    // Your existing code continues...
+  </script>
+</body>
+</html>
