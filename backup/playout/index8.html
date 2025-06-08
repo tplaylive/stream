@@ -4,182 +4,307 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T Play Live TV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #1e293b;
+      --darker: #0f172a;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+    
+    * {
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
-      color: #333;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: var(--darker);
+      color: var(--light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    header {
+      background-color: var(--dark);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
     }
     
     .player-container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1rem;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background-color: black;
+      border-radius: 0.5rem;
       overflow: hidden;
+      margin-bottom: 1rem;
     }
     
     #video-player {
       width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
+      height: 100%;
+      object-fit: contain;
     }
     
-    .channel-list-overlay {
-      position: fixed;
+    .loading-overlay {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
-      display: none;
-      padding: 20px;
-      box-sizing: border-box;
-      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid var(--gray);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .channel-info {
+      background-color: var(--dark);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .channel-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .channel-subtitle {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--light);
+      border: 1px solid var(--gray);
+    }
+    
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .channels-container {
+      background-color: var(--dark);
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    
+    .channels-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .channels-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .search-box {
+      background-color: var(--darker);
+      border: 1px solid var(--gray);
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      color: var(--light);
+      width: 200px;
     }
     
     .channel-list {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #222;
-      border-radius: 8px;
-      padding: 20px;
-      color: white;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
     }
     
-    .channel-header {
+    .channel-card {
+      background-color: var(--darker);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .channel-card:hover {
+      background-color: rgba(37, 99, 235, 0.1);
+      border: 1px solid var(--primary);
+    }
+    
+    .channel-card.active {
+      background-color: rgba(37, 99, 235, 0.2);
+      border: 1px solid var(--primary);
+    }
+    
+    .channel-card-name {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    
+    .channel-card-subtitle {
+      color: var(--gray);
+      font-size: 0.8rem;
+    }
+    
+    @media (max-width: 768px) {
+      .channel-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      
+      .controls {
+        flex-wrap: wrap;
+      }
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--dark);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 100;
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #444;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     
-    .channel-group {
-      margin-bottom: 25px;
+    .toast.show {
+      opacity: 1;
     }
     
-    .channel-group h2 {
-      color: #fff;
-      margin-bottom: 10px;
-      font-size: 1.2em;
+    .toast.success {
+      background-color: var(--success);
     }
     
-    .channel-item {
-      padding: 10px 15px;
-      margin: 5px 0;
-      background: #333;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    
-    .channel-item:hover {
-      background: #444;
-    }
-    
-    .channel-item.active {
-      background: #0066cc;
-    }
-    
-    .channel-item .subtitle {
-      color: #aaa;
-      font-size: 0.8em;
-      margin-left: 10px;
-    }
-    
-    .close-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5em;
-      cursor: pointer;
-    }
-    
-    .footer {
-      margin-top: 20px;
-      text-align: right;
-      color: #777;
-      font-size: 0.9em;
+    .toast.error {
+      background-color: var(--danger);
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">T Play Live TV</div>
+    <div id="connection-status" style="color: var(--success)">● Online</div>
+  </header>
+  
   <div class="player-container">
-    <video id="video-player" controls></video>
-  </div>
-
-  <div id="channelOverlay" class="channel-list-overlay">
-    <div class="channel-list">
-      <div class="channel-header">
-        <h1>T Play Live TV</h1>
-        <button class="close-btn" onclick="toggleChannelList()">×</button>
-      </div>
-      
-      <div class="channel-group">
-        <h2>Movies</h2>
-        <div class="channel-item" onclick="changeChannel(0)">
-          T Play Movies <span class="subtitle">24/7 Hindi Movies</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(1)">
-          T Play Movies <span class="subtitle">24/7 Bangla Movies</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(2)">
-          T Play Movies <span class="subtitle">24/7 Dubbed Movies</span>
-        </div>
-      </div>
-      
-      <div class="channel-group">
-        <h2>Religious</h2>
-        <div class="channel-item" onclick="changeChannel(3)">
-          T Play Waz <span class="subtitle">24/7 Bangla Waz</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(4)">
-          T Play Kirtan <span class="subtitle">24/7 Bangla Kirtan</span>
-        </div>
-      </div>
-      
-      <div class="channel-group">
-        <h2>Kids</h2>
-        <div class="channel-item" onclick="changeChannel(5)">
-          T Play Kids <span class="subtitle">24/7 Bantul The Great</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(6)">
-          T Play Kids <span class="subtitle">24/7 Gopal Bhar</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(7)">
-          T Play Kids <span class="subtitle">24/7 Motu Patlu</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(8)">
-          T Play Kids <span class="subtitle">24/7 Shinchan</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(9)">
-          T Play Kids <span class="subtitle">24/7 Doraemon</span>
-        </div>
-      </div>
-      
-      <div class="channel-group">
-        <h2>Music</h2>
-        <div class="channel-item" onclick="changeChannel(10)">
-          T Play Music <span class="subtitle">24/7 Hindi Songs</span>
-        </div>
-        <div class="channel-item" onclick="changeChannel(11)">
-          T Play Music <span class="subtitle">24/7 Bangla Songs</span>
-        </div>
-      </div>
-      
-      <div class="footer">
-        <p>T Play Live TV</p>
+    <div class="video-container">
+      <video id="video-player" playsinline></video>
+      <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
       </div>
     </div>
+    
+    <div class="channel-info">
+      <div>
+        <div class="channel-title" id="current-channel-name">Select a channel</div>
+        <div class="channel-subtitle" id="current-channel-subtitle"></div>
+      </div>
+      <div id="player-status">Ready</div>
+    </div>
+    
+    <div class="controls">
+      <button class="btn btn-primary" id="prev-btn">
+        <span>◄</span> Previous
+      </button>
+      <button class="btn btn-primary" id="next-btn">
+        Next <span>►</span>
+      </button>
+      <button class="btn btn-outline" id="fullscreen-btn">
+        Fullscreen
+      </button>
+    </div>
+    
+    <div class="channels-container">
+      <div class="channels-header">
+        <div class="channels-title">Channels</div>
+        <input type="text" class="search-box" id="search-box" placeholder="Search channels...">
+      </div>
+      <div class="channel-list" id="channel-list"></div>
+    </div>
   </div>
-
+  
+  <div class="toast" id="toast"></div>
+  
   <script>
-    // Channel data
+    // Channels data
     const channels = [
       { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
       { name: "T Play Movies", subtitle: "24/7 Bangla Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8" },
@@ -195,41 +320,239 @@
       { name: "T Play Music", subtitle: "24/7 Bangla Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" }
     ];
     
-    let currentChannel = 0;
-    const player = document.getElementById('video-player');
-    const channelOverlay = document.getElementById('channelOverlay');
+    // DOM elements
+    const videoPlayer = document.getElementById('video-player');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const currentChannelName = document.getElementById('current-channel-name');
+    const currentChannelSubtitle = document.getElementById('current-channel-subtitle');
+    const playerStatus = document.getElementById('player-status');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const channelList = document.getElementById('channel-list');
+    const searchBox = document.getElementById('search-box');
+    const toast = document.getElementById('toast');
+    const connectionStatus = document.getElementById('connection-status');
     
-    function toggleChannelList() {
-      channelOverlay.style.display = channelOverlay.style.display === 'block' ? 'none' : 'block';
+    // Player state
+    let currentChannelIndex = -1;
+    let hls;
+    
+    // Initialize the player
+    function initPlayer() {
+      renderChannelList();
+      setupEventListeners();
+      checkOnlineStatus();
+      
+      // Try to play the first channel
+      if (channels.length > 0) {
+        changeChannel(0);
+      }
     }
     
-    function changeChannel(index) {
-      currentChannel = index;
-      player.src = channels[index].url;
-      player.play();
-      toggleChannelList();
+    // Render channel list
+    function renderChannelList(filter = '') {
+      channelList.innerHTML = '';
       
-      // Update active channel in list
-      document.querySelectorAll('.channel-item').forEach((item, i) => {
-        item.classList.toggle('active', i === index);
+      const filteredChannels = channels.filter(channel => 
+        channel.name.toLowerCase().includes(filter.toLowerCase()) || 
+        channel.subtitle.toLowerCase().includes(filter.toLowerCase())
+      );
+      
+      filteredChannels.forEach((channel, index) => {
+        const channelCard = document.createElement('div');
+        channelCard.className = `channel-card ${index === currentChannelIndex ? 'active' : ''}`;
+        channelCard.innerHTML = `
+          <div class="channel-card-name">${channel.name}</div>
+          <div class="channel-card-subtitle">${channel.subtitle}</div>
+        `;
+        channelCard.addEventListener('click', () => changeChannel(index));
+        channelList.appendChild(channelCard);
       });
     }
     
-    // Initialize with first channel
-    changeChannel(0);
+    // Setup event listeners
+    function setupEventListeners() {
+      // Navigation buttons
+      prevBtn.addEventListener('click', playPreviousChannel);
+      nextBtn.addEventListener('click', playNextChannel);
+      fullscreenBtn.addEventListener('click', toggleFullscreen);
+      
+      // Search functionality
+      searchBox.addEventListener('input', (e) => {
+        renderChannelList(e.target.value);
+      });
+      
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') playPreviousChannel();
+        if (e.key === 'ArrowRight') playNextChannel();
+        if (e.key === 'f') toggleFullscreen();
+      });
+      
+      // Online/offline detection
+      window.addEventListener('online', () => {
+        connectionStatus.textContent = '● Online';
+        connectionStatus.style.color = 'var(--success)';
+        showToast('Connection restored', 'success');
+        if (currentChannelIndex >= 0) {
+          changeChannel(currentChannelIndex); // Reconnect current channel
+        }
+      });
+      
+      window.addEventListener('offline', () => {
+        connectionStatus.textContent = '● Offline';
+        connectionStatus.style.color = 'var(--danger)';
+        showToast('Lost internet connection', 'error');
+      });
+      
+      // Player events
+      videoPlayer.addEventListener('playing', () => {
+        loadingOverlay.style.display = 'none';
+        playerStatus.textContent = 'Playing';
+      });
+      
+      videoPlayer.addEventListener('waiting', () => {
+        loadingOverlay.style.display = 'flex';
+        playerStatus.textContent = 'Buffering...';
+      });
+      
+      videoPlayer.addEventListener('error', () => {
+        showToast('Error playing channel', 'error');
+        playerStatus.textContent = 'Error';
+        loadingOverlay.style.display = 'flex';
+      });
+    }
     
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'c' || e.key === 'C') {
-        toggleChannelList();
+    // Change channel
+    function changeChannel(index) {
+      if (index < 0 || index >= channels.length) return;
+      
+      // Show loading state
+      loadingOverlay.style.display = 'flex';
+      playerStatus.textContent = 'Loading...';
+      
+      const channel = channels[index];
+      currentChannelIndex = index;
+      
+      // Update UI
+      currentChannelName.textContent = channel.name;
+      currentChannelSubtitle.textContent = channel.subtitle;
+      
+      // Clean up previous HLS instance if exists
+      if (hls) {
+        hls.destroy();
       }
-      if (e.key === 'ArrowRight') {
-        changeChannel((currentChannel + 1) % channels.length);
+      
+      // Try to play with HLS.js first
+      if (Hls.isSupported()) {
+        hls = new Hls({
+          maxBufferLength: 30,
+          maxMaxBufferLength: 600,
+          enableWorker: true,
+          lowLatencyMode: true
+        });
+        
+        hls.loadSource(channel.url);
+        hls.attachMedia(videoPlayer);
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          videoPlayer.play().catch(e => {
+            showToast('Click to play', 'error');
+            console.log('Autoplay prevented:', e);
+          });
+        });
+        
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          if (data.fatal) {
+            switch(data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                showToast('Network error, trying next channel', 'error');
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                showToast('Media error, trying to recover', 'error');
+                hls.recoverMediaError();
+                break;
+              default:
+                showToast('Cannot play this channel', 'error');
+                playNextChannel();
+                break;
+            }
+          }
+        });
+      } 
+      // Fallback to native HLS
+      else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+        videoPlayer.src = channel.url;
+        videoPlayer.play().catch(e => {
+          showToast('Click to play', 'error');
+          console.log('Autoplay prevented:', e);
+        });
+      } 
+      else {
+        showToast('HLS not supported in this browser', 'error');
       }
-      if (e.key === 'ArrowLeft') {
-        changeChannel((currentChannel - 1 + channels.length) % channels.length);
+      
+      // Update channel list highlights
+      renderChannelList(searchBox.value);
+    }
+    
+    // Play next channel
+    function playNextChannel() {
+      const nextIndex = (currentChannelIndex + 1) % channels.length;
+      changeChannel(nextIndex);
+    }
+    
+    // Play previous channel
+    function playPreviousChannel() {
+      const prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
+      changeChannel(prevIndex);
+    }
+    
+    // Toggle fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        videoPlayer.requestFullscreen().catch(err => {
+          showToast(`Error entering fullscreen: ${err.message}`, 'error');
+        });
+      } else {
+        document.exitFullscreen();
       }
-    });
+    }
+    
+    // Show toast notification
+    function showToast(message, type = '') {
+      toast.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Check online status
+    function checkOnlineStatus() {
+      if (navigator.onLine) {
+        connectionStatus.textContent = '● Online';
+        connectionStatus.style.color = 'var(--success)';
+      } else {
+        connectionStatus.textContent = '● Offline';
+        connectionStatus.style.color = 'var(--danger)';
+        showToast('You are currently offline', 'error');
+      }
+    }
+    
+    // Initialize HLS.js if needed
+    if (typeof Hls === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
+      script.onload = initPlayer;
+      document.head.appendChild(script);
+    } else {
+      initPlayer();
+    }
   </script>
 </body>
 </html>
