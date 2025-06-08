@@ -86,7 +86,7 @@
       background: #0066cc;
     }
     
-    .channel-item .language {
+    .channel-item .subtitle {
       color: #aaa;
       font-size: 0.8em;
       margin-left: 10px;
@@ -116,52 +116,83 @@
   <div id="channelOverlay" class="channel-list-overlay">
     <div class="channel-list">
       <div class="channel-header">
-        <h1>Garden</h1>
+        <h1>T Play Live TV</h1>
         <button class="close-btn" onclick="toggleChannelList()">×</button>
       </div>
       
       <div class="channel-group">
-        <h2>United States</h2>
+        <h2>Movies</h2>
         <div class="channel-item" onclick="changeChannel(0)">
-          ABN Bible Movies <span class="language">BKB</span>
+          T Play Movies <span class="subtitle">24/7 Hindi Movies</span>
         </div>
         <div class="channel-item" onclick="changeChannel(1)">
-          ABN China <span class="language">ZHO</span>
+          T Play Movies <span class="subtitle">24/7 Bangla Movies</span>
         </div>
         <div class="channel-item" onclick="changeChannel(2)">
-          ABN Freedom of Speech
+          T Play Movies <span class="subtitle">24/7 Dubbed Movies</span>
         </div>
+      </div>
+      
+      <div class="channel-group">
+        <h2>Religious</h2>
         <div class="channel-item" onclick="changeChannel(3)">
-          ABN I AM
+          T Play Waz <span class="subtitle">24/7 Bangla Waz</span>
         </div>
         <div class="channel-item" onclick="changeChannel(4)">
-          ABN Son of God
+          T Play Kirtan <span class="subtitle">24/7 Bangla Kirtan</span>
         </div>
+      </div>
+      
+      <div class="channel-group">
+        <h2>Kids</h2>
         <div class="channel-item" onclick="changeChannel(5)">
-          ABN TV India <span class="language">HIN</span>
+          T Play Kids <span class="subtitle">24/7 Bantul The Great</span>
         </div>
         <div class="channel-item" onclick="changeChannel(6)">
-          ABN Urdu <span class="language">URD</span>
+          T Play Kids <span class="subtitle">24/7 Gopal Bhar</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(7)">
+          T Play Kids <span class="subtitle">24/7 Motu Patlu</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(8)">
+          T Play Kids <span class="subtitle">24/7 Shinchan</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(9)">
+          T Play Kids <span class="subtitle">24/7 Doraemon</span>
+        </div>
+      </div>
+      
+      <div class="channel-group">
+        <h2>Music</h2>
+        <div class="channel-item" onclick="changeChannel(10)">
+          T Play Music <span class="subtitle">24/7 Hindi Songs</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(11)">
+          T Play Music <span class="subtitle">24/7 Bangla Songs</span>
         </div>
       </div>
       
       <div class="footer">
-        <p>قوق قوانين الطبيعة</p>
-        <p>+1.2.48 +16.1.300</p>
+        <p>T Play Live TV</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Sample channel data
+    // Channel data
     const channels = [
-      { name: "ABN Bible Movies", url: "stream_url_1" },
-      { name: "ABN China", url: "stream_url_2" },
-      { name: "ABN Freedom of Speech", url: "stream_url_3" },
-      { name: "ABN I AM", url: "stream_url_4" },
-      { name: "ABN Son of God", url: "stream_url_5" },
-      { name: "ABN TV India", url: "stream_url_6" },
-      { name: "ABN Urdu", url: "stream_url_7" }
+      { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
+      { name: "T Play Movies", subtitle: "24/7 Bangla Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8" },
+      { name: "T Play Movies", subtitle: "24/7 Dubbed Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8" },
+      { name: "T Play Waz", subtitle: "24/7 Bangla Waz", url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8" },
+      { name: "T Play Kirtan", subtitle: "24/7 Bangla Kirtan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Bantul The Great", url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Gopal Bhar", url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Motu Patlu", url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Shinchan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Doraemon", url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8" },
+      { name: "T Play Music", subtitle: "24/7 Hindi Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8" },
+      { name: "T Play Music", subtitle: "24/7 Bangla Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" }
     ];
     
     let currentChannel = 0;
