@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>T Play Live TV</title>
+  <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #000428, #004e92);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .player-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 128, 0.4);
+      margin: 20px;
+    }
+
+    .video-js {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    .channel-name-display {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      z-index: 10;
+    }
+
+    .channel-list-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .channel-list-container {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 600px;
+      max-height: 200px;
+      background: rgba(0, 0, 20, 0.9);
+      border-radius: 8px;
+      padding: 10px;
+      display: none;
+      overflow-y: auto;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .channel-list-container.visible {
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .channel-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
+    }
+
+    .channel-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .channel-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .channel-item.active {
+      background: rgba(0, 123, 255, 0.5);
+      font-weight: bold;
+    }
+
+    .channel-item small {
+      display: block;
+      font-size: 10px;
+      color: #ccc;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 767px) {
+      .channel-list-container {
+        max-height: 150px;
+        width: 95%;
+      }
+
+      .channel-list {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+
+      .channel-item {
+        font-size: 11px;
+        padding: 6px;
+      }
+
+      .channel-name-display, .channel-list-btn {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <div id="channelName" class="channel-name-display">Loading...</div>
+    <button class="channel-list-btn" onclick="toggleChannelList()">📺 Channel List</button>
+    <video id="live-tv-player" class="video-js vjs-default-skin" controls playsinline preload="auto"></video>
+    <div id="channelListContainer" class="channel-list-container">
+      <div class="channel-list" id="playerChannelList"></div>
+    </div>
+  </div>
+
+  <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    const player = videojs('live-tv-player', {
+      controls: true,
+      autoplay: !isMobile,
+      fluid: true,
+      responsive: true,
+      liveui: true,
+      controlBar: {
+        children: [
+          'PreviousButton',
+          'playToggle',
+          'NextButton',
+          'volumePanel',
+          'currentTimeDisplay',
+          'timeDivider',
+          'durationDisplay',
+          'progressControl',
+          'fullscreenToggle'
+        ]
+      }
+    });
+
+    const channels = [
+      { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
+      { name: "T Play Kids", subtitle: "24/7 Shinchan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8" },
+      { name: "T Play Music", subtitle: "24/7 Bangla Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" }
+    ];
+
+    let currentIndex = -1;
+    let hls;
+
+    function updateChannelName(name, subtitle) {
+      const label = document.getElementById('channelName');
+      label.textContent = `${name} - ${subtitle}`;
+    }
+
+    function toggleChannelList() {
+      const container = document.getElementById('channelListContainer');
+      const visible = container.classList.contains('visible');
+      if (!visible) renderChannelList();
+      container.classList.toggle('visible');
+    }
+
+    function renderChannelList() {
+      const container = document.getElementById('playerChannelList');
+      container.innerHTML = '';
+      channels.forEach((channel, index) => {
+        const div = document.createElement('div');
+        div.className = `channel-item ${index === currentIndex ? 'active' : ''}`;
+        div.innerHTML = `${channel.name}<small>${channel.subtitle}</small>`;
+        div.onclick = () => {
+          changeChannel(index);
+          toggleChannelList();
+        };
+        container.appendChild(div);
+      });
+    }
+
+    function changeChannel(index) {
+      if (index < 0 || index >= channels.length) return;
+
+      currentIndex = index;
+      const channel = channels[index];
+      updateChannelName(channel.name, channel.subtitle);
+
+      if (hls) hls.destroy();
+
+      if (Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(channel.url);
+        hls.attachMedia(player.el().querySelector('video'));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          player.play().catch(e => console.log('Autoplay issue:', e));
+        });
+      } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+        player.src({ src: channel.url, type: 'application/x-mpegURL' });
+        player.play();
+      } else {
+        alert("HLS not supported");
+      }
+    }
+
+    function playNextChannel() {
+      changeChannel((currentIndex + 1) % channels.length);
+    }
+
+    function playPreviousChannel() {
+      changeChannel((currentIndex - 1 + channels.length) % channels.length);
+    }
+
+    const Button = videojs.getComponent('Button');
+
+    videojs.registerComponent('PreviousButton', videojs.extend(Button, {
+      handleClick: () => playPreviousChannel(),
+      buildCSSClass: () => 'vjs-control vjs-button',
+      createEl: function () {
+        return videojs.dom.createEl('button', {
+          className: this.buildCSSClass(),
+          innerHTML: '⏮'
+        });
+      }
+    }));
+
+    videojs.registerComponent('NextButton', videojs.extend(Button, {
+      handleClick: () => playNextChannel(),
+      buildCSSClass: () => 'vjs-control vjs-button',
+      createEl: function () {
+        return videojs.dom.createEl('button', {
+          className: this.buildCSSClass(),
+          innerHTML: '⏭'
+        });
+      }
+    }));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      changeChannel(0);
+
+      if (!isMobile) {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') playNextChannel();
+          if (e.key === 'ArrowLeft') playPreviousChannel();
+          if (e.key === 'c') toggleChannelList();
+        });
+      }
+
+      document.addEventListener('click', (e) => {
+        const container = document.getElementById('channelListContainer');
+        if (container.classList.contains('visible') &&
+          !e.target.closest('.channel-list-container') &&
+          !e.target.closest('.channel-list-btn')) {
+          toggleChannelList();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
