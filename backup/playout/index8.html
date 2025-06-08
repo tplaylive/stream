@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T Play Live TV</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    
+    .player-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    #video-player {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    
+    .channel-list-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      display: none;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    
+    .channel-list {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #222;
+      border-radius: 8px;
+      padding: 20px;
+      color: white;
+    }
+    
+    .channel-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #444;
+    }
+    
+    .channel-group {
+      margin-bottom: 25px;
+    }
+    
+    .channel-group h2 {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+    
+    .channel-item {
+      padding: 10px 15px;
+      margin: 5px 0;
+      background: #333;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .channel-item:hover {
+      background: #444;
+    }
+    
+    .channel-item.active {
+      background: #0066cc;
+    }
+    
+    .channel-item .language {
+      color: #aaa;
+      font-size: 0.8em;
+      margin-left: 10px;
+    }
+    
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    
+    .footer {
+      margin-top: 20px;
+      text-align: right;
+      color: #777;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <video id="video-player" controls></video>
+  </div>
+
+  <div id="channelOverlay" class="channel-list-overlay">
+    <div class="channel-list">
+      <div class="channel-header">
+        <h1>Garden</h1>
+        <button class="close-btn" onclick="toggleChannelList()">×</button>
+      </div>
+      
+      <div class="channel-group">
+        <h2>United States</h2>
+        <div class="channel-item" onclick="changeChannel(0)">
+          ABN Bible Movies <span class="language">BKB</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(1)">
+          ABN China <span class="language">ZHO</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(2)">
+          ABN Freedom of Speech
+        </div>
+        <div class="channel-item" onclick="changeChannel(3)">
+          ABN I AM
+        </div>
+        <div class="channel-item" onclick="changeChannel(4)">
+          ABN Son of God
+        </div>
+        <div class="channel-item" onclick="changeChannel(5)">
+          ABN TV India <span class="language">HIN</span>
+        </div>
+        <div class="channel-item" onclick="changeChannel(6)">
+          ABN Urdu <span class="language">URD</span>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>قوق قوانين الطبيعة</p>
+        <p>+1.2.48 +16.1.300</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample channel data
+    const channels = [
+      { name: "ABN Bible Movies", url: "stream_url_1" },
+      { name: "ABN China", url: "stream_url_2" },
+      { name: "ABN Freedom of Speech", url: "stream_url_3" },
+      { name: "ABN I AM", url: "stream_url_4" },
+      { name: "ABN Son of God", url: "stream_url_5" },
+      { name: "ABN TV India", url: "stream_url_6" },
+      { name: "ABN Urdu", url: "stream_url_7" }
+    ];
+    
+    let currentChannel = 0;
+    const player = document.getElementById('video-player');
+    const channelOverlay = document.getElementById('channelOverlay');
+    
+    function toggleChannelList() {
+      channelOverlay.style.display = channelOverlay.style.display === 'block' ? 'none' : 'block';
+    }
+    
+    function changeChannel(index) {
+      currentChannel = index;
+      player.src = channels[index].url;
+      player.play();
+      toggleChannelList();
+      
+      // Update active channel in list
+      document.querySelectorAll('.channel-item').forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+    }
+    
+    // Initialize with first channel
+    changeChannel(0);
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'c' || e.key === 'C') {
+        toggleChannelList();
+      }
+      if (e.key === 'ArrowRight') {
+        changeChannel((currentChannel + 1) % channels.length);
+      }
+      if (e.key === 'ArrowLeft') {
+        changeChannel((currentChannel - 1 + channels.length) % channels.length);
+      }
+    });
+  </script>
+</body>
+</html>
