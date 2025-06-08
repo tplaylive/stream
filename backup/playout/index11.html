@@ -812,13 +812,13 @@
     // Update volume icon based on volume level
     function updateVolumeIcon(volume) {
       if (videoPlayer.muted || volume == 0) {
-        volumeIcon.textContent = '🔇';
+        volumeIcon.textContent = '🕨';
         volumeSlider.value = 0;
       } else if (volume < 0.5) {
-        volumeIcon.textContent = '🔉';
+        volumeIcon.textContent = '🕩';
         volumeSlider.value = volume;
       } else {
-        volumeIcon.textContent = '🔊';
+        volumeIcon.textContent = '🕪';
         volumeSlider.value = volume;
       }
     }
