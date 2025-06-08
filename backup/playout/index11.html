@@ -56,6 +56,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      cursor: pointer;
     }
     
     .loading-overlay {
@@ -84,6 +85,124 @@
       to { transform: rotate(360deg); }
     }
     
+    /* Video Controls */
+    .video-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 20;
+    }
+    
+    .video-container:hover .video-controls {
+      opacity: 1;
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 5px;
+      background-color: rgba(255,255,255,0.2);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 2px;
+      width: 0%;
+    }
+    
+    .controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .left-controls, .right-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .control-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    
+    .control-btn:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+    
+    .control-btn:active {
+      transform: scale(0.9);
+    }
+    
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .volume-slider {
+      width: 80px;
+      -webkit-appearance: none;
+      height: 4px;
+      background: var(--gray);
+      border-radius: 2px;
+      outline: none;
+      opacity: 0;
+      transition: opacity 0.2s, width 0.2s;
+    }
+    
+    .volume-container:hover .volume-slider {
+      opacity: 1;
+      width: 100px;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+    }
+    
+    .volume-slider::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+    }
+    
+    .time-display {
+      font-size: 0.9rem;
+      color: white;
+      font-family: monospace;
+    }
+    
+    /* Rest of the styles */
     .channel-info {
       background-color: var(--dark);
       padding: 1rem;
@@ -119,77 +238,6 @@
     .channel-subtitle {
       color: var(--gray);
       font-size: 0.9rem;
-    }
-    
-    .controls {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      align-items: center;
-    }
-    
-    .btn {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 0.25rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
-    }
-    
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background-color: var(--primary-dark);
-    }
-    
-    .btn-outline {
-      background-color: transparent;
-      color: var(--light);
-      border: 1px solid var(--gray);
-    }
-    
-    .btn-outline:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .volume-control {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .volume-slider {
-      width: 100px;
-      -webkit-appearance: none;
-      height: 5px;
-      background: var(--gray);
-      border-radius: 5px;
-      outline: none;
-    }
-    
-    .volume-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--primary);
-      cursor: pointer;
-    }
-    
-    .volume-slider::-moz-range-thumb {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--primary);
-      cursor: pointer;
     }
     
     .channels-container {
@@ -279,12 +327,12 @@
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
       
-      .controls {
-        flex-wrap: wrap;
+      .volume-slider {
+        width: 60px;
       }
       
-      .volume-slider {
-        width: 70px;
+      .volume-container:hover .volume-slider {
+        width: 80px;
       }
     }
     
@@ -326,6 +374,41 @@
       <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
       </div>
+      
+      <!-- Video Controls Overlay -->
+      <div class="video-controls">
+        <div class="progress-container" id="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="controls-row">
+          <div class="left-controls">
+            <button class="control-btn" id="play-pause-btn" title="Play/Pause (Space)">
+              <span id="play-pause-icon">►</span>
+            </button>
+            <button class="control-btn" id="prev-btn" title="Previous Channel (←)">
+              ◄
+            </button>
+            <button class="control-btn" id="next-btn" title="Next Channel (→)">
+              ►
+            </button>
+            <div class="volume-container">
+              <button class="control-btn" id="volume-btn" title="Mute (m)">
+                <span id="volume-icon">🔊</span>
+              </button>
+              <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" id="volume-slider">
+            </div>
+            <div class="time-display" id="time-display">00:00 / --:--</div>
+          </div>
+          <div class="right-controls">
+            <button class="control-btn" id="pip-btn" title="Picture-in-Picture (p)">
+              <span>PiP</span>
+            </button>
+            <button class="control-btn" id="fullscreen-btn" title="Fullscreen (f)">
+              <span>⛶</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     
     <div class="channel-info">
@@ -335,28 +418,6 @@
         <div class="channel-subtitle" id="current-channel-subtitle"></div>
       </div>
       <div id="player-status">Ready</div>
-    </div>
-    
-    <div class="controls">
-      <button class="btn btn-primary" id="prev-btn">
-        <span>◄</span> Previous
-      </button>
-      <button class="btn btn-primary" id="play-pause-btn">
-        <span id="play-pause-icon">❚❚</span> Pause
-      </button>
-      <button class="btn btn-primary" id="next-btn">
-        Next <span>►</span>
-      </button>
-      <div class="volume-control">
-        <span id="volume-icon">🔊</span>
-        <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" id="volume-slider">
-      </div>
-      <button class="btn btn-outline" id="fullscreen-btn">
-        Fullscreen
-      </button>
-      <button class="btn btn-outline" id="pip-btn">
-        PiP
-      </button>
     </div>
     
     <div class="channels-container">
@@ -460,16 +521,24 @@
     const nextBtn = document.getElementById('next-btn');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const pipBtn = document.getElementById('pip-btn');
+    const volumeBtn = document.getElementById('volume-btn');
     const volumeSlider = document.getElementById('volume-slider');
     const volumeIcon = document.getElementById('volume-icon');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar');
+    const timeDisplay = document.getElementById('time-display');
     const channelList = document.getElementById('channel-list');
     const searchBox = document.getElementById('search-box');
     const toast = document.getElementById('toast');
+    const videoContainer = document.querySelector('.video-container');
+    const videoControls = document.querySelector('.video-controls');
     
     // Player state
     let currentChannelIndex = -1;
     let hls;
     let isPlaying = false;
+    let controlsTimeout;
+    let isDraggingProgress = false;
     
     // Initialize the player
     function initPlayer() {
@@ -483,6 +552,9 @@
       if (channels.length > 0) {
         changeChannel(0);
       }
+      
+      // Start progress update loop
+      requestAnimationFrame(updateProgress);
     }
     
     // Render channel list
@@ -511,32 +583,47 @@
     
     // Setup event listeners
     function setupEventListeners() {
+      // Video player events
+      videoPlayer.addEventListener('click', togglePlayPause);
+      
       // Navigation buttons
       prevBtn.addEventListener('click', playPreviousChannel);
       nextBtn.addEventListener('click', playNextChannel);
       playPauseBtn.addEventListener('click', togglePlayPause);
       fullscreenBtn.addEventListener('click', toggleFullscreen);
       pipBtn.addEventListener('click', togglePictureInPicture);
+      volumeBtn.addEventListener('click', toggleMute);
       
       // Volume control
       volumeSlider.addEventListener('input', (e) => {
         videoPlayer.volume = e.target.value;
+        videoPlayer.muted = false;
         updateVolumeIcon(e.target.value);
       });
       
-      // Mute when volume is set to 0
-      volumeSlider.addEventListener('change', (e) => {
-        if (e.target.value == 0) {
-          videoPlayer.muted = true;
-          volumeIcon.textContent = '🔇';
-        } else {
-          videoPlayer.muted = false;
+      // Progress bar
+      progressContainer.addEventListener('click', seek);
+      progressContainer.addEventListener('mousedown', () => isDraggingProgress = true);
+      document.addEventListener('mousemove', (e) => {
+        if (isDraggingProgress) {
+          const rect = progressContainer.getBoundingClientRect();
+          const pos = (e.clientX - rect.left) / rect.width;
+          progressBar.style.width = `${pos * 100}%`;
+        }
+      });
+      document.addEventListener('mouseup', () => {
+        if (isDraggingProgress) {
+          isDraggingProgress = false;
+          seek();
         }
       });
       
-      // Search functionality
-      searchBox.addEventListener('input', (e) => {
-        renderChannelList(e.target.value);
+      // Show/hide controls
+      videoContainer.addEventListener('mousemove', showControls);
+      videoContainer.addEventListener('mouseleave', () => {
+        if (!videoControls.classList.contains('force-show')) {
+          hideControls();
+        }
       });
       
       // Keyboard shortcuts
@@ -558,7 +645,6 @@
       videoPlayer.addEventListener('playing', () => {
         isPlaying = true;
         playPauseIcon.textContent = '❚❚';
-        playPauseBtn.querySelector('span:not(#play-pause-icon)').textContent = 'Pause';
         loadingOverlay.style.display = 'none';
         playerStatus.textContent = 'Playing';
       });
@@ -566,7 +652,6 @@
       videoPlayer.addEventListener('pause', () => {
         isPlaying = false;
         playPauseIcon.textContent = '►';
-        playPauseBtn.querySelector('span:not(#play-pause-icon)').textContent = 'Play';
         playerStatus.textContent = 'Paused';
       });
       
@@ -581,14 +666,16 @@
         loadingOverlay.style.display = 'flex';
       });
       
+      videoPlayer.addEventListener('timeupdate', updateTimeDisplay);
+      
       // Picture-in-Picture events
       videoPlayer.addEventListener('enterpictureinpicture', () => {
-        pipBtn.textContent = 'Exit PiP';
+        pipBtn.innerHTML = '<span>Exit PiP</span>';
         showToast('Entered Picture-in-Picture mode', 'success');
       });
       
       videoPlayer.addEventListener('leavepictureinpicture', () => {
-        pipBtn.textContent = 'PiP';
+        pipBtn.innerHTML = '<span>PiP</span>';
         showToast('Exited Picture-in-Picture mode', 'success');
       });
     }
@@ -677,29 +764,33 @@
       } else {
         videoPlayer.pause();
       }
+      showControls();
     }
     
     // Play next channel
     function playNextChannel() {
       const nextIndex = (currentChannelIndex + 1) % channels.length;
       changeChannel(nextIndex);
+      showControls();
     }
     
     // Play previous channel
     function playPreviousChannel() {
       const prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
       changeChannel(prevIndex);
+      showControls();
     }
     
     // Toggle fullscreen
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        videoPlayer.requestFullscreen().catch(err => {
+        videoContainer.requestFullscreen().catch(err => {
           showToast(`Error entering fullscreen: ${err.message}`, 'error');
         });
       } else {
         document.exitFullscreen();
       }
+      showControls();
     }
     
     // Toggle Picture-in-Picture
@@ -715,45 +806,103 @@
       } else {
         showToast('Picture-in-Picture not supported', 'error');
       }
+      showControls();
     }
     
     // Update volume icon based on volume level
     function updateVolumeIcon(volume) {
-      if (volume == 0 || videoPlayer.muted) {
+      if (videoPlayer.muted || volume == 0) {
         volumeIcon.textContent = '🔇';
+        volumeSlider.value = 0;
       } else if (volume < 0.5) {
         volumeIcon.textContent = '🔉';
+        volumeSlider.value = volume;
       } else {
         volumeIcon.textContent = '🔊';
+        volumeSlider.value = volume;
       }
     }
     
     // Toggle mute
     function toggleMute() {
       videoPlayer.muted = !videoPlayer.muted;
-      if (videoPlayer.muted) {
-        volumeIcon.textContent = '🔇';
-      } else {
-        updateVolumeIcon(videoPlayer.volume);
-      }
+      updateVolumeIcon(videoPlayer.volume);
+      showControls();
     }
     
     // Increase volume
     function increaseVolume() {
       if (videoPlayer.volume < 1) {
         videoPlayer.volume = Math.min(1, videoPlayer.volume + 0.1);
-        volumeSlider.value = videoPlayer.volume;
+        videoPlayer.muted = false;
         updateVolumeIcon(videoPlayer.volume);
       }
+      showControls();
     }
     
     // Decrease volume
     function decreaseVolume() {
       if (videoPlayer.volume > 0) {
         videoPlayer.volume = Math.max(0, videoPlayer.volume - 0.1);
-        volumeSlider.value = videoPlayer.volume;
+        videoPlayer.muted = false;
         updateVolumeIcon(videoPlayer.volume);
       }
+      showControls();
+    }
+    
+    // Update progress bar
+    function updateProgress() {
+      if (!isDraggingProgress && !isNaN(videoPlayer.duration)) {
+        const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+      requestAnimationFrame(updateProgress);
+    }
+    
+    // Seek to position in video
+    function seek(e) {
+      if (!videoPlayer.duration) return;
+      
+      const rect = progressContainer.getBoundingClientRect();
+      const pos = (e ? (e.clientX - rect.left) / rect.width : parseFloat(progressBar.style.width) / 100);
+      videoPlayer.currentTime = pos * videoPlayer.duration;
+    }
+    
+    // Update time display
+    function updateTimeDisplay() {
+      if (isNaN(videoPlayer.duration)) {
+        timeDisplay.textContent = '00:00 / --:--';
+        return;
+      }
+      
+      const currentTime = formatTime(videoPlayer.currentTime);
+      const duration = formatTime(videoPlayer.duration);
+      timeDisplay.textContent = `${currentTime} / ${duration}`;
+    }
+    
+    // Format time as MM:SS
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    // Show controls
+    function showControls() {
+      videoControls.classList.add('force-show');
+      videoControls.style.opacity = '1';
+      clearTimeout(controlsTimeout);
+      controlsTimeout = setTimeout(() => {
+        if (!videoContainer.matches(':hover')) {
+          hideControls();
+        }
+      }, 3000);
+    }
+    
+    // Hide controls
+    function hideControls() {
+      videoControls.classList.remove('force-show');
+      videoControls.style.opacity = '0';
     }
     
     // Show toast notification
