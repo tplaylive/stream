@@ -32,21 +32,6 @@
       flex-direction: column;
     }
     
-    header {
-      background-color: var(--dark);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    
     .player-container {
       flex: 1;
       display: flex;
@@ -105,8 +90,25 @@
       border-radius: 0.5rem;
       margin-bottom: 1rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+    }
+    
+    .channel-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: var(--darker);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    
+    .channel-info-text {
+      flex: 1;
     }
     
     .channel-title {
@@ -119,10 +121,19 @@
       font-size: 0.9rem;
     }
     
+    .controls-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--dark);
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
     .controls {
       display: flex;
       gap: 0.5rem;
-      margin-bottom: 1rem;
     }
     
     .btn {
@@ -154,6 +165,13 @@
     
     .btn-outline:hover {
       background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .player-status {
+      background-color: var(--darker);
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-size: 0.9rem;
     }
     
     .channels-container {
@@ -195,6 +213,9 @@
       padding: 1rem;
       cursor: pointer;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
     
     .channel-card:hover {
@@ -205,6 +226,24 @@
     .channel-card.active {
       background-color: rgba(37, 99, 235, 0.2);
       border: 1px solid var(--primary);
+    }
+    
+    .channel-card-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+    
+    .channel-card-text {
+      flex: 1;
     }
     
     .channel-card-name {
@@ -222,8 +261,19 @@
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
       
+      .controls-container {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+      
       .controls {
-        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .player-status {
+        align-self: flex-end;
       }
     }
     
@@ -259,11 +309,6 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">T Play Live TV</div>
-    <div id="connection-status" style="color: var(--success)">● Online</div>
-  </header>
-  
   <div class="player-container">
     <div class="video-container">
       <video id="video-player" playsinline></video>
@@ -273,23 +318,26 @@
     </div>
     
     <div class="channel-info">
-      <div>
-        <div class="channel-title" id="current-channel-name">Select a channel</div>
-        <div class="channel-subtitle" id="current-channel-subtitle"></div>
+      <div class="channel-logo" id="current-channel-logo">♪</div>
+      <div class="channel-info-text">
+        <div class="channel-title" id="current-channel-name">T Play Music</div>
+        <div class="channel-subtitle" id="current-channel-subtitle">24/7 Bangla Songs</div>
       </div>
-      <div id="player-status">Ready</div>
     </div>
     
-    <div class="controls">
-      <button class="btn btn-primary" id="prev-btn">
-        <span>◄</span> Previous
-      </button>
-      <button class="btn btn-primary" id="next-btn">
-        Next <span>►</span>
-      </button>
-      <button class="btn btn-outline" id="fullscreen-btn">
-        Fullscreen
-      </button>
+    <div class="controls-container">
+      <div class="controls">
+        <button class="btn btn-primary" id="prev-btn">
+          <span>◄</span> Previous
+        </button>
+        <button class="btn btn-primary" id="next-btn">
+          Next <span>►</span>
+        </button>
+        <button class="btn btn-outline" id="fullscreen-btn">
+          Fullscreen
+        </button>
+      </div>
+      <div class="player-status" id="player-status">Playing</div>
     </div>
     
     <div class="channels-container">
@@ -304,25 +352,86 @@
   <div class="toast" id="toast"></div>
   
   <script>
-    // Channels data
+    // Channels data with logos
     const channels = [
-      { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
-      { name: "T Play Movies", subtitle: "24/7 Bangla Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8" },
-      { name: "T Play Movies", subtitle: "24/7 Dubbed Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8" },
-      { name: "T Play Waz", subtitle: "24/7 Bangla Waz", url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8" },
-      { name: "T Play Kirtan", subtitle: "24/7 Bangla Kirtan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Bantul The Great", url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Gopal Bhar", url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Motu Patlu", url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Shinchan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Doraemon", url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8" },
-      { name: "T Play Music", subtitle: "24/7 Hindi Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8" },
-      { name: "T Play Music", subtitle: "24/7 Bangla Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" }
+      { 
+        name: "T Play Movies", 
+        subtitle: "24/7 Hindi Movies", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8",
+        logo: "M"
+      },
+      { 
+        name: "T Play Movies", 
+        subtitle: "24/7 Bangla Movies", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8",
+        logo: "M"
+      },
+      { 
+        name: "T Play Movies", 
+        subtitle: "24/7 Dubbed Movies", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8",
+        logo: "M"
+      },
+      { 
+        name: "T Play Waz", 
+        subtitle: "24/7 Bangla Waz", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
+        logo: "W"
+      },
+      { 
+        name: "T Play Kirtan", 
+        subtitle: "24/7 Bangla Kirtan", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8",
+        logo: "K"
+      },
+      { 
+        name: "T Play Kids", 
+        subtitle: "24/7 Bantul The Great", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8",
+        logo: "K"
+      },
+      { 
+        name: "T Play Kids", 
+        subtitle: "24/7 Gopal Bhar", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8",
+        logo: "K"
+      },
+      { 
+        name: "T Play Kids", 
+        subtitle: "24/7 Motu Patlu", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8",
+        logo: "K"
+      },
+      { 
+        name: "T Play Kids", 
+        subtitle: "24/7 Shinchan", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",
+        logo: "K"
+      },
+      { 
+        name: "T Play Kids", 
+        subtitle: "24/7 Doraemon", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8",
+        logo: "K"
+      },
+      { 
+        name: "T Play Music", 
+        subtitle: "24/7 Hindi Songs", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8",
+        logo: "♪"
+      },
+      { 
+        name: "T Play Music", 
+        subtitle: "24/7 Bangla Songs", 
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
+        logo: "♪"
+      }
     ];
     
     // DOM elements
     const videoPlayer = document.getElementById('video-player');
     const loadingOverlay = document.getElementById('loading-overlay');
+    const currentChannelLogo = document.getElementById('current-channel-logo');
     const currentChannelName = document.getElementById('current-channel-name');
     const currentChannelSubtitle = document.getElementById('current-channel-subtitle');
     const playerStatus = document.getElementById('player-status');
@@ -332,7 +441,6 @@
     const channelList = document.getElementById('channel-list');
     const searchBox = document.getElementById('search-box');
     const toast = document.getElementById('toast');
-    const connectionStatus = document.getElementById('connection-status');
     
     // Player state
     let currentChannelIndex = -1;
@@ -342,7 +450,6 @@
     function initPlayer() {
       renderChannelList();
       setupEventListeners();
-      checkOnlineStatus();
       
       // Try to play the first channel
       if (channels.length > 0) {
@@ -363,8 +470,11 @@
         const channelCard = document.createElement('div');
         channelCard.className = `channel-card ${index === currentChannelIndex ? 'active' : ''}`;
         channelCard.innerHTML = `
-          <div class="channel-card-name">${channel.name}</div>
-          <div class="channel-card-subtitle">${channel.subtitle}</div>
+          <div class="channel-card-logo">${channel.logo}</div>
+          <div class="channel-card-text">
+            <div class="channel-card-name">${channel.name}</div>
+            <div class="channel-card-subtitle">${channel.subtitle}</div>
+          </div>
         `;
         channelCard.addEventListener('click', () => changeChannel(index));
         channelList.appendChild(channelCard);
@@ -388,22 +498,6 @@
         if (e.key === 'ArrowLeft') playPreviousChannel();
         if (e.key === 'ArrowRight') playNextChannel();
         if (e.key === 'f') toggleFullscreen();
-      });
-      
-      // Online/offline detection
-      window.addEventListener('online', () => {
-        connectionStatus.textContent = '● Online';
-        connectionStatus.style.color = 'var(--success)';
-        showToast('Connection restored', 'success');
-        if (currentChannelIndex >= 0) {
-          changeChannel(currentChannelIndex); // Reconnect current channel
-        }
-      });
-      
-      window.addEventListener('offline', () => {
-        connectionStatus.textContent = '● Offline';
-        connectionStatus.style.color = 'var(--danger)';
-        showToast('Lost internet connection', 'error');
       });
       
       // Player events
@@ -438,6 +532,7 @@
       // Update UI
       currentChannelName.textContent = channel.name;
       currentChannelSubtitle.textContent = channel.subtitle;
+      currentChannelLogo.textContent = channel.logo;
       
       // Clean up previous HLS instance if exists
       if (hls) {
@@ -530,18 +625,6 @@
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
-    }
-    
-    // Check online status
-    function checkOnlineStatus() {
-      if (navigator.onLine) {
-        connectionStatus.textContent = '● Online';
-        connectionStatus.style.color = 'var(--success)';
-      } else {
-        connectionStatus.textContent = '● Offline';
-        connectionStatus.style.color = 'var(--danger)';
-        showToast('You are currently offline', 'error');
-      }
     }
     
     // Initialize HLS.js if needed
