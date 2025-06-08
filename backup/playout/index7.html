@@ -2,475 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>T Play Live TV</title>
-  <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T Play</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(120deg, #000428, #004e92);
+      font-family: Arial, sans-serif;
+      background-color: #000;
       color: #fff;
-      overflow-x: hidden;
-      touch-action: manipulation;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
     }
 
-    .player-container {
-      border-radius: 12px;
-      overflow: hidden;
-      width: 100%;
-      max-width: 800px;
-      aspect-ratio: 16/9;
-      position: relative;
-      margin: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 128, 0.4);
-    }
-
-    .video-js {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-    }
-
-    /* Channel info display */
-    .channel-info {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 14px;
-      z-index: 5;
-      pointer-events: none;
-      max-width: 80%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .channel-info.visible {
-      opacity: 1;
-    }
-    
-    .channel-info small {
-      display: block;
-      font-size: 12px;
-      color: #ccc;
-    }
-
-    /* Video.js custom buttons */
-    .vjs-previous-button:before {
-      content: "⏮";
-      font-size: 1.8em;
-      line-height: 1.67;
-    }
-
-    .vjs-next-button:before {
-      content: "⏭";
-      font-size: 1.8em;
-      line-height: 1.67;
-    }
-
-    .vjs-channel-button:before {
-      content: "📺 Channels";
-      font-size: 1em;
-      line-height: 1.67;
-    }
-
-    /* Control bar adjustments */
-    .vjs-control-bar {
-      flex-direction: row !important;
-    }
-    
-    .vjs-left-controls {
-      display: flex;
-      align-items: center;
-      order: 1;
-    }
-    
-    .vjs-right-controls {
-      display: flex;
-      align-items: center;
-      order: 2;
-      margin-left: auto;
-    }
-
-    /* Compact Channel List */
-    .channel-list-container {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 200px;
-      max-height: 300px;
-      background: rgba(0, 0, 20, 0.9);
-      border-radius: 8px;
-      padding: 10px;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
+    .sidebar {
+      width: 250px;
+      background: #1e1e1e;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
       overflow-y: auto;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      transition: opacity 0.3s;
-    }
-    
-    .channel-list-container.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    
-    .channel-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    
-    .channel-item {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 12px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    
-    .channel-item:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .channel-item.active {
-      background: rgba(0, 123, 255, 0.5);
-      font-weight: bold;
-    }
-    
-    .channel-item small {
-      display: block;
-      font-size: 10px;
-      color: #ccc;
-      margin-top: 2px;
+      padding-top: 20px;
+      border-right: 1px solid #333;
     }
 
-    /* Mobile specific optimizations */
-    @media (max-width: 767px) {
-      .video-js .vjs-control-bar {
-        font-size: 12px;
-      }
-      
-      .channel-list-container {
-        width: 180px;
-        max-height: 200px;
-      }
-      
-      .channel-item {
-        padding: 6px;
-        font-size: 11px;
-      }
-      
-      .channel-info {
-        font-size: 12px;
-      }
-      
-      .channel-info small {
-        font-size: 10px;
-      }
-      
-      .vjs-channel-button:before {
-        content: "📺";
-        font-size: 1.5em;
-      }
+    .sidebar h2 {
+      color: #00ff66;
+      margin-left: 20px;
+      font-size: 22px;
+    }
+
+    .channel-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .channel-list li {
+      padding: 10px 20px;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+    }
+
+    .channel-list li.active, .channel-list li:hover {
+      background: #00ff66;
+      color: #000;
+    }
+
+    .content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .video-container {
+      background: #000;
+      padding: 10px;
+      border: 2px solid #00ff66;
+      border-radius: 8px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      background: #111;
+      padding: 10px 20px;
+      border-bottom: 1px solid #333;
+    }
+
+    .top-bar .location {
+      color: #00ff66;
+    }
+
+    .top-bar .time {
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="player-container">
-    <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
-    <div class="channel-info" id="channelInfo"></div>
-    <div id="channelListContainer" class="channel-list-container">
-      <div class="channel-list" id="playerChannelList"></div>
+  <div class="sidebar">
+    <h2>T Play</h2>
+    <ul class="channel-list">
+      <li class="active">ABN I AM</li>
+      <li>ABN Bible Movies</li>
+      <li>ABN China</li>
+      <li>ABN Freedom of Speech</li>
+      <li>ABN Son of God</li>
+      <li>ABN TV India</li>
+      <li>ABN Urdu</li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div class="top-bar">
+      <div class="location">Washington, D.C.</div>
+      <div class="time" id="clock">12:12 PM</div>
+    </div>
+    <div class="video-container">
+      <!-- Embed or Video.js Player Here -->
+      <iframe width="100%" height="480" src="https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
-  <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    // Detect mobile devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Custom buttons for channel navigation
-    const PreviousButton = videojs.getComponent('Button');
-    const NextButton = videojs.getComponent('Button');
-    const ChannelButton = videojs.getComponent('Button');
-
-    videojs.registerComponent('PreviousButton', videojs.extend(PreviousButton, {
-      handleClick: function() {
-        playPreviousChannel();
-      },
-      buildCSSClass: function() {
-        return 'vjs-control vjs-button vjs-previous-button';
-      }
-    }));
-
-    videojs.registerComponent('NextButton', videojs.extend(NextButton, {
-      handleClick: function() {
-        playNextChannel();
-      },
-      buildCSSClass: function() {
-        return 'vjs-control vjs-button vjs-next-button';
-      }
-    }));
-
-    videojs.registerComponent('ChannelButton', videojs.extend(ChannelButton, {
-      handleClick: function() {
-        toggleChannelList();
-      },
-      buildCSSClass: function() {
-        return 'vjs-control vjs-button vjs-channel-button';
-      }
-    }));
-
-    // Initialize player with mobile-friendly settings
-    const player = videojs('live-tv-player', {
-      controls: true,
-      autoplay: !isMobile,
-      fluid: true,
-      responsive: true,
-      liveui: true,
-      techOrder: ['html5'],
-      html5: {
-        hls: {
-          overrideNative: !isMobile,
-          enableLowInitialPlaylist: true,
-          smoothQualityChange: true,
-          maxBufferLength: 30,
-          maxMaxBufferLength: 600
-        }
-      },
-      controlBar: {
-        children: [
-          {name: 'leftControls', children: ['playToggle', 'volumePanel', 'PreviousButton', 'NextButton']},
-          {name: 'progressControl'},
-          {name: 'rightControls', children: ['currentTimeDisplay', 'timeDivider', 'durationDisplay', 'fullscreenToggle']},
-          {name: 'ChannelButton'}
-        ]
-      }
-    });
-
-    // Add mobile-specific player settings
-    if (isMobile) {
-      player.tech_.setPlaysinline(true);
-      player.tech_.overrideNativeAudioTracks(true);
-      player.tech_.overrideNativeVideoTracks(true);
+    function updateClock() {
+      const clock = document.getElementById('clock');
+      const now = new Date();
+      clock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
-
-    const channels = [
-      { name: "T Play Movies", subtitle: "24/7 Hindi Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
-      { name: "T Play Movies", subtitle: "24/7 Bangla Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8" },
-      { name: "T Play Movies", subtitle: "24/7 Dubbed Movies", url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8" },
-      { name: "T Play Waz", subtitle: "24/7 Bangla Waz", url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8" },
-      { name: "T Play Kirtan", subtitle: "24/7 Bangla Kirtan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Bantul The Great", url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Gopal Bhar", url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Motu Patlu", url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Shinchan", url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8" },
-      { name: "T Play Kids", subtitle: "24/7 Doraemon", url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8" },
-      { name: "T Play Music", subtitle: "24/7 Hindi Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8" },
-      { name: "T Play Music", subtitle: "24/7 Bangla Songs", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" }
-    ];
-
-    let currentIndex = -1;
-    let hls;
-    let channelInfoTimeout;
-    let channelListTimeout;
-
-    function showChannelInfo() {
-      const channelInfo = document.getElementById('channelInfo');
-      channelInfo.classList.add('visible');
-      
-      // Clear any existing timeout
-      if (channelInfoTimeout) {
-        clearTimeout(channelInfoTimeout);
-      }
-      
-      // Hide after 3 seconds
-      channelInfoTimeout = setTimeout(() => {
-        channelInfo.classList.remove('visible');
-      }, 3000);
-    }
-
-    function updateChannelInfo() {
-      if (currentIndex >= 0 && currentIndex < channels.length) {
-        const channel = channels[currentIndex];
-        document.getElementById('channelInfo').innerHTML = `
-          ${channel.name}<small>${channel.subtitle}</small>
-        `;
-        showChannelInfo();
-      }
-    }
-
-    function toggleChannelList() {
-      const container = document.getElementById('channelListContainer');
-      const isVisible = container.classList.contains('visible');
-      
-      if (!isVisible) {
-        renderPlayerChannelList();
-        container.classList.add('visible');
-        
-        // Clear any existing timeout
-        if (channelListTimeout) {
-          clearTimeout(channelListTimeout);
-        }
-        
-        // Hide after 3 seconds
-        channelListTimeout = setTimeout(() => {
-          container.classList.remove('visible');
-        }, 3000);
-      } else {
-        container.classList.remove('visible');
-      }
-    }
-
-    function renderPlayerChannelList() {
-      const container = document.getElementById('playerChannelList');
-      if (!container) return;
-      
-      container.innerHTML = '';
-      channels.forEach((channel, index) => {
-        const item = document.createElement('div');
-        item.className = `channel-item ${index === currentIndex ? 'active' : ''}`;
-        item.innerHTML = `
-          ${channel.name}<small>${channel.subtitle}</small>
-        `;
-        item.onclick = () => {
-          changeChannel(index);
-          toggleChannelList();
-        };
-        container.appendChild(item);
-      });
-    }
-
-    function changeChannel(index) {
-      if (index < 0 || index >= channels.length) return;
-      
-      currentIndex = index;
-      const channel = channels[index];
-      updateChannelInfo();
-
-      // Clean up previous HLS instance
-      if (hls) {
-        hls.destroy();
-      }
-
-      // Try to play with HLS.js first
-      if (Hls.isSupported()) {
-        hls = new Hls({
-          maxBufferLength: 30,
-          maxMaxBufferLength: 600,
-          enableWorker: true,
-          lowLatencyMode: true
-        });
-        
-        hls.loadSource(channel.url);
-        hls.attachMedia(player.el().querySelector('video'));
-        
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          player.play().catch(e => {
-            console.log('Autoplay prevented:', e);
-            if (isMobile) {
-              player.bigPlayButton.show();
-            }
-          });
-        });
-        
-        hls.on(Hls.Events.ERROR, (event, data) => {
-          if (data.fatal) {
-            switch(data.type) {
-              case Hls.ErrorTypes.NETWORK_ERROR:
-                console.error('Fatal network error encountered, try to recover');
-                hls.startLoad();
-                break;
-              case Hls.ErrorTypes.MEDIA_ERROR:
-                console.error('Fatal media error encountered, try to recover');
-                hls.recoverMediaError();
-                break;
-              default:
-                console.error('Cannot recover, next channel');
-                playNextChannel();
-                break;
-            }
-          }
-        });
-      } 
-      // Fallback to native HLS
-      else if (player.canPlayType('application/vnd.apple.mpegurl')) {
-        player.src({ src: channel.url, type: 'application/x-mpegURL' });
-        player.play().catch(e => {
-          console.log('Autoplay prevented:', e);
-          if (isMobile) {
-            player.bigPlayButton.show();
-          }
-        });
-      } 
-      else {
-        alert('HLS not supported in this browser.');
-      }
-    }
-
-    function playNextChannel() {
-      const nextIndex = (currentIndex + 1) % channels.length;
-      changeChannel(nextIndex);
-    }
-
-    function playPreviousChannel() {
-      const prevIndex = (currentIndex - 1 + channels.length) % channels.length;
-      changeChannel(prevIndex);
-    }
-
-    // Handle player errors
-    player.on('error', () => {
-      console.error('Player error:', player.error());
-      setTimeout(playNextChannel, 2000);
-    });
-
-    // Close channel list when clicking outside
-    document.addEventListener('click', (e) => {
-      const container = document.getElementById('channelListContainer');
-      if (container && container.classList.contains('visible') && 
-          !e.target.closest('.channel-list-container') && 
-          !e.target.closest('.vjs-channel-button')) {
-        toggleChannelList();
-      }
-    });
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      changeChannel(0);
-      
-      // Add keyboard navigation for non-mobile
-      if (!isMobile) {
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowRight') playNextChannel();
-          if (e.key === 'ArrowLeft') playPreviousChannel();
-          if (e.key === 'c' || e.key === 'C') toggleChannelList();
-        });
-      }
-    });
+    setInterval(updateClock, 1000);
+    updateClock();
   </script>
 </body>
 </html>
