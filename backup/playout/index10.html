@@ -1167,6 +1167,7 @@
     const playPauseBtn = document.getElementById('play-pause-btn');
     const playPauseIcon = document.getElementById('play-pause-icon');
     const nextBtn = document.getElementById('next-btn');
+    const browseBtn = document.getElementById('browse-btn');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const pipBtn = document.getElementById('pip-btn');
     const volumeBtn = document.getElementById('volume-btn');
@@ -1186,8 +1187,10 @@
     const videoContainer = document.querySelector('.video-container');
     const videoControls = document.getElementById('video-controls');
     const mobileChannelsBtn = document.getElementById('mobile-channels-btn');
-    const channelsDrawer = document.getElementById('channels-drawer');
-    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+    const fullscreenBrowser = document.getElementById('fullscreen-browser');
+    const browserChannelGrid = document.getElementById('browser-channel-grid');
+    const browserSearchBox = document.getElementById('browser-search-box');
+    const closeBrowserBtn = document.getElementById('close-browser-btn');
     const qualityBtn = document.getElementById('quality-btn');
     const qualityMenu = document.getElementById('quality-menu');
     
@@ -1200,10 +1203,13 @@
     let isFullscreen = false;
     let currentQuality = 'auto';
     let lastVolume = 1;
+    let mouseMoveTimeout;
+    let isBrowserOpen = false;
     
     // Initialize the player
     function initPlayer() {
       renderChannelList();
+      renderBrowserChannels();
       setupEventListeners();
       
       // Set initial volume
@@ -1255,6 +1261,57 @@
       });
     }
     
+    // Render fullscreen browser channels
+    function renderBrowserChannels(filter = '') {
+      browserChannelGrid.innerHTML = '';
+      
+      const filteredChannels = channels.filter(channel => 
+        channel.name.toLowerCase().includes(filter.toLowerCase()) || 
+        channel.subtitle.toLowerCase().includes(filter.toLowerCase())
+      );
+      
+      if (filteredChannels.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = 'No channels found';
+        noResults.style.gridColumn = '1 / -1';
+        noResults.style.padding = '2rem';
+        noResults.style.textAlign = 'center';
+        noResults.style.color = 'var(--gray)';
+        browserChannelGrid.appendChild(noResults);
+        return;
+      }
+      
+      filteredChannels.forEach((channel, index) => {
+        const channelCard = document.createElement('div');
+        channelCard.className = `browser-channel-card ${index === currentChannelIndex ? 'active' : ''}`;
+        
+        // Create logo element based on type
+        let logoElement;
+        if (channel.logo.startsWith('http')) {
+          logoElement = `<img src="${channel.logo}" alt="${channel.name}" onerror="this.style.display='none';this.parentElement.querySelector('span').style.display='block'">`;
+        } else {
+          logoElement = `<span>${channel.logo}</span>`;
+        }
+        
+        channelCard.innerHTML = `
+          <div class="browser-channel-logo">
+            ${logoElement}
+            <span style="display:${channel.logo.startsWith('http') ? 'none' : 'block'}">${channel.logo}</span>
+          </div>
+          <div class="browser-channel-text">
+            <div class="browser-channel-name">${channel.name}</div>
+            <div class="browser-channel-subtitle">${channel.subtitle}</div>
+          </div>
+        `;
+        channelCard.addEventListener('click', () => {
+          changeChannel(index);
+          closeBrowser();
+        });
+        browserChannelGrid.appendChild(channelCard);
+      });
+    }
+    
     // Create channel card element
     function createChannelCard(channel, index) {
       const channelCard = document.createElement('div');
@@ -1280,8 +1337,8 @@
       `;
       channelCard.addEventListener('click', () => {
         changeChannel(index);
-        if (channelsDrawer.classList.contains('open')) {
-          closeDrawer();
+        if (isBrowserOpen) {
+          closeBrowser();
         }
       });
       return channelCard;
@@ -1296,6 +1353,7 @@
       prevBtn.addEventListener('click', playPreviousChannel);
       nextBtn.addEventListener('click', playNextChannel);
       playPauseBtn.addEventListener('click', togglePlayPause);
+      browseBtn.addEventListener('click', toggleBrowser);
       fullscreenBtn.addEventListener('click', toggleFullscreen);
       pipBtn.addEventListener('click', togglePictureInPicture);
       volumeBtn.addEventListener('click', toggleMute);
@@ -1336,8 +1394,13 @@
         }
       });
       
-      // Show/hide controls
-      videoContainer.addEventListener('mousemove', showControls);
+      // Mouse movement detection for auto-hide controls
+      videoContainer.addEventListener('mousemove', () => {
+        showControls();
+        clearTimeout(mouseMoveTimeout);
+        mouseMoveTimeout = setTimeout(hideControls, 3000);
+      });
+      
       videoContainer.addEventListener('mouseleave', () => {
         if (!videoControls.classList.contains('force-show')) {
           hideControls();
@@ -1347,7 +1410,9 @@
       // Keyboard shortcuts
       document.addEventListener('keydown', (e) => {
         // Ignore if focused on search box
-        if (document.activeElement === searchBox || document.activeElement === mobileSearchBox) return;
+        if (document.activeElement === searchBox || 
+            document.activeElement === mobileSearchBox || 
+            document.activeElement === browserSearchBox) return;
         
         switch(e.key) {
           case 'ArrowLeft':
@@ -1372,11 +1437,17 @@
           case 'm':
             toggleMute();
             break;
+          case 'b':
+            toggleBrowser();
+            break;
           case 'ArrowUp':
             increaseVolume();
             break;
           case 'ArrowDown':
             decreaseVolume();
+            break;
+          case 'Escape':
+            if (isBrowserOpen) closeBrowser();
             break;
         }
       });
@@ -1388,6 +1459,10 @@
       
       mobileSearchBox.addEventListener('input', (e) => {
         renderChannelList(e.target.value);
+      });
+      
+      browserSearchBox.addEventListener('input', (e) => {
+        renderBrowserChannels(e.target.value);
       });
       
       // Player events
@@ -1440,8 +1515,8 @@
       });
       
       // Mobile channels drawer
-      mobileChannelsBtn.addEventListener('click', openDrawer);
-      drawerCloseBtn.addEventListener('click', closeDrawer);
+      mobileChannelsBtn.addEventListener('click', toggleBrowser);
+      closeBrowserBtn.addEventListener('click', closeBrowser);
       
       // Quality selector
       qualityBtn.addEventListener('click', toggleQualityMenu);
@@ -1457,6 +1532,29 @@
           qualityMenu.classList.remove('show');
         }
       });
+    }
+    
+    // Toggle fullscreen browser
+    function toggleBrowser() {
+      if (isBrowserOpen) {
+        closeBrowser();
+      } else {
+        openBrowser();
+      }
+    }
+    
+    // Open fullscreen browser
+    function openBrowser() {
+      isBrowserOpen = true;
+      fullscreenBrowser.classList.add('show');
+      renderBrowserChannels(browserSearchBox.value);
+      hideControls();
+    }
+    
+    // Close fullscreen browser
+    function closeBrowser() {
+      isBrowserOpen = false;
+      fullscreenBrowser.classList.remove('show');
     }
     
     // Change channel
@@ -1574,6 +1672,7 @@
       
       // Update channel list highlights
       renderChannelList(searchBox.value);
+      renderBrowserChannels(browserSearchBox.value);
       
       // Show channel change notification
       showToast(`Now playing: ${channel.name} - ${channel.subtitle}`, 'success');
@@ -1734,18 +1833,18 @@
     
     // Show controls
     function showControls() {
+      if (isBrowserOpen) return;
+      
       videoControls.classList.add('visible');
       clearTimeout(controlsTimeout);
-      controlsTimeout = setTimeout(() => {
-        if (!videoContainer.matches(':hover')) {
-          hideControls();
-        }
-      }, 3000);
+      controlsTimeout = setTimeout(hideControls, 3000);
     }
     
     // Hide controls
     function hideControls() {
-      videoControls.classList.remove('visible');
+      if (!videoContainer.matches(':hover') || isBrowserOpen) {
+        videoControls.classList.remove('visible');
+      }
     }
     
     // Show toast notification
@@ -1773,17 +1872,6 @@
         toast.classList.remove('show');
         toast.classList.add('hide');
       }, 3000);
-    }
-    
-    // Open mobile channels drawer
-    function openDrawer() {
-      channelsDrawer.classList.add('open');
-      renderChannelList(mobileSearchBox.value);
-    }
-    
-    // Close mobile channels drawer
-    function closeDrawer() {
-      channelsDrawer.classList.remove('open');
     }
     
     // Toggle quality menu
