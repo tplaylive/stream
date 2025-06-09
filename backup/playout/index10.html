@@ -235,15 +235,6 @@
       gap: 1rem;
     }
     
-    .center-controls {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    
     .control-btn {
       background: none;
       border: none;
@@ -288,18 +279,6 @@
     
     .control-btn:hover .tooltip {
       opacity: 1;
-    }
-    
-    .big-control-btn {
-      width: 48px;
-      height: 48px;
-      font-size: 1.5rem;
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .big-control-btn:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-      transform: scale(1.15);
     }
     
     .volume-container {
@@ -600,140 +579,7 @@
       text-overflow: ellipsis;
     }
     
-    /* Fullscreen Channel Browser */
-    .fullscreen-browser {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--darker);
-      z-index: 1000;
-      display: none;
-      flex-direction: column;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    
-    .fullscreen-browser.show {
-      display: flex;
-      animation: fadeIn 0.3s ease-out;
-    }
-    
-    .browser-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    .browser-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    
-    .close-browser-btn {
-      background: none;
-      border: none;
-      color: var(--gray);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .close-browser-btn:hover {
-      color: white;
-      transform: rotate(90deg);
-    }
-    
-    .browser-search-container {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-    
-    .browser-channel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-    
-    .browser-channel-card {
-      background-color: var(--dark);
-      border-radius: 12px;
-      padding: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      border: 2px solid transparent;
-      height: 180px;
-      justify-content: center;
-    }
-    
-    .browser-channel-card:hover {
-      background-color: rgba(37, 99, 235, 0.1);
-      border-color: rgba(37, 99, 235, 0.3);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .browser-channel-card.active {
-      background-color: rgba(37, 99, 235, 0.2);
-      border-color: var(--primary);
-    }
-    
-    .browser-channel-logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--dark-gray), var(--darker));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .browser-channel-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .browser-channel-logo span {
-      font-weight: bold;
-      color: var(--primary-light);
-      font-size: 1.5rem;
-    }
-    
-    .browser-channel-text {
-      text-align: center;
-      width: 100%;
-    }
-    
-    .browser-channel-name {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    .browser-channel-subtitle {
-      color: var(--gray);
-      font-size: 0.9rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    
-    /* Mobile Channels Button */
+    /* Mobile Channels Drawer */
     .mobile-channels-btn {
       display: flex;
       align-items: center;
@@ -756,6 +602,40 @@
     
     .mobile-channels-btn i {
       margin-right: 0.5rem;
+    }
+    
+    .channels-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--dark);
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .channels-drawer.open {
+      transform: translateX(0);
+    }
+    
+    .drawer-header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 1.5rem;
+      cursor: pointer;
     }
     
     /* Toast Notifications */
@@ -932,6 +812,18 @@
         </div>
         <div class="controls-row">
           <div class="left-controls">
+            <button class="control-btn" id="play-pause-btn">
+              <i class="fas fa-play" id="play-pause-icon"></i>
+              <span class="tooltip">Play/Pause (Space)</span>
+            </button>
+            <button class="control-btn" id="prev-btn">
+              <i class="fas fa-step-backward"></i>
+              <span class="tooltip">Previous Channel (←)</span>
+            </button>
+            <button class="control-btn" id="next-btn">
+              <i class="fas fa-step-forward"></i>
+              <span class="tooltip">Next Channel (→)</span>
+            </button>
             <div class="volume-container">
               <button class="control-btn" id="volume-btn">
                 <i class="fas fa-volume-up" id="volume-icon"></i>
@@ -941,26 +833,6 @@
             </div>
             <div class="time-display" id="time-display">00:00 / --:--</div>
           </div>
-          
-          <div class="center-controls">
-            <button class="control-btn big-control-btn" id="prev-btn">
-              <i class="fas fa-step-backward"></i>
-              <span class="tooltip">Previous Channel (←)</span>
-            </button>
-            <button class="control-btn big-control-btn" id="play-pause-btn">
-              <i class="fas fa-play" id="play-pause-icon"></i>
-              <span class="tooltip">Play/Pause (Space)</span>
-            </button>
-            <button class="control-btn big-control-btn" id="next-btn">
-              <i class="fas fa-step-forward"></i>
-              <span class="tooltip">Next Channel (→)</span>
-            </button>
-            <button class="control-btn big-control-btn" id="browse-btn">
-              <i class="fas fa-tv"></i>
-              <span class="tooltip">Browse Channels (b)</span>
-            </button>
-          </div>
-          
           <div class="right-controls">
             <div class="quality-selector">
               <button class="control-btn" id="quality-btn">
@@ -1020,19 +892,19 @@
     </button>
   </div>
   
-  <!-- Fullscreen Channel Browser -->
-  <div class="fullscreen-browser" id="fullscreen-browser">
-    <div class="browser-header">
-      <div class="browser-title">All Channels</div>
-      <button class="close-browser-btn" id="close-browser-btn">
+  <!-- Mobile Channels Drawer -->
+  <div class="channels-drawer" id="channels-drawer">
+    <div class="drawer-header">
+      <div class="channels-title">Channels</div>
+      <button class="drawer-close-btn" id="drawer-close-btn">
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <div class="browser-search-container">
+    <div class="search-box-container">
       <i class="fas fa-search search-icon"></i>
-      <input type="text" class="search-box" id="browser-search-box" placeholder="Search all channels...">
+      <input type="text" class="search-box" id="mobile-search-box" placeholder="Search channels...">
     </div>
-    <div class="browser-channel-grid" id="browser-channel-grid"></div>
+    <div class="channel-list" id="mobile-channel-list"></div>
   </div>
   
   <!-- Toast Notification -->
@@ -1167,7 +1039,6 @@
     const playPauseBtn = document.getElementById('play-pause-btn');
     const playPauseIcon = document.getElementById('play-pause-icon');
     const nextBtn = document.getElementById('next-btn');
-    const browseBtn = document.getElementById('browse-btn');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const pipBtn = document.getElementById('pip-btn');
     const volumeBtn = document.getElementById('volume-btn');
@@ -1187,10 +1058,8 @@
     const videoContainer = document.querySelector('.video-container');
     const videoControls = document.getElementById('video-controls');
     const mobileChannelsBtn = document.getElementById('mobile-channels-btn');
-    const fullscreenBrowser = document.getElementById('fullscreen-browser');
-    const browserChannelGrid = document.getElementById('browser-channel-grid');
-    const browserSearchBox = document.getElementById('browser-search-box');
-    const closeBrowserBtn = document.getElementById('close-browser-btn');
+    const channelsDrawer = document.getElementById('channels-drawer');
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
     const qualityBtn = document.getElementById('quality-btn');
     const qualityMenu = document.getElementById('quality-menu');
     
@@ -1203,13 +1072,10 @@
     let isFullscreen = false;
     let currentQuality = 'auto';
     let lastVolume = 1;
-    let mouseMoveTimeout;
-    let isBrowserOpen = false;
     
     // Initialize the player
     function initPlayer() {
       renderChannelList();
-      renderBrowserChannels();
       setupEventListeners();
       
       // Set initial volume
@@ -1261,57 +1127,6 @@
       });
     }
     
-    // Render fullscreen browser channels
-    function renderBrowserChannels(filter = '') {
-      browserChannelGrid.innerHTML = '';
-      
-      const filteredChannels = channels.filter(channel => 
-        channel.name.toLowerCase().includes(filter.toLowerCase()) || 
-        channel.subtitle.toLowerCase().includes(filter.toLowerCase())
-      );
-      
-      if (filteredChannels.length === 0) {
-        const noResults = document.createElement('div');
-        noResults.className = 'no-results';
-        noResults.textContent = 'No channels found';
-        noResults.style.gridColumn = '1 / -1';
-        noResults.style.padding = '2rem';
-        noResults.style.textAlign = 'center';
-        noResults.style.color = 'var(--gray)';
-        browserChannelGrid.appendChild(noResults);
-        return;
-      }
-      
-      filteredChannels.forEach((channel, index) => {
-        const channelCard = document.createElement('div');
-        channelCard.className = `browser-channel-card ${index === currentChannelIndex ? 'active' : ''}`;
-        
-        // Create logo element based on type
-        let logoElement;
-        if (channel.logo.startsWith('http')) {
-          logoElement = `<img src="${channel.logo}" alt="${channel.name}" onerror="this.style.display='none';this.parentElement.querySelector('span').style.display='block'">`;
-        } else {
-          logoElement = `<span>${channel.logo}</span>`;
-        }
-        
-        channelCard.innerHTML = `
-          <div class="browser-channel-logo">
-            ${logoElement}
-            <span style="display:${channel.logo.startsWith('http') ? 'none' : 'block'}">${channel.logo}</span>
-          </div>
-          <div class="browser-channel-text">
-            <div class="browser-channel-name">${channel.name}</div>
-            <div class="browser-channel-subtitle">${channel.subtitle}</div>
-          </div>
-        `;
-        channelCard.addEventListener('click', () => {
-          changeChannel(index);
-          closeBrowser();
-        });
-        browserChannelGrid.appendChild(channelCard);
-      });
-    }
-    
     // Create channel card element
     function createChannelCard(channel, index) {
       const channelCard = document.createElement('div');
@@ -1337,8 +1152,8 @@
       `;
       channelCard.addEventListener('click', () => {
         changeChannel(index);
-        if (isBrowserOpen) {
-          closeBrowser();
+        if (channelsDrawer.classList.contains('open')) {
+          closeDrawer();
         }
       });
       return channelCard;
@@ -1353,7 +1168,6 @@
       prevBtn.addEventListener('click', playPreviousChannel);
       nextBtn.addEventListener('click', playNextChannel);
       playPauseBtn.addEventListener('click', togglePlayPause);
-      browseBtn.addEventListener('click', toggleBrowser);
       fullscreenBtn.addEventListener('click', toggleFullscreen);
       pipBtn.addEventListener('click', togglePictureInPicture);
       volumeBtn.addEventListener('click', toggleMute);
@@ -1394,13 +1208,8 @@
         }
       });
       
-      // Mouse movement detection for auto-hide controls
-      videoContainer.addEventListener('mousemove', () => {
-        showControls();
-        clearTimeout(mouseMoveTimeout);
-        mouseMoveTimeout = setTimeout(hideControls, 3000);
-      });
-      
+      // Show/hide controls
+      videoContainer.addEventListener('mousemove', showControls);
       videoContainer.addEventListener('mouseleave', () => {
         if (!videoControls.classList.contains('force-show')) {
           hideControls();
@@ -1410,9 +1219,7 @@
       // Keyboard shortcuts
       document.addEventListener('keydown', (e) => {
         // Ignore if focused on search box
-        if (document.activeElement === searchBox || 
-            document.activeElement === mobileSearchBox || 
-            document.activeElement === browserSearchBox) return;
+        if (document.activeElement === searchBox || document.activeElement === mobileSearchBox) return;
         
         switch(e.key) {
           case 'ArrowLeft':
@@ -1437,17 +1244,11 @@
           case 'm':
             toggleMute();
             break;
-          case 'b':
-            toggleBrowser();
-            break;
           case 'ArrowUp':
             increaseVolume();
             break;
           case 'ArrowDown':
             decreaseVolume();
-            break;
-          case 'Escape':
-            if (isBrowserOpen) closeBrowser();
             break;
         }
       });
@@ -1459,10 +1260,6 @@
       
       mobileSearchBox.addEventListener('input', (e) => {
         renderChannelList(e.target.value);
-      });
-      
-      browserSearchBox.addEventListener('input', (e) => {
-        renderBrowserChannels(e.target.value);
       });
       
       // Player events
@@ -1515,8 +1312,8 @@
       });
       
       // Mobile channels drawer
-      mobileChannelsBtn.addEventListener('click', toggleBrowser);
-      closeBrowserBtn.addEventListener('click', closeBrowser);
+      mobileChannelsBtn.addEventListener('click', openDrawer);
+      drawerCloseBtn.addEventListener('click', closeDrawer);
       
       // Quality selector
       qualityBtn.addEventListener('click', toggleQualityMenu);
@@ -1532,29 +1329,6 @@
           qualityMenu.classList.remove('show');
         }
       });
-    }
-    
-    // Toggle fullscreen browser
-    function toggleBrowser() {
-      if (isBrowserOpen) {
-        closeBrowser();
-      } else {
-        openBrowser();
-      }
-    }
-    
-    // Open fullscreen browser
-    function openBrowser() {
-      isBrowserOpen = true;
-      fullscreenBrowser.classList.add('show');
-      renderBrowserChannels(browserSearchBox.value);
-      hideControls();
-    }
-    
-    // Close fullscreen browser
-    function closeBrowser() {
-      isBrowserOpen = false;
-      fullscreenBrowser.classList.remove('show');
     }
     
     // Change channel
@@ -1672,7 +1446,6 @@
       
       // Update channel list highlights
       renderChannelList(searchBox.value);
-      renderBrowserChannels(browserSearchBox.value);
       
       // Show channel change notification
       showToast(`Now playing: ${channel.name} - ${channel.subtitle}`, 'success');
@@ -1833,18 +1606,18 @@
     
     // Show controls
     function showControls() {
-      if (isBrowserOpen) return;
-      
       videoControls.classList.add('visible');
       clearTimeout(controlsTimeout);
-      controlsTimeout = setTimeout(hideControls, 3000);
+      controlsTimeout = setTimeout(() => {
+        if (!videoContainer.matches(':hover')) {
+          hideControls();
+        }
+      }, 3000);
     }
     
     // Hide controls
     function hideControls() {
-      if (!videoContainer.matches(':hover') || isBrowserOpen) {
-        videoControls.classList.remove('visible');
-      }
+      videoControls.classList.remove('visible');
     }
     
     // Show toast notification
@@ -1872,6 +1645,17 @@
         toast.classList.remove('show');
         toast.classList.add('hide');
       }, 3000);
+    }
+    
+    // Open mobile channels drawer
+    function openDrawer() {
+      channelsDrawer.classList.add('open');
+      renderChannelList(mobileSearchBox.value);
+    }
+    
+    // Close mobile channels drawer
+    function closeDrawer() {
+      channelsDrawer.classList.remove('open');
     }
     
     // Toggle quality menu
