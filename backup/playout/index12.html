@@ -783,43 +783,75 @@
   </style>
 </head>
 <body>
+  <header class="header">
+    <div class="logo">
+      <i class="fas fa-play-circle logo-icon"></i>
+      <span>T Play</span>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" id="settings-btn" title="Settings">
+        <i class="fas fa-cog"></i>
+      </button>
+    </div>
+  </header>
+  
   <div class="player-container">
     <div class="video-container">
       <video id="video-player" playsinline></video>
       <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
+        <div class="loading-text" id="loading-text">Loading channel...</div>
       </div>
       
       <!-- Video Controls Overlay -->
-      <div class="video-controls">
+      <div class="video-controls" id="video-controls">
         <div class="progress-container" id="progress-container">
           <div class="progress-bar" id="progress-bar"></div>
+          <div class="progress-buffer" id="progress-buffer"></div>
+          <div class="progress-hover" id="progress-hover"></div>
         </div>
         <div class="controls-row">
           <div class="left-controls">
-            <button class="control-btn" id="play-pause-btn" title="Play/Pause (Space)">
-              <span id="play-pause-icon">►</span>
+            <button class="control-btn" id="play-pause-btn">
+              <i class="fas fa-play" id="play-pause-icon"></i>
+              <span class="tooltip">Play/Pause (Space)</span>
             </button>
-            <button class="control-btn" id="prev-btn" title="Previous Channel (←)">
-              ⏮
+            <button class="control-btn" id="prev-btn">
+              <i class="fas fa-step-backward"></i>
+              <span class="tooltip">Previous Channel (←)</span>
             </button>
-            <button class="control-btn" id="next-btn" title="Next Channel (→)">
-              ⏭
+            <button class="control-btn" id="next-btn">
+              <i class="fas fa-step-forward"></i>
+              <span class="tooltip">Next Channel (→)</span>
             </button>
             <div class="volume-container">
-              <button class="control-btn" id="volume-btn" title="Mute (m)">
-                <span id="volume-icon">🕪</span>
+              <button class="control-btn" id="volume-btn">
+                <i class="fas fa-volume-up" id="volume-icon"></i>
+                <span class="tooltip">Mute (m)</span>
               </button>
               <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" id="volume-slider">
             </div>
             <div class="time-display" id="time-display">00:00 / --:--</div>
           </div>
           <div class="right-controls">
-            <button class="control-btn" id="pip-btn" title="Picture-in-Picture (p)">
-              <span>PiP</span>
+            <div class="quality-selector">
+              <button class="control-btn" id="quality-btn">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="tooltip">Quality</span>
+              </button>
+              <div class="quality-menu" id="quality-menu">
+                <div class="quality-option active" data-quality="auto">Auto</div>
+                <div class="quality-option" data-quality="hd">HD</div>
+                <div class="quality-option" data-quality="sd">SD</div>
+              </div>
+            </div>
+            <button class="control-btn" id="pip-btn">
+              <i class="fas fa-clone"></i>
+              <span class="tooltip">Picture-in-Picture (p)</span>
             </button>
-            <button class="control-btn" id="fullscreen-btn" title="Fullscreen (f)">
-              <span>⛶</span>
+            <button class="control-btn" id="fullscreen-btn">
+              <i class="fas fa-expand"></i>
+              <span class="tooltip">Fullscreen (f)</span>
             </button>
           </div>
         </div>
@@ -835,16 +867,50 @@
         <div class="channel-title" id="current-channel-name">Select a channel</div>
         <div class="channel-subtitle" id="current-channel-subtitle"></div>
       </div>
-      <div id="player-status">Ready</div>
+      <div class="player-status" id="player-status">
+        <div class="status-dot"></div>
+        <span>Ready</span>
+      </div>
     </div>
     
-    <div class="channels-container">
+    <!-- Desktop Channels Sidebar -->
+    <div class="channels-sidebar">
       <div class="channels-header">
         <div class="channels-title">Channels</div>
+      </div>
+      <div class="search-box-container">
+        <i class="fas fa-search search-icon"></i>
         <input type="text" class="search-box" id="search-box" placeholder="Search channels...">
       </div>
       <div class="channel-list" id="channel-list"></div>
     </div>
+    
+    <!-- Mobile Channels Button -->
+    <button class="mobile-channels-btn" id="mobile-channels-btn">
+      <i class="fas fa-tv"></i>
+      <span>Browse Channels</span>
+    </button>
+  </div>
+  
+  <!-- Mobile Channels Drawer -->
+  <div class="channels-drawer" id="channels-drawer">
+    <div class="drawer-header">
+      <div class="channels-title">Channels</div>
+      <button class="drawer-close-btn" id="drawer-close-btn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="search-box-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-box" id="mobile-search-box" placeholder="Search channels...">
+    </div>
+    <div class="channel-list" id="mobile-channel-list"></div>
+  </div>
+  
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-info-circle"></i>
+    <span id="toast-message"></span>
   </div>
   
   <div class="toast" id="toast"></div>
