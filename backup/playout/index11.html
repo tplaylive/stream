@@ -1072,5 +1072,16 @@
     let isFullscreen = false;
     let currentQuality = 'auto';
     let lastVolume = 1;
-    
-    // Initialize
+
+    // Initialize HLS.js if needed
+    if (typeof Hls === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
+      script.onload = initPlayer;
+      document.head.appendChild(script);
+    } else {
+      initPlayer();
+    }
+  </script>
+</body>
+</html>
