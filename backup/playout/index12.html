@@ -913,81 +913,115 @@
     <span id="toast-message"></span>
   </div>
   
-  <div class="toast" id="toast"></div>
-  
   <script>
-    // Channels data with logos
+    // Enhanced channels data with quality options
     const channels = [
       { 
         name: "T Play Movies", 
         subtitle: "24/7 Hindi Movies", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/sd.m3u8" }
+        ],
         logo: "https://avatars.githubusercontent.com/u/210236050?v=4"
       },
       { 
         name: "T Play Movies", 
         subtitle: "24/7 Bangla Movies", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/sd.m3u8" }
+        ],
         logo: "https://avatars.githubusercontent.com/u/210236050?v=4"
       },
       { 
         name: "T Play Movies", 
         subtitle: "24/7 Dubbed Movies", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/sd.m3u8" }
+        ],
         logo: "M"
       },
       { 
         name: "T Play Waz", 
         subtitle: "24/7 Bangla Waz", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/sd.m3u8" }
+        ],
         logo: "W"
       },
       { 
         name: "T Play Kirtan", 
         subtitle: "24/7 Bangla Kirtan", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/sd.m3u8" }
+        ],
         logo: "K"
       },
       { 
         name: "T Play Kids", 
         subtitle: "24/7 Bantul The Great", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/sd.m3u8" }
+        ],
         logo: "K"
       },
       { 
         name: "T Play Kids", 
         subtitle: "24/7 Gopal Bhar", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/sd.m3u8" }
+        ],
         logo: "K"
       },
       { 
         name: "T Play Kids", 
         subtitle: "24/7 Motu Patlu", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/sd.m3u8" }
+        ],
         logo: "K"
       },
       { 
         name: "T Play Kids", 
         subtitle: "24/7 Shinchan", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/sd.m3u8" }
+        ],
         logo: "K"
       },
       { 
         name: "T Play Kids", 
         subtitle: "24/7 Doraemon", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/sd.m3u8" }
+        ],
         logo: "K"
       },
       { 
         name: "T Play Music", 
         subtitle: "24/7 Hindi Songs", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/sd.m3u8" }
+        ],
         logo: "♪"
       },
       { 
         name: "T Play Music", 
         subtitle: "24/7 Bangla Songs", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
+        qualities: [
+          { label: "HD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8" },
+          { label: "SD", url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/sd.m3u8" }
+        ],
         logo: "♪"
       }
     ];
@@ -995,6 +1029,7 @@
     // DOM elements
     const videoPlayer = document.getElementById('video-player');
     const loadingOverlay = document.getElementById('loading-overlay');
+    const loadingText = document.getElementById('loading-text');
     const currentChannelLogoImg = document.getElementById('current-channel-logo-img');
     const currentChannelLogoText = document.getElementById('current-channel-logo-text');
     const currentChannelName = document.getElementById('current-channel-name');
@@ -1011,12 +1046,22 @@
     const volumeIcon = document.getElementById('volume-icon');
     const progressContainer = document.getElementById('progress-container');
     const progressBar = document.getElementById('progress-bar');
+    const progressBuffer = document.getElementById('progress-buffer');
+    const progressHover = document.getElementById('progress-hover');
     const timeDisplay = document.getElementById('time-display');
     const channelList = document.getElementById('channel-list');
+    const mobileChannelList = document.getElementById('mobile-channel-list');
     const searchBox = document.getElementById('search-box');
+    const mobileSearchBox = document.getElementById('mobile-search-box');
     const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
     const videoContainer = document.querySelector('.video-container');
-    const videoControls = document.querySelector('.video-controls');
+    const videoControls = document.getElementById('video-controls');
+    const mobileChannelsBtn = document.getElementById('mobile-channels-btn');
+    const channelsDrawer = document.getElementById('channels-drawer');
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+    const qualityBtn = document.getElementById('quality-btn');
+    const qualityMenu = document.getElementById('quality-menu');
     
     // Player state
     let currentChannelIndex = -1;
@@ -1024,6 +1069,9 @@
     let isPlaying = false;
     let controlsTimeout;
     let isDraggingProgress = false;
+    let isFullscreen = false;
+    let currentQuality = 'auto';
+    let lastVolume = 1;
     
     // Initialize the player
     function initPlayer() {
@@ -1032,6 +1080,7 @@
       
       // Set initial volume
       videoPlayer.volume = volumeSlider.value;
+      lastVolume = volumeSlider.value;
       
       // Try to play the first channel
       if (channels.length > 0) {
@@ -1040,41 +1089,74 @@
       
       // Start progress update loop
       requestAnimationFrame(updateProgress);
+      
+      // Show welcome message
+      setTimeout(() => {
+        showToast('Welcome to T Play Premium', 'success');
+      }, 1000);
     }
     
     // Render channel list
     function renderChannelList(filter = '') {
       channelList.innerHTML = '';
+      mobileChannelList.innerHTML = '';
       
       const filteredChannels = channels.filter(channel => 
         channel.name.toLowerCase().includes(filter.toLowerCase()) || 
         channel.subtitle.toLowerCase().includes(filter.toLowerCase())
       );
       
+      if (filteredChannels.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = 'No channels found';
+        noResults.style.padding = '1rem';
+        noResults.style.textAlign = 'center';
+        noResults.style.color = 'var(--gray)';
+        channelList.appendChild(noResults.cloneNode(true));
+        mobileChannelList.appendChild(noResults.cloneNode(true));
+        return;
+      }
+      
       filteredChannels.forEach((channel, index) => {
-        const channelCard = document.createElement('div');
-        channelCard.className = `channel-card ${index === currentChannelIndex ? 'active' : ''}`;
-        
-        // Create logo element based on type
-        let logoElement;
-        if (channel.logo.startsWith('http')) {
-          logoElement = `<img src="${channel.logo}" alt="${channel.name}">`;
-        } else {
-          logoElement = `<span>${channel.logo}</span>`;
-        }
-        
-        channelCard.innerHTML = `
-          <div class="channel-card-logo">
-            ${logoElement}
-          </div>
-          <div class="channel-card-text">
-            <div class="channel-card-name">${channel.name}</div>
-            <div class="channel-card-subtitle">${channel.subtitle}</div>
-          </div>
-        `;
-        channelCard.addEventListener('click', () => changeChannel(index));
+        const channelCard = createChannelCard(channel, index);
         channelList.appendChild(channelCard);
+        
+        const mobileChannelCard = createChannelCard(channel, index);
+        mobileChannelList.appendChild(mobileChannelCard);
       });
+    }
+    
+    // Create channel card element
+    function createChannelCard(channel, index) {
+      const channelCard = document.createElement('div');
+      channelCard.className = `channel-card ${index === currentChannelIndex ? 'active' : ''}`;
+      
+      // Create logo element based on type
+      let logoElement;
+      if (channel.logo.startsWith('http')) {
+        logoElement = `<img src="${channel.logo}" alt="${channel.name}" onerror="this.style.display='none';this.parentElement.querySelector('span').style.display='block'">`;
+      } else {
+        logoElement = `<span>${channel.logo}</span>`;
+      }
+      
+      channelCard.innerHTML = `
+        <div class="channel-card-logo">
+          ${logoElement}
+          <span style="display:${channel.logo.startsWith('http') ? 'none' : 'block'}">${channel.logo}</span>
+        </div>
+        <div class="channel-card-text">
+          <div class="channel-card-name">${channel.name}</div>
+          <div class="channel-card-subtitle">${channel.subtitle}</div>
+        </div>
+      `;
+      channelCard.addEventListener('click', () => {
+        changeChannel(index);
+        if (channelsDrawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+      return channelCard;
     }
     
     // Setup event listeners
@@ -1095,11 +1177,23 @@
         videoPlayer.volume = e.target.value;
         videoPlayer.muted = false;
         updateVolumeIcon(e.target.value);
+        lastVolume = e.target.value;
       });
       
       // Progress bar
       progressContainer.addEventListener('click', seek);
       progressContainer.addEventListener('mousedown', () => isDraggingProgress = true);
+      progressContainer.addEventListener('mousemove', (e) => {
+        if (!isDraggingProgress) {
+          const rect = progressContainer.getBoundingClientRect();
+          const pos = (e.clientX - rect.left) / rect.width;
+          progressHover.style.width = `${pos * 100}%`;
+          progressHover.style.opacity = '1';
+        }
+      });
+      progressContainer.addEventListener('mouseleave', () => {
+        progressHover.style.opacity = '0';
+      });
       document.addEventListener('mousemove', (e) => {
         if (isDraggingProgress) {
           const rect = progressContainer.getBoundingClientRect();
@@ -1124,17 +1218,39 @@
       
       // Keyboard shortcuts
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') playPreviousChannel();
-        if (e.key === 'ArrowRight') playNextChannel();
-        if (e.key === ' ' || e.key === 'Spacebar') {
-          e.preventDefault();
-          togglePlayPause();
+        // Ignore if focused on search box
+        if (document.activeElement === searchBox || document.activeElement === mobileSearchBox) return;
+        
+        switch(e.key) {
+          case 'ArrowLeft':
+            if (e.ctrlKey) playPreviousChannel();
+            else rewind();
+            break;
+          case 'ArrowRight':
+            if (e.ctrlKey) playNextChannel();
+            else fastForward();
+            break;
+          case ' ':
+          case 'Spacebar':
+            e.preventDefault();
+            togglePlayPause();
+            break;
+          case 'f':
+            toggleFullscreen();
+            break;
+          case 'p':
+            togglePictureInPicture();
+            break;
+          case 'm':
+            toggleMute();
+            break;
+          case 'ArrowUp':
+            increaseVolume();
+            break;
+          case 'ArrowDown':
+            decreaseVolume();
+            break;
         }
-        if (e.key === 'f') toggleFullscreen();
-        if (e.key === 'p') togglePictureInPicture();
-        if (e.key === 'm') toggleMute();
-        if (e.key === 'ArrowUp') increaseVolume();
-        if (e.key === 'ArrowDown') decreaseVolume();
       });
       
       // Search functionality
@@ -1142,28 +1258,37 @@
         renderChannelList(e.target.value);
       });
       
+      mobileSearchBox.addEventListener('input', (e) => {
+        renderChannelList(e.target.value);
+      });
+      
       // Player events
       videoPlayer.addEventListener('playing', () => {
         isPlaying = true;
-        playPauseIcon.textContent = '❚❚';
+        playPauseIcon.classList.replace('fa-play', 'fa-pause');
         loadingOverlay.style.display = 'none';
-        playerStatus.textContent = 'Playing';
+        playerStatus.querySelector('span').textContent = 'Playing';
+        playerStatus.className = 'player-status playing';
       });
       
       videoPlayer.addEventListener('pause', () => {
         isPlaying = false;
-        playPauseIcon.textContent = '►';
-        playerStatus.textContent = 'Paused';
+        playPauseIcon.classList.replace('fa-pause', 'fa-play');
+        playerStatus.querySelector('span').textContent = 'Paused';
+        playerStatus.className = 'player-status';
       });
       
       videoPlayer.addEventListener('waiting', () => {
+        loadingText.textContent = 'Buffering...';
         loadingOverlay.style.display = 'flex';
-        playerStatus.textContent = 'Buffering...';
+        playerStatus.querySelector('span').textContent = 'Buffering';
+        playerStatus.className = 'player-status buffering';
       });
       
       videoPlayer.addEventListener('error', () => {
         showToast('Error playing channel', 'error');
-        playerStatus.textContent = 'Error';
+        playerStatus.querySelector('span').textContent = 'Error';
+        playerStatus.className = 'player-status error';
         loadingOverlay.style.display = 'flex';
       });
       
@@ -1171,23 +1296,51 @@
       
       // Picture-in-Picture events
       videoPlayer.addEventListener('enterpictureinpicture', () => {
-        pipBtn.innerHTML = '<span>Exit PiP</span>';
+        pipBtn.innerHTML = '<i class="fas fa-times"></i><span class="tooltip">Exit PiP (p)</span>';
         showToast('Entered Picture-in-Picture mode', 'success');
       });
       
       videoPlayer.addEventListener('leavepictureinpicture', () => {
-        pipBtn.innerHTML = '<span>PiP</span>';
+        pipBtn.innerHTML = '<i class="fas fa-clone"></i><span class="tooltip">Picture-in-Picture (p)</span>';
         showToast('Exited Picture-in-Picture mode', 'success');
+      });
+      
+      // Fullscreen events
+      document.addEventListener('fullscreenchange', () => {
+        isFullscreen = !!document.fullscreenElement;
+        document.body.classList.toggle('fullscreen', isFullscreen);
+      });
+      
+      // Mobile channels drawer
+      mobileChannelsBtn.addEventListener('click', openDrawer);
+      drawerCloseBtn.addEventListener('click', closeDrawer);
+      
+      // Quality selector
+      qualityBtn.addEventListener('click', toggleQualityMenu);
+      qualityMenu.addEventListener('click', (e) => {
+        if (e.target.classList.contains('quality-option')) {
+          selectQuality(e.target.dataset.quality);
+        }
+      });
+      
+      // Click outside quality menu to close it
+      document.addEventListener('click', (e) => {
+        if (!qualityMenu.contains(e.target) && e.target !== qualityBtn) {
+          qualityMenu.classList.remove('show');
+        }
       });
     }
     
     // Change channel
     function changeChannel(index) {
       if (index < 0 || index >= channels.length) return;
+      if (index === currentChannelIndex) return;
       
       // Show loading state
+      loadingText.textContent = 'Loading channel...';
       loadingOverlay.style.display = 'flex';
-      playerStatus.textContent = 'Loading...';
+      playerStatus.querySelector('span').textContent = 'Loading';
+      playerStatus.className = 'player-status buffering';
       
       const channel = channels[index];
       currentChannelIndex = index;
@@ -1201,6 +1354,11 @@
         currentChannelLogoImg.src = channel.logo;
         currentChannelLogoImg.style.display = 'block';
         currentChannelLogoText.style.display = 'none';
+        currentChannelLogoImg.onerror = () => {
+          currentChannelLogoImg.style.display = 'none';
+          currentChannelLogoText.style.display = 'block';
+          currentChannelLogoText.textContent = channel.name.charAt(0);
+        };
       } else {
         currentChannelLogoText.textContent = channel.logo;
         currentChannelLogoText.style.display = 'block';
@@ -1212,22 +1370,46 @@
         hls.destroy();
       }
       
+      // Get the appropriate quality URL
+      let streamUrl;
+      if (currentQuality === 'auto' || !channel.qualities.some(q => q.label.toLowerCase() === currentQuality)) {
+        streamUrl = channel.qualities[0].url; // Default to first quality
+      } else {
+        streamUrl = channel.qualities.find(q => q.label.toLowerCase() === currentQuality).url;
+      }
+      
       // Try to play with HLS.js first
       if (Hls.isSupported()) {
         hls = new Hls({
           maxBufferLength: 30,
           maxMaxBufferLength: 600,
           enableWorker: true,
-          lowLatencyMode: true
+          lowLatencyMode: true,
+          backBufferLength: 30
         });
         
-        hls.loadSource(channel.url);
+        hls.loadSource(streamUrl);
         hls.attachMedia(videoPlayer);
         
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
           videoPlayer.play().catch(e => {
-            showToast('Click to play', 'error');
+            showToast('Click to play', 'warning');
             console.log('Autoplay prevented:', e);
+          });
+          
+          // Update buffer indicator
+          hls.on(Hls.Events.FRAG_BUFFERED, () => {
+            if (hls && hls.media) {
+              const buffered = hls.media.buffered;
+              if (buffered.length > 0) {
+                const bufferedEnd = buffered.end(buffered.length - 1);
+                const duration = hls.media.duration;
+                if (duration > 0) {
+                  const bufferedPercent = (bufferedEnd / duration) * 100;
+                  progressBuffer.style.width = `${bufferedPercent}%`;
+                }
+              }
+            }
           });
         });
         
@@ -1235,7 +1417,7 @@
           if (data.fatal) {
             switch(data.type) {
               case Hls.ErrorTypes.NETWORK_ERROR:
-                showToast('Network error, trying next channel', 'error');
+                showToast('Network error, trying to recover', 'error');
                 hls.startLoad();
                 break;
               case Hls.ErrorTypes.MEDIA_ERROR:
@@ -1252,9 +1434,9 @@
       } 
       // Fallback to native HLS
       else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-        videoPlayer.src = channel.url;
+        videoPlayer.src = streamUrl;
         videoPlayer.play().catch(e => {
-          showToast('Click to play', 'error');
+          showToast('Click to play', 'warning');
           console.log('Autoplay prevented:', e);
         });
       } 
@@ -1264,6 +1446,9 @@
       
       // Update channel list highlights
       renderChannelList(searchBox.value);
+      
+      // Show channel change notification
+      showToast(`Now playing: ${channel.name} - ${channel.subtitle}`, 'success');
     }
     
     // Toggle play/pause
@@ -1275,6 +1460,18 @@
       } else {
         videoPlayer.pause();
       }
+      showControls();
+    }
+    
+    // Rewind 10 seconds
+    function rewind() {
+      videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 10);
+      showControls();
+    }
+    
+    // Fast forward 10 seconds
+    function fastForward() {
+      videoPlayer.currentTime = Math.min(videoPlayer.duration, videoPlayer.currentTime + 10);
       showControls();
     }
     
@@ -1323,20 +1520,26 @@
     // Update volume icon based on volume level
     function updateVolumeIcon(volume) {
       if (videoPlayer.muted || volume == 0) {
-        volumeIcon.textContent = '🕨';
+        volumeIcon.className = 'fas fa-volume-mute';
         volumeSlider.value = 0;
       } else if (volume < 0.5) {
-        volumeIcon.textContent = '🕩';
+        volumeIcon.className = 'fas fa-volume-down';
         volumeSlider.value = volume;
       } else {
-        volumeIcon.textContent = '🕪';
+        volumeIcon.className = 'fas fa-volume-up';
         volumeSlider.value = volume;
       }
     }
     
     // Toggle mute
     function toggleMute() {
-      videoPlayer.muted = !videoPlayer.muted;
+      if (videoPlayer.muted) {
+        videoPlayer.muted = false;
+        videoPlayer.volume = lastVolume;
+      } else {
+        lastVolume = videoPlayer.volume;
+        videoPlayer.muted = true;
+      }
       updateVolumeIcon(videoPlayer.volume);
       showControls();
     }
@@ -1347,6 +1550,7 @@
         videoPlayer.volume = Math.min(1, videoPlayer.volume + 0.1);
         videoPlayer.muted = false;
         updateVolumeIcon(videoPlayer.volume);
+        lastVolume = videoPlayer.volume;
       }
       showControls();
     }
@@ -1357,6 +1561,7 @@
         videoPlayer.volume = Math.max(0, videoPlayer.volume - 0.1);
         videoPlayer.muted = false;
         updateVolumeIcon(videoPlayer.volume);
+        lastVolume = videoPlayer.volume;
       }
       showControls();
     }
@@ -1377,6 +1582,7 @@
       const rect = progressContainer.getBoundingClientRect();
       const pos = (e ? (e.clientX - rect.left) / rect.width : parseFloat(progressBar.style.width) / 100);
       videoPlayer.currentTime = pos * videoPlayer.duration;
+      showControls();
     }
     
     // Update time display
@@ -1400,8 +1606,7 @@
     
     // Show controls
     function showControls() {
-      videoControls.classList.add('force-show');
-      videoControls.style.opacity = '1';
+      videoControls.classList.add('visible');
       clearTimeout(controlsTimeout);
       controlsTimeout = setTimeout(() => {
         if (!videoContainer.matches(':hover')) {
@@ -1412,19 +1617,72 @@
     
     // Hide controls
     function hideControls() {
-      videoControls.classList.remove('force-show');
-      videoControls.style.opacity = '0';
+      videoControls.classList.remove('visible');
     }
     
     // Show toast notification
     function showToast(message, type = '') {
-      toast.textContent = message;
       toast.className = `toast ${type}`;
+      toastMessage.textContent = message;
+      
+      // Set appropriate icon
+      const icon = toast.querySelector('i');
+      if (type === 'success') {
+        icon.className = 'fas fa-check-circle';
+      } else if (type === 'error') {
+        icon.className = 'fas fa-exclamation-circle';
+      } else if (type === 'warning') {
+        icon.className = 'fas fa-exclamation-triangle';
+      } else {
+        icon.className = 'fas fa-info-circle';
+      }
+      
+      toast.classList.remove('hide');
       toast.classList.add('show');
       
-      setTimeout(() => {
+      clearTimeout(toast.timeout);
+      toast.timeout = setTimeout(() => {
         toast.classList.remove('show');
+        toast.classList.add('hide');
       }, 3000);
+    }
+    
+    // Open mobile channels drawer
+    function openDrawer() {
+      channelsDrawer.classList.add('open');
+      renderChannelList(mobileSearchBox.value);
+    }
+    
+    // Close mobile channels drawer
+    function closeDrawer() {
+      channelsDrawer.classList.remove('open');
+    }
+    
+    // Toggle quality menu
+    function toggleQualityMenu(e) {
+      e.stopPropagation();
+      qualityMenu.classList.toggle('show');
+    }
+    
+    // Select quality
+    function selectQuality(quality) {
+      currentQuality = quality;
+      
+      // Update UI
+      const options = qualityMenu.querySelectorAll('.quality-option');
+      options.forEach(opt => opt.classList.remove('active'));
+      const selectedOption = qualityMenu.querySelector(`.quality-option[data-quality="${quality}"]`);
+      if (selectedOption) {
+        selectedOption.classList.add('active');
+      }
+      
+      // Change quality immediately if a channel is playing
+      if (currentChannelIndex >= 0) {
+        changeChannel(currentChannelIndex);
+      }
+      
+      showToast(`Quality set to ${quality.toUpperCase()}`, 'success');
+      qualityMenu.classList.remove('show');
     }
     
     // Initialize HLS.js if needed
