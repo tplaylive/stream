@@ -1,83 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>T Play Live TV - Channel List</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T Play Live TV</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
   <style>
     body {
-      background-color: #000;
+      font-family: Arial, sans-serif;
+      background: #111;
       color: #fff;
+      margin: 0;
+      padding: 0;
     }
-    .channel-card {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
+    #player-container {
+      max-width: 100%;
+      background: #000;
+      position: relative;
+    }
+    video {
+      width: 100%;
+      height: 360px;
+      background: #000;
+    }
+    #channel-list {
+      display: flex;
+      flex-wrap: wrap;
       padding: 10px;
+      background: #222;
+      overflow-y: auto;
+    }
+    .channel {
+      width: 150px;
       margin: 10px;
+      cursor: pointer;
       text-align: center;
     }
-    .channel-logo {
-      max-width: 100%;
-      height: 100px;
-      object-fit: contain;
+    .channel img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
     }
-    .channel-title {
-      margin-top: 10px;
-      font-weight: bold;
+    .channel:hover img {
+      transform: scale(1.05);
+    }
+    .channel-name {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #eee;
     }
   </style>
 </head>
 <body>
-  <div class="container py-4">
-    <h1 class="text-center mb-4">T Play Live TV - Channels</h1>
-    <div id="channel-list" class="row"></div>
+
+  <div id="player-container">
+    <video id="video" autoplay controls></video>
   </div>
+
+  <div id="channel-list"></div>
 
   <script>
     const channels = [
       {
-        name: "Zee Bihar Jharkhand",
-        logo: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png",
-        url: "manifest.mpd"
+        name: "Zee TV HD",
+        logo: "https://upload.wikimedia.org/wikipedia/en/0/0c/Zee_TV_HD.png",
+        url: "https://example.com/zeetv/stream.mpd",
+        drm: {
+          keys: [
+            { kid: "12345678901234567890123456789012", key: "abcdefabcdefabcdefabcdefabcdefab" }
+          ]
+        }
       },
       {
-        name: "Zee Kannada HD",
-        logo: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/1PrOGXAh.png",
-        url: "manifest.mpd"
+        name: "Star Plus HD",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/31/Star_Plus_HD_Logo.png/200px-Star_Plus_HD_Logo.png",
+        url: "https://example.com/starplus/stream.mpd",
+        drm: null
       },
       {
-        name: "Zee TV SD",
-        logo: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/yHNSuG1V.png",
-        url: "manifest.mpd"
-      },
-      {
-        name: "Zee Telugu HD",
-        logo: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/6vNzRaRK.png",
-        url: "manifest.mpd"
-      },
-      {
-        name: "Zee Bangala HD",
-        logo: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/9XHWylqs.png",
-        url: "manifest.mpd"
+        name: "Sony SAB",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/SAB_TV_logo.png/200px-SAB_TV_logo.png",
+        url: "https://example.com/sonysab/stream.mpd",
+        drm: null
       }
+      // Add more channels as needed...
     ];
 
-    const container = document.getElementById('channel-list');
+    const video = document.getElementById('video');
+    const channelList = document.getElementById('channel-list');
+    const player = new shaka.Player(video);
 
-    channels.forEach(channel => {
-      const col = document.createElement('div');
-      col.className = 'col-md-3';
-      col.innerHTML = `
-        <div class="channel-card">
-          <img src="${channel.logo}" alt="${channel.name}" class="channel-logo">
-          <div class="channel-title">${channel.name}</div>
-          <a href="player.html?src=${encodeURIComponent(channel.url)}" class="btn btn-sm btn-light mt-2">Watch</a>
-        </div>
-      `;
-      container.appendChild(col);
-    });
+    async function loadChannel(channel) {
+      try {
+        await player.unload();
+        if (channel.drm && channel.drm.keys.length > 0) {
+          const keyMap = {};
+          channel.drm.keys.forEach(k => keyMap[k.kid] = k.key);
+          player.configure({
+            drm: {
+              clearKeys: keyMap
+            }
+          });
+        } else {
+          player.configure({ drm: { clearKeys: {} } });
+        }
+        await player.load(channel.url);
+        console.log(`Now playing: ${channel.name}`);
+      } catch (e) {
+        console.error('Error loading channel', e);
+      }
+    }
+
+    function initChannelList() {
+      channels.forEach(channel => {
+        const div = document.createElement('div');
+        div.className = 'channel';
+        div.innerHTML = `
+          <img src="${channel.logo}" alt="${channel.name}" />
+          <div class="channel-name">${channel.name}</div>
+        `;
+        div.onclick = () => loadChannel(channel);
+        channelList.appendChild(div);
+      });
+    }
+
+    shaka.polyfill.installAll();
+    if (shaka.Player.isBrowserSupported()) {
+      initChannelList();
+      loadChannel(channels[0]); // Load the first channel by default
+    } else {
+      alert('Shaka Player is not supported on this browser.');
+    }
   </script>
+
 </body>
 </html>
