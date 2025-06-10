@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T Play Live TV</title>
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+    }
+    #player-container {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+    }
+    .video-js {
+      width: 100%;
+      height: 100%;
+    }
+    .controls-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+    .controls-overlay button {
+      margin: 5px;
+      pointer-events: auto;
+      font-size: 16px;
+      padding: 10px 15px;
+      border: none;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      border-radius: 10px;
+    }
+    #channel-categories {
+      margin-top: 10px;
+      padding: 10px;
+      color: white;
+    }
+    select, button {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="player-container">
+    <video id="tvPlayer" class="video-js vjs-default-skin" controls preload="auto"></video>
+    <div class="controls-overlay">
+      <button onclick="previousChannel()">Prev</button>
+      <button onclick="nextChannel()">Next</button>
+      <button onclick="toggleFullScreen()">Fullscreen</button>
+      <button onclick="stretchVideo()">Stretch</button>
+      <input type="range" min="0" max="1" step="0.1" onchange="setVolume(this.value)" value="1" />
+    </div>
+  </div>
+
+  <div id="channel-categories">
+    <label for="categorySelect">Select Category:</label>
+    <select id="categorySelect" onchange="loadCategory(this.value)"></select>
+
+    <label for="channelSelect">Select Channel:</label>
+    <select id="channelSelect" onchange="switchChannel(this.value)"></select>
+  </div>
+
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script>
+    const categories = {
+      News: Array.from({ length: 20 }, (_, i) => ({ name: `News Channel ${i+1}`, url: `https://example.com/news${i+1}.m3u8` })),
+      Sports: Array.from({ length: 20 }, (_, i) => ({ name: `Sports Channel ${i+1}`, url: `https://example.com/sports${i+1}.m3u8` })),
+      Movies: Array.from({ length: 20 }, (_, i) => ({ name: `Movie Channel ${i+1}`, url: `https://example.com/movie${i+1}.m3u8` }))
+    };
+
+    let currentCategory = "News";
+    let currentChannelIndex = 0;
+    const player = videojs('tvPlayer');
+
+    function loadCategory(category) {
+      currentCategory = category;
+      const channelSelect = document.getElementById('channelSelect');
+      channelSelect.innerHTML = "";
+      categories[category].forEach((ch, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = ch.name;
+        channelSelect.appendChild(opt);
+      });
+      switchChannel(0);
+    }
+
+    function switchChannel(index) {
+      currentChannelIndex = parseInt(index);
+      const url = categories[currentCategory][currentChannelIndex].url;
+      player.src({ type: 'application/x-mpegURL', src: url });
+      player.play();
+    }
+
+    function previousChannel() {
+      if (currentChannelIndex > 0) {
+        switchChannel(currentChannelIndex - 1);
+        document.getElementById('channelSelect').value = currentChannelIndex;
+      }
+    }
+
+    function nextChannel() {
+      if (currentChannelIndex < categories[currentCategory].length - 1) {
+        switchChannel(currentChannelIndex + 1);
+        document.getElementById('channelSelect').value = currentChannelIndex;
+      }
+    }
+
+    function setVolume(val) {
+      player.volume(val);
+    }
+
+    function toggleFullScreen() {
+      if (player.isFullscreen()) {
+        player.exitFullscreen();
+      } else {
+        player.requestFullscreen();
+      }
+    }
+
+    function stretchVideo() {
+      player.fill(true);
+    }
+
+    // Init
+    const categorySelect = document.getElementById('categorySelect');
+    Object.keys(categories).forEach(cat => {
+      const opt = document.createElement('option');
+      opt.value = cat;
+      opt.textContent = cat;
+      categorySelect.appendChild(opt);
+    });
+    loadCategory(currentCategory);
+  </script>
+</body>
+</html>
