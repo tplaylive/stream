@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DASH Player</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/shaka-player.compiled.js"></script>
+    <style>
+        video {
+            width: 80%;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <video id="videoPlayer" autoplay controls></video>
+    </div>
+    
+    <script>
+        (async function() {
+            const manifestUri = 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetv/default/manifest.mpd';
+            
+            const video = document.getElementById('videoPlayer');
+            const player = new shaka.Player(video);
+            
+            try {
+                await player.load(manifestUri);
+                console.log('The video has now been loaded!');
+            } catch (e) {
+                console.error('Error loading video', e);
+            }
+        })();
+    </script>
+</body>
+</html>
