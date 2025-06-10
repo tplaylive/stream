@@ -1,60 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zee Bangla Cinema Live</title>
-  <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <title>Shaka Player with ClearKey</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.0/shaka-player.compiled.js"></script>
   <style>
     body {
       margin: 0;
-      background-color: #000;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      background: #000;
     }
-    #player {
+    video {
       width: 100%;
-      max-width: 800px;
-      height: 60vh;
-    }
-    h1 {
-      color: #fff;
-      margin-bottom: 20px;
+      height: 90vh;
+      background: #000;
     }
   </style>
 </head>
 <body>
-
-  <h1>Zee Bangla Cinema Live</h1>
-
-  <video
-    id="player"
-    class="video-js vjs-default-skin"
-    controls
-    autoplay
-    preload="auto"
-  ></video>
-
-  <!-- Core video.js -->
-  <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
-  <!-- DASH.js -->
-  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-  <!-- Video.js DASH plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-dash@2/dashjs-player.min.js"></script>
-
+  <video id="video" controls autoplay></video>
   <script>
-    const player = videojs('player');
-    player.ready(function () {
-      player.src({
-        src: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebanglacinema/default/manifest.mpd',
-        type: 'application/dash+xml'
+    async function init() {
+      const manifestUri = 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd';
+
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
+
+      // Attach the player to window for easy access in the browser console.
+      window.player = player;
+
+      // Listen for error events.
+      player.addEventListener('error', onErrorEvent);
+
+      // Configure ClearKey
+      player.configure({
+        drm: {
+          clearKeys: {
+            '1df83e058b864da896c9288eef63b113': 'fc32f26239054b56aab48225305598fe'
+          }
+        }
       });
-      player.play();
-    });
+
+      try {
+        await player.load(manifestUri);
+        console.log('The video has now been loaded!');
+      } catch (e) {
+        onError(e);
+      }
+    }
+
+    function onErrorEvent(event) {
+      onError(event.detail);
+    }
+
+    function onError(error) {
+      console.error('Error code', error.code, 'object', error);
+    }
+
+    // Init on load
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
