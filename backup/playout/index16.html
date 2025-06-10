@@ -1,34 +1,193 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>DASH Player</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.7/shaka-player.compiled.js"></script>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.js"></script>
     <style>
-        video {
-            width: 80%;
-            max-width: 800px;
-        }
+      /* Hide the time/duration display */
+      video::-webkit-media-controls-time-remaining-display,
+      video::-webkit-media-controls-current-time-display {
+        display: none;
+      }
+      
+      /* Style for the controls */
+      .controls-container {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+        gap: 10px;
+      }
+      
+      button, select {
+        padding: 8px 12px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      
+      #pipButton {
+        display: none; /* Hidden by default, shown if PiP is supported */
+      }
     </style>
-</head>
-<body>
-    <div>
-        <video id="videoPlayer" autoplay controls></video>
+  </head>
+  <body>
+    <video id="video" width="100%" controls autoplay></video>
+    <div class="controls-container">
+      <select id="qualitySelector" disabled>
+        <option value="auto">Auto Quality</option>
+      </select>
+      <button id="fullscreenButton">Full Screen</button>
+      <button id="pipButton">Picture-in-Picture</button>
     </div>
     
     <script>
-        (async function() {
-            const manifestUri = 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetv/default/manifest.mpd';
-            
-            const video = document.getElementById('videoPlayer');
-            const player = new shaka.Player(video);
-            
-            try {
-                await player.load(manifestUri);
-                console.log('The video has now been loaded!');
-            } catch (e) {
-                console.error('Error loading video', e);
+      let player;
+      let pipPossible = false;
+      
+      async function initPlayer() {
+        const video = document.getElementById('video');
+        player = new shaka.Player(video);
+        
+        // Check for PiP support
+        pipPossible = document.pictureInPictureEnabled && 
+                     !video.disablePictureInPicture;
+        
+        const pipButton = document.getElementById('pipButton');
+        if (pipPossible) {
+          pipButton.style.display = 'inline-block';
+          pipButton.addEventListener('click', togglePiP);
+        }
+        
+        // Listen for error events
+        player.addEventListener('error', onPlayerError);
+        
+        await player.configure({
+          drm: {
+            clearKeys: {
+              '86edec9e3b7d4042a4d4a1ca14f847ee': '9def4315f0004019a3705bcb3cf30ca3'
             }
-        })();
+          },
+          abr: {
+            enabled: true, // Enable adaptive bitrate by default
+          }
+        });
+        
+        try {
+          await player.load('https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd');
+          
+          // Setup quality selector after the stream is loaded
+          setupQualitySelector();
+          
+          // Update PiP button text based on current state
+          video.addEventListener('enterpictureinpicture', () => {
+            pipButton.textContent = 'Exit PiP';
+          });
+          
+          video.addEventListener('leavepictureinpicture', () => {
+            pipButton.textContent = 'Picture-in-Picture';
+          });
+          
+        } catch (error) {
+          console.error('Error loading content:', error);
+        }
+      }
+      
+      function setupQualitySelector() {
+        const qualitySelector = document.getElementById('qualitySelector');
+        qualitySelector.disabled = false;
+        
+        // Clear existing options except Auto
+        while (qualitySelector.options.length > 1) {
+          qualitySelector.remove(1);
+        }
+        
+        // Get available tracks
+        const tracks = player.getVariantTracks();
+        
+        // Filter for unique resolutions and sort them
+        const uniqueResolutions = [];
+        const seenResolutions = new Set();
+        
+        tracks.forEach(track => {
+          const resolution = `${track.width}x${track.height}`;
+          if (!seenResolutions.has(resolution)) {
+            seenResolutions.add(resolution);
+            uniqueResolutions.push({
+              resolution: resolution,
+              height: track.height,
+              bandwidth: track.bandwidth,
+              id: track.id
+            });
+          }
+        });
+        
+        // Sort by resolution (highest first)
+        uniqueResolutions.sort((a, b) => b.height - a.height);
+        
+        // Add quality options
+        uniqueResolutions.forEach(res => {
+          const option = document.createElement('option');
+          option.value = res.id;
+          option.text = res.resolution;
+          qualitySelector.add(option);
+        });
+        
+        // Handle quality selection changes
+        qualitySelector.addEventListener('change', function() {
+          if (this.value === 'auto') {
+            player.configure({ abr: { enabled: true } });
+          } else {
+            player.configure({ abr: { enabled: false } });
+            const selectedTrack = tracks.find(track => track.id === parseInt(this.value));
+            if (selectedTrack) {
+              player.selectVariantTrack(selectedTrack, true);
+            }
+          }
+        });
+      }
+      
+      function toggleFullScreen() {
+        const video = document.getElementById('video');
+        if (!document.fullscreenElement) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) { /* Safari */
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) { /* IE11 */
+            video.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+          }
+        }
+      }
+      
+      async function togglePiP() {
+        const video = document.getElementById('video');
+        try {
+          if (video !== document.pictureInPictureElement) {
+            await video.requestPictureInPicture();
+          } else {
+            await document.exitPictureInPicture();
+          }
+        } catch (error) {
+          console.error('PiP error:', error);
+        }
+      }
+      
+      function onPlayerError(event) {
+        console.error('Player error:', event.detail);
+      }
+      
+      // Initialize the player when the page loads
+      shaka.polyfill.installAll();
+      document.addEventListener('DOMContentLoaded', () => {
+        initPlayer();
+        document.getElementById('fullscreenButton').addEventListener('click', toggleFullScreen);
+      });
     </script>
-</body>
+  </body>
 </html>
