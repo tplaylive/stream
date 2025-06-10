@@ -4,132 +4,225 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>T Play Live TV</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.min.js"></script>
   <style>
     body {
+      margin: 0;
+      background: #000;
+      color: #fff;
       font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       background: #111;
       color: #fff;
-      margin: 0;
-      padding: 0;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
     }
-    #player-container {
-      max-width: 100%;
+
+    header nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #f00;
+    }
+
+    #video-area {
+      flex: 3;
       background: #000;
-      position: relative;
+      padding-top: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     video {
       width: 100%;
-      height: 360px;
+      height: 100%;
+      max-height: calc(100vh - 50px);
       background: #000;
     }
-    #channel-list {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 10px;
-      background: #222;
+
+    #sidebar {
+      flex: 1;
+      background: #111;
+      border-left: 2px solid #222;
+      padding: 60px 15px 15px 15px;
       overflow-y: auto;
     }
+
+    #sidebar h2 {
+      font-size: 18px;
+      color: #f00;
+      margin-bottom: 10px;
+    }
+
     .channel {
-      width: 150px;
-      margin: 10px;
+      display: flex;
+      align-items: center;
+      background: #222;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
       cursor: pointer;
-      text-align: center;
+      transition: background 0.2s ease;
     }
+
+    .channel:hover {
+      background: #333;
+    }
+
     .channel img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.2s ease;
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 10px;
+      border-radius: 6px;
     }
-    .channel:hover img {
-      transform: scale(1.05);
+
+    .channel-info {
+      flex-grow: 1;
     }
-    .channel-name {
-      margin-top: 5px;
+
+    .channel-title {
       font-size: 14px;
-      color: #eee;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .channel-category {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .play-button {
+      color: red;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-  <div id="player-container">
+  <header>
+    <div><strong>T Play Live</strong></div>
+    <nav>
+      <a href="#">Bangladeshi</a>
+      <a href="#">Entertainment</a>
+      <a href="#">Indian Bangla</a>
+      <a href="#">Kids</a>
+      <a href="#">Music</a>
+      <a href="#">Sports</a>
+      <a href="#">Test</a>
+    </nav>
+  </header>
+
+  <div id="video-area">
     <video id="video" autoplay controls></video>
   </div>
 
-  <div id="channel-list"></div>
+  <div id="sidebar">
+    <h2>More from Indian Bangla</h2>
+    <div id="channel-list"></div>
+  </div>
 
   <script>
+    const video = document.getElementById("video");
+    const channelList = document.getElementById("channel-list");
+    const player = new shaka.Player(video);
+
     const channels = [
       {
-        name: "Zee TV HD",
-        logo: "https://upload.wikimedia.org/wikipedia/en/0/0c/Zee_TV_HD.png",
-        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd",
+        name: "Star Jalsha",
+        category: "Indian Bangla",
+        logo: "https://upload.wikimedia.org/wikipedia/en/3/3a/Star_Jalsha_logo.png",
+        url: "https://example.com/starjalsha.mpd",
+        drm: null
+      },
+      {
+        name: "Zee Bangla",
+        category: "Indian Bangla",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Zee_Bangla.svg/200px-Zee_Bangla.svg.png",
+        url: "https://example.com/zeebangla.mpd",
         drm: {
-          keys: [
-            { kid: "1df83e058b864da896c9288eef63b113", key: "fc32f26239054b56aab48225305598fe" }
-          ]
+          keys: [{ kid: "12345678901234567890123456789012", key: "abcdefabcdefabcdefabcdefabcdefab" }]
         }
       },
       {
-        name: "Star Plus HD",
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/31/Star_Plus_HD_Logo.png/200px-Star_Plus_HD_Logo.png",
-        url: "https://example.com/starplus/stream.mpd",
+        name: "Sony Aath",
+        category: "Indian Bangla",
+        logo: "https://upload.wikimedia.org/wikipedia/en/4/4e/Sony_Aath.png",
+        url: "https://example.com/sonyaath.mpd",
         drm: null
       },
       {
-        name: "Sony SAB",
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/SAB_TV_logo.png/200px-SAB_TV_logo.png",
-        url: "https://example.com/sonysab/stream.mpd",
+        name: "Enterr 10 Bangla",
+        category: "Indian Bangla",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/0/06/Enterr10_Bangla_logo.jpeg/200px-Enterr10_Bangla_logo.jpeg",
+        url: "https://example.com/enterr10bangla.mpd",
         drm: null
       }
-      // Add more channels as needed...
     ];
 
-    const video = document.getElementById('video');
-    const channelList = document.getElementById('channel-list');
-    const player = new shaka.Player(video);
-
-    async function loadChannel(channel) {
-      try {
-        await player.unload();
-        if (channel.drm && channel.drm.keys.length > 0) {
-          const keyMap = {};
-          channel.drm.keys.forEach(k => keyMap[k.kid] = k.key);
+    function loadChannel(channel) {
+      player.unload().then(() => {
+        if (channel.drm) {
+          const keys = {};
+          channel.drm.keys.forEach(k => keys[k.kid] = k.key);
           player.configure({
             drm: {
-              clearKeys: keyMap
+              clearKeys: keys
             }
           });
         } else {
           player.configure({ drm: { clearKeys: {} } });
         }
-        await player.load(channel.url);
-        console.log(`Now playing: ${channel.name}`);
-      } catch (e) {
-        console.error('Error loading channel', e);
-      }
+        player.load(channel.url).then(() => {
+          console.log("Playing:", channel.name);
+        }).catch(e => console.error("Playback error:", e));
+      });
     }
 
-    function initChannelList() {
+    function renderChannels() {
       channels.forEach(channel => {
-        const div = document.createElement('div');
-        div.className = 'channel';
+        const div = document.createElement("div");
+        div.className = "channel";
+        div.onclick = () => loadChannel(channel);
         div.innerHTML = `
           <img src="${channel.logo}" alt="${channel.name}" />
-          <div class="channel-name">${channel.name}</div>
+          <div class="channel-info">
+            <div class="channel-title">${channel.name}</div>
+            <div class="channel-category">${channel.category}</div>
+          </div>
+          <div class="play-button">▶️</div>
         `;
-        div.onclick = () => loadChannel(channel);
         channelList.appendChild(div);
       });
     }
 
     shaka.polyfill.installAll();
     if (shaka.Player.isBrowserSupported()) {
-      initChannelList();
-      loadChannel(channels[0]); // Load the first channel by default
+      renderChannels();
+      loadChannel(channels[0]); // Auto play first
     } else {
-      alert('Shaka Player is not supported on this browser.');
+      alert("Shaka Player is not supported in this browser.");
     }
   </script>
 
