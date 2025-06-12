@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ProStream IPTV</title>
+  <!-- Shaka Player compiled library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/shaka-player/4.10.4/shaka-player.compiled.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #1a1a1a;
+      color: #fff;
+      overflow: hidden;
+    }
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    .channel-list {
+      width: 250px;
+      background: #2c2c2c;
+      overflow-y: auto;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      z-index: 10;
+    }
+    .channel-list.hidden {
+      transform: translateX(-100%);
+    }
+    .channel-item {
+      padding: 15px;
+      margin-bottom: 10px;
+      background: #3a3a3a;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .channel-item:hover, .channel-item.active {
+      background: #007bff;
+    }
+    .channel-item img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+    .player-container {
+      flex: 1;
+      position: relative;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #video-player {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .player-container:hover .controls, .controls.active {
+      opacity: 1;
+    }
+    .control-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px;
+      transition: color 0.2s;
+    }
+    .control-btn:hover {
+      color: #007bff;
+    }
+    select#quality-selector {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .toggle-sidebar {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #007bff;
+      border: none;
+      color: #fff;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 11;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .channel-list {
+        position: absolute;
+        height: 100%;
+        transform: translateX(-100%);
+      }
+      .channel-list.visible {
+        transform: translateX(0);
+      }
+      .toggle-sidebar {
+        display: block;
+      }
+      .controls {
+        padding: 8px 15px;
+        gap: 10px;
+      }
+      .control-btn {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <button class="toggle-sidebar" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    <div class="channel-list" id="channel-list">
+      <!-- Channels will be populated dynamically -->
+    </div>
+    <div class="player-container">
+      <video id="video-player" autoplay controls></video>
+      <div class="controls">
+        <button class="control-btn" onclick="playNextChannel()" title="Next Channel"><i class="fas fa-forward"></i></button>
+        <button class="control-btn" onclick="toggleVolume()" title="Volume"><i id="volume-icon" class="fas fa-volume-up"></i></button>
+        <select id="quality-selector" onchange="changeQuality()" title="Quality"></select>
+        <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Install Shaka polyfills
+    shaka.polyfill.installAll();
+
+    // Check browser support
+    if (!shaka.Player.isBrowserSupported()) {
+      alert('Browser not supported for Shaka Player!');
+      return;
+    }
+
+    // Initialize Shaka Player
+    const video = document.getElementById('video-player');
+    const player = new shaka.Player(video);
+    const channelList = document.getElementById('channel-list');
+    const qualitySelector = document.getElementById('quality-selector');
+    let currentChannelIndex = 0;
+    let isMuted = false;
+
+    // Channel list based on provided links
+    const channels = [
+      {
+        name: 'Hum Tv',
+        logo: 'https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Hum.png',
+        url: 'https://live2.shoq.com.pk/live/eds/HUM_TV/DASH/HUM_TV.mpd',
+        drm: {
+          servers: {
+            'org.w3.clearkey': JSON.stringify({
+              clearkeys: {
+                '83404dd4292fec9e27173696f6e42dee': 'a9dd477034d4fb2e7e5dc7c21ce73fed'
+              }
+            })
+          }
+        },
+        headers: {}
+      },
+      {
+        name: '9XM',
+        logo: 'https://prodcdn1.wavespb.com/shows/thumbnail/6041427509XM.webp',
+        url: 'https://d3kdywbtdfbp9z.cloudfront.net/v1/master/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/dff423e0-3c82-46d6-9ecb-3baa96b5694a/master.m3u8?aws.sessionId=5680fbb6-4dd5-4bb5-8553-c90e3750e0f5',
+        drm: null,
+        headers: {}
+      },
+      {
+        name: 'And TV SD',
+        logo: 'https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/T1CCvaAQ.png',
+        url: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtv/default/manifest.mpd',
+        drm: {
+          servers: {
+            'org.w3.clearkey': JSON.stringify({
+              clearkeys: {
+                '26df86eeebb04d7fbc45c948f76e81fd': '5f3a23f1a73c4c96ababce5fffe7b06b'
+              }
+            })
+          }
+        },
+        headers: {}
+      },
+      {
+        name: 'Disney Channel',
+        logo: 'https://jiotvimages.cdn.jio.com/dare_images/images/Disney_Channel.png',
+        url: 'https://jiotvmblive.cdn.jio.com/bpk-tv/Disney_Channel_BTS/output/index.mpd',
+        drm: {
+          servers: {
+            'org.w3.clearkey': JSON.stringify({
+              clearkeys: {
+                '5181d3e6698055578cedc5bfc86b3e56': '3dca7917d8cf9bb7095dc72b48bdcd3c'
+              }
+            })
+          }
+        },
+        headers: {
+          'User-Agent': 'plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6 YGX/69.69.69.69',
+          'Cookie': '__hdnea__=st=1749693758~exp=1749780158~acl=/*~hmac=8982ea93670ffa788eb63640cece916b4d1150ac7a6df7de74569c680c9559f6'
+        }
+      },
+      {
+        name: '&pictures HD',
+        logo: 'https://via.placeholder.com/40', // Placeholder as no logo provided
+        url: 'http://38.76.152.22:8000/play/a01t/index.m3u8',
+        drm: null,
+        headers: {}
+      },
+      {
+        name: 'Zee News',
+        logo: 'https://jiotvimages.cdn.jio.com/dare_images/images/Zee_News.png',
+        url: 'https://z5ak-cmaflive.zee5.com/cmaf/live/2105510/ZEENEWSELE/master.m3u8?hdntl=exp=1749780420~acl=%2f*~data=hdntl~hmac=04a1ad7547d9d304cc50fbbd637378c3d41999f94059d453ba70c8fed09368a0',
+        drm: null,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+        }
+      }
+    ];
+
+    // Configure networking for custom headers
+    player.getNetworkingEngine().registerRequestFilter((type, request) => {
+      const channel = channels[currentChannelIndex];
+      if (type === shaka.net.NetworkingEngine.RequestType.MANIFEST || type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
+        Object.assign(request.headers, channel.headers);
+      }
+    });
+
+    // Populate channel list
+    function populateChannelList() {
+      channelList.innerHTML = '';
+      channels.forEach((channel, index) => {
+        const div = document.createElement('div');
+        div.className = `channel-item ${index === currentChannelIndex ? 'active' : ''}`;
+        div.innerHTML = `<img src="${channel.logo}" alt="${channel.name}" onerror="this.src='https://via.placeholder.com/40'"><span>${channel.name}</span>`;
+        div.onclick = () => playChannel(index);
+        channelList.appendChild(div);
+      });
+    }
+
+    // Play selected channel
+    async function playChannel(index) {
+      currentChannelIndex = index;
+      const channel = channels[index];
+      try {
+        // Configure DRM if present
+        if (channel.drm) {
+          player.configure({
+            drm: channel.drm
+          });
+        } else {
+          player.configure({ drm: {} });
+        }
+
+        // Load the stream
+        await player.load(channel.url);
+        populateChannelList();
+        updateQualityOptions();
+      } catch (error) {
+        console.error('Error loading channel:', error);
+        alert(`Failed to load ${channel.name}: ${error.message}`);
+      }
+    }
+
+    // Play next channel
+    function playNextChannel() {
+      currentChannelIndex = (currentChannelIndex + 1) % channels.length;
+      playChannel(currentChannelIndex);
+    }
+
+    // Toggle volume
+    function toggleVolume() {
+      isMuted = !isMuted;
+      video.muted = isMuted;
+      document.getElementById('volume-icon').className = `fas fa-volume-${isMuted ? 'mute' : 'up'}`;
+    }
+
+    // Toggle fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Update quality options
+    function updateQualityOptions() {
+      qualitySelector.innerHTML = '<option value="auto">Auto</option>';
+      const tracks = player.getVariantTracks();
+      const uniqueQualities = new Set();
+      tracks.forEach(track => {
+        if (track.height && !uniqueQualities.has(track.height)) {
+          uniqueQualities.add(track.height);
+          const option = document.createElement('option');
+          option.value = track.id;
+          option.text = `${track.height}p`;
+          qualitySelector.appendChild(option);
+        }
+      });
+    }
+
+    // Change quality
+    function changeQuality() {
+      const selectedId = qualitySelector.value;
+      if (selectedId === 'auto') {
+        player.configure({ abr: { enabled: true } });
+      } else {
+        player.configure({ abr: { enabled: false } });
+        const track = player.getVariantTracks().find(t => t.id === parseInt(selectedId));
+        if (track) player.selectVariantTrack(track, true);
+      }
+    }
+
+    // Toggle sidebar for mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('channel-list');
+      sidebar.classList.toggle('visible');
+    }
+
+    // Error handling
+    player.addEventListener('error', event => {
+      console.error('Shaka Player error:', event.detail);
+      alert('Playback error: ' + event.detail.message);
+    });
+
+    // Initialize app
+    populateChannelList();
+    playChannel(0);
+
+    // Show controls on touch for mobile
+    video.addEventListener('touchstart', () => {
+      document.querySelector('.controls').classList.add('active');
+      setTimeout(() => document.querySelector('.controls').classList.remove('active'), 3000);
+    });
+  </script>
+</body>
+</html>
