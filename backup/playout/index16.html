@@ -1,38 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>HLS.js Player</title>
-</head>
+<head><title>Test HLS with Proxy</title></head>
 <body>
-  <h2>📺 KingsLive HLS Player</h2>
+  <h3>🧪 Testing BozzTV Stream with CORS Proxy</h3>
   <video id="video" width="640" height="360" controls></video>
-
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const video = document.getElementById('video');
-    const videoSrc = 'https://live20.bozztv.com/giatv/giatv-kingslive/kingslive/playlist.m3u8';
+    const url = "https://cors-proxy.fringe.zone/https://live20.bozztv.com/giatv/giatv-kingslive/kingslive/playlist.m3u8";
 
     if (Hls.isSupported()) {
       const hls = new Hls();
-      hls.loadSource(videoSrc);
+      hls.loadSource(url);
       hls.attachMedia(video);
-
-      hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        video.play();
-      });
-
-      hls.on(Hls.Events.ERROR, function (event, data) {
-        console.error("🔴 HLS.js error:", data);
-      });
-
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = videoSrc;
-      video.addEventListener('loadedmetadata', function () {
-        video.play();
+      hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+      hls.on(Hls.Events.ERROR, (event, data) => {
+        console.error("❌ HLS.js Error:", data);
       });
     } else {
-      console.log('❌ HLS not supported in this browser');
+      console.log("HLS not supported in this browser");
     }
   </script>
 </body>
