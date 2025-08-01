@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head><title>HLS Player</title></head>
+<head>
+  <meta charset="UTF-8">
+  <title>HLS.js Player</title>
+</head>
 <body>
-  <video id="video" controls width="640"></video>
+  <h2>📺 KingsLive HLS Player</h2>
+  <video id="video" width="640" height="360" controls></video>
+
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    var video = document.getElementById('video');
-    var url = 'https://live20.bozztv.com/giatv/giatv-kingslive/kingslive/playlist.m3u8';
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = url;
-    } else if (Hls.isSupported()) {
-      var hls = new Hls();
-      hls.loadSource(url);
+    const video = document.getElementById('video');
+    const videoSrc = 'https://live20.bozztv.com/giatv/giatv-kingslive/kingslive/playlist.m3u8';
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
       hls.attachMedia(video);
+
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+
+      hls.on(Hls.Events.ERROR, function (event, data) {
+        console.error("🔴 HLS.js error:", data);
+      });
+
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
     } else {
-      video.textContent = 'এই ব্রাউজারে HLS সমর্থন নেই';
+      console.log('❌ HLS not supported in this browser');
     }
   </script>
 </body>
