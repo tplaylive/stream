@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>📡 KingsLive HLS Player</title>
+  <title>📺 KingsLive on My Website</title>
 </head>
 <body>
-  <h2>📺 KingsLive HLS Player</h2>
-  <video id="video" controls width="640" height="360"></video>
+  <h2>📡 KingsLive Streaming</h2>
+  <video id="video" width="640" height="360" controls></video>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const video = document.getElementById('video');
-    const streamUrl = 'http://localhost:3000/giatv/giatv-kingslive/kingslive/playlist.m3u8';
+    const streamUrl = 'https://cloudfrontnet.vercel.app/giatv/giatv-kingslive/kingslive/playlist.m3u8';
 
     if (Hls.isSupported()) {
       const hls = new Hls();
@@ -21,12 +21,13 @@
         video.play();
       });
       hls.on(Hls.Events.ERROR, function (event, data) {
-        console.error("❌ HLS.js error:", data);
+        console.error("❌ HLS error:", data);
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = streamUrl;
+      video.addEventListener('loadedmetadata', () => video.play());
     } else {
-      alert("HLS is not supported in your browser");
+      alert("Browser does not support HLS playback.");
     }
   </script>
 </body>
