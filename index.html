@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>T Play</title>
+  <title>T Play Live TV</title>
   <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
   <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
   <style>
@@ -258,6 +258,20 @@
       font-size: 14px;
     }
 
+    /* PiP status indicator */
+    .pip-status {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      z-index: 10000;
+      display: none;
+    }
+
     /* Mobile specific optimizations */
     @media (max-width: 767px) {
       .player-controls {
@@ -286,6 +300,12 @@
         width: 70px;
         height: 70px;
       }
+      
+      .pip-status {
+        bottom: 10px;
+        right: 10px;
+        font-size: 10px;
+      }
     }
 
     /* Prevent iOS zoom on input */
@@ -312,6 +332,8 @@
       <div class="channels" id="channelList"></div>
     </div>
   </div>
+
+  <div class="pip-status" id="pipStatus">PiP Mode: Active</div>
 
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -483,6 +505,9 @@
 
     let currentIndex = -1;
     let hls;
+    let pipEnabled = false;
+    let pipCheckInterval;
+    const pipStatusElement = document.getElementById('pipStatus');
 
     function renderChannels() {
       const list = document.getElementById('channelList');
@@ -550,6 +575,11 @@
             if (isMobile) {
               player.bigPlayButton.show();
             }
+          }).then(() => {
+            // Re-enter PiP if it was enabled before channel change
+            if (pipEnabled && !document.pictureInPictureElement) {
+              setTimeout(togglePip, 500); // Small delay to ensure player is ready
+            }
           });
         });
         
@@ -580,6 +610,10 @@
           if (isMobile) {
             player.bigPlayButton.show();
           }
+        }).then(() => {
+          if (pipEnabled && !document.pictureInPictureElement) {
+            setTimeout(togglePip, 500);
+          }
         });
       } 
       else {
@@ -597,17 +631,46 @@
       changeChannel(prevIndex);
     }
 
-    // Picture-in-Picture functionality
+    // Picture-in-Picture functionality with always-on-top
     async function togglePip() {
       try {
+        const videoElement = player.el().querySelector('video');
+        
         if (document.pictureInPictureElement) {
           await document.exitPictureInPicture();
+          pipEnabled = false;
+          stopPipMonitoring();
+          pipStatusElement.style.display = 'none';
         } else if (document.pictureInPictureEnabled) {
-          await player.el().querySelector('video').requestPictureInPicture();
+          await videoElement.requestPictureInPicture();
+          pipEnabled = true;
+          startPipMonitoring();
+          pipStatusElement.style.display = 'block';
         }
       } catch (error) {
         console.error('PiP error:', error);
-        alert('Picture-in-Picture is not supported or failed: ' + error.message);
+        pipEnabled = false;
+        stopPipMonitoring();
+        pipStatusElement.style.display = 'none';
+      }
+    }
+
+    function startPipMonitoring() {
+      stopPipMonitoring(); // Clear any existing interval
+      pipCheckInterval = setInterval(checkPipStatus, 1000);
+    }
+
+    function stopPipMonitoring() {
+      if (pipCheckInterval) {
+        clearInterval(pipCheckInterval);
+        pipCheckInterval = null;
+      }
+    }
+
+    function checkPipStatus() {
+      if (pipEnabled && !document.pictureInPictureElement) {
+        // PiP was closed unexpectedly, re-enable it
+        togglePip();
       }
     }
 
@@ -616,6 +679,19 @@
       console.error('Player error:', player.error());
       // Try to recover by playing next channel
       setTimeout(playNextChannel, 2000);
+    });
+
+    // Handle PiP events
+    player.el().querySelector('video').addEventListener('enterpictureinpicture', () => {
+      pipEnabled = true;
+      pipStatusElement.style.display = 'block';
+      startPipMonitoring();
+    });
+
+    player.el().querySelector('video').addEventListener('leavepictureinpicture', () => {
+      pipEnabled = false;
+      pipStatusElement.style.display = 'none';
+      stopPipMonitoring();
     });
 
     // Handle orientation changes on mobile
@@ -635,7 +711,7 @@
         document.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowRight') playNextChannel();
           if (e.key === 'ArrowLeft') playPreviousChannel();
-          if (e.key === 'p') togglePip(); // Add keyboard shortcut for PiP
+          if (e.key === 'p' || e.key === 'P') togglePip(); // Add keyboard shortcut for PiP
         });
       }
     });
