@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>T Play Live TV</title>
+  <title>T Play</title>
   <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+  <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
   <style>
     * {
       box-sizing: border-box;
@@ -247,6 +248,12 @@
       line-height: 1.67;
     }
 
+    .vjs-pip-button:before {
+      content: "⤢";
+      font-size: 1.8em;
+      line-height: 1.67;
+    }
+
     .video-js .vjs-control-bar {
       font-size: 14px;
     }
@@ -315,6 +322,7 @@
     // Custom buttons for channel navigation
     const PreviousButton = videojs.getComponent('Button');
     const NextButton = videojs.getComponent('Button');
+    const PipButton = videojs.getComponent('Button');
 
     videojs.registerComponent('PreviousButton', videojs.extend(PreviousButton, {
       handleClick: function() {
@@ -331,6 +339,15 @@
       },
       buildCSSClass: function() {
         return 'vjs-control vjs-button vjs-next-button';
+      }
+    }));
+
+    videojs.registerComponent('PipButton', videojs.extend(PipButton, {
+      handleClick: function() {
+        togglePip();
+      },
+      buildCSSClass: function() {
+        return 'vjs-control vjs-button vjs-pip-button';
       }
     }));
 
@@ -364,6 +381,7 @@
           'customControlSpacer',
           'PreviousButton',
           'NextButton',
+          'PipButton',
           'fullscreenToggle'
         ]
       }
@@ -579,6 +597,20 @@
       changeChannel(prevIndex);
     }
 
+    // Picture-in-Picture functionality
+    async function togglePip() {
+      try {
+        if (document.pictureInPictureElement) {
+          await document.exitPictureInPicture();
+        } else if (document.pictureInPictureEnabled) {
+          await player.el().querySelector('video').requestPictureInPicture();
+        }
+      } catch (error) {
+        console.error('PiP error:', error);
+        alert('Picture-in-Picture is not supported or failed: ' + error.message);
+      }
+    }
+
     // Handle player errors
     player.on('error', () => {
       console.error('Player error:', player.error());
@@ -603,6 +635,7 @@
         document.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowRight') playNextChannel();
           if (e.key === 'ArrowLeft') playPreviousChannel();
+          if (e.key === 'p') togglePip(); // Add keyboard shortcut for PiP
         });
       }
     });
