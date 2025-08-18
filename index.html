@@ -508,6 +508,21 @@
     let pipEnabled = false;
     let pipCheckInterval;
     const pipStatusElement = document.getElementById('pipStatus');
+    let isTabVisible = true;
+
+    // Tab visibility detection
+    document.addEventListener('visibilitychange', () => {
+      isTabVisible = !document.hidden;
+      if (pipEnabled) {
+        if (!isTabVisible) {
+          // Tab is hidden - ensure PiP is active
+          ensurePipActive();
+        } else {
+          // Tab is visible again
+          setTimeout(ensurePipActive, 300);
+        }
+      }
+    });
 
     function renderChannels() {
       const list = document.getElementById('channelList');
@@ -578,7 +593,7 @@
           }).then(() => {
             // Re-enter PiP if it was enabled before channel change
             if (pipEnabled && !document.pictureInPictureElement) {
-              setTimeout(togglePip, 500); // Small delay to ensure player is ready
+              setTimeout(ensurePipActive, 500);
             }
           });
         });
@@ -612,7 +627,7 @@
           }
         }).then(() => {
           if (pipEnabled && !document.pictureInPictureElement) {
-            setTimeout(togglePip, 500);
+            setTimeout(ensurePipActive, 500);
           }
         });
       } 
@@ -631,7 +646,7 @@
       changeChannel(prevIndex);
     }
 
-    // Picture-in-Picture functionality with always-on-top
+    // Enhanced PiP functionality
     async function togglePip() {
       try {
         const videoElement = player.el().querySelector('video');
@@ -655,22 +670,30 @@
       }
     }
 
+    async function ensurePipActive() {
+      if (pipEnabled && !document.pictureInPictureElement && document.pictureInPictureEnabled) {
+        try {
+          const videoElement = player.el().querySelector('video');
+          await videoElement.requestPictureInPicture();
+        } catch (error) {
+          console.log('PiP reactivation failed:', error);
+        }
+      }
+    }
+
     function startPipMonitoring() {
-      stopPipMonitoring(); // Clear any existing interval
-      pipCheckInterval = setInterval(checkPipStatus, 1000);
+      stopPipMonitoring();
+      pipCheckInterval = setInterval(() => {
+        if (pipEnabled && !document.pictureInPictureElement && isTabVisible) {
+          ensurePipActive();
+        }
+      }, 1000);
     }
 
     function stopPipMonitoring() {
       if (pipCheckInterval) {
         clearInterval(pipCheckInterval);
         pipCheckInterval = null;
-      }
-    }
-
-    function checkPipStatus() {
-      if (pipEnabled && !document.pictureInPictureElement) {
-        // PiP was closed unexpectedly, re-enable it
-        togglePip();
       }
     }
 
@@ -711,7 +734,7 @@
         document.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowRight') playNextChannel();
           if (e.key === 'ArrowLeft') playPreviousChannel();
-          if (e.key === 'p' || e.key === 'P') togglePip(); // Add keyboard shortcut for PiP
+          if (e.key === 'p' || e.key === 'P') togglePip();
         });
       }
     });
