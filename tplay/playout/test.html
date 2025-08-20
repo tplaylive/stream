@@ -3,329 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>T Play Live TV</title>
+  <title>T Play - Premium Streaming</title>
   <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
   <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f0f0f;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #000;
       color: #fff;
-      overflow-x: hidden;
+      margin: 0;
     }
 
-    /* ===== NAVBAR ===== */
-    .navbar {
+    header {
+      background: rgba(0,0,0,0.9);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 20px;
-      background: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #222;
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
     }
-    .navbar .logo {
+    .logo {
       display: flex;
       align-items: center;
       font-size: 20px;
       font-weight: bold;
-      gap: 10px;
     }
-    .navbar img {
-      height: 30px;
-      width: 30px;
-      border-radius: 50%;
-    }
-    .navbar input {
-      background: #1c1c1c;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 20px;
-      color: #fff;
-      width: 200px;
-    }
-    .navbar input:focus {
-      outline: none;
-      background: #2a2a2a;
-    }
-    .navbar button {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 20px;
-      cursor: pointer;
-    }
+    .logo img { height: 32px; margin-right: 8px; }
 
-    /* ===== CONTAINER ===== */
-    .container {
+    .main-content {
       display: flex;
-      flex-direction: column;
-      padding: 15px;
       gap: 20px;
-    }
-    @media(min-width: 768px) {
-      .container {
-        flex-direction: row;
-      }
-    }
-
-    /* ===== LEFT PANEL ===== */
-    .left-panel {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 15px;
+      padding: 15px;
+      margin-top: 10px;
     }
     .player-container {
-      width: 100%;
-      max-width: 900px;
-      border-radius: 12px;
+      flex: 3;
+      border-radius: 8px;
       overflow: hidden;
       background: #000;
     }
-    .video-js {
-      width: 100%;
-      height: 100%;
-    }
+    .video-js { width: 100%; height: 100%; }
 
-    .player-controls {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .now-playing {
-      background: #007bff;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-    .control-button {
-      background: #222;
-      border: 1px solid #444;
-      color: #fff;
-      padding: 8px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .control-button:hover {
-      background: #007bff;
-    }
-
-    /* ===== RIGHT PANEL ===== */
-    .right-panel {
+    .channels-sidebar {
       flex: 1;
-      max-height: 100vh;
+      max-height: 85vh;
       overflow-y: auto;
-      padding-right: 10px;
-    }
-    .tabs {
       display: flex;
+      flex-direction: column;
       gap: 10px;
-      margin-bottom: 10px;
-      overflow-x: auto;
+      padding-right: 5px;
     }
-    .tab {
-      background: #1c1c1c;
-      border: 1px solid #333;
-      padding: 6px 12px;
-      border-radius: 20px;
+    .channel-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #181818;
+      border-radius: 8px;
+      padding: 8px;
       cursor: pointer;
-      font-size: 13px;
-      white-space: nowrap;
+      transition: background 0.3s;
     }
-    .tab.active {
-      background: #007bff;
-      border-color: #007bff;
-    }
-    .channels {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-    }
-    .channel {
-      background: #1c1c1c;
-      border-radius: 12px;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.3s;
-    }
-    .channel:hover {
-      background: #2a2a2a;
-      transform: scale(1.05);
-    }
-    .channel.active {
-      border: 2px solid #007bff;
-      box-shadow: 0 0 10px #007bff;
-    }
-    .logo-container {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+    .channel-card:hover { background: #282828; }
+    .channel-card.active { border: 2px solid #e50914; }
+    .channel-thumb {
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
       overflow: hidden;
-      margin: 0 auto 8px;
+      flex-shrink: 0;
     }
-    .logo-container img {
+    .channel-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    .channel-name {
-      font-size: 14px;
-      font-weight: bold;
-    }
-    .channel-subtitle {
-      font-size: 12px;
-      color: #aaa;
-    }
+    .channel-info { flex: 1; }
+    .channel-name { font-size: 14px; font-weight: bold; }
+    .channel-subtitle { font-size: 12px; color: #aaa; }
 
-    /* ===== MOBILE BOTTOM NAV ===== */
-    .bottom-nav {
-      display: none;
-    }
-    @media(max-width: 767px) {
-      .bottom-nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background: #111;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 8px 0;
-        border-top: 1px solid #333;
-        z-index: 1000;
-      }
-      .bottom-nav button {
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 18px;
-      }
-      .container {
-        padding-bottom: 60px;
-      }
+    .now-playing {
+      background: #111;
+      padding: 10px;
+      margin: 15px;
+      border-radius: 6px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <div class="navbar">
+  <header>
     <div class="logo">
-      <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="TPlay">
+      <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play">
       T Play
     </div>
-    <input type="text" id="searchInput" placeholder="Search channel..." />
-    <button onclick="toggleTheme()">🌙</button>
-  </div>
+    <div>📺 Live TV</div>
+  </header>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
-    <!-- LEFT PANEL -->
-    <div class="left-panel">
+  <div class="main-content">
+    <!-- LEFT: Player -->
+    <div style="flex:3; display:flex; flex-direction:column;">
       <div class="player-container">
         <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
       </div>
-      <div class="player-controls">
-        <div id="now-playing" class="now-playing">Select a channel</div>
-        <button class="control-button" onclick="playPreviousChannel()">⏮ Prev</button>
-        <button class="control-button" onclick="playNextChannel()">Next ⏭</button>
-        <button class="control-button" onclick="togglePip()">📺 PiP</button>
+      <div class="now-playing">
+        <span id="now-playing-text">Select a channel</span>
       </div>
     </div>
 
-    <!-- RIGHT PANEL -->
-    <div class="right-panel">
-      <div class="tabs" id="tabs"></div>
-      <div class="channels" id="channelList"></div>
-    </div>
-  </div>
-
-  <!-- BOTTOM NAV (MOBILE) -->
-  <div class="bottom-nav">
-    <button onclick="scrollToTop()">🏠</button>
-    <button onclick="document.getElementById('searchInput').focus()">🔍</button>
-    <button onclick="playPreviousChannel()">⏮</button>
-    <button onclick="playNextChannel()">⏭</button>
+    <!-- RIGHT: Channels -->
+    <div class="channels-sidebar" id="channelList"></div>
   </div>
 
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const player = videojs('live-tv-player', { fluid: true, liveui: true });
-
-    const categories = ["All", "Music", "Movies", "Kids", "Islamic"];
     const channels = [
-      { name: "Oxygen Music", subtitle: "24/7 English Songs", category: "Music",
+      { name: "Oxygen Music", subtitle: "24/7 English Songs",
         url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",
         logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209901/Oxygen-Music.jpg?raw=true" },
-      { name: "Bengali Beats", subtitle: "24/7 Bengali Songs", category: "Music",
+      { name: "Bengali Beats", subtitle: "24/7 Bengali Songs",
         url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
         logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209587/Bengali-Beats.png?raw=true" },
-      { name: "Hindi Movies", subtitle: "24/7 Bollywood Hits", category: "Movies",
+      { name: "Hindi Movies", subtitle: "24/7 Bollywood Hits",
         url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8",
         logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/hindi-movies.png" },
-      { name: "Ilm Tv", subtitle: "24/7 Islamic Waz", category: "Islamic",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209617/ilm.jpg?raw=true" },
-      { name: "Motu Patlu", subtitle: "24/7 Kids Favorite", category: "Kids",
+      { name: "Motu Patlu", subtitle: "Kids Favorite",
         url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/motu-patlu.png" }
+        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/motu-patlu.png" },
+      { name: "Ilm Tv", subtitle: "Islamic Waz",
+        url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
+        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209617/ilm.jpg?raw=true" }
     ];
 
     let currentIndex = -1;
     let hls;
 
-    function renderTabs() {
-      const tabsContainer = document.getElementById("tabs");
-      tabsContainer.innerHTML = "";
-      categories.forEach(cat => {
-        const btn = document.createElement("div");
-        btn.className = "tab" + (cat === "All" ? " active" : "");
-        btn.textContent = cat;
-        btn.onclick = () => filterChannels(cat);
-        tabsContainer.appendChild(btn);
-      });
-    }
-
-    function renderChannels(filtered = channels) {
+    function renderChannels() {
       const list = document.getElementById("channelList");
       list.innerHTML = "";
-      filtered.forEach((ch, i) => {
-        const div = document.createElement("div");
-        div.className = "channel";
-        div.innerHTML = `
-          <div class="logo-container"><img src="${ch.logo}" alt="${ch.name}" /></div>
-          <div class="channel-name">${ch.name}</div>
-          <div class="channel-subtitle">${ch.subtitle}</div>
-        `;
-        div.onclick = () => changeChannel(channels.indexOf(ch));
-        list.appendChild(div);
+      channels.forEach((ch, i) => {
+        const card = document.createElement("div");
+        card.className = "channel-card";
+        card.innerHTML = `
+          <div class="channel-thumb"><img src="${ch.logo}" alt="${ch.name}"></div>
+          <div class="channel-info">
+            <div class="channel-name">${ch.name}</div>
+            <div class="channel-subtitle">${ch.subtitle}</div>
+          </div>`;
+        card.onclick = () => changeChannel(i);
+        list.appendChild(card);
       });
     }
 
     function changeChannel(index) {
       currentIndex = index;
       const ch = channels[index];
-      document.getElementById("now-playing").textContent = `Now Playing: ${ch.name}`;
-      document.querySelectorAll(".channel").forEach((el, i) => {
-        el.classList.toggle("active", i === index);
+      document.getElementById("now-playing-text").textContent = `Now Playing: ${ch.name}`;
+      document.querySelectorAll(".channel-card").forEach((el,i)=> {
+        el.classList.toggle("active", i===index);
       });
 
       if (hls) hls.destroy();
@@ -333,56 +173,16 @@
         hls = new Hls();
         hls.loadSource(ch.url);
         hls.attachMedia(player.el().querySelector("video"));
-        hls.on(Hls.Events.MANIFEST_PARSED, () => player.play());
+        hls.on(Hls.Events.MANIFEST_PARSED, ()=> player.play());
       } else {
         player.src({ src: ch.url, type: "application/x-mpegURL" });
         player.play();
       }
-      localStorage.setItem("lastChannel", index);
     }
-
-    function playNextChannel() {
-      changeChannel((currentIndex + 1) % channels.length);
-    }
-    function playPreviousChannel() {
-      changeChannel((currentIndex - 1 + channels.length) % channels.length);
-    }
-
-    function filterChannels(category) {
-      document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
-      document.querySelectorAll(".tab").forEach(tab => {
-        if (tab.textContent === category) tab.classList.add("active");
-      });
-      renderChannels(category === "All" ? channels : channels.filter(c => c.category === category));
-    }
-
-    function toggleTheme() {
-      document.body.classList.toggle("light");
-    }
-
-    function togglePip() {
-      const video = player.el().querySelector("video");
-      if (document.pictureInPictureElement) {
-        document.exitPictureInPicture();
-      } else if (document.pictureInPictureEnabled) {
-        video.requestPictureInPicture();
-      }
-    }
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    document.getElementById("searchInput").addEventListener("input", e => {
-      const query = e.target.value.toLowerCase();
-      renderChannels(channels.filter(c => c.name.toLowerCase().includes(query)));
-    });
 
     document.addEventListener("DOMContentLoaded", () => {
-      renderTabs();
       renderChannels();
-      const last = localStorage.getItem("lastChannel");
-      if (last) changeChannel(Number(last));
+      changeChannel(0);
     });
   </script>
 </body>
