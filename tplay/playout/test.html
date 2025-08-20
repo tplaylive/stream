@@ -104,13 +104,15 @@
       font-size: 14px;
     }
 
-    /* Channels section - Height বাড়ানো হয়েছে */
+    /* Player controls (Previous/Next buttons) সরিয়ে দেওয়া হয়েছে */
+
+    /* Channels section - নতুন স্টাইল */
     .channels-section {
       flex: 1;
       background: var(--card-bg);
       border-radius: 8px;
       padding: 20px;
-      max-height: 85vh; /* Height বাড়ানো হয়েছে */
+      max-height: 75vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -309,7 +311,7 @@
       }
       
       .channels-section {
-        max-height: 500px; /* Height বাড়ানো হয়েছে */
+        max-height: 400px;
         min-width: auto;
       }
       
@@ -330,7 +332,7 @@
       }
       
       .channels-section {
-        max-height: 60vh; /* Height বাড়ানো হয়েছে */
+        max-height: 50vh;
       }
       
       .channels-grid {
@@ -874,7 +876,7 @@
     }
 
     // Initialize
-    document.addEventListener('DOMContentLoaded', () {
+    document.addEventListener('DOMContentLoaded', () => {
       renderChannels();
       changeChannel(0);
       
