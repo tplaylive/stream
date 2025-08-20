@@ -148,7 +148,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .section-title {
@@ -161,6 +161,36 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
+    }
+
+    /* Category filters inside channels container */
+    .channels-category-filters {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 0 0 15px 0;
+      margin-bottom: 15px;
+      scrollbar-width: none;
+      border-bottom: 1px solid #2f2f2f;
+    }
+
+    .channels-category-filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .channel-category-filter {
+      padding: 6px 12px;
+      background: var(--secondary);
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+
+    .channel-category-filter:hover, .channel-category-filter.active {
+      background: var(--accent);
     }
 
     .channels-grid {
@@ -229,7 +259,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Category filters */
+    /* Main category filters (below player) */
     .category-filters {
       display: flex;
       gap: 12px;
@@ -369,6 +399,11 @@
         width: 100%;
         height: 120px;
       }
+      
+      .channels-category-filters {
+        padding: 0 0 10px 0;
+        margin-bottom: 10px;
+      }
     }
 
     /* Video.js customizations */
@@ -467,6 +502,16 @@
       <div class="section-header">
         <h2 class="section-title">Live Channels</h2>
         <a href="#" class="view-all">View All</a>
+      </div>
+      
+      <!-- Channels Container এর ভিতরে Category Filters -->
+      <div class="channels-category-filters">
+        <div class="channel-category-filter active" data-category="all">All</div>
+        <div class="channel-category-filter" data-category="music">Music</div>
+        <div class="channel-category-filter" data-category="movies">Movies</div>
+        <div class="channel-category-filter" data-category="kids">Kids</div>
+        <div class="channel-category-filter" data-category="cultural">Cultural</div>
+        <div class="channel-category-filter" data-category="cartoons">Cartoons</div>
       </div>
       
       <div class="channels-grid" id="channelList">
@@ -934,7 +979,7 @@
       }, 200);
     });
 
-    // Category filtering
+    // Category filtering (main filters below player)
     document.querySelectorAll('.category-filter').forEach(filter => {
       filter.addEventListener('click', function() {
         // Update active filter
@@ -943,6 +988,34 @@
         
         const category = this.getAttribute('data-category');
         filterChannels(category);
+        
+        // Also update the channel container filters
+        document.querySelectorAll('.channel-category-filter').forEach(f => {
+          f.classList.remove('active');
+          if (f.getAttribute('data-category') === category) {
+            f.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // Category filtering (channel container filters)
+    document.querySelectorAll('.channel-category-filter').forEach(filter => {
+      filter.addEventListener('click', function() {
+        // Update active filter
+        document.querySelectorAll('.channel-category-filter').forEach(f => f.classList.remove('active'));
+        this.classList.add('active');
+        
+        const category = this.getAttribute('data-category');
+        filterChannels(category);
+        
+        // Also update the main filters
+        document.querySelectorAll('.category-filter').forEach(f => {
+          f.classList.remove('active');
+          if (f.getAttribute('data-category') === category) {
+            f.classList.add('active');
+          }
+        });
       });
     });
 
