@@ -33,6 +33,7 @@
       overflow-x: hidden;
       line-height: 1.5;
       min-height: 100vh;
+      padding-bottom: 20px; /* Footer remove করার পর সামান্য padding */
     }
 
     /* Header styling - সম্পূর্ণ hide করে দিলাম */
@@ -46,6 +47,7 @@
       padding: 20px 4%;
       display: flex;
       gap: 30px;
+      min-height: calc(100vh - 40px);
     }
 
     .player-section {
@@ -132,7 +134,7 @@
       transform: translateY(0);
     }
 
-    /* Channels section - নতুন স্টাইল যোগ করেছি */
+    /* Channels section */
     .channels-section {
       flex: 1;
       background: var(--card-bg);
@@ -259,87 +261,6 @@
       text-overflow: ellipsis;
     }
 
-    /* Main category filters (below player) */
-    .category-filters {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 5px 0 20px;
-      scrollbar-width: none;
-    }
-
-    .category-filters::-webkit-scrollbar {
-      display: none;
-    }
-
-    .category-filter {
-      padding: 8px 16px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.3s;
-    }
-
-    .category-filter:hover, .category-filter.active {
-      background: var(--accent);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--secondary);
-      padding: 40px 4%;
-      margin-top: 60px;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .footer-column {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .footer-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover {
-      color: var(--text-primary);
-    }
-
-    .copyright {
-      text-align: center;
-      margin-top: 40px;
-      color: var(--text-secondary);
-      font-size: 14px;
-      padding-top: 20px;
-      border-top: 1px solid #2f2f2f;
-    }
-
     /* PiP status */
     .pip-status {
       position: fixed;
@@ -365,10 +286,6 @@
       .channels-section {
         max-height: none;
       }
-      
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      }
     }
 
     @media (max-width: 768px) {
@@ -383,11 +300,6 @@
       
       .player-controls {
         grid-template-columns: 1fr;
-      }
-      
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 15px;
       }
       
       .channel-card {
@@ -468,6 +380,8 @@
       </div>
       
       <div class="player-controls-section">
+        <!-- Player এর নিচের Category Filters সরিয়ে দেওয়া হয়েছে -->
+        
         <div class="now-playing">
           <div class="now-playing-title">
             <i class="fas fa-tv"></i>
@@ -475,6 +389,14 @@
           </div>
           <div class="now-playing-subtitle" id="now-playing-subtitle">Enjoy premium content</div>
         </div>
+        
+        <div class="player-controls">
+          <button class="control-button" onclick="playPreviousChannel()">
+            <i class="fas fa-arrow-left"></i> Previous
+          </button>
+          <button class="control-button" onclick="playNextChannel()">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -502,48 +424,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-column">
-        <h3 class="footer-title">T Play</h3>
-        <p style="color: #b3b3b3; font-size: 14px;">Premium streaming service with the best live TV channels and on-demand content.</p>
-      </div>
-      
-      <div class="footer-column">
-        <h3 class="footer-title">Navigation</h3>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Live TV</a></li>
-          <li><a href="#">Movies</a></li>
-          <li><a href="#">Shows</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-column">
-        <h3 class="footer-title">Support</h3>
-        <ul class="footer-links">
-          <li><a href="#">Account</a></li>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Devices</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-column">
-        <h3 class="footer-title">Legal</h3>
-        <ul class="footer-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="copyright">
-      &copy; 2023 T Play. All rights reserved.
-    </div>
-  </footer>
+  <!-- Footer সরিয়ে দেওয়া হয়েছে -->
 
   <div class="pip-status" id="pipStatus">
     <i class="fas fa-picture-in-picture"></i> PiP Mode: Active
@@ -961,26 +842,6 @@
       }, 200);
     });
 
-    // Category filtering (main filters below player)
-    document.querySelectorAll('.category-filter').forEach(filter => {
-      filter.addEventListener('click', function() {
-        // Update active filter
-        document.querySelectorAll('.category-filter').forEach(f => f.classList.remove('active'));
-        this.classList.add('active');
-        
-        const category = this.getAttribute('data-category');
-        filterChannels(category);
-        
-        // Also update the channel container filters
-        document.querySelectorAll('.channel-category-filter').forEach(f => {
-          f.classList.remove('active');
-          if (f.getAttribute('data-category') === category) {
-            f.classList.add('active');
-          }
-        });
-      });
-    });
-
     // Category filtering (channel container filters)
     document.querySelectorAll('.channel-category-filter').forEach(filter => {
       filter.addEventListener('click', function() {
@@ -990,14 +851,6 @@
         
         const category = this.getAttribute('data-category');
         filterChannels(category);
-        
-        // Also update the main filters
-        document.querySelectorAll('.category-filter').forEach(f => {
-          f.classList.remove('active');
-          if (f.getAttribute('data-category') === category) {
-            f.classList.add('active');
-          }
-        });
       });
     });
 
