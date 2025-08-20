@@ -104,35 +104,7 @@
       font-size: 14px;
     }
 
-    .player-controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .control-button {
-      background: var(--card-bg);
-      border: none;
-      color: var(--text-primary);
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .control-button:hover {
-      background: var(--card-hover);
-      transform: translateY(-2px);
-    }
-
-    .control-button:active {
-      transform: translateY(0);
-    }
+    /* Player controls (Previous/Next buttons) সরিয়ে দেওয়া হয়েছে */
 
     /* Channels section - নতুন স্টাইল */
     .channels-section {
@@ -354,10 +326,6 @@
         flex-direction: column;
       }
       
-      .player-controls {
-        grid-template-columns: 1fr;
-      }
-      
       .channels-category-filters {
         padding: 0 0 10px 0;
         margin-bottom: 10px;
@@ -429,14 +397,7 @@
           <div class="now-playing-subtitle" id="now-playing-subtitle">Enjoy premium content</div>
         </div>
         
-        <div class="player-controls">
-          <button class="control-button" onclick="playPreviousChannel()">
-            <i class="fas fa-arrow-left"></i> Previous
-          </button>
-          <button class="control-button" onclick="playNextChannel()">
-            Next <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
+        <!-- Player controls (Previous/Next buttons) সরিয়ে দেওয়া হয়েছে -->
       </div>
     </div>
     
