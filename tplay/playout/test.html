@@ -23,7 +23,7 @@
       --text-secondary: #b3b3b3;
       --card-bg: #181818;
       --card-hover: #282828;
-      --header-height: 0px; /* Header height 0 করে দিলাম */
+      --header-height: 0px;
     }
     
     body {
@@ -45,31 +45,34 @@
       margin-top: var(--header-height);
       padding: 20px 4%;
       display: flex;
+      gap: 30px;
+    }
+
+    .player-section {
+      flex: 2;
+      display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .hero-section {
-      display: flex;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-
     .player-container {
-      flex: 2;
       border-radius: 8px;
       overflow: hidden;
       background: #000;
       position: relative;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
     }
 
     .video-js {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
     }
 
-    .player-sidebar {
-      flex: 1;
+    .player-controls-section {
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -130,17 +133,15 @@
     }
 
     /* Channels section - নতুন স্টাইল যোগ করেছি */
-    .channels-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
     .channels-section {
+      flex: 1;
       background: var(--card-bg);
       border-radius: 8px;
       padding: 20px;
-      flex: 1;
+      max-height: 80vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .section-header {
@@ -163,34 +164,41 @@
     }
 
     .channels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      max-height: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       overflow-y: auto;
+      padding-right: 5px;
     }
 
     .channel-card {
-      background: var(--card-bg);
+      background: var(--secondary);
       border-radius: 8px;
       overflow: hidden;
       transition: all 0.3s;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 12px;
     }
 
     .channel-card:hover {
-      transform: scale(1.05);
       background: var(--card-hover);
+      transform: translateX(5px);
     }
 
     .channel-card.active {
       border: 2px solid var(--accent);
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
 
     .channel-thumb {
-      height: 120px;
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .channel-thumb img {
@@ -200,11 +208,12 @@
     }
 
     .channel-info {
-      padding: 12px;
+      flex: 1;
+      overflow: hidden;
     }
 
     .channel-name {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
       margin-bottom: 4px;
       white-space: nowrap;
@@ -213,7 +222,7 @@
     }
 
     .channel-subtitle {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
@@ -319,20 +328,16 @@
 
     /* Responsive design */
     @media (max-width: 1024px) {
-      .hero-section {
+      .main-content {
         flex-direction: column;
       }
       
-      .player-sidebar {
-        flex-direction: row;
+      .channels-section {
+        max-height: none;
       }
       
-      .now-playing {
-        flex: 2;
-      }
-      
-      .channels-container {
-        flex-direction: row;
+      .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       }
     }
 
@@ -343,10 +348,11 @@
       
       .main-content {
         padding: 15px;
+        flex-direction: column;
       }
       
-      .player-sidebar {
-        flex-direction: column;
+      .player-controls {
+        grid-template-columns: 1fr;
       }
       
       .channels-grid {
@@ -354,12 +360,14 @@
         gap: 15px;
       }
       
-      .player-controls {
-        grid-template-columns: 1fr;
+      .channel-card {
+        flex-direction: column;
+        text-align: center;
       }
       
-      .channels-container {
-        flex-direction: column;
+      .channel-thumb {
+        width: 100%;
+        height: 120px;
       }
     }
 
@@ -417,16 +425,24 @@
   </style>
 </head>
 <body>
-  <!-- Header সরিয়ে দিলাম -->
-
   <!-- Main Content -->
   <div class="main-content">
-    <div class="hero-section">
+    <div class="player-section">
       <div class="player-container">
         <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
       </div>
       
-      <div class="player-sidebar">
+      <div class="player-controls-section">
+        <!-- Category Filters -->
+        <div class="category-filters">
+          <div class="category-filter active" data-category="all">All Channels</div>
+          <div class="category-filter" data-category="music">Music</div>
+          <div class="category-filter" data-category="movies">Movies</div>
+          <div class="category-filter" data-category="kids">Kids</div>
+          <div class="category-filter" data-category="cultural">Cultural</div>
+          <div class="category-filter" data-category="cartoons">Cartoons</div>
+        </div>
+        
         <div class="now-playing">
           <div class="now-playing-title">
             <i class="fas fa-tv"></i>
@@ -445,29 +461,16 @@
         </div>
       </div>
     </div>
-
-    <!-- Category Filters -->
-    <div class="category-filters">
-      <div class="category-filter active" data-category="all">All Channels</div>
-      <div class="category-filter" data-category="music">Music</div>
-      <div class="category-filter" data-category="movies">Movies</div>
-      <div class="category-filter" data-category="kids">Kids</div>
-      <div class="category-filter" data-category="cultural">Cultural</div>
-      <div class="category-filter" data-category="cartoons">Cartoons</div>
-    </div>
-
-    <!-- Channels Container - নতুন লেআউট -->
-    <div class="channels-container">
-      <!-- Channels Section -->
-      <div class="channels-section">
-        <div class="section-header">
-          <h2 class="section-title">Live Channels</h2>
-          <a href="#" class="view-all">View All</a>
-        </div>
-        
-        <div class="channels-grid" id="channelList">
-          <!-- Channels will be populated by JavaScript -->
-        </div>
+    
+    <!-- Channels Section - Player এর ডান পাশে -->
+    <div class="channels-section">
+      <div class="section-header">
+        <h2 class="section-title">Live Channels</h2>
+        <a href="#" class="view-all">View All</a>
+      </div>
+      
+      <div class="channels-grid" id="channelList">
+        <!-- Channels will be populated by JavaScript -->
       </div>
     </div>
   </div>
@@ -767,12 +770,10 @@
         card.classList.toggle('active', i === index);
       });
 
-      // Scroll to active channel on mobile
-      if (isMobile) {
-        const activeChannel = document.querySelector('.channel-card.active');
-        if (activeChannel) {
-          activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
+      // Scroll to active channel
+      const activeChannel = document.querySelector('.channel-card.active');
+      if (activeChannel) {
+        activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
 
       // Clean up previous HLS instance
@@ -950,10 +951,10 @@
       
       channelCards.forEach(card => {
         if (category === 'all') {
-          card.style.display = 'block';
+          card.style.display = 'flex';
         } else {
           if (card.getAttribute('data-category') === category) {
-            card.style.display = 'block';
+            card.style.display = 'flex';
           } else {
             card.style.display = 'none';
           }
