@@ -23,7 +23,7 @@
       --text-secondary: #b3b3b3;
       --card-bg: #181818;
       --card-hover: #282828;
-      --header-height: 0px; /* Header height 0 করে দিলাম */
+      --header-height: 0px;
     }
     
     body {
@@ -129,7 +129,7 @@
       transform: translateY(0);
     }
 
-    /* Channels section - নতুন স্টাইল যোগ করেছি */
+    /* Channels section - নতুন স্টাইল */
     .channels-container {
       display: flex;
       flex-direction: column;
@@ -218,6 +218,45 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    /* Channel details - নতুন যোগ করা */
+    .channel-details {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .channel-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .channel-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .channel-meta {
+      flex: 1;
+    }
+
+    .channel-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .channel-description {
+      color: var(--text-secondary);
+      font-size: 14px;
     }
 
     /* Category filters */
@@ -361,6 +400,11 @@
       .channels-container {
         flex-direction: column;
       }
+      
+      .channel-details {
+        flex-direction: column;
+        text-align: center;
+      }
     }
 
     /* Video.js customizations */
@@ -446,6 +490,17 @@
       </div>
     </div>
 
+    <!-- Channel Details - Player এর নিচে -->
+    <div class="channel-details" id="channelDetails">
+      <div class="channel-logo">
+        <img id="channel-logo-img" src="https://raw.githubusercontent.com/tplaylive/stream/main/TPlay.png" alt="Channel Logo">
+      </div>
+      <div class="channel-meta">
+        <h3 class="channel-title" id="channel-details-title">Select a channel</h3>
+        <p class="channel-description" id="channel-details-description">Channel details will appear here</p>
+      </div>
+    </div>
+
     <!-- Category Filters -->
     <div class="category-filters">
       <div class="category-filter active" data-category="all">All Channels</div>
@@ -456,7 +511,7 @@
       <div class="category-filter" data-category="cartoons">Cartoons</div>
     </div>
 
-    <!-- Channels Container - নতুন লেআউট -->
+    <!-- Channels Container - Player এর ডান পাশে -->
     <div class="channels-container">
       <!-- Channels Section -->
       <div class="channels-section">
@@ -766,6 +821,11 @@
       document.querySelectorAll('.channel-card').forEach((card, i) => {
         card.classList.toggle('active', i === index);
       });
+
+      // Update channel details
+      document.getElementById('channel-logo-img').src = channel.logo;
+      document.getElementById('channel-details-title').textContent = channel.name;
+      document.getElementById('channel-details-description').textContent = channel.subtitle;
 
       // Scroll to active channel on mobile
       if (isMobile) {
