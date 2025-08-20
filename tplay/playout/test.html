@@ -134,16 +134,17 @@
       transform: translateY(0);
     }
 
-    /* Channels section */
+    /* Channels section - নতুন স্টাইল */
     .channels-section {
       flex: 1;
       background: var(--card-bg);
       border-radius: 8px;
       padding: 20px;
-      max-height: 80vh;
+      max-height: 75vh; /* উচ্চতা কমিয়ে আনা হয়েছে */
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      min-width: 320px; /* ন্যূনতম প্রস্থ নির্ধারণ */
     }
 
     .section-header {
@@ -163,23 +164,17 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      padding: 5px 10px;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-
-    .view-all:hover {
-      background: rgba(229, 9, 20, 0.1);
     }
 
     /* Category filters inside channels container */
     .channels-category-filters {
       display: flex;
-      gap: 8px;
+      gap: 8px; /* গ্যাপ কমিয়ে আনা হয়েছে */
       overflow-x: auto;
       padding: 0 0 15px 0;
       margin-bottom: 15px;
       scrollbar-width: none;
+      border-bottom: 1px solid #2f2f2f;
     }
 
     .channels-category-filters::-webkit-scrollbar {
@@ -187,28 +182,46 @@
     }
 
     .channel-category-filter {
-      padding: 8px 16px;
+      padding: 6px 12px;
       background: var(--secondary);
-      border-radius: 20px;
-      font-size: 14px;
+      border-radius: 16px;
+      font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.3s;
-      border: 1px solid #333;
     }
 
     .channel-category-filter:hover, .channel-category-filter.active {
       background: var(--accent);
-      border-color: var(--accent);
     }
 
     .channels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px; /* গ্যাপ কমিয়ে আনা হয়েছে */
       overflow-y: auto;
       padding-right: 5px;
+      flex: 1; /* অবশিষ্ট স্থান দখল করবে */
+    }
+
+    /* স্ক্রলবার স্টাইলিং */
+    .channels-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .channels-grid::-webkit-scrollbar-track {
+      background: var(--secondary);
+      border-radius: 3px;
+    }
+
+    .channels-grid::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 3px;
+    }
+
+    .channels-grid::-webkit-scrollbar-thumb:hover {
+      background: #555;
     }
 
     .channel-card {
@@ -218,23 +231,28 @@
       transition: all 0.3s;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      gap: 12px;
+      min-height: 80px; /* ন্যূনতম উচ্চতা নির্ধারণ */
     }
 
     .channel-card:hover {
       background: var(--card-hover);
-      transform: translateY(-5px);
+      transform: translateX(5px);
     }
 
     .channel-card.active {
       border: 2px solid var(--accent);
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
 
     .channel-thumb {
-      width: 100%;
-      height: 120px;
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .channel-thumb img {
@@ -244,11 +262,9 @@
     }
 
     .channel-info {
-      padding: 12px;
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      overflow: hidden;
+      min-width: 0; /* টেক্সট overflow এর জন্য গুরুত্বপূর্ণ */
     }
 
     .channel-name {
@@ -285,13 +301,24 @@
     }
 
     /* Responsive design */
+    @media (max-width: 1200px) {
+      .main-content {
+        gap: 20px;
+      }
+      
+      .channels-section {
+        min-width: 280px;
+      }
+    }
+
     @media (max-width: 1024px) {
       .main-content {
         flex-direction: column;
       }
       
       .channels-section {
-        max-height: none;
+        max-height: 400px;
+        min-width: auto;
       }
     }
 
@@ -309,13 +336,24 @@
         grid-template-columns: 1fr;
       }
       
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      .channel-card {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+      }
+      
+      .channel-thumb {
+        width: 100%;
+        height: 100px;
       }
       
       .channels-category-filters {
         padding: 0 0 10px 0;
         margin-bottom: 10px;
+      }
+      
+      .channels-section {
+        max-height: 50vh;
       }
     }
 
@@ -350,25 +388,6 @@
       content: "⤢";
       font-size: 1.8em;
       line-height: 1.67;
-    }
-
-    /* Scrollbar styling */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--secondary);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #444;
-      border-radius: 3px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555;
     }
   </style>
 </head>
