@@ -33,7 +33,7 @@
       overflow-x: hidden;
       line-height: 1.5;
       min-height: 100vh;
-      padding-bottom: 20px; /* Footer remove করার পর সামান্য padding */
+      padding-bottom: 20px;
     }
 
     /* Header styling - সম্পূর্ণ hide করে দিলাম */
@@ -163,17 +163,23 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .view-all:hover {
+      background: rgba(229, 9, 20, 0.1);
     }
 
     /* Category filters inside channels container */
     .channels-category-filters {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       overflow-x: auto;
       padding: 0 0 15px 0;
       margin-bottom: 15px;
       scrollbar-width: none;
-      border-bottom: 1px solid #2f2f2f;
     }
 
     .channels-category-filters::-webkit-scrollbar {
@@ -181,23 +187,25 @@
     }
 
     .channel-category-filter {
-      padding: 6px 12px;
+      padding: 8px 16px;
       background: var(--secondary);
-      border-radius: 16px;
-      font-size: 12px;
+      border-radius: 20px;
+      font-size: 14px;
       font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.3s;
+      border: 1px solid #333;
     }
 
     .channel-category-filter:hover, .channel-category-filter.active {
       background: var(--accent);
+      border-color: var(--accent);
     }
 
     .channels-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 15px;
       overflow-y: auto;
       padding-right: 5px;
@@ -210,27 +218,23 @@
       transition: all 0.3s;
       cursor: pointer;
       display: flex;
-      align-items: center;
-      padding: 10px;
-      gap: 12px;
+      flex-direction: column;
     }
 
     .channel-card:hover {
       background: var(--card-hover);
-      transform: translateX(5px);
+      transform: translateY(-5px);
     }
 
     .channel-card.active {
       border: 2px solid var(--accent);
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
     .channel-thumb {
-      width: 60px;
-      height: 60px;
-      border-radius: 6px;
+      width: 100%;
+      height: 120px;
       overflow: hidden;
-      flex-shrink: 0;
     }
 
     .channel-thumb img {
@@ -240,8 +244,11 @@
     }
 
     .channel-info {
+      padding: 12px;
       flex: 1;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .channel-name {
@@ -302,14 +309,8 @@
         grid-template-columns: 1fr;
       }
       
-      .channel-card {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .channel-thumb {
-        width: 100%;
-        height: 120px;
+      .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       }
       
       .channels-category-filters {
@@ -379,9 +380,7 @@
         <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
       </div>
       
-      <div class="player-controls-section">
-        <!-- Player এর নিচের Category Filters সরিয়ে দেওয়া হয়েছে -->
-        
+      <div class="player-controls-section">        
         <div class="now-playing">
           <div class="now-playing-title">
             <i class="fas fa-tv"></i>
@@ -423,8 +422,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Footer সরিয়ে দেওয়া হয়েছে -->
 
   <div class="pip-status" id="pipStatus">
     <i class="fas fa-picture-in-picture"></i> PiP Mode: Active
