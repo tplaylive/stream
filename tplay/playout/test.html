@@ -3,412 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>T Play - Premium Streaming</title>
+  <title>T Play - Premium Streaming (Mobile Autoplay Fixed)</title>
   <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
   <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-      margin: 0;
-      padding: 0;
-    }
-    
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
     :root {
-      --primary: #000000;
-      --secondary: #141414;
-      --accent: #e50914;
-      --text-primary: #ffffff;
-      --text-secondary: #b3b3b3;
-      --card-bg: #181818;
-      --card-hover: #282828;
-      --header-height: 0px;
+      --primary: #000000; --secondary: #141414; --accent: #e50914;
+      --text-primary: #ffffff; --text-secondary: #b3b3b3;
+      --card-bg: #181818; --card-hover: #282828; --header-height: 0px;
     }
-    
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: var(--primary);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.5;
-      min-height: 100vh;
-      padding-bottom: 20px;
-    }
-
-    /* Header styling - সম্পূর্ণ hide করে দিলাম */
-    header {
-      display: none;
-    }
-
-    /* Main content */
-    .main-content {
-      margin-top: var(--header-height);
-      padding: 20px 4%;
-      display: flex;
-      gap: 30px;
-      min-height: calc(100vh - 40px);
-    }
-
-    .player-section {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .player-container {
-      border-radius: 8px;
-      overflow: hidden;
-      background: #000;
-      position: relative;
-      height: 0;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    }
-
-    .video-js {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .player-controls-section {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .now-playing {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    .now-playing-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .now-playing-title i {
-      color: var(--accent);
-    }
-
-    .now-playing-subtitle {
-      color: var(--text-secondary);
-      font-size: 14px;
-    }
-
-    /* Player controls (Previous/Next buttons) সরিয়ে দেওয়া হয়েছে */
-
-    /* Channels section - নতুন স্টাইল */
-    .channels-section {
-      flex: 1;
-      background: var(--card-bg);
-      border-radius: 8px;
-      padding: 20px;
-      max-height: 75vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-width: 320px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .view-all {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    /* Category filters inside channels container */
-    .channels-category-filters {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 0 0 15px 0;
-      margin-bottom: 15px;
-      scrollbar-width: none;
-      border-bottom: 1px solid #2f2f2f;
-    }
-
-    .channels-category-filters::-webkit-scrollbar {
-      display: none;
-    }
-
-    .channel-category-filter {
-      padding: 6px 12px;
-      background: var(--secondary);
-      border-radius: 16px;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.3s;
-    }
-
-    .channel-category-filter:hover, .channel-category-filter.active {
-      background: var(--accent);
-    }
-
-    /* Channels grid - নতুন লেআউট */
-    .channels-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 columns */
-      gap: 12px;
-      overflow-y: auto;
-      padding-right: 5px;
-      flex: 1;
-    }
-
-    /* স্ক্রলবার স্টাইলিং */
-    .channels-grid::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .channels-grid::-webkit-scrollbar-track {
-      background: var(--secondary);
-      border-radius: 3px;
-    }
-
-    .channels-grid::-webkit-scrollbar-thumb {
-      background: #444;
-      border-radius: 3px;
-    }
-
-    .channels-grid::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
-
-    /* Channel card - শুধুমাত্র লোগো */
-    .channel-card {
-      background: var(--secondary);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: all 0.3s;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      aspect-ratio: 1; /* বর্গাকার কার্ড */
-      position: relative;
-    }
-
-    .channel-card:hover {
-      background: var(--card-hover);
-      transform: scale(1.05);
-    }
-
-    .channel-card.active {
-      border: 2px solid var(--accent);
-      transform: scale(1.03);
-    }
-
-    .channel-card.active::after {
-      content: '';
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-
-    .channel-thumb {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-    }
-
-    .channel-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* লোগো সম্পূর্ণ দেখা যাবে */
-      border-radius: 6px;
-    }
-
-    /* Channel name tooltip */
-    .channel-card .channel-tooltip {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 6px;
-      font-size: 12px;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-
-    .channel-card:hover .channel-tooltip {
-      opacity: 1;
-    }
-
-    /* PiP status */
-    .pip-status {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 13px;
-      z-index: 10000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Responsive design */
-    @media (max-width: 1200px) {
-      .main-content {
-        gap: 20px;
-      }
-      
-      .channels-section {
-        min-width: 280px;
-      }
-      
-      .channels-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns */
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .main-content {
-        flex-direction: column;
-      }
-      
-      .channels-section {
-        max-height: 400px;
-        min-width: auto;
-      }
-      
-      .channels-grid {
-        grid-template-columns: repeat(6, 1fr); /* 6 columns */
-      }
-    }
-
-    @media (max-width: 768px) {
-      .main-content {
-        padding: 15px;
-        flex-direction: column;
-      }
-      
-      .channels-category-filters {
-        padding: 0 0 10px 0;
-        margin-bottom: 10px;
-      }
-      
-      .channels-section {
-        max-height: 50vh;
-      }
-      
-      .channels-grid {
-        grid-template-columns: repeat(5, 1fr); /* 5 columns */
-      }
-    }
-
-    @media (max-width: 480px) {
-      .channels-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 columns */
-      }
-    }
-
-    /* Video.js customizations */
-    .video-js .vjs-control-bar {
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    }
-
-    .video-js .vjs-play-progress, .video-js .vjs-volume-level {
-      background-color: var(--accent);
-    }
-
-    .video-js:hover .vjs-big-play-button {
-      background-color: rgba(229, 9, 20, 0.8);
-      border-color: var(--accent);
-    }
-
-    /* Custom buttons */
-    .vjs-previous-button:before {
-      content: "⏮";
-      font-size: 1.8em;
-      line-height: 1.67;
-    }
-
-    .vjs-next-button:before {
-      content: "⏭";
-      font-size: 1.8em;
-      line-height: 1.67;
-    }
-
-    .vjs-pip-button:before {
-      content: "⤢";
-      font-size: 1.8em;
-      line-height: 1.67;
-    }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--primary); color: var(--text-primary);
+      overflow-x: hidden; line-height: 1.5; min-height: 100vh; padding-bottom: 20px; }
+    header { display: none; }
+    .main-content { margin-top: var(--header-height); padding: 20px 4%; display: flex; gap: 30px; min-height: calc(100vh - 40px); }
+    .player-section { flex: 2; display: flex; flex-direction: column; gap: 20px; }
+    .player-container { border-radius: 8px; overflow: hidden; background: #000; position: relative; height: 0; padding-bottom: 56.25%; }
+    .video-js { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .player-controls-section { display: flex; flex-direction: column; gap: 20px; }
+    .now-playing { background: var(--card-bg); padding: 20px; border-radius: 8px; }
+    .now-playing-title { font-size: 18px; font-weight: 600; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+    .now-playing-title i { color: var(--accent); }
+    .now-playing-subtitle { color: var(--text-secondary); font-size: 14px; }
+    .channels-section { flex: 1; background: var(--card-bg); border-radius: 8px; padding: 20px; max-height: 75vh; overflow: hidden; display: flex; flex-direction: column; min-width: 320px; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .section-title { font-size: 22px; font-weight: 600; }
+    .view-all { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500; }
+    .channels-category-filters { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 15px 0; margin-bottom: 15px; scrollbar-width: none; border-bottom: 1px solid #2f2f2f; }
+    .channels-category-filters::-webkit-scrollbar { display: none; }
+    .channel-category-filter { padding: 6px 12px; background: var(--secondary); border-radius: 16px; font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.3s; }
+    .channel-category-filter:hover, .channel-category-filter.active { background: var(--accent); }
+    .channels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; overflow-y: auto; padding-right: 5px; flex: 1; }
+    .channels-grid::-webkit-scrollbar { width: 6px; }
+    .channels-grid::-webkit-scrollbar-track { background: var(--secondary); border-radius: 3px; }
+    .channels-grid::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+    .channels-grid::-webkit-scrollbar-thumb:hover { background: #555; }
+    .channel-card { background: var(--secondary); border-radius: 8px; overflow: hidden; transition: all 0.3s; cursor: pointer; display: flex; flex-direction: column; aspect-ratio: 1; position: relative; }
+    .channel-card:hover { background: var(--card-hover); transform: scale(1.05); }
+    .channel-card.active { border: 2px solid var(--accent); transform: scale(1.03); }
+    .channel-card.active::after { content: ''; position: absolute; top: 5px; right: 5px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    .channel-thumb { width: 100%; height: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 10px; }
+    .channel-thumb img { width: 100%; height: 100%; object-fit: contain; border-radius: 6px; }
+    .channel-card .channel-tooltip { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; font-size: 12px; text-align: center; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .channel-card:hover .channel-tooltip { opacity: 1; }
+    .pip-status { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; padding: 8px 15px; border-radius: 20px; font-size: 13px; z-index: 10000; display: none; align-items: center; gap: 8px; }
+    @media (max-width: 1200px) { .main-content { gap: 20px; } .channels-section { min-width: 280px; } .channels-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 1024px) { .main-content { flex-direction: column; } .channels-section { max-height: 400px; min-width: auto; } .channels-grid { grid-template-columns: repeat(6, 1fr); } }
+    @media (max-width: 768px) { .main-content { padding: 15px; flex-direction: column; } .channels-category-filters { padding: 0 0 10px 0; margin-bottom: 10px; } .channels-section { max-height: 50vh; } .channels-grid { grid-template-columns: repeat(5, 1fr); } }
+    @media (max-width: 480px) { .channels-grid { grid-template-columns: repeat(4, 1fr); } }
+    .video-js .vjs-control-bar { background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+    .video-js .vjs-play-progress, .video-js .vjs-volume-level { background-color: var(--accent); }
+    .video-js:hover .vjs-big-play-button { background-color: rgba(229,9,20,0.8); border-color: var(--accent); }
+    .vjs-previous-button:before { content: "⏮"; font-size: 1.8em; line-height: 1.67; }
+    .vjs-next-button:before { content: "⏭"; font-size: 1.8em; line-height: 1.67; }
+    .vjs-pip-button:before { content: "⤢"; font-size: 1.8em; line-height: 1.67; }
   </style>
 </head>
 <body>
-  <!-- Main Content -->
   <div class="main-content">
     <div class="player-section">
       <div class="player-container">
-        <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
+        <!-- IMPORTANT: muted + playsinline + webkit-playsinline + autoplay attributes for mobile -->
+        <video id="live-tv-player" class="video-js vjs-default-skin"
+               controls preload="auto" autoplay muted playsinline webkit-playsinline></video>
       </div>
-      
-      <div class="player-controls-section">        
+      <div class="player-controls-section">
         <div class="now-playing">
-          <div class="now-playing-title">
-            <i class="fas fa-tv"></i>
+          <div class="now-playing-title"><i class="fas fa-tv"></i>
             <span id="now-playing-text">Select a channel to start streaming</span>
           </div>
           <div class="now-playing-subtitle" id="now-playing-subtitle">Enjoy premium content</div>
         </div>
-        
-        <!-- Player controls (Previous/Next buttons) সরিয়ে দেওয়া হয়েছে -->
       </div>
     </div>
-    
-    <!-- Channels Section - Player এর ডান পাশে -->
     <div class="channels-section">
       <div class="section-header">
         <h2 class="section-title">Live Channels</h2>
         <a href="#" class="view-all">View All</a>
       </div>
-      
-      <!-- Channels Container এর ভিতরে Category Filters -->
       <div class="channels-category-filters">
         <div class="channel-category-filter active" data-category="all">All</div>
         <div class="channel-category-filter" data-category="music">Music</div>
@@ -417,10 +91,7 @@
         <div class="channel-category-filter" data-category="cultural">Cultural</div>
         <div class="channel-category-filter" data-category="cartoons">Cartoons</div>
       </div>
-      
-      <div class="channels-grid" id="channelList">
-        <!-- Channels will be populated by JavaScript -->
-      </div>
+      <div class="channels-grid" id="channelList"></div>
     </div>
   </div>
 
@@ -431,49 +102,39 @@
   <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    // Detect mobile devices
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Custom buttons for channel navigation
+
+    // Custom buttons
     const PreviousButton = videojs.getComponent('Button');
     const NextButton = videojs.getComponent('Button');
     const PipButton = videojs.getComponent('Button');
 
     videojs.registerComponent('PreviousButton', videojs.extend(PreviousButton, {
-      handleClick: function() {
-        playPreviousChannel();
-      },
-      buildCSSClass: function() {
-        return 'vjs-control vjs-button vjs-previous-button';
-      }
+      handleClick: function() { playPreviousChannel(); },
+      buildCSSClass: function() { return 'vjs-control vjs-button vjs-previous-button'; }
     }));
-
     videojs.registerComponent('NextButton', videojs.extend(NextButton, {
-      handleClick: function() {
-        playNextChannel();
-      },
-      buildCSSClass: function() {
-        return 'vjs-control vjs-button vjs-next-button';
-      }
+      handleClick: function() { playNextChannel(); },
+      buildCSSClass: function() { return 'vjs-control vjs-button vjs-next-button'; }
     }));
-
     videojs.registerComponent('PipButton', videojs.extend(PipButton, {
-      handleClick: function() {
-        togglePip();
-      },
-      buildCSSClass: function() {
-        return 'vjs-control vjs-button vjs-pip-button';
-      }
+      handleClick: function() { togglePip(); },
+      buildCSSClass: function() { return 'vjs-control vjs-button vjs-pip-button'; }
     }));
 
-    // Initialize player with mobile-friendly settings
+    // Initialize player - IMPORTANT CHANGES:
+    // 1) autoplay: 'muted' (lets mobile autoplay)
+    // 2) muted: true
+    // 3) remove unsafe player.tech_ calls; set attributes on element instead
     const player = videojs('live-tv-player', {
       controls: true,
-      autoplay: !isMobile,
+      autoplay: 'muted',
+      muted: true,
       fluid: true,
       responsive: true,
       liveui: true,
-      techOrder: ['html5'],
+      preload: 'auto',
+      playsinline: true,
       html5: {
         hls: {
           overrideNative: !isMobile,
@@ -485,136 +146,46 @@
       },
       controlBar: {
         children: [
-          'playToggle',
-          'volumePanel',
-          'currentTimeDisplay',
-          'timeDivider',
-          'durationDisplay',
-          'progressControl',
-          'liveDisplay',
-          'remainingTimeDisplay',
-          'customControlSpacer',
-          'PreviousButton',
-          'NextButton',
-          'PipButton',
-          'fullscreenToggle'
+          'playToggle','volumePanel','currentTimeDisplay','timeDivider','durationDisplay',
+          'progressControl','liveDisplay','remainingTimeDisplay','customControlSpacer',
+          'PreviousButton','NextButton','PipButton','fullscreenToggle'
         ]
       }
     });
 
-    // Add mobile-specific player settings
-    if (isMobile) {
-      player.tech_.setPlaysinline(true);
-      player.tech_.overrideNativeAudioTracks(true);
-      player.tech_.overrideNativeVideoTracks(true);
-    }
+    // Ensure element attributes for iOS/Safari inline playback
+    const videoEl = player.el().querySelector('video');
+    videoEl.setAttribute('playsinline', '');
+    videoEl.setAttribute('webkit-playsinline', '');
+    videoEl.setAttribute('muted', '');
+    videoEl.muted = true;
+
+    // User-gesture unlock (as a fallback if a browser blocks autoplay anyway)
+    const unlock = () => {
+      player.muted(true);
+      player.play().catch(()=>{});
+      window.removeEventListener('touchend', unlock);
+      window.removeEventListener('click', unlock);
+    };
+    window.addEventListener('touchend', unlock, { once: true });
+    window.addEventListener('click', unlock, { once: true });
 
     const channels = [
-      { 
-        name: "Oxygen Music", 
-        subtitle: "24/7 English Songs",
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209901/Oxygen-Music.jpg?raw=true",
-        category: "music"
-      },
-      { 
-        name: "Bengali Beats", 
-        subtitle: "24/7 Bengali Songs", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209587/Bengali-Beats.png?raw=true",
-        category: "music"
-      },
-      { 
-        name: "T Series", 
-        subtitle: "24/7 Hindi Songs", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/210427/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/210427/T-Series.jpg?raw=true",
-        category: "music"
-      },
-      { 
-        name: "Ilm Tv", 
-        subtitle: "24/7 Islamic Waz", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209617/ilm.jpg?raw=true",
-        category: "cultural"
-      },
-      { 
-        name: "Ninja Hattori", 
-        subtitle: "24/7 Ninja Hattori", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/210448/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/210448/Ninja-Hattori.png?raw=true",
-        category: "cartoons"
-      },
-      { 
-        name: "Gopal Bhar", 
-        subtitle: "24/7 Gopal Bhar", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209611/Gopal-Bhar.png?raw=true",
-        category: "cartoons"
-      },
-      { 
-        name: "Bantul The Great", 
-        subtitle: "24/7 Bantul the Great", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8",
-        logo: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209869/Bantul-The-Great.png?raw=true",
-        category: "cartoons"
-      },
-      { 
-        name: "Hindi Movies", 
-        subtitle: "24/7 Bollywood Hits", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/hindi-movies.png",
-        category: "movies"
-      },
-      { 
-        name: "Bangla Movies", 
-        subtitle: "24/7 Bengali Cinema", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/bangla-movies.png",
-        category: "movies"
-      },
-      { 
-        name: "Dubbed Movies", 
-        subtitle: "24/7 Hindi Dubbed", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/dubbed-movies.png",
-        category: "movies"
-      },
-      { 
-        name: "Kirtan", 
-        subtitle: "24/7 Devotional", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/kirtan.png",
-        category: "cultural"
-      },
-      { 
-        name: "Motu Patlu", 
-        subtitle: "24/7 Kids Favorite", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/motu-patlu.png",
-        category: "kids"
-      },
-      { 
-        name: "Shinchan", 
-        subtitle: "24/7 Japanese Cartoon", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/shinchan.png",
-        category: "cartoons"
-      },
-      { 
-        name: "Doraemon", 
-        subtitle: "24/7 Kids Entertainment", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/doraemon.png",
-        category: "cartoons"
-      },
-      { 
-        name: "Hindi Music", 
-        subtitle: "24/7 Bollywood Songs", 
-        url: "https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8",
-        logo: "https://raw.githubusercontent.com/tplaylive/stream/main/logos/hindi-songs.png",
-        category: "music"
-      }
+      {name:"Oxygen Music",subtitle:"24/7 English Songs",url:"https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/209901/Oxygen-Music.jpg?raw=true",category:"music"},
+      {name:"Bengali Beats",subtitle:"24/7 Bengali Songs",url:"https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/209587/Bengali-Beats.png?raw=true",category:"music"},
+      {name:"T Series",subtitle:"24/7 Hindi Songs",url:"https://cloudfrontnet.vercel.app/tplay/playout/210427/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/210427/T-Series.jpg?raw=true",category:"music"},
+      {name:"Ilm Tv",subtitle:"24/7 Islamic Waz",url:"https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/209617/ilm.jpg?raw=true",category:"cultural"},
+      {name:"Ninja Hattori",subtitle:"24/7 Ninja Hattori",url:"https://cloudfrontnet.vercel.app/tplay/playout/210448/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/210448/Ninja-Hattori.png?raw=true",category:"cartoons"},
+      {name:"Gopal Bhar",subtitle:"24/7 Gopal Bhar",url:"https://cloudfrontnet.vercel.app/tplay/playout/209611/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/209611/Gopal-Bhar.png?raw=true",category:"cartoons"},
+      {name:"Bantul The Great",subtitle:"24/7 Bantul the Great",url:"https://cloudfrontnet.vercel.app/tplay/playout/209869/master.m3u8",logo:"https://github.com/tplaylive/stream/blob/main/tplay/playout/209869/Bantul-The-Great.png?raw=true",category:"cartoons"},
+      {name:"Hindi Movies",subtitle:"24/7 Bollywood Hits",url:"https://cloudfrontnet.vercel.app/tplay/playout/209612/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/hindi-movies.png",category:"movies"},
+      {name:"Bangla Movies",subtitle:"24/7 Bengali Cinema",url:"https://cloudfrontnet.vercel.app/tplay/playout/209627/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/bangla-movies.png",category:"movies"},
+      {name:"Dubbed Movies",subtitle:"24/7 Hindi Dubbed",url:"https://cloudfrontnet.vercel.app/tplay/playout/209593/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/dubbed-movies.png",category:"movies"},
+      {name:"Kirtan",subtitle:"24/7 Devotional",url:"https://cloudfrontnet.vercel.app/tplay/playout/209618/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/kirtan.png",category:"cultural"},
+      {name:"Motu Patlu",subtitle:"24/7 Kids Favorite",url:"https://cloudfrontnet.vercel.app/tplay/playout/209622/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/motu-patlu.png",category:"kids"},
+      {name:"Shinchan",subtitle:"24/7 Japanese Cartoon",url:"https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/shinchan.png",category:"cartoons"},
+      {name:"Doraemon",subtitle:"24/7 Kids Entertainment",url:"https://cloudfrontnet.vercel.app/tplay/playout/209902/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/doraemon.png",category:"cartoons"},
+      {name:"Hindi Music",subtitle:"24/7 Bollywood Songs",url:"https://cloudfrontnet.vercel.app/tplay/playout/209592/master.m3u8",logo:"https://raw.githubusercontent.com/tplaylive/stream/main/logos/hindi-songs.png",category:"music"}
     ];
 
     let currentIndex = -1;
@@ -624,37 +195,27 @@
     const pipStatusElement = document.getElementById('pipStatus');
     let isTabVisible = true;
 
-    // Tab visibility detection
     document.addEventListener('visibilitychange', () => {
       isTabVisible = !document.hidden;
       if (pipEnabled) {
-        if (!isTabVisible) {
-          // Tab is hidden - ensure PiP is active
-          ensurePipActive();
-        } else {
-          // Tab is visible again
-          setTimeout(ensurePipActive, 300);
-        }
+        if (!isTabVisible) ensurePipActive();
+        else setTimeout(ensurePipActive, 300);
       }
     });
 
     function renderChannels() {
       const list = document.getElementById('channelList');
-      list.innerHTML = ''; // Clear existing channels
-      
+      list.innerHTML = '';
       channels.forEach((channel, index) => {
         const card = document.createElement("div");
         card.className = "channel-card";
         card.setAttribute('data-category', channel.category);
         card.innerHTML = `
           <div class="channel-thumb">
-            <img src="${channel.logo}" 
-                 alt="${channel.name}" 
-                 loading="lazy"
+            <img src="${channel.logo}" alt="${channel.name}" loading="lazy"
                  onerror="this.src='https://raw.githubusercontent.com/tplaylive/stream/main/TPlay.png'" />
           </div>
-          <div class="channel-tooltip">${channel.name}</div>
-        `;
+          <div class="channel-tooltip">${channel.name}</div>`;
         card.onclick = () => changeChannel(index);
         list.appendChild(card);
       });
@@ -662,232 +223,102 @@
 
     function changeChannel(index) {
       if (index < 0 || index >= channels.length) return;
-      
       currentIndex = index;
       const channel = channels[index];
 
-      // Update UI
       document.getElementById('now-playing-text').textContent = channel.name;
       document.getElementById('now-playing-subtitle').textContent = channel.subtitle;
       document.querySelectorAll('.channel-card').forEach((card, i) => {
         card.classList.toggle('active', i === index);
       });
-
-      // Scroll to active channel
       const activeChannel = document.querySelector('.channel-card.active');
-      if (activeChannel) {
-        activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+      if (activeChannel) activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      // Clean up previous HLS instance
-      if (hls) {
-        hls.destroy();
-      }
+      if (hls) { hls.destroy(); }
 
-      // Try to play with HLS.js first
+      // HLS.js if supported (desktop/Android Chrome), otherwise native (iOS Safari)
       if (Hls.isSupported()) {
-        hls = new Hls({
-          maxBufferLength: 30,
-          maxMaxBufferLength: 600,
-          enableWorker: true,
-          lowLatencyMode: true
-        });
-        
+        hls = new Hls({ maxBufferLength: 30, maxMaxBufferLength: 600, enableWorker: true, lowLatencyMode: true });
         hls.loadSource(channel.url);
-        hls.attachMedia(player.el().querySelector('video'));
-        
+        hls.attachMedia(videoEl);
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          player.play().catch(e => {
-            console.log('Autoplay prevented:', e);
-            // Show play button for mobile users
-            if (isMobile) {
-              player.bigPlayButton.show();
-            }
-          }).then(() => {
-            // Re-enter PiP if it was enabled before channel change
-            if (pipEnabled && !document.pictureInPictureElement) {
-              setTimeout(ensurePipActive, 500);
-            }
-            // Update PiP window title
-            if (document.pictureInPictureElement) {
-              document.pictureInPictureElement.setAttribute('title', `${channel.name} - ${channel.subtitle}`);
-            }
-          });
+          player.muted(true);
+          player.play().catch(() => { /* fallback handled by unlock */ });
+          if (pipEnabled && !document.pictureInPictureElement) setTimeout(ensurePipActive, 500);
         });
-        
         hls.on(Hls.Events.ERROR, (event, data) => {
           if (data.fatal) {
             switch(data.type) {
-              case Hls.ErrorTypes.NETWORK_ERROR:
-                console.error('Fatal network error encountered, try to recover');
-                hls.startLoad();
-                break;
-              case Hls.ErrorTypes.MEDIA_ERROR:
-                console.error('Fatal media error encountered, try to recover');
-                hls.recoverMediaError();
-                break;
-              default:
-                console.error('Cannot recover, next channel');
-                playNextChannel();
-                break;
+              case Hls.ErrorTypes.NETWORK_ERROR: hls.startLoad(); break;
+              case Hls.ErrorTypes.MEDIA_ERROR: hls.recoverMediaError(); break;
+              default: playNextChannel(); break;
             }
           }
         });
-      } 
-      // Fallback to native HLS
-      else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+      } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
         player.src({ src: channel.url, type: 'application/x-mpegURL' });
-        player.play().catch(e => {
-          console.log('Autoplay prevented:', e);
-          if (isMobile) {
-            player.bigPlayButton.show();
-          }
-        }).then(() => {
-          if (pipEnabled && !document.pictureInPictureElement) {
-            setTimeout(ensurePipActive, 500);
-          }
-        });
-      } 
-      else {
+        player.muted(true);
+        player.play().catch(() => {});
+        if (pipEnabled && !document.pictureInPictureElement) setTimeout(ensurePipActive, 500);
+      } else {
         alert('HLS not supported in this browser.');
       }
     }
 
-    function playNextChannel() {
-      const nextIndex = (currentIndex + 1) % channels.length;
-      changeChannel(nextIndex);
-    }
+    function playNextChannel() { changeChannel((currentIndex + 1) % channels.length); }
+    function playPreviousChannel() { changeChannel((currentIndex - 1 + channels.length) % channels.length); }
 
-    function playPreviousChannel() {
-      const prevIndex = (currentIndex - 1 + channels.length) % channels.length;
-      changeChannel(prevIndex);
-    }
-
-    // Enhanced PiP functionality
     async function togglePip() {
       try {
-        const videoElement = player.el().querySelector('video');
-        
         if (document.pictureInPictureElement) {
           await document.exitPictureInPicture();
-          pipEnabled = false;
-          stopPipMonitoring();
-          pipStatusElement.style.display = 'none';
+          pipEnabled = false; stopPipMonitoring(); pipStatusElement.style.display = 'none';
         } else if (document.pictureInPictureEnabled) {
-          await videoElement.requestPictureInPicture();
-          pipEnabled = true;
-          startPipMonitoring();
-          pipStatusElement.style.display = 'block';
-          
-          // Update PiP window title
-          if (currentIndex >= 0) {
-            const channel = channels[currentIndex];
-            document.pictureInPictureElement.setAttribute('title', `${channel.name} - ${channel.subtitle}`);
-          }
+          await videoEl.requestPictureInPicture();
+          pipEnabled = true; startPipMonitoring(); pipStatusElement.style.display = 'block';
         }
       } catch (error) {
-        console.error('PiP error:', error);
-        pipEnabled = false;
-        stopPipMonitoring();
-        pipStatusElement.style.display = 'none';
+        pipEnabled = false; stopPipMonitoring(); pipStatusElement.style.display = 'none';
       }
     }
-
     async function ensurePipActive() {
       if (pipEnabled && !document.pictureInPictureElement && document.pictureInPictureEnabled) {
-        try {
-          const videoElement = player.el().querySelector('video');
-          await videoElement.requestPictureInPicture();
-        } catch (error) {
-          console.log('PiP reactivation failed:', error);
-        }
+        try { await videoEl.requestPictureInPicture(); } catch (e) {}
       }
     }
-
     function startPipMonitoring() {
       stopPipMonitoring();
       pipCheckInterval = setInterval(() => {
-        if (pipEnabled && !document.pictureInPictureElement && isTabVisible) {
-          ensurePipActive();
-        }
+        if (pipEnabled && !document.pictureInPictureElement && isTabVisible) ensurePipActive();
       }, 1000);
     }
+    function stopPipMonitoring() { if (pipCheckInterval) { clearInterval(pipCheckInterval); pipCheckInterval = null; } }
 
-    function stopPipMonitoring() {
-      if (pipCheckInterval) {
-        clearInterval(pipCheckInterval);
-        pipCheckInterval = null;
-      }
-    }
+    player.on('error', () => { setTimeout(playNextChannel, 2000); });
 
-    // Handle player errors
-    player.on('error', () => {
-      console.error('Player error:', player.error());
-      // Try to recover by playing next channel
-      setTimeout(playNextChannel, 2000);
-    });
+    videoEl.addEventListener('enterpictureinpicture', () => { pipEnabled = true; pipStatusElement.style.display = 'block'; startPipMonitoring(); });
+    videoEl.addEventListener('leavepictureinpicture', () => { pipEnabled = false; pipStatusElement.style.display = 'none'; stopPipMonitoring(); });
 
-    // Handle PiP events
-    player.el().querySelector('video').addEventListener('enterpictureinpicture', () => {
-      pipEnabled = true;
-      pipStatusElement.style.display = 'block';
-      startPipMonitoring();
-    });
-
-    player.el().querySelector('video').addEventListener('leavepictureinpicture', () => {
-      pipEnabled = false;
-      pipStatusElement.style.display = 'none';
-      stopPipMonitoring();
-    });
-
-    // Handle orientation changes on mobile
     window.addEventListener('orientationchange', () => {
-      setTimeout(() => {
-        player.dimensions(player.el().offsetWidth, player.el().offsetHeight);
-      }, 200);
+      setTimeout(() => { player.dimensions(player.el().offsetWidth, player.el().offsetHeight); }, 200);
     });
 
-    // Category filtering (channel container filters)
     document.querySelectorAll('.channel-category-filter').forEach(filter => {
       filter.addEventListener('click', function() {
-        // Update active filter
         document.querySelectorAll('.channel-category-filter').forEach(f => f.classList.remove('active'));
         this.classList.add('active');
-        
         const category = this.getAttribute('data-category');
-        filterChannels(category);
+        const cards = document.querySelectorAll('.channel-card');
+        cards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) card.style.display = 'flex';
+          else card.style.display = 'none';
+        });
       });
     });
 
-    function filterChannels(category) {
-      const channelCards = document.querySelectorAll('.channel-card');
-      
-      channelCards.forEach(card => {
-        if (category === 'all') {
-          card.style.display = 'flex';
-        } else {
-          if (card.getAttribute('data-category') === category) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        }
-      });
-    }
-
-    // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       renderChannels();
       changeChannel(0);
-      
-      // Add keyboard navigation for non-mobile
-      if (!isMobile) {
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowRight') playNextChannel();
-          if (e.key === 'ArrowLeft') playPreviousChannel();
-          if (e.key === 'p' || e.key === 'P') togglePip();
-        });
-      }
     });
   </script>
 </body>
