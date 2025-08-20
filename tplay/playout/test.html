@@ -23,7 +23,7 @@
       --text-secondary: #b3b3b3;
       --card-bg: #181818;
       --card-hover: #282828;
-      --header-height: 70px;
+      --header-height: 0px; /* Header height 0 করে দিলাম */
     }
     
     body {
@@ -35,78 +35,18 @@
       min-height: 100vh;
     }
 
-    /* Header styling */
+    /* Header styling - সম্পূর্ণ hide করে দিলাম */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--header-height);
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      padding: 0 4%;
-      z-index: 1000;
-      border-bottom: 1px solid #2f2f2f;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      margin-right: 25px;
-    }
-
-    .logo img {
-      height: 36px;
-      margin-right: 10px;
-    }
-
-    .logo-text {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .logo-accent {
-      color: var(--accent);
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover, nav a.active {
-      color: var(--text-primary);
-    }
-
-    .header-controls {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
-      gap: 15px;
-    }
-
-    .header-controls button {
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-size: 16px;
+      display: none;
     }
 
     /* Main content */
     .main-content {
       margin-top: var(--header-height);
       padding: 20px 4%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .hero-section {
@@ -189,9 +129,18 @@
       transform: translateY(0);
     }
 
-    /* Channels section */
+    /* Channels section - নতুন স্টাইল যোগ করেছি */
+    .channels-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     .channels-section {
-      margin-top: 40px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
     }
 
     .section-header {
@@ -217,6 +166,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 20px;
+      max-height: 400px;
+      overflow-y: auto;
     }
 
     .channel-card {
@@ -379,23 +330,15 @@
       .now-playing {
         flex: 2;
       }
+      
+      .channels-container {
+        flex-direction: row;
+      }
     }
 
     @media (max-width: 768px) {
       :root {
-        --header-height: 60px;
-      }
-      
-      header {
-        padding: 0 15px;
-      }
-      
-      .logo-text {
-        display: none;
-      }
-      
-      nav {
-        display: none;
+        --header-height: 0px;
       }
       
       .main-content {
@@ -413,6 +356,10 @@
       
       .player-controls {
         grid-template-columns: 1fr;
+      }
+      
+      .channels-container {
+        flex-direction: column;
       }
     }
 
@@ -470,27 +417,7 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-      <div class="logo-text">T<span class="logo-accent">Play</span></div>
-    </div>
-    
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="#">Live TV</a>
-      <a href="#">Movies</a>
-      <a href="#">Shows</a>
-      <a href="#">Kids</a>
-    </nav>
-    
-    <div class="header-controls">
-      <button title="Search"><i class="fas fa-search"></i></button>
-      <button title="Profile"><i class="fas fa-user"></i></button>
-      <button title="Settings"><i class="fas fa-cog"></i></button>
-    </div>
-  </header>
+  <!-- Header সরিয়ে দিলাম -->
 
   <!-- Main Content -->
   <div class="main-content">
@@ -529,15 +456,18 @@
       <div class="category-filter" data-category="cartoons">Cartoons</div>
     </div>
 
-    <!-- Channels Section -->
-    <div class="channels-section">
-      <div class="section-header">
-        <h2 class="section-title">Live Channels</h2>
-        <a href="#" class="view-all">View All</a>
-      </div>
-      
-      <div class="channels-grid" id="channelList">
-        <!-- Channels will be populated by JavaScript -->
+    <!-- Channels Container - নতুন লেআউট -->
+    <div class="channels-container">
+      <!-- Channels Section -->
+      <div class="channels-section">
+        <div class="section-header">
+          <h2 class="section-title">Live Channels</h2>
+          <a href="#" class="view-all">View All</a>
+        </div>
+        
+        <div class="channels-grid" id="channelList">
+          <!-- Channels will be populated by JavaScript -->
+        </div>
       </div>
     </div>
   </div>
