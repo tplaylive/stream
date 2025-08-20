@@ -140,11 +140,11 @@
       background: var(--card-bg);
       border-radius: 8px;
       padding: 20px;
-      max-height: 75vh; /* উচ্চতা কমিয়ে আনা হয়েছে */
+      max-height: 75vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-width: 320px; /* ন্যূনতম প্রস্থ নির্ধারণ */
+      min-width: 320px;
     }
 
     .section-header {
@@ -169,7 +169,7 @@
     /* Category filters inside channels container */
     .channels-category-filters {
       display: flex;
-      gap: 8px; /* গ্যাপ কমিয়ে আনা হয়েছে */
+      gap: 8px;
       overflow-x: auto;
       padding: 0 0 15px 0;
       margin-bottom: 15px;
@@ -196,13 +196,14 @@
       background: var(--accent);
     }
 
+    /* Channels grid - নতুন লেআউট */
     .channels-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px; /* গ্যাপ কমিয়ে আনা হয়েছে */
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 columns */
+      gap: 12px;
       overflow-y: auto;
       padding-right: 5px;
-      flex: 1; /* অবশিষ্ট স্থান দখল করবে */
+      flex: 1;
     }
 
     /* স্ক্রলবার স্টাইলিং */
@@ -224,6 +225,7 @@
       background: #555;
     }
 
+    /* Channel card - শুধুমাত্র লোগো */
     .channel-card {
       background: var(--secondary);
       border-radius: 8px;
@@ -231,57 +233,73 @@
       transition: all 0.3s;
       cursor: pointer;
       display: flex;
-      align-items: center;
-      padding: 10px;
-      gap: 12px;
-      min-height: 80px; /* ন্যূনতম উচ্চতা নির্ধারণ */
+      flex-direction: column;
+      aspect-ratio: 1; /* বর্গাকার কার্ড */
+      position: relative;
     }
 
     .channel-card:hover {
       background: var(--card-hover);
-      transform: translateX(5px);
+      transform: scale(1.05);
     }
 
     .channel-card.active {
       border: 2px solid var(--accent);
-      transform: scale(1.02);
+      transform: scale(1.03);
+    }
+
+    .channel-card.active::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
     }
 
     .channel-thumb {
-      width: 60px;
-      height: 60px;
-      border-radius: 6px;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
 
     .channel-thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* লোগো সম্পূর্ণ দেখা যাবে */
+      border-radius: 6px;
     }
 
-    .channel-info {
-      flex: 1;
-      overflow: hidden;
-      min-width: 0; /* টেক্সট overflow এর জন্য গুরুত্বপূর্ণ */
+    /* Channel name tooltip */
+    .channel-card .channel-tooltip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      font-size: 12px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
     }
 
-    .channel-name {
-      font-size: 16px;
-      font-weight: 500;
-      margin-bottom: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .channel-subtitle {
-      font-size: 13px;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .channel-card:hover .channel-tooltip {
+      opacity: 1;
     }
 
     /* PiP status */
@@ -309,6 +327,10 @@
       .channels-section {
         min-width: 280px;
       }
+      
+      .channels-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+      }
     }
 
     @media (max-width: 1024px) {
@@ -320,13 +342,13 @@
         max-height: 400px;
         min-width: auto;
       }
+      
+      .channels-grid {
+        grid-template-columns: repeat(6, 1fr); /* 6 columns */
+      }
     }
 
     @media (max-width: 768px) {
-      :root {
-        --header-height: 0px;
-      }
-      
       .main-content {
         padding: 15px;
         flex-direction: column;
@@ -336,17 +358,6 @@
         grid-template-columns: 1fr;
       }
       
-      .channel-card {
-        flex-direction: column;
-        text-align: center;
-        min-height: auto;
-      }
-      
-      .channel-thumb {
-        width: 100%;
-        height: 100px;
-      }
-      
       .channels-category-filters {
         padding: 0 0 10px 0;
         margin-bottom: 10px;
@@ -354,6 +365,16 @@
       
       .channels-section {
         max-height: 50vh;
+      }
+      
+      .channels-grid {
+        grid-template-columns: repeat(5, 1fr); /* 5 columns */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .channels-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns */
       }
     }
 
@@ -671,10 +692,7 @@
                  loading="lazy"
                  onerror="this.src='https://raw.githubusercontent.com/tplaylive/stream/main/TPlay.png'" />
           </div>
-          <div class="channel-info">
-            <div class="channel-name">${channel.name}</div>
-            <div class="channel-subtitle">${channel.subtitle}</div>
-          </div>
+          <div class="channel-tooltip">${channel.name}</div>
         `;
         card.onclick = () => changeChannel(index);
         list.appendChild(card);
@@ -728,6 +746,10 @@
             // Re-enter PiP if it was enabled before channel change
             if (pipEnabled && !document.pictureInPictureElement) {
               setTimeout(ensurePipActive, 500);
+            }
+            // Update PiP window title
+            if (document.pictureInPictureElement) {
+              document.pictureInPictureElement.setAttribute('title', `${channel.name} - ${channel.subtitle}`);
             }
           });
         });
@@ -795,6 +817,12 @@
           pipEnabled = true;
           startPipMonitoring();
           pipStatusElement.style.display = 'block';
+          
+          // Update PiP window title
+          if (currentIndex >= 0) {
+            const channel = channels[currentIndex];
+            document.pictureInPictureElement.setAttribute('title', `${channel.name} - ${channel.subtitle}`);
+          }
         }
       } catch (error) {
         console.error('PiP error:', error);
