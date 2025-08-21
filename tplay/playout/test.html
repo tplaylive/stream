@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T Play - Live TV Streaming</title>
     <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #1479ff;
             --primary-dark: #0d5fc5;
+            --primary-light: rgba(20, 121, 255, 0.1);
             --secondary: #ff3a52;
             --dark-bg: #0f0f13;
             --dark-card: #1a1a24;
+            --dark-card-hover: #222230;
             --dark-border: #2a2a3a;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --success: #4CAF50;
             --transition: all 0.3s ease;
+            --sidebar-width: 320px;
+            --player-radius: 12px;
         }
 
         * {
@@ -34,7 +39,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 0 15px;
         }
@@ -122,20 +127,62 @@
             color: var(--text-primary);
         }
 
-        /* Video Player Styles */
-        .player-section {
+        /* Main Content Layout */
+        .main-content {
+            display: flex;
+            gap: 20px;
             margin: 20px 0 30px;
         }
 
+        .player-container {
+            flex: 1;
+            position: sticky;
+            top: 90px;
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .channels-sidebar {
+            width: var(--sidebar-width);
+            background: var(--dark-card);
+            border-radius: var(--player-radius);
+            padding: 15px;
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+            position: sticky;
+            top: 90px;
+        }
+
+        .channels-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .channels-sidebar::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+            border-radius: 10px;
+        }
+
+        .channels-sidebar::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .channels-sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Video Player Styles */
         .video-container {
             position: relative;
             width: 100%;
             height: 0;
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
             background: #000;
-            border-radius: 12px;
+            border-radius: var(--player-radius);
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
         }
 
         video {
@@ -265,11 +312,85 @@
             background: var(--primary-dark);
         }
 
+        .player-info {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--dark-card);
+            border-radius: var(--player-radius);
+        }
+
+        .channel-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .channel-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .channel-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .sidebar-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 20px;
+            border: 1px solid var(--dark-border);
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
         /* Categories Navigation */
         .categories {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
             overflow-x: auto;
             padding: 5px 0;
             scrollbar-width: none;
@@ -280,14 +401,15 @@
         }
 
         .category-btn {
-            background: var(--dark-card);
+            background: var(--dark-bg);
             color: var(--text-secondary);
             border: none;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             white-space: nowrap;
             transition: var(--transition);
+            font-size: 13px;
         }
 
         .category-btn:hover, .category-btn.active {
@@ -295,62 +417,55 @@
             color: white;
         }
 
-        /* Channel Grid */
-        .channels-section h2 {
-            margin: 30px 0 20px;
-            font-size: 22px;
-            font-weight: 600;
+        /* Channel List */
+        .channel-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .channel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-        }
-
-        .channel-card {
-            background: var(--dark-card);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
+        .channel-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid transparent;
+            transition: var(--transition);
         }
 
-        .channel-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .channel-item:hover {
+            background: var(--dark-card-hover);
+        }
+
+        .channel-item.active {
+            background: var(--primary-light);
+            border-left: 3px solid var(--primary);
         }
 
         .channel-thumb {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 100%; /* Square aspect ratio */
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .channel-thumb img {
-            position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
 
-        .channel-card:hover .channel-thumb img {
-            transform: scale(1.05);
-        }
-
-        .channel-info {
-            padding: 12px;
+        .channel-details {
+            flex: 1;
+            overflow: hidden;
         }
 
         .channel-name {
             font-size: 14px;
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -359,6 +474,15 @@
         .channel-category {
             font-size: 12px;
             color: var(--text-secondary);
+        }
+
+        .live-indicator {
+            background: var(--secondary);
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-left: auto;
         }
 
         /* Footer */
@@ -412,6 +536,7 @@
             border-radius: 50%;
             color: var(--text-primary);
             transition: var(--transition);
+            text-decoration: none;
         }
 
         .social-links a:hover {
@@ -464,6 +589,30 @@
         }
 
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .player-container {
+                position: relative;
+                top: 0;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            
+            .channels-sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+            }
+            
+            .video-container {
+                padding-bottom: 56.25%;
+            }
+        }
+
         @media (max-width: 992px) {
             .channel-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -499,12 +648,6 @@
             .social-links {
                 justify-content: center;
             }
-        }
-
-        @media (max-width: 576px) {
-            .channel-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
             
             .player-controls {
                 flex-wrap: wrap;
@@ -512,9 +655,24 @@
                 width: 90%;
                 bottom: 10px;
             }
+        }
+
+        @media (max-width: 576px) {
+            .channel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
             
             .logo h1 {
                 font-size: 20px;
+            }
+            
+            .channel-item {
+                padding: 8px;
+            }
+            
+            .channel-thumb {
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
@@ -540,52 +698,81 @@
                 </nav>
                 
                 <div class="user-actions">
-                    <button class="search-btn">🔍</button>
-                    <button class="theme-toggle">🌙</button>
-                    <button class="user-btn">👤</button>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+                    <button class="user-btn"><i class="fas fa-user"></i></button>
                 </div>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="player-section">
-            <div class="video-container">
-                <img id="posterImage" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdw5aGA_lN75xEy63rjJg-pjWt3fMrO-F3-piSvjXi4qVxS7YjPdvZy_7hi22KSmmzAy7N8KjIl7Fu6VJjoKvFL58Eob8B29bBo_T1UT_5bz-fg-sZh2jHvVXLUV4ivySoiBBMevUKonwsH3QV4HbO3_DF04f3WgoquYAUkBxuvOUskSGR22DDFU6pDoA/s1600/ChatGPT%20Image%20Jun%2017,%202025,%2012_58_34%20PM_2.png" alt="T Play">
-                <div id="loadingOverlay">
-                    <div class="spinner"></div>
-                    <p>Loading channel...</p>
+        <div class="main-content">
+            <div class="player-container">
+                <div class="video-container">
+                    <img id="posterImage" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdw5aGA_lN75xEy63rjJg-pjWt3fMrO-F3-piSvjXi4qVxS7YjPdvZy_7hi22KSmmzAy7N8KjIl7Fu6VJjoKvFL58Eob8B29bBo_T1UT_5bz-fg-sZh2jHvVXLUV4ivySoiBBMevUKonwsH3QV4HbO3_DF04f3WgoquYAUkBxuvOUskSGR22DDFU6pDoA/s1600/ChatGPT%20Image%20Jun%2017,%202025,%2012_58_34%20PM_2.png" alt="T Play">
+                    <div id="loadingOverlay">
+                        <div class="spinner"></div>
+                        <p>Loading channel...</p>
+                    </div>
+                    <video id="liveVideo"></video>
+                    <div class="live-badge">LIVE</div>
+                    <div class="player-controls">
+                        <button class="control-btn" onclick="cycleZoom()" title="Zoom"><i class="fas fa-search-plus"></i></button>
+                        <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+                        <button class="control-btn" onclick="togglePiP()" title="Picture in Picture"><i class="fas fa-clone"></i></button>
+                        <button class="control-btn" onclick="toggleMute()" id="muteBtn" title="Mute/Unmute"><i class="fas fa-volume-up"></i></button>
+                        <select class="quality-select" id="qualityMenu">
+                            <option value="auto">Auto Quality</option>
+                        </select>
+                    </div>
                 </div>
-                <video id="liveVideo"></video>
-                <div class="live-badge">LIVE</div>
-                <div class="player-controls">
-                    <button class="control-btn" onclick="cycleZoom()" title="Zoom">🔍</button>
-                    <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
-                    <button class="control-btn" onclick="togglePiP()" title="Picture in Picture">📺</button>
-                    <button class="control-btn" onclick="toggleMute()" id="muteBtn" title="Mute/Unmute">🔊</button>
-                    <select class="quality-select" id="qualityMenu">
-                        <option value="auto">Auto Quality</option>
-                    </select>
+                
+                <div class="player-info">
+                    <h2 class="channel-title" id="currentChannelTitle">
+                        <span>T Play</span>
+                        <div class="live-badge">LIVE</div>
+                    </h2>
+                    <p class="channel-description" id="currentChannelDescription">Your premium destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
+                    <div class="channel-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-eye"></i>
+                            <span>2.4K watching</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-heart"></i>
+                            <span>92% likes</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section class="categories">
-            <button class="category-btn active" onclick="filterCategory('all')">All Channels</button>
-            <button class="category-btn" onclick="filterCategory('sports')">Sports</button>
-            <button class="category-btn" onclick="filterCategory('news')">News</button>
-            <button class="category-btn" onclick="filterCategory('entertainment')">Entertainment</button>
-            <button class="category-btn" onclick="filterCategory('movies')">Movies</button>
-            <button class="category-btn" onclick="filterCategory('music')">Music</button>
-            <button class="category-btn" onclick="filterCategory('kids')">Kids</button>
-        </section>
-
-        <section class="channels-section">
-            <h2>Popular Channels</h2>
-            <div class="channel-grid" id="channelGrid">
-                <!-- Channels will be loaded here by JavaScript -->
+            
+            <div class="channels-sidebar">
+                <div class="sidebar-header">
+                    <h2>Live Channels</h2>
+                    <span id="channelsCount">6 channels</span>
+                </div>
+                
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="channelSearch" placeholder="Search channels...">
+                </div>
+                
+                <div class="categories">
+                    <button class="category-btn active" onclick="filterCategory('all')">All</button>
+                    <button class="category-btn" onclick="filterCategory('sports')">Sports</button>
+                    <button class="category-btn" onclick="filterCategory('news')">News</button>
+                    <button class="category-btn" onclick="filterCategory('entertainment')">Entertainment</button>
+                    <button class="category-btn" onclick="filterCategory('movies')">Movies</button>
+                    <button class="category-btn" onclick="filterCategory('music')">Music</button>
+                    <button class="category-btn" onclick="filterCategory('kids')">Kids</button>
+                </div>
+                
+                <div class="channel-list" id="channelList">
+                    <!-- Channels will be loaded here by JavaScript -->
+                </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
@@ -598,10 +785,10 @@
                     </div>
                     <p>Your premium destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Instagram">📸</a>
-                        <a href="#" aria-label="YouTube">📺</a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
@@ -652,7 +839,8 @@
                 name: "T Play",
                 url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
                 img: "https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true",
-                category: "entertainment"
+                category: "entertainment",
+                description: "Your premium destination for live TV streaming. Watch your favorite channels anytime, anywhere."
             },
             categories: {
                 all: "All Channels",
@@ -669,9 +857,13 @@
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
         const qualityMenu = document.getElementById("qualityMenu");
-        const channelGrid = document.getElementById("channelGrid");
+        const channelList = document.getElementById("channelList");
         const posterImage = document.getElementById("posterImage");
         const loadingOverlay = document.getElementById("loadingOverlay");
+        const channelSearch = document.getElementById("channelSearch");
+        const currentChannelTitle = document.getElementById("currentChannelTitle");
+        const currentChannelDescription = document.getElementById("currentChannelDescription");
+        const channelsCount = document.getElementById("channelsCount");
 
         // Player State
         let hls;
@@ -679,6 +871,7 @@
         const zoomModes = ["contain", "cover", "fill"];
         let currentChannel = null;
         let currentCategory = 'all';
+        let searchQuery = '';
 
         // Sample channels data (in a real app, this would come from an API)
         const channels = [
@@ -686,37 +879,55 @@
                 name: "T Play",
                 url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8",
                 img: "https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true",
-                category: "entertainment"
+                category: "entertainment",
+                description: "Your premium destination for live TV streaming. Watch your favorite channels anytime, anywhere.",
+                viewers: "2.4K",
+                likes: "92%"
             },
             {
                 name: "Sports HD",
                 url: "https://cloudfrontnet.vercel.app/tplay/playout/209617/master.m3u8",
                 img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg29l_5RPj9sCjISPOeVxEzrz2NNj4hsplyU-jb4_cNN1WuVrxxxhwX4dD2xV0pXSsou9bEXBflg7IOFGx4gV69cZG0Gi96i1YTlgt9VkPiJ_SVCnWKzz-gtVZJwxe4CuXNgvPjAUa34HPSsYL95V6CyNTxMzPwPsurRHvaAY5VyUVxN60gL1udsSUFJOo/s1600/NadimRazaTV%2012456.png",
-                category: "sports"
+                category: "sports",
+                description: "Live sports events from around the world. Football, basketball, tennis and more.",
+                viewers: "1.8K",
+                likes: "95%"
             },
             {
                 name: "News 24",
                 url: "https://tvsen6.aynaott.com/news24/index.m3u8",
                 img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfTrH0SQA5hE5z7l_CO1jQ5G8I9sWjLSh_Nm-5nzzk_wS72L2GPgJbWRc7bU8soMftaj81rXvNBCdSCakDaiSwkuAdjcAJmx7f906uKX65RYyU_M5uS5-1Zh5bzFefaHcs-AA7FcVMU4olwpXNB5INYJrcc60s40MrPySZiQujIfZgUMeuIyXhUqPzjL4/s1600/NEWS24LogowithNadimRazaTVRepresentation_copy_900x900.png",
-                category: "news"
+                category: "news",
+                description: "24/7 news coverage from around the globe. Breaking news and in-depth analysis.",
+                viewers: "1.2K",
+                likes: "88%"
             },
             {
                 name: "Movie Channel",
                 url: "https://cdn-2.pishow.tv/live/1459/master.m3u8",
                 img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitWsg_yYy_couXdo1TYesML2Mttifc2K9n-UYa7EMdI1pXY6Ukq6JYcwpOseHfnvYAQqLS3Ai5aDahVxgMWMI6K6VO_Rurq3Kgq0PEzQD17e4EJS84LxYyIzh9Koa4o5oDzZD5yR-CUoVHNwQm5voVtqqDVGI2xLkpwqt_Eme0Uc3eUD1XL0PhmbIR8c8/s1600/GoldenRadianceandBoldText_copy_900x900_1.png",
-                category: "movies"
+                category: "movies",
+                description: "The latest blockbusters and classic films. Available 24/7 for your entertainment.",
+                viewers: "3.1K",
+                likes: "96%"
             },
             {
                 name: "Music World",
                 url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/musicbangla44.stream/playlist.m3u8",
                 img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgd19vxpcMHx3ondHgqbE9vHZ16plp1jjFpnsEiW7w_5IWgD-kxSXSwdiKxBAoH1eOK9KoaXflxLXze8ekH41Xee4gKEctc9CNMhk-Lnnz3ea4fszTbK9j0SZy-5LnYlp4atsq1ErWkGFU7zF6sSX8IduXI5CkUqgwAZoz8JURQqhr4bJIZE3-tZmr77Dc/s1600/NadimRazaTV%2014514.png",
-                category: "music"
+                category: "music",
+                description: "Non-stop music videos and live performances. All genres from pop to classical.",
+                viewers: "0.9K",
+                likes: "91%"
             },
             {
                 name: "Kids Zone",
                 url: "https://dai.google.com/linear/hls/event/0HWMZ7VTTAi8C7Y35fcbgQ/master.m3u8",
                 img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjbhr7PrKVbmrRGJfwiH5rzTJb_eLRUAB_Zzbpd8jx0_nO519pLXgjfc4ryGJrY0He3yQdMLwMnMSBuwXH67StYcc5M1tmbo4MM2FOrUzXV13kHgTzGFUVbiJ82m-yUeZEVaG7zmZd8RyELQOLT0bAGkmhfa89EydyanJ8OWeFX4Wd9MHkeW5STAGR6bvk/s1600/nickelodeon_copy_900x900.png",
-                category: "kids"
+                category: "kids",
+                description: "Child-friendly content that's both fun and educational. Cartoons and shows for all ages.",
+                viewers: "1.5K",
+                likes: "97%"
             }
         ];
 
@@ -735,29 +946,39 @@
             
             // Theme toggle functionality
             document.querySelector('.theme-toggle').addEventListener('click', toggleDarkMode);
-        }
-
-        // Load channels into the grid
-        function loadChannels() {
-            channelGrid.innerHTML = "";
-            channels.forEach(channel => {
-                const channelElement = createChannelElement(channel);
-                channelGrid.appendChild(channelElement);
+            
+            // Search functionality
+            channelSearch.addEventListener('input', function() {
+                searchQuery = this.value.toLowerCase();
+                filterChannels();
             });
         }
 
-        // Create channel card element
-        function createChannelElement(channel) {
+        // Load channels into the list
+        function loadChannels() {
+            channelList.innerHTML = "";
+            channels.forEach((channel, index) => {
+                const channelElement = createChannelElement(channel, index);
+                channelList.appendChild(channelElement);
+            });
+            updateChannelsCount();
+        }
+
+        // Create channel list item element
+        function createChannelElement(channel, index) {
             const div = document.createElement("div");
-            div.className = `channel-card ${channel.category}`;
+            div.className = `channel-item ${channel.category} ${index === 0 ? 'active' : ''}`;
+            div.setAttribute('data-category', channel.category);
+            div.setAttribute('data-name', channel.name.toLowerCase());
             div.innerHTML = `
                 <div class="channel-thumb">
                     <img src="${channel.img}" alt="${channel.name}">
                 </div>
-                <div class="channel-info">
+                <div class="channel-details">
                     <h3 class="channel-name">${channel.name}</h3>
                     <p class="channel-category">${config.categories[channel.category]}</p>
                 </div>
+                <div class="live-indicator">LIVE</div>
             `;
             div.addEventListener('click', () => switchChannel(channel.url, channel));
             return div;
@@ -768,6 +989,24 @@
             if (channelData) {
                 currentChannel = channelData;
                 document.title = `${channelData.name} - T Play`;
+                
+                // Update channel info
+                currentChannelTitle.querySelector('span').textContent = channelData.name;
+                currentChannelDescription.textContent = channelData.description;
+                
+                // Update active channel in list
+                document.querySelectorAll('.channel-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Find and activate the clicked channel
+                const channelItems = document.querySelectorAll('.channel-item');
+                for (let item of channelItems) {
+                    if (item.querySelector('.channel-name').textContent === channelData.name) {
+                        item.classList.add('active');
+                        break;
+                    }
+                }
             }
             
             posterImage.style.display = "none";
@@ -779,7 +1018,7 @@
             loadStream(url);
             
             video.muted = false;
-            muteBtn.textContent = "🔊";
+            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
@@ -874,13 +1113,15 @@
         }
 
         function toggleFullscreen() {
+            const playerContainer = document.querySelector('.player-container');
+            
             if (!document.fullscreenElement) {
-                if (video.requestFullscreen) {
-                    video.requestFullscreen();
-                } else if (video.webkitRequestFullscreen) {
-                    video.webkitRequestFullscreen();
-                } else if (video.msRequestFullscreen) {
-                    video.msRequestFullscreen();
+                if (playerContainer.requestFullscreen) {
+                    playerContainer.requestFullscreen();
+                } else if (playerContainer.webkitRequestFullscreen) {
+                    playerContainer.webkitRequestFullscreen();
+                } else if (playerContainer.msRequestFullscreen) {
+                    playerContainer.msRequestFullscreen();
                 }
             } else {
                 if (document.exitFullscreen) {
@@ -905,39 +1146,59 @@
 
         function toggleMute() {
             video.muted = !video.muted;
-            muteBtn.textContent = video.muted ? "🔇" : "🔊";
+            muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
         }
 
         function toggleDarkMode() {
             const root = document.documentElement;
             const isDark = getComputedStyle(root).getPropertyValue('--dark-bg') === '#0f0f13';
+            const themeToggle = document.querySelector('.theme-toggle');
             
             if (isDark) {
                 root.style.setProperty('--dark-bg', '#f0f0f0');
                 root.style.setProperty('--dark-card', '#ffffff');
+                root.style.setProperty('--dark-card-hover', '#f5f5f5');
                 root.style.setProperty('--dark-border', '#e0e0e0');
                 root.style.setProperty('--text-primary', '#333333');
                 root.style.setProperty('--text-secondary', '#666666');
-                document.querySelector('.theme-toggle').textContent = '☀️';
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             } else {
                 root.style.setProperty('--dark-bg', '#0f0f13');
                 root.style.setProperty('--dark-card', '#1a1a24');
+                root.style.setProperty('--dark-card-hover', '#222230');
                 root.style.setProperty('--dark-border', '#2a2a3a');
                 root.style.setProperty('--text-primary', '#ffffff');
                 root.style.setProperty('--text-secondary', '#a0a0b0');
-                document.querySelector('.theme-toggle').textContent = '🌙';
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
         }
 
         function filterCategory(category) {
             currentCategory = category;
-            document.querySelectorAll('.channel-card').forEach(card => {
-                if (category === 'all' || card.classList.contains(category)) {
-                    card.style.display = 'block';
+            filterChannels();
+        }
+
+        function filterChannels() {
+            let visibleCount = 0;
+            
+            document.querySelectorAll('.channel-item').forEach(item => {
+                const categoryMatch = currentCategory === 'all' || item.getAttribute('data-category') === currentCategory;
+                const nameMatch = item.getAttribute('data-name').includes(searchQuery);
+                
+                if (categoryMatch && nameMatch) {
+                    item.style.display = 'flex';
+                    visibleCount++;
                 } else {
-                    card.style.display = 'none';
+                    item.style.display = 'none';
                 }
             });
+            
+            updateChannelsCount(visibleCount);
+        }
+
+        function updateChannelsCount(count) {
+            const total = count !== undefined ? count : document.querySelectorAll('.channel-item:not([style*="display: none"])').length;
+            channelsCount.textContent = `${total} channel${total !== 1 ? 's' : ''}`;
         }
 
         // Initialize when page loads
