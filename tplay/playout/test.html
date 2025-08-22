@@ -65,6 +65,7 @@
             display: flex;
             flex-direction: column;
             flex: 1;
+            position: relative;
         }
 
         /* Video Player Styles */
@@ -202,6 +203,32 @@
             width: 45px;
             height: 45px;
             background: var(--primary);
+        }
+
+        .channel-nav {
+            display: flex;
+            gap: 5px;
+            margin-right: 10px;
+        }
+
+        .channel-nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .channel-nav-btn:hover {
+            background: var(--primary);
+            transform: scale(1.1);
         }
 
         .volume-controls {
@@ -526,6 +553,11 @@
                 height: 40px;
             }
             
+            .channel-nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
             .volume-slider {
                 width: 60px;
             }
@@ -552,6 +584,12 @@
                 font-size: 12px;
             }
             
+            .channel-nav-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+            
             .play-pause {
                 width: 36px;
                 height: 36px;
@@ -563,6 +601,10 @@
             
             .time-display {
                 display: none; /* Hide time display on very small screens */
+            }
+            
+            .quality-select {
+                display: none; /* Hide quality select on very small screens */
             }
         }
 
@@ -604,6 +646,14 @@
                     <video id="liveVideo"></video>
                     <div class="live-badge">LIVE</div>
                     <div class="player-controls">
+                        <div class="channel-nav">
+                            <button class="channel-nav-btn" onclick="previousChannel()" title="Previous Channel">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="channel-nav-btn" onclick="nextChannel()" title="Next Channel">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                         <button class="control-btn play-pause" onclick="togglePlay()" id="playBtn">
                             <i class="fas fa-pause"></i>
                         </button>
@@ -719,6 +769,7 @@
         let currentCategory = 'all';
         let searchQuery = '';
         let isPlaying = false;
+        let currentChannelIndex = 0;
 
         // Sample channels data
         const channels = [
@@ -844,7 +895,10 @@
                     <p class="channel-category">${channel.category.charAt(0).toUpperCase() + channel.category.slice(1)}</p>
                 </div>
             `;
-            div.addEventListener('click', () => switchChannel(channel.url, channel));
+            div.addEventListener('click', () => {
+                currentChannelIndex = index;
+                switchChannel(channel.url, channel);
+            });
             return div;
         }
 
@@ -884,6 +938,26 @@
             video.muted = false;
             muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             volumeSlider.value = 1;
+        }
+
+        // Navigate to previous channel
+        function previousChannel() {
+            currentChannelIndex--;
+            if (currentChannelIndex < 0) {
+                currentChannelIndex = channels.length - 1;
+            }
+            const channel = channels[currentChannelIndex];
+            switchChannel(channel.url, channel);
+        }
+
+        // Navigate to next channel
+        function nextChannel() {
+            currentChannelIndex++;
+            if (currentChannelIndex >= channels.length) {
+                currentChannelIndex = 0;
+            }
+            const channel = channels[currentChannelIndex];
+            switchChannel(channel.url, channel);
         }
 
         // Load the stream
