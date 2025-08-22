@@ -35,91 +35,13 @@
             overflow-x: hidden;
         }
 
-        /* Mobile Header Styles */
+        /* Mobile Header Styles - HIDDEN */
         .mobile-header {
-            display: none;
-            background: rgba(15, 15, 19, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
-            height: var(--header-height);
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            justify-content: space-between;
-        }
-
-        .mobile-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .mobile-logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .mobile-logo h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-color);
-        }
-
-        .mobile-logo span {
-            color: var(--primary-color);
-        }
-
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 24px;
-            cursor: pointer;
+            display: none !important; /* Force hiding on all screen sizes */
         }
 
         .mobile-nav {
-            position: fixed;
-            top: var(--header-height);
-            left: 0;
-            width: 100%;
-            background: var(--light-bg);
-            padding: 20px;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 999;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .mobile-nav.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .mobile-nav ul {
-            list-style: none;
-        }
-
-        .mobile-nav ul li {
-            margin-bottom: 15px;
-        }
-
-        .mobile-nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-
-        .mobile-nav ul li a:hover,
-        .mobile-nav ul li a.active {
-            background: var(--primary-gradient);
+            display: none !important; /* Also hide the mobile navigation */
         }
 
         /* Main Content Layout */
@@ -136,13 +58,13 @@
             display: flex;
             flex-direction: column;
             max-width: 70%;
+            height: 100vh;
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 100%;
             background: #000;
             border-radius: 12px;
             overflow: hidden;
@@ -199,35 +121,7 @@
         }
 
         .channel-info {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .channel-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-right: 15px;
-        }
-
-        .channel-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .channel-title {
-            font-size: 22px;
-            font-weight: 600;
-        }
-
-        .channel-description {
-            color: var(--text-secondary);
-            margin-top: 5px;
-            font-size: 14px;
+            display: none; /* Remove channel info below player */
         }
 
         .controls {
@@ -315,6 +209,7 @@
             padding: 25px 20px;
             overflow-y: auto;
             border-left: 1px solid rgba(255, 255, 255, 0.05);
+            height: 100vh; /* Make sidebar same height as player */
         }
 
         .sidebar-header {
@@ -471,108 +366,6 @@
             gap: 8px;
         }
 
-        /* Footer */
-        footer {
-            background: var(--light-bg);
-            padding: 40px 5%;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .footer-logo img {
-            height: 35px;
-            margin-right: 10px;
-        }
-
-        .footer-logo h2 {
-            font-size: 20px;
-        }
-
-        .footer-logo span {
-            color: var(--primary-color);
-        }
-
-        .footer-about {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--card-bg);
-            border-radius: 50%;
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .social-icons a:hover {
-            background: var(--primary-gradient);
-            transform: translateY(-3px);
-        }
-
-        .footer-heading {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-heading::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--primary-gradient);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
         /* Responsive Design */
         @media (max-width: 1200px) {
             .main-content {
@@ -581,19 +374,22 @@
             
             .player-section {
                 max-width: 100%;
+                height: auto;
             }
             
             .channels-sidebar {
                 width: 100%;
                 max-width: none;
+                height: auto;
+            }
+            
+            .video-container {
+                height: 0;
+                padding-bottom: 56.25%; /* Restore 16:9 aspect ratio on mobile */
             }
         }
 
         @media (max-width: 992px) {
-            .mobile-header {
-                display: flex;
-            }
-            
             .channel-item {
                 padding: 10px;
             }
@@ -605,7 +401,7 @@
             }
             
             .player-section {
-                padding-top: 80px;
+                padding-top: 30px; /* Reduced from 80px since header is removed */
             }
         }
 
@@ -618,10 +414,6 @@
             .dark-toggle {
                 margin-left: 0;
                 margin-top: 10px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
             }
             
             .player-section {
@@ -639,15 +431,6 @@
                 font-size: 12px;
             }
             
-            .channel-info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .channel-logo {
-                margin-bottom: 10px;
-            }
-            
             .channel-nav {
                 width: 100%;
                 justify-content: space-between;
@@ -655,10 +438,6 @@
         }
 
         @media (max-width: 576px) {
-            .mobile-logo h1 {
-                font-size: 20px;
-            }
-            
             .controls {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -668,14 +447,6 @@
             
             .video-container {
                 border-radius: 8px;
-            }
-            
-            .channel-title {
-                font-size: 18px;
-            }
-            
-            .channel-description {
-                font-size: 12px;
             }
             
             .sidebar-header {
@@ -691,7 +462,7 @@
     </style>
 </head>
 <body>
-    <!-- Mobile Header (visible only on mobile) -->
+    <!-- Mobile Header (completely hidden) -->
     <div class="mobile-header">
         <div class="mobile-logo">
             <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
@@ -739,15 +510,7 @@
                 </div>
             </div>
 
-            <div class="channel-info">
-                <div class="channel-logo">
-                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-                </div>
-                <div>
-                    <div class="channel-title">T Play HD</div>
-                    <div class="channel-description">Live streaming - Entertainment</div>
-                </div>
-            </div>
+            <!-- Channel info removed from below the player -->
         </section>
 
         <!-- Channels Sidebar -->
@@ -779,59 +542,7 @@
         </aside>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-                    <h2>T <span>Play</span></h2>
-                </div>
-                <p>Your ultimate destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-heading">Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Live TV</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Sports</a></li>
-                    <li><a href="#">Kids</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-heading">Support</h3>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Refund Policy</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-heading">Contact Info</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> support@tplay.com</li>
-                    <li><i class="fas fa-phone"></i> +1 (123) 456-7890</li>
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Streaming Street, Digital City</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2023 T Play. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <!-- Footer has been removed as requested -->
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
@@ -946,7 +657,7 @@
             });
         }
 
-        // Toggle mobile menu
+        // Toggle mobile menu (kept but not used since mobile header is hidden)
         function toggleMobileMenu() {
             mobileNav.classList.toggle('active');
         }
@@ -1033,7 +744,7 @@
             muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             window.scrollTo({ top: 0, behavior: "smooth" });
             
-            // Close mobile menu if open
+            // Close mobile menu if open (though it's hidden)
             if (mobileNav.classList.contains('active')) {
                 mobileNav.classList.remove('active');
             }
