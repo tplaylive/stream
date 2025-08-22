@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T Play - Live TV Streaming</title>
+    <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -34,13 +35,13 @@
             overflow-x: hidden;
         }
 
-        /* Header Styles */
-        header {
+        /* Mobile Header Styles */
+        .mobile-header {
+            display: none;
             background: rgba(15, 15, 19, 0.95);
             backdrop-filter: blur(10px);
             padding: 15px 5%;
             height: var(--header-height);
-            display: flex;
             align-items: center;
             position: fixed;
             top: 0;
@@ -48,71 +49,84 @@
             z-index: 1000;
             transition: var(--transition);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            justify-content: space-between;
         }
 
-        .logo {
+        .mobile-logo {
             display: flex;
             align-items: center;
         }
 
-        .logo img {
+        .mobile-logo img {
             height: 40px;
             margin-right: 10px;
         }
 
-        .logo h1 {
+        .mobile-logo h1 {
             font-size: 24px;
             font-weight: 700;
             color: var(--text-color);
         }
 
-        .logo span {
+        .mobile-logo span {
             color: var(--primary-color);
         }
 
-        nav {
-            margin-left: auto;
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
         }
 
-        nav ul {
-            display: flex;
+        .mobile-nav {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background: var(--light-bg);
+            padding: 20px;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-nav.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-nav ul {
             list-style: none;
         }
 
-        nav ul li {
-            margin-left: 25px;
+        .mobile-nav ul li {
+            margin-bottom: 15px;
         }
 
-        nav ul li a {
+        .mobile-nav ul li a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
             transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
+        .mobile-nav ul li a:hover,
+        .mobile-nav ul li a.active {
             background: var(--primary-gradient);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
-            width: 100%;
         }
 
         /* Main Content Layout */
         .main-content {
             display: flex;
-            margin-top: var(--header-height);
-            min-height: calc(100vh - var(--header-height));
+            margin-top: 0;
+            min-height: 100vh;
         }
 
         /* Player Section */
@@ -576,8 +590,8 @@
         }
 
         @media (max-width: 992px) {
-            nav ul {
-                display: none;
+            .mobile-header {
+                display: flex;
             }
             
             .channel-item {
@@ -588,6 +602,10 @@
                 width: 40px;
                 height: 40px;
                 margin-right: 10px;
+            }
+            
+            .player-section {
+                padding-top: 80px;
             }
         }
 
@@ -620,12 +638,6 @@
                 height: 30px;
                 font-size: 12px;
             }
-        }
-
-        @media (max-width: 576px) {
-            .logo h1 {
-                font-size: 20px;
-            }
             
             .channel-info {
                 flex-direction: column;
@@ -640,6 +652,12 @@
                 width: 100%;
                 justify-content: space-between;
             }
+        }
+
+        @media (max-width: 576px) {
+            .mobile-logo h1 {
+                font-size: 20px;
+            }
             
             .controls {
                 flex-wrap: wrap;
@@ -647,26 +665,52 @@
                 bottom: 5px;
                 width: 90%;
             }
+            
+            .video-container {
+                border-radius: 8px;
+            }
+            
+            .channel-title {
+                font-size: 18px;
+            }
+            
+            .channel-description {
+                font-size: 12px;
+            }
+            
+            .sidebar-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dark-toggle {
+                margin-top: 15px;
+                align-self: flex-end;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
+    <!-- Mobile Header (visible only on mobile) -->
+    <div class="mobile-header">
+        <div class="mobile-logo">
             <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
             <h1>T <span>Play</span></h1>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Live TV</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">Sports</a></li>
-                <li><a href="#">Kids</a></li>
-            </ul>
-        </nav>
-    </header>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Live TV</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Kids</a></li>
+        </ul>
+    </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -799,11 +843,11 @@
         const channelSearch = document.getElementById("channelSearch");
         const posterImage = document.getElementById("posterImage");
         const loadingOverlay = document.getElementById("loadingOverlay");
-        const header = document.querySelector('header');
         const channelTitle = document.querySelector('.channel-title');
         const channelDescription = document.querySelector('.channel-description');
         const channelLogo = document.querySelector('.channel-logo img');
         const channelCount = document.getElementById("channelCount");
+        const mobileNav = document.getElementById("mobileNav");
 
         // Variables
         let hls;
@@ -877,15 +921,6 @@
 
         // Set up event listeners
         function setupEventListeners() {
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
             // Search functionality
             channelSearch.addEventListener('input', () => {
                 const searchTerm = channelSearch.value.toLowerCase();
@@ -909,6 +944,11 @@
                 loadingOverlay.innerHTML = '<i class="fas fa-wifi-slash"></i> Network disconnected';
                 video.pause();
             });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mobileNav.classList.toggle('active');
         }
 
         // Load stream function
@@ -992,6 +1032,11 @@
             video.muted = false;
             muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             window.scrollTo({ top: 0, behavior: "smooth" });
+            
+            // Close mobile menu if open
+            if (mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+            }
         }
 
         // Navigate to next channel
@@ -1058,70 +1103,78 @@
 
         function toggleMute() {
             video.muted = !video.muted;
-            muteBtn.innerHTML = video.muted ? 
-                '<i class="fas fa-volume-mute"></i>' : 
-                '<i class="fas fa-volume-up"></i>';
+            muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
         }
 
         // Filter channels by category
-        function filterCategory(cat, event) {
-            document.querySelectorAll('.category-bar button').forEach(btn => btn.classList.remove('active'));
+        function filterCategory(category, event) {
+            document.querySelectorAll('.category-bar button').forEach(btn => {
+                btn.classList.remove('active');
+            });
             event.target.classList.add('active');
             
-            document.querySelectorAll('.channel-item').forEach(el => {
-                if (cat === 'all' || cat === el.dataset.category) {
-                    el.style.display = 'flex';
-                } else {
-                    el.style.display = 'none';
-                }
+            filterChannels(channelSearch.value, category);
+        }
+
+        // Filter channels by search term and category
+        function filterChannels(searchTerm = "", category = "all") {
+            const filteredChannels = channels.filter(channel => {
+                const matchesSearch = channel.name.toLowerCase().includes(searchTerm) || 
+                                    channel.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === "all" || channel.category === category;
+                return matchesSearch && matchesCategory;
             });
+            
+            renderChannels(filteredChannels);
+            
+            // Update channel count
+            channelCount.textContent = `${filteredChannels.length} channels`;
         }
 
-        // Filter channels by search term
-        function filterChannels(searchTerm) {
-            document.querySelectorAll('.channel-item').forEach(el => {
-                const channelName = el.querySelector('.channel-item-name').textContent.toLowerCase();
-                if (channelName.includes(searchTerm)) {
-                    el.style.display = 'flex';
-                } else {
-                    el.style.display = 'none';
+        // Render channels to the sidebar
+        function renderChannels(channelsToRender) {
+            channelList.innerHTML = "";
+            
+            channelsToRender.forEach((channel, index) => {
+                const channelItem = document.createElement("div");
+                channelItem.className = "channel-item";
+                if (index === currentChannelIndex) {
+                    channelItem.classList.add("active");
                 }
-            });
-        }
-
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle('light-mode');
-            const darkToggle = document.querySelector('.dark-toggle');
-            if (document.body.classList.contains('light-mode')) {
-                darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
-        }
-
-        // Load channels into sidebar
-        function loadChannels() {
-            channelList.innerHTML = '';
-            channels.forEach((channel, index) => {
-                const el = document.createElement('div');
-                el.className = 'channel-item';
-                el.dataset.category = channel.category;
-                el.onclick = () => switchChannel(index);
                 
-                el.innerHTML = `
+                channelItem.innerHTML = `
                     <div class="channel-item-img">
                         <img src="${channel.img}" alt="${channel.name}">
                     </div>
                     <div class="channel-item-info">
-                        <div class="channel-item-name">${channel.name}</div>
+                        <div class="channel-item-name">${channel.name} <span class="channel-item-live">LIVE</span></div>
                         <div class="channel-item-category">${channel.description}</div>
                     </div>
-                    <div class="channel-item-live">LIVE</div>
                 `;
                 
-                channelList.appendChild(el);
+                channelItem.addEventListener("click", () => {
+                    const channelIndex = channels.findIndex(c => c.name === channel.name);
+                    switchChannel(channelIndex);
+                });
+                
+                channelList.appendChild(channelItem);
             });
+        }
+
+        // Load all channels initially
+        function loadChannels() {
+            renderChannels(channels);
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("light-mode");
+            const darkToggle = document.querySelector('.dark-toggle');
+            if (document.body.classList.contains("light-mode")) {
+                darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
         }
     </script>
 </body>
