@@ -232,38 +232,6 @@
             to { transform: rotate(360deg); }
         }
 
-        .live-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--secondary);
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 4px;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .live-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: white;
-            border-radius: 50%;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
-        }
-
         /* Professional Player Controls */
         .player-controls {
             position: absolute;
@@ -926,21 +894,16 @@
             border-radius: 0;
         }
         
-        /* Hide elements in fullscreen mode */
-        .video-container:fullscreen .player-info {
-            display: none;
-        }
-        
-        /* Fix for fullscreen controls on mobile */
+        /* Show controls in fullscreen mode */
         .video-container:fullscreen .player-controls {
-            opacity: 0; /* Hide controls in fullscreen by default */
+            opacity: 0; /* Hide by default */
         }
         
         .video-container:fullscreen:hover .player-controls,
         .video-container:fullscreen.touching .player-controls {
-            opacity: 1; /* Show on hover or touch in fullscreen */
+            opacity: 1; /* Show on hover or touch */
         }
-
+        
         /* Mobile Navigation */
         .mobile-nav-toggle {
             display: none;
@@ -1048,7 +1011,6 @@
                         <p>Loading channel...</p>
                     </div>
                     <video id="liveVideo"></video>
-                    <div class="live-badge">LIVE</div>
                     <div class="player-controls">
                         <div class="channel-nav">
                             <button class="channel-nav-btn" onclick="previousChannel()" title="Previous Channel">
@@ -1089,7 +1051,6 @@
                 <div class="player-info">
                     <h2 class="channel-title" id="currentChannelTitle">
                         <span>T Play</span>
-                        <div class="live-badge">LIVE</div>
                     </h2>
                     <p class="channel-description" id="currentChannelDescription">Your premium destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
                     <div class="channel-meta">
@@ -1768,6 +1729,9 @@
                     videoContainer.webkitRequestFullscreen();
                 } else if (videoContainer.msRequestFullscreen) {
                     videoContainer.msRequestFullscreen();
+                } else if (videoContainer.webkitEnterFullscreen) {
+                    // For iOS Safari
+                    video.webkitEnterFullscreen();
                 }
             } else {
                 if (document.exitFullscreen) {
