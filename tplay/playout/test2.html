@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>T Play</title>
+  <title>T Play - Mobile Fixed</title>
   <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
   <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
   <style>
@@ -340,6 +340,26 @@
       cursor: pointer;
       font-weight: bold;
     }
+
+    /* Loading spinner */
+    .loading-spinner {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #007bff;
+      animation: spin 1s ease-in-out infinite;
+      z-index: 99;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -348,9 +368,10 @@
       <div class="player-container">
         <video id="live-tv-player" class="video-js vjs-default-skin" controls preload="auto" playsinline></video>
         <div id="mobilePlayMessage" class="mobile-play-message">
-          <p>Tap to start playback</p>
+          <p>Tap the button below to start playback</p>
           <button id="mobilePlayButton">Play Now</button>
         </div>
+        <div id="loadingSpinner" class="loading-spinner"></div>
       </div>
       <div class="player-controls">
         <div id="now-playing" class="now-playing">Select a channel</div>
@@ -408,14 +429,14 @@
     // Initialize player with mobile-friendly settings
     const player = videojs('live-tv-player', {
       controls: true,
-      autoplay: false, // Changed to false for mobile compatibility
+      autoplay: false, // Disable autoplay for mobile compatibility
       fluid: true,
       responsive: true,
       liveui: true,
       techOrder: ['html5'],
       html5: {
         hls: {
-          overrideNative: true, // Force HLS.js even on mobile
+          overrideNative: !isMobile,
           enableLowInitialPlaylist: true,
           smoothQualityChange: true,
           maxBufferLength: 30,
@@ -441,7 +462,7 @@
       }
     });
 
-    // Mobile-specific initialization
+    // Add mobile-specific player settings
     if (isMobile) {
       player.tech_.setPlaysinline(true);
       player.tech_.overrideNativeAudioTracks(true);
@@ -456,19 +477,25 @@
       });
       
       playButton.addEventListener('click', function() {
+        playMessage.style.display = 'none';
+        document.getElementById('loadingSpinner').style.display = 'block';
         player.play().catch(function(error) {
           console.log('Play failed:', error);
+          playMessage.style.display = 'block';
+          document.getElementById('loadingSpinner').style.display = 'none';
         });
-        playMessage.style.display = 'none';
       });
       
       // Also allow tapping the video to play
       player.on('tap', function() {
         if (player.paused()) {
+          playMessage.style.display = 'none';
+          document.getElementById('loadingSpinner').style.display = 'block';
           player.play().catch(function(error) {
             console.log('Play failed:', error);
+            playMessage.style.display = 'block';
+            document.getElementById('loadingSpinner').style.display = 'none';
           });
-          playMessage.style.display = 'none';
         }
       });
     }
@@ -637,6 +664,7 @@
       // Show play message on mobile
       if (isMobile) {
         document.getElementById('mobilePlayMessage').style.display = 'block';
+        document.getElementById('loadingSpinner').style.display = 'none';
       }
 
       // Try to play with HLS.js first
@@ -656,6 +684,10 @@
           if (!isMobile) {
             player.play().catch(e => {
               console.log('Autoplay prevented:', e);
+              // Show play button for mobile users
+              if (isMobile) {
+                player.bigPlayButton.show();
+              }
             }).then(() => {
               // Re-enter PiP if it was enabled before channel change
               if (pipEnabled && !document.pictureInPictureElement) {
@@ -690,6 +722,9 @@
         if (!isMobile) {
           player.play().catch(e => {
             console.log('Autoplay prevented:', e);
+            if (isMobile) {
+              player.bigPlayButton.show();
+            }
           }).then(() => {
             if (pipEnabled && !document.pictureInPictureElement) {
               setTimeout(ensurePipActive, 500);
