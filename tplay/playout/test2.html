@@ -121,33 +121,7 @@
         }
 
         .channel-info {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .channel-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-right: 15px;
-        }
-
-        .channel-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .channel-title {
-            font-size: 22px;
-            font-weight: 600;
-        }
-
-        .channel-description {
-            display: none; /* Hide channel description */
+            display: none; /* Channel info completely removed */
         }
 
         .controls {
@@ -238,6 +212,31 @@
             height: calc(100vh - 60px); /* Match video player height */
             position: sticky;
             top: 30px;
+            border-radius: 16px 0 0 16px; /* Rounded corners on left side */
+            margin: 10px 0 10px 10px;
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.05); /* For Firefox */
+        }
+
+        /* Custom scrollbar for Webkit browsers */
+        .channels-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .channels-sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        .channels-sidebar::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+            background-clip: padding-box;
+        }
+
+        .channels-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #b80710;
         }
 
         .sidebar-header {
@@ -410,6 +409,8 @@
                 height: auto; /* Reset height on mobile */
                 position: relative;
                 top: 0;
+                border-radius: 16px; /* Rounded corners on all sides for mobile */
+                margin: 10px 0;
             }
         }
 
@@ -455,15 +456,6 @@
                 font-size: 12px;
             }
             
-            .channel-info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .channel-logo {
-                margin-bottom: 10px;
-            }
-            
             .channel-nav {
                 width: 100%;
                 justify-content: space-between;
@@ -480,14 +472,6 @@
             
             .video-container {
                 border-radius: 8px;
-            }
-            
-            .channel-title {
-                font-size: 18px;
-            }
-            
-            .channel-description {
-                font-size: 12px;
             }
             
             .sidebar-header {
@@ -551,15 +535,7 @@
                 </div>
             </div>
 
-            <div class="channel-info">
-                <div class="channel-logo">
-                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-                </div>
-                <div>
-                    <div class="channel-title">T Play HD</div>
-                    <!-- Channel description removed as requested -->
-                </div>
-            </div>
+            <!-- Channel info removed as requested -->
         </section>
 
         <!-- Channels Sidebar -->
