@@ -827,9 +827,14 @@
                 padding: 10px;
             }
             
+            /* Fix for mobile: Only show controls when not in fullscreen */
             .player-controls {
-                opacity: 1; /* Always show controls on mobile */
-                padding: 10px;
+                opacity: 0; /* Hide by default on mobile */
+            }
+            
+            .video-container:hover .player-controls,
+            .video-container.touching .player-controls {
+                opacity: 1; /* Show on hover or touch */
             }
             
             .control-btn {
@@ -924,6 +929,16 @@
         /* Hide elements in fullscreen mode */
         .video-container:fullscreen .player-info {
             display: none;
+        }
+        
+        /* Fix for fullscreen controls on mobile */
+        .video-container:fullscreen .player-controls {
+            opacity: 0; /* Hide controls in fullscreen by default */
+        }
+        
+        .video-container:fullscreen:hover .player-controls,
+        .video-container:fullscreen.touching .player-controls {
+            opacity: 1; /* Show on hover or touch in fullscreen */
         }
 
         /* Mobile Navigation */
@@ -1091,6 +1106,11 @@
                                 <i class="far fa-heart"></i>
                             </button>
                         </div>
+                        <div class="meta-item" style="margin-left: auto;">
+                            <button class="control-btn" onclick="toggleControls()" title="Toggle Controls">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1233,6 +1253,7 @@
         const mobileNav = document.getElementById("mobileNav");
         const toast = document.getElementById("toast");
         const toastMessage = document.getElementById("toastMessage");
+        const videoContainer = document.querySelector(".video-container");
 
         // Player State
         let hls;
@@ -1245,6 +1266,8 @@
         let currentChannelIndex = 0;
         let favorites = JSON.parse(localStorage.getItem('tplay_favorites')) || [];
         let isDarkMode = localStorage.getItem('tplay_darkmode') !== 'false';
+        let controlsVisible = false;
+        let controlsTimeout;
 
         // Sample channels data
         const channels = [
@@ -1363,9 +1386,96 @@
             // Favorite button
             favoriteChannelBtn.addEventListener('click', toggleFavorite);
             
+            // Touch events for mobile controls
+            videoContainer.addEventListener('touchstart', function() {
+                this.classList.add('touching');
+                showControlsTemporarily();
+            });
+            
+            videoContainer.addEventListener('touchend', function() {
+                this.classList.remove('touching');
+            });
+            
+            // Click to show/hide controls
+            videoContainer.addEventListener('click', function(e) {
+                if (e.target === video) {
+                    toggleControls();
+                }
+            });
+            
+            // Hide controls when mouse leaves (desktop)
+            videoContainer.addEventListener('mouseleave', function() {
+                if (!isMobile()) {
+                    hideControls();
+                }
+            });
+            
             // Prevent automatic fullscreen on mobile
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
+            
+            // Fullscreen change event
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+        }
+
+        // Handle fullscreen change
+        function handleFullscreenChange() {
+            const isFullscreen = document.fullscreenElement || 
+                                document.webkitFullscreenElement || 
+                                document.mozFullScreenElement ||
+                                document.msFullscreenElement;
+            
+            if (isFullscreen) {
+                // In fullscreen, hide controls by default
+                hideControls();
+            } else {
+                // Exited fullscreen, show controls
+                showControlsTemporarily();
+            }
+        }
+
+        // Check if device is mobile
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // Toggle controls visibility
+        function toggleControls() {
+            if (controlsVisible) {
+                hideControls();
+            } else {
+                showControlsTemporarily();
+            }
+        }
+
+        // Show controls temporarily
+        function showControlsTemporarily() {
+            showControls();
+            
+            // Clear any existing timeout
+            if (controlsTimeout) {
+                clearTimeout(controlsTimeout);
+            }
+            
+            // Hide after 3 seconds
+            controlsTimeout = setTimeout(hideControls, 3000);
+        }
+
+        // Show controls
+        function showControls() {
+            const controls = document.querySelector('.player-controls');
+            controls.style.opacity = '1';
+            controlsVisible = true;
+        }
+
+        // Hide controls
+        function hideControls() {
+            const controls = document.querySelector('.player-controls');
+            controls.style.opacity = '0';
+            controlsVisible = false;
         }
 
         // Load channels into the list
@@ -1833,6 +1943,9 @@
                     break;
                 case 'm': // Toggle mute
                     toggleMute();
+                    break;
+                case 'c': // Toggle controls
+                    toggleControls();
                     break;
             }
         });
