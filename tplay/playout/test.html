@@ -31,9 +31,9 @@
             overflow-x: hidden;
         }
 
-        /* Header Styles - Simplified */
+        /* Header Styles */
         header {
-            background: var(--dark-bg);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
             padding: 15px 5%;
             height: var(--header-height);
             display: flex;
@@ -42,7 +42,11 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        header.scrolled {
+            background: var(--dark-bg);
         }
 
         .logo {
@@ -122,17 +126,10 @@
             background: #f40612;
         }
 
-        /* Main Content Layout */
-        .main-content {
-            display: flex;
-            margin-top: var(--header-height);
-            padding: 20px 5%;
-            gap: 30px;
-        }
-
         /* Video Player Section */
         .video-section {
-            flex: 7;
+            margin-top: var(--header-height);
+            padding: 20px 5%;
         }
 
         .video-container {
@@ -182,55 +179,67 @@
 
         .controls {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 8px;
             background: rgba(0, 0, 0, 0.7);
-            padding: 10px 15px;
+            padding: 8px 12px;
+            border-radius: 20px;
             z-index: 10;
-            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-container:hover .controls {
+            opacity: 1;
+        }
+
+        /* Fullscreen controls */
+        .video-container:fullscreen .controls {
+            opacity: 1;
+            bottom: 20px;
         }
 
         .control-btn, .mute-btn {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-size: 12px;
         }
 
         .control-btn:hover, .mute-btn:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         .quality-select {
-            border-radius: 20px;
-            padding: 8px 15px;
+            border-radius: 15px;
+            padding: 6px 12px;
             background: var(--secondary-color);
             color: white;
             border: none;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
+            height: 32px;
         }
 
-        /* Channels Sidebar */
-        .channels-sidebar {
-            flex: 3;
-        }
-
+        /* Categories and Channels */
         .category-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            padding: 0 0 20px 0;
+            padding: 20px 5%;
+            background: var(--light-bg);
             align-items: center;
         }
 
@@ -262,20 +271,34 @@
             gap: 8px;
         }
 
-        .channel-list {
+        .channel-section {
+            padding: 20px 5%;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .channel-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
         }
 
         .channel {
             background: var(--card-bg);
-            border-radius: 50%;
+            border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
-            position: relative;
-            aspect-ratio: 1/1;
         }
 
         .channel:hover {
@@ -285,7 +308,7 @@
 
         .channel-img {
             width: 100%;
-            height: 100%;
+            height: 120px;
             overflow: hidden;
         }
 
@@ -301,50 +324,38 @@
         }
 
         .channel-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 15px;
         }
 
         .channel-name {
             font-weight: 600;
-            font-size: 14px;
+            margin-bottom: 5px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            flex: 1;
         }
 
-        .favorite-btn {
-            background: transparent;
-            border: none;
+        .channel-category {
             color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s;
+            font-size: 14px;
         }
 
-        .favorite-btn.active {
-            color: var(--primary-color);
-        }
-
-        /* Footer - Simplified */
+        /* Footer */
         footer {
             background: var(--light-bg);
-            padding: 30px 5%;
+            padding: 40px 5%;
             margin-top: 50px;
-            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
-            justify-content: center;
             margin-bottom: 15px;
         }
 
@@ -364,16 +375,11 @@
         .footer-about {
             color: var(--text-secondary);
             margin-bottom: 20px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .social-icons {
             display: flex;
             gap: 15px;
-            justify-content: center;
-            margin-bottom: 20px;
         }
 
         .social-icons a {
@@ -393,12 +399,29 @@
             transform: translateY(-3px);
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
+        .footer-heading {
+            font-size: 18px;
             margin-bottom: 20px;
-            flex-wrap: wrap;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-heading::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
         }
 
         .footer-links a {
@@ -412,44 +435,12 @@
         }
 
         .footer-bottom {
-            padding-top: 20px;
-            margin-top: 20px;
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-secondary);
             font-size: 14px;
-        }
-
-        /* Fullscreen controls */
-        .video-container:-webkit-full-screen .controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2147483647;
-        }
-
-        .video-container:-moz-full-screen .controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2147483647;
-        }
-
-        .video-container:-ms-fullscreen .controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2147483647;
-        }
-
-        .video-container:fullscreen .controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2147483647;
         }
 
         /* Responsive Design */
@@ -458,12 +449,8 @@
                 display: none;
             }
             
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .channel-list {
-                grid-template-columns: repeat(4, 1fr);
+            .channel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
 
@@ -482,8 +469,8 @@
                 margin-top: 10px;
             }
             
-            .channel-list {
-                grid-template-columns: repeat(3, 1fr);
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -492,18 +479,14 @@
                 font-size: 20px;
             }
             
-            .channel-list {
-                grid-template-columns: repeat(2, 1fr);
+            .channel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             }
             
             .controls {
                 flex-wrap: wrap;
                 justify-content: center;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
+                bottom: 5px;
             }
         }
     </style>
@@ -530,71 +513,93 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Video Player Section -->
-        <section class="video-section">
-            <div class="video-container">
-                <img id="posterImage" src="https://images.unsplash.com/photo-1603190287605-e6ade32fa852?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="T Play Poster">
-                <div id="loadingOverlay">⏳ Loading T Play...</div>
-                <video id="liveVideo"></video>
-                <div class="controls">
-                    <button class="control-btn" onclick="cycleZoom()" title="Change View"><i class="fas fa-expand-alt"></i></button>
-                    <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
-                    <button class="control-btn" onclick="togglePiP()" title="Picture-in-Picture"><i class="fas fa-tv"></i></button>
-                    <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute"><i class="fas fa-volume-up"></i></button>
-                    <select class="quality-select" id="qualityMenu">
-                        <option value="auto">Auto Quality</option>
-                        <option value="1080">1080p</option>
-                        <option value="720">720p</option>
-                        <option value="480">480p</option>
-                    </select>
-                </div>
+    <!-- Video Player Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <img id="posterImage" src="https://images.unsplash.com/photo-1603190287605-e6ade32fa852?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="T Play Poster">
+            <div id="loadingOverlay">⏳ Loading T Play...</div>
+            <video id="liveVideo"></video>
+            <div class="controls">
+                <button class="control-btn" onclick="cycleZoom()" title="Change View"><i class="fas fa-expand-alt"></i></button>
+                <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+                <button class="control-btn" onclick="togglePiP()" title="Picture-in-Picture"><i class="fas fa-tv"></i></button>
+                <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute"><i class="fas fa-volume-up"></i></button>
+                <select class="quality-select" id="qualityMenu">
+                    <option value="auto">Auto Quality</option>
+                    <option value="1080">1080p</option>
+                    <option value="720">720p</option>
+                    <option value="480">480p</option>
+                </select>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Channels Sidebar -->
-        <section class="channels-sidebar">
-            <div class="category-bar">
-                <button class="active" onclick="filterCategory('all', event)">All Channels</button>
-                <button onclick="filterCategory('entertainment', event)">Entertainment</button>
-                <button onclick="filterCategory('sports', event)">Sports</button>
-                <button onclick="filterCategory('news', event)">News</button>
-                <button onclick="filterCategory('movies', event)">Movies</button>
-                <button onclick="showFavorites()" id="favoritesBtn">Favorites</button>
-                <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Dark Mode</button>
-            </div>
-
-            <div class="channel-list" id="channelList">
-                <!-- Channels will be loaded here by JavaScript -->
-            </div>
-        </section>
+    <!-- Categories and Channels -->
+    <div class="category-bar">
+        <button class="active" onclick="filterCategory('all', event)">All Channels</button>
+        <button onclick="filterCategory('entertainment', event)">Entertainment</button>
+        <button onclick="filterCategory('sports', event)">Sports</button>
+        <button onclick="filterCategory('news', event)">News</button>
+        <button onclick="filterCategory('movies', event)">Movies</button>
+        <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Dark Mode</button>
     </div>
+
+    <section class="channel-section">
+        <h2 class="section-title"><i class="fas fa-tv"></i> Popular Channels</h2>
+        <div class="channel-grid" id="channelGrid">
+            <!-- Channels will be loaded here by JavaScript -->
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">
-            <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-            <h2>T <span>Play</span></h2>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
+                    <h2>T <span>Play</span></h2>
+                </div>
+                <p>Your ultimate destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Live TV</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Kids</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3 class="footer-heading">Support</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3 class="footer-heading">Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@tplay.com</li>
+                    <li><i class="fas fa-phone"></i> +1 (123) 456-7890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Streaming Street, Digital City</li>
+                </ul>
+            </div>
         </div>
-        <p class="footer-about">Your ultimate destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#">Live TV</a>
-            <a href="#">Movies</a>
-            <a href="#">Sports</a>
-            <a href="#">Kids</a>
-            <a href="#">FAQ</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
-        </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2023 T Play. All Rights Reserved.</p>
         </div>
@@ -606,10 +611,10 @@
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
         const qualityMenu = document.getElementById("qualityMenu");
-        const channelList = document.getElementById("channelList");
+        const channelGrid = document.getElementById("channelGrid");
         const posterImage = document.getElementById("posterImage");
         const loadingOverlay = document.getElementById("loadingOverlay");
-        const favoritesBtn = document.getElementById("favoritesBtn");
+        const header = document.querySelector('header');
 
         // Variables
         let hls;
@@ -617,7 +622,6 @@
         const zoomModes = ["contain", "cover", "fill"];
         const POSITION_KEY = "liveVideoPosition";
         let currentChannelUrl = null;
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         // Sample channels data
         const channels = [
@@ -674,6 +678,15 @@
 
         // Set up event listeners
         function setupEventListeners() {
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
             // Network status listeners
             window.addEventListener('online', () => {
                 console.log("Back online, resuming stream...");
@@ -692,23 +705,13 @@
                 video.pause();
             });
 
-            // Fullscreen change event to keep controls visible
-            document.addEventListener('fullscreenchange', updateControlsVisibility);
-            document.addEventListener('webkitfullscreenchange', updateControlsVisibility);
-            document.addEventListener('mozfullscreenchange', updateControlsVisibility);
-            document.addEventListener('MSFullscreenChange', updateControlsVisibility);
-        }
-
-        function updateControlsVisibility() {
-            const controls = document.querySelector('.controls');
-            if (document.fullscreenElement || 
-                document.webkitFullscreenElement || 
-                document.mozFullScreenElement ||
-                document.msFullscreenElement) {
-                controls.style.position = 'fixed';
-            } else {
-                controls.style.position = 'absolute';
-            }
+            // Fullscreen change event to show controls
+            document.addEventListener('fullscreenchange', () => {
+                if (document.fullscreenElement) {
+                    // Show controls when entering fullscreen
+                    document.querySelector('.controls').style.opacity = "1";
+                }
+            });
         }
 
         // Load stream function
@@ -773,6 +776,7 @@
 
             video.muted = false;
             muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         // Update quality menu
@@ -845,9 +849,7 @@
 
         // Filter channels by category
         function filterCategory(cat, event) {
-            document.querySelectorAll('.category-bar button').forEach(btn => {
-                if (btn !== favoritesBtn) btn.classList.remove('active');
-            });
+            document.querySelectorAll('.category-bar button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
             document.querySelectorAll('.channel').forEach(el => {
@@ -857,38 +859,6 @@
                     el.style.display = 'none';
                 }
             });
-        }
-
-        // Show favorite channels
-        function showFavorites() {
-            document.querySelectorAll('.category-bar button').forEach(btn => {
-                if (btn !== favoritesBtn) btn.classList.remove('active');
-            });
-            favoritesBtn.classList.add('active');
-            
-            document.querySelectorAll('.channel').forEach(el => {
-                if (favorites.includes(el.dataset.name)) {
-                    el.style.display = 'block';
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-        }
-
-        // Toggle favorite status
-        function toggleFavorite(channelName, event) {
-            event.stopPropagation();
-            const index = favorites.indexOf(channelName);
-            
-            if (index > -1) {
-                favorites.splice(index, 1);
-                event.target.classList.remove('active');
-            } else {
-                favorites.push(channelName);
-                event.target.classList.add('active');
-            }
-            
-            localStorage.setItem('favorites', JSON.stringify(favorites));
         }
 
         // Toggle dark mode
@@ -913,28 +883,24 @@
             }
         }
 
-        // Load channels into the list
+        // Load channels into the grid
         function loadChannels() {
-            channelList.innerHTML = "";
+            channelGrid.innerHTML = "";
             channels.forEach(ch => {
                 const div = document.createElement("div");
                 div.className = "channel";
                 div.dataset.category = ch.category;
-                div.dataset.name = ch.name;
                 div.innerHTML = `
                     <div class="channel-img">
                         <img src="${ch.img}" alt="${ch.name}">
                     </div>
                     <div class="channel-info">
                         <div class="channel-name">${ch.name}</div>
-                        <button class="favorite-btn ${favorites.includes(ch.name) ? 'active' : ''}" 
-                                onclick="toggleFavorite('${ch.name}', event)" title="Add to favorites">
-                            <i class="fas fa-heart"></i>
-                        </button>
+                        <div class="channel-category">${ch.category.charAt(0).toUpperCase() + ch.category.slice(1)}</div>
                     </div>
                 `;
                 div.onclick = () => switchChannel(ch.url);
-                channelList.appendChild(div);
+                channelGrid.appendChild(div);
             });
         }
 
