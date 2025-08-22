@@ -246,10 +246,12 @@
             z-index: 10;
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
-        .video-container:hover .player-controls {
+        .player-controls.visible {
             opacity: 1;
+            pointer-events: auto;
         }
 
         .control-btn {
@@ -800,9 +802,8 @@
                 opacity: 0; /* Hide by default on mobile */
             }
             
-            .video-container:hover .player-controls,
-            .video-container.touching .player-controls {
-                opacity: 1; /* Show on hover or touch */
+            .player-controls.visible {
+                opacity: 1; /* Show when visible */
             }
             
             .control-btn {
@@ -899,9 +900,8 @@
             opacity: 0; /* Hide by default */
         }
         
-        .video-container:fullscreen:hover .player-controls,
-        .video-container:fullscreen.touching .player-controls {
-            opacity: 1; /* Show on hover or touch */
+        .video-container:fullscreen .player-controls.visible {
+            opacity: 1; /* Show when visible */
         }
         
         /* Mobile Navigation */
@@ -946,12 +946,6 @@
 
         .mobile-nav-item:hover, .mobile-nav-item.active {
             color: var(--primary);
-        }
-
-        @media (max-width: 1200px) {
-            .mobile-nav-toggle {
-                display: block;
-            }
         }
     </style>
 </head>
@@ -1004,14 +998,14 @@
     <div class="container">
         <div class="main-content">
             <div class="player-container">
-                <div class="video-container">
+                <div class="video-container" id="videoContainer">
                     <img id="posterImage" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdw5aGA_lN75xEy63rjJg-pjWt3fMrO-F3-piSvjXi4qVxS7YjPdvZy_7hi22KSmmzAy7N8KjIl7Fu6VJjoKvFL58Eob8B29bBo_T1UT_5bz-fg-sZh2jHvVXLUV4ivySoiBBMevUKonwsH3QV4HbO3_DF04f3WgoquYAUkBxuvOUskSGR22DDFU6pDoA/s1600/ChatGPT%20Image%20Jun%2017,%202025,%2012_58_34%20PM_2.png" alt="T Play">
                     <div id="loadingOverlay">
                         <div class="spinner"></div>
                         <p>Loading channel...</p>
                     </div>
                     <video id="liveVideo"></video>
-                    <div class="player-controls">
+                    <div class="player-controls" id="playerControls">
                         <div class="channel-nav">
                             <button class="channel-nav-btn" onclick="previousChannel()" title="Previous Channel">
                                 <i class="fas fa-chevron-left"></i>
@@ -1214,7 +1208,8 @@
         const mobileNav = document.getElementById("mobileNav");
         const toast = document.getElementById("toast");
         const toastMessage = document.getElementById("toastMessage");
-        const videoContainer = document.querySelector(".video-container");
+        const videoContainer = document.getElementById("videoContainer");
+        const playerControls = document.getElementById("playerControls");
 
         // Player State
         let hls;
@@ -1229,6 +1224,7 @@
         let isDarkMode = localStorage.getItem('tplay_darkmode') !== 'false';
         let controlsVisible = false;
         let controlsTimeout;
+        let isFullscreen = false;
 
         // Sample channels data
         const channels = [
@@ -1319,7 +1315,11 @@
             });
             
             // Player event listeners
-            video.addEventListener('click', togglePlay);
+            video.addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePlay();
+            });
+            
             video.addEventListener('play', updatePlayButton);
             video.addEventListener('pause', updatePlayButton);
             video.addEventListener('timeupdate', updateProgress);
@@ -1347,26 +1347,23 @@
             // Favorite button
             favoriteChannelBtn.addEventListener('click', toggleFavorite);
             
-            // Touch events for mobile controls
-            videoContainer.addEventListener('touchstart', function() {
-                this.classList.add('touching');
-                showControlsTemporarily();
-            });
-            
-            videoContainer.addEventListener('touchend', function() {
-                this.classList.remove('touching');
-            });
-            
             // Click to show/hide controls
             videoContainer.addEventListener('click', function(e) {
-                if (e.target === video) {
+                if (e.target === video || e.target === videoContainer) {
                     toggleControls();
+                }
+            });
+            
+            // Show controls on hover
+            videoContainer.addEventListener('mouseenter', function() {
+                if (!isMobile()) {
+                    showControlsTemporarily();
                 }
             });
             
             // Hide controls when mouse leaves (desktop)
             videoContainer.addEventListener('mouseleave', function() {
-                if (!isMobile()) {
+                if (!isMobile() && !isFullscreen) {
                     hideControls();
                 }
             });
@@ -1384,17 +1381,24 @@
 
         // Handle fullscreen change
         function handleFullscreenChange() {
-            const isFullscreen = document.fullscreenElement || 
-                                document.webkitFullscreenElement || 
-                                document.mozFullScreenElement ||
-                                document.msFullscreenElement;
+            isFullscreen = document.fullscreenElement || 
+                          document.webkitFullscreenElement || 
+                          document.mozFullScreenElement ||
+                          document.msFullscreenElement;
             
             if (isFullscreen) {
                 // In fullscreen, hide controls by default
                 hideControls();
+                // Fix for mobile fullscreen zoom issue
+                if (isMobile()) {
+                    video.style.objectFit = 'contain';
+                }
             } else {
-                // Exited fullscreen, show controls
+                // Exited fullscreen, show controls and reset zoom
                 showControlsTemporarily();
+                if (isMobile()) {
+                    video.style.objectFit = 'cover';
+                }
             }
         }
 
@@ -1427,15 +1431,13 @@
 
         // Show controls
         function showControls() {
-            const controls = document.querySelector('.player-controls');
-            controls.style.opacity = '1';
+            playerControls.classList.add('visible');
             controlsVisible = true;
         }
 
         // Hide controls
         function hideControls() {
-            const controls = document.querySelector('.player-controls');
-            controls.style.opacity = '0';
+            playerControls.classList.remove('visible');
             controlsVisible = false;
         }
 
