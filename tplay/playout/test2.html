@@ -1,158 +1,348 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src='http://content.jwplatform.com/libraries/wr6i4gal.js'></script><!--8-->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Watch Live TV</title>
-<meta name="referrer" content="no-referrer">
-<link rel="icon" href="images/fav_icon.png" type="image/png" sizes="16x16">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/template.css" />
-	
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart TV Player</title>
+
+  <!-- Font Awesome Icon CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    #smartTvContainer {
+      display: flex;
+      background: #000;
+      height: 600px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #smartSidebar {
+      width: 250px;
+      background: #111;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s;
+    }
+
+    #smartSidebar h3 {
+      text-align: center;
+      color: #0f0;
+      margin: 0;
+    }
+
+    #smartSidebar input {
+      width: 100%;
+      padding: 6px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+      background: #222;
+      color: #fff;
+    }
+
+    #smartChannelList {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    #smartChannelList li {
+      padding: 10px;
+      margin: 5px 0;
+      background: #222;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #smartChannelList li:hover {
+      background: #333;
+    }
+
+    #smartChannelList li.active {
+      background: #0f0;
+      color: #000;
+      font-weight: bold;
+    }
+
+    #smartChannelList li img {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    #smartPlayer {
+      flex: 1;
+      padding: 10px;
+      transition: all 0.5s;
+      position: relative;
+    }
+
+    #hlsPlayer {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: #000;
+    }
+
+    #playerLogo {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      z-index: 999;
+    }
+
+    #playerLogo img {
+      width: 60px;
+      opacity: 0.8;
+    }
+
+    #floatControls {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #floatControls button {
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #menuButton {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 50%;
+      display: none;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    #menuButton i {
+      color: #fff;
+      font-size: 20px;
+    }
+  </style>
 </head>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<body>
+  <div id="smartTvContainer">
+    <!-- Sidebar -->
+    <div id="smartSidebar">
+      <div style="position:sticky; top:0; background:#111; z-index:10; padding:10px;">
+        <h3>Channel List</h3>
+        <input type="text" id="channelSearch" placeholder="Search by name or number...">
+      </div>
+      <ul id="smartChannelList"></ul>
+    </div>
 
-  ga('create', 'UA-104681324-2', 'auto');
-  ga('send', 'pageview');
+    <!-- Player -->
+    <div id="smartPlayer">
+      <video id="hlsPlayer" controls autoplay></video>
 
-</script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-4489105264334583",
-    enable_page_level_ads: true
-  });
-</script>
-<style>
-#player{
-	display:inline-block;
-}
-#schedule p{
-	display:inline-block;
-	margin: 10px 10px 10px 10px;
-}
-#schedule a{
-	display:block;
-	color: inherit;
-}
-.categories{
-	display: inline-block;
-    background: rgba(241, 114, 114, 0.96);
-    color: white;
-    padding: 15px;
-    margin: 5px;
-    cursor: pointer;
-}
-</style>
-<nav id="navbar" class="navbar navbar-default" role="navigation" style="background:rgba(241, 114, 114, 0.96)">
+      <div id="playerLogo">
+        <img src="https://yourdomain.com/logo.png" alt="Logo">
+      </div>
 
-<table style="width: 100%;">
-<tr>
-<td style="width: 33%;>
-    <a style="padding: 0 15px;" href="/"><img src="images/logo.png" style="width:60px"></a>
-</td>
-<td style="text-align: center;width: 33%;">
-	<a href="/LiveTV24x7.apk" onclick="var that=this;ga('send', 'event', 'Download', 'APK', 'download APK');setTimeout(function(){location.href=that.href;},200);return false;"><img style="font-size: larger;color:#fff;height:60px;align-self: center;" src="images/android.svg">
-</td>
-<td style="text-align: right;width: 33%;>
-<div class="menuitem pull-right">
-	
-<input type="text" placeholder="Search" id="search" style="color: #fff;font-weight: 500; text-transform: uppercase; border-bottom: 3px solid transparent; padding: 15px 5px 5px; margin: 0 12px; color: inherit;">
+      <div id="floatControls">
+        <button id="floatUpBtn">▲</button>
+        <button id="floatDownBtn">▼</button>
+      </div>
 
-</td>
-</tr>
-</table>
-</nav>
+      <div id="menuButton">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </div>
 
-<div align="center" style="margin-bottom: 5px;padding: 8px">
-<script type="text/javascript" language="javascript">
-      var aax_size='728x90';
-      var aax_pubname = 'livetv24x7-21';
-      var aax_src='302';
-    </script>
-    <script type="text/javascript" language="javascript" src="http://c.amazon-adsystem.com/aax2/assoc.js"></script>
-</div>
+  <!-- HLS.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<div id="categories" align="center">
-<p onclick="getCategory(0)" class="categories">Hindi Entertainment</p>
-<p onclick="getCategory(1)" class="categories">Hindi News</p>
-<p onclick="getCategory(2)" class="categories">Hindi Movies</p>
-<p onclick="getCategory(3)" class="categories">Hindi Music</p>
-<p onclick="getCategory(4)" class="categories">English News</p>
-<p onclick="getCategory(5)" class="categories">English Movies</p>
-<p onclick="getCategory(6)" class="categories">Sports</p>
-<p onclick="getCategory(7)" class="categories">Movies</p>
-<p onclick="getCategory(8)" class="categories">Music</p>
-<p onclick="getCategory(9)" class="categories">Entertainment</p>
-<p onclick="getCategory(10)" class="categories">News</p>
-<p onclick="getCategory(11)" class="categories">Kids</p>
-<p onclick="getCategory(12)" class="categories">Knowledge</p>
-<p onclick="getCategory(13)" class="categories">Spiritual</p>
-<p onclick="getCategory(14)" class="categories">Life Style</p>
-<p onclick="getCategory(15)" class="categories">Doordarshan</p>
-</div>
+  <script>
+    (function () {
+      const m3uUrl = 'https://raw.githubusercontent.com/MohammadJoyChy/BDIXTV/refs/heads/main/Aynaott';
+      const listContainer = document.getElementById('smartChannelList');
+      const video = document.getElementById('hlsPlayer');
+      const sidebar = document.getElementById('smartSidebar');
+      const container = document.getElementById('smartTvContainer');
+      const menuButton = document.getElementById('menuButton');
+      const floatControls = document.getElementById('floatControls');
+      const floatUpBtn = document.getElementById('floatUpBtn');
+      const floatDownBtn = document.getElementById('floatDownBtn');
+      const searchInput = document.getElementById('channelSearch');
+      let listItems = [];
+      let allChannels = [];
+      let currentIndex = 0;
+      let hideTimer;
+      let numberInput = '';
+      let numberTimer;
 
-<!--<div align="center"><div align="center" style="
-    display: inline-block;
-    width: 50%;
-"><a href="http://bit.ly/degooad" target="_blank"><img src="https://degoo.com/Content/Images/Banner/Degoo-h2.png" alt="100 GB Free Backup"></a></div><div align="center" style="
-    display: inline-block;
-    width: 50%;
-"><a href="http://bit.ly/degooad" target="_blank"><img src="https://degoo.com/Content/Images/Banner/Degoo-h2.png" alt="100 GB Free Backup"></a></div></div>-->
+      function resetTimer() {
+        clearTimeout(hideTimer);
+        showSidebar();
+        showFloatControls();
+        hideTimer = setTimeout(() => {
+          hideSidebar();
+          hideFloatControls();
+        }, 10000);
+      }
 
-<div align="center">
-    <table>
-        <tr>
-            <td>
-                <div id="player" style="margin:0px 10px"></div>
-            </td>
-            <td>
-                <div id="channelDetails" style="display:none; height:28.125vw; margin:0px 10px">
-                <h2 style="margin:0 0 0 0" id="channelName"></h2>
-                <div id="schedule" style="display: inline-block;overflow-y: auto; height:calc(28.125vw - 27px);"></div>
-                </div>
-            </td>
-        </tr>
-    </table>
-</div>
-<div align="center" style="margin-bottom: 5px;padding: 8px">
-    <table>
-        <tr>
-            <td>
-                <div data-WRID="WRID-151395987698261064" data-widgetType="searchWidget" data-class="affiliateAdsByFlipkart" height="250" width="300" style="margin:0px 10px"></div>
-            </td>
-            <td>
-                <div data-WRID="WRID-151395991629963735" data-widgetType="featuredDeals" data-class="affiliateAdsByFlipkart" height="250" width="300" style="margin:0px 10px"></div>
-            </td>
-            <td>
-                <div data-WRID="WRID-151396149505798503" data-widgetType="staticBanner" data-class="affiliateAdsByFlipkart" height="250" width="300" style="margin:0px 10px"></div>
-            </td>
-        </tr>
-    </table>
-<script async src="//affiliate.flipkart.com/affiliate/widgets/FKAffiliateWidgets.js"></script>
-</div>
+      function showSidebar() {
+        sidebar.style.display = 'flex';
+        container.style.flexDirection = 'row';
+        menuButton.style.display = 'none';
+      }
 
-<div id="channels"></div>
-<script>
+      function hideSidebar() {
+        sidebar.style.display = 'none';
+        container.style.flexDirection = 'column';
+        menuButton.style.display = 'block';
+      }
 
-</script>
-<script src="js.js"></script>
-<script src="/ads.js" type="text/javascript"></script>
-<script type="text/javascript">
-if(document.getElementById('rEBIwDhnupUT')){
-  ga('send', 'event', 'adBlocker', 'no', 'TV.html');
-} else {
-  ga('send', 'event', 'adBlocker', 'yes', 'TV.html');
-}
-</script>
+      function showFloatControls() {
+        floatControls.style.display = 'flex';
+      }
+
+      function hideFloatControls() {
+        floatControls.style.display = 'none';
+      }
+
+      function selectChannel(index) {
+        if (index >= 0 && index < listItems.length) {
+          listItems.forEach(li => li.classList.remove('active'));
+          listItems[index].classList.add('active');
+
+          const url = listItems[index].getAttribute('data-url');
+
+          if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              video.play();
+            });
+          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = url;
+            video.addEventListener('loadedmetadata', () => {
+              video.play();
+            });
+          }
+
+          currentIndex = index;
+          resetTimer();
+        }
+      }
+
+      function renderChannels(channelList) {
+        listContainer.innerHTML = '';
+        listItems = [];
+        channelList.forEach((ch, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${index + 1}.</strong> ${ch.logoUrl ? `<img src="${ch.logoUrl}" alt="Logo">` : ''}<span>${ch.title}</span>`;
+          li.setAttribute('data-url', ch.url);
+          li.onclick = () => selectChannel(index);
+          listContainer.appendChild(li);
+          listItems.push(li);
+        });
+      }
+
+      async function loadM3U() {
+        try {
+          const res = await fetch(m3uUrl);
+          const text = await res.text();
+          const lines = text.split('\n');
+          allChannels = [];
+
+          for (let i = 0; i < lines.length; i++) {
+            if (lines[i].startsWith('#EXTINF')) {
+              const title = lines[i].split(',')[1]?.trim() || 'Unknown';
+              const logoMatch = lines[i].match(/tvg-logo="(.*?)"/);
+              const logoUrl = logoMatch ? logoMatch[1] : '';
+              const url = lines[i + 1]?.trim();
+              if (url) allChannels.push({ title, logoUrl, url });
+            }
+          }
+
+          renderChannels(allChannels);
+          if (listItems.length > 0) selectChannel(0);
+        } catch (err) {
+          listContainer.innerHTML = '<li style="color:red;">Failed to load channels.</li>';
+        }
+      }
+
+      // Keyboard Control
+      document.addEventListener('keydown', (e) => {
+        if (e.key >= '0' && e.key <= '9') {
+          numberInput += e.key;
+          clearTimeout(numberTimer);
+          numberTimer = setTimeout(() => {
+            const index = parseInt(numberInput, 10) - 1;
+            if (index >= 0 && index < allChannels.length) {
+              selectChannel(index);
+            }
+            numberInput = '';
+          }, 1500);
+        }
+      });
+
+      // Search Function
+      searchInput.addEventListener('input', function () {
+        const value = this.value.toLowerCase();
+        if (/^\d+$/.test(value)) {
+          const index = parseInt(value, 10) - 1;
+          if (index >= 0 && index < allChannels.length) {
+            selectChannel(index);
+          }
+        } else {
+          const filtered = allChannels.filter(ch => ch.title.toLowerCase().includes(value));
+          renderChannels(filtered);
+        }
+      });
+
+      // Navigation Buttons
+      floatUpBtn.onclick = () => selectChannel(currentIndex - 1);
+      floatDownBtn.onclick = () => selectChannel(currentIndex + 1);
+
+      // Interaction Reset
+      document.body.addEventListener('click', resetTimer);
+      document.body.addEventListener('touchstart', resetTimer);
+
+      // Menu
+      menuButton.addEventListener('click', () => {
+        showSidebar();
+        resetTimer();
+      });
+
+      loadM3U();
+      resetTimer();
+    })();
+  </script>
+</body>
 </html>
