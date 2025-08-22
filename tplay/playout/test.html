@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T Play - Live TV Streaming</title>
+    <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -34,119 +35,20 @@
             overflow-x: hidden;
         }
 
-        /* Header Styles */
-        header {
-            background: rgba(15, 15, 19, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* Mobile Header Styles - HIDDEN */
+        .mobile-header {
+            display: none !important; /* Force hiding on all screen sizes */
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .logo h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-color);
-        }
-
-        .logo span {
-            color: var(--primary-color);
-        }
-
-        nav {
-            margin-left: auto;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
-        nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gradient);
-            transition: var(--transition);
-        }
-
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
-            width: 100%;
-        }
-
-        .auth-buttons {
-            margin-left: 30px;
-        }
-
-        .btn {
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-        }
-
-        .btn-login {
-            background: transparent;
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-right: 10px;
-        }
-
-        .btn-login:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .btn-signup {
-            background: var(--primary-gradient);
-            color: var(--text-color);
-        }
-
-        .btn-signup:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+        .mobile-nav {
+            display: none !important; /* Also hide the mobile navigation */
         }
 
         /* Main Content Layout */
         .main-content {
             display: flex;
-            margin-top: var(--header-height);
-            min-height: calc(100vh - var(--header-height));
+            margin-top: 0;
+            min-height: 100vh;
         }
 
         /* Player Section */
@@ -341,7 +243,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
+        }
+
+        .channel-count {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 5px;
         }
 
         .section-title {
@@ -442,10 +350,17 @@
         /* Categories and Channels */
         .category-bar {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
             gap: 10px;
             padding: 20px 0;
             align-items: center;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .category-bar::-webkit-scrollbar {
+            display: none;
         }
 
         .category-bar button {
@@ -456,6 +371,8 @@
             border-radius: 30px;
             cursor: pointer;
             transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .category-bar button.active {
@@ -476,108 +393,6 @@
             gap: 8px;
         }
 
-        /* Footer */
-        footer {
-            background: var(--light-bg);
-            padding: 40px 5%;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .footer-logo img {
-            height: 35px;
-            margin-right: 10px;
-        }
-
-        .footer-logo h2 {
-            font-size: 20px;
-        }
-
-        .footer-logo span {
-            color: var(--primary-color);
-        }
-
-        .footer-about {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--card-bg);
-            border-radius: 50%;
-            color: var(--text-color);
-            transition: var(--transition);
-        }
-
-        .social-icons a:hover {
-            background: var(--primary-gradient);
-            transform: translateY(-3px);
-        }
-
-        .footer-heading {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-heading::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--primary-gradient);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
         /* Responsive Design */
         @media (max-width: 1200px) {
             .main-content {
@@ -595,10 +410,6 @@
         }
 
         @media (max-width: 992px) {
-            nav ul {
-                display: none;
-            }
-            
             .channel-item {
                 padding: 10px;
             }
@@ -608,13 +419,13 @@
                 height: 40px;
                 margin-right: 10px;
             }
+            
+            .player-section {
+                padding-top: 30px; /* Reduced from 80px since header is removed */
+            }
         }
 
         @media (max-width: 768px) {
-            .auth-buttons {
-                display: none;
-            }
-            
             .category-bar {
                 flex-direction: column;
                 align-items: flex-start;
@@ -623,10 +434,6 @@
             .dark-toggle {
                 margin-left: 0;
                 margin-top: 10px;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
             }
             
             .player-section {
@@ -643,12 +450,6 @@
                 height: 30px;
                 font-size: 12px;
             }
-        }
-
-        @media (max-width: 576px) {
-            .logo h1 {
-                font-size: 20px;
-            }
             
             .channel-info {
                 flex-direction: column;
@@ -663,37 +464,61 @@
                 width: 100%;
                 justify-content: space-between;
             }
-            
+        }
+
+        @media (max-width: 576px) {
             .controls {
                 flex-wrap: wrap;
                 justify-content: center;
                 bottom: 5px;
                 width: 90%;
             }
+            
+            .video-container {
+                border-radius: 8px;
+            }
+            
+            .channel-title {
+                font-size: 18px;
+            }
+            
+            .channel-description {
+                font-size: 12px;
+            }
+            
+            .sidebar-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dark-toggle {
+                margin-top: 15px;
+                align-self: flex-end;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
+    <!-- Mobile Header (completely hidden) -->
+    <div class="mobile-header">
+        <div class="mobile-logo">
             <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
             <h1>T <span>Play</span></h1>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Live TV</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">Sports</a></li>
-                <li><a href="#">Kids</a></li>
-            </ul>
-        </nav>
-        <div class="auth-buttons">
-            <button class="btn btn-login">Login</button>
-            <button class="btn btn-signup">Sign Up</button>
-        </div>
-    </header>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Live TV</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Kids</a></li>
+        </ul>
+    </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -707,10 +532,12 @@
                 </div>
                 <video id="liveVideo"></video>
                 <div class="controls">
+                    <button class="nav-btn" onclick="prevChannel()" title="Previous Channel"><i class="fas fa-chevron-left"></i></button>
                     <button class="control-btn" onclick="cycleZoom()" title="Change View"><i class="fas fa-expand-alt"></i></button>
                     <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
                     <button class="control-btn" onclick="togglePiP()" title="Picture-in-Picture"><i class="fas fa-tv"></i></button>
                     <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute"><i class="fas fa-volume-up"></i></button>
+                    <button class="nav-btn" onclick="nextChannel()" title="Next Channel"><i class="fas fa-chevron-right"></i></button>
                     <select class="quality-select" id="qualityMenu">
                         <option value="auto">Auto Quality</option>
                         <option value="1080">1080p</option>
@@ -729,17 +556,15 @@
                     <div class="channel-description">Live streaming - Entertainment</div>
                 </div>
             </div>
-
-            <div class="channel-nav">
-                <button class="nav-btn" onclick="prevChannel()"><i class="fas fa-chevron-left"></i></button>
-                <button class="nav-btn" onclick="nextChannel()"><i class="fas fa-chevron-right"></i></button>
-            </div>
         </section>
 
         <!-- Channels Sidebar -->
         <aside class="channels-sidebar">
             <div class="sidebar-header">
-                <h2 class="section-title">Live Channels</h2>
+                <div>
+                    <h2 class="section-title">Live Channels</h2>
+                    <div class="channel-count" id="channelCount">6 channels</div>
+                </div>
                 <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
             </div>
 
@@ -753,7 +578,7 @@
                 <button onclick="filterCategory('entertainment', event)">Entertainment</button>
                 <button onclick="filterCategory('sports', event)">Sports</button>
                 <button onclick="filterCategory('news', event)">News</button>
-                <button onclick="filterCategory('music', event)">Music</button>
+                <button onclick="filterCategory('movies', event)">Movies</button>
             </div>
 
             <div class="channel-list" id="channelList">
@@ -762,59 +587,7 @@
         </aside>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-                    <h2>T <span>Play</span></h2>
-                </div>
-                <p>Your ultimate destination for live TV streaming. Watch your favorite channels anytime, anywhere.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-heading">Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Live TV</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Sports</a></li>
-                    <li><a href="#">Kids</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-heading">Support</h3>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Refund Policy</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h3 class="footer-heading">Contact Info</h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> support@tplay.com</li>
-                    <li><i class="fas fa-phone"></i> +1 (123) 456-7890</li>
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Streaming Street, Digital City</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2023 T Play. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <!-- Footer has been removed as requested -->
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
@@ -826,10 +599,11 @@
         const channelSearch = document.getElementById("channelSearch");
         const posterImage = document.getElementById("posterImage");
         const loadingOverlay = document.getElementById("loadingOverlay");
-        const header = document.querySelector('header');
         const channelTitle = document.querySelector('.channel-title');
         const channelDescription = document.querySelector('.channel-description');
         const channelLogo = document.querySelector('.channel-logo img');
+        const channelCount = document.getElementById("channelCount");
+        const mobileNav = document.getElementById("mobileNav");
 
         // Variables
         let hls;
@@ -842,11 +616,11 @@
         // Sample channels data
         const channels = [
             { 
-                name: "Oxygen Music", 
-                url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8", 
-                img: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209901/Oxygen-Music.jpg?raw=true", 
-                category: "music",
-                description: "24/7 English Songs"
+                name: "T Play HD", 
+                url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8", 
+                img: "https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true", 
+                category: "entertainment",
+                description: "Premium entertainment channel"
             },
             { 
                 name: "Sports Max", 
@@ -890,6 +664,9 @@
             loadChannels();
             setupEventListeners();
             
+            // Update channel count
+            channelCount.textContent = `${channels.length} channels`;
+            
             // Play the first channel by default
             if (channels.length > 0) {
                 setTimeout(() => {
@@ -900,15 +677,6 @@
 
         // Set up event listeners
         function setupEventListeners() {
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
             // Search functionality
             channelSearch.addEventListener('input', () => {
                 const searchTerm = channelSearch.value.toLowerCase();
@@ -932,6 +700,11 @@
                 loadingOverlay.innerHTML = '<i class="fas fa-wifi-slash"></i> Network disconnected';
                 video.pause();
             });
+        }
+
+        // Toggle mobile menu (kept but not used since mobile header is hidden)
+        function toggleMobileMenu() {
+            mobileNav.classList.toggle('active');
         }
 
         // Load stream function
@@ -1015,6 +788,11 @@
             video.muted = false;
             muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             window.scrollTo({ top: 0, behavior: "smooth" });
+            
+            // Close mobile menu if open (though it's hidden)
+            if (mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+            }
         }
 
         // Navigate to next channel
@@ -1081,70 +859,78 @@
 
         function toggleMute() {
             video.muted = !video.muted;
-            muteBtn.innerHTML = video.muted ? 
-                '<i class="fas fa-volume-mute"></i>' : 
-                '<i class="fas fa-volume-up"></i>';
+            muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
         }
 
         // Filter channels by category
-        function filterCategory(cat, event) {
-            document.querySelectorAll('.category-bar button').forEach(btn => btn.classList.remove('active'));
+        function filterCategory(category, event) {
+            document.querySelectorAll('.category-bar button').forEach(btn => {
+                btn.classList.remove('active');
+            });
             event.target.classList.add('active');
             
-            document.querySelectorAll('.channel-item').forEach(el => {
-                if (cat === 'all' || cat === el.dataset.category) {
-                    el.style.display = 'flex';
-                } else {
-                    el.style.display = 'none';
-                }
+            filterChannels(channelSearch.value, category);
+        }
+
+        // Filter channels by search term and category
+        function filterChannels(searchTerm = "", category = "all") {
+            const filteredChannels = channels.filter(channel => {
+                const matchesSearch = channel.name.toLowerCase().includes(searchTerm) || 
+                                    channel.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === "all" || channel.category === category;
+                return matchesSearch && matchesCategory;
             });
+            
+            renderChannels(filteredChannels);
+            
+            // Update channel count
+            channelCount.textContent = `${filteredChannels.length} channels`;
         }
 
-        // Filter channels by search term
-        function filterChannels(searchTerm) {
-            document.querySelectorAll('.channel-item').forEach(el => {
-                const channelName = el.querySelector('.channel-item-name').textContent.toLowerCase();
-                if (channelName.includes(searchTerm)) {
-                    el.style.display = 'flex';
-                } else {
-                    el.style.display = 'none';
+        // Render channels to the sidebar
+        function renderChannels(channelsToRender) {
+            channelList.innerHTML = "";
+            
+            channelsToRender.forEach((channel, index) => {
+                const channelItem = document.createElement("div");
+                channelItem.className = "channel-item";
+                if (index === currentChannelIndex) {
+                    channelItem.classList.add("active");
                 }
-            });
-        }
-
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle('light-mode');
-            const darkToggle = document.querySelector('.dark-toggle');
-            if (document.body.classList.contains('light-mode')) {
-                darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
-        }
-
-        // Load channels into sidebar
-        function loadChannels() {
-            channelList.innerHTML = '';
-            channels.forEach((channel, index) => {
-                const channelEl = document.createElement('div');
-                channelEl.className = 'channel-item';
-                channelEl.dataset.category = channel.category;
-                channelEl.onclick = () => switchChannel(index);
                 
-                channelEl.innerHTML = `
+                channelItem.innerHTML = `
                     <div class="channel-item-img">
                         <img src="${channel.img}" alt="${channel.name}">
                     </div>
                     <div class="channel-item-info">
-                        <div class="channel-item-name">${channel.name}</div>
+                        <div class="channel-item-name">${channel.name} <span class="channel-item-live">LIVE</span></div>
                         <div class="channel-item-category">${channel.description}</div>
                     </div>
-                    <div class="channel-item-live">LIVE</div>
                 `;
                 
-                channelList.appendChild(channelEl);
+                channelItem.addEventListener("click", () => {
+                    const channelIndex = channels.findIndex(c => c.name === channel.name);
+                    switchChannel(channelIndex);
+                });
+                
+                channelList.appendChild(channelItem);
             });
+        }
+
+        // Load all channels initially
+        function loadChannels() {
+            renderChannels(channels);
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("light-mode");
+            const darkToggle = document.querySelector('.dark-toggle');
+            if (document.body.classList.contains("light-mode")) {
+                darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
         }
     </script>
 </body>
