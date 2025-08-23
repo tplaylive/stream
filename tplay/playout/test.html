@@ -527,6 +527,20 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            
+            /* Mobile header layout fix */
+            .sidebar-header {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .sidebar-header > div:first-child {
+                flex: 1;
+            }
+            
+            .tplay-logo {
+                margin-left: 15px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -539,11 +553,6 @@
                 border-radius: 8px;
             }
             
-            .sidebar-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
             .quality-select {
                 font-size: 11px;
                 padding: 4px 8px;
@@ -552,6 +561,29 @@
             /* Show iOS fullscreen button on iPhones */
             .ios-fullscreen-btn {
                 display: flex;
+            }
+            
+            /* Mobile header adjustments */
+            .sidebar-header {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 16px;
+            }
+            
+            .tplay-logo {
+                font-size: 14px;
+            }
+            
+            .tplay-logo img {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .channel-count {
+                font-size: 12px;
             }
         }
 
