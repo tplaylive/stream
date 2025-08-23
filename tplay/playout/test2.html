@@ -138,6 +138,7 @@
             opacity: 0;
             transition: var(--transition);
             backdrop-filter: blur(5px);
+            align-items: center;
         }
 
         .video-container:hover .controls {
@@ -193,12 +194,51 @@
         .quality-select {
             border-radius: 20px;
             padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 13px;
             cursor: pointer;
             backdrop-filter: blur(5px);
+        }
+
+        .quality-select option {
+            background: var(--dark-bg);
+            color: white;
+        }
+
+        /* Volume slider */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .volume-slider {
+            width: 70px;
+            -webkit-appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
         }
 
         /* Channels Sidebar */
@@ -436,14 +476,20 @@
             .player-section {
                 padding-top: 30px;
             }
+            
+            /* Fix for category bar on mobile */
+            .category-bar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .category-bar button {
+                flex-shrink: 0;
+            }
         }
 
         @media (max-width: 768px) {
-            .category-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
             .dark-toggle {
                 margin-left: 0;
                 margin-top: 10px;
@@ -456,12 +502,20 @@
             .controls {
                 bottom: 10px;
                 padding: 6px 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 90%;
+                gap: 5px;
             }
             
             .control-btn, .mute-btn {
                 width: 30px;
                 height: 30px;
                 font-size: 12px;
+            }
+            
+            .volume-slider {
+                width: 50px;
             }
             
             .channel-nav {
@@ -472,10 +526,8 @@
 
         @media (max-width: 576px) {
             .controls {
-                flex-wrap: wrap;
-                justify-content: center;
+                width: 95%;
                 bottom: 5px;
-                width: 90%;
             }
             
             .video-container {
@@ -490,6 +542,11 @@
             .dark-toggle {
                 margin-top: 15px;
                 align-self: flex-end;
+            }
+            
+            .quality-select {
+                font-size: 11px;
+                padding: 4px 8px;
             }
         }
     </style>
@@ -529,10 +586,14 @@
                 <video id="liveVideo" playsinline></video>
                 <div class="controls">
                     <button class="nav-btn" onclick="prevChannel()" title="Previous Channel"><i class="fas fa-chevron-left"></i></button>
+                    <button class="control-btn" onclick="togglePlayPause()" id="playPauseBtn" title="Play/Pause"><i class="fas fa-pause"></i></button>
                     <button class="control-btn" onclick="cycleZoom()" title="Change View"><i class="fas fa-expand-alt"></i></button>
                     <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
                     <button class="control-btn" onclick="togglePiP()" title="Picture-in-Picture"><i class="fas fa-tv"></i></button>
-                    <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute"><i class="fas fa-volume-up"></i></button>
+                    <div class="volume-container">
+                        <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute"><i class="fas fa-volume-up"></i></button>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+                    </div>
                     <button class="nav-btn" onclick="nextChannel()" title="Next Channel"><i class="fas fa-chevron-right"></i></button>
                     <select class="quality-select" id="qualityMenu">
                         <option value="auto">Auto Quality</option>
@@ -579,6 +640,8 @@
         // DOM Elements
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const volumeSlider = document.getElementById("volumeSlider");
         const qualityMenu = document.getElementById("qualityMenu");
         const channelList = document.getElementById("channelList");
         const channelSearch = document.getElementById("channelSearch");
@@ -595,6 +658,8 @@
         const zoomModes = ["contain", "cover", "fill"];
         let currentChannelUrl = null;
         let currentChannelIndex = 0;
+        let isPlaying = false;
+        let currentCategory = 'all';
 
         // Sample channels data with working test streams
         const channels = [
@@ -663,7 +728,17 @@
             // Search functionality
             channelSearch.addEventListener('input', () => {
                 const searchTerm = channelSearch.value.toLowerCase();
-                filterChannels(searchTerm);
+                filterChannels(searchTerm, currentCategory);
+            });
+
+            // Volume control
+            volumeSlider.addEventListener('input', () => {
+                video.volume = volumeSlider.value;
+                if (video.volume == 0) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
             });
 
             // Network status listeners
@@ -682,6 +757,7 @@
                 loadingOverlay.innerHTML = '<i class="fas fa-wifi-slash"></i> Network disconnected';
                 if (hls) hls.stopLoad();
                 video.pause();
+                updatePlayPauseButton();
             });
         }
 
@@ -709,6 +785,8 @@
                     video.play().catch(e => {
                         showError('Autoplay blocked. Please click play to start.');
                     });
+                    isPlaying = true;
+                    updatePlayPauseButton();
                 });
                 video.addEventListener('error', function() {
                     showError('Failed to load stream. Trying HLS.js fallback...');
@@ -740,6 +818,8 @@
                 video.play().catch(e => {
                     showError('Autoplay blocked. Please click play to start.');
                 });
+                isPlaying = true;
+                updatePlayPauseButton();
                 updateQualityMenu();
             });
             
@@ -788,6 +868,7 @@
 
             video.muted = false;
             muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            volumeSlider.value = 1;
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
@@ -805,13 +886,39 @@
 
         // Navigate to next channel
         function nextChannel() {
-            const nextIndex = (currentChannelIndex + 1) % channels.length;
+            let nextIndex;
+            if (currentCategory === 'all') {
+                nextIndex = (currentChannelIndex + 1) % channels.length;
+            } else {
+                const filteredChannels = channels.filter(channel => 
+                    currentCategory === 'all' || channel.category === currentCategory
+                );
+                const currentFilteredIndex = filteredChannels.findIndex(
+                    channel => channel.name === channels[currentChannelIndex].name
+                );
+                nextIndex = channels.findIndex(
+                    channel => channel.name === filteredChannels[(currentFilteredIndex + 1) % filteredChannels.length].name
+                );
+            }
             switchChannel(nextIndex);
         }
 
         // Navigate to previous channel
         function prevChannel() {
-            const prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
+            let prevIndex;
+            if (currentCategory === 'all') {
+                prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
+            } else {
+                const filteredChannels = channels.filter(channel => 
+                    currentCategory === 'all' || channel.category === currentCategory
+                );
+                const currentFilteredIndex = filteredChannels.findIndex(
+                    channel => channel.name === channels[currentChannelIndex].name
+                );
+                prevIndex = channels.findIndex(
+                    channel => channel.name === filteredChannels[(currentFilteredIndex - 1 + filteredChannels.length) % filteredChannels.length].name
+                );
+            }
             switchChannel(prevIndex);
         }
 
@@ -843,6 +950,31 @@
         }
 
         // Control functions
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play().then(() => {
+                    isPlaying = true;
+                    updatePlayPauseButton();
+                }).catch(e => {
+                    console.error("Play failed:", e);
+                });
+            } else {
+                video.pause();
+                isPlaying = false;
+                updatePlayPauseButton();
+            }
+        }
+
+        function updatePlayPauseButton() {
+            if (video.paused || !isPlaying) {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playPauseBtn.title = "Play";
+            } else {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playPauseBtn.title = "Pause";
+            }
+        }
+
         function cycleZoom() {
             zoomIndex = (zoomIndex + 1) % zoomModes.length;
             video.style.objectFit = zoomModes[zoomIndex];
@@ -873,6 +1005,11 @@
         function toggleMute() {
             video.muted = !video.muted;
             muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+            if (video.muted) {
+                volumeSlider.value = 0;
+            } else {
+                volumeSlider.value = video.volume;
+            }
         }
 
         // Filter channels by category
@@ -882,6 +1019,7 @@
             });
             event.target.classList.add('active');
             
+            currentCategory = category;
             filterChannels(channelSearch.value, category);
         }
 
@@ -905,9 +1043,10 @@
             channelList.innerHTML = "";
             
             channelsToRender.forEach((channel, index) => {
+                const originalIndex = channels.findIndex(c => c.name === channel.name);
                 const channelItem = document.createElement("div");
                 channelItem.className = "channel-item";
-                if (channels.findIndex(c => c.name === channel.name) === currentChannelIndex) {
+                if (originalIndex === currentChannelIndex) {
                     channelItem.classList.add("active");
                 }
                 
