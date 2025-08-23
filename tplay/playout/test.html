@@ -35,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* Mobile Header Styles - HIDDEN */
         .mobile-header {
             display: none !important;
         }
@@ -44,14 +43,12 @@
             display: none !important;
         }
 
-        /* Main Content Layout */
         .main-content {
             display: flex;
             margin-top: 0;
             min-height: 100vh;
         }
 
-        /* Player Section */
         .player-section {
             flex: 1;
             padding: 30px;
@@ -207,7 +204,6 @@
             color: white;
         }
 
-        /* Volume slider */
         .volume-container {
             display: flex;
             align-items: center;
@@ -241,7 +237,6 @@
             cursor: pointer;
         }
 
-        /* Channels Sidebar */
         .channels-sidebar {
             width: 30%;
             max-width: 400px;
@@ -442,12 +437,10 @@
             display: none;
         }
 
-        /* iOS specific styles */
         .ios-fullscreen-btn {
             display: none;
         }
 
-        /* Responsive Design */
         @media (max-width: 1200px) {
             .main-content {
                 flex-direction: column;
@@ -483,7 +476,6 @@
                 padding-top: 30px;
             }
             
-            /* Fix for category bar on mobile */
             .category-bar {
                 flex-wrap: nowrap;
                 overflow-x: auto;
@@ -528,7 +520,6 @@
                 justify-content: space-between;
             }
             
-            /* Mobile header layout fix */
             .sidebar-header {
                 flex-direction: row;
                 align-items: center;
@@ -558,12 +549,10 @@
                 padding: 4px 8px;
             }
             
-            /* Show iOS fullscreen button on iPhones */
             .ios-fullscreen-btn {
                 display: flex;
             }
             
-            /* Mobile header adjustments */
             .sidebar-header {
                 flex-direction: row;
                 align-items: center;
@@ -587,7 +576,6 @@
             }
         }
 
-        /* Android specific adjustments */
         @media (max-width: 768px) and (min-width: 320px) {
             .controls {
                 padding: 8px 12px;
@@ -611,7 +599,6 @@
     </style>
 </head>
 <body>
-    <!-- Mobile Header (completely hidden) -->
     <div class="mobile-header">
         <div class="mobile-logo">
             <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
@@ -632,9 +619,7 @@
         </ul>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Player Section -->
         <section class="player-section">
             <div class="video-container">
                 <img id="posterImage" src="https://i.postimg.cc/Pr9sC68t/T-Play-Cover.jpg" alt="T Play Poster">
@@ -666,7 +651,6 @@
             </div>
         </section>
 
-        <!-- Channels Sidebar -->
         <aside class="channels-sidebar">
             <div class="sidebar-header">
                 <div>
@@ -693,14 +677,12 @@
             </div>
 
             <div class="channel-list" id="channelList">
-                <!-- Channels will be loaded here by JavaScript -->
             </div>
         </aside>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        // DOM Elements
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
         const playPauseBtn = document.getElementById("playPauseBtn");
@@ -715,7 +697,6 @@
         const channelCount = document.getElementById("channelCount");
         const mobileNav = document.getElementById("mobileNav");
 
-        // Variables
         let hls;
         let zoomIndex = 0;
         const zoomModes = ["contain", "cover", "fill"];
@@ -725,7 +706,6 @@
         let currentCategory = 'all';
         let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-        // Sample channels data with working test streams
         const channels = [
             { 
                 name: "Oxygen Music", 
@@ -771,20 +751,16 @@
             }
         ];
 
-        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             loadChannels();
             setupEventListeners();
             
-            // Update channel count
             channelCount.textContent = `${channels.length} channels`;
             
-            // Show iOS fullscreen button only on iOS devices
             document.querySelectorAll('.ios-fullscreen-btn').forEach(btn => {
                 btn.style.display = isIOS ? 'flex' : 'none';
             });
             
-            // Play the first channel by default
             if (channels.length > 0) {
                 setTimeout(() => {
                     switchChannel(0);
@@ -792,15 +768,12 @@
             }
         });
 
-        // Set up event listeners
         function setupEventListeners() {
-            // Search functionality
             channelSearch.addEventListener('input', () => {
                 const searchTerm = channelSearch.value.toLowerCase();
                 filterChannels(searchTerm, currentCategory);
             });
 
-            // Volume control
             volumeSlider.addEventListener('input', () => {
                 video.volume = volumeSlider.value;
                 if (video.volume == 0) {
@@ -810,7 +783,6 @@
                 }
             });
 
-            // Network status listeners
             window.addEventListener('online', () => {
                 console.log("Back online, resuming stream...");
                 if (currentChannelUrl) {
@@ -830,24 +802,19 @@
             });
         }
 
-        // Load stream function
         function loadStream(url) {
             hideError();
             
-            // Destroy previous HLS instance if exists
             if (hls) {
                 hls.destroy();
                 hls = null;
             }
 
-            // Reset video element
             video.pause();
             video.removeAttribute('src');
             video.load();
             
-            // Check if browser supports native HLS playback
             if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // Native HLS support (Safari)
                 video.src = url;
                 video.addEventListener('loadedmetadata', function() {
                     loadingOverlay.style.display = "none";
@@ -860,18 +827,15 @@
                 });
                 video.addEventListener('error', function() {
                     showError('Failed to load stream. Trying HLS.js fallback...');
-                    // Try with HLS.js as fallback
                     initHls(url);
                 });
             } else if (Hls.isSupported()) {
-                // HLS.js for other browsers
                 initHls(url);
             } else {
                 showError('Your browser does not support HLS playback.');
             }
         }
 
-        // Initialize HLS.js
         function initHls(url) {
             hls = new Hls({
                 debug: false,
@@ -915,13 +879,11 @@
             });
         }
 
-        // Switch channel function
         function switchChannel(index) {
             const channel = channels[index];
             currentChannelIndex = index;
             currentChannelUrl = channel.url;
             
-            // Highlight active channel in sidebar
             document.querySelectorAll('.channel-item').forEach((item, i) => {
                 if (i === index) {
                     item.classList.add('active');
@@ -930,7 +892,6 @@
                 }
             });
             
-            // Load the stream
             posterImage.style.display = "none";
             loadingOverlay.style.display = "flex";
             loadingOverlay.innerHTML = '<div class="loading-spinner"></div><div>Loading channel...</div>';
@@ -943,19 +904,16 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        // Show error message
         function showError(message) {
             errorText.textContent = message;
             errorMessage.style.display = 'block';
             loadingOverlay.style.display = "none";
         }
 
-        // Hide error message
         function hideError() {
             errorMessage.style.display = 'none';
         }
 
-        // Navigate to next channel
         function nextChannel() {
             let nextIndex;
             if (currentCategory === 'all') {
@@ -974,7 +932,6 @@
             switchChannel(nextIndex);
         }
 
-        // Navigate to previous channel
         function prevChannel() {
             let prevIndex;
             if (currentCategory === 'all') {
@@ -993,7 +950,6 @@
             switchChannel(prevIndex);
         }
 
-        // Update quality menu
         function updateQualityMenu() {
             if (!hls) return;
             
@@ -1020,7 +976,6 @@
             }
         }
 
-        // Control functions
         function togglePlayPause() {
             if (video.paused) {
                 video.play().then(() => {
@@ -1073,7 +1028,6 @@
             }
         }
 
-        // iOS specific fullscreen request
         function requestFullscreen() {
             if (video.webkitEnterFullscreen) {
                 video.webkitEnterFullscreen();
@@ -1102,7 +1056,6 @@
             }
         }
 
-        // Filter channels by category
         function filterCategory(category, event) {
             document.querySelectorAll('.category-bar button').forEach(btn => {
                 btn.classList.remove('active');
@@ -1113,7 +1066,6 @@
             filterChannels(channelSearch.value, category);
         }
 
-        // Filter channels by search term and category
         function filterChannels(searchTerm = "", category = "all") {
             const filteredChannels = channels.filter(channel => {
                 const matchesSearch = channel.name.toLowerCase().includes(searchTerm) || 
@@ -1124,11 +1076,9 @@
             
             renderChannels(filteredChannels);
             
-            // Update channel count
             channelCount.textContent = `${filteredChannels.length} channels`;
         }
 
-        // Render channels to the sidebar
         function renderChannels(channelsToRender) {
             channelList.innerHTML = "";
             
@@ -1159,7 +1109,6 @@
             });
         }
 
-        // Load all channels initially
         function loadChannels() {
             renderChannels(channels);
         }
