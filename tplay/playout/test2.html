@@ -744,6 +744,8 @@
         let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         let currentBackupIndex = 0;
         let currentBackupSources = [];
+        let filteredChannels = [];
+        let channelMap = new Map(); // Maps DOM elements to original channel indices
 
         const channels = [
             { 
@@ -936,11 +938,16 @@
 
         function loadChannels() {
             channelList.innerHTML = '';
-            const filteredChannels = channels.filter(channel => 
+            channelMap.clear();
+            
+            filteredChannels = channels.filter(channel => 
                 currentCategory === 'all' || channel.category === currentCategory
             );
             
-            filteredChannels.forEach((channel, index) => {
+            filteredChannels.forEach((channel, filteredIndex) => {
+                // Find the original index of this channel
+                const originalIndex = channels.findIndex(c => c.name === channel.name);
+                
                 const channelItem = document.createElement('div');
                 channelItem.className = 'channel-item';
                 channelItem.innerHTML = `
@@ -953,9 +960,16 @@
                     </div>
                     <span class="channel-item-live">LIVE</span>
                 `;
+                
+                // Store the mapping between DOM element and original index
+                channelMap.set(channelItem, originalIndex);
+                
                 channelItem.addEventListener('click', () => {
-                    switchChannel(index);
+                    // Get the original index from the map
+                    const originalIndex = channelMap.get(channelItem);
+                    switchChannel(originalIndex);
                 });
+                
                 channelList.appendChild(channelItem);
             });
         }
@@ -966,8 +980,10 @@
             currentBackupSources = channel.sources;
             currentBackupIndex = 0;
             
-            document.querySelectorAll('.channel-item').forEach((item, i) => {
-                if (i === index) {
+            // Update active state for all channel items
+            document.querySelectorAll('.channel-item').forEach((item) => {
+                const originalIndex = channelMap.get(item);
+                if (originalIndex === index) {
                     item.classList.add('active');
                 } else {
                     item.classList.remove('active');
@@ -1002,14 +1018,14 @@
         }
 
         function tryNextBackup() {
-            if (currentBackupIndex < currentBackupSources.length - 1) {
-                currentBackupIndex++;
+            currentBackupIndex++;
+            
+            if (currentBackupIndex < currentBackupSources.length) {
                 const source = currentBackupSources[currentBackupIndex];
                 sourceMenu.value = currentBackupIndex;
                 loadVideoSource(source.url);
             } else {
-                errorText.textContent = 'All backup sources failed. Please try another channel.';
-                errorMessage.style.display = 'block';
+                errorText.textContent = 'All sources failed. Please try another channel.';
             }
         }
 
@@ -1020,7 +1036,8 @@
             
             if (Hls.isSupported()) {
                 hls = new Hls({
-                    debug: false,
+                    maxBufferLength: 30,
+                    maxMaxBufferLength: 60,
                     enableWorker: true,
                     lowLatencyMode: true,
                     backBufferLength: 90
@@ -1030,38 +1047,19 @@
                 hls.attachMedia(video);
                 
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play().catch(e => {
-                        console.error('Auto-play failed:', e);
-                        loadingOverlay.style.display = 'none';
-                    });
-                    
-                    if (hls.levels.length > 1) {
-                        qualityMenu.innerHTML = '<option value="auto">Auto Quality</option>';
-                        hls.levels.forEach((level, index) => {
-                            const option = document.createElement('option');
-                            option.value = index;
-                            option.textContent = level.height + 'p';
-                            qualityMenu.appendChild(option);
-                        });
-                        qualityMenu.style.display = 'block';
-                    } else {
-                        qualityMenu.style.display = 'none';
-                    }
+                    video.play();
                 });
                 
                 hls.on(Hls.Events.ERROR, function(event, data) {
                     if (data.fatal) {
                         switch (data.type) {
                             case Hls.ErrorTypes.NETWORK_ERROR:
-                                console.error('Network error, trying next backup source');
                                 tryNextBackup();
                                 break;
                             case Hls.ErrorTypes.MEDIA_ERROR:
-                                console.error('Media error, trying to recover');
                                 hls.recoverMediaError();
                                 break;
                             default:
-                                console.error('Unrecoverable error');
                                 tryNextBackup();
                                 break;
                         }
@@ -1070,14 +1068,9 @@
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 video.src = url;
                 video.addEventListener('loadedmetadata', function() {
-                    video.play().catch(e => {
-                        console.error('Auto-play failed:', e);
-                        loadingOverlay.style.display = 'none';
-                    });
+                    video.play();
                 });
             }
-            
-            currentChannelUrl = url;
         }
 
         function togglePlayPause() {
@@ -1105,13 +1098,15 @@
         }
 
         function toggleFullscreen() {
+            const container = document.querySelector('.video-container');
+            
             if (!document.fullscreenElement) {
-                if (video.requestFullscreen) {
-                    video.requestFullscreen();
-                } else if (video.webkitRequestFullscreen) {
-                    video.webkitRequestFullscreen();
-                } else if (video.msRequestFullscreen) {
-                    video.msRequestFullscreen();
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
                 }
             } else {
                 if (document.exitFullscreen) {
@@ -1125,8 +1120,10 @@
         }
 
         function requestFullscreen() {
-            if (video.webkitEnterFullscreen) {
-                video.webkitEnterFullscreen();
+            const container = document.querySelector('.video-container');
+            
+            if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
             }
         }
 
@@ -1138,30 +1135,40 @@
             }
         }
 
-        function nextChannel() {
-            const nextIndex = (currentChannelIndex + 1) % channels.length;
-            switchChannel(nextIndex);
+        function prevChannel() {
+            let newIndex = currentChannelIndex - 1;
+            if (newIndex < 0) {
+                newIndex = channels.length - 1;
+            }
+            switchChannel(newIndex);
         }
 
-        function prevChannel() {
-            const prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
-            switchChannel(prevIndex);
+        function nextChannel() {
+            let newIndex = currentChannelIndex + 1;
+            if (newIndex >= channels.length) {
+                newIndex = 0;
+            }
+            switchChannel(newIndex);
         }
 
         function filterCategory(category, event) {
             currentCategory = category;
+            
             document.querySelectorAll('.category-bar button').forEach(btn => {
                 btn.classList.remove('active');
             });
+            
             event.target.classList.add('active');
+            
             loadChannels();
         }
 
         function filterChannels() {
             const searchTerm = channelSearch.value.toLowerCase();
-            document.querySelectorAll('.channel-item').forEach((item, index) => {
-                const channelName = channels[index].name.toLowerCase();
-                const channelDesc = channels[index].description.toLowerCase();
+            
+            document.querySelectorAll('.channel-item').forEach(item => {
+                const channelName = item.querySelector('.channel-item-name').textContent.toLowerCase();
+                const channelDesc = item.querySelector('.channel-item-category').textContent.toLowerCase();
                 
                 if (channelName.includes(searchTerm) || channelDesc.includes(searchTerm)) {
                     item.style.display = 'flex';
