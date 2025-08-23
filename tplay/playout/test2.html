@@ -708,8 +708,8 @@
                 <button onclick="filterCategory('movie', event)">Movie</button>
                 <button onclick="filterCategory('entertainment', event)">Entertainment</button>
                 <button onclick="filterCategory('sports', event)">Sports</button>
-                <button onclick="filterCategory('religious', event)">Religious</button>
                 <button onclick="filterCategory('educational', event)">Educational</button>
+                <button onclick="filterCategory('religious', event)">Religious</button>
             </div>
 
             <div class="channel-list" id="channelList">
@@ -817,7 +817,19 @@
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUoDCQJ1KLfTGgQQZvyQkAlWE8qr34Ly1rNA&s", 
                 category: "kids",
                 description: "Animated action, adventure and comedy content."
-            }
+            },
+            { 
+                name: "Discovery", 
+                sources: [
+                    { name: "US", url: "https://fl4.moveonjoy.com/Discovery_Channel/index.m3u8" },
+                    { name: "IN", url: "https://example-backup3.com/aljazeera.m3u8" },
+                    { name: "BD", url: "https://tvsen6.aynaott.com/discovery_hd_bangla/index.m3u8" },
+                    { name: "Backup", url: "https://tvsen6.aynaott.com/discovery_hd/index.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSImU3htfX_KbpLD3fqD9Z6tg6gn01iFrROgQ&s", 
+                category: "educational",
+                description: "Science, technology, nature and more"
+            },
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
