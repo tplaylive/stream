@@ -35,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* Mobile Header Styles - HIDDEN */
         .mobile-header {
             display: none !important;
         }
@@ -44,14 +43,12 @@
             display: none !important;
         }
 
-        /* Main Content Layout */
         .main-content {
             display: flex;
             margin-top: 0;
             min-height: 100vh;
         }
 
-        /* Player Section */
         .player-section {
             flex: 1;
             padding: 30px;
@@ -207,7 +204,23 @@
             color: white;
         }
 
-        /* Volume slider */
+        .source-select {
+            border-radius: 20px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            max-width: 120px;
+        }
+
+        .source-select option {
+            background: var(--dark-bg);
+            color: white;
+        }
+
         .volume-container {
             display: flex;
             align-items: center;
@@ -241,7 +254,6 @@
             cursor: pointer;
         }
 
-        /* Channels Sidebar */
         .channels-sidebar {
             width: 30%;
             max-width: 400px;
@@ -418,17 +430,18 @@
             color: white;
         }
 
-        .dark-toggle {
-            margin-left: auto;
-            padding: 10px 20px;
-            border-radius: 30px;
-            background: var(--card-bg);
-            color: var(--text-color);
-            border: none;
-            cursor: pointer;
+        .tplay-logo {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tplay-logo img {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
         }
 
         /* Error message */
@@ -441,7 +454,10 @@
             display: none;
         }
 
-        /* Responsive Design */
+        .ios-fullscreen-btn {
+            display: none;
+        }
+
         @media (max-width: 1200px) {
             .main-content {
                 flex-direction: column;
@@ -477,7 +493,6 @@
                 padding-top: 30px;
             }
             
-            /* Fix for category bar on mobile */
             .category-bar {
                 flex-wrap: nowrap;
                 overflow-x: auto;
@@ -490,9 +505,8 @@
         }
 
         @media (max-width: 768px) {
-            .dark-toggle {
-                margin-left: 0;
-                margin-top: 10px;
+            .tplay-logo {
+                font-size: 16px;
             }
             
             .player-section {
@@ -522,6 +536,30 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            
+            .sidebar-header {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .sidebar-header > div:first-child {
+                flex: 1;
+            }
+            
+            .tplay-logo {
+                margin-left: 15px;
+            }
+            
+            .source-select {
+                max-width: 100px;
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+            
+            .quality-select {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -534,25 +572,62 @@
                 border-radius: 8px;
             }
             
+            .quality-select, .source-select {
+                font-size: 10px;
+                padding: 3px 6px;
+                max-width: 80px;
+            }
+            
+            .ios-fullscreen-btn {
+                display: flex;
+            }
+            
             .sidebar-header {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
             }
             
-            .dark-toggle {
-                margin-top: 15px;
-                align-self: flex-end;
+            .section-title {
+                font-size: 16px;
             }
             
-            .quality-select {
-                font-size: 11px;
-                padding: 4px 8px;
+            .tplay-logo {
+                font-size: 14px;
+            }
+            
+            .tplay-logo img {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .channel-count {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) and (min-width: 320px) {
+            .controls {
+                padding: 8px 12px;
+                gap: 6px;
+            }
+            
+            .control-btn, .mute-btn, .nav-btn {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .volume-slider {
+                width: 60px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Header (completely hidden) -->
     <div class="mobile-header">
         <div class="mobile-logo">
             <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
@@ -573,28 +648,30 @@
         </ul>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Player Section -->
         <section class="player-section">
             <div class="video-container">
-                <img id="posterImage" src="https://images.unsplash.com/photo-1603190287605-e6ade32fa852?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="T Play Poster">
+                <img id="posterImage" src="https://i.postimg.cc/Pr9sC68t/T-Play-Cover.jpg" alt="T Play Poster">
                 <div id="loadingOverlay">
                     <div class="loading-spinner"></div>
-                    <div>Loading T Play...</div>
+                    <div>Loading...</div>
                 </div>
-                <video id="liveVideo" playsinline></video>
+                <video id="liveVideo" playsinline webkit-playsinline></video>
                 <div class="controls">
                     <button class="nav-btn" onclick="prevChannel()" title="Previous Channel"><i class="fas fa-chevron-left"></i></button>
                     <button class="control-btn" onclick="togglePlayPause()" id="playPauseBtn" title="Play/Pause"><i class="fas fa-pause"></i></button>
                     <button class="control-btn" onclick="cycleZoom()" title="Change View"><i class="fas fa-expand-alt"></i></button>
                     <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
+                    <button class="control-btn ios-fullscreen-btn" onclick="requestFullscreen()" title="Fullscreen (iOS)"><i class="fas fa-expand"></i></button>
                     <button class="control-btn" onclick="togglePiP()" title="Picture-in-Picture"><i class="fas fa-tv"></i></button>
                     <div class="volume-container">
                         <button class="mute-btn" onclick="toggleMute()" id="muteBtn" title="Mute"><i class="fas fa-volume-up"></i></button>
                         <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
                     </div>
                     <button class="nav-btn" onclick="nextChannel()" title="Next Channel"><i class="fas fa-chevron-right"></i></button>
+                    <select class="source-select" id="sourceMenu">
+                        <option value="0">Main Source</option>
+                    </select>
                     <select class="quality-select" id="qualityMenu">
                         <option value="auto">Auto Quality</option>
                     </select>
@@ -606,14 +683,16 @@
             </div>
         </section>
 
-        <!-- Channels Sidebar -->
         <aside class="channels-sidebar">
             <div class="sidebar-header">
                 <div>
                     <h2 class="section-title">Live Channels</h2>
                     <div class="channel-count" id="channelCount">6 channels</div>
                 </div>
-                <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+                <div class="tplay-logo">
+                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
+                    <span> </span>
+                </div>
             </div>
 
             <div class="search-box">
@@ -623,26 +702,29 @@
 
             <div class="category-bar">
                 <button class="active" onclick="filterCategory('all', event)">All</button>
+                <button onclick="filterCategory('news', event)">News</button>
+                <button onclick="filterCategory('kids', event)">Kids</button>
+                <button onclick="filterCategory('music', event)">Music</button>
+                <button onclick="filterCategory('movie', event)">Movie</button>
                 <button onclick="filterCategory('entertainment', event)">Entertainment</button>
                 <button onclick="filterCategory('sports', event)">Sports</button>
-                <button onclick="filterCategory('news', event)">News</button>
-                <button onclick="filterCategory('movies', event)">Movies</button>
+                <button onclick="filterCategory('religious', event)">Religious</button>
+                <button onclick="filterCategory('educational', event)">Educational</button>
             </div>
 
             <div class="channel-list" id="channelList">
-                <!-- Channels will be loaded here by JavaScript -->
             </div>
         </aside>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        // DOM Elements
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
         const playPauseBtn = document.getElementById("playPauseBtn");
         const volumeSlider = document.getElementById("volumeSlider");
         const qualityMenu = document.getElementById("qualityMenu");
+        const sourceMenu = document.getElementById("sourceMenu");
         const channelList = document.getElementById("channelList");
         const channelSearch = document.getElementById("channelSearch");
         const posterImage = document.getElementById("posterImage");
@@ -652,7 +734,6 @@
         const channelCount = document.getElementById("channelCount");
         const mobileNav = document.getElementById("mobileNav");
 
-        // Variables
         let hls;
         let zoomIndex = 0;
         const zoomModes = ["contain", "cover", "fill"];
@@ -660,62 +741,95 @@
         let currentChannelIndex = 0;
         let isPlaying = false;
         let currentCategory = 'all';
+        let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        let currentBackupIndex = 0;
+        let currentBackupSources = [];
 
-        // Sample channels data with working test streams
         const channels = [
             { 
-                name: "Oxygen Music", 
-                url: "https://cloudfrontnet.vercel.app/tplay/playout/209901/master.m3u8", 
-                img: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209901/Oxygen-Music.jpg?raw=true", 
-                category: "entertainment",
-                description: "Test stream with various formats"
-            },
-            { 
-                name: "Bengali Beats", 
-                url: "https://cloudfrontnet.vercel.app/tplay/playout/209587/master.m3u8", 
-                img: "https://github.com/tplaylive/stream/blob/main/tplay/playout/209587/Bengali-Beats.png?raw=true", 
-                category: "sports",
-                description: "Live sports and events"
-            },
-            { 
-                name: "PTC Gold", 
-                url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6e14bac6d0384e129521a4d005188bfb/index.m3u8", 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2025-07-30/2507301190009.jpg?width=700", 
-                category: "sports",
-                description: "Live sports and events"
-            },
-            { 
-                name: "Sangeet Bangla", 
-                url: "https://cdn-4.pishow.tv/live/1143/master.m3u8", 
-                img: "https://pbs.twimg.com/media/GsKaFVeWsAAJbgi?format=jpg&name=large", 
+                name: "BBC News", 
+                sources: [
+                    { name: "Main Source", url: "https://vs-hls-push-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_news_channel_hd/t=3840/v=pv14/b=5070016/main.m3u8" },
+                    { name: "Backup UK", url: "https://example-backup1.com/bbcnews.m3u8" },
+                    { name: "Backup US", url: "https://example-backup2.com/bbcnews.m3u8" },
+                    { name: "Backup EU", url: "https://example-backup3.com/bbcnews.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
                 category: "news",
-                description: "Test stream with Big Buck Bunny"
+                description: "The World Today"
             },
             { 
-                name: "Star Sports 1", 
-                url: "https://live20.bozztv.com/akamaissh101/ssh101/starsports/chunks.m3u8", 
-                img: "https://assets.airtel.in/static-assets/cms/dth/images/channellogo/Star-Sports-1-hd.jpg", 
-                category: "entertainment",
-                description: "Another test stream"
+                name: "Al Jazeera", 
+                sources: [
+                    { name: "Primary Stream", url: "https://live-hls-web-aje.getaj.net/AJE/01.m3u8" },
+                    { name: "Middle East", url: "https://example-backup1.com/aljazeera.m3u8" },
+                    { name: "International", url: "https://example-backup2.com/aljazeera.m3u8" },
+                    { name: "English Feed", url: "https://example-backup3.com/aljazeera.m3u8" }
+                ], 
+                img: "https://landportal.org/sites/default/files/2023-05/Aljazeera-logo-English-1024x768.png", 
+                category: "news",
+                description: "Breaking News, World News and Video from Al Jazeera"
             },
             { 
-                name: "PTV Sports", 
-                url: "https://tvsen5.aynaott.com/PtvSports/index.m3u8", 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFwd0kw63TldwEAYWr6HVcA6LpobsxzDmKeg&s", 
-                category: "movies",
-                description: "Another working test stream"
+                name: "CGTN", 
+                sources: [
+                    { name: "China Source", url: "https://english-livebkali.cgtn.com/live/encgtn.m3u8" },
+                    { name: "Asia Feed", url: "https://example-backup1.com/cgtn.m3u8" },
+                    { name: "Global Stream", url: "https://example-backup2.com/cgtn.m3u8" },
+                    { name: "English Broadcast", url: "https://example-backup3.com/cgtn.m3u8" }
+                ], 
+                img: "https://web-summit-avenger.imgix.net/production/logos/original/c7b51ad526fe3d1f4f299f1d802383268c903106.png?ixlib=rb-3.4.0&auto=format&fit=fill&fill=solid&fill-color=white&w=600&h=600", 
+                category: "news",
+                description: "Breaking News, China News, World News and Video"
+            },
+            { 
+                name: "Disney", 
+                sources: [
+                    { name: "US East", url: "https://web.cwabdtv.eu.org/live/disnepchannel/index.m3u8" },
+                    { name: "US West", url: "https://example-backup1.com/disney.m3u8" },
+                    { name: "Europe", url: "https://example-backup2.com/disney.m3u8" },
+                    { name: "Asia", url: "https://example-backup3.com/disney.m3u8" }
+                ], 
+                img: "https://mir-s3-cdn-cf.behance.net/projects/max_808/2d30ad150601165.Y3JvcCw4OTcsNz02LDQ4NiwxODg.jpg", 
+                category: "kids",
+                description: "Animated and live-action shows, movies and family-friendly content."
+            },
+            { 
+                name: "Disney Junior", 
+                sources: [
+                    { name: "Primary", url: "https://fl6.moveonjoy.com/DISNEY_JR/index.m3u8" },
+                    { name: "Backup 1", url: "https://example-backup1.com/disneyjr.m3u8" },
+                    { name: "Backup 2", url: "https://example-backup2.com/disneyjr.m3u8" },
+                    { name: "Backup 3", url: "https://example-backup3.com/disneyjr.m3u8" }
+                ], 
+                img: "https://images.seeklogo.com/logo-png/61/1/disney-jr-logo-png_seeklogo-617658.png", 
+                category: "kids",
+                description: "Entertainment and educational content for preschoolers and young children."
+            },
+            { 
+                name: "Disney XD", 
+                sources: [
+                    { name: "Main Stream", url: "https://fl5.moveonjoy.com/DISNEY_XD/index.m3u8" },
+                    { name: "Alternative 1", url: "https://example-backup1.com/disneyxd.m3u8" },
+                    { name: "Alternative 2", url: "https://example-backup2.com/disneyxd.m3u8" },
+                    { name: "Alternative 3", url: "https://example-backup3.com/disneyxd.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUoDCQJ1KLfTGgQQZvyQkAlWE8qr34Ly1rNA&s", 
+                category: "kids",
+                description: "Animated action, adventure and comedy content."
             }
         ];
 
-        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             loadChannels();
             setupEventListeners();
             
-            // Update channel count
             channelCount.textContent = `${channels.length} channels`;
             
-            // Play the first channel by default
+            document.querySelectorAll('.ios-fullscreen-btn').forEach(btn => {
+                btn.style.display = isIOS ? 'flex' : 'none';
+            });
+            
             if (channels.length > 0) {
                 setTimeout(() => {
                     switchChannel(0);
@@ -723,16 +837,41 @@
             }
         });
 
-        // Set up event listeners
         function setupEventListeners() {
-            // Search functionality
-            channelSearch.addEventListener('input', () => {
-                const searchTerm = channelSearch.value.toLowerCase();
-                filterChannels(searchTerm, currentCategory);
+            video.addEventListener('play', function() {
+                isPlaying = true;
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                posterImage.style.display = 'none';
+                loadingOverlay.style.display = 'none';
+                errorMessage.style.display = 'none';
             });
 
-            // Volume control
-            volumeSlider.addEventListener('input', () => {
+            video.addEventListener('pause', function() {
+                isPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+
+            video.addEventListener('waiting', function() {
+                loadingOverlay.style.display = 'flex';
+            });
+
+            video.addEventListener('playing', function() {
+                loadingOverlay.style.display = 'none';
+            });
+
+            video.addEventListener('error', function() {
+                loadingOverlay.style.display = 'none';
+                errorMessage.style.display = 'block';
+                errorText.textContent = 'Error loading video. Trying backup source...';
+                
+                if (hls) {
+                    hls.destroy();
+                }
+                
+                tryNextBackup();
+            });
+
+            volumeSlider.addEventListener('input', function() {
                 video.volume = volumeSlider.value;
                 if (video.volume == 0) {
                     muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -741,116 +880,68 @@
                 }
             });
 
-            // Network status listeners
-            window.addEventListener('online', () => {
-                console.log("Back online, resuming stream...");
-                if (currentChannelUrl) {
-                    loadingOverlay.style.display = "flex";
-                    loadingOverlay.innerHTML = '<div class="loading-spinner"></div><div>Reconnecting...</div>';
-                    loadStream(currentChannelUrl);
-                }
+            sourceMenu.addEventListener('change', function() {
+                changeBackupSource(this.value);
             });
 
-            window.addEventListener('offline', () => {
-                console.log("Offline, stream paused");
-                loadingOverlay.style.display = "flex";
-                loadingOverlay.innerHTML = '<i class="fas fa-wifi-slash"></i> Network disconnected';
-                if (hls) hls.stopLoad();
-                video.pause();
-                updatePlayPauseButton();
+            channelSearch.addEventListener('input', function() {
+                filterChannels();
             });
-        }
 
-        // Load stream function
-        function loadStream(url) {
-            hideError();
-            
-            // Destroy previous HLS instance if exists
-            if (hls) {
-                hls.destroy();
-                hls = null;
-            }
-
-            // Reset video element
-            video.pause();
-            video.removeAttribute('src');
-            video.load();
-            
-            // Check if browser supports native HLS playback
-            if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // Native HLS support (Safari)
-                video.src = url;
-                video.addEventListener('loadedmetadata', function() {
-                    loadingOverlay.style.display = "none";
-                    video.play().catch(e => {
-                        showError('Autoplay blocked. Please click play to start.');
-                    });
-                    isPlaying = true;
-                    updatePlayPauseButton();
-                });
-                video.addEventListener('error', function() {
-                    showError('Failed to load stream. Trying HLS.js fallback...');
-                    // Try with HLS.js as fallback
-                    initHls(url);
-                });
-            } else if (Hls.isSupported()) {
-                // HLS.js for other browsers
-                initHls(url);
-            } else {
-                showError('Your browser does not support HLS playback.');
-            }
-        }
-
-        // Initialize HLS.js
-        function initHls(url) {
-            hls = new Hls({
-                debug: false,
-                enableWorker: true,
-                lowLatencyMode: true,
-                backBufferLength: 90
-            });
-            
-            hls.loadSource(url);
-            hls.attachMedia(video);
-            
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                loadingOverlay.style.display = "none";
-                video.play().catch(e => {
-                    showError('Autoplay blocked. Please click play to start.');
-                });
-                isPlaying = true;
-                updatePlayPauseButton();
-                updateQualityMenu();
-            });
-            
-            hls.on(Hls.Events.ERROR, function(event, data) {
-                console.error('HLS error:', data);
-                if (data.fatal) {
-                    switch(data.type) {
-                        case Hls.ErrorTypes.NETWORK_ERROR:
-                            showError('Network error. Trying to recover...');
-                            hls.startLoad();
-                            break;
-                        case Hls.ErrorTypes.MEDIA_ERROR:
-                            showError('Media error. Trying to recover...');
-                            hls.recoverMediaError();
-                            break;
-                        default:
-                            showError('Unrecoverable error. Please try another channel.');
-                            hls.destroy();
-                            break;
-                    }
+            document.addEventListener('keydown', function(e) {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    togglePlayPause();
+                } else if (e.code === 'ArrowRight') {
+                    nextChannel();
+                } else if (e.code === 'ArrowLeft') {
+                    prevChannel();
+                } else if (e.code === 'ArrowUp') {
+                    video.volume = Math.min(video.volume + 0.1, 1);
+                    volumeSlider.value = video.volume;
+                } else if (e.code === 'ArrowDown') {
+                    video.volume = Math.max(video.volume - 0.1, 0);
+                    volumeSlider.value = video.volume;
+                } else if (e.code === 'KeyM') {
+                    toggleMute();
+                } else if (e.code === 'KeyF') {
+                    toggleFullscreen();
                 }
             });
         }
 
-        // Switch channel function
+        function loadChannels() {
+            channelList.innerHTML = '';
+            const filteredChannels = channels.filter(channel => 
+                currentCategory === 'all' || channel.category === currentCategory
+            );
+            
+            filteredChannels.forEach((channel, index) => {
+                const channelItem = document.createElement('div');
+                channelItem.className = 'channel-item';
+                channelItem.innerHTML = `
+                    <div class="channel-item-img">
+                        <img src="${channel.img}" alt="${channel.name}">
+                    </div>
+                    <div class="channel-item-info">
+                        <div class="channel-item-name">${channel.name}</div>
+                        <div class="channel-item-category">${channel.description}</div>
+                    </div>
+                    <span class="channel-item-live">LIVE</span>
+                `;
+                channelItem.addEventListener('click', () => {
+                    switchChannel(index);
+                });
+                channelList.appendChild(channelItem);
+            });
+        }
+
         function switchChannel(index) {
-            const channel = channels[index];
             currentChannelIndex = index;
-            currentChannelUrl = channel.url;
+            const channel = channels[index];
+            currentBackupSources = channel.sources;
+            currentBackupIndex = 0;
             
-            // Highlight active channel in sidebar
             document.querySelectorAll('.channel-item').forEach((item, i) => {
                 if (i === index) {
                     item.classList.add('active');
@@ -859,119 +950,128 @@
                 }
             });
             
-            // Load the stream
-            posterImage.style.display = "none";
-            loadingOverlay.style.display = "flex";
-            loadingOverlay.innerHTML = '<div class="loading-spinner"></div><div>Loading channel...</div>';
-            
-            loadStream(channel.url);
-
-            video.muted = false;
-            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            volumeSlider.value = 1;
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        // Show error message
-        function showError(message) {
-            errorText.textContent = message;
-            errorMessage.style.display = 'block';
-            loadingOverlay.style.display = "none";
-        }
-
-        // Hide error message
-        function hideError() {
+            loadingOverlay.style.display = 'flex';
             errorMessage.style.display = 'none';
-        }
-
-        // Navigate to next channel
-        function nextChannel() {
-            let nextIndex;
-            if (currentCategory === 'all') {
-                nextIndex = (currentChannelIndex + 1) % channels.length;
-            } else {
-                const filteredChannels = channels.filter(channel => 
-                    currentCategory === 'all' || channel.category === currentCategory
-                );
-                const currentFilteredIndex = filteredChannels.findIndex(
-                    channel => channel.name === channels[currentChannelIndex].name
-                );
-                nextIndex = channels.findIndex(
-                    channel => channel.name === filteredChannels[(currentFilteredIndex + 1) % filteredChannels.length].name
-                );
-            }
-            switchChannel(nextIndex);
-        }
-
-        // Navigate to previous channel
-        function prevChannel() {
-            let prevIndex;
-            if (currentCategory === 'all') {
-                prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
-            } else {
-                const filteredChannels = channels.filter(channel => 
-                    currentCategory === 'all' || channel.category === currentCategory
-                );
-                const currentFilteredIndex = filteredChannels.findIndex(
-                    channel => channel.name === channels[currentChannelIndex].name
-                );
-                prevIndex = channels.findIndex(
-                    channel => channel.name === filteredChannels[(currentFilteredIndex - 1 + filteredChannels.length) % filteredChannels.length].name
-                );
-            }
-            switchChannel(prevIndex);
-        }
-
-        // Update quality menu
-        function updateQualityMenu() {
-            if (!hls) return;
+            posterImage.style.display = 'block';
             
-            qualityMenu.innerHTML = "";
-            const levels = hls.levels;
+            updateSourceMenu(channel.sources);
+            loadVideoSource(channel.sources[0].url);
+        }
+
+        function updateSourceMenu(sources) {
+            sourceMenu.innerHTML = '';
+            sources.forEach((source, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = source.name;
+                option.selected = index === 0;
+                sourceMenu.appendChild(option);
+            });
             
-            if (levels && levels.length > 0) {
-                levels.forEach((level, i) => {
-                    const opt = document.createElement("option");
-                    opt.value = i;
-                    opt.text = `${level.height}p`;
-                    qualityMenu.appendChild(opt);
+            sourceMenu.style.display = sources.length > 1 ? 'block' : 'none';
+        }
+
+        function changeBackupSource(index) {
+            currentBackupIndex = parseInt(index);
+            const source = currentBackupSources[currentBackupIndex];
+            loadVideoSource(source.url);
+        }
+
+        function tryNextBackup() {
+            if (currentBackupIndex < currentBackupSources.length - 1) {
+                currentBackupIndex++;
+                const source = currentBackupSources[currentBackupIndex];
+                sourceMenu.value = currentBackupIndex;
+                loadVideoSource(source.url);
+            } else {
+                errorText.textContent = 'All backup sources failed. Please try another channel.';
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function loadVideoSource(url) {
+            if (hls) {
+                hls.destroy();
+            }
+            
+            if (Hls.isSupported()) {
+                hls = new Hls({
+                    debug: false,
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    backBufferLength: 90
                 });
                 
-                const auto = document.createElement("option");
-                auto.value = "auto";
-                auto.text = "Auto Quality";
-                qualityMenu.appendChild(auto);
-                qualityMenu.value = "auto";
-
-                qualityMenu.onchange = () => {
-                    hls.currentLevel = qualityMenu.value === "auto" ? -1 : parseInt(qualityMenu.value);
-                };
+                hls.loadSource(url);
+                hls.attachMedia(video);
+                
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play().catch(e => {
+                        console.error('Auto-play failed:', e);
+                        loadingOverlay.style.display = 'none';
+                    });
+                    
+                    if (hls.levels.length > 1) {
+                        qualityMenu.innerHTML = '<option value="auto">Auto Quality</option>';
+                        hls.levels.forEach((level, index) => {
+                            const option = document.createElement('option');
+                            option.value = index;
+                            option.textContent = level.height + 'p';
+                            qualityMenu.appendChild(option);
+                        });
+                        qualityMenu.style.display = 'block';
+                    } else {
+                        qualityMenu.style.display = 'none';
+                    }
+                });
+                
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    if (data.fatal) {
+                        switch (data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                console.error('Network error, trying next backup source');
+                                tryNextBackup();
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                console.error('Media error, trying to recover');
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                console.error('Unrecoverable error');
+                                tryNextBackup();
+                                break;
+                        }
+                    }
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = url;
+                video.addEventListener('loadedmetadata', function() {
+                    video.play().catch(e => {
+                        console.error('Auto-play failed:', e);
+                        loadingOverlay.style.display = 'none';
+                    });
+                });
             }
+            
+            currentChannelUrl = url;
         }
 
-        // Control functions
         function togglePlayPause() {
             if (video.paused) {
-                video.play().then(() => {
-                    isPlaying = true;
-                    updatePlayPauseButton();
-                }).catch(e => {
-                    console.error("Play failed:", e);
-                });
+                video.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
                 video.pause();
-                isPlaying = false;
-                updatePlayPauseButton();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
 
-        function updatePlayPauseButton() {
-            if (video.paused || !isPlaying) {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                playPauseBtn.title = "Play";
+        function toggleMute() {
+            video.muted = !video.muted;
+            if (video.muted) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
             } else {
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                playPauseBtn.title = "Pause";
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             }
         }
 
@@ -982,107 +1082,73 @@
 
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                video.requestFullscreen().catch(err => {
-                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
-                });
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) {
+                    video.msRequestFullscreen();
+                }
             } else {
-                document.exitFullscreen();
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        function requestFullscreen() {
+            if (video.webkitEnterFullscreen) {
+                video.webkitEnterFullscreen();
             }
         }
 
         function togglePiP() {
             if (document.pictureInPictureElement) {
-                document.exitPictureInPicture().catch(err => {
-                    console.error(`Error exiting Picture-in-Picture: ${err.message}`);
-                });
+                document.exitPictureInPicture();
             } else if (document.pictureInPictureEnabled) {
-                video.requestPictureInPicture().catch(err => {
-                    console.error(`Error entering Picture-in-Picture: ${err.message}`);
-                });
+                video.requestPictureInPicture();
             }
         }
 
-        function toggleMute() {
-            video.muted = !video.muted;
-            muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
-            if (video.muted) {
-                volumeSlider.value = 0;
-            } else {
-                volumeSlider.value = video.volume;
-            }
+        function nextChannel() {
+            const nextIndex = (currentChannelIndex + 1) % channels.length;
+            switchChannel(nextIndex);
         }
 
-        // Filter channels by category
+        function prevChannel() {
+            const prevIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
+            switchChannel(prevIndex);
+        }
+
         function filterCategory(category, event) {
+            currentCategory = category;
             document.querySelectorAll('.category-bar button').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            
-            currentCategory = category;
-            filterChannels(channelSearch.value, category);
+            loadChannels();
         }
 
-        // Filter channels by search term and category
-        function filterChannels(searchTerm = "", category = "all") {
-            const filteredChannels = channels.filter(channel => {
-                const matchesSearch = channel.name.toLowerCase().includes(searchTerm) || 
-                                    channel.description.toLowerCase().includes(searchTerm);
-                const matchesCategory = category === "all" || channel.category === category;
-                return matchesSearch && matchesCategory;
-            });
-            
-            renderChannels(filteredChannels);
-            
-            // Update channel count
-            channelCount.textContent = `${filteredChannels.length} channels`;
-        }
-
-        // Render channels to the sidebar
-        function renderChannels(channelsToRender) {
-            channelList.innerHTML = "";
-            
-            channelsToRender.forEach((channel, index) => {
-                const originalIndex = channels.findIndex(c => c.name === channel.name);
-                const channelItem = document.createElement("div");
-                channelItem.className = "channel-item";
-                if (originalIndex === currentChannelIndex) {
-                    channelItem.classList.add("active");
+        function filterChannels() {
+            const searchTerm = channelSearch.value.toLowerCase();
+            document.querySelectorAll('.channel-item').forEach((item, index) => {
+                const channelName = channels[index].name.toLowerCase();
+                const channelDesc = channels[index].description.toLowerCase();
+                
+                if (channelName.includes(searchTerm) || channelDesc.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
                 }
-                
-                channelItem.innerHTML = `
-                    <div class="channel-item-img">
-                        <img src="${channel.img}" alt="${channel.name}" onerror="this.src='https://images.unsplash.com/photo-1598890779135-5fdffc13d241?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'">
-                    </div>
-                    <div class="channel-item-info">
-                        <div class="channel-item-name">${channel.name} <span class="channel-item-live">LIVE</span></div>
-                        <div class="channel-item-category">${channel.description}</div>
-                    </div>
-                `;
-                
-                channelItem.addEventListener("click", () => {
-                    const channelIndex = channels.findIndex(c => c.name === channel.name);
-                    switchChannel(channelIndex);
-                });
-                
-                channelList.appendChild(channelItem);
             });
         }
 
-        // Load all channels initially
-        function loadChannels() {
-            renderChannels(channels);
-        }
-
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle("light-mode");
-            const darkToggle = document.querySelector('.dark-toggle');
-            if (document.body.classList.contains("light-mode")) {
-                darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
+        function toggleMobileMenu() {
+            mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>
