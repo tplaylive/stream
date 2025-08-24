@@ -36,11 +36,75 @@
         }
 
         .mobile-header {
-            display: none !important;
+            display: none;
+            padding: 15px;
+            background: var(--light-bg);
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-logo img {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+        }
+
+        .mobile-logo h1 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .mobile-logo span {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
         }
 
         .mobile-nav {
-            display: none !important;
+            display: none;
+            background: var(--light-bg);
+            padding: 15px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-nav a.active, .mobile-nav a:hover {
+            background: var(--primary-gradient);
         }
 
         .main-content {
@@ -525,6 +589,10 @@
         }
 
         @media (max-width: 768px) {
+            .mobile-header {
+                display: flex;
+            }
+            
             .tplay-logo {
                 font-size: 16px;
             }
@@ -637,10 +705,6 @@
             
             .control-btn:not(.ios-fullscreen-btn) {
                 display: flex;
-            }
-            
-            .channel-item-sources {
-                display: none;
             }
         }
 
@@ -1216,11 +1280,12 @@
 
         function toggleFullscreen() {
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                const videoContainer = document.querySelector('.video-container');
-                if (videoContainer.requestFullscreen) {
-                    videoContainer.requestFullscreen();
-                } else if (videoContainer.webkitRequestFullscreen) {
-                    videoContainer.webkitRequestFullscreen();
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
                 }
                 document.querySelector('.control-btn i.fa-expand').className = 'fas fa-compress';
             } else {
@@ -1234,11 +1299,10 @@
         }
 
         function requestFullscreen() {
-            const videoContainer = document.querySelector('.video-container');
-            if (videoContainer.webkitEnterFullscreen) {
-                videoContainer.webkitEnterFullscreen();
-            } else if (videoContainer.requestFullscreen) {
-                videoContainer.requestFullscreen();
+            if (video.webkitEnterFullscreen) {
+                video.webkitEnterFullscreen();
+            } else if (video.requestFullscreen) {
+                video.requestFullscreen();
             }
         }
 
