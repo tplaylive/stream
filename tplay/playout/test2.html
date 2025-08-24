@@ -37,74 +37,10 @@
 
         .mobile-header {
             display: none;
-            padding: 15px;
-            background: var(--light-bg);
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .mobile-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .mobile-logo img {
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-        }
-
-        .mobile-logo h1 {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .mobile-logo span {
-            color: var(--primary-color);
-        }
-
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
         }
 
         .mobile-nav {
             display: none;
-            background: var(--light-bg);
-            padding: 15px;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-
-        .mobile-nav ul {
-            list-style: none;
-        }
-
-        .mobile-nav li {
-            margin-bottom: 10px;
-        }
-
-        .mobile-nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .mobile-nav a.active, .mobile-nav a:hover {
-            background: var(--primary-gradient);
         }
 
         .main-content {
@@ -589,10 +525,6 @@
         }
 
         @media (max-width: 768px) {
-            .mobile-header {
-                display: flex;
-            }
-            
             .tplay-logo {
                 font-size: 16px;
             }
@@ -732,23 +664,11 @@
 </head>
 <body>
     <div class="mobile-header">
-        <div class="mobile-logo">
-            <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
-            <h1>T <span>Play</span></h1>
-        </div>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- This is now hidden as requested -->
     </div>
 
     <div class="mobile-nav" id="mobileNav">
-        <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">Live TV</a></li>
-            <li><a href="#">Movies</a></li>
-            <li><a href="#">Sports</a></li>
-            <li><a href="#">Kids</a></li>
-        </ul>
+        <!-- This is now hidden as requested -->
     </div>
 
     <div class="main-content">
@@ -1327,10 +1247,6 @@
         function nextChannel() {
             let newIndex = (currentChannelIndex + 1) % channels.length;
             loadChannel(newIndex);
-        }
-
-        function toggleMobileMenu() {
-            mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
         }
 
         // Handle source change
