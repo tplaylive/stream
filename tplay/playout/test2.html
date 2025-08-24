@@ -465,6 +465,11 @@
             
             .player-section {
                 max-width: 100%;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: var(--dark-bg);
+                padding-bottom: 10px;
             }
             
             .channels-sidebar {
@@ -560,6 +565,16 @@
                 font-size: 11px;
                 padding: 4px 8px;
             }
+            
+            /* Hide the regular fullscreen button on iOS */
+            .ios-fullscreen-btn {
+                display: none !important;
+            }
+            
+            /* Show only the iOS-specific fullscreen button on iOS */
+            .control-btn:not(.ios-fullscreen-btn) {
+                display: flex;
+            }
         }
 
         @media (max-width: 576px) {
@@ -576,10 +591,6 @@
                 font-size: 10px;
                 padding: 3px 6px;
                 max-width: 80px;
-            }
-            
-            .ios-fullscreen-btn {
-                display: flex;
             }
             
             .sidebar-header {
@@ -602,6 +613,15 @@
             
             .channel-count {
                 font-size: 12px;
+            }
+            
+            /* On iOS, hide regular fullscreen button and show iOS-specific one */
+            .ios-fullscreen-btn {
+                display: none !important;
+            }
+            
+            .control-btn:not(.ios-fullscreen-btn) {
+                display: flex;
             }
         }
 
@@ -886,8 +906,9 @@
             
             channelCount.textContent = `${channels.length} channels`;
             
+            // Hide the iOS-specific fullscreen button on all devices
             document.querySelectorAll('.ios-fullscreen-btn').forEach(btn => {
-                btn.style.display = isIOS ? 'flex' : 'none';
+                btn.style.display = 'none';
             });
             
             if (channels.length > 0) {
@@ -919,211 +940,202 @@
                 loadingOverlay.style.display = 'none';
             });
 
-            video.addEventListener('error', function() {
-                loadingOverlay.style.display = 'none';
-                errorMessage.style.display = 'block';
-                errorText.textContent = 'Error loading video. Trying backup source...';
-                
-                if (hls) {
-                    hls.destroy();
+            video.addEventListener('volumechange', function() {
+                if (video.muted) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    volumeSlider.value = 0;
+                } else {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    volumeSlider.value = video.volume;
                 }
-                
-                tryNextBackup();
             });
 
             volumeSlider.addEventListener('input', function() {
                 video.volume = volumeSlider.value;
-                if (video.volume == 0) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                if (video.volume > 0 && video.muted) {
+                    video.muted = false;
+                } else if (video.volume === 0 && !video.muted) {
+                    video.muted = true;
                 }
-            });
-
-            sourceMenu.addEventListener('change', function() {
-                changeBackupSource(this.value);
             });
 
             channelSearch.addEventListener('input', function() {
                 filterChannels();
             });
 
-            document.addEventListener('keydown', function(e) {
-                if (e.code === 'Space') {
-                    e.preventDefault();
-                    togglePlayPause();
-                } else if (e.code === 'ArrowRight') {
-                    nextChannel();
-                } else if (e.code === 'ArrowLeft') {
-                    prevChannel();
-                } else if (e.code === 'ArrowUp') {
-                    video.volume = Math.min(video.volume + 0.1, 1);
-                    volumeSlider.value = video.volume;
-                } else if (e.code === 'ArrowDown') {
-                    video.volume = Math.max(video.volume - 0.1, 0);
-                    volumeSlider.value = video.volume;
-                } else if (e.code === 'KeyM') {
-                    toggleMute();
-                } else if (e.code === 'KeyF') {
-                    toggleFullscreen();
-                }
-            });
+            // Listen for fullscreen changes to update button
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        }
+
+        function handleFullscreenChange() {
+            const fullscreenBtn = document.querySelector('.control-btn:not(.ios-fullscreen-btn)');
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                fullscreenBtn.setAttribute('title', 'Exit Fullscreen');
+            } else {
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                fullscreenBtn.setAttribute('title', 'Fullscreen');
+            }
         }
 
         function loadChannels() {
             channelList.innerHTML = '';
-            channelMap.clear();
+            filteredChannels = [];
             
-            filteredChannels = channels.filter(channel => 
-                currentCategory === 'all' || channel.category === currentCategory
-            );
-            
-            filteredChannels.forEach((channel, filteredIndex) => {
-                // Find the original index of this channel
-                const originalIndex = channels.findIndex(c => c.name === channel.name);
-                
-                const channelItem = document.createElement('div');
-                channelItem.className = 'channel-item';
-                channelItem.innerHTML = `
-                    <div class="channel-item-img">
-                        <img src="${channel.img}" alt="${channel.name}">
-                    </div>
-                    <div class="channel-item-info">
-                        <div class="channel-item-name">${channel.name}</div>
-                        <div class="channel-item-category">${channel.description}</div>
-                    </div>
-                    <span class="channel-item-live">LIVE</span>
-                `;
-                
-                // Store the mapping between DOM element and original index
-                channelMap.set(channelItem, originalIndex);
-                
-                channelItem.addEventListener('click', () => {
-                    // Get the original index from the map
-                    const originalIndex = channelMap.get(channelItem);
-                    switchChannel(originalIndex);
-                });
-                
-                channelList.appendChild(channelItem);
+            channels.forEach((channel, index) => {
+                if (currentCategory === 'all' || channel.category === currentCategory) {
+                    const channelElement = createChannelElement(channel, index);
+                    channelList.appendChild(channelElement);
+                    filteredChannels.push(index);
+                    channelMap.set(channelElement, index);
+                }
             });
+            
+            updateChannelCount();
+        }
+
+        function createChannelElement(channel, index) {
+            const channelItem = document.createElement('div');
+            channelItem.className = 'channel-item';
+            channelItem.setAttribute('data-category', channel.category);
+            channelItem.innerHTML = `
+                <div class="channel-item-img">
+                    <img src="${channel.img}" alt="${channel.name}">
+                </div>
+                <div class="channel-item-info">
+                    <div class="channel-item-name">${channel.name} <span class="channel-item-live">LIVE</span></div>
+                    <div class="channel-item-category">${channel.description}</div>
+                </div>
+            `;
+            
+            channelItem.addEventListener('click', () => {
+                switchChannel(index);
+            });
+            
+            return channelItem;
         }
 
         function switchChannel(index) {
             currentChannelIndex = index;
             const channel = channels[index];
-            currentBackupSources = channel.sources;
-            currentBackupIndex = 0;
             
-            // Update active state for all channel items
-            document.querySelectorAll('.channel-item').forEach((item) => {
-                const originalIndex = channelMap.get(item);
-                if (originalIndex === index) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
+            // Update active channel in the list
+            document.querySelectorAll('.channel-item').forEach(item => {
+                item.classList.remove('active');
             });
             
-            loadingOverlay.style.display = 'flex';
-            errorMessage.style.display = 'none';
-            posterImage.style.display = 'block';
+            // Find the correct channel element in the filtered list
+            for (let [element, originalIndex] of channelMap) {
+                if (originalIndex === index) {
+                    element.classList.add('active');
+                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    break;
+                }
+            }
             
-            updateSourceMenu(channel.sources);
-            loadVideoSource(channel.sources[0].url);
-        }
-
-        function updateSourceMenu(sources) {
+            // Update source menu
             sourceMenu.innerHTML = '';
-            sources.forEach((source, index) => {
+            channel.sources.forEach((source, i) => {
                 const option = document.createElement('option');
-                option.value = index;
+                option.value = i;
                 option.textContent = source.name;
-                option.selected = index === 0;
                 sourceMenu.appendChild(option);
             });
             
-            sourceMenu.style.display = sources.length > 1 ? 'block' : 'none';
-        }
-
-        function changeBackupSource(index) {
-            currentBackupIndex = parseInt(index);
-            const source = currentBackupSources[currentBackupIndex];
-            loadVideoSource(source.url);
-        }
-
-        function tryNextBackup() {
-            currentBackupIndex++;
+            // Reset backup index
+            currentBackupIndex = 0;
+            currentBackupSources = channel.sources;
             
-            if (currentBackupIndex < currentBackupSources.length) {
-                const source = currentBackupSources[currentBackupIndex];
-                sourceMenu.value = currentBackupIndex;
-                loadVideoSource(source.url);
-            } else {
-                errorText.textContent = 'All sources failed. Please try another channel.';
-            }
+            // Load the channel
+            loadChannelSource(0);
         }
 
-        function loadVideoSource(url) {
+        function loadChannelSource(sourceIndex) {
+            if (!currentBackupSources || sourceIndex >= currentBackupSources.length) {
+                showError('No available sources for this channel');
+                return;
+            }
+            
+            const source = currentBackupSources[sourceIndex];
+            currentChannelUrl = source.url;
+            
+            // Show loading
+            loadingOverlay.style.display = 'flex';
+            errorMessage.style.display = 'none';
+            
+            // Destroy previous Hls instance if exists
             if (hls) {
                 hls.destroy();
             }
             
             if (Hls.isSupported()) {
                 hls = new Hls({
-                    maxBufferLength: 30,
-                    maxMaxBufferLength: 60,
+                    debug: false,
                     enableWorker: true,
                     lowLatencyMode: true,
                     backBufferLength: 90
                 });
                 
-                hls.loadSource(url);
+                hls.loadSource(source.url);
                 hls.attachMedia(video);
                 
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    video.play();
+                    video.play().catch(e => {
+                        console.error('Auto-play failed:', e);
+                    });
+                    
+                    // Populate quality menu
+                    qualityMenu.innerHTML = '<option value="auto">Auto Quality</option>';
+                    if (hls.levels && hls.levels.length > 1) {
+                        hls.levels.forEach((level, index) => {
+                            const option = document.createElement('option');
+                            option.value = index;
+                            option.textContent = `${level.height}p`;
+                            qualityMenu.appendChild(option);
+                        });
+                    }
                 });
                 
                 hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error('HLS error:', data);
                     if (data.fatal) {
                         switch (data.type) {
                             case Hls.ErrorTypes.NETWORK_ERROR:
-                                tryNextBackup();
+                                console.log('Trying next source...');
+                                loadChannelSource(sourceIndex + 1);
                                 break;
                             case Hls.ErrorTypes.MEDIA_ERROR:
+                                console.log('Media error, trying to recover...');
                                 hls.recoverMediaError();
                                 break;
                             default:
-                                tryNextBackup();
+                                showError('Failed to load channel');
                                 break;
                         }
                     }
                 });
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = url;
-                video.addEventListener('loadedmetadata', function() {
-                    video.play();
+                // For Safari
+                video.src = source.url;
+                video.play().catch(e => {
+                    console.error('Auto-play failed:', e);
                 });
+            } else {
+                showError('Your browser does not support HLS playback');
             }
         }
 
         function togglePlayPause() {
             if (video.paused) {
                 video.play();
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
                 video.pause();
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
 
         function toggleMute() {
             video.muted = !video.muted;
-            if (video.muted) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            }
         }
 
         function cycleZoom() {
@@ -1132,30 +1144,29 @@
         }
 
         function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) {
-            video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) {
-            video.msRequestFullscreen();
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
         }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-    }
-}
 
+        // iOS-specific fullscreen request
         function requestFullscreen() {
-    if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-    }
-}
+            if (video.webkitEnterFullscreen) {
+                video.webkitEnterFullscreen();
+            }
+        }
 
         function togglePiP() {
             if (document.pictureInPictureElement) {
@@ -1166,31 +1177,19 @@
         }
 
         function prevChannel() {
-            let newIndex = currentChannelIndex - 1;
-            if (newIndex < 0) {
-                newIndex = channels.length - 1;
-            }
+            let newIndex = (currentChannelIndex - 1 + channels.length) % channels.length;
             switchChannel(newIndex);
         }
 
         function nextChannel() {
-            let newIndex = currentChannelIndex + 1;
-            if (newIndex >= channels.length) {
-                newIndex = 0;
-            }
+            let newIndex = (currentChannelIndex + 1) % channels.length;
             switchChannel(newIndex);
         }
 
-        function filterCategory(category, event) {
-            currentCategory = category;
-            
-            document.querySelectorAll('.category-bar button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            event.target.classList.add('active');
-            
-            loadChannels();
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.style.display = 'block';
+            loadingOverlay.style.display = 'none';
         }
 
         function filterChannels() {
@@ -1198,18 +1197,105 @@
             
             document.querySelectorAll('.channel-item').forEach(item => {
                 const channelName = item.querySelector('.channel-item-name').textContent.toLowerCase();
-                const channelDesc = item.querySelector('.channel-item-category').textContent.toLowerCase();
+                const channelCategory = item.getAttribute('data-category');
                 
-                if (channelName.includes(searchTerm) || channelDesc.includes(searchTerm)) {
+                if ((channelName.includes(searchTerm) || searchTerm === '') && 
+                    (currentCategory === 'all' || channelCategory === currentCategory)) {
                     item.style.display = 'flex';
                 } else {
                     item.style.display = 'none';
                 }
             });
+            
+            updateChannelCount();
+        }
+
+        function filterCategory(category, event) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.category-bar button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                document.querySelector(`.category-bar button:nth-child(${['all', 'news', 'kids', 'music', 'movie', 'entertainment', 'sports', 'educational', 'religious'].indexOf(category) + 1})`).classList.add('active');
+            }
+            
+            loadChannels();
+        }
+
+        function updateChannelCount() {
+            const visibleChannels = document.querySelectorAll('.channel-item').length;
+            channelCount.textContent = `${visibleChannels} channels`;
         }
 
         function toggleMobileMenu() {
-            mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Quality change handler
+        qualityMenu.addEventListener('change', function() {
+            if (hls && this.value !== 'auto') {
+                hls.currentLevel = parseInt(this.value);
+            } else if (hls) {
+                hls.currentLevel = -1; // auto
+            }
+        });
+
+        // Source change handler
+        sourceMenu.addEventListener('change', function() {
+            loadChannelSource(parseInt(this.value));
+        });
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName.toLowerCase() === 'input') return;
+            
+            switch(e.key) {
+                case ' ':
+                    togglePlayPause();
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                    video.currentTime -= 10;
+                    break;
+                case 'ArrowRight':
+                    video.currentTime += 10;
+                    break;
+                case 'ArrowUp':
+                    video.volume = Math.min(video.volume + 0.1, 1);
+                    break;
+                case 'ArrowDown':
+                    video.volume = Math.max(video.volume - 0.1, 0);
+                    break;
+                case 'f':
+                    toggleFullscreen();
+                    break;
+                case 'm':
+                    toggleMute();
+                    break;
+            }
+        });
+
+        // Handle iOS-specific behaviors
+        if (isIOS) {
+            // iOS-specific adjustments
+            video.setAttribute('playsinline', 'true');
+            video.setAttribute('webkit-playsinline', 'true');
+            
+            // Hide the regular fullscreen button and show iOS-specific one
+            document.querySelectorAll('.control-btn:not(.ios-fullscreen-btn)').forEach(btn => {
+                if (btn.querySelector('.fa-expand')) {
+                    btn.style.display = 'none';
+                }
+            });
+            
+            document.querySelectorAll('.ios-fullscreen-btn').forEach(btn => {
+                btn.style.display = 'flex';
+            });
         }
     </script>
 </body>
