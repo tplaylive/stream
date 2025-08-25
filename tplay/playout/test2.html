@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T Play - Live TV Streaming</title>
-    <link rel="icon" href="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" type="image/png">
+    <title>T Play</title>
+    <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -459,7 +459,6 @@
             border-radius: 6px;
         }
 
-        /* Error message */
         .error-message {
             background: rgba(229, 9, 20, 0.2);
             border: 1px solid var(--primary-color);
@@ -581,12 +580,10 @@
                 padding: 4px 8px;
             }
             
-            /* Show the iOS-specific fullscreen button on iOS */
             .ios-fullscreen-btn {
                 display: none !important;
             }
             
-            /* Hide regular fullscreen button on iOS */
             .control-btn:not(.ios-fullscreen-btn) {
                 display: flex;
             }
@@ -630,7 +627,6 @@
                 font-size: 12px;
             }
             
-            /* On iOS, hide regular fullscreen button and show iOS-specific one */
             .ios-fullscreen-btn {
                 display: none !important;
             }
@@ -713,7 +709,7 @@
                     <div class="channel-count" id="channelCount">6 channels</div>
                 </div>
                 <div class="tplay-logo">
-                    <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png?raw=true" alt="T Play Logo">
+                    <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
                     <span> </span>
                 </div>
             </div>
@@ -768,7 +764,7 @@
         let currentBackupIndex = 0;
         let currentBackupSources = [];
         let filteredChannels = [];
-        let channelMap = new Map(); // Maps DOM elements to original channel indices
+        let channelMap = new Map();
 
         const channels = [
             { 
@@ -960,7 +956,6 @@
             
             channelCount.textContent = `${channels.length} channels`;
             
-            // Handle iOS-specific fullscreen button visibility
             updateIOSFullscreenButton();
             
             if (channels.length > 0) {
@@ -1032,7 +1027,6 @@
         }
 
         function setupEventListeners() {
-            // Volume slider
             volumeSlider.addEventListener('input', () => {
                 video.volume = volumeSlider.value;
                 if (video.volume == 0) {
@@ -1042,7 +1036,6 @@
                 }
             });
 
-            // Search functionality
             channelSearch.addEventListener('input', () => {
                 const searchTerm = channelSearch.value.toLowerCase();
                 const channelItems = document.querySelectorAll('.channel-item');
@@ -1057,7 +1050,6 @@
                 });
             });
 
-            // Video events
             video.addEventListener('play', () => {
                 isPlaying = true;
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1085,7 +1077,6 @@
                 tryNextBackup();
             });
 
-            // Fullscreen change event
             document.addEventListener('fullscreenchange', handleFullscreenChange);
             document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
         }
@@ -1106,7 +1097,6 @@
             currentBackupIndex = 0;
             currentBackupSources = channels[index].sources;
             
-            // Update active channel in list
             document.querySelectorAll('.channel-item').forEach(item => {
                 item.classList.remove('active');
             });
@@ -1119,7 +1109,6 @@
                 }
             }
             
-            // Update source menu
             sourceMenu.innerHTML = '';
             channels[index].sources.forEach((source, i) => {
                 const option = document.createElement('option');
@@ -1128,14 +1117,11 @@
                 sourceMenu.appendChild(option);
             });
             
-            // Reset quality menu
             qualityMenu.innerHTML = '<option value="auto">Auto Quality</option>';
             
-            // Show loading
             loadingOverlay.style.display = 'flex';
             errorMessage.style.display = 'none';
             
-            // Load the video
             loadHlsStream(currentChannelUrl);
         }
 
@@ -1161,7 +1147,6 @@
                         loadingOverlay.style.display = 'none';
                     });
                     
-                    // Populate quality levels
                     if (hls.levels && hls.levels.length > 1) {
                         hls.levels.forEach((level, index) => {
                             const option = document.createElement('option');
@@ -1189,7 +1174,6 @@
                     }
                 });
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // For Safari
                 video.src = url;
                 video.addEventListener('loadedmetadata', function() {
                     video.play().catch(e => {
@@ -1214,7 +1198,6 @@
                 const backupUrl = currentBackupSources[currentBackupIndex].url;
                 loadHlsStream(backupUrl);
                 
-                // Update source menu selection
                 sourceMenu.value = currentBackupIndex;
             } else {
                 errorMessage.style.display = 'block';
@@ -1300,7 +1283,6 @@
             loadChannel(newIndex);
         }
 
-        // Handle source change
         sourceMenu.addEventListener('change', function() {
             const sourceIndex = parseInt(this.value);
             const sourceUrl = channels[currentChannelIndex].sources[sourceIndex].url;
@@ -1308,14 +1290,12 @@
             loadHlsStream(sourceUrl);
         });
 
-        // Handle quality change
         qualityMenu.addEventListener('change', function() {
             if (hls && this.value !== 'auto') {
                 hls.currentLevel = parseInt(this.value);
             }
         });
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
             if (e.target.tagName.toLowerCase() === 'input') return;
             
@@ -1356,9 +1336,7 @@
             }
         });
 
-        // Handle orientation change for mobile
         window.addEventListener('orientationchange', function() {
-            // Add a small delay to ensure the orientation change has completed
             setTimeout(updateIOSFullscreenButton, 300);
         });
     </script>
