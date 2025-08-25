@@ -33,14 +33,12 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Prevent text selection */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
 
-        /* Prevent image dragging */
         img {
             -webkit-user-drag: none;
             -khtml-user-drag: none;
@@ -689,15 +687,12 @@
     </style>
 </head>
 <body>
-    <!-- Protection overlay to block right-click and text selection -->
     <div class="protection-overlay" id="protectionOverlay"></div>
     
     <div class="mobile-header">
-        <!-- This is now hidden as requested -->
     </div>
 
     <div class="mobile-nav" id="mobileNav">
-        <!-- This is now hidden as requested -->
     </div>
 
     <div class="main-content">
@@ -771,18 +766,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        // ===== PROTECTION MECHANISMS =====
         
-        // Disable right-click context menu
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             showProtectionWarning();
             return false;
         });
         
-        // Disable keyboard shortcuts for developer tools
         document.addEventListener('keydown', function(e) {
-            // Disable F12, Ctrl+Shift+I, Ctrl+U, etc.
             if (
                 e.key === 'F12' ||
                 (e.ctrlKey && e.shiftKey && e.key === 'I') ||
@@ -797,7 +788,6 @@
             }
         });
         
-        // Detect if developer tools is open (limited effectiveness)
         function detectDevTools() {
             const widthThreshold = window.outerWidth - window.innerWidth > 160;
             const heightThreshold = window.outerHeight - window.innerHeight > 160;
@@ -807,7 +797,6 @@
             }
         }
         
-        // Show protection warning
         function showProtectionWarning() {
             const overlay = document.getElementById('protectionOverlay');
             overlay.style.display = 'block';
@@ -817,16 +806,13 @@
             }, 1500);
         }
         
-        // Check periodically if dev tools is open
         setInterval(detectDevTools, 1000);
         
-        // Disable text selection (already in CSS but adding JS for extra protection)
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
             return false;
         });
         
-        // Disable dragging of images
         document.addEventListener('dragstart', function(e) {
             if (e.target.tagName === 'IMG') {
                 e.preventDefault();
@@ -834,7 +820,6 @@
             }
         });
         
-        // ===== ORIGINAL APPLICATION CODE =====
         
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
@@ -1152,9 +1137,7 @@
             }
         ];
 
-        // Initialize the player
         function initPlayer() {
-            // Set up volume controls
             volumeSlider.addEventListener("input", function() {
                 video.volume = this.value;
                 if (video.volume == 0) {
@@ -1164,7 +1147,6 @@
                 }
             });
 
-            // Set up video events
             video.addEventListener("play", function() {
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 isPlaying = true;
@@ -1191,33 +1173,27 @@
                 tryNextBackup();
             });
 
-            // Set up search functionality
             channelSearch.addEventListener("input", function() {
                 filterChannels();
             });
 
-            // Set up quality menu change
             qualityMenu.addEventListener("change", function() {
                 if (hls) {
                     hls.currentLevel = parseInt(this.value);
                 }
             });
 
-            // Set up source menu change
             sourceMenu.addEventListener("change", function() {
                 loadSource(parseInt(this.value));
             });
 
-            // Load channels
             loadChannels();
             
-            // Load first channel
             if (channels.length > 0) {
                 loadChannel(0);
             }
         }
 
-        // Load channels list
         function loadChannels() {
             channelList.innerHTML = "";
             filteredChannels = channels.filter(channel => 
@@ -1252,9 +1228,7 @@
             channelCount.textContent = `${filteredChannels.length} channels`;
         }
 
-        // Filter channels by category
         function filterCategory(category, event) {
-            // Update active button
             document.querySelectorAll('.category-bar button').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -1264,7 +1238,6 @@
             loadChannels();
         }
 
-        // Filter channels by search term
         function filterChannels() {
             const searchTerm = channelSearch.value.toLowerCase();
             document.querySelectorAll(".channel-item").forEach(item => {
@@ -1277,9 +1250,7 @@
             });
         }
 
-        // Load a channel
         function loadChannel(index) {
-            // Update active channel
             document.querySelectorAll(".channel-item").forEach(item => {
                 item.classList.remove("active");
             });
@@ -1293,7 +1264,6 @@
             currentBackupSources = channel.sources;
             currentBackupIndex = 0;
             
-            // Update source menu
             sourceMenu.innerHTML = "";
             channel.sources.forEach((source, i) => {
                 const option = document.createElement("option");
@@ -1302,30 +1272,24 @@
                 sourceMenu.appendChild(option);
             });
             
-            // Load the first source
             loadSource(0);
         }
 
-        // Load a specific source
         function loadSource(sourceIndex) {
             if (!currentBackupSources || sourceIndex >= currentBackupSources.length) return;
             
-            // Show loading
             loadingOverlay.style.display = "flex";
             errorMessage.style.display = "none";
             
             const source = currentBackupSources[sourceIndex];
             currentBackupIndex = sourceIndex;
             
-            // Update source menu selection
             sourceMenu.value = sourceIndex;
             
-            // Destroy previous Hls instance if exists
             if (hls) {
                 hls.destroy();
             }
             
-            // Try to play with HLS.js
             if (Hls.isSupported()) {
                 hls = new Hls({
                     debug: false,
@@ -1338,10 +1302,8 @@
                 hls.attachMedia(video);
                 
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    // Set up quality levels
                     setupQualityLevels();
                     
-                    // Try to play
                     video.play().catch(e => {
                         showError("Autoplay blocked. Please click play to start.");
                         loadingOverlay.style.display = "none";
@@ -1370,7 +1332,6 @@
                     }
                 });
             } 
-            // Fallback to native video element
             else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                 video.src = source.url;
                 video.play().catch(e => {
@@ -1378,27 +1339,22 @@
                     loadingOverlay.style.display = "none";
                 });
             } 
-            // Not supported
             else {
                 showError("Your browser doesn't support HLS playback.");
                 loadingOverlay.style.display = "none";
             }
         }
 
-        // Set up quality levels
         function setupQualityLevels() {
             if (!hls) return;
             
-            // Clear quality menu
             qualityMenu.innerHTML = "";
             
-            // Add auto option
             const autoOption = document.createElement("option");
             autoOption.value = -1;
             autoOption.textContent = "Auto";
             qualityMenu.appendChild(autoOption);
             
-            // Add quality levels
             if (hls.levels && hls.levels.length > 0) {
                 hls.levels.forEach((level, index) => {
                     const option = document.createElement("option");
@@ -1407,12 +1363,10 @@
                     qualityMenu.appendChild(option);
                 });
                 
-                // Select auto by default
                 qualityMenu.value = -1;
             }
         }
 
-        // Try next backup source
         function tryNextBackup() {
             currentBackupIndex++;
             if (currentBackupIndex < currentBackupSources.length) {
@@ -1424,13 +1378,11 @@
             }
         }
 
-        // Show error message
         function showError(message) {
             errorText.textContent = message;
             errorMessage.style.display = "block";
         }
 
-        // Toggle play/pause
         function togglePlayPause() {
             if (video.paused) {
                 video.play().catch(e => {
@@ -1441,7 +1393,6 @@
             }
         }
 
-        // Toggle mute
         function toggleMute() {
             video.muted = !video.muted;
             if (video.muted) {
@@ -1451,13 +1402,11 @@
             }
         }
 
-        // Cycle through zoom modes
         function cycleZoom() {
             zoomIndex = (zoomIndex + 1) % zoomModes.length;
             video.style.objectFit = zoomModes[zoomIndex];
         }
 
-        // Toggle fullscreen
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 if (video.requestFullscreen) {
@@ -1478,12 +1427,10 @@
             }
         }
 
-        // Request fullscreen (for iOS)
         function requestFullscreen() {
             video.webkitEnterFullscreen();
         }
 
-        // Toggle Picture-in-Picture
         function togglePiP() {
             if (document.pictureInPictureElement) {
                 document.exitPictureInPicture().catch(error => {
@@ -1496,21 +1443,17 @@
             }
         }
 
-        // Navigate to next channel
         function nextChannel() {
             let nextIndex = (currentChannelIndex + 1) % filteredChannels.length;
             loadChannel(nextIndex);
         }
 
-        // Navigate to previous channel
         function prevChannel() {
             let prevIndex = (currentChannelIndex - 1 + filteredChannels.length) % filteredChannels.length;
             loadChannel(prevIndex);
         }
 
-        // Initialize when page loads
         window.addEventListener("load", function() {
-            // Check if iOS and show special fullscreen button
             if (isIOS) {
                 document.querySelectorAll('.ios-fullscreen-btn').forEach(btn => {
                     btn.style.display = 'flex';
@@ -1525,10 +1468,8 @@
             initPlayer();
         });
 
-        // Handle fullscreen change for iOS
         document.addEventListener('webkitfullscreenchange', function() {
             if (isIOS) {
-                // Handle iOS fullscreen change if needed
             }
         });
     </script>
