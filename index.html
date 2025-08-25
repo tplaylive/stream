@@ -33,20 +33,6 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Prevent text selection */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        /* Prevent image dragging */
-        img {
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-            user-drag: none;
         }
 
         .mobile-header {
@@ -486,18 +472,6 @@
             display: none;
         }
 
-        /* Protection overlay */
-        .protection-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 9999;
-            display: none;
-        }
-
         @media (max-width: 1200px) {
             .main-content {
                 flex-direction: column;
@@ -685,9 +659,6 @@
     </style>
 </head>
 <body>
-    <!-- Protection overlay to block right-click and text selection -->
-    <div class="protection-overlay" id="protectionOverlay"></div>
-    
     <div class="mobile-header">
         <!-- This is now hidden as requested -->
     </div>
@@ -767,71 +738,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        // ===== PROTECTION MECHANISMS =====
-        
-        // Disable right-click context menu
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            showProtectionWarning();
-            return false;
-        });
-        
-        // Disable keyboard shortcuts for developer tools
-        document.addEventListener('keydown', function(e) {
-            // Disable F12, Ctrl+Shift+I, Ctrl+U, etc.
-            if (
-                e.key === 'F12' ||
-                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'C') ||
-                (e.ctrlKey && e.key === 'U') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'K')
-            ) {
-                e.preventDefault();
-                showProtectionWarning();
-                return false;
-            }
-        });
-        
-        // Detect if developer tools is open (limited effectiveness)
-        function detectDevTools() {
-            const widthThreshold = window.outerWidth - window.innerWidth > 160;
-            const heightThreshold = window.outerHeight - window.innerHeight > 160;
-            
-            if (widthThreshold || heightThreshold) {
-                showProtectionWarning();
-            }
-        }
-        
-        // Show protection warning
-        function showProtectionWarning() {
-            const overlay = document.getElementById('protectionOverlay');
-            overlay.style.display = 'block';
-            
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 1500);
-        }
-        
-        // Check periodically if dev tools is open
-        setInterval(detectDevTools, 1000);
-        
-        // Disable text selection (already in CSS but adding JS for extra protection)
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-        
-        // Disable dragging of images
-        document.addEventListener('dragstart', function(e) {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-                return false;
-            }
-        });
-        
-        // ===== ORIGINAL APPLICATION CODE =====
-        
         const video = document.getElementById("liveVideo");
         const muteBtn = document.getElementById("muteBtn");
         const playPauseBtn = document.getElementById("playPauseBtn");
@@ -1044,47 +950,84 @@
             }
         ];
 
-        // Initialize the player
-        function initPlayer() {
-            // Set up event listeners
-            video.addEventListener('play', function() {
-                isPlaying = true;
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                posterImage.style.display = 'none';
-                loadingOverlay.style.display = 'none';
-                errorMessage.style.display = 'none';
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChannels();
+            setupEventListeners();
+            
+            channelCount.textContent = `${channels.length} channels`;
+            
+            updateIOSFullscreenButton();
+            
+            if (channels.length > 0) {
+                loadChannel(0);
+            }
+        });
 
-            video.addEventListener('pause', function() {
-                isPlaying = false;
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            });
+        function updateIOSFullscreenButton() {
+            if (isIOS) {
+                document.querySelectorAll('.ios-fullscreen-btn').forEach(btn => {
+                    btn.style.display = 'flex';
+                });
+                document.querySelectorAll('.control-btn:not(.ios-fullscreen-btn)').forEach(btn => {
+                    if (btn.querySelector('.fa-expand')) {
+                        btn.style.display = 'none';
+                    }
+                });
+            }
+        }
 
-            video.addEventListener('volumechange', function() {
-                if (video.muted) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                }
-                volumeSlider.value = video.volume;
+        function loadChannels() {
+            channelList.innerHTML = '';
+            channelMap.clear();
+            
+            filteredChannels = channels.filter(channel => {
+                return currentCategory === 'all' || channel.category === currentCategory;
             });
-
-            video.addEventListener('waiting', function() {
-                loadingOverlay.style.display = 'flex';
+            
+            filteredChannels.forEach((channel, index) => {
+                const channelItem = document.createElement('div');
+                channelItem.className = 'channel-item';
+                channelItem.dataset.index = index;
+                
+                const sourceTags = channel.sources.map(source => 
+                    `<span class="channel-source-tag">${source.name}</span>`
+                ).join('');
+                
+                channelItem.innerHTML = `
+                    <div class="channel-item-img">
+                        <img src="${channel.img}" alt="${channel.name}">
+                    </div>
+                    <div class="channel-item-info">
+                        <div class="channel-item-name">${channel.name}</div>
+                        <div class="channel-item-category">${channel.category}</div>
+                        <div class="channel-item-sources">${sourceTags}</div>
+                    </div>
+                    <span class="channel-item-live">LIVE</span>
+                `;
+                
+                channelItem.addEventListener('click', () => {
+                    const originalIndex = channels.findIndex(c => c.name === channel.name);
+                    loadChannel(originalIndex);
+                });
+                
+                channelList.appendChild(channelItem);
+                channelMap.set(channelItem, channels.findIndex(c => c.name === channel.name));
             });
+        }
 
-            video.addEventListener('playing', function() {
-                loadingOverlay.style.display = 'none';
+        function filterCategory(category, event) {
+            document.querySelectorAll('.category-bar button').forEach(btn => {
+                btn.classList.remove('active');
             });
+            
+            event.target.classList.add('active');
+            
+            currentCategory = category;
+            loadChannels();
+        }
 
-            video.addEventListener('error', function() {
-                loadingOverlay.style.display = 'none';
-                errorMessage.style.display = 'block';
-                errorText.textContent = 'Error loading video. Trying backup source...';
-                tryNextBackup();
-            });
-
-            volumeSlider.addEventListener('input', function() {
+        function setupEventListeners() {
+            volumeSlider.addEventListener('input', () => {
                 video.volume = volumeSlider.value;
                 if (video.volume == 0) {
                     muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -1093,154 +1036,109 @@
                 }
             });
 
-            // Initialize channels list
-            renderChannels();
-            
-            // Load the first channel
-            if (channels.length > 0) {
-                loadChannel(0);
-            }
-            
-            // Setup search functionality
-            channelSearch.addEventListener('input', function() {
-                renderChannels();
-            });
-            
-            // Check if iOS and show appropriate fullscreen button
-            if (isIOS) {
-                document.querySelector('.ios-fullscreen-btn').style.display = 'flex';
-                document.querySelector('.control-btn:not(.ios-fullscreen-btn)').style.display = 'none';
-            }
-        }
-
-        // Render channels list based on search and category
-        function renderChannels() {
-            const searchText = channelSearch.value.toLowerCase();
-            channelList.innerHTML = '';
-            filteredChannels = [];
-            
-            channels.forEach((channel, index) => {
-                if ((currentCategory === 'all' || channel.category === currentCategory) &&
-                    (channel.name.toLowerCase().includes(searchText) || 
-                     channel.description.toLowerCase().includes(searchText))) {
-                    
-                    filteredChannels.push(index);
-                    channelMap.set(index, filteredChannels.length - 1);
-                    
-                    const channelItem = document.createElement('div');
-                    channelItem.className = 'channel-item';
-                    if (index === currentChannelIndex) {
-                        channelItem.classList.add('active');
+            channelSearch.addEventListener('input', () => {
+                const searchTerm = channelSearch.value.toLowerCase();
+                const channelItems = document.querySelectorAll('.channel-item');
+                
+                channelItems.forEach(item => {
+                    const channelName = item.querySelector('.channel-item-name').textContent.toLowerCase();
+                    if (channelName.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
                     }
-                    
-                    channelItem.innerHTML = `
-                        <div class="channel-item-img">
-                            <img src="${channel.img}" alt="${channel.name}">
-                        </div>
-                        <div class="channel-item-info">
-                            <div>
-                                <span class="channel-item-name">${channel.name}</span>
-                                <span class="channel-item-live">LIVE</span>
-                            </div>
-                            <div class="channel-item-category">${channel.category}</div>
-                            <div class="channel-item-sources">
-                                ${channel.sources.map((source, i) => 
-                                    `<span class="channel-source-tag">${source.name}</span>`
-                                ).join('')}
-                            </div>
-                        </div>
-                    `;
-                    
-                    channelItem.addEventListener('click', function() {
-                        loadChannel(index);
-                    });
-                    
-                    channelList.appendChild(channelItem);
-                }
+                });
             });
-            
-            channelCount.textContent = `${filteredChannels.length} channels`;
+
+            video.addEventListener('play', () => {
+                isPlaying = true;
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                loadingOverlay.style.display = 'none';
+                posterImage.style.display = 'none';
+            });
+
+            video.addEventListener('pause', () => {
+                isPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+
+            video.addEventListener('waiting', () => {
+                loadingOverlay.style.display = 'flex';
+            });
+
+            video.addEventListener('playing', () => {
+                loadingOverlay.style.display = 'none';
+            });
+
+            video.addEventListener('error', () => {
+                loadingOverlay.style.display = 'none';
+                errorMessage.style.display = 'block';
+                errorText.textContent = 'Error loading video. Trying backup source...';
+                tryNextBackup();
+            });
+
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
         }
 
-        // Filter channels by category
-        function filterCategory(category, event) {
-            currentCategory = category;
-            
-            // Update active button
-            document.querySelectorAll('.category-bar button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            renderChannels();
+        function handleFullscreenChange() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                document.querySelectorAll('.control-btn i.fa-compress').forEach(icon => {
+                    icon.className = 'fas fa-expand';
+                });
+            }
         }
 
-        // Load a channel by index
         function loadChannel(index) {
             if (index < 0 || index >= channels.length) return;
             
             currentChannelIndex = index;
-            const channel = channels[index];
-            currentBackupSources = [...channel.sources];
+            currentChannelUrl = channels[index].sources[0].url;
             currentBackupIndex = 0;
+            currentBackupSources = channels[index].sources;
             
-            // Update UI
             document.querySelectorAll('.channel-item').forEach(item => {
                 item.classList.remove('active');
             });
             
-            const filteredIndex = channelMap.get(index);
-            if (filteredIndex !== undefined && channelList.children[filteredIndex]) {
-                channelList.children[filteredIndex].classList.add('active');
+            const channelItems = document.querySelectorAll('.channel-item');
+            for (let item of channelItems) {
+                if (channelMap.get(item) === index) {
+                    item.classList.add('active');
+                    break;
+                }
             }
             
-            // Update source menu
             sourceMenu.innerHTML = '';
-            channel.sources.forEach((source, i) => {
+            channels[index].sources.forEach((source, i) => {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = source.name;
                 sourceMenu.appendChild(option);
             });
             
-            // Show loading
+            qualityMenu.innerHTML = '<option value="auto">Auto Quality</option>';
+            
             loadingOverlay.style.display = 'flex';
-            posterImage.style.display = 'block';
             errorMessage.style.display = 'none';
             
-            // Load the first source
-            loadSource(0);
+            loadHlsStream(currentChannelUrl);
         }
 
-        // Load a specific source for the current channel
-        function loadSource(sourceIndex) {
-            if (!currentBackupSources || sourceIndex >= currentBackupSources.length) {
-                errorMessage.style.display = 'block';
-                errorText.textContent = 'No working sources available for this channel.';
-                return;
-            }
-            
-            const source = currentBackupSources[sourceIndex];
-            currentBackupIndex = sourceIndex;
-            sourceMenu.value = sourceIndex;
-            
-            // Destroy previous Hls instance if exists
+        function loadHlsStream(url) {
             if (hls) {
                 hls.destroy();
             }
             
-            // Try to load with HLS.js
             if (Hls.isSupported()) {
                 hls = new Hls({
-                    maxBufferLength: 30,
-                    maxMaxBufferLength: 60,
-                    backBufferLength: 30,
+                    debug: false,
                     enableWorker: true,
                     lowLatencyMode: true,
-                    autoStartLoad: true
+                    backBufferLength: 90
                 });
                 
-                hls.loadSource(source.url);
+                hls.loadSource(url);
                 hls.attachMedia(video);
                 
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
@@ -1249,8 +1147,14 @@
                         loadingOverlay.style.display = 'none';
                     });
                     
-                    // Setup quality levels
-                    setupQualityLevels();
+                    if (hls.levels && hls.levels.length > 1) {
+                        hls.levels.forEach((level, index) => {
+                            const option = document.createElement('option');
+                            option.value = index;
+                            option.textContent = level.height + 'p';
+                            qualityMenu.appendChild(option);
+                        });
+                    }
                 });
                 
                 hls.on(Hls.Events.ERROR, function(event, data) {
@@ -1258,7 +1162,7 @@
                     if (data.fatal) {
                         switch(data.type) {
                             case Hls.ErrorTypes.NETWORK_ERROR:
-                                hls.startLoad();
+                                tryNextBackup();
                                 break;
                             case Hls.ErrorTypes.MEDIA_ERROR:
                                 hls.recoverMediaError();
@@ -1270,128 +1174,92 @@
                     }
                 });
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // Native HLS support (Safari)
-                video.src = source.url;
-                video.play().catch(e => {
-                    console.error('Auto-play failed:', e);
-                    loadingOverlay.style.display = 'none';
-                });
-                
+                video.src = url;
                 video.addEventListener('loadedmetadata', function() {
-                    loadingOverlay.style.display = 'none';
-                });
-                
-                video.addEventListener('error', function() {
-                    tryNextBackup();
+                    video.play().catch(e => {
+                        console.error('Auto-play failed:', e);
+                        loadingOverlay.style.display = 'none';
+                    });
                 });
             } else {
                 errorMessage.style.display = 'block';
                 errorText.textContent = 'Your browser does not support HLS playback.';
+                loadingOverlay.style.display = 'none';
             }
         }
 
-        // Try the next backup source
         function tryNextBackup() {
             currentBackupIndex++;
+            
             if (currentBackupIndex < currentBackupSources.length) {
-                loadSource(currentBackupIndex);
+                errorMessage.style.display = 'block';
+                errorText.textContent = `Trying backup source ${currentBackupIndex + 1}/${currentBackupSources.length}...`;
+                
+                const backupUrl = currentBackupSources[currentBackupIndex].url;
+                loadHlsStream(backupUrl);
+                
+                sourceMenu.value = currentBackupIndex;
             } else {
                 errorMessage.style.display = 'block';
-                errorText.textContent = 'All sources failed. Please try another channel.';
+                errorText.textContent = 'All backup sources failed. Please try another channel.';
+                loadingOverlay.style.display = 'none';
             }
         }
 
-        // Setup quality levels for HLS.js
-        function setupQualityLevels() {
-            if (!hls) return;
-            
-            qualityMenu.innerHTML = '';
-            
-            // Add auto option
-            const autoOption = document.createElement('option');
-            autoOption.value = 'auto';
-            autoOption.textContent = 'Auto Quality';
-            qualityMenu.appendChild(autoOption);
-            
-            // Add quality levels
-            const levels = hls.levels;
-            if (levels && levels.length > 1) {
-                levels.forEach((level, index) => {
-                    const option = document.createElement('option');
-                    option.value = index;
-                    let label = '';
-                    
-                    if (level.height) {
-                        label = `${level.height}p`;
-                    } else if (level.width) {
-                        label = `${Math.round(level.width * 9 / 16)}p`;
-                    } else if (level.bitrate) {
-                        label = `${Math.floor(level.bitrate / 1000)}kbps`;
-                    }
-                    
-                    option.textContent = label;
-                    qualityMenu.appendChild(option);
-                });
-                
-                qualityMenu.addEventListener('change', function() {
-                    if (this.value === 'auto') {
-                        hls.currentLevel = -1; // auto
-                    } else {
-                        hls.currentLevel = parseInt(this.value);
-                    }
-                });
-            }
-        }
-
-        // Toggle play/pause
         function togglePlayPause() {
-            if (video.paused) {
+            if (isPlaying) {
+                video.pause();
+            } else {
                 video.play().catch(e => {
                     console.error('Play failed:', e);
                 });
-            } else {
-                video.pause();
             }
         }
 
-        // Toggle mute
         function toggleMute() {
             video.muted = !video.muted;
+            if (video.muted) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                volumeSlider.value = 0;
+            } else {
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                volumeSlider.value = video.volume;
+            }
         }
 
-        // Cycle through zoom modes
         function cycleZoom() {
             zoomIndex = (zoomIndex + 1) % zoomModes.length;
             video.style.objectFit = zoomModes[zoomIndex];
         }
 
-        // Toggle fullscreen
         function toggleFullscreen() {
-            if (!document.fullscreenElement) {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                 if (video.requestFullscreen) {
                     video.requestFullscreen();
                 } else if (video.webkitRequestFullscreen) {
                     video.webkitRequestFullscreen();
-                } else if (video.msRequestFullscreen) {
-                    video.msRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
                 }
+                document.querySelector('.control-btn i.fa-expand').className = 'fas fa-compress';
             } else {
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                 } else if (document.webkitExitFullscreen) {
                     document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
                 }
+                document.querySelector('.control-btn i.fa-compress').className = 'fas fa-expand';
             }
         }
 
-        // Request fullscreen for iOS
         function requestFullscreen() {
-            video.webkitEnterFullscreen();
+            if (video.webkitEnterFullscreen) {
+                video.webkitEnterFullscreen();
+            } else if (video.requestFullscreen) {
+                video.requestFullscreen();
+            }
         }
 
-        // Toggle Picture-in-Picture
         function togglePiP() {
             if (document.pictureInPictureElement) {
                 document.exitPictureInPicture().catch(error => {
@@ -1404,36 +1272,73 @@
             }
         }
 
-        // Navigate to next channel
-        function nextChannel() {
-            const currentFilteredIndex = filteredChannels.indexOf(currentChannelIndex);
-            let nextIndex;
-            
-            if (currentFilteredIndex === -1 || currentFilteredIndex === filteredChannels.length - 1) {
-                nextIndex = filteredChannels[0];
-            } else {
-                nextIndex = filteredChannels[currentFilteredIndex + 1];
-            }
-            
-            loadChannel(nextIndex);
-        }
-
-        // Navigate to previous channel
         function prevChannel() {
-            const currentFilteredIndex = filteredChannels.indexOf(currentChannelIndex);
-            let prevIndex;
-            
-            if (currentFilteredIndex === -1 || currentFilteredIndex === 0) {
-                prevIndex = filteredChannels[filteredChannels.length - 1];
-            } else {
-                prevIndex = filteredChannels[currentFilteredIndex - 1];
-            }
-            
-            loadChannel(prevIndex);
+            let newIndex = currentChannelIndex - 1;
+            if (newIndex < 0) newIndex = channels.length - 1;
+            loadChannel(newIndex);
         }
 
-        // Initialize when page loads
-        window.addEventListener('load', initPlayer);
+        function nextChannel() {
+            let newIndex = (currentChannelIndex + 1) % channels.length;
+            loadChannel(newIndex);
+        }
+
+        sourceMenu.addEventListener('change', function() {
+            const sourceIndex = parseInt(this.value);
+            const sourceUrl = channels[currentChannelIndex].sources[sourceIndex].url;
+            currentBackupIndex = sourceIndex;
+            loadHlsStream(sourceUrl);
+        });
+
+        qualityMenu.addEventListener('change', function() {
+            if (hls && this.value !== 'auto') {
+                hls.currentLevel = parseInt(this.value);
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName.toLowerCase() === 'input') return;
+            
+            switch(e.key) {
+                case ' ':
+                    togglePlayPause();
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                    video.currentTime -= 10;
+                    break;
+                case 'ArrowRight':
+                    video.currentTime += 10;
+                    break;
+                case 'ArrowUp':
+                    video.volume = Math.min(video.volume + 0.1, 1);
+                    volumeSlider.value = video.volume;
+                    break;
+                case 'ArrowDown':
+                    video.volume = Math.max(video.volume - 0.1, 0);
+                    volumeSlider.value = video.volume;
+                    break;
+                case 'f':
+                    toggleFullscreen();
+                    break;
+                case 'm':
+                    toggleMute();
+                    break;
+                case 'p':
+                    togglePiP();
+                    break;
+                case 'n':
+                    nextChannel();
+                    break;
+                case 'b':
+                    prevChannel();
+                    break;
+            }
+        });
+
+        window.addEventListener('orientationchange', function() {
+            setTimeout(updateIOSFullscreenButton, 300);
+        });
     </script>
 </body>
 </html>
