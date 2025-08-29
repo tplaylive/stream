@@ -1452,7 +1452,7 @@
             else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                 video.src = source.url;
                 video.play().catch(e => {
-                    showError("Autoplay blocked. Please click play to start.");
+                    showError("Please click play to start.");
                     loadingOverlay.style.display = "none";
                 });
             } 
@@ -1491,7 +1491,7 @@
                     loadSource(currentBackupIndex);
                 }, 2000);
             } else {
-                showError("All sources failed. Please try another channel.");
+                showError("Please try another channel.");
             }
         }
 
