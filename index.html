@@ -344,87 +344,74 @@
             color: var(--text-secondary);
         }
 
+        /* UPDATED CHANNEL LIST STYLES */
         .channel-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 15px;
+            padding: 10px 0;
         }
 
         .channel-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 12px 15px;
+            padding: 10px;
             background: var(--card-bg);
-            border-radius: 10px;
+            border-radius: 50%;
             cursor: pointer;
             transition: var(--transition);
-            border: 1px solid transparent;
+            border: 2px solid transparent;
+            aspect-ratio: 1/1;
+            width: 100%;
+            justify-content: center;
+            position: relative;
         }
 
         .channel-item:hover {
-            transform: translateY(-2px);
-            border-color: rgba(229, 9, 20, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            border-color: rgba(229, 9, 20, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .channel-item.active {
             border-color: var(--primary-color);
-            background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(184, 7, 16, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(184, 7, 16, 0.15) 100%);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
         }
 
         .channel-item-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
             overflow: hidden;
-            margin-right: 15px;
-            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .channel-item-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
 
         .channel-item-info {
-            flex: 1;
-        }
-
-        .channel-item-name {
-            font-weight: 600;
-            margin-bottom: 4px;
-            font-size: 15px;
-            color: var(--text-color);
-        }
-
-        .channel-item-category {
-            color: var(--text-secondary);
-            font-size: 13px;
+            display: none;
         }
 
         .channel-item-live {
+            position: absolute;
+            top: -5px;
+            right: -5px;
             background: var(--primary-color);
             color: white;
-            font-size: 11px;
-            padding: 3px 8px;
+            font-size: 9px;
+            padding: 3px 6px;
             border-radius: 30px;
-            margin-left: 10px;
-        }
-
-        .channel-item-sources {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 4px;
-        }
-
-        .channel-source-tag {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .category-bar {
@@ -526,14 +513,9 @@
         }
 
         @media (max-width: 992px) {
-            .channel-item {
-                padding: 10px;
-            }
-            
-            .channel-item-img {
-                width: 40px;
-                height: 40px;
-                margin-right: 10px;
+            .channel-list {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                gap: 12px;
             }
             
             .player-section {
@@ -615,6 +597,15 @@
             .control-btn:not(.ios-fullscreen-btn) {
                 display: flex;
             }
+            
+            .channel-list {
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                gap: 10px;
+            }
+            
+            .channel-item {
+                padding: 8px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -661,6 +652,16 @@
             
             .control-btn:not(.ios-fullscreen-btn) {
                 display: flex;
+            }
+            
+            .channel-list {
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                gap: 8px;
+            }
+            
+            .channel-item-live {
+                font-size: 8px;
+                padding: 2px 4px;
             }
         }
 
@@ -850,7 +851,6 @@
         let channelMap = new Map();
 
         const channels = [
-            
             { 
                 name: "Somoy TV", 
                 sources: [
@@ -922,127 +922,68 @@
                 description: "Bangladesh"
             },
             { 
-                name: "BBC News", 
+                name: "DBC News",
                 sources: [
-                    { name: "US", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
-                    { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" },
-                    { name: "Arabic", url: "https://vs-hls-pushb-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_arabic_tv/mobile_wifi_main_hd_abr_v2.m3u8" },
-                    { name: "Persian", url: "https://vs-hls-pushb-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_persian_tv/mobile_wifi_main_hd_abr_v2.m3u8" }
+                    { name: "BD", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/dbcnews.stream/tracks-v1a1/mono.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
+                img: "https://i.postimg.cc/cJGD5HdQ/dbc.jpg", 
                 category: "News",
-                description: "London"
+                description: "Bangladesh"
+            },
+            { 
+                name: "News18 Bangla", 
+                sources: [
+                    { name: "India", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bangla_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/Dydmbp8n/news18-bangla.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "ABP Ananda", 
+                sources: [
+                    { name: "India", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ananda/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "Zee 24 Ghanta", 
+                sources: [
+                    { name: "India", url: "https://d2dsoyvkr33m05.cloudfront.net/index_5.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/pdgPSKps/zee-24ghanta.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "WION", 
+                sources: [
+                    { name: "India", url: "https://d7x8z4yuq42qn.cloudfront.net/index_1.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/ZKqXrCqn/wion.jpg", 
+                category: "News",
+                description: "India"
             },
             { 
                 name: "Al Jazeera", 
                 sources: [
-                    { name: "English", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" },
-                    { name: "Arabic", url: "https://live-hls-web-aja-fa.thehlive.com/AJA/index.m3u8" },
-                    { name: "Mubasher", url: "https://live-hls-web-ajm-fa.thehlive.com/AJM/index.m3u8" },
-                    { name: "Mubasher24", url: "https://live-hls-web-ajm24-fa.thehlive.com/AJM24/03.m3u8" },
-                    { name: "Mubasher24", url: "https://live-hls-web-ajm2-fa.thehlive.com/alternative/AJM2/03.m3u8" }
+                    { name: "Qatar", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
                 ], 
-                img: "https://landportal.org/sites/default/files/2023-05/Aljazeera-logo-English-1024x768.png", 
+                img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
                 category: "News",
                 description: "Qatar"
             },
-            { 
-                name: "CGTN", 
+            {
+                name: "BBC News", 
                 sources: [
-                    { name: "English", url: "https://english-livebkali.cgtn.com/live/encgtn.m3u8" },
-                    { name: "Arabic", url: "https://arabic-livews.cgtn.com/hls/LSveq57bErWLinBnxosqjisZ220802LSTefTAS9zc9mpU08y3np9TH220802cd/playlist.m3u8" },
-                    { name: "Español", url: "https://espanol-livews.cgtn.com/hls/LSveOGBaBw41Ea7ukkVAUdKQ220802LSTexu6xAuFH8VZNBLE1ZNEa220802cd/playlist.m3u8" },
-                    { name: "Français", url: "https://francais-livews.cgtn.com/hls/LSvev95OuFZtKLc6CeKEFYXj220802LSTeV6PO0Ut9r71Uq3k5goCA220802cd/playlist.m3u8" },
-                    { name: "Русский", url: "https://russian-livews.cgtn.com/hls/LSvexABhNipibK5KRuUkvHZ7220802LSTeze9o8tdFXMHsb1VosgoT220802cd/playlist.m3u8" }
+                    { name: "London", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
+                    { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
                 ], 
-                img: "https://web-summit-avenger.imgix.net/production/logos/original/c7b51ad526fe3d1f4f299f1d802383268c903106.png?ixlib=rb-3.4.0&auto=format&fit=fill&fill=solid&fill-color=white&w=600&h=600", 
+                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
                 category: "News",
-                description: "China"
-            },
-            { 
-                name: "Doordarshan", 
-                sources: [
-                    { name: "DD News", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8" },
-                    { name: "DD India", url: "https://livegeoroueu.akamaized.net/120723/smil:ddindiahd.smil/playlist.m3u8?hdnts=st%3D1756450344~exp%3D1756471944~acl%3D%21%2A%2F120723%2Fsmil%3Addindiahd.smil%2F%2A%21%2Fpayload%2Fyupptvott_5_-1_7c03c72952b44aa4_US_40.79.247.66_yuppfast_2_channel_194_-1%2F%2A~data%3Dyupptvott_5_-1_7c03c72952b44aa4_US_40.79.247.66_yuppfast_2_channel_194_-1~hmac%3D66ee5793306df952f78db240b5216120500c6fd2456ef050952c856b3546ccdd" },
-                ], 
-                img: "https://i.postimg.cc/c4y3Vd73/dd.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "Times Now", 
-                sources: [
-                    { name: "Mirror Now", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/mirror-now/master.m3u8" },
-                    { name: "ET Now Swadesh", url: "https://d32gxr3r1ksq2p.cloudfront.net/master.m3u8" },
-                    { name: "Times Now Navbharat", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/times-now-navbharat/master.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/tJYXw89g/times-now.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "Network 18", 
-                sources: [
-                    { name: "News18 India", url: "https://n18syndication.akamaized.net/bpk-tv/News18_India_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Odia", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Odia_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Urdu", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Urdu_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Kerala", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Kerala_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Bangla", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bangla_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Lokmat", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Lokmat_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Gujarati", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Gujarati_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Kannada", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Kannada_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Rajasthan", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Rajasthan_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Tamil Nadu", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Tamil_Nadu_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Bihar Jharkhand", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bihar_Jharkhand_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Assam Northeast", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Assam_North_East_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Punjab Haryana Himachal", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Punjab_Haryana_HP_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Uttar Pradesh Uttarakhand", url: "https://n18syndication.akamaized.net/bpk-tv/News18_UP_Uttarakhand_NW18_MOB/output01/index.m3u8" },
-                    { name: "News18 Madhya Pradesh Chhattisgarh", url: "https://n18syndication.akamaized.net/bpk-tv/News18_MP_Chhattisgarh_NW18_MOB/output01/index.m3u8" },
-                    { name: "CNBC TV18", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_TV18_NW18_MOB/output01/index.m3u8" },
-                    { name: "CNBC Awaaz", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_Awaaz_NW18_MOB/output01/index.m3u8" },
-                    { name: "CNBC Bajar", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_Bazaar_NW18_MOB/output01/index.m3u8" },
-                    { name: "CNN News18", url: "https://n18syndication.akamaized.net/bpk-tv/CNN_News18_NW18_MOB/output01/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/Zn3vQNBg/Network-18.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "Zee Media", 
-                sources: [
-                    { name: "Zee News", url: "https://dknttpxmr0dwf.cloudfront.net/index_2.m3u8" },
-                    { name: "Zee Bharat", url: "https://d1hp2yai3k4ork.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee 24 Taas", url: "https://dgrvlduwztkd4.cloudfront.net/index_5.m3u8" },
-                    { name: "Zee 24 Kalak", url: "https://d2i4me5ac6ausm.cloudfront.net/index_5.m3u8" },
-                    { name: "Zee 24 Ghanta", url: "https://d2dsoyvkr33m05.cloudfront.net/index_5.m3u8" },
-                    { name: "Zee Rajasthan", url: "https://d2jso9g61rg1h8.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee Tamil News", url: "https://dpkvdnzbeen1l.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee Bihar Jharkhand", url: "https://d3vmwjy7v49lo5.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee Delhi NCR Haryana", url: "https://d2s40ae9uabrl.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee Punjabi HP Haryana", url: "https://d31s6sxcz6vnac.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee News UP Uttarakhand", url: "https://duw35ict5q7th.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee News MP Chattisgarh", url: "https://d1ek9hdbw9xxcw.cloudfront.net/index_4.m3u8" },
-                    { name: "Zee Business", url: "https://dwby15d04agvq.cloudfront.net/index_5.m3u8" },
-                    { name: "Salaam", url: "https://d2o3r1shda7xvv.cloudfront.net/index_5.m3u8" },
-                    { name: "WION", url: "https://d7x8z4yuq42qn.cloudfront.net/index_1.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/fb85Rcr9/zee-media.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "ABP", 
-                sources: [
-                    { name: "ABP News", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-news/master.m3u8" },
-                    { name: "ABP Ananda", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ananda/master.m3u8" },
-                    { name: "ABP Asmita", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-asmita/master.m3u8" },
-                    { name: "ABP Ganga", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ganga/master.m3u8" },
-                    { name: "ABP Majha", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-majha/master.m3u8" },
-                    { name: "ABP Sanjha", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-sanjha/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/tC02mWq3/abp.png", 
-                category: "News",
-                description: "India"
+                description: "London"
             },
             { 
                 name: "24/7 Motu Patlu", 
@@ -1050,7 +991,7 @@
                     { name: "IN", url: "https://tplay.live/tplay/playout/209622/master.m3u8" },
                     { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
+                img: "https://i.postimg.cc/sgxQd9gz/motu-patlu.jpg", 
                 category: "Kids",
                 description: "Hindi"
             },
@@ -1060,7 +1001,7 @@
                     { name: "IN", url: "https://tplay.live/tplay/playout/210448/master.m3u8" },
                     { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-210448/tracks-v1a1/mono.ts.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
+                img: "https://i.postimg.cc/Kz0h2LzX/ninja-hattori.jpg", 
                 category: "Kids",
                 description: "Hindi"
             },
@@ -1070,7 +1011,7 @@
                     { name: "IN", url: "https://tplay.live/tplay/playout/209902/master.m3u8" },
                     { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
+                img: "https://i.postimg.cc/7hrsjZ1v/doraemon.jpg", 
                 category: "Kids",
                 description: "Hindi"
             },
@@ -1080,7 +1021,7 @@
                     { name: "IN", url: "https://tplay.live/tplay/playout/209611/master.m3u8" },
                     { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209611/tracks-v1a1/mono.ts.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
+                img: "https://i.postimg.cc/Pxj1jp7M/gopal-bhar.jpg", 
                 category: "Kids",
                 description: "Bengali"
             },
@@ -1090,66 +1031,9 @@
                     { name: "IN", url: "https://tplay.live/tplay/playout/209869/master.m3u8" },
                     { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209869/tracks-v1a1/mono.ts.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
+                img: "https://i.postimg.cc/X7pGtkJb/bantul.jpg", 
                 category: "Kids",
                 description: "Bengali"
-            },
-            { 
-                name: "Cartoon Network", 
-                sources: [
-                    { name: "US", url: "https://fl4.moveonjoy.com/CARTOON_NETWORK/tracks-v1a1/mono.m3u8" },
-                    { name: "PK", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" },
-                    { name: "Asia", url: "https://cdn.skygo.mn/live/disk1/Cartoon_Network/HLSv3-FTA/Cartoon_Network.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/VsMgcNQW/cartoon-network.jpg", 
-                category: "Kids",
-                description: "United States"
-            },
-            { 
-                name: "Disney", 
-                sources: [
-                    { name: "US", url: "https://web.cwabdtv.eu.org/live/disnepchannel/index.m3u8" },
-                    { name: "IN", url: "https://live.dinesh29.com.np/stream/jiotvplus/disneychannel/stream_0.m3u8?uid=3705158389" }
-                ], 
-                img: "https://i.scdn.co/image/ab6761610000e5ebc698d53b77db34027b00f853", 
-                category: "Kids",
-                description: "United States"
-            },
-            { 
-                name: "Disney Junior", 
-                sources: [
-                    { name: "US", url: "https://fl6.moveonjoy.com/DISNEY_JR/index.m3u8" }
-                ], 
-                img: "https://images.seeklogo.com/logo-png/61/1/disney-jr-logo-png_seeklogo-617658.png", 
-                category: "Kids",
-                description: "United States"
-            },
-            { 
-                name: "Disney XD", 
-                sources: [
-                    { name: "US", url: "https://fl5.moveonjoy.com/DISNEY_XD/index.m3u8" },
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUoDCQJ1KLfTGgQQZvyQkAlWE8qr34Ly1rNA&s", 
-                category: "Kids",
-                description: "United States"
-            },
-            { 
-                name: "Animax",
-                sources: [
-                    { name: "kcglobal", url: "https://amg02159-kcglobal-amg02159c1-samsung-in-521.playouts.now.amagi.tv/playlist/amg02159-kcglobal-animax-samsungin/playlist.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/8PQrRLN8/Animax.png", 
-                category: "Kids",
-                description: "Japan"
-            },
-            { 
-                name: "Zoo Moo",
-                sources: [
-                    { name: "Asia", url: "https://cdn.skygo.mn/live/disk1/Zoomoo/HLSv3-FTA/Zoomoo.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/3J0Thmrb/zoo-moo.jpg", 
-                category: "Kids",
-                description: "Southeast Asia"
             },
             { 
                 name: "9XM", 
@@ -1157,7 +1041,7 @@
                     { name: "IN", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" },
                     { name: "BD", url: "https://tvsen6.aynaott.com/9xm/index.m3u8" }
                 ], 
-                img: "https://s3.ap-south-1.amazonaws.com/media.playboxtv.in/content/liveTv/PBha-10591.jpg", 
+                img: "https://i.postimg.cc/Wb8VmBjp/9xm.jpg", 
                 category: "Music",
                 description: "India"
             },
@@ -1168,7 +1052,7 @@
                     { name: "BD", url: "https://tvsen6.aynaott.com/mastimusic/index.m3u8" },
                     { name: "Asia", url: "https://sablive-ddpb.akamaized.net/mastii/playlist.m3u8" }
                 ], 
-                img: "https://yt3.googleusercontent.com/yqiviPE363qvacA0g94Wz6_5Wi-OrApWhG-V3fGCbd1MudonVR0NV1FUrI7lvjCuCtJ3ytslr08=s160-c-k-c0x00ffffff-no-rj", 
+                img: "https://i.postimg.cc/L4f6PQnh/mastiii.jpg", 
                 category: "Music",
                 description: "India"
             },
@@ -1189,7 +1073,7 @@
                     { name: "IN", url: "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
                     { name: "BD", url: "https://tvsen6.aynaott.com/SangeetBangla/index.m3u8" }
                 ], 
-                img: "https://pbs.twimg.com/media/GsKaFVeWsAAJbgi?format=jpg&name=large", 
+                img: "https://i.postimg.cc/NGy2zxLw/sangeet-bangla.jpg", 
                 category: "Music",
                 description: "India"
             },
@@ -1212,36 +1096,6 @@
                 img: "https://i.postimg.cc/8z1kS0G5/Oxygen-Music.jpg", 
                 category: "Music",
                 description: "Asia"
-            },
-            { 
-                name: "24/7 Movies", 
-                sources: [
-                    { name: "IN", url: "https://tplay.live/tplay/playout/209612/master.m3u8" },
-                    { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209612/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
-                category: "Movie",
-                description: "Bollywood"
-            },
-            { 
-                name: "24/7 Movies", 
-                sources: [
-                    { name: "IN", url: "https://tplay.live/tplay/playout/209593/master.m3u8" },
-                    { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209593/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
-                category: "Movie",
-                description: "Hindi Dubbed"
-            },
-            { 
-                name: "24/7 Movies", 
-                sources: [
-                    { name: "IN", url: "https://tplay.live/tplay/playout/209627/master.m3u8" },
-                    { name: "Asia", url: "https://live20.bozztv.com/giatvplayout7/giatv-209627/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/nLBxBwzs/t-play.png", 
-                category: "Movie",
-                description: "Bengali"
             },
             { 
                 name: "Bollywood HD", 
@@ -1418,18 +1272,6 @@
                 description: "India"
             },
             { 
-                name: "Star Sports 1", 
-                sources: [
-                    { name: "English", url: "https://live20.bozztv.com/akamaissh101/ssh101/starsports/chunks.m3u8" },
-                    { name: "Hindi", url: "https://crichdplaylist.extratvteam.workers.dev/master.m3u8?cid=star1in" },
-                    { name: "Tamil", url: "https://live20.bozztv.com/akamaissh101/ssh101/vboxsungosttamil/playlist.m3u8" },
-                    { name: "Tamil 2", url: "https://live20.bozztv.com/akamaissh101/ssh101/sungosttamil/playlist.m3u8" }
-                ], 
-                img: "https://assets.airtel.in/static-assets/cms/dth/images/channellogo/Star-Sports-1-hd.jpg", 
-                category: "Sports",
-                description: "India"
-            },
-            { 
                 name: "T Sports", 
                 sources: [
                     { name: "BD", url: "https://tvsen6.aynaott.com/tsportsfhd/tracks-v1a1/mono.ts.m3u8" }
@@ -1437,29 +1279,6 @@
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
                 description: "Bangladesh"
-            },
-            { 
-                name: "Animal Planet", 
-                sources: [
-                    { name: "US", url: "https://fl6.moveonjoy.com/Animal_Planet/index.m3u8" },
-                    { name: "PK", url: "https://vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/RFm9McDx/animal-planet.png", 
-                category: "Educational",
-                description: "World"
-            },
-            { 
-                name: "Discovery", 
-                sources: [
-                    { name: "US", url: "https://fl4.moveonjoy.com/Discovery_Channel/index.m3u8" },
-                    { name: "IN", url: "https://tvsen6.aynaott.com/discovery_hd/index.m3u8" },
-                    { name: "BD", url: "https://tvsen6.aynaott.com/discovery_hd_bangla/index.m3u8" },
-                    { name: "PK", url: "https://livecdn.live247stream.com/discoverpakistan/web/playlist.m3u8" },
-                    { name: "Asia", url: "https://cdn.skygo.mn/live/disk1/Discovery_Asia/HLSv3-FTA/Discovery_Asia.m3u8" }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSImU3htfX_KbpLD3fqD9Z6tg6gn01iFrROgQ&s", 
-                category: "Educational",
-                description: "World"
             },
             { 
                 name: "Travelxp", 
@@ -1475,15 +1294,17 @@
             { 
                 name: "Peace TV", 
                 sources: [
-                    { name: "US", url: "https://dzkyvlfyge.erbvr.com/PeaceTvEnglish/index.m3u8" },
                     { name: "PK", url: "https://dzkyvlfyge.erbvr.com/PeaceTvUrdu/index.m3u8" },
                     { name: "BD", url: "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8" },
+                    { name: "US", url: "https://dzkyvlfyge.erbvr.com/PeaceTvEnglish/index.m3u8" },
                     { name: "CN", url: "https://dzkyvlfyge.erbvr.com/PeaceTvChinese/index.m3u8" }
                 ], 
                 img: "https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/jzxlzmgwj9tfpyv8ldpf", 
                 category: "Religious",
                 description: "World"
             }
+            
+            
         ];
 
         function initPlayer() {
@@ -1556,20 +1377,16 @@
                 channelItem.innerHTML = `
                     <div class="channel-item-img">
                         <img src="${channel.img}" alt="${channel.name}">
-                    </div>
-                    <div class="channel-item-info">
-                        <div class="channel-item-name">${channel.name} <span class="channel-item-live">LIVE</span></div>
-                        <div class="channel-item-category">${channel.category} ${channel.description ? '• ' + channel.description : ''}</div>
-                        <div class="channel-item-sources">
-                            ${channel.sources.map((source, i) => 
-                                `<span class="channel-source-tag">${source.name}</span>`
-                            ).join('')}
-                        </div>
+                        <span class="channel-item-live">LIVE</span>
                     </div>
                 `;
                 channelItem.addEventListener("click", () => {
                     loadChannel(index);
                 });
+                
+                // Add tooltip for channel name
+                channelItem.title = channel.name;
+                
                 channelList.appendChild(channelItem);
                 channelMap.set(index, channelItem);
             });
@@ -1590,7 +1407,7 @@
         function filterChannels() {
             const searchTerm = channelSearch.value.toLowerCase();
             document.querySelectorAll(".channel-item").forEach(item => {
-                const name = item.querySelector(".channel-item-name").textContent.toLowerCase();
+                const name = item.title.toLowerCase();
                 if (name.includes(searchTerm)) {
                     item.style.display = "flex";
                 } else {
