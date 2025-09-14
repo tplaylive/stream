@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Korean Drama Active - Shaka Player</title>
+  <title>Shaka Player</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
   <style>
@@ -15,38 +15,22 @@
     #video-container {
       width: 100%;
       height: 100%;
-      position: relative;
     }
     video {
       width: 100%;
       height: 100%;
-    }
-    #fullscreen-btn {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div id="video-container">
     <video id="video" autoplay controls></video>
-    <button id="fullscreen-btn">পূর্ণ স্ক্রিন</button>
   </div>
 
   <script>
     async function initPlayer() {
       const video = document.getElementById('video');
       const player = new shaka.Player(video);
-      const videoContainer = document.getElementById('video-container');
-      const fullscreenBtn = document.getElementById('fullscreen-btn');
 
       // Error listener
       player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
@@ -55,47 +39,17 @@
       player.configure({
         drm: {
           clearKeys: {
-            'ed197e7253c04946903f03bad9afac91': '99ebb8683ea74b70a9fda1cbdc2cc1b4'
+            'af35608a7d4b13d1158c2ef6d6c1a010': 'd01c81050dfab309c6be7e60d03c2d82'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd');
+        await player.load('https://linearjitp-playback.astro.com.my/dash-wv/linear/2707/default_ott.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
-      }
-
-      // Fullscreen functionality
-      fullscreenBtn.addEventListener('click', function() {
-        if (videoContainer.requestFullscreen) {
-          videoContainer.requestFullscreen();
-        } else if (videoContainer.mozRequestFullScreen) { /* Firefox */
-          videoContainer.mozRequestFullScreen();
-        } else if (videoContainer.webkitRequestFullscreen) { /* Chrome, Safari, Opera */
-          videoContainer.webkitRequestFullscreen();
-        } else if (videoContainer.msRequestFullscreen) { /* IE/Edge */
-          videoContainer.msRequestFullscreen();
-        }
-      });
-
-      // Hide fullscreen button when in fullscreen mode
-      document.addEventListener('fullscreenchange', exitHandler);
-      document.addEventListener('webkitfullscreenchange', exitHandler);
-      document.addEventListener('mozfullscreenchange', exitHandler);
-      document.addEventListener('MSFullscreenChange', exitHandler);
-
-      function exitHandler() {
-        if (document.fullscreenElement || 
-            document.webkitFullscreenElement || 
-            document.mozFullScreenElement ||
-            document.msFullscreenElement) {
-          fullscreenBtn.style.display = 'none';
-        } else {
-          fullscreenBtn.style.display = 'block';
-        }
       }
     }
 
