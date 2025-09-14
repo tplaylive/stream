@@ -177,6 +177,20 @@
     .shaka-control-container {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    
+    .shaka-resolution-button, .shaka-audio-button {
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 0 5px;
+    }
+    
+    .shaka-play-button, .shaka-fullscreen-button {
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 0 5px;
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -240,11 +254,13 @@
     async function initPlayer() {
       const video = document.getElementById('video');
       const player = new shaka.Player(video);
+      
+      // Set up UI configuration for full controls
       const ui = new shaka.ui.Overlay(player, video, document.getElementById('video-container'));
       
       // Configure player UI
-      const config = {
-        'controlPanelElements': [
+      const uiConfig = {
+        controlPanelElements: [
           'play_pause',
           'mute',
           'volume',
@@ -257,14 +273,14 @@
           'fullscreen',
           'overflow_menu'
         ],
-        'overflowMenuButtons': [
+        overflowMenuButtons: [
           'download',
           'cast',
           'playback_rate'
         ]
       };
       
-      ui.configure(config);
+      ui.configure(uiConfig);
       
       // Error listener
       player.addEventListener('error', e => {
