@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
+            '9b93b0f6ce45438f9a66bd75165444c2': '5dc0933d2793fe5739f83bfe8f23282a'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://times-ott-live.akamaized.net/moviesnow2_wv_drm/index.mpd');
+        await player.load('https://geminimovieshd.akamaized.net/ec0d4961a002442295f91efc9d675c9d/GeminiMoviesHDB_IN_index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
