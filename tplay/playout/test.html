@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Shaka Player with Loading Indicator</title>
+  <title>Shaka Player</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
   <style>
@@ -11,106 +11,45 @@
       padding: 0;
       height: 100%;
       background: black;
-      font-family: Arial, sans-serif;
     }
     #video-container {
       width: 100%;
       height: 100%;
-      position: relative;
     }
     video {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-    }
-    #loading-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 10;
-      transition: opacity 0.3s ease;
-    }
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
-      margin-bottom: 15px;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    .loading-text {
-      color: white;
-      font-size: 18px;
-    }
-    .hidden {
-      display: none;
     }
   </style>
 </head>
 <body>
   <div id="video-container">
-    <div id="loading-container">
-      <div class="spinner"></div>
-      <div class="loading-text">Loading video content...</div>
-    </div>
     <video id="video" autoplay controls></video>
   </div>
 
   <script>
     async function initPlayer() {
       const video = document.getElementById('video');
-      const loadingContainer = document.getElementById('loading-container');
       const player = new shaka.Player(video);
 
-      // Show loading indicator initially
-      loadingContainer.classList.remove('hidden');
-
       // Error listener
-      player.addEventListener('error', e => {
-        console.error('Error code', e.detail.code, 'object', e.detail);
-        loadingContainer.classList.add('hidden');
-      });
-
-      // Listen for buffering events
-      player.addEventListener('buffering', (e) => {
-        if (e.buffering) {
-          // Show loading indicator when buffering
-          loadingContainer.classList.remove('hidden');
-        } else {
-          // Hide loading indicator when not buffering
-          loadingContainer.classList.add('hidden');
-        }
-      });
+      player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
 
       // Configure ClearKey DRM
       player.configure({
         drm: {
           clearKeys: {
-            'ed068cf84f0640ccbc7c0e395c0a272e': 'bb722190f2bb446391020411a7d0828b'
+            '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetv/default/manifest.mpd');
+        await player.load('https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd');
         console.log('The video has now been loaded!');
-        // Hide loading indicator after content is loaded
-        loadingContainer.classList.add('hidden');
       } catch (e) {
         console.error('Error loading video', e);
-        loadingContainer.querySelector('.loading-text').textContent = 'Error loading video';
       }
     }
 
