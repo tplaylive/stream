@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '05da38a46fb7403088f41434e44de980': '488046139a1e1d65323cfe4bb1b30b7b'
+            'db646b3742ba42718a28436a1f401aa8': '75a545066954b9b7fafa96d72a844e00'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://livestream.sunnxt.com/3ed29d5b01b546eaa05d184cd87535f1/ChuttiTVB_IN_index.mpd');
+        await player.load('https://rest-as.ott.kaltura.com/api_v3/service/assetFile/action/playManifest/partnerId/147/assetId/237652/assetType/media/assetFileId/13230332/contextType/PLAYBACK/isAltUrl/False/a.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
