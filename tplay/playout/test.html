@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '9b93b0f6ce45438f9a66bd75165444c2': '5dc0933d2793fe5739f83bfe8f23282a'
+            '3891557f1cb14dedb7545bf52499d748': 'fb662f742e5f5e0c61a7c1c66d2b019a'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://geminimovieshd.akamaized.net/ec0d4961a002442295f91efc9d675c9d/GeminiMoviesHDB_IN_index.mpd');
+        await player.load('https://livestream2.sunnxt.com/19ee29194c4d4fc286c3e697362e60cd/SunTVHDB_IN_index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
