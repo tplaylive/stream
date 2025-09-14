@@ -1,56 +1,334 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Shaka Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Shaka Player</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      height: 100%;
-      background: black;
     }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+      background: #111;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+    
+    #container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px;
+      gap: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 10px;
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 5px;
+      color: #ff9f43;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .subtitle {
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+    
     #video-container {
+      flex: 1;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      background: #000;
+      max-height: 75vh;
+    }
+    
+    #video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    .control-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 12px;
+    }
+    
+    .control-section {
+      background: #252525;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    
+    .control-title {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #ff9f43;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .control-title i {
+      font-size: 1.4rem;
+    }
+    
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    button {
+      padding: 10px 15px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    button:hover {
+      background: #444;
+      transform: translateY(-2px);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button.selected {
+      background: #ff9f43;
+      color: black;
+      font-weight: bold;
+    }
+    
+    .info-panel {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+    
+    .info-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #ff9f43;
+    }
+    
+    .info-content {
+      line-height: 1.6;
+      color: #ccc;
+    }
+    
+    .info-content code {
+      background: #252525;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    
+    @media (max-width: 768px) {
+      #container {
+        padding: 10px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .control-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Custom Shaka controls */
+    .shaka-video-container:fullscreen {
       width: 100%;
       height: 100%;
     }
-    video {
-      width: 100%;
-      height: 100%;
+    
+    /* Style the controls in fullscreen */
+    .shaka-control-container {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div id="video-container">
-    <video id="video" autoplay controls></video>
+  <div id="container">
+    <header>
+      <h1>Enhanced Shaka Player</h1>
+      <p class="subtitle">With full controls in full screen mode</p>
+    </header>
+    
+    <div id="video-container">
+      <video id="video" autoplay controls></video>
+    </div>
+    
+    <div class="control-panel">
+      <div class="control-section">
+        <div class="control-title">
+          <i class="fas fa-expand"></i>
+          <span>View Mode</span>
+        </div>
+        <p>Change the video player view mode</p>
+        <div class="button-row">
+          <button id="normal-view" class="selected">Normal</button>
+          <button id="zoom-view">Zoom</button>
+          <button id="theater-view">Theater</button>
+        </div>
+      </div>
+      
+      <div class="control-section">
+        <div class="control-title">
+          <i class="fas fa-cog"></i>
+          <span>Playback Controls</span>
+        </div>
+        <p>Control playback even in full screen</p>
+        <div class="button-row">
+          <button id="play-pause"><i class="fas fa-play"></i> Play/Pause</button>
+          <button id="mute-unmute"><i class="fas fa-volume-up"></i> Mute/Unmute</button>
+          <button id="rewind"><i class="fas fa-backward"></i> Rewind 10s</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="info-panel">
+      <div class="info-title">Player Information</div>
+      <div class="info-content">
+        <p>This Shaka Player implementation includes all necessary controls for full screen mode:</p>
+        <ul>
+          <li>Play/Pause button</li>
+          <li>Video quality/resolution selector</li>
+          <li>Audio track selection</li>
+          <li>Full screen toggle</li>
+          <li>View mode options (Normal, Zoom, Theater)</li>
+        </ul>
+        <p>When in full screen mode, hover near the bottom of the video to reveal the control bar.</p>
+        <p>DRM configured with ClearKey encryption for secure playback.</p>
+      </div>
+    </div>
   </div>
 
   <script>
     async function initPlayer() {
       const video = document.getElementById('video');
       const player = new shaka.Player(video);
-
+      const ui = new shaka.ui.Overlay(player, video, document.getElementById('video-container'));
+      
+      // Configure player UI
+      const config = {
+        'controlPanelElements': [
+          'play_pause',
+          'mute',
+          'volume',
+          'time_and_duration',
+          'spacer',
+          'captions',
+          'audio_selection',
+          'quality_selection',
+          'picture_in_picture',
+          'fullscreen',
+          'overflow_menu'
+        ],
+        'overflowMenuButtons': [
+          'download',
+          'cast',
+          'playback_rate'
+        ]
+      };
+      
+      ui.configure(config);
+      
       // Error listener
-      player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
+      player.addEventListener('error', e => {
+        console.error('Error code', e.detail.code, 'object', e.detail);
+      });
 
       // Configure ClearKey DRM
       player.configure({
         drm: {
           clearKeys: {
-            '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
+            'ed068cf84f0640ccbc7c0e395c0a272e': 'bb722190f2bb446391020411a7d0828b'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd');
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetv/default/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
       }
+      
+      // Set up control buttons
+      document.getElementById('play-pause').addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+      
+      document.getElementById('mute-unmute').addEventListener('click', () => {
+        video.muted = !video.muted;
+      });
+      
+      document.getElementById('rewind').addEventListener('click', () => {
+        video.currentTime = Math.max(0, video.currentTime - 10);
+      });
+      
+      // View mode buttons
+      const viewButtons = ['normal-view', 'zoom-view', 'theater-view'];
+      viewButtons.forEach(id => {
+        document.getElementById(id).addEventListener('click', function() {
+          // Remove selected class from all buttons
+          viewButtons.forEach(btnId => {
+            document.getElementById(btnId).classList.remove('selected');
+          });
+          
+          // Add selected class to clicked button
+          this.classList.add('selected');
+          
+          // Apply the selected view mode
+          if (id === 'zoom-view') {
+            video.style.objectFit = 'cover';
+          } else if (id === 'theater-view') {
+            video.style.objectFit = 'contain';
+            document.getElementById('video-container').style.maxHeight = '60vh';
+          } else {
+            video.style.objectFit = 'contain';
+            document.getElementById('video-container').style.maxHeight = '75vh';
+          }
+        });
+      });
     }
 
     document.addEventListener('DOMContentLoaded', initPlayer);
