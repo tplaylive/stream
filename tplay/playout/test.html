@@ -1,60 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Korean Drama Active</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.min.js"></script>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
-    video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      background: black;
-    }
-  </style>
-</head>
-<body>
-  <video id="video" autoplay muted playsinline></video>
+<script>
+  async function initPlayer() {
+    const video = document.getElementById('video');
+    const player = new shaka.Player(video);
 
-  <script>
-    async function initPlayer() {
-      const video = document.getElementById('video');
-      const player = new shaka.Player(video);
+    const manifestUri = "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd";
+    const keyId = "ed197e7253c04946903f03bad9afac91";
+    const key   = "99ebb8683ea74b70a9fda1cbdc2cc1b4";
 
-      // Debugging (optional)
-      window.player = player;
-
-      const manifestUri = "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd";
-
-      // ClearKey config
-      const keyId = "ed197e7253c04946903f03bad9afac91";
-      const key   = "99ebb8683ea74b70a9fda1cbdc2cc1b4";
-
-      player.configure({
-        drm: {
-          clearKeys: {
-            [keyId]: key
-          }
+    player.configure({
+      drm: {
+        clearKeys: {
+          [keyId]: key
         }
-      });
-
-      try {
-        await player.load(manifestUri);
-        video.play();
-      } catch (e) {
-        console.error("Error loading video:", e);
       }
-    }
+    });
 
-    document.addEventListener('DOMContentLoaded', initPlayer);
-  </script>
-</body>
-</html>
+    try {
+      await player.load(manifestUri);
+      await video.play();
+      // Force fullscreen
+      if (video.requestFullscreen) {
+        video.requestFullscreen({ navigationUI: "hide" });
+      }
+    } catch (e) {
+      console.error("Error loading video:", e);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initPlayer);
+</script>
