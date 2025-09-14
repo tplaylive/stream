@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'af35608a7d4b13d1158c2ef6d6c1a010': 'd01c81050dfab309c6be7e60d03c2d82'
+            '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://linearjitp-playback.astro.com.my/dash-wv/linear/2707/default_ott.mpd');
+        await player.load('https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
