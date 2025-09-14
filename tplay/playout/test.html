@@ -2,9 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Korean Drama Active - Shaka Player</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
+  <title>Korean Drama Active - Fullscreen</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.compiled.min.js"></script>
   <style>
     html, body {
       margin: 0;
@@ -12,30 +11,22 @@
       height: 100%;
       background: black;
     }
-    #video-container {
-      width: 100%;
-      height: 100%;
-    }
     video {
       width: 100%;
       height: 100%;
+      background: black;
     }
   </style>
 </head>
 <body>
-  <div id="video-container">
-    <video id="video" autoplay controls></video>
-  </div>
+  <video id="video" autoplay playsinline></video>
 
   <script>
     async function initPlayer() {
       const video = document.getElementById('video');
       const player = new shaka.Player(video);
 
-      // Error listener
-      player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
-
-      // Configure ClearKey DRM
+      // DRM Config
       player.configure({
         drm: {
           clearKeys: {
@@ -44,12 +35,27 @@
         }
       });
 
-      // Load the DASH manifest
+      // Load the DASH stream
       try {
         await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd');
-        console.log('The video has now been loaded!');
+        console.log('Stream loaded!');
+        video.play();
+
+        // Force fullscreen after load
+        requestFullscreen(video);
       } catch (e) {
         console.error('Error loading video', e);
+      }
+    }
+
+    // Force fullscreen function
+    function requestFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) { // Safari
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
       }
     }
 
