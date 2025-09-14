@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '3891557f1cb14dedb7545bf52499d748': 'fb662f742e5f5e0c61a7c1c66d2b019a'
+            'efda647dad723563b625be8c05ee6110': '6776985938b332164b97b81fe566a34a'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://livestream2.sunnxt.com/19ee29194c4d4fc286c3e697362e60cd/SunTVHDB_IN_index.mpd');
+        await player.load('https://linearjitp-playback.astro.com.my/dash-wv/linear/2604/default_primary.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
