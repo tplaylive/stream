@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'efda647dad723563b625be8c05ee6110': '6776985938b332164b97b81fe566a34a'
+            '05da38a46fb7403088f41434e44de980': '488046139a1e1d65323cfe4bb1b30b7b'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://linearjitp-playback.astro.com.my/dash-wv/linear/2604/default_primary.mpd');
+        await player.load('https://livestream.sunnxt.com/3ed29d5b01b546eaa05d184cd87535f1/ChuttiTVB_IN_index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
