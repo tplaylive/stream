@@ -2,37 +2,58 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Korean Drama Active</title>
-  <script src="https://cdn.jwplayer.com/libraries/8.38.4/jwplayer.js"></script>
+  <title>Korean Drama Active - Shaka Player</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
   <style>
-    body { margin:0; background:#000; }
-    #player { width:100%; height:100vh; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+    }
+    #video-container {
+      width: 100%;
+      height: 100%;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
-  <div id="player"></div>
+  <div id="video-container">
+    <video id="video" autoplay controls></video>
+  </div>
 
   <script>
-    jwplayer("player").setup({
-      playlist: [{
-        title: "Korean Drama Active",
-        image: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/BNu8WvFw.png",
-        sources: [{
-          file: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd",
-          type: "dash",
-          drm: {
-            clearkey: {
-              "ed197e7253c04946903f03bad9afac91": 
-              "99ebb8683ea74b70a9fda1cbdc2cc1b4"
-            }
+    async function initPlayer() {
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
+
+      // Error listener
+      player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
+
+      // Configure ClearKey DRM
+      player.configure({
+        drm: {
+          clearKeys: {
+            'ed197e7253c04946903f03bad9afac91': '99ebb8683ea74b70a9fda1cbdc2cc1b4'
           }
-        }]
-      }],
-      width: "100%",
-      height: "100%",
-      autostart: true,
-      stretching: "uniform"
-    });
+        }
+      });
+
+      // Load the DASH manifest
+      try {
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd');
+        console.log('The video has now been loaded!');
+      } catch (e) {
+        console.error('Error loading video', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initPlayer);
   </script>
 </body>
 </html>
