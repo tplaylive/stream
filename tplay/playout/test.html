@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Korean Drama Active</title>
+  <script src="https://cdn.jwplayer.com/libraries/8.38.4/jwplayer.js"></script>
+  <style>
+    body { margin:0; background:#000; }
+    #player { width:100%; height:100vh; }
+  </style>
+</head>
+<body>
+  <div id="player"></div>
+
+  <script>
+    jwplayer("player").setup({
+      playlist: [{
+        title: "Korean Drama Active",
+        image: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/BNu8WvFw.png",
+        sources: [{
+          file: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Koreandramas2/default/manifest.mpd",
+          type: "dash",
+          drm: {
+            clearkey: {
+              "ed197e7253c04946903f03bad9afac91": 
+              "99ebb8683ea74b70a9fda1cbdc2cc1b4"
+            }
+          }
+        }]
+      }],
+      width: "100%",
+      height: "100%",
+      autostart: true,
+      stretching: "uniform"
+    });
+  </script>
+</body>
+</html>
