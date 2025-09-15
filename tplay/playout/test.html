@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'PD6NAln3SPGDD3E6dpdg5w': 'nXoZF+4yRNGYGTzdH/H+rg'
+            '5e0d91714448de0b2e29e53b9ef7ac5d': '00bd26a1aa83373aeef27f4774b8defb'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeaction/default/main.mpd');
+        await player.load('https://live2.shoq.com.pk/live/eds/ARY_Digital/DASH/ARY_Digital.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
