@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'f08c30b7ee114399b72e77b0c099244b': 'a33d496875d04510a9b3116ba51ae65d'
+            'edf1a715de9748638dd2fad75a419af2': '2f5a3199b26e9b693ae881af7ff864cf'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/DreamWorksHD/mpd/DreamWorksHD.mpd');
+        await player.load('https://tglmp01.akamaized.net/out/v1/de55fad9216e4fe7ad8d2eed456ba1ec/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
