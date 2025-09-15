@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '5e0d91714448de0b2e29e53b9ef7ac5d': '00bd26a1aa83373aeef27f4774b8defb'
+            'bb0c6b6f0e2c873a174e63e16f3a3f62': 'a8c4fae3ea8023b51707e470ec336209'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://live3.shoq.com.pk/live/eds/ARY_Digital/DASH/ARY_Digital.mpd');
+        await player.load('https://live3.shoq.com.pk/live/eds/B4U_Movies/DASH/B4U_Movies.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
