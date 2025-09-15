@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '4150a88a441372bcc8899aee17df71f9': 'e43b95c25267faea20b2582e978f7f70'
+            '1ab9491349c9b6217b8e7cec08e6b5a3': 'f37b1bbe691db067003522b053251945'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://live2.shoq.com.pk/live/eds/Geo_Entertainment/DASH/Geo_Entertainment.mpd');
+        await player.load('https://live2.shoq.com.pk/live/eds/Bol_Entertainment/DASH/Bol_Entertainment.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
