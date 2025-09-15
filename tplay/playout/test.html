@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '06a8aac1edf5574817efa6903759e24c': 'cc1ce0c7195d763cd59e2b90d7176f78'
+            '0faa2e9469fc45fdaf1728333351ec71': 'ffcf9dee6ede62bd8740dacfaa0c1e59'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://live2.shoq.com.pk/live/eds/Express_Entertainment/DASH/Express_Entertainment.mpd');
+        await player.load('https://livestream.sunnxt.com/52b94f70c6e64692b2497f5023b629cd/GeminiMusicB_IN_index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
