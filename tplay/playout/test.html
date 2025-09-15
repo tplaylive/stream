@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '30899fda5ca4dfb5a4535ce10c4d7341': '5ea90a1f3b1e4a0a9b72c8e0f4a9bf31'
+            'e48e7373d6be47ecab83a20849f6823e': '513ce07a2ee24ffdbe667eff5a9d46a8'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://livestream.sunnxt.com/19ee29194c4d4fc286c3e697362e60cd/SunTVHDB_IN_index.mpd');
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Tlc2/default/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
