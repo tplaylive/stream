@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'fe0d35dd7f2045e58bfdfeea879a8ae9': '6a61e84d6c9147aa68c06d68f1d7b218'
+            'bf7ec2974fa14a248e338280a6e64cb8': '7e81ae9282d08881e304aa527a1d7e72'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/AnimalPlanetHD/mpd/AnimalPlanetHD.mpd');
+        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/HistoryHD/mpd/HistoryHD.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
