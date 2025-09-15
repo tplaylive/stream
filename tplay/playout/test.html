@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'edf1a715de9748638dd2fad75a419af2': '2f5a3199b26e9b693ae881af7ff864cf'
+            '27c8a08eabcd4bbc88eda3690cbf6aaf': 'bb078e32f6df14ca97bff5b8aee8caf5'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://tglmp01.akamaized.net/out/v1/de55fad9216e4fe7ad8d2eed456ba1ec/manifest.mpd');
+        await player.load('https://atemeshield1-voe.sysln.id/live/eds/DiscoveryAsiaHD/mpd/DiscoveryAsiaHD.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
