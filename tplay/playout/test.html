@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'b7a0caf4ffb4b8010eeb51558ca2d29a': '26220c96f83015d580f455baa4dbfe20'
+            'b6be026722c0e0f5d3b6fe4b32e51734': 'bd3a91241ac6c52999ada34f8fa73a38'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://live2.shoq.com.pk/live/eds/ARY_Zindagae/DASH/ARY_Zindagae.mpd');
+        await player.load('https://live2.shoq.com.pk/live/eds/Geo_Kahani/DASH/Geo_Kahani.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
