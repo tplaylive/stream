@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '50e714b65ead453cbfab9b20bed5c79d': 'bc08e108b9ee4f65b99cb9dad9532f3f'
+            '2a457a6a58184234ba9bfa6916ce8013': 'ef3dd80894774430a33ecbc9108e91d7'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeekannada/default/manifest.mpd');
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Mtvbeats2/default/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
