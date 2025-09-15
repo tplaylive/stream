@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '55d8bf610e3142408ecfa5295d7eba39': '0774f3ae6ea32f9b4c24896f1fb5bb40'
+            '47c03f29f04747d2a298c0ad63f3b2c1': '8b48b2cb2743b91d5f20cf2622067f3a'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d84q7nw4qf3j3.cloudfront.net/out/v1/c20d75deb06f401aa89681a9e5054de7/index.mpd');
+        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/EUROSPORTHD/mpd/EUROSPORTHD.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
