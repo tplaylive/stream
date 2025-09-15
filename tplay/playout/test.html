@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '501c219f6640b42b454a1fc3bda48a7e': 'd547a7eaac74ae83cadcaddb6243978f'
+            '034c919e34f1de07c325a7b23ad451a0': 'cf88732938381b02d3fbfa09de6860ae'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://live2.shoq.com.pk/live/eds/Film_World/DASH/Film_World.mpd');
+        await player.load('https://live2.shoq.com.pk/live/eds/Minimax/DASH/Minimax.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
