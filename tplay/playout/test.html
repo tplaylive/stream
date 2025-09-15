@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '0faa2e9469fc45fdaf1728333351ec71': 'ffcf9dee6ede62bd8740dacfaa0c1e59'
+            '30899fda5ca4dfb5a4535ce10c4d7341': '5ea90a1f3b1e4a0a9b72c8e0f4a9bf31'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://livestream.sunnxt.com/52b94f70c6e64692b2497f5023b629cd/GeminiMusicB_IN_index.mpd');
+        await player.load('https://livestream.sunnxt.com/19ee29194c4d4fc286c3e697362e60cd/SunTVHDB_IN_index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
