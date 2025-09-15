@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '2a457a6a58184234ba9bfa6916ce8013': 'ef3dd80894774430a33ecbc9108e91d7'
+            'fe0d35dd7f2045e58bfdfeea879a8ae9': '6a61e84d6c9147aa68c06d68f1d7b218'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Mtvbeats2/default/manifest.mpd');
+        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/AnimalPlanetHD/mpd/AnimalPlanetHD.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
