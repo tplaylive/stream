@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '2828ea6f6a984505b0454da0c03f68b9': '5d3b7195086544c2807aa8c1544e7379'
+            '5458f45efedb4d6f8aa6ac76c85b621b': 'dbf8a0a306a64525ba3012fd225370c0'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Investigationdiscovery2/default/manifest.mpd');
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoveryscience2/default/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
