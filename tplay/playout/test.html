@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'bf7ec2974fa14a248e338280a6e64cb8': '7e81ae9282d08881e304aa527a1d7e72'
+            'be9caaa813c5305e761c66ac63645901': '3d40f2990ec5362ca5be3a3c9bb8f8b4'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/HistoryHD/mpd/HistoryHD.mpd');
+        await player.load('https://a77aivottepl-a.akamaihd.net/pdx-nitro/live/clients/dash/enc/zuf794yutz/out/v1/ca3534bfe4f148298b36719204d108e0/cenc.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
