@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '601f58d4b7094d2baf78c85d1d9cb6c9': '609e0cc03198455fa36fd2cc3e7f940d'
+            'f081f32756374c3d8265e1a1e029614e': '356a3a6d8ce34d49a84ad464b20b1a3e'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoverykids2/default/manifest.mpd');
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetalkies/default/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
