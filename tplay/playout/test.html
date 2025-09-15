@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'ecad0b097b574078a4a1bde24bfdb2e5': '568bb13d04db4b738864f6c849474cd5'
+            '2a8d6c938ea647248f7a10eedc39f097': '7d81feb84ed84bd88fdc5ca9de3c16da'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeesarthak/default/devil.mpd');
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeemarathi/default/manifest.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
