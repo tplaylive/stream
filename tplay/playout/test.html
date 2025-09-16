@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '00051ad8db73a944abe9ec83ad88987b': '100c985696718d923c4b1289c1cf0d7d'
+            'd84c325f36814f39bbe59080272b10c3': '550727de4c96ef1ecff874905493580f'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://linear001-ie-dash1-prd-ak.cdn.skycdp.com/016a/Content/DASH_003_720_120/Live/channel(tntsport1)/manifest_720.mpd');
+        await player.load('https://ssc-1-enc.edgenextcdn.net/out/v1/c696e4819b55414388a1a487e8a45ca1/index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
