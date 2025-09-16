@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '47c03f29f04747d2a298c0ad63f3b2c1': '8b48b2cb2743b91d5f20cf2622067f3a'
+            '9ecad6c4413f8bdc54712ce6c072a2cf': '442df559c369bdada8ba3abe97811575'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://atemecdnbalancer-voe.sysln.id/live/eds/EUROSPORTHD/mpd/EUROSPORTHD.mpd');
+        await player.load('https://live2.shoq.com.pk/live/eds/PTV_Sports/DASH/PTV_Sports.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
