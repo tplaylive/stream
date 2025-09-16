@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'd84c325f36814f39bbe59080272b10c3': '550727de4c96ef1ecff874905493580f'
+            '8bcfc55359e24bd7ad1c5560a96ddd3c': 'b5dcf721ab522af92a9d3bf0bd55b596'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://ssc-1-enc.edgenextcdn.net/out/v1/c696e4819b55414388a1a487e8a45ca1/index.mpd');
+        await player.load('https://ssc-2-enc.edgenextcdn.net/out/v1/a16db2ec338a445a82d9c541cc9293f9/index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
