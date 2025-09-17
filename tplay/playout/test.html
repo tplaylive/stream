@@ -1,59 +1,111 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Shaka Player</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: black;
-    }
-    #video-container {
-      width: 100%;
-      height: 100%;
-    }
-    video {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div id="video-container">
-    <video id="video" autoplay controls></video>
-  </div>
-
-  <script>
-    async function initPlayer() {
-      const video = document.getElementById('video');
-      const player = new shaka.Player(video);
-
-      // Error listener
-      player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
-
-      // Configure ClearKey DRM
-      player.configure({
-        drm: {
-          clearKeys: {
-            '8bcfc55359e24bd7ad1c5560a96ddd3c': 'b5dcf721ab522af92a9d3bf0bd55b596'
-          }
-        }
-      });
-
-      // Load the DASH manifest
-      try {
-        await player.load('https://ssc-2-enc.edgenextcdn.net/out/v1/a16db2ec338a445a82d9c541cc9293f9/index.mpd');
-        console.log('The video has now been loaded!');
-      } catch (e) {
-        console.error('Error loading video', e);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', initPlayer);
-  </script>
-</body>
+    <head>
+        <title>ZEE5   </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <link rel="shortcut icon" type="image/x-icon" href="https://jiotvimages.cdn.jio.com/dare_images/images/ZEE5.png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    </head>
+    <body>
+        <video autoplay controls crossorigin poster="https://i.ibb.co/7dGhKjwk/photo-2025-02-05-12-57-05-copy-3.jpg" playsinline>
+            <source src="live.php?id=https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8&token=JITENDRA_KUMAR&e.m3u8" type="application/x-mpegURL">
+        </video>
+        <script>
+            const _0x917726 = _0x44b1;
+            function _0xabca() {
+                const _0x4a0fc5 = ['attachMedi', 'tor', 'video', 'src', '2175772BsAeUp', 'none', 'height', 'hls', 'yotge', '3488526QWJhXX', 'currentLev', 'stener', 'display', 'forEach', 'isSupporte', '10yFpqen', 'loading', 'ARSED', 'quality', 'levels', 'map', '613242efIDkp', 'addEventLi', 'style', 'Events', '440636TsmrGf', 'cTzPL', 'isKUG', 'ikvBb', 'ById', '120TeFOlQ', 'MANIFEST_P', 'DOMContent', 'sByTagName', '819387oLBQFJ', '1099lSWBwl', '48696XUYiAl', 'TDHtN', 'source', 'getElement', 'loadSource', 'Loaded', 'YTJLu', '551612LjWast', 'querySelec'];
+                _0xabca = function() {
+                    return _0x4a0fc5;
+                }
+                ;
+                return _0xabca();
+            }
+            function _0x44b1(_0x529ad2, _0x103d29) {
+                const _0x58ad69 = _0xabca();
+                return _0x44b1 = function(_0x3afd55, _0x3fbdf8) {
+                    _0x3afd55 = _0x3afd55 - (-0x2683 + -0x11b * 0x2 + 0x1 * 0x2a76);
+                    let _0x5dd0d2 = _0x58ad69[_0x3afd55];
+                    return _0x5dd0d2;
+                }
+                ,
+                _0x44b1(_0x529ad2, _0x103d29);
+            }
+            (function(_0x26b3d1, _0x2a1129) {
+                const _0x1a0165 = _0x44b1
+                  , _0x4b45c9 = _0x26b3d1();
+                while (!![]) {
+                    try {
+                        const _0x49c569 = parseInt(_0x1a0165(0x1df)) / (0x1a * -0x15d + -0x1df + 0x2552) + -parseInt(_0x1a0165(0x1ca)) / (-0x7ed * 0x1 + 0x1 * -0x1a3e + 0x2a1 * 0xd) + -parseInt(_0x1a0165(0x1cf)) / (0x2 * 0x37e + 0x79f * -0x5 + 0x5 * 0x63a) + -parseInt(_0x1a0165(0x1c4)) / (0x133f * -0x1 + 0x2041 + -0x2 * 0x67f) * (-parseInt(_0x1a0165(0x1d5)) / (-0xc5d + -0x1 * -0xa2b + 0x237)) + parseInt(_0x1a0165(0x1db)) / (-0x1da5 + 0x25c * 0x6 + 0xb * 0x169) + parseInt(_0x1a0165(0x1e9)) / (0x16 * -0xf9 + 0x1f5e + -0x1 * 0x9f1) * (parseInt(_0x1a0165(0x1bd)) / (-0x2545 * -0x1 + 0x1c9d + 0x1 * -0x41da)) + -parseInt(_0x1a0165(0x1e8)) / (-0x184c + -0x10bf * -0x2 + 0x5 * -0x1d5) * (-parseInt(_0x1a0165(0x1e4)) / (0x35 * 0x76 + 0x6a2 + -0x1f06));
+                        if (_0x49c569 === _0x2a1129)
+                            break;
+                        else
+                            _0x4b45c9['push'](_0x4b45c9['shift']());
+                    } catch (_0x4cad79) {
+                        _0x4b45c9['push'](_0x4b45c9['shift']());
+                    }
+                }
+            }(_0xabca, -0x1 * 0x640b5 + -0x5b279 + -0xf1 * -0x16ae),
+            setTimeout(videovisible, -0x1aba + 0x126b + 0xc37));
+            function videovisible() {
+                const _0x519736 = _0x44b1
+                  , _0x1feec0 = {
+                    'TDHtN': _0x519736(0x1d6),
+                    'ikvBb': _0x519736(0x1cb)
+                };
+                document[_0x519736(0x1c0) + _0x519736(0x1e3)](_0x1feec0[_0x519736(0x1be)])[_0x519736(0x1dd)][_0x519736(0x1d2)] = _0x1feec0[_0x519736(0x1e2)];
+            }
+            document[_0x917726(0x1dc) + _0x917726(0x1d1)](_0x917726(0x1e6) + _0x917726(0x1c2), () => {
+                const _0x8d64af = _0x917726
+                  , _0x5167d1 = {
+                    'YTJLu': function(_0x242290, _0x2ea6bb) {
+                        return _0x242290 === _0x2ea6bb;
+                    },
+                    'isKUG': _0x8d64af(0x1c8),
+                    'cTzPL': _0x8d64af(0x1bf)
+                }
+                  , _0xbd8530 = document[_0x8d64af(0x1c5) + _0x8d64af(0x1c7)](_0x5167d1[_0x8d64af(0x1e1)])
+                  , _0x4583b5 = _0xbd8530[_0x8d64af(0x1c0) + _0x8d64af(0x1e7)](_0x5167d1[_0x8d64af(0x1e0)])[0xc82 + -0xc7 * -0xb + -0x150f][_0x8d64af(0x1c9)]
+                  , _0x401683 = {};
+                if (Hls[_0x8d64af(0x1d4) + 'd']()) {
+                    var _0x3173c8 = {
+                        'maxMaxBufferLength': 0x64
+                    };
+                    const _0x52c8a9 = new Hls(_0x3173c8);
+                    _0x52c8a9[_0x8d64af(0x1c1)](_0x4583b5),
+                    _0x52c8a9['on'](Hls[_0x8d64af(0x1de)][_0x8d64af(0x1e5) + _0x8d64af(0x1d7)], function(_0x2861a7, _0x1458b7) {
+                        const _0x237dfe = _0x8d64af
+                          , _0x22526c = {
+                            'yotge': function(_0x22868a, _0x590170) {
+                                const _0xe13f3b = _0x44b1;
+                                return _0x5167d1[_0xe13f3b(0x1c3)](_0x22868a, _0x590170);
+                            }
+                        }
+                          , _0x300aeb = _0x52c8a9[_0x237dfe(0x1d9)][_0x237dfe(0x1da)](_0x3335f3 => _0x3335f3[_0x237dfe(0x1cc)]);
+                        _0x401683[_0x237dfe(0x1d8)] = {
+                            'default': _0x300aeb[0x1 * 0x1537 + -0x968 + -0xbcf * 0x1],
+                            'options': _0x300aeb,
+                            'forced': !(0x1b2a + 0xf2e + -0x2a58),
+                            'onChange': _0x1de6c6 => function(_0x16764f) {
+                                const _0x1799e5 = _0x237dfe;
+                                window[_0x1799e5(0x1cd)][_0x1799e5(0x1d9)][_0x1799e5(0x1d3)]( (_0x66d983, _0x3de813) => {
+                                    const _0x13f4e7 = _0x1799e5;
+                                    _0x22526c[_0x13f4e7(0x1ce)](_0x66d983[_0x13f4e7(0x1cc)], _0x16764f) && (window[_0x13f4e7(0x1cd)][_0x13f4e7(0x1d0) + 'el'] = _0x3de813);
+                                }
+                                );
+                            }(_0x1de6c6)
+                        },
+                        new Plyr(_0xbd8530,_0x401683);
+                    }),
+                    _0x52c8a9[_0x8d64af(0x1c6) + 'a'](_0xbd8530),
+                    window[_0x8d64af(0x1cd)] = _0x52c8a9;
+                } else
+                    new Plyr(_0xbd8530,_0x401683);
+            }
+            );
+        </script>
+    </body>
 </html>
