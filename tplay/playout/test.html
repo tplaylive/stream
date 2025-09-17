@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            '09ffaaff477d490abb4516b7e0711d35': '759cc157a993e8a76ff4d675e34b5400'
+            'ae7076b647133606b704d33e4cef5134': '810251515584cf71216d9a2d1ebf04bb'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://livestream8.sunnxt.com/248c92b73514435686fd72ba325d4008/SunNeoHDB_IN_index.mpd');
+        await player.load('https://mix.drmlive.au/mix/icctv1.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
