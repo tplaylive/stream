@@ -1,60 +1,59 @@
-<!doctype html>
-<html lang="bn">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Full Fill HLS Player</title>
+  <meta charset="utf-8">
+  <title>Shaka Player</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
       height: 100%;
-      background: #000;
-      overflow: hidden;
+      background: black;
     }
-    .player-wrap {
+    #video-container {
       width: 100%;
       height: 100%;
     }
     video {
       width: 100%;
       height: 100%;
-      object-fit: fill; /* force fill entire container */
-      background: #000;
     }
   </style>
 </head>
 <body>
-  <div class="player-wrap">
-    <video id="video" controls autoplay playsinline></video>
+  <div id="video-container">
+    <video id="video" autoplay controls></video>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
   <script>
-    const video = document.getElementById('video');
-    const src = 'https://cdn-3.pishow.tv/live/230/master.m3u8';
+    async function initPlayer() {
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
 
-    function initHls() {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function() {
-          video.play().catch(e => console.log('autoplay prevented:', e));
-        });
-        hls.on(Hls.Events.ERROR, function(event, data) {
-          console.error('HLS error', event, data);
-        });
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = src;
-        video.play().catch(e => console.log('autoplay prevented:', e));
-      } else {
-        alert('Your browser does not support HLS playback.');
+      // Error listener
+      player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
+
+      // Configure ClearKey DRM
+      player.configure({
+        drm: {
+          clearKeys: {
+            '43513b13f4b542e39c9265921dfc1726': 'b0b2678bcd274c37b888a6c987d502ed'
+          }
+        }
+      });
+
+      // Load the DASH manifest
+      try {
+        await player.load('https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeecinema/default/manifest.mpd');
+        console.log('The video has now been loaded!');
+      } catch (e) {
+        console.error('Error loading video', e);
       }
     }
 
-    initHls();
+    document.addEventListener('DOMContentLoaded', initPlayer);
   </script>
 </body>
 </html>
