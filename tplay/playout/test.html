@@ -39,14 +39,14 @@
       player.configure({
         drm: {
           clearKeys: {
-            'fe0f12834d244b02873c6faf4238ffc9': 'da329ca93cbe1c816a43c14b09b8dd6d'
+            '09ffaaff477d490abb4516b7e0711d35': '759cc157a993e8a76ff4d675e34b5400'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://atemeshield1-voe.sysln.id/live/eds/SonyMax/mpd/SonyMax.mpd');
+        await player.load('https://livestream8.sunnxt.com/248c92b73514435686fd72ba325d4008/SunNeoHDB_IN_index.mpd');
         console.log('The video has now been loaded!');
       } catch (e) {
         console.error('Error loading video', e);
