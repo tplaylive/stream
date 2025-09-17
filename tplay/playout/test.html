@@ -20,34 +20,14 @@
     video {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* stretch to fill screen */
+      object-fit: cover;
       background: #000;
-    }
-    .controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-    }
-    button {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 0;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="player-wrap">
-    <video id="video" controls playsinline autoplay></video>
-    <div class="controls">
-      <button id="playBtn">Play/Pause</button>
-      <button id="muteBtn">Mute</button>
-      <button id="pipBtn">Picture-in-Picture</button>
-    </div>
+    <video id="video" autoplay playsinline></video>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
@@ -75,32 +55,6 @@
     }
 
     initHls();
-
-    // UI controls
-    document.getElementById('playBtn').addEventListener('click', async () => {
-      try {
-        if (video.paused) await video.play(); else video.pause();
-      } catch (err) {
-        console.warn('Play failed:', err);
-      }
-    });
-
-    document.getElementById('muteBtn').addEventListener('click', () => {
-      video.muted = !video.muted;
-      document.getElementById('muteBtn').textContent = video.muted ? 'Unmute' : 'Mute';
-    });
-
-    document.getElementById('pipBtn').addEventListener('click', async () => {
-      try {
-        if (document.pictureInPictureElement) {
-          await document.exitPictureInPicture();
-        } else {
-          await video.requestPictureInPicture();
-        }
-      } catch (err) {
-        console.warn('PiP error:', err);
-      }
-    });
   </script>
 </body>
 </html>
