@@ -1,598 +1,460 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaka Player - HLS Support</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: #fff;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #333;
-            margin-bottom: 20px;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e50914;
-        }
-        
-        .player-container {
-            position: relative;
-            width: 100%;
-            background: #000;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
-            margin-bottom: 20px;
-        }
-        
-        #video-container {
-            width: 100%;
-            position: relative;
-        }
-        
-        #video {
-            width: 100%;
-            display: block;
-        }
-        
-        /* Custom Controls */
-        .custom-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 15px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-        
-        #video-container:hover .custom-controls {
-            opacity: 1;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: #e50914;
-            border-radius: 3px;
-            width: 0%;
-            position: relative;
-        }
-        
-        .progress-thumb {
-            width: 14px;
-            height: 14px;
-            background: #e50914;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translate(50%, -50%);
-            display: none;
-        }
-        
-        .progress-container:hover .progress-thumb {
-            display: block;
-        }
-        
-        .control-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .left-controls, .right-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .control-btn {
-            background: rgba(229, 9, 20, 0.3);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-        }
-        
-        .control-btn:hover {
-            background: rgba(229, 9, 20, 0.7);
-            transform: scale(1.1);
-        }
-        
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .volume-slider {
-            width: 80px;
-            height: 5px;
-            -webkit-appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            outline: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
-            background: #e50914;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .time-display {
-            color: white;
-            font-size: 14px;
-            margin: 0 5px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 15px;
-        }
-        
-        .settings-menu {
-            position: absolute;
-            bottom: 60px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
-            z-index: 100;
-        }
-        
-        .settings-menu.active {
-            display: flex;
-        }
-        
-        .settings-item {
-            color: white;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        
-        .settings-item:hover {
-            background: rgba(229, 9, 20, 0.3);
-        }
-        
-        .pip-btn {
-            display: none;
-        }
-        
-        @media (min-width: 768px) {
-            .pip-btn {
-                display: flex;
-            }
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: auto;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .player-title {
-            text-align: center;
-            margin: 10px 0;
-            color: #fff;
-            font-size: 18px;
-        }
-        
-        .url-input-container {
-            display: flex;
-            margin: 15px 0;
-            gap: 10px;
-        }
-        
-        .url-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #333;
-            border-radius: 4px;
-            background: #111;
-            color: white;
-            font-size: 16px;
-        }
-        
-        .load-btn {
-            padding: 12px 20px;
-            background: #e50914;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-        
-        .load-btn:hover {
-            background: #f40612;
-        }
-        
-        .sample-links {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .sample-link {
-            padding: 8px 15px;
-            background: #222;
-            color: #eee;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-        
-        .sample-link:hover {
-            background: #333;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lightweight M3U Player</title>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<style>
+  :root{--bg:#000;--fg:#fff;--muted:#888}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:Inter, system-ui, sans-serif}
+  .player-wrap{height:100vh;display:flex;flex-direction:column;align-items:stretch;justify-content:center;padding:16px;box-sizing:border-box}
+  .video-area{position:relative;max-width:1280px;margin:0 auto;flex:1;display:flex;align-items:center;justify-content:center}
+  video#video{width:100%;height:100%;background:#000;outline:none;display:block;max-height:75vh}
+  .spinner{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:4px solid rgba(255,255,255,0.08);border-top-color:var(--fg);animation:spin 1s linear infinite;display:none}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .controls{max-width:1280px;margin:12px auto 0;display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .left-controls{display:flex;gap:12px;align-items:center}
+  .btn{background:transparent;border:0;color:var(--fg);padding:8px;cursor:pointer;font-size:18px;display:inline-flex;align-items:center;gap:8px}
+  .btn:active{transform:translateY(1px)}
+  .seek{flex:1;margin:0 12px;display:flex;align-items:center;gap:8px}
+  input[type=range]{width:100%}
+  .right-controls{display:flex;gap:8px;align-items:center}
+  .playlist{max-width:350px;background:#080808;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:6px;color:var(--muted);font-size:14px;overflow:auto;max-height:220px}
+  .playlist .item{padding:8px;border-radius:4px;color:var(--fg);cursor:pointer}
+  .playlist .item.active{background:rgba(255,255,255,0.04)}
+  .topbar{max-width:1280px;margin:0 auto 8px;display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .text-input{width:100%;max-width:760px;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:#060606;color:var(--fg)}
+  .small{font-size:13px;color:var(--muted)}
+  .settings-panel{background:#070707;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:8px;flex-direction:column;min-width:260px}
+  label{font-size:13px;color:var(--muted)}
+  .bottom-row{display:flex;gap:12px;align-items:center}
+  .hidden{display:none !important}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">SHAKA PLAYER - HLS SUPPORT</div>
-            <div class="user">Welcome, User!</div>
-        </header>
-        
-        <div class="player-title">Load HLS or DASH Stream</div>
-        
-        <div class="sample-links">
-            <div class="sample-link" data-url="https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd">Sample DASH</div>
-            <div class="sample-link" data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">Sample HLS</div>
-            <div class="sample-link" data-url="https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd">BBB DASH</div>
-            <div class="sample-link" data-url="https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8">BBB HLS</div>
-        </div>
-        
-        <div class="url-input-container">
-            <input type="text" class="url-input" id="stream-url" placeholder="Enter HLS (.m3u8) or DASH (.mpd) URL" value="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">
-            <button class="load-btn" id="load-btn">Load Stream</button>
-        </div>
-        
-        <div class="player-container">
-            <div id="video-container">
-                <video id="video"></video>
-                
-                <!-- Custom Controls -->
-                <div class="custom-controls">
-                    <div class="progress-container" id="progress-container">
-                        <div class="progress-bar" id="progress-bar">
-                            <div class="progress-thumb"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="control-buttons">
-                        <div class="left-controls">
-                            <button class="control-btn" id="play-pause-btn">▶</button>
-                            <button class="control-btn" id="stop-btn">⏹</button>
-                            <button class="control-btn" id="rewind-btn">⏪</button>
-                            <button class="control-btn" id="forward-btn">⏩</button>
-                            
-                            <div class="volume-container">
-                                <button class="control-btn" id="mute-btn">🔊</button>
-                                <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
-                            </div>
-                            
-                            <div class="time-display" id="time-display">00:00 / 00:00</div>
-                        </div>
-                        
-                        <div class="right-controls">
-                            <button class="control-btn" id="subtitle-btn">📝</button>
-                            <button class="control-btn" id="settings-btn">⚙️</button>
-                            <button class="control-btn pip-btn" id="pip-btn">🔲</button>
-                            <button class="control-btn" id="fullscreen-btn">⛶</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Settings Menu -->
-                <div class="settings-menu" id="settings-menu">
-                    <div class="settings-item" data-speed="0.5">0.5x Speed</div>
-                    <div class="settings-item" data-speed="1">Normal Speed</div>
-                    <div class="settings-item" data-speed="1.25">1.25x Speed</div>
-                    <div class="settings-item" data-speed="1.5">1.5x Speed</div>
-                    <div class="settings-item" data-speed="2">2x Speed</div>
-                </div>
-            </div>
-        </div>
+
+<div class="player-wrap">
+
+  <div class="topbar">
+    <div style="display:flex;gap:8px;align-items:center;width:100%">
+      <input id="m3uUrl" class="text-input" placeholder="Paste M3U/M3U8 URL here (or full playlist content)…" />
+      <button id="loadBtn" class="btn">Load</button>
+      <button id="pasteBtn" class="btn">Paste Content</button>
     </div>
 
-    <footer>
-        &copy; 2023 Shaka Player | HLS and DASH Support
-    </footer>
+    <div class="small">Supported: HLS (.m3u8/.ts), DASH (.mpd), .ts, .mp4 — ClearKey DRM supported</div>
+  </div>
 
-    <script>
-        let player;
-        
-        async function initPlayer() {
-            const video = document.getElementById('video');
-            player = new shaka.Player(video);
-            
-            // Listen for error events
-            player.addEventListener('error', onPlayerErrorEvent);
-            
-            // Try to load the default stream
-            const defaultStreamUrl = document.getElementById('stream-url').value;
-            await loadStream(defaultStreamUrl);
-            
-            // Initialize custom controls
-            initCustomControls(player, video);
-        }
-        
-        async function loadStream(streamUrl) {
-            try {
-                // Check if the stream is HLS or DASH
-                if (streamUrl.includes('.m3u8')) {
-                    // For HLS streams, we need to configure the player accordingly
-                    player.configure({
-                        drm: {
-                            clearKeys: {} // Empty for non-encrypted streams
-                        }
-                    });
-                } else if (streamUrl.includes('.mpd')) {
-                    // For DASH streams with DRM
-                    player.configure({
-                        drm: {
-                            clearKeys: {
-                                '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
-                            }
-                        }
-                    });
-                }
-                
-                // Load the stream
-                await player.load(streamUrl);
-                console.log('The video has been loaded!');
-                
-                // Auto-play the video
-                video.play();
-                
-            } catch (error) {
-                console.error('Error loading stream:', error);
-                alert('Error loading stream: ' + error.message);
-            }
-        }
-        
-        function onPlayerErrorEvent(event) {
-            // Extract the shaka.util.Error object from the event.
-            onPlayerError(event.detail);
-        }
-        
-        function onPlayerError(error) {
-            // Log the error.
-            console.error('Error code', error.code, 'object', error);
-        }
-        
-        function initCustomControls(player, video) {
-            // Get all control elements
-            const playPauseBtn = document.getElementById('play-pause-btn');
-            const stopBtn = document.getElementById('stop-btn');
-            const rewindBtn = document.getElementById('rewind-btn');
-            const forwardBtn = document.getElementById('forward-btn');
-            const muteBtn = document.getElementById('mute-btn');
-            const volumeSlider = document.getElementById('volume-slider');
-            const timeDisplay = document.getElementById('time-display');
-            const progressContainer = document.getElementById('progress-container');
-            const progressBar = document.getElementById('progress-bar');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const subtitleBtn = document.getElementById('subtitle-btn');
-            const settingsBtn = document.getElementById('settings-btn');
-            const pipBtn = document.getElementById('pip-btn');
-            const settingsMenu = document.getElementById('settings-menu');
-            const loadBtn = document.getElementById('load-btn');
-            const streamUrlInput = document.getElementById('stream-url');
-            const sampleLinks = document.querySelectorAll('.sample-link');
-            
-            // Play/Pause functionality
-            playPauseBtn.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    playPauseBtn.innerHTML = '❚❚';
-                } else {
-                    video.pause();
-                    playPauseBtn.innerHTML = '▶';
-                }
-            });
-            
-            // Stop functionality
-            stopBtn.addEventListener('click', () => {
-                video.pause();
-                video.currentTime = 0;
-                playPauseBtn.innerHTML = '▶';
-            });
-            
-            // Rewind functionality (10 seconds)
-            rewindBtn.addEventListener('click', () => {
-                video.currentTime = Math.max(0, video.currentTime - 10);
-            });
-            
-            // Forward functionality (10 seconds)
-            forwardBtn.addEventListener('click', () => {
-                video.currentTime = Math.min(video.duration, video.currentTime + 10);
-            });
-            
-            // Mute functionality
-            muteBtn.addEventListener('click', () => {
-                video.muted = !video.muted;
-                muteBtn.innerHTML = video.muted ? '🔇' : '🔊';
-            });
-            
-            // Volume slider
-            volumeSlider.addEventListener('input', () => {
-                video.volume = volumeSlider.value;
-                if (video.volume == 0) {
-                    muteBtn.innerHTML = '🔇';
-                } else {
-                    muteBtn.innerHTML = '🔊';
-                }
-            });
-            
-            // Update time display and progress bar
-            video.addEventListener('timeupdate', () => {
-                const currentTime = formatTime(video.currentTime);
-                const duration = formatTime(video.duration);
-                timeDisplay.textContent = `${currentTime} / ${duration}`;
-                
-                const progressPercent = (video.currentTime / video.duration) * 100;
-                progressBar.style.width = `${progressPercent}%`;
-            });
-            
-            // Seek functionality
-            progressContainer.addEventListener('click', (e) => {
-                const rect = progressContainer.getBoundingClientRect();
-                const percent = (e.clientX - rect.left) / rect.width;
-                video.currentTime = percent * video.duration;
-            });
-            
-            // Fullscreen functionality
-            fullscreenBtn.addEventListener('click', () => {
-                if (!document.fullscreenElement) {
-                    video.parentElement.requestFullscreen().catch(err => {
-                        console.error('Error attempting to enable fullscreen:', err);
-                    });
-                    fullscreenBtn.innerHTML = '⛶';
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                        fullscreenBtn.innerHTML = '⛶';
-                    }
-                }
-            });
-            
-            // Settings menu toggle
-            settingsBtn.addEventListener('click', (e) => {
-                settingsMenu.classList.toggle('active');
-                e.stopPropagation();
-            });
-            
-            // PiP functionality
-            pipBtn.addEventListener('click', () => {
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture();
-                } else if (document.pictureInPictureEnabled) {
-                    video.requestPictureInPicture();
-                }
-            });
-            
-            // Close menus when clicking elsewhere
-            document.addEventListener('click', (e) => {
-                if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
-                    settingsMenu.classList.remove('active');
-                }
-            });
-            
-            // Playback speed settings
-            const speedOptions = settingsMenu.querySelectorAll('.settings-item');
-            speedOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const speed = parseFloat(option.getAttribute('data-speed'));
-                    video.playbackRate = speed;
-                    settingsMenu.classList.remove('active');
-                });
-            });
-            
-            // Load stream from URL input
-            loadBtn.addEventListener('click', () => {
-                const streamUrl = streamUrlInput.value;
-                if (streamUrl) {
-                    loadStream(streamUrl);
-                }
-            });
-            
-            // Load sample streams
-            sampleLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    const streamUrl = link.getAttribute('data-url');
-                    streamUrlInput.value = streamUrl;
-                    loadStream(streamUrl);
-                });
-            });
-            
-            // Helper function to format time
-            function formatTime(seconds) {
-                if (isNaN(seconds)) return "00:00 / 00:00";
-                const minutes = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
-            
-            // Update play/pause button based on video state
-            video.addEventListener('play', () => {
-                playPauseBtn.innerHTML = '❚❚';
-            });
-            
-            video.addEventListener('pause', () => {
-                playPauseBtn.innerHTML = '▶';
-            });
-            
-            // Set initial volume
-            video.volume = volumeSlider.value;
-        }
+  <div class="video-area">
+    <div class="spinner" id="spinner"></div>
+    <video id="video" controls playsinline webkit-playsinline></video>
+  </div>
 
-        document.addEventListener('DOMContentLoaded', initPlayer);
-    </script>
+  <div class="controls">
+    <div class="left-controls">
+      <button id="prev" class="btn">⏮ Prev</button>
+      <button id="playPause" class="btn">⏯ Play</button>
+      <button id="next" class="btn">Next ⏭</button>
+
+      <div class="seek">
+        <input id="seek" type="range" min="0" max="100" value="0" />
+      </div>
+
+      <div class="small" id="timeLabel">00:00 / 00:00</div>
+    </div>
+
+    <div class="right-controls">
+      <button id="fullscreenBtn" class="btn">⤢</button>
+      <div class="settings-panel">
+        <label>ClearKey JSON (optional)</label>
+        <textarea id="clearkey" rows="2" placeholder='{"kids":[{"kty":"oct","kid":"BASE64URL_KID","k":"BASE64URL_KEY"}]}'></textarea>
+        <div style="display:flex;gap:6px">
+          <button id="applyClearkey" class="btn">Apply Keys</button>
+          <button id="togglePlaylist" class="btn">Toggle Playlist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1280px;margin:12px auto 0;display:flex;gap:12px;align-items:flex-start">
+    <div style="flex:1">
+      <div class="small">Playlist</div>
+      <div id="playlist" class="playlist"></div>
+    </div>
+    <div style="width:360px">
+      <div class="small">Logs</div>
+      <pre id="log" style="background:#060606;border-radius:6px;padding:8px;color:var(--muted);height:140px;overflow:auto;font-size:12px"></pre>
+    </div>
+  </div>
+
+</div>
+
+<!-- External libs (CDN). If offline, remove these and provide compatible builds -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+
+<script>
+/* Lightweight M3U player script */
+const video = document.getElementById('video');
+const spinner = document.getElementById('spinner');
+const playlistEl = document.getElementById('playlist');
+const timeLabel = document.getElementById('timeLabel');
+const seek = document.getElementById('seek');
+const logEl = document.getElementById('log');
+
+let hls = null;
+let dashPlayer = null;
+
+let playlist = [];
+let currentIndex = -1;
+let playing = false;
+let userSeeking = false;
+let clearKeyApplied = false;
+
+function log(...args){
+  const t = new Date().toLocaleTimeString();
+  logEl.textContent += `[${t}] ${args.join(' ')}\n`;
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+/* Simple M3U parser: returns array of {title,uri} */
+async function parseM3U(content, baseUrl = '') {
+  const lines = content.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  const out = [];
+  let lastTitle = '';
+  for (const line of lines) {
+    if (line.startsWith('#EXTINF:')) {
+      // capture title after comma
+      const idx = line.indexOf(',');
+      lastTitle = idx >= 0 ? line.substring(idx+1).trim() : '';
+    } else if (!line.startsWith('#')) {
+      // possibly relative URL
+      let uri = line;
+      if (!/^[a-zA-Z]+:\/\//.test(uri) && baseUrl) {
+        try { uri = new URL(uri, baseUrl).href } catch(e) {}
+      }
+      out.push({ title: lastTitle || uri, uri });
+      lastTitle = '';
+    }
+  }
+  return out;
+}
+
+/* load playlist from URL or pasted content */
+async function loadPlaylistFromUrl(url){
+  log('Fetching playlist:', url);
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    const parsed = await parseM3U(text, url);
+    if(parsed.length === 0) {
+      // maybe single link (not an m3u)
+      log('No M3U items found; treating URL as single stream');
+      playlist = [{title: url, uri: url}];
+    } else {
+      playlist = parsed;
+    }
+    renderPlaylist();
+    playIndex(0);
+  } catch (e) {
+    log('Failed to fetch playlist:', e);
+    alert('Failed to load playlist: ' + e.message);
+  }
+}
+
+/* Accept pasted content */
+async function loadPlaylistFromContent(content){
+  // If content includes a single http line, allow it
+  const parsed = await parseM3U(content, '');
+  if(parsed.length === 0) {
+    // fallback - find http lines
+    const lines = content.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+    const uris = lines.filter(l => /^https?:\/\//.test(l));
+    playlist = uris.map(u => ({title:u,uri:u}));
+  } else {
+    playlist = parsed;
+  }
+  renderPlaylist();
+  playIndex(0);
+}
+
+function renderPlaylist(){
+  playlistEl.innerHTML = '';
+  playlist.forEach((it, i) => {
+    const div = document.createElement('div');
+    div.className = 'item' + (i===currentIndex ? ' active' : '');
+    div.textContent = `${i+1}. ${it.title}`;
+    div.onclick = ()=>playIndex(i);
+    playlistEl.appendChild(div);
+  });
+}
+
+/* Decide how to play a given URI */
+async function playIndex(idx){
+  if(idx < 0 || idx >= playlist.length) return;
+  currentIndex = idx;
+  renderPlaylist();
+  const uri = playlist[idx].uri;
+  log('Play:', uri);
+  await attachSource(uri);
+  // autoplay (may be blocked w/out user gesture)
+  try { await video.play(); playing = true; updatePlayBtn(); } catch(e) { log('Autoplay blocked or error:', e.message); }
+}
+
+/* Attach source using hls.js, dash.js or native */
+async function attachSource(uri){
+  stopPlayers();
+  showSpinner(true);
+  video.removeAttribute('src');
+  video.pause();
+  // choose based on extension or content
+  const u = uri.toLowerCase();
+  try {
+    if(u.includes('.m3u8') || u.includes('.m3u')) {
+      if(Hls.isSupported()){
+        hls = new Hls({enableWorker:true, debug:false});
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, ()=> {
+          hls.loadSource(uri);
+          log('hls.js attached');
+        });
+        hls.on(Hls.Events.MANIFEST_PARSED, ()=> {
+          showSpinner(false);
+        });
+        hls.on(Hls.Events.ERROR, (e, data)=> log('HLS error', data));
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = uri;
+        showSpinner(false);
+      } else {
+        throw new Error('HLS not supported in this browser');
+      }
+    } else if(u.includes('.mpd')) {
+      // DASH
+      dashPlayer = dashjs.MediaPlayer().create();
+      dashPlayer.initialize(video, uri, false);
+      dashPlayer.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, ()=>showSpinner(false));
+      dashPlayer.on('error', e=> log('DASH error', JSON.stringify(e)));
+      log('dash.js attached');
+    } else {
+      // direct .ts/.mp4/etc.
+      video.src = uri;
+      video.load();
+      showSpinner(false);
+    }
+  } catch (err) {
+    showSpinner(false);
+    log('Attach error:', err.message);
+    alert('Cannot attach stream: ' + err.message);
+  }
+}
+
+/* Remove players */
+function stopPlayers(){
+  if(hls){ try{ hls.destroy(); }catch(e){} hls=null; }
+  if(dashPlayer){ try{ dashPlayer.reset(); }catch(e){} dashPlayer=null; }
+}
+
+/* spinner */
+function showSpinner(on){
+  spinner.style.display = on ? 'block' : 'none';
+}
+
+/* Controls */
+document.getElementById('loadBtn').addEventListener('click', ()=>{
+  const url = document.getElementById('m3uUrl').value.trim();
+  if(!url) { alert('Enter playlist URL or paste content!'); return; }
+  if(url.startsWith('http') && (url.endsWith('.m3u')||url.endsWith('.m3u8')||url.includes('m3u8'))) {
+    loadPlaylistFromUrl(url);
+  } else {
+    // try fetch and parse anyway
+    loadPlaylistFromUrl(url);
+  }
+});
+
+document.getElementById('pasteBtn').addEventListener('click', async ()=>{
+  // try clipboard
+  try {
+    const txt = await navigator.clipboard.readText();
+    if(!txt) { alert('Clipboard empty'); return; }
+    loadPlaylistFromContent(txt);
+  } catch(e) {
+    const content = prompt('Paste playlist content here:');
+    if(content) loadPlaylistFromContent(content);
+  }
+});
+
+document.getElementById('prev').onclick = ()=>{ if(currentIndex>0) playIndex(currentIndex-1); };
+document.getElementById('next').onclick = ()=>{ if(currentIndex < playlist.length-1) playIndex(currentIndex+1); };
+
+document.getElementById('playPause').onclick = async ()=>{
+  if(video.paused){ try{ await video.play(); playing = true; }catch(e){ log('Play error', e.message) } }
+  else { video.pause(); playing = false; }
+  updatePlayBtn();
+};
+
+function updatePlayBtn(){ document.getElementById('playPause').textContent = video.paused ? '▶ Play' : '⏸ Pause'; }
+
+/* Seek bar & time display */
+video.addEventListener('timeupdate', ()=>{
+  if(!userSeeking && video.duration && isFinite(video.duration)) {
+    const val = Math.floor((video.currentTime / video.duration) * 100);
+    seek.value = val;
+  }
+  timeLabel.textContent = formatTime(video.currentTime) + ' / ' + (isFinite(video.duration) ? formatTime(video.duration) : '00:00');
+});
+seek.addEventListener('input', ()=>{ userSeeking = true; });
+seek.addEventListener('change', ()=>{ 
+  if(video.duration && isFinite(video.duration)) {
+    video.currentTime = (seek.value/100) * video.duration;
+  }
+  userSeeking = false;
+});
+
+function formatTime(t){
+  if(!t || !isFinite(t)) return '00:00';
+  t = Math.floor(t);
+  const mm = Math.floor(t/60).toString().padStart(2,'0');
+  const ss = (t%60).toString().padStart(2,'0');
+  return mm+':'+ss;
+}
+
+/* Fullscreen */
+document.getElementById('fullscreenBtn').addEventListener('click', ()=> {
+  const el = video;
+  if(document.fullscreenElement) document.exitFullscreen();
+  else if(el.requestFullscreen) el.requestFullscreen();
+});
+
+/* Video events for spinner & errors */
+video.addEventListener('waiting', ()=> showSpinner(true));
+video.addEventListener('playing', ()=> showSpinner(false));
+video.addEventListener('error', (e)=> log('Video element error: code=' + video.error?.code + ' message=' + (video.error?.message || '')));
+
+/* Apply ClearKey: expects JSON with { kids: [{kid: base64url, k: base64url}, ...] } or W3C-style jwk? We'll convert to clearkey format. */
+document.getElementById('applyClearkey').addEventListener('click', async ()=>{
+  const txt = document.getElementById('clearkey').value.trim();
+  if(!txt) return alert('Paste ClearKey payload first');
+  try {
+    const payload = JSON.parse(txt);
+    // Support two shapes: {"kids":[{kid,k}]} OR W3C-style {"keys":[{kty,kid,k}]}
+    const map = {};
+    if(payload.kids && Array.isArray(payload.kids)) {
+      payload.kids.forEach(k => { if(k.kid && k.k) map[k.kid] = k.k; });
+    } else if(payload.keys && Array.isArray(payload.keys)) {
+      payload.keys.forEach(k => { if(k.kid && k.k) map[k.kid] = k.k; });
+    } else {
+      // maybe user provided { "keyIdBase64Url":"keyBase64Url" }
+      Object.keys(payload).forEach(kid => map[kid] = payload[kid]);
+    }
+
+    // Build clearkey structure for EME: {kids: [{kty:'oct',kid:'base64url',k:'base64url'}]}
+    const jwk = {keys: Object.keys(map).map(kid => ({kty:'oct',kid:kid,k:map[kid]}))};
+
+    await applyClearKeyToVideo(jwk);
+    clearKeyApplied = true;
+    log('Applied ClearKey keys');
+    alert('ClearKey applied (will be used on next playback start).');
+  } catch(e){ log('ClearKey parse error', e.message); alert('Invalid JSON: ' + e.message); }
+});
+
+/* Attach clearkey to element via EME */
+async function applyClearKeyToVideo(jwkPayload){
+  // Convert keys to clearkey license JSON format for "org.w3.clearkey"
+  // Build key system format: {keys:[{kty:'oct',kid:...,k:...}]}
+  // For EME, we must provide a license response when keymessage event fires. We'll intercept and respond.
+  function toBase64UrlToArrayBuffer(base64url){
+    // convert base64url to base64
+    const b64 = base64url.replace(/-/g,'+').replace(/_/g,'/');
+    const pad = b64.length % 4;
+    const padded = b64 + (pad ? '='.repeat(4 - pad) : '');
+    const bin = atob(padded);
+    const arr = new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+    return arr.buffer;
+  }
+
+  if(!navigator.requestMediaKeySystemAccess) {
+    log('EME not supported in this browser');
+    return;
+  }
+
+  const keySystem = 'org.w3.clearkey';
+  const config = [{
+    initDataTypes: ['keyids', 'cenc'],
+    audioCapabilities: [{ contentType: 'audio/mp4; codecs="mp4a.40.2"' }],
+    videoCapabilities: [{ contentType: 'video/mp4; codecs="avc1.42E01E"' }]
+  }];
+
+  try {
+    const access = await navigator.requestMediaKeySystemAccess(keySystem, config);
+    const mediaKeys = await access.createMediaKeys();
+    await video.setMediaKeys(mediaKeys);
+
+    video.addEventListener('encrypted', async (evt) => {
+      log('encrypted event type', evt.initDataType);
+      // Build clearkey license JSON: {"keys":[{"kty":"oct","kid":"base64url","k":"base64url"}]}
+      const clearkeyLicense = {keys: jwkPayload.keys.map(k=>({kty:'oct',kid:k.kid,k:k.k}))};
+      // EME expects a license response as ArrayBuffer. For clearkey, the license is utf8 JSON.
+      const licenseStr = JSON.stringify(clearkeyLicense);
+      const encoder = new TextEncoder();
+      const licenseBuf = encoder.encode(licenseStr).buffer;
+
+      // Create a session and update with license
+      const session = mediaKeys.createSession();
+      session.addEventListener('message', async (msgEvt) => {
+        try {
+          // msgEvt.message contains challenge; for clearkey we simply respond with licenseBuf
+          await session.update(licenseBuf);
+          log('Clearkey session updated');
+        } catch(e){ log('session update failed', e); }
+      });
+      try {
+        await session.generateRequest(evt.initDataType, evt.initData);
+        log('Clearkey session generateRequest called');
+      } catch(err){ log('generateRequest error', err); }
+    });
+
+    log('MediaKeys set: clearkey ready');
+  } catch(e){
+    log('Failed to setup ClearKey', e);
+  }
+}
+
+/* Toggle playlist visibility */
+document.getElementById('togglePlaylist').addEventListener('click', ()=> {
+  playlistEl.classList.toggle('hidden');
+});
+
+/* Keyboard shortcuts: space play/pause, left/right seek */
+document.addEventListener('keydown', (e)=> {
+  if(e.code === 'Space'){ e.preventDefault(); document.getElementById('playPause').click(); }
+  if(e.code === 'ArrowLeft'){ video.currentTime = Math.max(0, video.currentTime - 10); }
+  if(e.code === 'ArrowRight'){ video.currentTime = Math.min(video.duration || Infinity, video.currentTime + 10); }
+});
+
+/* When stream ends, auto-next */
+video.addEventListener('ended', ()=> {
+  if(currentIndex < playlist.length - 1) playIndex(currentIndex + 1);
+});
+
+/* Helpful: allow dropping a .m3u file or text onto page */
+document.body.addEventListener('drop', async (ev)=>{
+  ev.preventDefault();
+  const f = ev.dataTransfer.files?.[0];
+  if(f){
+    const text = await f.text();
+    loadPlaylistFromContent(text);
+  }
+});
+document.body.addEventListener('dragover', (e)=> e.preventDefault());
+
+/* Init: small demo playlist (comment out if not needed) */
+// playlist = [{title:'Demo HLS',uri:'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'}];
+// renderPlaylist();
+
+log('Player ready. Paste M3U URL or content and click Load/Paste.');
+</script>
 </body>
 </html>
