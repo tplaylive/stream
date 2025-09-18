@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaka Player - Modern UI with Auto-Hide Controls</title>
+    <title>Shaka Player - Android TV App</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,19 +15,138 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
+            font-family: 'Roboto', sans-serif;
+            background: #111;
             color: #fff;
             height: 100vh;
             overflow: hidden;
         }
         
-        #video-container {
+        .android-tv-container {
             width: 100vw;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* TV Header */
+        .tv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: linear-gradient(to bottom, #1a1a1a, #111);
+            border-bottom: 1px solid #333;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e50914;
+        }
+        
+        .tv-clock {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        /* Side navigation */
+        .side-nav {
+            width: 220px;
+            background: #1a1a1a;
+            padding: 20px 0;
+            border-right: 1px solid #333;
+        }
+        
+        .nav-item {
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 18px;
+        }
+        
+        .nav-item:hover, .nav-item:focus {
+            background: #333;
+            outline: none;
+        }
+        
+        .nav-item.active {
+            background: #e50914;
+            color: white;
+        }
+        
+        .nav-item i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* Content area */
+        .content-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .content-card {
+            background: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s;
+            cursor: pointer;
+            height: 180px;
+            position: relative;
+        }
+        
+        .content-card:focus {
+            transform: scale(1.05);
+            outline: 2px solid #e50914;
+            z-index: 2;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 120px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 40px;
+        }
+        
+        .card-title {
+            padding: 10px;
+            font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Video player */
+        #video-container {
+            width: 100%;
+            height: 100%;
             position: relative;
             background: #000;
-            cursor: none; /* Hide cursor in fullscreen when controls are hidden */
+            display: none;
         }
         
         #video {
@@ -173,9 +292,10 @@
             backdrop-filter: blur(5px);
         }
         
-        .control-btn:hover {
+        .control-btn:hover, .control-btn:focus {
             background: rgba(229, 9, 20, 0.7);
             transform: scale(1.1);
+            outline: none;
         }
         
         .volume-container {
@@ -252,8 +372,9 @@
             gap: 8px;
         }
         
-        .settings-item:hover {
+        .settings-item:hover, .settings-item:focus {
             background: rgba(229, 9, 20, 0.3);
+            outline: none;
         }
         
         .settings-item.active {
@@ -313,12 +434,91 @@
             display: flex;
         }
         
+        /* Loading spinner */
+        .loading-spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #e50914;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 5;
+        }
+        
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Error message */
+        .error-message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 80%;
+            z-index: 20;
+        }
+        
+        .error-message button {
+            background: #e50914;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        .error-message button:focus {
+            outline: 2px solid white;
+        }
+        
+        /* TV Focus styles */
+        .focusable:focus {
+            transform: scale(1.05);
+            outline: 2px solid #e50914;
+            z-index: 2;
+        }
+        
+        /* Back button */
+        .back-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .back-button:focus {
+            outline: 2px solid #e50914;
+        }
+        
+        /* Media queries for TV optimization */
         @media (min-width: 768px) {
             .pip-btn {
                 display: flex;
             }
             
-            /* Responsive adjustments for larger screens */
             .custom-controls {
                 padding: 20px 30px;
             }
@@ -329,7 +529,6 @@
         }
         
         @media (max-width: 600px) {
-            /* Mobile optimizations */
             .custom-controls {
                 padding: 10px 15px;
             }
@@ -386,131 +585,163 @@
                 min-width: 130px;
             }
         }
-        
-        /* Loading spinner */
-        .loading-spinner {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #e50914;
-            animation: spin 1s ease-in-out infinite;
-            z-index: 5;
-        }
-        
-        @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        /* Error message */
-        .error-message {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 80%;
-            z-index: 20;
-        }
-        
-        .error-message button {
-            background: #e50914;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <div id="video-container">
-        <video id="video"></video>
-        
-        <!-- Loading spinner -->
-        <div class="loading-spinner" id="loading-spinner"></div>
-        
-        <!-- Error message -->
-        <div class="error-message" id="error-message">
-            <p id="error-text">Failed to load stream</p>
-            <button id="retry-btn">Retry</button>
+    <div class="android-tv-container">
+        <!-- TV Header -->
+        <div class="tv-header">
+            <div class="logo">STREAM TV</div>
+            <div class="tv-clock" id="tv-clock">00:00</div>
         </div>
         
-        <!-- Source selector -->
-        <div class="source-selector">
-            <span>Source:</span>
-            <select id="source-select">
-                <option value="default">Server 1</option>
-                <option value="server1">Server 2</option>
-                <option value="server2">Server 3</option>
-                <option value="server3">Server 4</option>
-                <option value="server4">Server 5</option>
-                <option value="server5">Server 6</option>
-            </select>
-        </div>
-        
-        <!-- Custom Controls -->
-        <div class="custom-controls">
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar">
-                    <div class="progress-thumb"></div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Side Navigation -->
+            <div class="side-nav">
+                <div class="nav-item active" tabindex="0" data-nav="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" tabindex="0" data-nav="movies">
+                    <i class="fas fa-film"></i>
+                    <span>Movies</span>
+                </div>
+                <div class="nav-item" tabindex="0" data-nav="tv">
+                    <i class="fas fa-tv"></i>
+                    <span>TV Shows</span>
+                </div>
+                <div class="nav-item" tabindex="0" data-nav="sports">
+                    <i class="fas fa-basketball"></i>
+                    <span>Sports</span>
+                </div>
+                <div class="nav-item" tabindex="0" data-nav="live">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <span>Live TV</span>
+                </div>
+                <div class="nav-item" tabindex="0" data-nav="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
                 </div>
             </div>
             
-            <div class="control-buttons">
-                <div class="left-controls">
-                    <button class="control-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
-                    <button class="control-btn" id="stop-btn"><i class="fas fa-stop"></i></button>
-                    <button class="control-btn" id="rewind-btn"><i class="fas fa-backward-step"></i></button>
-                    <button class="control-btn" id="forward-btn"><i class="fas fa-forward-step"></i></button>
-                    
-                    <div class="volume-container">
-                        <button class="control-btn" id="mute-btn"><i class="fas fa-volume-high"></i></button>
-                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
+            <!-- Content Area -->
+            <div class="content-area">
+                <h2>Featured Content</h2>
+                <div class="content-grid">
+                    <div class="content-card focusable" tabindex="0" data-stream="default">
+                        <div class="card-image"><i class="fas fa-play-circle"></i></div>
+                        <div class="card-title">Test Stream</div>
                     </div>
-                </div>
-                
-                <div class="right-controls">
-                    <button class="control-btn" id="zoom-btn"><i class="fas fa-expand-alt"></i></button>
-                    <button class="control-btn" id="resolution-btn"><i class="fas fa-tv"></i></button>
-                    <button class="control-btn" id="subtitle-btn"><i class="fas fa-closed-captioning"></i></button>
-                    <button class="control-btn" id="settings-btn"><i class="fas fa-gear"></i></button>
-                    <button class="control-btn pip-btn" id="pip-btn"><i class="fas fa-clone"></i></button>
-                    <button class="control-btn" id="fullscreen-btn"><i class="fas fa-expand"></i></button>
+                    <div class="content-card focusable" tabindex="0" data-stream="server1">
+                        <div class="card-image"><i class="fas fa-play-circle"></i></div>
+                        <div class="card-title">Movies Now</div>
+                    </div>
+                    <div class="content-card focusable" tabindex="0" data-stream="server2">
+                        <div class="card-image"><i class="fas fa-play-circle"></i></div>
+                        <div class="card-title">Zee Bangla</div>
+                    </div>
+                    <div class="content-card focusable" tabindex="0" data-stream="server3">
+                        <div class="card-image"><i class="fas fa-play-circle"></i></div>
+                        <div class="card-title">Zee Bangla HD</div>
+                    </div>
+                    <div class="content-card focusable" tabindex="0" data-stream="server4">
+                        <div class="card-image"><i class="fas fa-play-circle"></i></div>
+                        <div class="card-title">Pishow TV</div>
+                    </div>
+                    <div class="content-card focusable" tabindex="0" data-stream="server5">
+                        <div class="card-image"><i class="fas fa-play-circle"></i></div>
+                        <div class="card-title">Opplextv</div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- Settings Menu -->
-        <div class="settings-menu" id="settings-menu">
-            <div class="settings-item" data-speed="0.5"><i class="fas fa-tachometer-alt"></i>0.5x Speed</div>
-            <div class="settings-item active" data-speed="1"><i class="fas fa-tachometer-alt"></i>Normal Speed</div>
-            <div class="settings-item" data-speed="1.25"><i class="fas fa-tachometer-alt"></i>1.25x Speed</div>
-            <div class="settings-item" data-speed="1.5"><i class="fas fa-tachometer-alt"></i>1.5x Speed</div>
-            <div class="settings-item" data-speed="2"><i class="fas fa-tachometer-alt"></i>2x Speed</div>
-        </div>
-        
-        <!-- Zoom Menu -->
-        <div class="zoom-menu" id="zoom-menu">
-            <div class="settings-item active" data-zoom="fill"><i class="fas fa-arrows-alt-h"></i>Fill</div>
-            <div class="settings-item" data-zoom="cover"><i class="fas fa-arrows-alt-v"></i>Cover</div>
-            <div class="settings-item" data-zoom="contain"><i class="fas fa-arrows-alt"></i>Contain</div>
-        </div>
-        
-        <!-- Resolution Menu -->
-        <div class="resolution-menu" id="resolution-menu">
-            <div class="settings-item" data-resolution="auto"><i class="fas fa-bolt"></i>Auto</div>
-            <!-- Will be populated dynamically -->
+        <!-- Video Player (initially hidden) -->
+        <div id="video-container">
+            <video id="video"></video>
+            
+            <!-- Back button -->
+            <button class="back-button" id="back-button" tabindex="0">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </button>
+            
+            <!-- Loading spinner -->
+            <div class="loading-spinner" id="loading-spinner"></div>
+            
+            <!-- Error message -->
+            <div class="error-message" id="error-message">
+                <p id="error-text">Failed to load stream</p>
+                <button id="retry-btn" tabindex="0">Retry</button>
+            </div>
+            
+            <!-- Source selector -->
+            <div class="source-selector">
+                <span>Source:</span>
+                <select id="source-select">
+                    <option value="default">Server 1</option>
+                    <option value="server1">Server 2</option>
+                    <option value="server2">Server 3</option>
+                    <option value="server3">Server 4</option>
+                    <option value="server4">Server 5</option>
+                    <option value="server5">Server 6</option>
+                </select>
+            </div>
+            
+            <!-- Custom Controls -->
+            <div class="custom-controls">
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress-thumb"></div>
+                    </div>
+                </div>
+                
+                <div class="control-buttons">
+                    <div class="left-controls">
+                        <button class="control-btn" id="play-pause-btn" tabindex="0"><i class="fas fa-play"></i></button>
+                        <button class="control-btn" id="stop-btn" tabindex="0"><i class="fas fa-stop"></i></button>
+                        <button class="control-btn" id="rewind-btn" tabindex="0"><i class="fas fa-backward-step"></i></button>
+                        <button class="control-btn" id="forward-btn" tabindex="0"><i class="fas fa-forward-step"></i></button>
+                        
+                        <div class="volume-container">
+                            <button class="control-btn" id="mute-btn" tabindex="0"><i class="fas fa-volume-high"></i></button>
+                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1" tabindex="0">
+                        </div>
+                    </div>
+                    
+                    <div class="right-controls">
+                        <button class="control-btn" id="zoom-btn" tabindex="0"><i class="fas fa-expand-alt"></i></button>
+                        <button class="control-btn" id="resolution-btn" tabindex="0"><i class="fas fa-tv"></i></button>
+                        <button class="control-btn" id="subtitle-btn" tabindex="0"><i class="fas fa-closed-captioning"></i></button>
+                        <button class="control-btn" id="settings-btn" tabindex="0"><i class="fas fa-gear"></i></button>
+                        <button class="control-btn pip-btn" id="pip-btn" tabindex="0"><i class="fas fa-clone"></i></button>
+                        <button class="control-btn" id="fullscreen-btn" tabindex="0"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Menu -->
+            <div class="settings-menu" id="settings-menu">
+                <div class="settings-item" data-speed="0.5" tabindex="0"><i class="fas fa-tachometer-alt"></i>0.5x Speed</div>
+                <div class="settings-item active" data-speed="1" tabindex="0"><i class="fas fa-tachometer-alt"></i>Normal Speed</div>
+                <div class="settings-item" data-speed="1.25" tabindex="0"><i class="fas fa-tachometer-alt"></i>1.25x Speed</div>
+                <div class="settings-item" data-speed="1.5" tabindex="0"><i class="fas fa-tachometer-alt"></i>1.5x Speed</div>
+                <div class="settings-item" data-speed="2" tabindex="0"><i class="fas fa-tachometer-alt"></i>2x Speed</div>
+            </div>
+            
+            <!-- Zoom Menu -->
+            <div class="zoom-menu" id="zoom-menu">
+                <div class="settings-item active" data-zoom="fill" tabindex="0"><i class="fas fa-arrows-alt-h"></i>Fill</div>
+                <div class="settings-item" data-zoom="cover" tabindex="0"><i class="fas fa-arrows-alt-v"></i>Cover</div>
+                <div class="settings-item" data-zoom="contain" tabindex="0"><i class="fas fa-arrows-alt"></i>Contain</div>
+            </div>
+            
+            <!-- Resolution Menu -->
+            <div class="resolution-menu" id="resolution-menu">
+                <div class="settings-item" data-resolution="auto" tabindex="0"><i class="fas fa-bolt"></i>Auto</div>
+                <!-- Will be populated dynamically -->
+            </div>
         </div>
     </div>
 
@@ -519,6 +750,7 @@
         let controlsTimeout;
         let isFullscreen = false;
         let isControlsVisible = true;
+        let isPlayerView = false;
         const HIDE_DELAY = 3000; // 3 seconds delay before hiding controls
         const HIDE_DELAY_NON_FULLSCREEN = 5000; // 5 seconds for non-fullscreen
         
@@ -571,6 +803,44 @@
             }
         };
         
+        // Update clock
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('tv-clock').textContent = `${hours}:${minutes}`;
+        }
+        
+        // Switch to player view
+        function showPlayerView() {
+            document.querySelector('.main-content').style.display = 'none';
+            document.getElementById('video-container').style.display = 'block';
+            document.getElementById('back-button').style.display = 'flex';
+            isPlayerView = true;
+            
+            // Focus on the player for remote control
+            document.getElementById('video').focus();
+            
+            // Start the controls timer
+            resetControlsTimer();
+        }
+        
+        // Switch to main menu view
+        function showMainView() {
+            document.querySelector('.main-content').style.display = 'flex';
+            document.getElementById('video-container').style.display = 'none';
+            document.getElementById('back-button').style.display = 'none';
+            isPlayerView = false;
+            
+            // Pause video when going back to menu
+            if (player) {
+                player.pause();
+            }
+            
+            // Focus on the first content card
+            document.querySelector('.content-card').focus();
+        }
+        
         async function initPlayer() {
             const video = document.getElementById('video');
             player = new shaka.Player(video);
@@ -590,8 +860,24 @@
                 loadSelectedSource();
             });
             
-            // Load the default source initially
-            await loadSelectedSource();
+            // Set up back button
+            document.getElementById('back-button').addEventListener('click', () => {
+                showMainView();
+            });
+            
+            // Set up content cards
+            document.querySelectorAll('.content-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const streamKey = card.getAttribute('data-stream');
+                    document.getElementById('source-select').value = streamKey;
+                    showPlayerView();
+                    loadSelectedSource();
+                });
+            });
+            
+            // Update clock every minute
+            updateClock();
+            setInterval(updateClock, 60000);
         }
         
         async function loadSelectedSource() {
@@ -723,6 +1009,7 @@
                 const item = document.createElement('div');
                 item.className = 'settings-item';
                 item.setAttribute('data-resolution', height);
+                item.setAttribute('tabindex', '0');
                 item.innerHTML = `<i class="fas fa-tv"></i>${height}p`;
                 resolutionMenu.appendChild(item);
             });
@@ -770,7 +1057,6 @@
             const forwardBtn = document.getElementById('forward-btn');
             const muteBtn = document.getElementById('mute-btn');
             const volumeSlider = document.getElementById('volume-slider');
-            const timeDisplay = document.getElementById('time-display');
             const progressContainer = document.getElementById('progress-container');
             const progressBar = document.getElementById('progress-bar');
             const fullscreenBtn = document.getElementById('fullscreen-btn');
@@ -790,18 +1076,15 @@
             });
             
             // Toggle controls on click when not in fullscreen
-            videoContainer.addEventListener('click', (e) => {
-                if (!isFullscreen && e.target === videoContainer || e.target === video) {
+            videoContainer.addEventListener('click', () => {
+                if (!isFullscreen) {
                     toggleControls();
+                } else {
+                    showControls();
                 }
             });
             
-            // Also show controls when touching the video on mobile
-            videoContainer.addEventListener('touchstart', () => {
-                showControls();
-            });
-            
-            // Play/Pause functionality
+            // Play/Pause button
             playPauseBtn.addEventListener('click', () => {
                 if (video.paused) {
                     video.play();
@@ -813,7 +1096,7 @@
                 resetControlsTimer();
             });
             
-            // Stop functionality
+            // Stop button
             stopBtn.addEventListener('click', () => {
                 video.pause();
                 video.currentTime = 0;
@@ -821,47 +1104,38 @@
                 resetControlsTimer();
             });
             
-            // Rewind functionality (10 seconds)
+            // Rewind button
             rewindBtn.addEventListener('click', () => {
                 video.currentTime = Math.max(0, video.currentTime - 10);
                 resetControlsTimer();
             });
             
-            // Forward functionality (10 seconds)
+            // Forward button
             forwardBtn.addEventListener('click', () => {
                 video.currentTime = Math.min(video.duration, video.currentTime + 10);
                 resetControlsTimer();
             });
             
-            // Mute functionality
+            // Mute button
             muteBtn.addEventListener('click', () => {
                 video.muted = !video.muted;
-                muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
+                muteBtn.innerHTML = video.muted ? 
+                    '<i class="fas fa-volume-mute"></i>' : 
+                    '<i class="fas fa-volume-high"></i>';
                 resetControlsTimer();
             });
             
             // Volume slider
             volumeSlider.addEventListener('input', () => {
                 video.volume = volumeSlider.value;
-                if (video.volume == 0) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-                }
+                video.muted = (volumeSlider.value === 0);
+                muteBtn.innerHTML = (volumeSlider.value === 0) ? 
+                    '<i class="fas fa-volume-mute"></i>' : 
+                    '<i class="fas fa-volume-high"></i>';
                 resetControlsTimer();
             });
             
-            // Update time display and progress bar
-            video.addEventListener('timeupdate', () => {
-                const currentTime = formatTime(video.currentTime);
-                const duration = formatTime(video.duration);
-                timeDisplay.textContent = `${currentTime} / ${duration}`;
-                
-                const progressPercent = (video.currentTime / video.duration) * 100;
-                progressBar.style.width = `${progressPercent}%`;
-            });
-            
-            // Seek functionality
+            // Progress bar
             progressContainer.addEventListener('click', (e) => {
                 const rect = progressContainer.getBoundingClientRect();
                 const percent = (e.clientX - rect.left) / rect.width;
@@ -869,135 +1143,98 @@
                 resetControlsTimer();
             });
             
-            // Fullscreen functionality
+            // Update progress bar as video plays
+            video.addEventListener('timeupdate', () => {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressBar.style.width = percent + '%';
+            });
+            
+            // Fullscreen button
             fullscreenBtn.addEventListener('click', () => {
                 if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => {
+                    videoContainer.requestFullscreen().catch(err => {
                         console.error('Error attempting to enable fullscreen:', err);
                     });
                     fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
                     isFullscreen = true;
-                    // Start the timer to hide controls in fullscreen
-                    resetControlsTimer();
                 } else {
                     if (document.exitFullscreen) {
                         document.exitFullscreen();
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                        isFullscreen = false;
-                        // Show controls when exiting fullscreen
-                        showControls();
                     }
-                }
-            });
-            
-            // Listen for fullscreen changes
-            document.addEventListener('fullscreenchange', () => {
-                isFullscreen = !!document.fullscreenElement;
-                if (!isFullscreen) {
-                    // Show controls when exiting fullscreen
-                    showControls();
-                    // Restore cursor
-                    videoContainer.style.cursor = 'auto';
                     fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                } else {
-                    // Start the timer to hide controls in fullscreen
-                    resetControlsTimer();
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                    isFullscreen = false;
                 }
+                resetControlsTimer();
             });
             
-            // Settings menu toggle
-            settingsBtn.addEventListener('click', (e) => {
+            // Settings button
+            settingsBtn.addEventListener('click', () => {
                 settingsMenu.classList.toggle('active');
-                // Close other menus
                 zoomMenu.classList.remove('active');
                 resolutionMenu.classList.remove('active');
-                e.stopPropagation();
                 resetControlsTimer();
             });
             
-            // Zoom menu toggle
-            zoomBtn.addEventListener('click', (e) => {
+            // Zoom button
+            zoomBtn.addEventListener('click', () => {
                 zoomMenu.classList.toggle('active');
-                // Close other menus
                 settingsMenu.classList.remove('active');
                 resolutionMenu.classList.remove('active');
-                e.stopPropagation();
                 resetControlsTimer();
             });
             
-            // Resolution menu toggle
-            resolutionBtn.addEventListener('click', (e) => {
+            // Resolution button
+            resolutionBtn.addEventListener('click', () => {
                 resolutionMenu.classList.toggle('active');
-                // Close other menus
                 settingsMenu.classList.remove('active');
                 zoomMenu.classList.remove('active');
-                e.stopPropagation();
                 resetControlsTimer();
             });
             
-            // PiP functionality
-            pipBtn.addEventListener('click', () => {
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture();
-                } else if (document.pictureInPictureEnabled) {
-                    video.requestPictureInPicture();
-                }
-                resetControlsTimer();
-            });
-            
-            // Close menus when clicking elsewhere
-            document.addEventListener('click', (e) => {
-                if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
-                    settingsMenu.classList.remove('active');
-                }
-                if (!zoomBtn.contains(e.target) && !zoomMenu.contains(e.target)) {
-                    zoomMenu.classList.remove('active');
-                }
-                if (!resolutionBtn.contains(e.target) && !resolutionMenu.contains(e.target)) {
-                    resolutionMenu.classList.remove('active');
-                }
-            });
-            
-            // Playback speed settings
-            const speedOptions = settingsMenu.querySelectorAll('.settings-item');
-            speedOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const speed = parseFloat(option.getAttribute('data-speed'));
+            // Settings menu items
+            const settingsItems = settingsMenu.querySelectorAll('.settings-item');
+            settingsItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const speed = parseFloat(item.getAttribute('data-speed'));
                     video.playbackRate = speed;
                     
                     // Update active state
-                    speedOptions.forEach(opt => opt.classList.remove('active'));
-                    option.classList.add('active');
+                    settingsItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
                     
                     settingsMenu.classList.remove('active');
                     resetControlsTimer();
                 });
             });
             
-            // Zoom mode settings
-            const zoomOptions = zoomMenu.querySelectorAll('.settings-item');
-            zoomOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const zoomMode = option.getAttribute('data-zoom');
-                    video.style.objectFit = zoomMode;
+            // Zoom menu items
+            const zoomItems = zoomMenu.querySelectorAll('.settings-item');
+            zoomItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const zoom = item.getAttribute('data-zoom');
+                    video.style.objectFit = zoom;
                     
                     // Update active state
-                    zoomOptions.forEach(opt => opt.classList.remove('active'));
-                    option.classList.add('active');
+                    zoomItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
                     
                     zoomMenu.classList.remove('active');
                     resetControlsTimer();
                 });
             });
             
-            // Helper function to format time
-            function formatTime(seconds) {
-                if (isNaN(seconds)) return "00:00";
-                const minutes = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
+            // Hide menus when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
+                    settingsMenu.classList.remove('active');
+                }
+                if (!zoomMenu.contains(e.target) && e.target !== zoomBtn) {
+                    zoomMenu.classList.remove('active');
+                }
+                if (!resolutionMenu.contains(e.target) && e.target !== resolutionBtn) {
+                    resolutionMenu.classList.remove('active');
+                }
+            });
             
             // Update play/pause button based on video state
             video.addEventListener('play', () => {
@@ -1008,66 +1245,73 @@
                 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             });
             
-            // Set initial volume
+            // Initialize volume
             video.volume = volumeSlider.value;
+        }
+        
+        // Initialize the app when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initPlayer();
+            initCustomControls(player, document.getElementById('video'));
             
-            // Add keyboard shortcuts for TV remote compatibility
+            // Set up keyboard navigation for TV remote
             document.addEventListener('keydown', (e) => {
+                // Only handle remote keys when in player view
+                if (!isPlayerView) return;
+                
+                // Show controls when any key is pressed
+                showControls();
+                
                 switch(e.key) {
-                    case ' ':
+                    case 'ArrowUp':
+                    case 'ArrowDown':
+                    case 'ArrowLeft':
+                    case 'ArrowRight':
+                        // Navigation keys - handled by browser focus system
+                        break;
                     case 'Enter':
-                        // Play/Pause
-                        if (video.paused) {
-                            video.play();
-                            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        // Play/Pause toggle
+                        if (document.getElementById('video').paused) {
+                            document.getElementById('video').play();
+                            document.getElementById('play-pause-btn').innerHTML = '<i class="fas fa-pause"></i>';
                         } else {
-                            video.pause();
-                            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            document.getElementById('video').pause();
+                            document.getElementById('play-pause-btn').innerHTML = '<i class="fas fa-play"></i>';
                         }
                         break;
-                    case 'ArrowLeft':
-                        // Rewind 10 seconds
-                        video.currentTime = Math.max(0, video.currentTime - 10);
+                    case 'Backspace':
+                    case 'Escape':
+                        // Back button
+                        if (document.fullscreenElement) {
+                            document.exitFullscreen();
+                            document.getElementById('fullscreen-btn').innerHTML = '<i class="fas fa-expand"></i>';
+                            isFullscreen = false;
+                        } else {
+                            showMainView();
+                        }
                         break;
-                    case 'ArrowRight':
-                        // Forward 10 seconds
-                        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+                    case ' ':
+                        // Space bar for play/pause
+                        if (document.getElementById('video').paused) {
+                            document.getElementById('video').play();
+                            document.getElementById('play-pause-btn').innerHTML = '<i class="fas fa-pause"></i>';
+                        } else {
+                            document.getElementById('video').pause();
+                            document.getElementById('play-pause-btn').innerHTML = '<i class="fas fa-play"></i>';
+                        }
+                        e.preventDefault(); // Prevent scrolling
                         break;
-                    case 'ArrowUp':
-                        // Volume up
-                        video.volume = Math.min(1, video.volume + 0.1);
-                        volumeSlider.value = video.volume;
-                        break;
-                    case 'ArrowDown':
-                        // Volume down
-                        video.volume = Math.max(0, video.volume - 0.1);
-                        volumeSlider.value = video.volume;
-                        break;
-                    case 'f':
-                    case 'F':
-                        // Toggle fullscreen
-                        fullscreenBtn.click();
-                        break;
-                    case 'm':
-                    case 'M':
-                        // Toggle mute
-                        video.muted = !video.muted;
-                        muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
+                    case 'MediaPlayPause':
+                        // Media key for play/pause
+                        if (document.getElementById('video').paused) {
+                            document.getElementById('video').play();
+                            document.getElementById('play-pause-btn').innerHTML = '<i class="fas fa-pause"></i>';
+                        } else {
+                            document.getElementById('video').pause();
+                            document.getElementById('play-pause-btn').innerHTML = '<i class="fas fa-play"></i>';
+                        }
                         break;
                 }
-                
-                // Show controls when a key is pressed
-                showControls();
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initPlayer().then(() => {
-                const video = document.getElementById('video');
-                initCustomControls(player, video);
-                
-                // Start the controls timer
-                resetControlsTimer();
             });
         });
     </script>
