@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Shaka Player</title>
+  <title>Shaka Player with Custom Controls</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
   <style>
@@ -11,27 +11,82 @@
       padding: 0;
       height: 100%;
       background: black;
+      font-family: Arial, sans-serif;
     }
     #video-container {
       width: 100%;
       height: 100%;
+      position: relative;
     }
     video {
       width: 100%;
       height: 100%;
     }
+    
+    /* Custom controls container */
+    #custom-controls {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      z-index: 1000;
+    }
+    
+    /* Custom button styles */
+    .custom-btn {
+      background-color: rgba(30, 30, 30, 0.7);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    
+    .custom-btn:hover {
+      background-color: rgba(50, 50, 50, 0.9);
+    }
+    
+    .custom-btn:active {
+      background-color: rgba(70, 70, 70, 0.9);
+    }
+    
+    /* Hide default controls when using custom ones */
+    /* Note: You might want to keep both or choose one */
   </style>
 </head>
 <body>
   <div id="video-container">
-    <video id="video" autoplay controls></video>
+    <video id="video" autoplay></video>
+    
+    <!-- Custom controls container -->
+    <div id="custom-controls">
+      <button class="custom-btn" id="play-pause-btn">Pause</button>
+      <button class="custom-btn" id="stop-btn">Stop</button>
+      <button class="custom-btn" id="rewind-btn">-10s</button>
+      <button class="custom-btn" id="forward-btn">+10s</button>
+      <button class="custom-btn" id="volume-btn">Volume</button>
+      <button class="custom-btn" id="fullscreen-btn">Fullscreen</button>
+      <button class="custom-btn" id="subtitle-btn">Subtitles</button>
+      <button class="custom-btn" id="settings-btn">Settings</button>
+      <button class="custom-btn" id="pip-btn">PIP</button>
+      <button class="custom-btn" id="audio-mode-btn">Audio Mode</button>
+      <button class="custom-btn" id="zoom-mode-btn">Zoom Mode</button>
+    </div>
   </div>
 
   <script>
     async function initPlayer() {
       const video = document.getElementById('video');
       const player = new shaka.Player(video);
-
+      const ui = new shaka.ui.Overlay(player, video, document.getElementById('video-container'));
+      
       // Error listener
       player.addEventListener('error', e => console.error('Error code', e.detail.code, 'object', e.detail));
 
@@ -39,18 +94,148 @@
       player.configure({
         drm: {
           clearKeys: {
-            'ae7076b647133606b704d33e4cef5134': '810251515584cf71216d9a2d1ebf04bb'
+            '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
           }
         }
       });
 
       // Load the DASH manifest
       try {
-        await player.load('https://mix.drmlive.au/mix/icctv1.mpd');
+        await player.load('https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd');
         console.log('The video has now been loaded!');
+        
+        // Setup custom controls after video is loaded
+        setupCustomControls(player, video);
       } catch (e) {
         console.error('Error loading video', e);
       }
+    }
+
+    function setupCustomControls(player, video) {
+      // Get all buttons
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const stopBtn = document.getElementById('stop-btn');
+      const rewindBtn = document.getElementById('rewind-btn');
+      const forwardBtn = document.getElementById('forward-btn');
+      const volumeBtn = document.getElementById('volume-btn');
+      const fullscreenBtn = document.getElementById('fullscreen-btn');
+      const subtitleBtn = document.getElementById('subtitle-btn');
+      const settingsBtn = document.getElementById('settings-btn');
+      const pipBtn = document.getElementById('pip-btn');
+      const audioModeBtn = document.getElementById('audio-mode-btn');
+      const zoomModeBtn = document.getElementById('zoom-mode-btn');
+      
+      // Play/Pause functionality
+      playPauseBtn.addEventListener('click', function() {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.textContent = 'Pause';
+        } else {
+          video.pause();
+          playPauseBtn.textContent = 'Play';
+        }
+      });
+      
+      // Stop functionality
+      stopBtn.addEventListener('click', function() {
+        video.pause();
+        video.currentTime = 0;
+        playPauseBtn.textContent = 'Play';
+      });
+      
+      // Rewind 10 seconds
+      rewindBtn.addEventListener('click', function() {
+        video.currentTime = Math.max(0, video.currentTime - 10);
+      });
+      
+      // Fast forward 10 seconds
+      forwardBtn.addEventListener('click', function() {
+        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      });
+      
+      // Volume toggle (mute/unmute)
+      volumeBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        volumeBtn.textContent = video.muted ? 'Unmute' : 'Mute';
+      });
+      
+      // Fullscreen toggle
+      fullscreenBtn.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+          });
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          }
+        }
+      });
+      
+      // Subtitle toggle
+      subtitleBtn.addEventListener('click', function() {
+        const tracks = player.getTextTracks();
+        const visible = player.isTextTrackVisible();
+        
+        if (tracks.length > 0) {
+          player.selectTextTrack(visible ? null : tracks[0]);
+          subtitleBtn.textContent = visible ? 'Subtitles Off' : 'Subtitles On';
+        }
+      });
+      
+      // Settings button - using Shaka's built-in settings
+      settingsBtn.addEventListener('click', function() {
+        const controls = ui.getControls();
+        if (controls) {
+          controls.showSettings();
+        }
+      });
+      
+      // Picture-in-Picture
+      pipBtn.addEventListener('click', function() {
+        if (document.pictureInPictureElement) {
+          document.exitPictureInPicture()
+            .catch(error => console.error('Error exiting PiP:', error));
+        } else if (document.pictureInPictureEnabled) {
+          video.requestPictureInPicture()
+            .catch(error => console.error('Error entering PiP:', error));
+        }
+      });
+      
+      // Audio mode - cycle through available audio tracks
+      audioModeBtn.addEventListener('click', function() {
+        const tracks = player.getVariantTracks();
+        const currentTrack = player.getVariantTracks().find(track => track.active);
+        
+        if (tracks.length > 1) {
+          const currentIndex = tracks.indexOf(currentTrack);
+          const nextIndex = (currentIndex + 1) % tracks.length;
+          player.selectVariantTrack(tracks[nextIndex], true);
+          
+          // Update button text with language info if available
+          const language = tracks[nextIndex].language || 'Unknown';
+          audioModeBtn.textContent = `Audio: ${language}`;
+        }
+      });
+      
+      // Zoom mode - toggle between different zoom levels
+      let zoomLevel = 0;
+      const zoomLevels = [1, 1.5, 2];
+      zoomModeBtn.addEventListener('click', function() {
+        zoomLevel = (zoomLevel + 1) % zoomLevels.length;
+        video.style.transform = `scale(${zoomLevels[zoomLevel]})`;
+        video.style.transformOrigin = 'center';
+        zoomModeBtn.textContent = `Zoom: ${zoomLevels[zoomLevel]}x`;
+      });
+      
+      // Update play/pause button based on video state
+      video.addEventListener('play', function() {
+        playPauseBtn.textContent = 'Pause';
+      });
+      
+      video.addEventListener('pause', function() {
+        playPauseBtn.textContent = 'Play';
+      });
     }
 
     document.addEventListener('DOMContentLoaded', initPlayer);
