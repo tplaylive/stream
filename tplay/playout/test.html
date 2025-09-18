@@ -186,6 +186,18 @@
             display: none;
         }
         
+        .source-selector {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: white;
+            z-index: 10;
+        }
+        
         @media (min-width: 768px) {
             .pip-btn {
                 display: flex;
@@ -196,6 +208,15 @@
 <body>
     <div id="video-container">
         <video id="video"></video>
+        
+        <!-- Source Selector -->
+        <select class="source-selector" id="source-selector">
+            <option value="0">Default Stream</option>
+            <option value="1">Server 1: Movies Now</option>
+            <option value="2">Server 2: Zee Bangla</option>
+            <option value="3">Server 3: Unknown</option>
+            <option value="4">Server 4: Unknown</option>
+        </select>
         
         <!-- Custom Controls -->
         <div class="custom-controls">
@@ -242,25 +263,110 @@
     <script>
         let player;
         
+        // Define all stream sources here
+        // You can easily change these URLs to switch between different streams
+        const streamSources = [
+            // Default stream (index 0)
+            'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+            
+            // Server 1: Movies Now (index 1)
+            // This stream requires DRM configuration which is commented out below
+            'https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd',
+            
+            // Server 2: Zee Bangla (index 2)
+            'https://tvsen6.aynaott.com/ZeeBangla/index.m3u8',
+            
+            // Server 3: Unknown (index 3)
+            'https://cdn-6.pishow.tv/live/10006/master.m3u8',
+            
+            // Server 4: Unknown (index 4)
+            'https://allinonereborn.fun/opplextv-web1/live.php?id=221252&e.m3u8'
+        ];
+        
+        // DRM configuration for Server 1 (Movies Now)
+        // Uncomment and use this if you need DRM support for protected streams
+        /*
+        const drmConfig = {
+            'com.widevine.alpha': {
+                serverUrl: 'https://license.akamai.com/widevine/cypher?bytes=',
+                // license headers if needed
+            }
+        };
+        
+        const licenseData = {
+            'com.widevine.alpha': {
+                headers: {
+                    'Content-Type': 'application/octet-stream'
+                },
+                // license acquisition URL if different from serverUrl
+            }
+        };
+        */
+        
         async function initPlayer() {
             const video = document.getElementById('video');
+            const sourceSelector = document.getElementById('source-selector');
             player = new shaka.Player(video);
             
             // Listen for error events
             player.addEventListener('error', onPlayerErrorEvent);
             
-            // Try to load a default stream
+            // Load the default stream initially
+            await loadStream(0);
+            
+            // Add event listener for source selection change
+            sourceSelector.addEventListener('change', async () => {
+                const selectedIndex = parseInt(sourceSelector.value);
+                await loadStream(selectedIndex);
+            });
+            
+            // Initialize custom controls
+            initCustomControls(player, video);
+        }
+        
+        async function loadStream(sourceIndex) {
             try {
-                await player.load('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8');
-                console.log('The video has been loaded!');
+                const video = document.getElementById('video');
+                const wasPlaying = !video.paused;
                 
-                // Auto-play the video
-                video.play();
+                // Pause the video while switching streams
+                video.pause();
                 
-                // Initialize custom controls
-                initCustomControls(player, video);
+                // Configure DRM if needed (for Server 1)
+                /*
+                if (sourceIndex === 1) {
+                    // Configure for Widevine DRM
+                    player.configure({
+                        drm: {
+                            servers: {
+                                'com.widevine.alpha': 'https://license.akamai.com/widevine/cypher?bytes='
+                            }
+                        }
+                    });
+                    
+                    // For Movies Now stream, we might need specific license data
+                    // This would need to be adjusted based on the actual DRM requirements
+                    const customData = '40f019b86241d23ef075633fd7f1e927:058dec845bd340178a388edd104a015e';
+                    // Additional DRM configuration might be needed here
+                } else {
+                    // Clear DRM configuration for non-DRM streams
+                    player.configure({
+                        drm: {}
+                    });
+                }
+                */
+                
+                // Load the selected stream
+                await player.load(streamSources[sourceIndex]);
+                console.log(`Stream ${sourceIndex} loaded successfully`);
+                
+                // Resume playback if it was playing before
+                if (wasPlaying) {
+                    await video.play();
+                }
             } catch (error) {
-                console.error('Error loading stream:', error);
+                console.error(`Error loading stream ${sourceIndex}:`, error);
+                alert(`Failed to load stream. Error: ${error.message}`);
             }
         }
         
