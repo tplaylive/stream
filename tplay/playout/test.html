@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaka Player - Fullscreen</title>
+    <title>Live TV IPTV Player</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -15,15 +16,139 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
+            background: #1a1a1a;
             color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        /* Sidebar with channel list */
+        .sidebar {
+            width: 280px;
+            background: #222;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 15px 0;
+            transition: width 0.3s;
+            flex-shrink: 0;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 15px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-header h2 {
+            color: #e50914;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-box {
+            padding: 10px 15px;
+            background: #333;
+            border-radius: 20px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 100%;
+            outline: none;
+        }
+        
+        .category-filter {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px 15px;
+            gap: 8px;
+        }
+        
+        .category-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        
+        .category-btn.active {
+            background: #e50914;
+        }
+        
+        .channel-list {
+            padding: 0 10px;
+        }
+        
+        .channel-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .channel-item:hover {
+            background: #333;
+        }
+        
+        .channel-item.active {
+            background: #e50914;
+        }
+        
+        .channel-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .channel-info {
+            flex: 1;
+        }
+        
+        .channel-name {
+            font-weight: 500;
+            font-size: 15px;
+        }
+        
+        .channel-category {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 3px;
+        }
+        
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             height: 100vh;
             overflow: hidden;
         }
         
-        #video-container {
-            width: 100vw;
-            height: 100vh;
+        .player-container {
+            flex: 1;
             position: relative;
             background: #000;
         }
@@ -31,18 +156,44 @@
         #video {
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: contain;
         }
         
-        /* Source selector */
+        /* Channel info bar */
+        .channel-bar {
+            padding: 12px 20px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+        }
+        
+        .channel-bar-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .channel-bar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #444;
+        }
+        
+        .channel-bar-text h3 {
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+        
+        .channel-bar-text p {
+            font-size: 13px;
+            color: #aaa;
+        }
+        
         .source-selector {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 12px;
-            border-radius: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -52,13 +203,9 @@
             background: #333;
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
             outline: none;
-        }
-        
-        .source-selector span {
-            font-size: 14px;
         }
         
         /* Custom Controls */
@@ -76,7 +223,7 @@
             opacity: 0;
         }
         
-        #video-container:hover .custom-controls {
+        .player-container:hover .custom-controls {
             opacity: 1;
         }
         
@@ -218,118 +365,248 @@
                 display: flex;
             }
         }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 230px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 40vh;
+            }
+            
+            .main-content {
+                height: 60vh;
+            }
+        }
+        
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .loading.spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #e50914;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-    <div id="video-container">
-        <video id="video"></video>
-        
-        <!-- Source selector -->
-        <div class="source-selector">
-            <span>Source:</span>
-            <select id="source-select">
-                <option value="default">Default Stream</option>
-                <option value="server1">Server 1 - Movies Now</option>
-                <option value="server2">Server 2 - Zee Bangla</option>
-                <option value="server3">Server 3 - Zee Bangala HD</option>
-                <option value="server4">Server 4 - Pishow TV</option>
-                <option value="server5">Server 5 - Opplextv</option>
-            </select>
+    <!-- Sidebar with channel list -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-tv"></i> Live TV</h2>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search channels...">
+            </div>
         </div>
         
-        <!-- Custom Controls -->
-        <div class="custom-controls">
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar">
-                    <div class="progress-thumb"></div>
+        <div class="category-filter">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Movies</button>
+            <button class="category-btn">Sports</button>
+            <button class="category-btn">News</button>
+            <button class="category-btn">Entertainment</button>
+            <button class="category-btn">Music</button>
+        </div>
+        
+        <div class="channel-list" id="channel-list">
+            <!-- Channels will be populated by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Main content area -->
+    <div class="main-content">
+        <!-- Channel info bar -->
+        <div class="channel-bar">
+            <div class="channel-bar-info">
+                <div class="channel-bar-logo" id="current-channel-logo"></div>
+                <div class="channel-bar-text">
+                    <h3 id="current-channel-name">Select a channel</h3>
+                    <p id="current-channel-info">Choose from the list on the left</p>
                 </div>
             </div>
             
-            <div class="control-buttons">
-                <div class="left-controls">
-                    <button class="control-btn" id="play-pause-btn">▶</button>
-                    <button class="control-btn" id="stop-btn">⏹</button>
-                    <button class="control-btn" id="rewind-btn">⏪</button>
-                    <button class="control-btn" id="forward-btn">⏩</button>
-                    
-                    <div class="volume-container">
-                        <button class="control-btn" id="mute-btn">🔊</button>
-                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
-                    </div>
-                    
-                    <div class="time-display" id="time-display">00:00 / 00:00</div>
-                </div>
-                
-                <div class="right-controls">
-                    <button class="control-btn" id="subtitle-btn">📝</button>
-                    <button class="control-btn" id="settings-btn">⚙️</button>
-                    <button class="control-btn pip-btn" id="pip-btn">🔲</button>
-                    <button class="control-btn" id="fullscreen-btn">⛶</button>
-                </div>
+            <div class="source-selector">
+                <span>Source:</span>
+                <select id="source-select">
+                    <option value="">Select a source</option>
+                </select>
             </div>
         </div>
         
-        <!-- Settings Menu -->
-        <div class="settings-menu" id="settings-menu">
-            <div class="settings-item" data-speed="0.5">0.5x Speed</div>
-            <div class="settings-item" data-speed="1">Normal Speed</div>
-            <div class="settings-item" data-speed="1.25">1.25x Speed</div>
-            <div class="settings-item" data-speed="1.5">1.5x Speed</div>
-            <div class="settings-item" data-speed="2">2x Speed</div>
+        <!-- Player container -->
+        <div class="player-container">
+            <video id="video"></video>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <div>Loading stream...</div>
+            </div>
+            
+            <!-- Custom Controls -->
+            <div class="custom-controls">
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar">
+                        <div class="progress-thumb"></div>
+                    </div>
+                </div>
+                
+                <div class="control-buttons">
+                    <div class="left-controls">
+                        <button class="control-btn" id="play-pause-btn">▶</button>
+                        <button class="control-btn" id="stop-btn">⏹</button>
+                        <button class="control-btn" id="rewind-btn">⏪</button>
+                        <button class="control-btn" id="forward-btn">⏩</button>
+                        
+                        <div class="volume-container">
+                            <button class="control-btn" id="mute-btn">🔊</button>
+                            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
+                        </div>
+                        
+                        <div class="time-display" id="time-display">00:00 / 00:00</div>
+                    </div>
+                    
+                    <div class="right-controls">
+                        <button class="control-btn" id="subtitle-btn">📝</button>
+                        <button class="control-btn" id="settings-btn">⚙️</button>
+                        <button class="control-btn pip-btn" id="pip-btn">🔲</button>
+                        <button class="control-btn" id="fullscreen-btn">⛶</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Menu -->
+            <div class="settings-menu" id="settings-menu">
+                <div class="settings-item" data-speed="0.5">0.5x Speed</div>
+                <div class="settings-item" data-speed="1">Normal Speed</div>
+                <div class="settings-item" data-speed="1.25">1.25x Speed</div>
+                <div class="settings-item" data-speed="1.5">1.5x Speed</div>
+                <div class="settings-item" data-speed="2">2x Speed</div>
+            </div>
         </div>
     </div>
 
     <script>
         let player;
+        let currentChannel = null;
         
-        // Define all stream sources with comments
-        const streamSources = {
-            // Default test stream
-            default: {
-                url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
-                comment: 'Default test stream - works everywhere'
-            },
-            
-            // Server 1 - Requires DRM configuration
-            server1: {
-                url: 'https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd',
-                comment: 'Server 1: Movies Now - Requires Widevine DRM with clearkey license',
-                drm: {
-                    clearkey: {
-                        '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
+        // Define channel data with multiple sources
+        const channels = [
+            { 
+                id: 1,
+                name: "T Play Movies", 
+                sources: [
+                    {
+                        name: "Server 1",
+                        url: 'https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd',
+                        drm: {
+                            clearkey: {
+                                '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e'
+                            }
+                        }
+                    },
+                    {
+                        name: "Server 2",
+                        url: 'https://tvsen6.aynaott.com/ZeeBangla/index.m3u8'
+                    },
+                    {
+                        name: "Server 3",
+                        url: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd',
+                        drm: {
+                            clearkey: {
+                                '1df83e058b864da896c9288eef63b113': 'fc32f26239054b56aab48225305598fe'
+                            }
+                        }
+                    },
+                    {
+                        name: "Server 4",
+                        url: 'https://cdn-6.pishow.tv/live/10006/master.m3u8'
+                    },
+                    {
+                        name: "Server 5",
+                        url: 'https://allinonereborn.fun/opplextv-web1/live.php?id=221252&e.m3u8'
                     }
-                }
+                ], 
+                img: "https://i.ytimg.com/vi/Z4MlrXWrMZ8/maxresdefault.jpg", 
+                category: "Movies",
+                description: "24/7 Movies Channel",
+                languages: ["English", "Hindi", "Bangla"]
             },
-            
-            // Server 2 - Simple HLS stream
-            server2: {
-                url: 'https://tvsen6.aynaott.com/ZeeBangla/index.m3u8',
-                comment: 'Server 2: Zee Bangla - Simple HLS stream, no DRM'
-            },
-            
-            // Server 3 - Requires DRM configuration
-            server3: {
-                url: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd',
-                comment: 'Server 3: Zee Bangala HD - Requires Widevine DRM with clearkey license',
-                drm: {
-                    clearkey: {
-                        '1df83e058b864da896c9288eef63b113': 'fc32f26239054b56aab48225305598fe'
+            { 
+                id: 2,
+                name: "Sports HD", 
+                sources: [
+                    {
+                        name: "Primary Source",
+                        url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+                    },
+                    {
+                        name: "Backup Source",
+                        url: 'https://cdn-6.pishow.tv/live/10006/master.m3u8'
                     }
-                }
+                ], 
+                img: "https://img.freepik.com/free-vector/sports-background-with-stadium-spotlights_23-2147620791.jpg", 
+                category: "Sports",
+                description: "Live Sports Events",
+                languages: ["English"]
             },
-            
-            // Server 4 - HLS stream
-            server4: {
-                url: 'https://cdn-6.pishow.tv/live/10006/master.m3u8',
-                comment: 'Server 4: Pishow TV - HLS stream, may require CORS proxy'
+            { 
+                id: 3,
+                name: "News 24", 
+                sources: [
+                    {
+                        name: "Primary Source",
+                        url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+                    }
+                ], 
+                img: "https://static.vecteezy.com/system/resources/previews/002/185/968/non_2x/breaking-news-background-free-vector.jpg", 
+                category: "News",
+                description: "24/7 News Coverage",
+                languages: ["English", "Hindi"]
             },
-            
-            // Server 5 - HLS stream with parameters
-            server5: {
-                url: 'https://allinonereborn.fun/opplextv-web1/live.php?id=221252&e.m3u8',
-                comment: 'Server 5: Opplextv - HLS stream with parameters'
+            { 
+                id: 4,
+                name: "Music World", 
+                sources: [
+                    {
+                        name: "Primary Source",
+                        url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
+                    }
+                ], 
+                img: "https://img.freepik.com/free-vector/music-background-with-notes-and-instruments_23-2147502755.jpg", 
+                category: "Music",
+                description: "Non-stop Music",
+                languages: ["English", "Hindi", "Bangla"]
             }
-        };
+        ];
         
         async function initPlayer() {
             const video = document.getElementById('video');
@@ -338,22 +615,91 @@
             // Listen for error events
             player.addEventListener('error', onPlayerErrorEvent);
             
-            // Set up source selector
-            const sourceSelect = document.getElementById('source-select');
-            sourceSelect.addEventListener('change', () => {
-                loadSelectedSource();
-            });
+            // Initialize UI
+            populateChannelList();
+            initCustomControls(player, video);
             
-            // Load the default source initially
-            await loadSelectedSource();
+            // Auto-select first channel
+            if (channels.length > 0) {
+                selectChannel(channels[0]);
+            }
         }
         
-        async function loadSelectedSource() {
-            const sourceKey = document.getElementById('source-select').value;
-            const source = streamSources[sourceKey];
+        function populateChannelList() {
+            const channelList = document.getElementById('channel-list');
+            channelList.innerHTML = '';
             
-            console.log('Loading source:', sourceKey);
-            console.log('Comment:', source.comment);
+            channels.forEach(channel => {
+                const channelItem = document.createElement('div');
+                channelItem.className = 'channel-item';
+                channelItem.dataset.id = channel.id;
+                
+                channelItem.innerHTML = `
+                    <div class="channel-logo">
+                        ${channel.img ? `<img src="${channel.img}" alt="${channel.name}">` : '<i class="fas fa-tv"></i>'}
+                    </div>
+                    <div class="channel-info">
+                        <div class="channel-name">${channel.name}</div>
+                        <div class="channel-category">${channel.category}</div>
+                    </div>
+                `;
+                
+                channelItem.addEventListener('click', () => {
+                    selectChannel(channel);
+                });
+                
+                channelList.appendChild(channelItem);
+            });
+        }
+        
+        async function selectChannel(channel) {
+            currentChannel = channel;
+            
+            // Update UI
+            document.querySelectorAll('.channel-item').forEach(item => {
+                item.classList.remove('active');
+                if (parseInt(item.dataset.id) === channel.id) {
+                    item.classList.add('active');
+                }
+            });
+            
+            document.getElementById('current-channel-name').textContent = channel.name;
+            document.getElementById('current-channel-info').textContent = `${channel.description} • ${channel.languages.join(', ')}`;
+            
+            if (channel.img) {
+                document.getElementById('current-channel-logo').style.backgroundImage = `url(${channel.img})`;
+                document.getElementById('current-channel-logo').style.backgroundSize = 'cover';
+            }
+            
+            // Update source selector
+            const sourceSelect = document.getElementById('source-select');
+            sourceSelect.innerHTML = '<option value="">Select a source</option>';
+            
+            channel.sources.forEach((source, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = source.name;
+                sourceSelect.appendChild(option);
+            });
+            
+            // Auto-select first source if available
+            if (channel.sources.length > 0) {
+                sourceSelect.value = 0;
+                await loadSource(channel.sources[0]);
+            }
+            
+            // Add event listener for source changes
+            sourceSelect.onchange = () => {
+                const sourceIndex = parseInt(sourceSelect.value);
+                if (!isNaN(sourceIndex) && sourceIndex >= 0) {
+                    loadSource(channel.sources[sourceIndex]);
+                }
+            };
+        }
+        
+        async function loadSource(source) {
+            const loadingElement = document.getElementById('loading');
+            loadingElement.style.display = 'flex';
             
             try {
                 // Clear any previous configuration
@@ -382,7 +728,17 @@
                 
             } catch (error) {
                 console.error('Error loading stream:', error);
-                alert('Failed to load stream: ' + error.message + '\n\nCheck console for details.');
+                alert('Failed to load stream: ' + error.message + '\n\nTrying next source...');
+                
+                // Try next source if available
+                const sourceSelect = document.getElementById('source-select');
+                const currentIndex = parseInt(sourceSelect.value);
+                if (!isNaN(currentIndex) && currentIndex < currentChannel.sources.length - 1) {
+                    sourceSelect.value = currentIndex + 1;
+                    await loadSource(currentChannel.sources[currentIndex + 1]);
+                }
+            } finally {
+                loadingElement.style.display = 'none';
             }
         }
         
@@ -392,7 +748,17 @@
         
         function onPlayerError(error) {
             console.error('Error code', error.code, 'object', error);
-            alert('Player error: ' + error.code + '\n\nCheck console for details.');
+            alert('Player error: ' + error.code + '\n\nTrying next source...');
+            
+            // Try next source if available
+            if (currentChannel) {
+                const sourceSelect = document.getElementById('source-select');
+                const currentIndex = parseInt(sourceSelect.value);
+                if (!isNaN(currentIndex) && currentIndex < currentChannel.sources.length - 1) {
+                    sourceSelect.value = currentIndex + 1;
+                    loadSource(currentChannel.sources[currentIndex + 1]);
+                }
+            }
         }
         
         function initCustomControls(player, video) {
@@ -541,12 +907,7 @@
             video.volume = volumeSlider.value;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initPlayer().then(() => {
-                const video = document.getElementById('video');
-                initCustomControls(player, video);
-            });
-        });
+        document.addEventListener('DOMContentLoaded', initPlayer);
     </script>
 </body>
 </html>
