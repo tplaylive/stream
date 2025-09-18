@@ -11,20 +11,296 @@
       padding: 0;
       height: 100%;
       background: black;
+      font-family: Arial, sans-serif;
     }
     #video-container {
       width: 100%;
       height: 100%;
+      position: relative;
     }
     video {
       width: 100%;
       height: 100%;
+      object-fit: contain;
+    }
+    
+    /* Custom Control Bar */
+    .custom-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    
+    #video-container:hover .custom-controls {
+      opacity: 1;
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: #e50914;
+      border-radius: 3px;
+      width: 0%;
+      position: relative;
+    }
+    
+    .progress-thumb {
+      width: 14px;
+      height: 14px;
+      background: #e50914;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%);
+      display: none;
+    }
+    
+    .progress-container:hover .progress-thumb {
+      display: block;
+    }
+    
+    .control-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .left-controls, .right-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .control-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    
+    .control-btn:hover {
+      background: rgba(229, 9, 20, 0.3);
+    }
+    
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .volume-slider {
+      width: 80px;
+      height: 5px;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      outline: none;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #e50914;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    .time-display {
+      color: white;
+      font-size: 14px;
+      margin: 0 5px;
+    }
+    
+    .settings-menu {
+      position: absolute;
+      bottom: 60px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 150px;
+    }
+    
+    .settings-menu.active {
+      display: flex;
+    }
+    
+    .settings-item {
+      color: white;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    
+    .settings-item:hover {
+      background: rgba(229, 9, 20, 0.3);
+    }
+    
+    .subtitle-menu {
+      position: absolute;
+      bottom: 60px;
+      right: 60px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 150px;
+    }
+    
+    .subtitle-menu.active {
+      display: flex;
+    }
+    
+    .zoom-menu {
+      position: absolute;
+      bottom: 60px;
+      right: 105px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 150px;
+    }
+    
+    .zoom-menu.active {
+      display: flex;
+    }
+    
+    .audio-menu {
+      position: absolute;
+      bottom: 60px;
+      right: 150px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 150px;
+    }
+    
+    .audio-menu.active {
+      display: flex;
+    }
+    
+    .pip-btn {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .pip-btn {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
   <div id="video-container">
-    <video id="video" autoplay controls></video>
+    <video id="video"></video>
+    
+    <!-- Custom Controls -->
+    <div class="custom-controls">
+      <div class="progress-container" id="progress-container">
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-thumb"></div>
+        </div>
+      </div>
+      
+      <div class="control-buttons">
+        <div class="left-controls">
+          <button class="control-btn" id="play-pause-btn">▶</button>
+          <button class="control-btn" id="stop-btn">⏹</button>
+          <button class="control-btn" id="rewind-btn">⏪</button>
+          <button class="control-btn" id="forward-btn">⏩</button>
+          
+          <div class="volume-container">
+            <button class="control-btn" id="mute-btn">🔊</button>
+            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
+          </div>
+          
+          <div class="time-display" id="time-display">00:00 / 00:00</div>
+        </div>
+        
+        <div class="right-controls">
+          <button class="control-btn" id="audio-btn">🎵</button>
+          <button class="control-btn" id="zoom-btn">🔍</button>
+          <button class="control-btn" id="subtitle-btn">📝</button>
+          <button class="control-btn" id="settings-btn">⚙️</button>
+          <button class="control-btn pip-btn" id="pip-btn">🔲</button>
+          <button class="control-btn" id="fullscreen-btn">⛶</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Settings Menu -->
+    <div class="settings-menu" id="settings-menu">
+      <div class="settings-item" data-speed="0.5">0.5x Speed</div>
+      <div class="settings-item" data-speed="1">Normal Speed</div>
+      <div class="settings-item" data-speed="1.25">1.25x Speed</div>
+      <div class="settings-item" data-speed="1.5">1.5x Speed</div>
+      <div class="settings-item" data-speed="2">2x Speed</div>
+    </div>
+    
+    <!-- Subtitle Menu -->
+    <div class="subtitle-menu" id="subtitle-menu">
+      <div class="settings-item" data-subtitle="off">Subtitles Off</div>
+      <div class="settings-item" data-subtitle="en">English</div>
+      <div class="settings-item" data-subtitle="es">Spanish</div>
+      <div class="settings-item" data-subtitle="fr">French</div>
+    </div>
+    
+    <!-- Zoom Menu -->
+    <div class="zoom-menu" id="zoom-menu">
+      <div class="settings-item" data-zoom="fit">Fit to Screen</div>
+      <div class="settings-item" data-zoom="fill">Fill Screen</div>
+      <div class="settings-item" data-zoom="zoom">Zoom</div>
+    </div>
+    
+    <!-- Audio Mood Menu -->
+    <div class="audio-menu" id="audio-menu">
+      <div class="settings-item" data-audio="normal">Normal</div>
+      <div class="settings-item" data-audio="bass">Bass Boost</div>
+      <div class="settings-item" data-audio="treble">Treble Boost</div>
+      <div class="settings-item" data-audio="voice">Voice Enhance</div>
+    </div>
   </div>
 
   <script>
@@ -48,9 +324,209 @@
       try {
         await player.load('https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd');
         console.log('The video has now been loaded!');
+        initCustomControls(player, video);
       } catch (e) {
         console.error('Error loading video', e);
       }
+    }
+
+    function initCustomControls(player, video) {
+      // Get all control elements
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const stopBtn = document.getElementById('stop-btn');
+      const rewindBtn = document.getElementById('rewind-btn');
+      const forwardBtn = document.getElementById('forward-btn');
+      const muteBtn = document.getElementById('mute-btn');
+      const volumeSlider = document.getElementById('volume-slider');
+      const timeDisplay = document.getElementById('time-display');
+      const progressContainer = document.getElementById('progress-container');
+      const progressBar = document.getElementById('progress-bar');
+      const fullscreenBtn = document.getElementById('fullscreen-btn');
+      const subtitleBtn = document.getElementById('subtitle-btn');
+      const settingsBtn = document.getElementById('settings-btn');
+      const pipBtn = document.getElementById('pip-btn');
+      const audioBtn = document.getElementById('audio-btn');
+      const zoomBtn = document.getElementById('zoom-btn');
+      const settingsMenu = document.getElementById('settings-menu');
+      const subtitleMenu = document.getElementById('subtitle-menu');
+      const zoomMenu = document.getElementById('zoom-menu');
+      const audioMenu = document.getElementById('audio-menu');
+      
+      // Play/Pause functionality
+      playPauseBtn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.innerHTML = '❚❚';
+        } else {
+          video.pause();
+          playPauseBtn.innerHTML = '▶';
+        }
+      });
+      
+      // Stop functionality
+      stopBtn.addEventListener('click', () => {
+        video.pause();
+        video.currentTime = 0;
+        playPauseBtn.innerHTML = '▶';
+      });
+      
+      // Rewind functionality (10 seconds)
+      rewindBtn.addEventListener('click', () => {
+        video.currentTime = Math.max(0, video.currentTime - 10);
+      });
+      
+      // Forward functionality (10 seconds)
+      forwardBtn.addEventListener('click', () => {
+        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      });
+      
+      // Mute functionality
+      muteBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        muteBtn.innerHTML = video.muted ? '🔇' : '🔊';
+      });
+      
+      // Volume slider
+      volumeSlider.addEventListener('input', () => {
+        video.volume = volumeSlider.value;
+        if (video.volume == 0) {
+          muteBtn.innerHTML = '🔇';
+        } else {
+          muteBtn.innerHTML = '🔊';
+        }
+      });
+      
+      // Update time display and progress bar
+      video.addEventListener('timeupdate', () => {
+        const currentTime = formatTime(video.currentTime);
+        const duration = formatTime(video.duration);
+        timeDisplay.textContent = `${currentTime} / ${duration}`;
+        
+        const progressPercent = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+      });
+      
+      // Seek functionality
+      progressContainer.addEventListener('click', (e) => {
+        const rect = progressContainer.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        video.currentTime = percent * video.duration;
+      });
+      
+      // Fullscreen functionality
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          video.parentElement.requestFullscreen().catch(err => {
+            console.error('Error attempting to enable fullscreen:', err);
+          });
+          fullscreenBtn.innerHTML = '⛶';
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+            fullscreenBtn.innerHTML = '⛶';
+          }
+        }
+      });
+      
+      // Subtitle menu toggle
+      subtitleBtn.addEventListener('click', () => {
+        subtitleMenu.classList.toggle('active');
+        settingsMenu.classList.remove('active');
+        zoomMenu.classList.remove('active');
+        audioMenu.classList.remove('active');
+      });
+      
+      // Settings menu toggle
+      settingsBtn.addEventListener('click', () => {
+        settingsMenu.classList.toggle('active');
+        subtitleMenu.classList.remove('active');
+        zoomMenu.classList.remove('active');
+        audioMenu.classList.remove('active');
+      });
+      
+      // Zoom menu toggle
+      zoomBtn.addEventListener('click', () => {
+        zoomMenu.classList.toggle('active');
+        settingsMenu.classList.remove('active');
+        subtitleMenu.classList.remove('active');
+        audioMenu.classList.remove('active');
+      });
+      
+      // Audio menu toggle
+      audioBtn.addEventListener('click', () => {
+        audioMenu.classList.toggle('active');
+        settingsMenu.classList.remove('active');
+        subtitleMenu.classList.remove('active');
+        zoomMenu.classList.remove('active');
+      });
+      
+      // PiP functionality
+      pipBtn.addEventListener('click', () => {
+        if (document.pictureInPictureElement) {
+          document.exitPictureInPicture();
+        } else if (document.pictureInPictureEnabled) {
+          video.requestPictureInPicture();
+        }
+      });
+      
+      // Close menus when clicking elsewhere
+      document.addEventListener('click', (e) => {
+        if (!subtitleBtn.contains(e.target) && !subtitleMenu.contains(e.target)) {
+          subtitleMenu.classList.remove('active');
+        }
+        if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+          settingsMenu.classList.remove('active');
+        }
+        if (!zoomBtn.contains(e.target) && !zoomMenu.contains(e.target)) {
+          zoomMenu.classList.remove('active');
+        }
+        if (!audioBtn.contains(e.target) && !audioMenu.contains(e.target)) {
+          audioMenu.classList.remove('active');
+        }
+      });
+      
+      // Playback speed settings
+      const speedOptions = settingsMenu.querySelectorAll('.settings-item');
+      speedOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          const speed = parseFloat(option.getAttribute('data-speed'));
+          video.playbackRate = speed;
+          settingsMenu.classList.remove('active');
+        });
+      });
+      
+      // Zoom options
+      const zoomOptions = zoomMenu.querySelectorAll('.settings-item');
+      zoomOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          const zoomType = option.getAttribute('data-zoom');
+          if (zoomType === 'fit') {
+            video.style.objectFit = 'contain';
+          } else if (zoomType === 'fill') {
+            video.style.objectFit = 'cover';
+          } else if (zoomType === 'zoom') {
+            video.style.objectFit = 'cover';
+            video.style.transform = 'scale(1.2)';
+          }
+          zoomMenu.classList.remove('active');
+        });
+      });
+      
+      // Helper function to format time
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+      
+      // Update play/pause button based on video state
+      video.addEventListener('play', () => {
+        playPauseBtn.innerHTML = '❚❚';
+      });
+      
+      video.addEventListener('pause', () => {
+        playPauseBtn.innerHTML = '▶';
+      });
     }
 
     document.addEventListener('DOMContentLoaded', initPlayer);
