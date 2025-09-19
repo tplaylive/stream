@@ -457,11 +457,6 @@
             <span>Source:</span>
             <select id="source-select">
                 <option value="default">Server 1</option>
-                <option value="server1">Server 2</option>
-                <option value="server2">Server 3</option>
-                <option value="server3">Server 4</option>
-                <option value="server4">Server 5</option>
-                <option value="server5">Server 6</option>
             </select>
         </div>
         
@@ -532,29 +527,6 @@
         const streamSources = {
             // Default test stream
             default: {
-                url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
-                comment: 'Default test stream - works everywhere'
-            },
-            
-            // Server 1 - Requires DRM configuration
-            server1: {
-                url: 'https://livestream.sunnxt.com/d434796d90fa4dc9b7ecfacedbe683f1/SunMusicHDB_IN_index.mpd',
-                comment: 'Server 1: Movies Now - Requires Widevine DRM with clearkey license',
-                drm: {
-                    clearkey: {
-                        'b5a2c6d13b9748de9ceebc0a8adc8af3': 'e806fec1bf1c8a844216118c94bad020'
-                    }
-                }
-            },
-            
-            // Server 2 - Simple HLS stream
-            server2: {
-                url: 'https://crichdplaylist.extratvteam.workers.dev/master.m3u8?cid=willowusa',
-                comment: 'Server 2: Zee Bangla - Simple HLS stream, no DRM'
-            },
-            
-            // Server 3 - Requires DRM configuration
-            server3: {
                 url: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd',
                 comment: 'Server 3: Zee Bangala HD - Requires Widevine DRM with clearkey license',
                 drm: {
@@ -562,18 +534,6 @@
                         '1df83e058b864da896c9288eef63b113': 'fc32f26239054b56aab48225305598fe'
                     }
                 }
-            },
-            
-            // Server 4 - HLS stream
-            server4: {
-                url: 'https://cdn-6.pishow.tv/live/10006/master.m3u8',
-                comment: 'Server 4: Pishow TV - HLS stream, may require CORS proxy'
-            },
-            
-            // Server 5 - HLS stream with parameters
-            server5: {
-                url: 'https://allinonereborn.fun/opplextv-web1/live.php?id=221252&e.m3u8',
-                comment: 'Server 5: Opplextv - HLS stream with parameters'
             }
         };
         
