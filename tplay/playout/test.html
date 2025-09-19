@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T Play - TV Player</title>
+    <title>T Play</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1172,126 +1172,27 @@
         // Channel data with language information
         const channels = [
             { 
+                name: "Geo Entertainment", 
+                sources: [
+                    { name: "Server 1", url: 'https://live2.shoq.com.pk/live/eds/Geo_Entertainment/DASH/Geo_Entertainment.mpd', drm: { clearkey: { '4150a88a441372bcc8899aee17df71f9': 'e43b95c25267faea20b2582e978f7f70' } } },
+                    { name: "Server 2", url: 'https://jk3lz82elw79-hls-live.5centscdn.com/harPalGeo/955ad3298db330b5ee880c2c9e6f23a0.sdp/playlist.m3u8' },
+                ], 
+                logo: "https://static.wikia.nocookie.net/logopedia/images/4/4a/Geo_TV_Int%27l.png/revision/latest?cb=20111002121228", 
+                category: "Entertainment", 
+                language: "Urdu"
+            },
+            { 
                 name: "Movies Now", 
                 sources: [
-                    { name: "Main Stream", url: 'https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd', drm: { clearkey: { '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e' } } },
-                    { name: "Backup 1", url: 'https://cdn-6.pishow.tv/live/10006/master.m3u8' },
-                    { name: "Backup 2", url: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd', drm: { clearkey: { '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e' } } }
+                    { name: "Main Stream", url: 'https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd', drm: { clearkey: { '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e' } } }
                 ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/movies-now.png", 
+                logo: "https://i.postimg.cc/gjb2mNrG/movies-now.jpg", 
                 category: "Movies", 
                 language: "English" 
-            },
-            { 
-                name: "News 24", 
-                sources: [
-                    { name: "Main Stream", url: 'https://news24-lh.akamaihd.net/i/live_1@195138/master.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/News18/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/news24.png", 
-                category: "News", 
-                language: "Hindi" 
-            },
-            { 
-                name: "Sports Action", 
-                sources: [
-                    { name: "Main Stream", url: 'https://sport-live-1.akamaized.net/hls/live/2031504/sport1/master.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/DD_Sports/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/sports-action.png", 
-                category: "Sports", 
-                language: "English" 
-            },
-            { 
-                name: "Music World", 
-                sources: [
-                    { name: "Main Stream", url: 'https://musiclive-lh.akamaihd.net/i/music_1@195137/master.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/9XJalwa/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/music-world.png", 
-                category: "Music", 
-                language: "Hindi" 
-            },
-            { 
-                name: "Kids Zone", 
-                sources: [
-                    { name: "Main Stream", url: 'https://kidslive-lh.akamaihd.net/i/kids_1@195139/master.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Cartoon_Network/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/kids-zone.png", 
-                category: "Kids", 
-                language: "English" 
-            },
-            { 
-                name: "Discovery Plus", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Discovery/index.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Animal_Planet/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/discovery-plus.png", 
-                category: "Infotainment", 
-                language: "English" 
-            },
-            { 
-                name: "Sony MAX", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Sony_Max/index.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Sony_Sab/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/sony-max.png", 
-                category: "Entertainment", 
-                language: "Hindi" 
-            },
-            { 
-                name: "Zee Bangla", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebangla/default/manifest.mpd', drm: { clearkey: { '40f019b86241d23ef075633fd7f1e927': '058dec845bd340178a388edd104a015e' } } },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Zee_Bangla/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/zee-bangla.png", 
-                category: "Entertainment", 
-                language: "Bengali" 
-            },
-            { 
-                name: "Star Sports", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Star_Sports1/index.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Star_Sports2/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/star-sports.png", 
-                category: "Sports", 
-                language: "English" 
-            },
-            { 
-                name: "Aastha TV", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Aastha/index.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Sanskar/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/aastha-tv.png", 
-                category: "Religious", 
-                language: "Hindi" 
-            },
-            { 
-                name: "Colors TV", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Colors/index.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/Colors_Rishtey/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/colors-tv.png", 
-                category: "Entertainment", 
-                language: "Hindi" 
-            },
-            { 
-                name: "MTV India", 
-                sources: [
-                    { name: "Main Stream", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/MTV/index.m3u8' },
-                    { name: "Backup 1", url: 'https://d2q8p4pe5spbak.cloudfront.net/bpk-tv/VH1/index.m3u8' }
-                ], 
-                logo: "https://i.postimg.cc/0jvL7hQj/mtv-india.png", 
-                category: "Music", 
-                language: "Hindi" 
             }
+            
+            //channels
+            
         ];
 
         // DOM Elements
