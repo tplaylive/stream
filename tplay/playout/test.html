@@ -437,51 +437,6 @@
             margin-top: 10px;
             cursor: pointer;
         }
-        
-        /* URL input field */
-        .url-input-container {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            opacity: 1;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .url-input-container.hidden {
-            opacity: 0;
-            transform: translateY(-20px);
-            pointer-events: none;
-        }
-        
-        .url-input-container input {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
-            outline: none;
-            font-size: 14px;
-            width: 250px;
-        }
-        
-        .url-input-container button {
-            background: #e50914;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
@@ -503,14 +458,8 @@
             <select id="source-select">
                 <option value="default">Server 1</option>
                 <option value="server2">Server 2</option>
-                <option value="bongoflix">BongoFlix</option>
+                <option value="server3">Server 3</option>
             </select>
-        </div>
-        
-        <!-- URL input for BongoFlix -->
-        <div class="url-input-container" id="url-input-container">
-            <input type="text" id="bongoflix-url" placeholder="Enter BongoFlix URL" value="https://tv.bongoflix.top/toffee/?watch=sonysab_hd">
-            <button id="load-url-btn">Load</button>
         </div>
         
         <!-- Custom Controls -->
@@ -580,23 +529,22 @@
         const streamSources = {
             // Default test stream
             default: {
-                url: 'https://livestream.sunnxt.com/61477b4c8d8d45d5a49e044cc1dffc60/KTVHDB_IN_index.mpd',
-                comment: 'Server 1',
+                url: 'https://linearjitp-playback.astro.com.my/dash-wv/linear/2109/default.mpd',
+                comment: 'Server 1: Movies Now - Requires Widevine DRM with clearkey license',
                 drm: {
                     clearkey: {
-                        '351e547391bb45cbac66d2cb9ec0c294': '3bd646753f4903eee3b404646c7819d3'
+                        '918adebe10a9848d567dc6cb5adce510': '084e76561bba9d4f3ae953acdd37b3ed'
                     }
                 }
             },
             server2: {
-                url: 'https://live20.bozztv.com/akamaissh101/ssh101/sungo546/chunks.m3u8',
+                url: 'https://cdn-4.pishow.tv/live/1143/master.m3u8',
                 comment: 'Server 2'
             },
-            bongoflix: {
-                url: '',
-                comment: 'BongoFlix Stream',
-                type: 'hls' // Default type for BongoFlix streams
-            }
+            server3: {
+                url: 'https://mini.allinonereborn.online/jiotv-ww/app/ts_live_740.m3u8',
+                comment: 'Server 3'
+            },
         };
         
         async function initPlayer() {
@@ -609,32 +557,7 @@
             // Set up source selector
             const sourceSelect = document.getElementById('source-select');
             sourceSelect.addEventListener('change', () => {
-                const selectedValue = sourceSelect.value;
-                if (selectedValue === 'bongoflix') {
-                    document.getElementById('url-input-container').classList.remove('hidden');
-                } else {
-                    document.getElementById('url-input-container').classList.add('hidden');
-                    loadSelectedSource();
-                }
-            });
-            
-            // Set up URL input for BongoFlix
-            const loadUrlBtn = document.getElementById('load-url-btn');
-            const bongoflixUrlInput = document.getElementById('bongoflix-url');
-            
-            loadUrlBtn.addEventListener('click', () => {
-                const url = bongoflixUrlInput.value.trim();
-                if (url) {
-                    streamSources.bongoflix.url = url;
-                    loadSelectedSource();
-                }
-            });
-            
-            // Also allow Enter key to load URL
-            bongoflixUrlInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    loadUrlBtn.click();
-                }
+                loadSelectedSource();
             });
             
             // Set up retry button
@@ -677,14 +600,9 @@
                     console.log('DRM configured for this source');
                 }
                 
-                // Special handling for BongoFlix URLs
-                if (sourceKey === 'bongoflix') {
-                    await loadBongoFlixStream(source.url);
-                } else {
-                    // Try to load the stream directly
-                    await player.load(source.url);
-                    console.log('Stream loaded successfully!');
-                }
+                // Try to load the stream
+                await player.load(source.url);
+                console.log('Stream loaded successfully!');
                 
                 // Hide loading spinner
                 document.getElementById('loading-spinner').style.display = 'none';
@@ -703,39 +621,6 @@
             }
         }
         
-        async function loadBongoFlixStream(url) {
-            try {
-                // Show a message that we're processing the BongoFlix URL
-                document.getElementById('error-text').textContent = 'Processing BongoFlix URL...';
-                document.getElementById('error-message').style.display = 'block';
-                
-                // In a real implementation, you would need to:
-                // 1. Make a server-side request to extract the actual stream URL
-                // 2. Handle any authentication or token requirements
-                // 3. Parse the response to get the actual stream URL
-                
-                // For demonstration purposes, we'll try to detect common stream formats
-                // This is a simplified approach and may not work for all cases
-                
-                // Check if the URL is already a direct stream
-                if (url.includes('.m3u8') || url.includes('.mpd')) {
-                    await player.load(url);
-                    document.getElementById('error-message').style.display = 'none';
-                    return;
-                }
-                
-                // If it's a BongoFlix page URL, we need to extract the stream
-                // This would typically require server-side processing due to CORS restrictions
-                console.log('BongoFlix URL detected, would need server-side processing');
-                
-                // For now, we'll show an error message with instructions
-                throw new Error('BongoFlix URLs require server-side processing to extract the actual stream. Please use a direct stream URL.');
-                
-            } catch (error) {
-                throw error;
-            }
-        }
-        
         function onPlayerErrorEvent(event) {
             onPlayerError(event.detail);
         }
@@ -749,16 +634,9 @@
         function showControls() {
             const controls = document.querySelector('.custom-controls');
             const sourceSelector = document.querySelector('.source-selector');
-            const urlInput = document.getElementById('url-input-container');
             
             controls.classList.remove('hidden');
             sourceSelector.classList.remove('hidden');
-            
-            // Only show URL input if BongoFlix is selected
-            if (document.getElementById('source-select').value === 'bongoflix') {
-                urlInput.classList.remove('hidden');
-            }
-            
             isControlsVisible = true;
             
             // Show cursor when controls are visible
@@ -773,11 +651,9 @@
             
             const controls = document.querySelector('.custom-controls');
             const sourceSelector = document.querySelector('.source-selector');
-            const urlInput = document.getElementById('url-input-container');
             
             controls.classList.add('hidden');
             sourceSelector.classList.add('hidden');
-            urlInput.classList.add('hidden');
             isControlsVisible = false;
             
             // Hide cursor when controls are hidden in fullscreen
@@ -1093,9 +969,18 @@
                 });
             });
             
-            // Video events
+            // Helper function to format time
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return "00:00";
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            // Update play/pause button based on video state
             video.addEventListener('play', () => {
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                // Show video when it starts playing
                 video.classList.add('playing');
             });
             
@@ -1103,35 +988,67 @@
                 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             });
             
-            video.addEventListener('volumechange', () => {
-                volumeSlider.value = video.volume;
-                if (video.muted || video.volume === 0) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-                }
-            });
+            // Set initial volume
+            video.volume = volumeSlider.value;
             
-            // Format time function
-            function formatTime(seconds) {
-                const h = Math.floor(seconds / 3600);
-                const m = Math.floor((seconds % 3600) / 60);
-                const s = Math.floor(seconds % 60);
-                return h > 0 ? `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}` : `${m}:${s.toString().padStart(2, '0')}`;
-            }
+            // Add keyboard shortcuts for TV remote compatibility
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case ' ':
+                    case 'Enter':
+                        // Play/Pause
+                        if (video.paused) {
+                            video.play();
+                            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        } else {
+                            video.pause();
+                            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                        }
+                        break;
+                    case 'ArrowLeft':
+                        // Rewind 10 seconds
+                        video.currentTime = Math.max(0, video.currentTime - 10);
+                        break;
+                    case 'ArrowRight':
+                        // Forward 10 seconds
+                        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+                        break;
+                    case 'ArrowUp':
+                        // Volume up
+                        video.volume = Math.min(1, video.volume + 0.1);
+                        volumeSlider.value = video.volume;
+                        break;
+                    case 'ArrowDown':
+                        // Volume down
+                        video.volume = Math.max(0, video.volume - 0.1);
+                        volumeSlider.value = video.volume;
+                        break;
+                    case 'f':
+                    case 'F':
+                        // Toggle fullscreen
+                        fullscreenBtn.click();
+                        break;
+                    case 'm':
+                    case 'M':
+                        // Toggle mute
+                        video.muted = !video.muted;
+                        muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
+                        break;
+                }
+                
+                // Show controls when a key is pressed
+                showControls();
+            });
         }
-        
-        // Initialize the player when the page loads
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Check if Shaka Player is supported
-            if (shaka.Player.isBrowserSupported()) {
-                await initPlayer();
-                initCustomControls(player, document.getElementById('video'));
-            } else {
-                console.error('Browser not supported by Shaka Player');
-                document.getElementById('error-text').textContent = 'Your browser is not supported by this player. Please try a modern browser like Chrome, Firefox, or Edge.';
-                document.getElementById('error-message').style.display = 'block';
-            }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPlayer().then(() => {
+                const video = document.getElementById('video');
+                initCustomControls(player, video);
+                
+                // Start the controls timer
+                resetControlsTimer();
+            });
         });
     </script>
 </body>
