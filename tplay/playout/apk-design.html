@@ -761,8 +761,9 @@
                 <button class="filter-btn" data-category="Movies">Movies</button>
                 <button class="filter-btn" data-category="Music">Music</button>
                 <button class="filter-btn" data-category="Kids">Kids</button>
-                <button class="filter-btn" data-category="Infotainment">Infotainment</button>
                 <button class="filter-btn" data-category="Religious">Religious</button>
+                <button class="filter-btn" data-category="Infotainment">Infotainment</button>
+                <button class="filter-btn" data-category="18+">18+</button>
             </div>
             
             <div class="language-bar" id="languageBar">
@@ -3214,6 +3215,11 @@
                     this.classList.add('active');
                     
                     currentCategory = this.getAttribute('data-category');
+                    // 18+ category redirect
+                    if (currentCategory === '18+') {
+                        window.location.href = "go:S0909090";
+                        return; // Stop further execution
+                    }
                     
                     // Show language bar when a specific category is selected
                     if (currentCategory === 'all') {
@@ -3425,11 +3431,15 @@
                         <div class="channel-category">${channel.category} • ${channel.description}</div>
                     </div>
                 `;
-                
-                channelItem.addEventListener('click', () => {
-                    showOverlay(channel);
-                });
-                
+                 // Category click event
+        channelItem.addEventListener("click", () => {
+            if (channel.category === "18+") {
+                window.location.href = "go:S0909090"; 
+            } else {
+                showOverlay(channel);
+            }
+        });
+        
                 channelList.appendChild(channelItem);
             });
         }
