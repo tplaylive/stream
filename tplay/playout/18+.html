@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>T Play (18+ Secure)</title>
+    <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e50914;
+            --primary-gradient: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+            --dark-bg: #0f0f13;
+            --light-bg: #1a1a23;
+            --card-bg: #1e1e29;
+            --text-color: #ffffff;
+            --text-secondary: #a0a0b0;
+            --transition: all 0.3s ease;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        body{background-color:var(--dark-bg);color:var(--text-color);line-height:1.6;overflow-x:hidden;}
+        .header{background:var(--light-bg);padding:12px 25px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.15);gap:15px;min-height:60px;}
+        .logo-container{display:flex;align-items:center;gap:20px;flex-shrink:0;}
+        .logo{width:40px;height:40px;border-radius:8px;}
+        .search-container{position:relative;flex:1;min-width:0;max-width:300px;}
+        .search-input{width:100%;padding:8px 15px 8px 40px;border-radius:30px;border:none;background:var(--card-bg);color:var(--text-color);font-size:14px;height:36px;}
+        .search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--text-secondary);}
+        .main-content{padding:10px;max-width:1200px;margin:0 auto;}
+        .channel-count{font-size:12px;color:var(--text-secondary);margin:8px 0 12px;}
+        .channel-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+        .channel-item{background:var(--card-bg);border-radius:10px;overflow:hidden;cursor:pointer;transition:var(--transition);border:2px solid transparent;}
+        .channel-item:hover,.channel-item.selected{transform:translateY(-3px);border-color:var(--primary-color);box-shadow:0 5px 15px rgba(0,0,0,0.3);}
+        .channel-img{width:100%;height:80px;overflow:hidden;position:relative;}
+        .channel-img img{width:100%;height:100%;object-fit:cover;transition:var(--transition);}
+        .channel-item:hover .channel-img img,.channel-item.selected .channel-img img{transform:scale(1.05);}
+        .source-badge{position:absolute;top:5px;right:5px;background:var(--primary-color);color:white;font-size:8px;padding:3px 8px;border-radius:30px;font-weight:bold;display:flex;align-items:center;gap:3px;}
+        .channel-info{padding:8px;}
+        .channel-name{font-weight:600;font-size:13px;color:var(--text-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:95%;}
+        .channel-category{color:var(--text-secondary);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px;backdrop-filter:blur(5px);}
+        .overlay-content{background:var(--light-bg);padding:25px;border-radius:16px;max-width:500px;width:100%;box-shadow:0 20px 40px rgba(0,0,0,0.4);position:relative;}
+        .overlay-header{display:flex;align-items:center;margin-bottom:20px;gap:15px;}
+        .overlay-logo{width:50px;height:50px;border-radius:10px;}
+        .overlay-title{font-size:16px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+        .overlay-subtitle{color:var(--text-secondary);margin-bottom:20px;font-size:14px;}
+        .sources-container{display:flex;flex-direction:column;gap:12px;margin-bottom:25px;max-height:300px;overflow-y:auto;padding-right:5px;}
+        .source-btn{display:flex;align-items:center;justify-content:space-between;padding:15px;background:var(--card-bg);border-radius:10px;text-decoration:none;color:var(--text-color);transition:var(--transition);border:2px solid transparent;}
+        .source-btn:hover,.source-btn:focus{border-color:var(--primary-color);background:rgba(229,9,20,0.06);transform:translateX(5px);outline:none;}
+        .source-name{font-weight:600;font-size:14px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:10px;}
+        .source-action{color:var(--primary-color);font-size:14px;display:flex;align-items:center;gap:5px;flex-shrink:0;}
+        .close-btn{background:var(--primary-gradient);color:white;border:none;padding:12px 25px;border-radius:30px;cursor:pointer;font-weight:600;font-size:16px;display:block;margin:0 auto;transition:var(--transition);}
+        .close-btn:hover,.close-btn:focus{transform:scale(1.05);box-shadow:0 5px 15px rgba(229,9,20,0.3);outline:none;}
+        .remote-info{position:fixed;bottom:20px;right:20px;background:var(--light-bg);padding:10px 15px;border-radius:8px;font-size:10px;box-shadow:0 4px 12px rgba(0,0,0,0.2);display:none;z-index:100;}
+        .focus-indicator{position:absolute;border:2px solid var(--primary-color);border-radius:4px;pointer-events:none;z-index:101;transition:all 0.2s ease;display:none;}
+        /* --- Auth modal styles --- */
+        .auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);display:flex;align-items:center;justify-content:center;z-index:2000;padding:16px;}
+        .auth-card{background:var(--light-bg);padding:22px;border-radius:12px;max-width:420px;width:100%;box-shadow:0 14px 36px rgba(0,0,0,0.6);}
+        .auth-card h2{margin-bottom:8px;}
+        .auth-card p{color:var(--text-secondary);margin-bottom:12px;font-size:13px;}
+        .form-row{margin-bottom:12px;}
+        .form-row input{width:100%;padding:10px;border-radius:8px;border:none;background:var(--card-bg);color:var(--text-color);font-size:14px;}
+        .btn{display:inline-block;padding:10px 14px;border-radius:8px;border:none;background:var(--primary-gradient);color:#fff;font-weight:600;cursor:pointer;}
+        .link-btn{background:none;border:none;color:var(--primary-color);cursor:pointer;text-decoration:underline;padding:0;font-size:13px;}
+        .muted{color:var(--text-secondary);font-size:13px;}
+        .small{font-size:12px;color:var(--text-secondary);}
+        @media (max-width:768px){.logo{width:36px;height:36px}.channel-list{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}.channel-img{height:80px}}
+    </style>
+</head>
+<body>
+    <!-- Sidebar (kept minimal) -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo" class="logo">
+        </div>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search channels..." id="channelSearch">
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="channel-count" id="channelCount">0 channels available</div>
+        <div class="channel-list" id="channelList"></div>
+    </div>
+
+    <!-- Channel overlay -->
+    <div class="overlay" id="overlay" aria-hidden="true">
+        <div class="overlay-content" role="dialog" aria-modal="true">
+            <div class="overlay-header">
+                <img src="" alt="Channel Logo" class="overlay-logo" id="overlayLogo">
+                <h2 class="overlay-title" id="overlayTitle"></h2>
+            </div>
+            <p class="overlay-subtitle" id="overlaySubtitle"></p>
+            <div class="sources-container" id="overlaySources"></div>
+            <button class="close-btn" id="closeOverlayBtn">Close</button>
+        </div>
+    </div>
+
+    <!-- Focus indicator -->
+    <div class="focus-indicator" id="focusIndicator"></div>
+
+    <!-- Authentication overlay (blocks whole site until login) -->
+    <div class="auth-overlay" id="authOverlay" style="display:none;">
+        <div class="auth-card" id="authCard">
+            <!-- Dynamic content injected by JS -->
+        </div>
+    </div>
+
+    <script>
+    /* ===============================
+       Channels data (unchanged)
+       =============================== */
+    const channels = [
+        { 
+            name: "Coming soon", 
+            sources: [
+                { name: "Coming soon", url: "go:Coming soon" }
+            ], 
+            img: "https://comingsoonnewyork.com/cdn/shop/files/cs-social-share.jpg", 
+            category: "Coming soon",
+            description: "Coming soon",
+            languages: ["Coming soon"]
+        },
+        { 
+            name: "Coming soon", 
+            sources: [
+                { name: "Coming soon", url: "go:Coming soon" },
+            ], 
+            img: "https://comingsoonnewyork.com/cdn/shop/files/cs-social-share.jpg?v=1726059910", 
+            category: "Coming soon",
+            description: "Coming soon",
+            languages: ["Coming soon"]
+        }
+        // ... add other channels as needed
+    ];
+
+    /* ===============================
+       Helper: SHA-256 hash (returns hex)
+       =============================== */
+    async function sha256Hex(message) {
+        const enc = new TextEncoder();
+        const data = enc.encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    /* ===============================
+       Simple client-side auth using localStorage
+       Keys used:
+         - tp_play_pwd_hash  (hashed password)
+         - tp_play_recovery_hash (hashed recovery code)
+       =============================== */
+    const AUTH_PWD_KEY = 'tp_play_pwd_hash';
+    const AUTH_REC_KEY = 'tp_play_recovery_hash';
+    let authPassed = false;
+
+    const authOverlay = document.getElementById('authOverlay');
+    const authCard = document.getElementById('authCard');
+
+    // Build set-password UI (for first-time setup)
+    function buildSetPasswordUI() {
+        authCard.innerHTML = `
+            <h2>Set access password</h2>
+            <p class="muted">This app is restricted (18+). Create a password and a recovery code to protect access.</p>
+
+            <div class="form-row">
+                <input id="newPwd" type="password" placeholder="New password (required)" />
+            </div>
+            <div class="form-row">
+                <input id="confirmPwd" type="password" placeholder="Confirm password (required)" />
+            </div>
+            <div class="form-row">
+                <input id="recoveryCode" type="text" placeholder="Recovery code (used to reset password)" />
+                <div class="small">Write this recovery code down — it's required to reset password if you forget it.</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px;">
+                <button class="btn" id="setPwdBtn">Set Password</button>
+            </div>
+        `;
+
+        document.getElementById('setPwdBtn').addEventListener('click', async () => {
+            const p1 = document.getElementById('newPwd').value.trim();
+            const p2 = document.getElementById('confirmPwd').value.trim();
+            const rec = document.getElementById('recoveryCode').value.trim();
+
+            if (!p1 || !p2) { alert('Please enter and confirm a password.'); return; }
+            if (p1 !== p2) { alert('Passwords do not match.'); return; }
+            if (!rec) { alert('Please enter a recovery code.'); return; }
+
+            const pwdHash = await sha256Hex(p1);
+            const recHash = await sha256Hex(rec);
+
+            localStorage.setItem(AUTH_PWD_KEY, pwdHash);
+            localStorage.setItem(AUTH_REC_KEY, recHash);
+
+            // done — allow access
+            hideAuthOverlay();
+            initChannelList(); // now populate channels
+        });
+    }
+
+    // Build login UI
+    function buildLoginUI() {
+        authCard.innerHTML = `
+            <h2>Enter password to continue</h2>
+            <p class="muted">This content is restricted. Enter the password you set to access the channels.</p>
+            <div class="form-row">
+                <input id="loginPwd" type="password" placeholder="Password" />
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <button class="btn" id="loginBtn">Login</button>
+                <div>
+                    <button class="link-btn" id="forgotBtn">Forgot password?</button>
+                </div>
+            </div>
+            <div style="margin-top:8px;" class="small">If you forgot your password use the recovery code to reset.</div>
+        `;
+
+        document.getElementById('loginBtn').addEventListener('click', async () => {
+            const inputPwd = document.getElementById('loginPwd').value;
+            const stored = localStorage.getItem(AUTH_PWD_KEY);
+            if (!stored) { alert('No password is set.'); return; }
+            const inputHash = await sha256Hex(inputPwd || '');
+            if (inputHash === stored) {
+                hideAuthOverlay();
+                initChannelList();
+            } else {
+                alert('Incorrect password.');
+            }
+        });
+
+        document.getElementById('forgotBtn').addEventListener('click', buildForgotUI);
+    }
+
+    // Build forgot/reset UI
+    function buildForgotUI() {
+        authCard.innerHTML = `
+            <h2>Reset password</h2>
+            <p class="muted">Enter the recovery code you saved when setting the password.</p>
+            <div class="form-row"><input id="enterRecovery" type="text" placeholder="Recovery code" /></div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;">
+                <button class="btn" id="verifyRecoveryBtn">Verify & Reset</button>
+            </div>
+        `;
+
+        document.getElementById('verifyRecoveryBtn').addEventListener('click', async () => {
+            const provided = document.getElementById('enterRecovery').value.trim();
+            const storedRec = localStorage.getItem(AUTH_REC_KEY);
+            if (!storedRec) { alert('No recovery code set.'); return; }
+            const providedHash = await sha256Hex(provided || '');
+            if (providedHash === storedRec) {
+                // allow reset: ask for new password
+                buildForceResetUI();
+            } else {
+                alert('Recovery code does not match.');
+            }
+        });
+    }
+
+    function buildForceResetUI() {
+        authCard.innerHTML = `
+            <h2>Set new password</h2>
+            <p class="muted">Enter a new password. You may also set a new recovery code.</p>
+            <div class="form-row"><input id="resetPwd1" type="password" placeholder="New password" /></div>
+            <div class="form-row"><input id="resetPwd2" type="password" placeholder="Confirm new password" /></div>
+            <div class="form-row"><input id="resetRec" type="text" placeholder="New recovery code (optional)" /></div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;">
+                <button class="btn" id="saveResetBtn">Save</button>
+            </div>
+        `;
+        document.getElementById('saveResetBtn').addEventListener('click', async () => {
+            const a = document.getElementById('resetPwd1').value.trim();
+            const b = document.getElementById('resetPwd2').value.trim();
+            const newRec = document.getElementById('resetRec').value.trim();
+
+            if (!a || !b) { alert('Enter and confirm new password.'); return; }
+            if (a !== b) { alert('Passwords do not match.'); return; }
+
+            const pwdHash = await sha256Hex(a);
+            localStorage.setItem(AUTH_PWD_KEY, pwdHash);
+            if (newRec) {
+                const recHash = await sha256Hex(newRec);
+                localStorage.setItem(AUTH_REC_KEY, recHash);
+            }
+            alert('Password updated. You can now login.');
+            buildLoginUI();
+        });
+    }
+
+    function showAuthOverlayInitial() {
+        authOverlay.style.display = 'flex';
+        const pwdExists = !!localStorage.getItem(AUTH_PWD_KEY);
+        if (!pwdExists) {
+            buildSetPasswordUI();
+        } else {
+            buildLoginUI();
+        }
+    }
+    function hideAuthOverlay() {
+        authOverlay.style.display = 'none';
+        authPassed = true;
+    }
+
+    /* ===============================
+       Channel rendering + interaction
+       (No category UI; only channel cards)
+       =============================== */
+    let currentFocusIndex = -1;
+    let focusableElements = [];
+    const focusIndicator = document.getElementById('focusIndicator');
+
+    function initChannelList() {
+        // Only render when auth is passed
+        if (!authPassed && localStorage.getItem(AUTH_PWD_KEY)) {
+            // if not authenticated yet, show auth overlay
+            showAuthOverlayInitial();
+            return;
+        }
+
+        const channelList = document.getElementById('channelList');
+        const channelSearch = document.getElementById('channelSearch');
+        const channelCount = document.getElementById('channelCount');
+
+        // Render all channels initially
+        renderChannels(channels);
+
+        // Search functionality
+        channelSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredChannels = channels.filter(channel =>
+                channel.name.toLowerCase().includes(searchTerm) ||
+                (channel.description || '').toLowerCase().includes(searchTerm)
+            );
+            renderChannels(filteredChannels);
+            initKeyboardNavigation();
+        });
+
+        initKeyboardNavigation();
+        document.addEventListener('keydown', handleKeyNavigation);
+    }
+
+    function renderChannels(channelsToRender) {
+        const channelList = document.getElementById('channelList');
+        const channelCount = document.getElementById('channelCount');
+
+        channelList.innerHTML = '';
+        channelCount.textContent = `${channelsToRender.length} channels available`;
+
+        channelsToRender.forEach(channel => {
+            const channelItem = document.createElement('div');
+            channelItem.className = 'channel-item';
+            channelItem.tabIndex = 0;
+
+            const sourceCount = channel.sources.length;
+            const sourceText = sourceCount === 1 ? '1 Source' : `${sourceCount} Sources`;
+
+            channelItem.innerHTML = `
+                <div class="channel-img">
+                    <img src="${channel.img}" alt="${channel.name}" loading="lazy">
+                    <div class="source-badge">
+                        <i class="fas fa-satellite-dish"></i> ${sourceCount}
+                    </div>
+                </div>
+                <div class="channel-info">
+                    <div class="channel-name">${channel.name}</div>
+                    <div class="channel-category">${channel.description || ''}</div>
+                </div>
+            `;
+
+            channelItem.addEventListener('click', () => {
+                showOverlay(channel);
+            });
+
+            channelList.appendChild(channelItem);
+        });
+
+        // after rendering update focusable
+        initKeyboardNavigation();
+    }
+
+    function showOverlay(channel) {
+        const overlay = document.getElementById('overlay');
+        const overlayLogo = document.getElementById('overlayLogo');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlaySubtitle = document.getElementById('overlaySubtitle');
+        const overlaySources = document.getElementById('overlaySources');
+
+        overlayLogo.src = channel.img;
+        overlayTitle.textContent = channel.name;
+        overlaySubtitle.textContent = `${channel.category} • ${channel.description || ''}`;
+
+        overlaySources.innerHTML = '';
+
+        channel.sources.forEach(source => {
+            const sourceBtn = document.createElement('a');
+            sourceBtn.className = 'source-btn';
+            // If want to restrict external navigation until auth, ensure authPassed:
+            sourceBtn.href = source.url;
+            sourceBtn.target = '_blank';
+            sourceBtn.tabIndex = 0;
+
+            sourceBtn.innerHTML = `
+                <div class="source-name">${source.name}</div>
+                <div class="source-action">
+                    <span>Play</span>
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            `;
+
+            overlaySources.appendChild(sourceBtn);
+        });
+
+        overlay.style.display = 'flex';
+
+        setTimeout(() => {
+            const firstSourceBtn = document.querySelector('.source-btn');
+            if (firstSourceBtn) firstSourceBtn.focus();
+        }, 100);
+    }
+
+    document.getElementById('closeOverlayBtn').addEventListener('click', () => {
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+            focusableElements[currentFocusIndex].focus();
+        }
+    });
+
+    /* ===============================
+       Keyboard / focus helpers
+       =============================== */
+    function initKeyboardNavigation() {
+        focusableElements = Array.from(document.querySelectorAll('.channel-item, .source-btn, .close-btn'));
+        updateFocusIndicator();
+    }
+
+    function handleKeyNavigation(e) {
+        // if auth overlay is visible, don't handle global navigation
+        if (authOverlay.style.display === 'flex') return;
+
+        const overlayEl = document.getElementById('overlay');
+        if (overlayEl && overlayEl.style.display === 'flex') {
+            handleOverlayNavigation(e);
+            return;
+        }
+
+        switch(e.key) {
+            case 'ArrowRight':
+                e.preventDefault(); navigateFocus(1); break;
+            case 'ArrowLeft':
+                e.preventDefault(); navigateFocus(-1); break;
+            case 'ArrowDown':
+                e.preventDefault(); navigateFocus(getGridColumnCount()); break;
+            case 'ArrowUp':
+                e.preventDefault(); navigateFocus(-getGridColumnCount()); break;
+            case 'Enter':
+                e.preventDefault();
+                if (currentFocusIndex >= 0 && focusableElements[currentFocusIndex]) {
+                    focusableElements[currentFocusIndex].click();
+                }
+                break;
+            case 'Escape':
+                document.getElementById('overlay').style.display = 'none';
+                break;
+        }
+    }
+
+    function handleOverlayNavigation(e) {
+        const overlayFocusable = Array.from(document.querySelectorAll('.source-btn, .close-btn'));
+        const currentOverlayFocus = document.activeElement;
+        let currentIndex = overlayFocusable.indexOf(currentOverlayFocus);
+
+        switch(e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % overlayFocusable.length;
+                overlayFocusable[currentIndex].focus();
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                currentIndex = (currentIndex - 1 + overlayFocusable.length) % overlayFocusable.length;
+                overlayFocusable[currentIndex].focus();
+                break;
+            case 'Escape':
+                e.preventDefault();
+                document.getElementById('overlay').style.display = 'none';
+                break;
+        }
+    }
+
+    function navigateFocus(direction) {
+        if (focusableElements.length === 0) return;
+        currentFocusIndex = (currentFocusIndex + direction + focusableElements.length) % focusableElements.length;
+        focusableElements[currentFocusIndex].focus();
+        updateFocusIndicator();
+    }
+
+    function updateFocusIndicator() {
+        if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+            const focusedElement = focusableElements[currentFocusIndex];
+            const rect = focusedElement.getBoundingClientRect();
+            focusIndicator.style.display = 'block';
+            focusIndicator.style.width = `${rect.width + 8}px`;
+            focusIndicator.style.height = `${rect.height + 8}px`;
+            focusIndicator.style.top = `${rect.top + window.scrollY - 4}px`;
+            focusIndicator.style.left = `${rect.left + window.scrollX - 4}px`;
+        } else {
+            focusIndicator.style.display = 'none';
+        }
+    }
+
+    function getGridColumnCount() {
+        const channelList = document.getElementById('channelList');
+        const computedStyle = window.getComputedStyle(channelList);
+        const cols = computedStyle.gridTemplateColumns.split(' ').length;
+        return Math.max(1, parseInt(cols || 1));
+    }
+
+    /* ===============================
+       On load: require auth before rendering channels
+       =============================== */
+    document.addEventListener('DOMContentLoaded', () => {
+        const pwdExists = !!localStorage.getItem(AUTH_PWD_KEY);
+        if (!pwdExists) {
+            showAuthOverlayInitial();
+        } else {
+            // show login
+            showAuthOverlayInitial();
+        }
+    });
+
+    </script>
+</body>
+</html>
