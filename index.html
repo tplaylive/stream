@@ -936,240 +936,41 @@
 
         const channels = [
             { 
-                name: "Somoy TV", 
+                name: "Oxygen Music", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
-                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" }
+                    { name: "Originals", url: "https://tplay.live/originals/oxygen-music/index.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/HsVVr6FH/somoy-tv.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "Jamuna Television", 
-                sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/dtR7Gh4t/jamuna-tv.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "Independent TV",
-                sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/independent-tv/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/3rL7TH81/Independent-TV.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "Channel 24",
-                sources: [
-                    { name: "Server 1", url: "https://ch24cdn.ncare.live/channel24/ch24office/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/channel-24/index.m3u8" },
-                    { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/QdqkCSFX/channel-24.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "News 24",
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/news-24/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/bNJny8Qw/news-24.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "Ekattor Television",
-                sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/ekattor-tv/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/jjtWwrG9/ekattor-tv.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "ATN News",
-                sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/atn-news/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/ZRFCxYdp/atn-news.png", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "DBC News",
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/bdix/news/dbc-news/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/cJGD5HdQ/dbc.jpg", 
-                category: "News",
-                description: "Bangladesh"
-            },
-            { 
-                name: "News18 Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bangla_NW18_MOB/output01/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/Dydmbp8n/news18-bangla.png", 
-                category: "News",
+                img: "https://i.postimg.cc/8z1kS0G5/Oxygen-Music.jpg", 
+                category: "Music",
                 description: "India"
-            },
-            { 
-                name: "ABP Ananda", 
-                sources: [
-                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ananda/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "Zee 24 Ghanta", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/bdix/news/zee-24ghanta/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/pdgPSKps/zee-24ghanta.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "WION", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/bdix/news/wion/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/ZKqXrCqn/wion.jpg", 
-                category: "News",
-                description: "India"
-            },
-            { 
-                name: "Al Jazeera", 
-                sources: [
-                    { name: "Server 1", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
-                category: "News",
-                description: "Qatar"
-            },
-            {
-                name: "BBC News", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/bdix/news/bbc-news/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
-                category: "News",
-                description: "London"
-            },
-            { 
-                name: "24/7 Motu Patlu", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209622/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209622/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/sgxQd9gz/motu-patlu.jpg", 
-                category: "Kids",
-                description: "Hindi"
-            },
-            { 
-                name: "24/7 Ninja Hattori", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/210448/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-210448/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/Kz0h2LzX/ninja-hattori.jpg", 
-                category: "Kids",
-                description: "Hindi"
-            },
-            { 
-                name: "24/7 Doraemon", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209902/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/7hrsjZ1v/doraemon.jpg", 
-                category: "Kids",
-                description: "Hindi"
-            },
-            { 
-                name: "24/7 Gopal Bhar", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209611/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209611/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/Pxj1jp7M/gopal-bhar.jpg", 
-                category: "Kids",
-                description: "Bengali"
-            },
-            { 
-                name: "24/7 Bantul The Great", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209869/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209869/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/X7pGtkJb/bantul.jpg", 
-                category: "Kids",
-                description: "Bengali"
             },
             { 
                 name: "Bengali Beats", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209587/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209587/tracks-v1a1/mono.ts.m3u8" }
+                    { name: "Originals", url: "https://tplay.live/originals/bengali-beats/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/jSLNzXgM/Bengali-Beats.png", 
                 category: "Music",
                 description: "India"
             },
             { 
-                name: "Oxygen Music", 
+                name: "Om Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209901/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209901/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/8z1kS0G5/Oxygen-Music.jpg", 
-                category: "Music",
-                description: "Asia"
-            },
-            { 
-                name: "ATN Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8" },
-                ], 
-                img: "https://www.jagobd.com/wp-content/uploads/2015/12/atn-bangla1.jpg", 
-                category: "Mix-Entertainment",
-                description: "Bangladesh"
-            },
-            { 
-                name: "Channel i", 
-                sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8" },
-                ], 
-                img: "https://images.seeklogo.com/logo-png/53/1/channel-i-logo-png_seeklogo-532023.png", 
-                category: "Mix-Entertainment",
-                description: "Bangladesh"
+                    { name: "Originals", url: "https://tplay.live/originals/om-bangla/index.m3u8" }
+                ],
+                img: "https://i.postimg.cc/28BZL28B/om-bangla.jpg", 
+                category: "Religious",
+                description: "India"
             },
             { 
                 name: "Ilm TV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209617/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209617/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Originals", url: "https://tplay.live/originals/ilm-tv/index.m3u8" }
                 ],
                 img: "https://i.postimg.cc/tTkx4MWv/ilm.jpg", 
                 category: "Religious",
-                description: "World"
+                description: "India"
             }
-            
-            
-            
             
         ];
 
