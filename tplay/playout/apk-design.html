@@ -16,6 +16,8 @@
             --text-color: #ffffff;
             --text-secondary: #a0a0b0;
             --transition: all 0.3s ease;
+            --festival-color: #ffcc00;
+            --festival-glow: 0 0 10px rgba(255, 204, 0, 0.7);
         }
 
         * {
@@ -58,6 +60,28 @@
             width: 40px;
             height: 40px;
             border-radius: 8px;
+        }
+
+        .festival-wish {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--festival-color);
+            text-shadow: var(--festival-glow);
+            animation: festivalPulse 2s infinite;
+            padding: 0 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        @keyframes festivalPulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.8; transform: scale(1); }
         }
 
         .menu-toggle {
@@ -523,6 +547,8 @@
         }
 
         /* Responsive Design */
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header {
                 padding: 10px 15px;
@@ -534,6 +560,11 @@
             .logo {
                 width: 36px;
                 height: 36px;
+            }
+            
+            .festival-wish {
+                font-size: 14px;
+                max-width: 200px;
             }
             
             .search-container {
@@ -584,6 +615,11 @@
             .logo {
                 width: 32px;
                 height: 32px;
+            }
+            
+            .festival-wish {
+                font-size: 12px;
+                max-width: 150px;
             }
             
             .menu-toggle {
@@ -641,6 +677,11 @@
                 height: 30px;
             }
             
+            .festival-wish {
+                font-size: 11px;
+                max-width: 120px;
+            }
+            
             .menu-toggle {
                 font-size: 18px;
                 padding: 4px;
@@ -677,6 +718,11 @@
             .logo {
                 width: 28px;
                 height: 28px;
+            }
+            
+            .festival-wish {
+                font-size: 10px;
+                max-width: 100px;
             }
             
             .search-input {
@@ -745,6 +791,10 @@
             </button>
             <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo" class="logo">
         </div>
+        
+        <!-- Festival Wish Display -->
+        <div class="festival-wish" id="festivalWish"></div>
+        
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
             <input type="text" class="search-input" placeholder="Search channels..." id="channelSearch">
@@ -4036,6 +4086,124 @@
             }
             
             ];
+            
+        // Festival data with dates and wishes
+const festivals = [
+    // Indian Festivals
+    { name: "Makar Sankranti / Pongal", date: "01-14", wish: "Happy Makar Sankranti! May the sun bring new energy into your life." },
+    { name: "Republic Day", date: "01-26", wish: "Happy Republic Day! Jai Hind!" },
+    { name: "Vasant Panchami / Saraswati Puja", date: "02-02", wish: "Happy Vasant Panchami! May Goddess Saraswati bless you with wisdom." },
+    { name: "Maha Shivaratri", date: "02-26", wish: "Happy Maha Shivaratri! May Lord Shiva bless you with peace and prosperity." },
+    { name: "Holi", date: "03-14", wish: "Happy Holi! May your life be filled with vibrant colors of joy." },
+    { name: "Ram Navami", date: "04-06", wish: "Happy Ram Navami! May Lord Rama's blessings be with you." },
+    { name: "Mahavir Jayanti", date: "04-10", wish: "Happy Mahavir Jayanti! May peace and non-violence prevail." },
+    { name: "Baisakhi / Vaisakhi", date: "04-14", wish: "Happy Baisakhi! May this harvest festival bring prosperity." },
+    { name: "Good Friday", date: "04-18", wish: "Wishing you a blessed Good Friday." },
+    { name: "Easter", date: "04-20", wish: "Happy Easter! May this day bring you joy and renewal." },
+    { name: "Buddha Purnima", date: "05-12", wish: "Happy Buddha Purnima! May peace and enlightenment guide your path." },
+    { name: "Rath Yatra", date: "06-27", wish: "Happy Rath Yatra! May Lord Jagannath bless your journey." },
+    { name: "Guru Purnima", date: "07-10", wish: "Happy Guru Purnima! May your teachers guide you to wisdom." },
+    { name: "Eid al-Fitr", date: "03-31", wish: "Eid Mubarak! May Allah's blessings be with you." },
+    { name: "Eid al-Adha", date: "06-07", wish: "Eid al-Adha Mubarak! May your sacrifices be accepted." },
+    { name: "Muharram", date: "07-17", wish: "May the blessings of Allah be with you on Muharram." },
+    { name: "Raksha Bandhan", date: "08-09", wish: "Happy Raksha Bandhan! Celebrating the bond of love between siblings." },
+    { name: "Janmashtami", date: "08-15", wish: "Happy Janmashtami! May Lord Krishna fill your life with joy." },
+    { name: "Ganesh Chaturthi", date: "08-27", wish: "Happy Ganesh Chaturthi! May Lord Ganesha remove all obstacles." },
+    { name: "Onam", date: "09-05", wish: "Happy Onam! Wishing you a harvest of joy and prosperity." },
+    { name: "Navratri", date: "09-22", wish: "Happy Navratri! May Goddess Durga bless you with strength." },
+    { name: "Durga Puja", date: "09-29", wish: "Happy Durga Puja! May Maa Durga empower your life." },
+    { name: "Dussehra / Vijayadashami", date: "10-02", wish: "Happy Dussehra! May good triumph over evil in your life." },
+    { name: "Karva Chauth", date: "10-20", wish: "Happy Karva Chauth! May your bond of love grow stronger." },
+    { name: "Diwali / Deepavali", date: "10-21", wish: "Happy Diwali! May the festival of lights brighten your life." },
+    { name: "Bhai Dooj", date: "10-23", wish: "Happy Bhai Dooj! Celebrating the special bond between brothers and sisters." },
+    { name: "Chhath Puja", date: "10-27", wish: "Happy Chhath Puja! May the Sun God bless you with health and prosperity." },
+    { name: "Guru Nanak Jayanti", date: "11-15", wish: "Happy Guru Nanak Jayanti! May Guru's teachings guide your path." },
+    { name: "Karthigai Deepam", date: "12-01", wish: "Happy Karthigai Deepam! May the festival of lamps illuminate your home." },
+    { name: "Christmas", date: "12-25", wish: "Merry Christmas! May this festive season bring you joy and peace." },
+    { name: "New Year", date: "01-01", wish: "Happy New Year! Wishing you health, happiness, and success in the coming year." },
+
+    // Nepali Festivals
+    { name: "Maghe Sankranti", date: "01-14", wish: "Happy Maghe Sankranti! May this harvest festival bring warmth and joy." },
+    { name: "Sonam Lhochhar", date: "02-13", wish: "Happy Sonam Lhochhar! Wishing you a joyous Tamang New Year." },
+    { name: "Gyalpo Lhosar", date: "02-28", wish: "Happy Gyalpo Lhosar! May the Tibetan New Year bring peace." },
+    { name: "Seto Machhendranath Jatra", date: "04-05", wish: "Happy Seto Machhendranath Jatra! May the rain god bless you." },
+    { name: "Bisket Jatra", date: "04-14", wish: "Happy Bisket Jatra! Celebrate the Nepali New Year with joy." },
+    { name: "Ropain", date: "06-29", wish: "Happy Ropain! Wishing a bountiful rice planting season." },
+    { name: "Teej", date: "09-11", wish: "Happy Teej! May your devotion bring love and harmony." },
+    { name: "Indra Jatra", date: "09-07", wish: "Happy Indra Jatra! May the rain god bless your celebrations." },
+    { name: "Dashain", date: "09-22", wish: "Happy Dashain! May Goddess Durga shower you with blessings." },
+    { name: "Tihar", date: "10-21", wish: "Happy Tihar! May the festival of lights illuminate your life." },
+    { name: "Chhath Puja", date: "10-27", wish: "Happy Chhath Puja! May the Sun God bring prosperity to Terai." },
+
+    // Pakistani Festivals
+    { name: "Chehlum", date: "01-15", wish: "May Chehlum bring peace and reflection to your heart." },
+    { name: "Shab-e-Barat", date: "02-28", wish: "Happy Shab-e-Barat! May your prayers be answered." },
+    { name: "Eid Milad un-Nabi", date: "03-07", wish: "Eid Milad un-Nabi Mubarak! May the Prophet's teachings guide you." },
+    { name: "Pakistan Day", date: "03-23", wish: "Happy Pakistan Day! May the nation prosper and thrive." },
+    { name: "Shab-e-Miraj", date: "04-03", wish: "Happy Shab-e-Miraj! May your prayers ascend to the heavens." },
+    { name: "Basant", date: "02-08", wish: "Happy Basant! May the kite-flying season bring joy." },
+    { name: "Chilam Joshi (Kalash Festival)", date: "05-13", wish: "Happy Chilam Joshi! Celebrate the Kalash spring with joy." },
+    { name: "Independence Day (Pakistan)", date: "08-14", wish: "Happy Independence Day! Wishing Pakistan peace and progress." },
+    { name: "Defence Day", date: "09-06", wish: "Happy Defence Day! Honoring the bravery of Pakistan's heroes." },
+    { name: "Iqbal Day", date: "11-09", wish: "Happy Iqbal Day! May the poet's vision inspire you." },
+
+    // Bangladeshi Festivals
+    { name: "Saraswati Puja", date: "02-02", wish: "Happy Saraswati Puja! May the goddess of wisdom guide you." },
+    { name: "Martyrs' Day / Ekushey February", date: "02-21", wish: "Happy Martyrs' Day! Honoring the heroes of the Language Movement." },
+    { name: "Shab-e-Barat", date: "02-28", wish: "Happy Shab-e-Barat! May your prayers bring forgiveness." },
+    { name: "Eid Milad un-Nabi", date: "03-07", wish: "Eid Milad un-Nabi Mubarak! May the Prophet's light shine on you." },
+    { name: "Pohela Boishakh", date: "04-14", wish: "Shubho Noboborsho! May the Bengali New Year bring joy." },
+    { name: "Shab-e-Qadr", date: "04-27", wish: "Happy Shab-e-Qadr! May this holy night bring blessings." },
+    { name: "Eid al-Fitr", date: "03-31", wish: "Eid Mubarak! May Allah's blessings be with you." },
+    { name: "Eid al-Adha", date: "06-07", wish: "Eid al-Adha Mubarak! May your sacrifices be accepted." },
+    { name: "Durga Puja", date: "09-29", wish: "Happy Durga Puja! May Maa Durga empower your life." },
+    { name: "Victory Day", date: "12-16", wish: "Happy Victory Day! Celebrating Bangladesh's triumph and freedom." }
+];
+
+        // Function to get today's date in MM-DD format
+        function getTodayDate() {
+            const today = new Date();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${month}-${day}`;
+        }
+
+        // Function to check if today is a festival and return the wish
+        function getFestivalWish() {
+            const today = getTodayDate();
+            const festival = festivals.find(f => f.date === today);
+            
+            if (festival) {
+                return festival.wish;
+            }
+            
+            // If no festival today, return a generic greeting
+            const hour = new Date().getHours();
+            if (hour < 12) {
+                return "Good Morning!";
+            } else if (hour < 18) {
+                return "Good Afternoon!";
+            } else {
+                return "Good Evening!";
+            }
+        }
+
+        // Function to update the festival wish in the header
+        function updateFestivalWish() {
+            const festivalWishElement = document.getElementById('festivalWish');
+            if (festivalWishElement) {
+                festivalWishElement.textContent = getFestivalWish();
+            }
+        }
+
+        // Update the wish when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFestivalWish();
+            
+            // Update the wish every hour to change the greeting based on time of day
+            setInterval(updateFestivalWish, 60 * 60 * 1000);
+        });
+
 
         // Variables for keyboard navigation
         let currentFocusIndex = -1;
