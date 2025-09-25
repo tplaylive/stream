@@ -62,27 +62,24 @@
             border-radius: 8px;
         }
 
-        .festival-wish {
-            flex: 1;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--festival-color);
-            text-shadow: var(--festival-glow);
-            animation: festivalPulse 2s infinite;
-            padding: 0 10px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        @keyframes festivalPulse {
-            0% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 0.8; transform: scale(1); }
-        }
+.festival-wish {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: white; /* Simple white text */
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 300px;
+    margin: 0 auto;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 2s ease-in-out;
+}
 
         .menu-toggle {
             background: none;
@@ -235,7 +232,7 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 10px;
-            padding: 15px 0;
+            padding: 1px 0;
             margin-bottom: 10px;
             scrollbar-width: none;
         }
@@ -249,7 +246,7 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 10px;
-            padding: 10px 0;
+            padding: 5px 0;
             margin-bottom: 15px;
             scrollbar-width: none;
             display: none;
@@ -285,7 +282,7 @@
 
         .channel-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 6fr));
             gap: 12px;
         }
 
@@ -579,7 +576,7 @@
             }
             
             .channel-list {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(160px, 8fr));
                 gap: 10px;
             }
             
@@ -639,7 +636,7 @@
             }
             
             .channel-list {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(160px, 6fr));
             }
             
             .category-bar, .language-bar {
@@ -735,7 +732,7 @@
             }
             
             .channel-list {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(160px, 6fr));
             }
             
             .source-name {
@@ -4088,7 +4085,7 @@
             ];
             
         // Festival data with dates and wishes
-const festivals = [
+        const festivals = [
     // Indian Festivals
     { name: "Makar Sankranti / Pongal", date: "01-14", wish: "Happy Makar Sankranti! May the sun bring new energy into your life." },
     { name: "Republic Day", date: "01-26", wish: "Happy Republic Day! Jai Hind!" },
@@ -4180,30 +4177,52 @@ const festivals = [
             // If no festival today, return a generic greeting
             const hour = new Date().getHours();
             if (hour < 12) {
-                return "Good Morning!";
+                return "⛅ Good Morning!";
             } else if (hour < 18) {
-                return "Good Afternoon!";
-            } else {
-                return "Good Evening!";
-            }
+                return "🌞 Good Afternoon!";
+            } else
+                return "t.me/tplaybd";
         }
 
-        // Function to update the festival wish in the header
-        function updateFestivalWish() {
+        // Function to get current time in 12-hour format
+        function getCurrentTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 should be 12
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            return `${hours}:${minutes} ${ampm}`;
+        }
+
+        // Function to update the festival wish and current time in the header
+        function updateHeaderDisplay() {
             const festivalWishElement = document.getElementById('festivalWish');
             if (festivalWishElement) {
-                festivalWishElement.textContent = getFestivalWish();
+                // Toggle between festival wish and current time every 5 seconds
+                if (festivalWishElement.dataset.showing === 'time') {
+                    festivalWishElement.textContent = getFestivalWish();
+                    festivalWishElement.dataset.showing = 'wish';
+                } else {
+                    festivalWishElement.textContent = getCurrentTime();
+                    festivalWishElement.dataset.showing = 'time';
+                }
             }
         }
 
-        // Update the wish when the page loads
+        // Update the display when the page loads
         document.addEventListener('DOMContentLoaded', function() {
-            updateFestivalWish();
+            const festivalWishElement = document.getElementById('festivalWish');
+            festivalWishElement.dataset.showing = 'wish'; // Start with festival wish
             
-            // Update the wish every hour to change the greeting based on time of day
-            setInterval(updateFestivalWish, 60 * 60 * 1000);
+            updateHeaderDisplay();
+            
+            // Update the display every 5 seconds
+            setInterval(updateHeaderDisplay, 10000);
         });
-
 
         // Variables for keyboard navigation
         let currentFocusIndex = -1;
