@@ -4760,11 +4760,25 @@
             // If no festival today, return a generic greeting
             const hour = new Date().getHours();
             if (hour < 12) {
-                return "⛅ Good Morning!";
+                return "t.me/tplaybd";
             } else if (hour < 18) {
-                return "🌞 Good Afternoon!";
+                return "t.me/tplaybd";
             } else
                 return "t.me/tplaybd";
+        }
+        
+        // Function to get current time in 12-hour format
+        function getCurrentTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 should be 12
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            return `${hours}:${minutes} ${ampm}`;
         }
 
         // Function to get current time in 12-hour format
