@@ -3779,16 +3779,6 @@
                 languages: ["Hindi","24/7"]
             },
             { 
-                name: "Oggy and the Cockroaches", 
-                sources: [
-                    { name: "India", url: "go:S023" },
-                ], 
-                img: "https://i.postimg.cc/rpm2QqXQ/oggy.jpg", 
-                category: "Kids",
-                description: "24/7",
-                languages: ["Hindi","24/7"]
-            },
-            { 
                 name: "Jungle Book", 
                 sources: [
                     { name: "India", url: "go:S4071" },
@@ -4822,367 +4812,449 @@
         });
 
         // Variables for keyboard navigation
-        let currentFocusIndex = -1;
-        let focusableElements = [];
-        const focusIndicator = document.getElementById('focusIndicator');
-        
-        // Variables for filtering
-        let currentCategory = 'all';
-        let currentLanguage = 'all';
-        let adultCategoryVisible = false;
+let currentFocusIndex = -1;
+let focusableElements = [];
+const focusIndicator = document.getElementById('focusIndicator');
 
-        // Sidebar functionality
-        const menuToggle = document.getElementById('menuToggle');
-        const closeSidebar = document.getElementById('closeSidebar');
-        const sidebar = document.getElementById('sidebar');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
+// Variables for filtering
+let currentCategory = 'all';
+let currentLanguage = 'all';
+let adultCategoryVisible = false;
 
-        function toggleSidebar() {
-            sidebar.classList.toggle('open');
-            sidebarOverlay.classList.toggle('open');
-        }
+// Track if overlay is open
+let isOverlayOpen = false;
 
-        menuToggle.addEventListener('click', toggleSidebar);
-        closeSidebar.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', toggleSidebar);
+// Sidebar functionality
+const menuToggle = document.getElementById('menuToggle');
+const closeSidebar = document.getElementById('closeSidebar');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-        // Initialize the channel list
-        function initChannelList() {
-            const channelList = document.getElementById('channelList');
-            const channelSearch = document.getElementById('channelSearch');
-            const categoryButtons = document.querySelectorAll('#categoryBar .filter-btn');
-            const languageBar = document.getElementById('languageBar');
-            const adultToggle = document.getElementById('adultToggle');
+function toggleSidebar() {
+    sidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('open');
+}
+
+menuToggle.addEventListener('click', toggleSidebar);
+closeSidebar.addEventListener('click', toggleSidebar);
+sidebarOverlay.addEventListener('click', toggleSidebar);
+
+// Initialize the channel list
+function initChannelList() {
+    const channelList = document.getElementById('channelList');
+    const channelSearch = document.getElementById('channelSearch');
+    const categoryButtons = document.querySelectorAll('#categoryBar .filter-btn');
+    const languageBar = document.getElementById('languageBar');
+    const adultToggle = document.getElementById('adultToggle');
+    
+    // Check if adult category preference is saved in localStorage
+    const savedAdultPreference = localStorage.getItem('adultCategoryVisible');
+    if (savedAdultPreference !== null) {
+        adultCategoryVisible = savedAdultPreference === 'true';
+        adultToggle.checked = adultCategoryVisible;
+        toggleAdultCategory(adultCategoryVisible);
+    }
+    
+    // Adult category toggle functionality
+    adultToggle.addEventListener('change', function() {
+        adultCategoryVisible = this.checked;
+        localStorage.setItem('adultCategoryVisible', adultCategoryVisible);
+        toggleAdultCategory(adultCategoryVisible);
+        renderChannels(filterChannels());
+        initKeyboardNavigation();
+    });
+    
+    // Render all channels initially
+    renderChannels(filterChannels());
+    initKeyboardNavigation();
+    
+    // Search functionality
+    channelSearch.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const filteredChannels = filterChannels().filter(channel => 
+            channel.name.toLowerCase().includes(searchTerm) || 
+            channel.category.toLowerCase().includes(searchTerm) ||
+            channel.description.toLowerCase().includes(searchTerm)
+        );
+        renderChannels(filteredChannels);
+        initKeyboardNavigation();
+    });
+    
+    // Category filter functionality
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
             
-            // Check if adult category preference is saved in localStorage
-            const savedAdultPreference = localStorage.getItem('adultCategoryVisible');
-            if (savedAdultPreference !== null) {
-                adultCategoryVisible = savedAdultPreference === 'true';
-                adultToggle.checked = adultCategoryVisible;
-                toggleAdultCategory(adultCategoryVisible);
+            currentCategory = this.getAttribute('data-category');
+            // 18+ category redirect
+            if (currentCategory === '18+') {
+                window.location.href = "go:S0909090";
+                return; // Stop further execution
             }
             
-            // Adult category toggle functionality
-            adultToggle.addEventListener('change', function() {
-                adultCategoryVisible = this.checked;
-                localStorage.setItem('adultCategoryVisible', adultCategoryVisible);
-                toggleAdultCategory(adultCategoryVisible);
-                renderChannels(filterChannels());
-                initKeyboardNavigation();
-            });
+            // Show language bar when a specific category is selected
+            if (currentCategory === 'all') {
+                languageBar.style.display = 'none';
+                currentLanguage = 'all';
+            } else {
+                languageBar.style.display = 'flex';
+                updateLanguageButtons();
+            }
             
-            // Render all channels initially
             renderChannels(filterChannels());
             initKeyboardNavigation();
-            
-            // Search functionality
-            channelSearch.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const filteredChannels = filterChannels().filter(channel => 
-                    channel.name.toLowerCase().includes(searchTerm) || 
-                    channel.category.toLowerCase().includes(searchTerm) ||
-                    channel.description.toLowerCase().includes(searchTerm)
-                );
-                renderChannels(filteredChannels);
-                initKeyboardNavigation();
-            });
-            
-            // Category filter functionality
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    currentCategory = this.getAttribute('data-category');
-                    // 18+ category redirect
-                    if (currentCategory === '18+') {
-                        window.location.href = "go:S0909090";
-                        return; // Stop further execution
-                    }
-                    
-                    // Show language bar when a specific category is selected
-                    if (currentCategory === 'all') {
-                        languageBar.style.display = 'none';
-                        currentLanguage = 'all';
-                    } else {
-                        languageBar.style.display = 'flex';
-                        updateLanguageButtons();
-                    }
-                    
-                    renderChannels(filterChannels());
-                    initKeyboardNavigation();
-                });
-            });
+        });
+    });
 
-            // Close overlay button
-            document.getElementById('closeOverlayBtn').addEventListener('click', closeOverlay);
+    // Close overlay button
+    document.getElementById('closeOverlayBtn').addEventListener('click', closeOverlay);
 
-            // Add event listener for keyboard navigation
-            document.addEventListener('keydown', handleKeyNavigation);
-        }
-        
-        // Toggle adult category visibility
-        function toggleAdultCategory(show) {
-            const adultCategoryButton = document.querySelector('.adult-category');
-            if (adultCategoryButton) {
-                adultCategoryButton.style.display = show ? 'block' : 'none';
-            }
-        }
-        
-        // Update language buttons based on available languages in the current category
-        function updateLanguageButtons() {
-            const languageBar = document.getElementById('languageBar');
-            
-            // Get all unique languages from channels in the current category
-            const availableLanguages = new Set();
-            
-            if (currentCategory === 'all') {
-                // For "All Channels", get languages from all channels
-                channels.forEach(channel => {
-                    if (channel.languages) {
-                        channel.languages.forEach(lang => availableLanguages.add(lang));
-                    }
-                });
-            } else {
-                // For specific category, get languages only from channels in that category
-                channels.forEach(channel => {
-                    if (channel.category === currentCategory && channel.languages) {
-                        channel.languages.forEach(lang => availableLanguages.add(lang));
-                    }
-                });
-            }
-            
-            // Create language buttons HTML
-            let languageButtonsHTML = '<button class="filter-btn active" data-language="all">All</button>';
-            
-            // Convert Set to Array and sort alphabetically
-            const sortedLanguages = Array.from(availableLanguages).sort();
-            
-            sortedLanguages.forEach(language => {
-                languageButtonsHTML += `<button class="filter-btn" data-language="${language}">${language}</button>`;
-            });
-            
-            // Update language bar
-            languageBar.innerHTML = languageButtonsHTML;
-            
-            // Add event listeners to language buttons
-            const languageButtons = document.querySelectorAll('#languageBar .filter-btn');
-            languageButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    languageButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    currentLanguage = this.getAttribute('data-language');
-                    renderChannels(filterChannels());
-                    initKeyboardNavigation();
-                });
-            });
-        }
-        
-        // Filter channels based on current category and language
-        function filterChannels() {
-            return channels.filter(channel => {
-                const categoryMatch = currentCategory === 'all' || channel.category === currentCategory;
-                const languageMatch = currentLanguage === 'all' || 
-                    (channel.languages && channel.languages.includes(currentLanguage));
-                
-                // If adult category is hidden, filter out 18+ channels
-                const adultFilter = adultCategoryVisible || channel.category !== '18+';
-                
-                return categoryMatch && languageMatch && adultFilter;
-            });
-        }
-        
-        // Initialize keyboard navigation
-        function initKeyboardNavigation() {
-            focusableElements = Array.from(document.querySelectorAll('.channel-item, .filter-btn, .source-btn, .close-btn'));
-            updateFocusIndicator();
-        }
-        
-        // Handle keyboard navigation
-        function handleKeyNavigation(e) {
-            if (document.getElementById('overlay').style.display === 'flex') {
-                // Handle navigation in overlay
-                handleOverlayNavigation(e);
-                return;
-            }
-            
-            switch(e.key) {
-                case 'ArrowRight':
-                    e.preventDefault();
-                    navigateFocus(1);
-                    break;
-                case 'ArrowLeft':
-                    e.preventDefault();
-                    navigateFocus(-1);
-                    break;
-                case 'ArrowDown':
-                    e.preventDefault();
-                    navigateFocus(getGridColumnCount());
-                    break;
-                case 'ArrowUp':
-                    e.preventDefault();
-                    navigateFocus(-getGridColumnCount());
-                    break;
-                case 'Enter':
-                    e.preventDefault();
-                    if (currentFocusIndex >= 0) {
-                        focusableElements[currentFocusIndex].click();
-                    }
-                    break;
-                case 'Escape':
-                    e.preventDefault();
-                    closeOverlay();
-                    break;
-            }
-        }
-        
-        // Handle navigation in overlay
-        function handleOverlayNavigation(e) {
-            switch(e.key) {
-                case 'ArrowDown':
-                    e.preventDefault();
-                    navigateFocus(1);
-                    break;
-                case 'ArrowUp':
-                    e.preventDefault();
-                    navigateFocus(-1);
-                    break;
-                case 'Enter':
-                    e.preventDefault();
-                    if (currentFocusIndex >= 0) {
-                        focusableElements[currentFocusIndex].click();
-                    }
-                    break;
-                case 'Escape':
-                    e.preventDefault();
-                    closeOverlay();
-                    break;
-            }
-        }
-        
-        // Navigate focus among focusable elements
-        function navigateFocus(direction) {
-            if (focusableElements.length === 0) return;
-            
-            currentFocusIndex += direction;
-            
-            if (currentFocusIndex < 0) {
-                currentFocusIndex = focusableElements.length - 1;
-            } else if (currentFocusIndex >= focusableElements.length) {
-                currentFocusIndex = 0;
-            }
-            
+    // Add event listener for keyboard navigation
+    document.addEventListener('keydown', handleKeyNavigation);
+    
+    // Focus on first element when page loads
+    setTimeout(() => {
+        if (focusableElements.length > 0) {
+            currentFocusIndex = 0;
             focusableElements[currentFocusIndex].focus();
             updateFocusIndicator();
         }
-        
-        // Update focus indicator position and size
-        function updateFocusIndicator() {
-            if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
-                const focusedElement = focusableElements[currentFocusIndex];
-                const rect = focusedElement.getBoundingClientRect();
-                
-                focusIndicator.style.display = 'block';
-                focusIndicator.style.width = `${rect.width + 8}px`;
-                focusIndicator.style.height = `${rect.height + 8}px`;
-                focusIndicator.style.left = `${rect.left - 4 + window.pageXOffset}px`;
-                focusIndicator.style.top = `${rect.top - 4 + window.pageYOffset}px`;
-            } else {
-                focusIndicator.style.display = 'none';
+    }, 100);
+}
+
+// Toggle adult category visibility
+function toggleAdultCategory(show) {
+    const adultCategoryButton = document.querySelector('.adult-category');
+    if (adultCategoryButton) {
+        adultCategoryButton.style.display = show ? 'block' : 'none';
+    }
+}
+
+// Update language buttons based on available languages in the current category
+function updateLanguageButtons() {
+    const languageBar = document.getElementById('languageBar');
+    
+    // Get all unique languages from channels in the current category
+    const availableLanguages = new Set();
+    
+    if (currentCategory === 'all') {
+        // For "All Channels", get languages from all channels
+        channels.forEach(channel => {
+            if (channel.languages) {
+                channel.languages.forEach(lang => availableLanguages.add(lang));
             }
-        }
-        
-        // Get grid column count for keyboard navigation
-        function getGridColumnCount() {
-            const channelList = document.getElementById('channelList');
-            const computedStyle = window.getComputedStyle(channelList);
-            return parseInt(computedStyle.getPropertyValue('grid-template-columns').split(' ').length);
-        }
-        
-        // Render channels to the DOM
-        function renderChannels(channelsToRender) {
-            const channelList = document.getElementById('channelList');
-            const channelCount = document.getElementById('channelCount');
-            
-            channelCount.textContent = `${channelsToRender.length} channels available`;
-            
-            if (channelsToRender.length === 0) {
-                channelList.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">No channels found</p>';
-                return;
+        });
+    } else {
+        // For specific category, get languages only from channels in that category
+        channels.forEach(channel => {
+            if (channel.category === currentCategory && channel.languages) {
+                channel.languages.forEach(lang => availableLanguages.add(lang));
             }
+        });
+    }
+    
+    // Create language buttons HTML
+    let languageButtonsHTML = '<button class="filter-btn active" data-language="all">All</button>';
+    
+    // Convert Set to Array and sort alphabetically
+    const sortedLanguages = Array.from(availableLanguages).sort();
+    
+    sortedLanguages.forEach(language => {
+        languageButtonsHTML += `<button class="filter-btn" data-language="${language}">${language}</button>`;
+    });
+    
+    // Update language bar
+    languageBar.innerHTML = languageButtonsHTML;
+    
+    // Add event listeners to language buttons
+    const languageButtons = document.querySelectorAll('#languageBar .filter-btn');
+    languageButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            languageButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
             
-            channelList.innerHTML = channelsToRender.map(channel => `
-                <div class="channel-item" tabindex="0" data-channel="${channel.name}">
-                    <div class="channel-img">
-                        <img src="${channel.img}" alt="${channel.name}" loading="lazy">
-                        <span class="source-badge">${channel.sources.length} <i class="fas fa-satellite-dish"></i></span>
-                    </div>
-                    <div class="channel-info">
-                        <div class="channel-name-container">
-                            <div class="channel-name">${channel.name}</div>
-                        </div>
-                        <div class="channel-category">${channel.category} • ${channel.description}</div>
-                    </div>
+            currentLanguage = this.getAttribute('data-language');
+            renderChannels(filterChannels());
+            initKeyboardNavigation();
+        });
+    });
+}
+
+// Filter channels based on current category and language
+function filterChannels() {
+    return channels.filter(channel => {
+        const categoryMatch = currentCategory === 'all' || channel.category === currentCategory;
+        const languageMatch = currentLanguage === 'all' || 
+            (channel.languages && channel.languages.includes(currentLanguage));
+        
+        // If adult category is hidden, filter out 18+ channels
+        const adultFilter = adultCategoryVisible || channel.category !== '18+';
+        
+        return categoryMatch && languageMatch && adultFilter;
+    });
+}
+
+// Improved keyboard navigation initialization
+function initKeyboardNavigation() {
+    if (isOverlayOpen) {
+        // In overlay, focusable elements are source buttons and close button
+        focusableElements = Array.from(document.querySelectorAll('.source-btn, .close-btn'));
+    } else {
+        // In main view, focusable elements are filter buttons and channel items
+        focusableElements = Array.from(document.querySelectorAll('.filter-btn, .channel-item'));
+    }
+    
+    if (focusableElements.length > 0) {
+        currentFocusIndex = 0;
+        focusableElements[currentFocusIndex].focus();
+    }
+    updateFocusIndicator();
+}
+
+// Enhanced keyboard navigation handler
+function handleKeyNavigation(e) {
+    if (isOverlayOpen) {
+        // Handle navigation in overlay
+        handleOverlayNavigation(e);
+    } else {
+        // Handle navigation in main view
+        handleMainNavigation(e);
+    }
+}
+
+// Navigation in main view
+function handleMainNavigation(e) {
+    const gridColumns = getGridColumnCount();
+    
+    switch(e.key) {
+        case 'ArrowRight':
+            e.preventDefault();
+            navigateFocus(1);
+            break;
+        case 'ArrowLeft':
+            e.preventDefault();
+            navigateFocus(-1);
+            break;
+        case 'ArrowDown':
+            e.preventDefault();
+            navigateFocus(gridColumns);
+            break;
+        case 'ArrowUp':
+            e.preventDefault();
+            navigateFocus(-gridColumns);
+            break;
+        case 'Enter':
+            e.preventDefault();
+            activateFocusedElement();
+            break;
+        case 'Backspace':
+        case 'Escape':
+            e.preventDefault();
+            // Go back to previous page or clear search
+            const searchInput = document.getElementById('channelSearch');
+            if (searchInput.value) {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+            }
+            break;
+    }
+}
+
+// Navigation in overlay
+function handleOverlayNavigation(e) {
+    switch(e.key) {
+        case 'ArrowDown':
+            e.preventDefault();
+            navigateFocus(1);
+            break;
+        case 'ArrowUp':
+            e.preventDefault();
+            navigateFocus(-1);
+            break;
+        case 'Enter':
+            e.preventDefault();
+            activateFocusedElement();
+            break;
+        case 'Backspace':
+        case 'Escape':
+            e.preventDefault();
+            closeOverlay();
+            break;
+    }
+}
+
+// Activate the currently focused element
+function activateFocusedElement() {
+    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+        const focusedElement = focusableElements[currentFocusIndex];
+        
+        if (focusedElement.classList.contains('channel-item')) {
+            // Open channel overlay
+            const channelName = focusedElement.getAttribute('data-channel');
+            const channel = channels.find(c => c.name === channelName);
+            if (channel) {
+                openOverlay(channel);
+            }
+        } else if (focusedElement.classList.contains('filter-btn')) {
+            // Activate filter button
+            focusedElement.click();
+        } else if (focusedElement.classList.contains('source-btn')) {
+            // Play the source (this will naturally follow the link)
+            focusedElement.click();
+        } else if (focusedElement.classList.contains('close-btn')) {
+            // Close overlay
+            closeOverlay();
+        }
+    }
+}
+
+// Navigate focus among focusable elements
+function navigateFocus(direction) {
+    if (focusableElements.length === 0) return;
+    
+    currentFocusIndex += direction;
+    
+    // Circular navigation
+    if (currentFocusIndex < 0) {
+        currentFocusIndex = focusableElements.length - 1;
+    } else if (currentFocusIndex >= focusableElements.length) {
+        currentFocusIndex = 0;
+    }
+    
+    focusableElements[currentFocusIndex].focus();
+    updateFocusIndicator();
+    
+    // Scroll focused element into view if needed
+    focusableElements[currentFocusIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+    });
+}
+
+// Update focus indicator position and size
+function updateFocusIndicator() {
+    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+        const focusedElement = focusableElements[currentFocusIndex];
+        const rect = focusedElement.getBoundingClientRect();
+        
+        focusIndicator.style.display = 'block';
+        focusIndicator.style.width = `${rect.width + 8}px`;
+        focusIndicator.style.height = `${rect.height + 8}px`;
+        focusIndicator.style.left = `${rect.left - 4 + window.pageXOffset}px`;
+        focusIndicator.style.top = `${rect.top - 4 + window.pageYOffset}px`;
+    } else {
+        focusIndicator.style.display = 'none';
+    }
+}
+
+// Get grid column count for keyboard navigation
+function getGridColumnCount() {
+    const channelList = document.getElementById('channelList');
+    const computedStyle = window.getComputedStyle(channelList);
+    const gridTemplateColumns = computedStyle.getPropertyValue('grid-template-columns');
+    
+    if (gridTemplateColumns === 'none') {
+        return 1; // Fallback for single column
+    }
+    
+    return gridTemplateColumns.split(' ').length;
+}
+
+// Render channels to the DOM
+function renderChannels(channelsToRender) {
+    const channelList = document.getElementById('channelList');
+    const channelCount = document.getElementById('channelCount');
+    
+    channelCount.textContent = `${channelsToRender.length} channels available`;
+    
+    if (channelsToRender.length === 0) {
+        channelList.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">No channels found</p>';
+        return;
+    }
+    
+    channelList.innerHTML = channelsToRender.map(channel => `
+        <div class="channel-item" tabindex="0" data-channel="${channel.name}">
+            <div class="channel-img">
+                <img src="${channel.img}" alt="${channel.name}" loading="lazy">
+                <span class="source-badge">${channel.sources.length} <i class="fas fa-satellite-dish"></i></span>
+            </div>
+            <div class="channel-info">
+                <div class="channel-name-container">
+                    <div class="channel-name">${channel.name}</div>
                 </div>
-            `).join('');
+                <div class="channel-category">${channel.category} • ${channel.description}</div>
+            </div>
+        </div>
+    `).join('');
+    
+    // Add click event listeners to channel items
+    document.querySelectorAll('.channel-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const channelName = this.getAttribute('data-channel');
+            const channel = channels.find(c => c.name === channelName);
             
-            // Add click event listeners to channel items
-            document.querySelectorAll('.channel-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const channelName = this.getAttribute('data-channel');
-                    const channel = channels.find(c => c.name === channelName);
-                    
-                    if (channel) {
-                        openOverlay(channel);
-                    }
-                });
-            });
-        }
-        
-        // Open overlay with channel details
-        function openOverlay(channel) {
-            const overlay = document.getElementById('overlay');
-            const overlayTitle = document.getElementById('overlayTitle');
-            const overlaySubtitle = document.getElementById('overlaySubtitle');
-            const overlayLogo = document.getElementById('overlayLogo');
-            const overlaySources = document.getElementById('overlaySources');
-            
-            overlayTitle.textContent = channel.name;
-            overlaySubtitle.textContent = channel.description || `${channel.category} Channel`;
-            overlayLogo.src = channel.img;
-            overlayLogo.alt = `${channel.name} Logo`;
-            
-            // Create source buttons
-            overlaySources.innerHTML = channel.sources.map((source, index) => `
-                <a href="${source.url}" class="source-btn" tabindex="0">
-                    <span class="source-name">${source.name}</span>
-                    <span class="source-action">Play <i class="fas fa-play-circle"></i></span>
-                </a>
-            `).join('');
-            
-            // Show overlay
-            overlay.style.display = 'flex';
-            
-            // Reinitialize keyboard navigation for overlay
-            initKeyboardNavigation();
-        }
-        
-        // Close overlay
-        function closeOverlay() {
-            const overlay = document.getElementById('overlay');
-            overlay.style.display = 'none';
-            
-            // Reinitialize keyboard navigation for main content
-            initKeyboardNavigation();
-        }
-        
-        // Initialize the application when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initChannelList);
-        
-        // Update focus indicator on scroll or resize
-        window.addEventListener('scroll', updateFocusIndicator);
-        window.addEventListener('resize', updateFocusIndicator);
+            if (channel) {
+                openOverlay(channel);
+            }
+        });
+    });
+}
+
+// Open overlay with channel details
+function openOverlay(channel) {
+    const overlay = document.getElementById('overlay');
+    const overlayTitle = document.getElementById('overlayTitle');
+    const overlaySubtitle = document.getElementById('overlaySubtitle');
+    const overlayLogo = document.getElementById('overlayLogo');
+    const overlaySources = document.getElementById('overlaySources');
+    
+    overlayTitle.textContent = channel.name;
+    overlaySubtitle.textContent = channel.description || `${channel.category} Channel`;
+    overlayLogo.src = channel.img;
+    overlayLogo.alt = `${channel.name} Logo`;
+    
+    // Create source buttons
+    overlaySources.innerHTML = channel.sources.map((source, index) => `
+        <a href="${source.url}" class="source-btn" tabindex="0">
+            <span class="source-name">${source.name}</span>
+            <span class="source-action">Play <i class="fas fa-play-circle"></i></span>
+        </a>
+    `).join('');
+    
+    // Show overlay
+    overlay.style.display = 'flex';
+    isOverlayOpen = true;
+    
+    // Reinitialize keyboard navigation for overlay
+    initKeyboardNavigation();
+}
+
+// Close overlay
+function closeOverlay() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+    isOverlayOpen = false;
+    
+    // Reinitialize keyboard navigation for main content
+    initKeyboardNavigation();
+}
+
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', initChannelList);
+
+// Update focus indicator on scroll or resize
+window.addEventListener('scroll', updateFocusIndicator);
+window.addEventListener('resize', updateFocusIndicator);
+
+// Handle focus when tabbing
+document.addEventListener('focusin', function(e) {
+    if (focusableElements.includes(e.target)) {
+        currentFocusIndex = focusableElements.indexOf(e.target);
+        updateFocusIndicator();
+    }
+});
     </script>
 </body>
 </html>
