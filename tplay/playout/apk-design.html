@@ -805,6 +805,79 @@
                 display: block;
             }
         }
+        
+         .favorite-toggle {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(0, 0, 0, 0.1);
+            color: #ccc;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .favorite-toggle:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        .favorite-toggle.active {
+            color: var(--primary-color);
+        }
+        
+        .favorite-toggle i {
+            font-size: 12px;
+        }
+        
+        .favorite-category {
+            display: none;
+        }
+        
+        /* Add to category bar */
+        .category-bar .filter-btn[data-category="favorites"] {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Add to sidebar */
+        .favorite-toggle-sidebar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .favorite-toggle-sidebar .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Add a visual indicator for long press */
+        .long-press-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(229, 9, 20, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            z-index: 10000;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -840,6 +913,18 @@
             </li>
         </ul>
         
+        <!-- Favorites Toggle -->
+        <div class="favorite-toggle-sidebar">
+            <div class="toggle-label">
+                <i class="fas fa-heart" style="color: var(--primary-color);"></i>
+                <span>Show Favorites Category</span>
+            </div>
+            <label class="adult-toggle">
+                <input type="checkbox" id="favoriteCategoryToggle">
+                <span class="adult-toggle-slider"></span>
+            </label>
+        </div>
+        
         <!-- 18+ Category Toggle -->
         <div class="adult-toggle-container">
             <div class="adult-toggle-label">
@@ -874,6 +959,9 @@
         <div class="filter-container">
             <div class="category-bar" id="categoryBar">
                 <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn favorite-category" data-category="favorites">
+                    <i class="fas fa-heart"></i> Favorites
+                </button>
                 <button class="filter-btn" data-category="News">News</button>
                 <button class="filter-btn" data-category="Sports">Sports</button>
                 <button class="filter-btn" data-category="Entertainment">Entertainment</button>
@@ -923,6 +1011,9 @@
 
     <!-- Focus indicator for keyboard navigation -->
     <div class="focus-indicator" id="focusIndicator"></div>
+    
+   <!-- Long press indicator -->
+    <div class="long-press-indicator" id="longPressIndicator"></div>
 
     <script>
         // Channel data with language information
@@ -3779,6 +3870,16 @@
                 languages: ["Hindi","24/7"]
             },
             { 
+                name: "Oggy and the Cockroaches", 
+                sources: [
+                    { name: "India", url: "go:S023" },
+                ], 
+                img: "https://i.postimg.cc/rpm2QqXQ/oggy.jpg", 
+                category: "Kids",
+                description: "24/7",
+                languages: ["Hindi","24/7"]
+            },
+            { 
                 name: "Jungle Book", 
                 sources: [
                     { name: "India", url: "go:S4071" },
@@ -4824,6 +4925,9 @@ let adultCategoryVisible = false;
 // Track if overlay is open
 let isOverlayOpen = false;
 
+// Favorite channels storage
+        let favoriteChannels = JSON.parse(localStorage.getItem('favoriteChannels')) || [];
+
 // Sidebar functionality
 const menuToggle = document.getElementById('menuToggle');
 const closeSidebar = document.getElementById('closeSidebar');
@@ -4846,6 +4950,7 @@ function initChannelList() {
     const categoryButtons = document.querySelectorAll('#categoryBar .filter-btn');
     const languageBar = document.getElementById('languageBar');
     const adultToggle = document.getElementById('adultToggle');
+    const favoriteCategoryToggle = document.getElementById('favoriteCategoryToggle');
     
     // Check if adult category preference is saved in localStorage
     const savedAdultPreference = localStorage.getItem('adultCategoryVisible');
@@ -4855,6 +4960,14 @@ function initChannelList() {
         toggleAdultCategory(adultCategoryVisible);
     }
     
+    // Check if favorite category preference is saved in localStorage
+            const savedFavoritePreference = localStorage.getItem('favoriteCategoryVisible');
+            if (savedFavoritePreference !== null) {
+                favoriteCategoryVisible = savedFavoritePreference === 'true';
+                favoriteCategoryToggle.checked = favoriteCategoryVisible;
+                toggleFavoriteCategory(favoriteCategoryVisible);
+            }
+    
     // Adult category toggle functionality
     adultToggle.addEventListener('change', function() {
         adultCategoryVisible = this.checked;
@@ -4863,6 +4976,15 @@ function initChannelList() {
         renderChannels(filterChannels());
         initKeyboardNavigation();
     });
+    
+    // Favorite category toggle functionality
+            favoriteCategoryToggle.addEventListener('change', function() {
+                favoriteCategoryVisible = this.checked;
+                localStorage.setItem('favoriteCategoryVisible', favoriteCategoryVisible);
+                toggleFavoriteCategory(favoriteCategoryVisible);
+                renderChannels(filterChannels());
+                initKeyboardNavigation();
+            });
     
     // Render all channels initially
     renderChannels(filterChannels());
@@ -4931,6 +5053,14 @@ function toggleAdultCategory(show) {
     }
 }
 
+ // Toggle favorite category visibility
+        function toggleFavoriteCategory(show) {
+            const favoriteCategoryButton = document.querySelector('.favorite-category');
+            if (favoriteCategoryButton) {
+                favoriteCategoryButton.style.display = show ? 'inline-flex' : 'none';
+            }
+        }
+
 // Update language buttons based on available languages in the current category
 function updateLanguageButtons() {
     const languageBar = document.getElementById('languageBar');
@@ -4984,6 +5114,11 @@ function updateLanguageButtons() {
 // Filter channels based on current category and language
 function filterChannels() {
     return channels.filter(channel => {
+      // For favorites category, only show favorited channels
+                if (currentCategory === 'favorites') {
+                    return favoriteChannels.includes(channel.name);
+                }
+    
         const categoryMatch = currentCategory === 'all' || channel.category === currentCategory;
         const languageMatch = currentLanguage === 'all' || 
             (channel.languages && channel.languages.includes(currentLanguage));
@@ -4995,6 +5130,35 @@ function filterChannels() {
     });
 }
 
+// Toggle favorite status for a channel
+        function toggleFavorite(channelName) {
+            const index = favoriteChannels.indexOf(channelName);
+            
+            if (index === -1) {
+                // Add to favorites
+                favoriteChannels.push(channelName);
+            } else {
+                // Remove from favorites
+                favoriteChannels.splice(index, 1);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('favoriteChannels', JSON.stringify(favoriteChannels));
+            
+            // Update the UI
+            renderChannels(filterChannels());
+            
+            // If we're in the favorites category and removed the last favorite, switch to all
+            if (currentCategory === 'favorites' && favoriteChannels.length === 0) {
+                document.querySelector('[data-category="all"]').click();
+            }
+        }
+        
+        // Check if a channel is favorited
+        function isFavorite(channelName) {
+            return favoriteChannels.includes(channelName);
+        }
+        
 // Improved keyboard navigation initialization
 function initKeyboardNavigation() {
     if (isOverlayOpen) {
@@ -5011,6 +5175,11 @@ function initKeyboardNavigation() {
     }
     updateFocusIndicator();
 }
+
+// Variables for long press detection
+        let enterKeyPressTimer = null;
+        let enterKeyPressed = false;
+        const longPressDuration = 1000; // 1 second for long press
 
 // Enhanced keyboard navigation handler
 function handleKeyNavigation(e) {
@@ -5047,6 +5216,11 @@ function handleMainNavigation(e) {
         case 'Enter':
             e.preventDefault();
             activateFocusedElement();
+            // Start long press timer
+            if (!enterKeyPressed) {
+                enterKeyPressed = true;
+                startLongPressTimer();
+              }
             break;
         case 'Backspace':
         case 'Escape':
@@ -5058,6 +5232,18 @@ function handleMainNavigation(e) {
                 searchInput.dispatchEvent(new Event('input'));
             }
             break;
+            case 'f':
+                case 'F':
+                    // Toggle favorite with F key
+                    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+                        const focusedElement = focusableElements[currentFocusIndex];
+                        if (focusedElement.classList.contains('channel-item')) {
+                            e.preventDefault();
+                            const channelName = focusedElement.getAttribute('data-channel');
+                            toggleFavorite(channelName);
+                        }
+                    }
+                    break;
     }
 }
 
@@ -5075,6 +5261,11 @@ function handleOverlayNavigation(e) {
         case 'Enter':
             e.preventDefault();
             activateFocusedElement();
+            // Start long press timer
+            if (!enterKeyPressed) {
+                 enterKeyPressed = true;
+                 startLongPressTimer();
+             }
             break;
         case 'Backspace':
         case 'Escape':
@@ -5083,6 +5274,68 @@ function handleOverlayNavigation(e) {
             break;
     }
 }
+
+// Start timer for long press detection
+        function startLongPressTimer() {
+            const longPressIndicator = document.getElementById('longPressIndicator');
+            
+            // Show long press indicator
+            longPressIndicator.textContent = "Hold to toggle favorite";
+            longPressIndicator.style.display = 'block';
+            
+            enterKeyPressTimer = setTimeout(() => {
+                // Long press detected - toggle favorite
+                if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+                    const focusedElement = focusableElements[currentFocusIndex];
+                    
+                    if (focusedElement.classList.contains('channel-item')) {
+                        const channelName = focusedElement.getAttribute('data-channel');
+                        toggleFavorite(channelName);
+                        
+                        // Update long press indicator
+                        longPressIndicator.textContent = isFavorite(channelName) ? 
+                            "✓ Added to favorites" : "✗ Removed from favorites";
+                        
+                        // Hide indicator after a short delay
+                        setTimeout(() => {
+                            longPressIndicator.style.display = 'none';
+                        }, 1000);
+                    }
+                }
+                
+                enterKeyPressed = false;
+            }, longPressDuration);
+        }
+        
+        // Add keyup event listener to detect when Enter key is released
+        document.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter' && enterKeyPressed) {
+                // Clear the long press timer
+                clearTimeout(enterKeyPressTimer);
+                enterKeyPressed = false;
+                
+                // Hide long press indicator
+                document.getElementById('longPressIndicator').style.display = 'none';
+                
+                // If this was a short press, activate the element
+                if (!isOverlayOpen) {
+                    activateFocusedElement();
+                } else {
+                    // In overlay, short press should play the source
+                    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+                        const focusedElement = focusableElements[currentFocusIndex];
+                        
+                        if (focusedElement.classList.contains('source-btn')) {
+                            // Play the source (this will naturally follow the link)
+                            focusedElement.click();
+                        } else if (focusedElement.classList.contains('close-btn')) {
+                            // Close overlay
+                            closeOverlay();
+                        }
+                    }
+                }
+            }
+        });
 
 // Activate the currently focused element
 function activateFocusedElement() {
@@ -5163,44 +5416,61 @@ function getGridColumnCount() {
 }
 
 // Render channels to the DOM
-function renderChannels(channelsToRender) {
-    const channelList = document.getElementById('channelList');
-    const channelCount = document.getElementById('channelCount');
-    
-    channelCount.textContent = `${channelsToRender.length} channels available`;
-    
-    if (channelsToRender.length === 0) {
-        channelList.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">No channels found</p>';
-        return;
-    }
-    
-    channelList.innerHTML = channelsToRender.map(channel => `
-        <div class="channel-item" tabindex="0" data-channel="${channel.name}">
-            <div class="channel-img">
-                <img src="${channel.img}" alt="${channel.name}" loading="lazy">
-                <span class="source-badge">${channel.sources.length} <i class="fas fa-satellite-dish"></i></span>
-            </div>
-            <div class="channel-info">
-                <div class="channel-name-container">
-                    <div class="channel-name">${channel.name}</div>
+        function renderChannels(channelsToRender) {
+            const channelList = document.getElementById('channelList');
+            const channelCount = document.getElementById('channelCount');
+            
+            channelCount.textContent = `${channelsToRender.length} channels available`;
+            
+            if (channelsToRender.length === 0) {
+                channelList.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">No channels found</p>';
+                return;
+            }
+            
+            channelList.innerHTML = channelsToRender.map(channel => `
+                <div class="channel-item" tabindex="0" data-channel="${channel.name}">
+                    <div class="channel-img">
+                        <button class="favorite-toggle ${isFavorite(channel.name) ? 'active' : ''}" 
+                                data-channel="${channel.name}" 
+                                aria-label="${isFavorite(channel.name) ? 'Remove from favorites' : 'Add to favorites'}">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <img src="${channel.img}" alt="${channel.name}" loading="lazy">
+                        <span class="source-badge">${channel.sources.length} <i class="fas fa-satellite-dish"></i></span>
+                    </div>
+                    <div class="channel-info">
+                        <div class="channel-name-container">
+                            <div class="channel-name">${channel.name}</div>
+                        </div>
+                        <div class="channel-category">${channel.category} • ${channel.description}</div>
+                    </div>
                 </div>
-                <div class="channel-category">${channel.category} • ${channel.description}</div>
-            </div>
-        </div>
-    `).join('');
+            `).join('');
     
     // Add click event listeners to channel items
-    document.querySelectorAll('.channel-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const channelName = this.getAttribute('data-channel');
-            const channel = channels.find(c => c.name === channelName);
+            document.querySelectorAll('.channel-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Don't open overlay if clicking the favorite button
+                    if (!e.target.closest('.favorite-toggle')) {
+                        const channelName = this.getAttribute('data-channel');
+                        const channel = channels.find(c => c.name === channelName);
+                        
+                        if (channel) {
+                            openOverlay(channel);
+                        }
+                    }
+                });
+            });
             
-            if (channel) {
-                openOverlay(channel);
-            }
-        });
-    });
-}
+            // Add click event listeners to favorite buttons
+            document.querySelectorAll('.favorite-toggle').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent triggering the channel item click
+                    const channelName = this.getAttribute('data-channel');
+                    toggleFavorite(channelName);
+                });
+            });
+        }
 
 // Open overlay with channel details
 function openOverlay(channel) {
