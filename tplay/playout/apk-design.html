@@ -16,8 +16,6 @@
             --text-color: #ffffff;
             --text-secondary: #a0a0b0;
             --transition: all 0.3s ease;
-            --festival-color: #ffcc00;
-            --festival-glow: 0 0 10px rgba(255, 204, 0, 0.7);
         }
 
         * {
@@ -61,25 +59,6 @@
             height: 40px;
             border-radius: 8px;
         }
-
-.festival-wish {
-    flex: 1;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: white; /* Simple white text */
-    padding: 0 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 300px;
-    margin: 0 auto;
-    min-height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 2s ease-in-out;
-}
 
         .menu-toggle {
             background: none;
@@ -216,66 +195,6 @@
         .sidebar-overlay.open {
             display: block;
         }
-        
-        .adult-toggle-container {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .adult-toggle-label {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .adult-toggle {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .adult-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .adult-toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
-        }
-
-        .adult-toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .adult-toggle-slider {
-            background-color: var(--primary-color);
-        }
-
-        input:checked + .adult-toggle-slider:before {
-            transform: translateX(26px);
-        }
 
         .main-content {
             padding: 10px;
@@ -292,7 +211,7 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 10px;
-            padding: 1px 0;
+            padding: 15px 0;
             margin-bottom: 10px;
             scrollbar-width: none;
         }
@@ -306,7 +225,7 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 10px;
-            padding: 5px 0;
+            padding: 10px 0;
             margin-bottom: 15px;
             scrollbar-width: none;
             display: none;
@@ -342,7 +261,7 @@
 
         .channel-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 6fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 12px;
         }
 
@@ -489,7 +408,7 @@
 
         .overlay-subtitle {
             color: var(--text-secondary);
-            margin-bottom: 5px;
+            margin-bottom: 20px;
             font-size: 16px;
         }
 
@@ -596,14 +515,12 @@
         .focus-indicator {
             position: absolute;
             border: 2px solid var(--primary-color);
-            border-radius: 4px;
+            border-radius: 10px;
             pointer-events: none;
             z-index: 101;
             transition: all 0.2s ease;
             display: none;
         }
-
-        /* Responsive Design */
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -619,11 +536,6 @@
                 height: 36px;
             }
             
-            .festival-wish {
-                font-size: 14px;
-                max-width: 200px;
-            }
-            
             .search-container {
                 width: auto;
                 flex: 1;
@@ -636,7 +548,7 @@
             }
             
             .channel-list {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 8fr));
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 gap: 10px;
             }
             
@@ -674,11 +586,6 @@
                 height: 32px;
             }
             
-            .festival-wish {
-                font-size: 12px;
-                max-width: 150px;
-            }
-            
             .menu-toggle {
                 font-size: 20px;
                 margin-right: 0;
@@ -696,7 +603,7 @@
             }
             
             .channel-list {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 6fr));
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
             
             .category-bar, .language-bar {
@@ -732,11 +639,6 @@
             .logo {
                 width: 30px;
                 height: 30px;
-            }
-            
-            .festival-wish {
-                font-size: 11px;
-                max-width: 120px;
             }
             
             .menu-toggle {
@@ -777,11 +679,6 @@
                 height: 28px;
             }
             
-            .festival-wish {
-                font-size: 10px;
-                max-width: 100px;
-            }
-            
             .search-input {
                 padding: 4px 6px 4px 28px;
                 height: 28px;
@@ -792,7 +689,7 @@
             }
             
             .channel-list {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 6fr));
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
             
             .source-name {
@@ -804,79 +701,6 @@
             .remote-info {
                 display: block;
             }
-        }
-        
-         .favorite-toggle {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            background: rgba(0, 0, 0, 0.1);
-            color: #ccc;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 2;
-        }
-        
-        .favorite-toggle:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-        
-        .favorite-toggle.active {
-            color: var(--primary-color);
-        }
-        
-        .favorite-toggle i {
-            font-size: 12px;
-        }
-        
-        .favorite-category {
-            display: none;
-        }
-        
-        /* Add to category bar */
-        .category-bar .filter-btn[data-category="favorites"] {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        /* Add to sidebar */
-        .favorite-toggle-sidebar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        
-        .favorite-toggle-sidebar .toggle-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        /* Add a visual indicator for long press */
-        .long-press-indicator {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(229, 9, 20, 0.9);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            z-index: 10000;
-            display: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -912,30 +736,6 @@
                 </a>
             </li>
         </ul>
-        
-        <!-- Favorites Toggle -->
-        <div class="favorite-toggle-sidebar">
-            <div class="toggle-label">
-                <i class="fas fa-heart" style="color: var(--primary-color);"></i>
-                <span>Show Favorites Category</span>
-            </div>
-            <label class="adult-toggle">
-                <input type="checkbox" id="favoriteCategoryToggle">
-                <span class="adult-toggle-slider"></span>
-            </label>
-        </div>
-        
-        <!-- 18+ Category Toggle -->
-        <div class="adult-toggle-container">
-            <div class="adult-toggle-label">
-                <span>18+ Category</span>
-                <label class="adult-toggle">
-                    <input type="checkbox" id="adultToggle">
-                    <span class="adult-toggle-slider"></span>
-                </label>
-            </div>
-            <p style="font-size: 12px; color: var(--text-secondary);">Toggle to show/hide adult content category</p>
-        </div>
     </div>
 
     <div class="header">
@@ -945,10 +745,6 @@
             </button>
             <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo" class="logo">
         </div>
-        
-        <!-- Festival Wish Display -->
-        <div class="festival-wish" id="festivalWish"></div>
-        
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
             <input type="text" class="search-input" placeholder="Search channels..." id="channelSearch">
@@ -959,9 +755,6 @@
         <div class="filter-container">
             <div class="category-bar" id="categoryBar">
                 <button class="filter-btn active" data-category="all">All</button>
-                <button class="filter-btn favorite-category" data-category="favorites">
-                    <i class="fas fa-heart"></i> Favorites
-                </button>
                 <button class="filter-btn" data-category="News">News</button>
                 <button class="filter-btn" data-category="Sports">Sports</button>
                 <button class="filter-btn" data-category="Entertainment">Entertainment</button>
@@ -971,7 +764,7 @@
                 <button class="filter-btn" data-category="Kids">Kids</button>
                 <button class="filter-btn" data-category="Religious">Religious</button>
                 <button class="filter-btn" data-category="Infotainment">Infotainment</button>
-                <button class="filter-btn adult-category" data-category="18+" style="display: none;">18+</button>
+                <button class="filter-btn" data-category="18+">18+</button>
             </div>
             
             <div class="language-bar" id="languageBar">
@@ -1011,9 +804,6 @@
 
     <!-- Focus indicator for keyboard navigation -->
     <div class="focus-indicator" id="focusIndicator"></div>
-    
-   <!-- Long press indicator -->
-    <div class="long-press-indicator" id="longPressIndicator"></div>
 
     <script>
         // Channel data with language information
@@ -4815,6 +4605,28 @@
                 languages: ["Hindi","English"]
             },
             { 
+                name: "National Geographic", 
+                sources: [
+                    { name: "Server 1", url: "go:S7061" },
+                    { name: "Server 2", url: "go:S7062" }
+                ], 
+                img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
+                category: "Infotainment",
+                description: "World",
+                languages: ["Bengali","English"]
+            },
+            { 
+                name: "National Geographic Wild", 
+                sources: [
+                    { name: "Server 1", url: "go:S7131" },
+                    { name: "Server 2", url: "go:S7132" }
+                ], 
+                img: "https://i.postimg.cc/9MHP15XD/nat-geo-wild.jpg", 
+                category: "Infotainment",
+                description: "World",
+                languages: ["English"]
+            },
+            { 
                 name: "Travelxp", 
                 sources: [
                     { name: "English", url: "go:S7032" },
@@ -4849,6 +4661,16 @@
                 category: "Infotainment",
                 description: "World",
                 languages: ["English"]
+            },
+            { 
+                name: "Epic", 
+                sources: [
+                    { name: "Server 1", url: "go:S7141" }
+                ], 
+                img: "https://i.postimg.cc/c1X91C4M/epic.jpg", 
+                category: "Infotainment",
+                description: "India",
+                languages: ["Hindi"]
             },
             { 
                 name: "ETV Abhiruchi", 
@@ -4975,676 +4797,269 @@
             }
             
             ];
-            
-        // Festival data with dates and wishes
-        const festivals = [
-    // Indian Festivals
-    { name: "Makar Sankranti / Pongal", date: "01-14", wish: "Happy Makar Sankranti! May the sun bring new energy into your life." },
-    { name: "Republic Day", date: "01-26", wish: "Happy Republic Day! Jai Hind!" },
-    { name: "Vasant Panchami / Saraswati Puja", date: "02-02", wish: "Happy Vasant Panchami! May Goddess Saraswati bless you with wisdom." },
-    { name: "Maha Shivaratri", date: "02-26", wish: "Happy Maha Shivaratri! May Lord Shiva bless you with peace and prosperity." },
-    { name: "Holi", date: "03-14", wish: "Happy Holi! May your life be filled with vibrant colors of joy." },
-    { name: "Ram Navami", date: "04-06", wish: "Happy Ram Navami! May Lord Rama's blessings be with you." },
-    { name: "Mahavir Jayanti", date: "04-10", wish: "Happy Mahavir Jayanti! May peace and non-violence prevail." },
-    { name: "Baisakhi / Vaisakhi", date: "04-14", wish: "Happy Baisakhi! May this harvest festival bring prosperity." },
-    { name: "Good Friday", date: "04-18", wish: "Wishing you a blessed Good Friday." },
-    { name: "Easter", date: "04-20", wish: "Happy Easter! May this day bring you joy and renewal." },
-    { name: "Buddha Purnima", date: "05-12", wish: "Happy Buddha Purnima! May peace and enlightenment guide your path." },
-    { name: "Rath Yatra", date: "06-27", wish: "Happy Rath Yatra! May Lord Jagannath bless your journey." },
-    { name: "Guru Purnima", date: "07-10", wish: "Happy Guru Purnima! May your teachers guide you to wisdom." },
-    { name: "Eid al-Fitr", date: "03-31", wish: "Eid Mubarak! May Allah's blessings be with you." },
-    { name: "Eid al-Adha", date: "06-07", wish: "Eid al-Adha Mubarak! May your sacrifices be accepted." },
-    { name: "Muharram", date: "07-17", wish: "May the blessings of Allah be with you on Muharram." },
-    { name: "Raksha Bandhan", date: "08-09", wish: "Happy Raksha Bandhan! Celebrating the bond of love between siblings." },
-    { name: "Janmashtami", date: "08-15", wish: "Happy Janmashtami! May Lord Krishna fill your life with joy." },
-    { name: "Ganesh Chaturthi", date: "08-27", wish: "Happy Ganesh Chaturthi! May Lord Ganesha remove all obstacles." },
-    { name: "Onam", date: "09-05", wish: "Happy Onam! Wishing you a harvest of joy and prosperity." },
-    { name: "Navratri", date: "09-22", wish: "Happy Navratri! May Goddess Durga bless you with strength." },
-    { name: "Durga Puja", date: "09-28", wish: "Happy Durga Puja!" },
-    { name: "Durga Puja", date: "09-29", wish: "Happy Durga Puja!" },
-    { name: "Durga Puja", date: "09-30", wish: "Happy Durga Puja!" },
-    { name: "Durga Puja", date: "10-01", wish: "Happy Durga Puja!" },
-    { name: "Durga Puja", date: "10-02", wish: "Happy Durga Puja!" },
-    { name: "Dussehra / Vijayadashami", date: "10-02", wish: "Happy Dussehra! May good triumph over evil in your life." },
-    { name: "Karva Chauth", date: "10-20", wish: "Happy Karva Chauth! May your bond of love grow stronger." },
-    { name: "Diwali / Deepavali", date: "10-21", wish: "Happy Diwali! May the festival of lights brighten your life." },
-    { name: "Bhai Dooj", date: "10-23", wish: "Happy Bhai Dooj! Celebrating the special bond between brothers and sisters." },
-    { name: "Chhath Puja", date: "10-27", wish: "Happy Chhath Puja! May the Sun God bless you with health and prosperity." },
-    { name: "Guru Nanak Jayanti", date: "11-15", wish: "Happy Guru Nanak Jayanti! May Guru's teachings guide your path." },
-    { name: "Karthigai Deepam", date: "12-01", wish: "Happy Karthigai Deepam! May the festival of lamps illuminate your home." },
-    { name: "Christmas", date: "12-25", wish: "Merry Christmas! May this festive season bring you joy and peace." },
-    { name: "New Year", date: "01-01", wish: "Happy New Year! Wishing you health, happiness, and success in the coming year." },
-
-    // Nepali Festivals
-    { name: "Maghe Sankranti", date: "01-14", wish: "Happy Maghe Sankranti! May this harvest festival bring warmth and joy." },
-    { name: "Sonam Lhochhar", date: "02-13", wish: "Happy Sonam Lhochhar! Wishing you a joyous Tamang New Year." },
-    { name: "Gyalpo Lhosar", date: "02-28", wish: "Happy Gyalpo Lhosar! May the Tibetan New Year bring peace." },
-    { name: "Seto Machhendranath Jatra", date: "04-05", wish: "Happy Seto Machhendranath Jatra! May the rain god bless you." },
-    { name: "Bisket Jatra", date: "04-14", wish: "Happy Bisket Jatra! Celebrate the Nepali New Year with joy." },
-    { name: "Ropain", date: "06-29", wish: "Happy Ropain! Wishing a bountiful rice planting season." },
-    { name: "Teej", date: "09-11", wish: "Happy Teej! May your devotion bring love and harmony." },
-    { name: "Indra Jatra", date: "09-07", wish: "Happy Indra Jatra! May the rain god bless your celebrations." },
-    { name: "Dashain", date: "09-22", wish: "Happy Dashain! May Goddess Durga shower you with blessings." },
-    { name: "Tihar", date: "10-21", wish: "Happy Tihar! May the festival of lights illuminate your life." },
-    { name: "Chhath Puja", date: "10-27", wish: "Happy Chhath Puja! May the Sun God bring prosperity to Terai." },
-
-    // Pakistani Festivals
-    { name: "Chehlum", date: "01-15", wish: "May Chehlum bring peace and reflection to your heart." },
-    { name: "Shab-e-Barat", date: "02-28", wish: "Happy Shab-e-Barat! May your prayers be answered." },
-    { name: "Eid Milad un-Nabi", date: "03-07", wish: "Eid Milad un-Nabi Mubarak! May the Prophet's teachings guide you." },
-    { name: "Pakistan Day", date: "03-23", wish: "Happy Pakistan Day! May the nation prosper and thrive." },
-    { name: "Shab-e-Miraj", date: "04-03", wish: "Happy Shab-e-Miraj! May your prayers ascend to the heavens." },
-    { name: "Basant", date: "02-08", wish: "Happy Basant! May the kite-flying season bring joy." },
-    { name: "Chilam Joshi (Kalash Festival)", date: "05-13", wish: "Happy Chilam Joshi! Celebrate the Kalash spring with joy." },
-    { name: "Independence Day (Pakistan)", date: "08-14", wish: "Happy Independence Day! Wishing Pakistan peace and progress." },
-    { name: "Defence Day", date: "09-06", wish: "Happy Defence Day! Honoring the bravery of Pakistan's heroes." },
-    { name: "Iqbal Day", date: "11-09", wish: "Happy Iqbal Day! May the poet's vision inspire you." },
-
-    // Bangladeshi Festivals
-    { name: "Saraswati Puja", date: "02-02", wish: "Happy Saraswati Puja! May the goddess of wisdom guide you." },
-    { name: "Martyrs' Day / Ekushey February", date: "02-21", wish: "Happy Martyrs' Day! Honoring the heroes of the Language Movement." },
-    { name: "Shab-e-Barat", date: "02-28", wish: "Happy Shab-e-Barat! May your prayers bring forgiveness." },
-    { name: "Eid Milad un-Nabi", date: "03-07", wish: "Eid Milad un-Nabi Mubarak! May the Prophet's light shine on you." },
-    { name: "Pohela Boishakh", date: "04-14", wish: "Shubho Noboborsho! May the Bengali New Year bring joy." },
-    { name: "Shab-e-Qadr", date: "04-27", wish: "Happy Shab-e-Qadr! May this holy night bring blessings." },
-    { name: "Eid al-Fitr", date: "03-31", wish: "Eid Mubarak! May Allah's blessings be with you." },
-    { name: "Eid al-Adha", date: "06-07", wish: "Eid al-Adha Mubarak! May your sacrifices be accepted." },
-    { name: "Durga Puja", date: "09-29", wish: "Happy Durga Puja! May Maa Durga empower your life." },
-    { name: "Victory Day", date: "12-16", wish: "Happy Victory Day! Celebrating Bangladesh's triumph and freedom." }
-];
-
-        // Function to get today's date in MM-DD format
-        function getTodayDate() {
-            const today = new Date();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
-            return `${month}-${day}`;
-        }
-
-        // Function to check if today is a festival and return the wish
-        function getFestivalWish() {
-            const today = getTodayDate();
-            const festival = festivals.find(f => f.date === today);
-            
-            if (festival) {
-                return festival.wish;
-            }
-            
-            // If no festival today, return a generic greeting
-            const hour = new Date().getHours();
-            if (hour < 12) {
-                return "t.me/tplaybd";
-            } else if (hour < 18) {
-                return "t.me/tplaybd";
-            } else
-                return "t.me/tplaybd";
-        }
-        
-        // Function to get current time in 12-hour format
-        function getCurrentTime() {
-            const now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            
-            hours = hours % 12;
-            hours = hours ? hours : 12; // 0 should be 12
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            
-            return `${hours}:${minutes} ${ampm}`;
-        }
-
-        // Function to get current time in 12-hour format
-        function updateHeaderDisplay() {
-            const festivalWishElement = document.getElementById('festivalWish');
-            if (festivalWishElement) {
-                // Toggle between festival wish and current time every 5 seconds
-                if (festivalWishElement.dataset.showing === 'time') {
-                    festivalWishElement.textContent = getFestivalWish();
-                    festivalWishElement.dataset.showing = 'wish';
-                } else {
-                    festivalWishElement.textContent = getCurrentTime();
-                    festivalWishElement.dataset.showing = 'time';
-                }
-            }
-        }
-
-        // Update the display when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const festivalWishElement = document.getElementById('festivalWish');
-            festivalWishElement.dataset.showing = 'wish'; // Start with festival wish
-            
-            updateHeaderDisplay();
-            
-            // Update the display every 5 seconds
-            setInterval(updateHeaderDisplay, 30000);
-        });
 
         // Variables for keyboard navigation
-let currentFocusIndex = -1;
-let focusableElements = [];
-const focusIndicator = document.getElementById('focusIndicator');
+        let currentFocusIndex = -1;
+        let focusableElements = [];
+        const focusIndicator = document.getElementById('focusIndicator');
+        
+        // Variables for filtering
+        let currentCategory = 'all';
+        let currentLanguage = 'all';
 
-// Variables for filtering
-let currentCategory = 'all';
-let currentLanguage = 'all';
-let adultCategoryVisible = false;
+        // Sidebar functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-// Track if overlay is open
-let isOverlayOpen = false;
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('open');
+        }
 
-// Favorite channels storage
-        let favoriteChannels = JSON.parse(localStorage.getItem('favoriteChannels')) || [];
+        menuToggle.addEventListener('click', toggleSidebar);
+        closeSidebar.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
 
-// Sidebar functionality
-const menuToggle = document.getElementById('menuToggle');
-const closeSidebar = document.getElementById('closeSidebar');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-function toggleSidebar() {
-    sidebar.classList.toggle('open');
-    sidebarOverlay.classList.toggle('open');
-}
-
-menuToggle.addEventListener('click', toggleSidebar);
-closeSidebar.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
-
-// Initialize the channel list
-function initChannelList() {
-    const channelList = document.getElementById('channelList');
-    const channelSearch = document.getElementById('channelSearch');
-    const categoryButtons = document.querySelectorAll('#categoryBar .filter-btn');
-    const languageBar = document.getElementById('languageBar');
-    const adultToggle = document.getElementById('adultToggle');
-    const favoriteCategoryToggle = document.getElementById('favoriteCategoryToggle');
-    
-    // Check if adult category preference is saved in localStorage
-    const savedAdultPreference = localStorage.getItem('adultCategoryVisible');
-    if (savedAdultPreference !== null) {
-        adultCategoryVisible = savedAdultPreference === 'true';
-        adultToggle.checked = adultCategoryVisible;
-        toggleAdultCategory(adultCategoryVisible);
-    }
-    
-    // Check if favorite category preference is saved in localStorage
-            const savedFavoritePreference = localStorage.getItem('favoriteCategoryVisible');
-            if (savedFavoritePreference !== null) {
-                favoriteCategoryVisible = savedFavoritePreference === 'true';
-                favoriteCategoryToggle.checked = favoriteCategoryVisible;
-                toggleFavoriteCategory(favoriteCategoryVisible);
-            }
-    
-    // Adult category toggle functionality
-    adultToggle.addEventListener('change', function() {
-        adultCategoryVisible = this.checked;
-        localStorage.setItem('adultCategoryVisible', adultCategoryVisible);
-        toggleAdultCategory(adultCategoryVisible);
-        renderChannels(filterChannels());
-        initKeyboardNavigation();
-    });
-    
-    // Favorite category toggle functionality
-            favoriteCategoryToggle.addEventListener('change', function() {
-                favoriteCategoryVisible = this.checked;
-                localStorage.setItem('favoriteCategoryVisible', favoriteCategoryVisible);
-                toggleFavoriteCategory(favoriteCategoryVisible);
-                renderChannels(filterChannels());
-                initKeyboardNavigation();
-            });
-    
-    // Render all channels initially
-    renderChannels(filterChannels());
-    initKeyboardNavigation();
-    
-    // Search functionality
-    channelSearch.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const filteredChannels = filterChannels().filter(channel => 
-            channel.name.toLowerCase().includes(searchTerm) || 
-            channel.category.toLowerCase().includes(searchTerm) ||
-            channel.description.toLowerCase().includes(searchTerm)
-        );
-        renderChannels(filteredChannels);
-        initKeyboardNavigation();
-    });
-    
-    // Category filter functionality
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+        // Initialize the channel list
+        function initChannelList() {
+            const channelList = document.getElementById('channelList');
+            const channelSearch = document.getElementById('channelSearch');
+            const categoryButtons = document.querySelectorAll('#categoryBar .filter-btn');
+            const languageBar = document.getElementById('languageBar');
             
-            currentCategory = this.getAttribute('data-category');
-            // 18+ category redirect
-            if (currentCategory === '18+') {
-                window.location.href = "go:S0909090";
-                return; // Stop further execution
-            }
-            
-            // Show language bar when a specific category is selected
-            if (currentCategory === 'all') {
-                languageBar.style.display = 'none';
-                currentLanguage = 'all';
-            } else {
-                languageBar.style.display = 'flex';
-                updateLanguageButtons();
-            }
-            
+            // Render all channels initially
             renderChannels(filterChannels());
             initKeyboardNavigation();
-        });
-    });
+            
+            // Search functionality
+            channelSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filteredChannels = filterChannels().filter(channel => 
+                    channel.name.toLowerCase().includes(searchTerm) || 
+                    channel.category.toLowerCase().includes(searchTerm) ||
+                    channel.description.toLowerCase().includes(searchTerm)
+                );
+                renderChannels(filteredChannels);
+                initKeyboardNavigation();
+            });
+            
+            // Category filter functionality
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentCategory = this.getAttribute('data-category');
+                    // 18+ category redirect
+                    if (currentCategory === '18+') {
+                        window.location.href = "go:S0909090";
+                        return; // Stop further execution
+                    }
+                    
+                    // Show language bar when a specific category is selected
+                    if (currentCategory === 'all') {
+                        languageBar.style.display = 'none';
+                        currentLanguage = 'all';
+                    } else {
+                        languageBar.style.display = 'flex';
+                        updateLanguageButtons();
+                    }
+                    
+                    renderChannels(filterChannels());
+                    initKeyboardNavigation();
+                });
+            });
 
-    // Close overlay button
-    document.getElementById('closeOverlayBtn').addEventListener('click', closeOverlay);
+            // Close overlay button
+            document.getElementById('closeOverlayBtn').addEventListener('click', closeOverlay);
 
-    // Add event listener for keyboard navigation
-    document.addEventListener('keydown', handleKeyNavigation);
-    
-    // Focus on first element when page loads
-    setTimeout(() => {
-        if (focusableElements.length > 0) {
-            currentFocusIndex = 0;
+            // Add event listener for keyboard navigation
+            document.addEventListener('keydown', handleKeyNavigation);
+        }
+        
+        // Update language buttons based on available languages in the current category
+        function updateLanguageButtons() {
+            const languageBar = document.getElementById('languageBar');
+            
+            // Get all unique languages from channels in the current category
+            const availableLanguages = new Set();
+            
+            if (currentCategory === 'all') {
+                // For "All Channels", get languages from all channels
+                channels.forEach(channel => {
+                    if (channel.languages) {
+                        channel.languages.forEach(lang => availableLanguages.add(lang));
+                    }
+                });
+            } else {
+                // For specific category, get languages only from channels in that category
+                channels.forEach(channel => {
+                    if (channel.category === currentCategory && channel.languages) {
+                        channel.languages.forEach(lang => availableLanguages.add(lang));
+                    }
+                });
+            }
+            
+            // Create language buttons HTML
+            let languageButtonsHTML = '<button class="filter-btn active" data-language="all">All</button>';
+            
+            // Convert Set to Array and sort alphabetically
+            const sortedLanguages = Array.from(availableLanguages).sort();
+            
+            sortedLanguages.forEach(language => {
+                languageButtonsHTML += `<button class="filter-btn" data-language="${language}">${language}</button>`;
+            });
+            
+            // Update language bar
+            languageBar.innerHTML = languageButtonsHTML;
+            
+            // Add event listeners to language buttons
+            const languageButtons = document.querySelectorAll('#languageBar .filter-btn');
+            languageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    languageButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentLanguage = this.getAttribute('data-language');
+                    renderChannels(filterChannels());
+                    initKeyboardNavigation();
+                });
+            });
+        }
+        
+        // Filter channels based on current category and language
+        function filterChannels() {
+            return channels.filter(channel => {
+                const categoryMatch = currentCategory === 'all' || channel.category === currentCategory;
+                const languageMatch = currentLanguage === 'all' || 
+                    (channel.languages && channel.languages.includes(currentLanguage));
+                return categoryMatch && languageMatch;
+            });
+        }
+        
+        // Initialize keyboard navigation
+        function initKeyboardNavigation() {
+            focusableElements = Array.from(document.querySelectorAll('.channel-item, .filter-btn, .source-btn, .close-btn'));
+            updateFocusIndicator();
+        }
+        
+        // Handle keyboard navigation
+        function handleKeyNavigation(e) {
+            if (document.getElementById('overlay').style.display === 'flex') {
+                // Handle navigation in overlay
+                handleOverlayNavigation(e);
+                return;
+            }
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                    e.preventDefault();
+                    navigateFocus(1);
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    navigateFocus(-1);
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    navigateFocus(getGridColumnCount());
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    navigateFocus(-getGridColumnCount());
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    if (currentFocusIndex >= 0) {
+                        focusableElements[currentFocusIndex].click();
+                    }
+                    break;
+                case 'Escape':
+                    closeOverlay();
+                    break;
+            }
+        }
+        
+        // Handle navigation in overlay
+        function handleOverlayNavigation(e) {
+            const overlayFocusable = Array.from(document.querySelectorAll('.source-btn, .close-btn'));
+            const currentOverlayFocus = document.activeElement;
+            let currentIndex = overlayFocusable.indexOf(currentOverlayFocus);
+            
+            switch(e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    currentIndex = (currentIndex + 1) % overlayFocusable.length;
+                    overlayFocusable[currentIndex].focus();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    currentIndex = (currentIndex - 1 + overlayFocusable.length) % overlayFocusable.length;
+                    overlayFocusable[currentIndex].focus();
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    closeOverlay();
+                    break;
+            }
+        }
+        
+        // Navigate focus
+        function navigateFocus(direction) {
+            if (focusableElements.length === 0) return;
+            
+            currentFocusIndex = (currentFocusIndex + direction + focusableElements.length) % focusableElements.length;
             focusableElements[currentFocusIndex].focus();
             updateFocusIndicator();
         }
-    }, 100);
-}
-
-// Toggle adult category visibility
-function toggleAdultCategory(show) {
-    const adultCategoryButton = document.querySelector('.adult-category');
-    if (adultCategoryButton) {
-        adultCategoryButton.style.display = show ? 'block' : 'none';
-    }
-}
-
- // Toggle favorite category visibility
-        function toggleFavoriteCategory(show) {
-            const favoriteCategoryButton = document.querySelector('.favorite-category');
-            if (favoriteCategoryButton) {
-                favoriteCategoryButton.style.display = show ? 'inline-flex' : 'none';
-            }
-        }
-
-// Update language buttons based on available languages in the current category
-function updateLanguageButtons() {
-    const languageBar = document.getElementById('languageBar');
-    
-    // Get all unique languages from channels in the current category
-    const availableLanguages = new Set();
-    
-    if (currentCategory === 'all') {
-        // For "All Channels", get languages from all channels
-        channels.forEach(channel => {
-            if (channel.languages) {
-                channel.languages.forEach(lang => availableLanguages.add(lang));
-            }
-        });
-    } else {
-        // For specific category, get languages only from channels in that category
-        channels.forEach(channel => {
-            if (channel.category === currentCategory && channel.languages) {
-                channel.languages.forEach(lang => availableLanguages.add(lang));
-            }
-        });
-    }
-    
-    // Create language buttons HTML
-    let languageButtonsHTML = '<button class="filter-btn active" data-language="all">All</button>';
-    
-    // Convert Set to Array and sort alphabetically
-    const sortedLanguages = Array.from(availableLanguages).sort();
-    
-    sortedLanguages.forEach(language => {
-        languageButtonsHTML += `<button class="filter-btn" data-language="${language}">${language}</button>`;
-    });
-    
-    // Update language bar
-    languageBar.innerHTML = languageButtonsHTML;
-    
-    // Add event listeners to language buttons
-    const languageButtons = document.querySelectorAll('#languageBar .filter-btn');
-    languageButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            languageButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            currentLanguage = this.getAttribute('data-language');
-            renderChannels(filterChannels());
-            initKeyboardNavigation();
-        });
-    });
-}
-
-// Filter channels based on current category and language
-function filterChannels() {
-    return channels.filter(channel => {
-      // For favorites category, only show favorited channels
-                if (currentCategory === 'favorites') {
-                    return favoriteChannels.includes(channel.name);
-                }
-    
-        const categoryMatch = currentCategory === 'all' || channel.category === currentCategory;
-        const languageMatch = currentLanguage === 'all' || 
-            (channel.languages && channel.languages.includes(currentLanguage));
         
-        // If adult category is hidden, filter out 18+ channels
-        const adultFilter = adultCategoryVisible || channel.category !== '18+';
-        
-        return categoryMatch && languageMatch && adultFilter;
-    });
-}
-
-// Toggle favorite status for a channel
-        function toggleFavorite(channelName) {
-            const index = favoriteChannels.indexOf(channelName);
-            
-            if (index === -1) {
-                // Add to favorites
-                favoriteChannels.push(channelName);
+        // Update focus indicator position
+        function updateFocusIndicator() {
+            if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+                const focusedElement = focusableElements[currentFocusIndex];
+                const rect = focusedElement.getBoundingClientRect();
+                
+                focusIndicator.style.display = 'block';
+                focusIndicator.style.width = `${rect.width + 8}px`;
+                focusIndicator.style.height = `${rect.height + 8}px`;
+                focusIndicator.style.top = `${rect.top + window.scrollY - 4}px`;
+                focusIndicator.style.left = `${rect.left + window.scrollX - 4}px`;
             } else {
-                // Remove from favorites
-                favoriteChannels.splice(index, 1);
-            }
-            
-            // Save to localStorage
-            localStorage.setItem('favoriteChannels', JSON.stringify(favoriteChannels));
-            
-            // Update the UI
-            renderChannels(filterChannels());
-            
-            // If we're in the favorites category and removed the last favorite, switch to all
-            if (currentCategory === 'favorites' && favoriteChannels.length === 0) {
-                document.querySelector('[data-category="all"]').click();
+                focusIndicator.style.display = 'none';
             }
         }
         
-        // Check if a channel is favorited
-        function isFavorite(channelName) {
-            return favoriteChannels.includes(channelName);
+        // Get grid column count for keyboard navigation
+        function getGridColumnCount() {
+            const channelList = document.getElementById('channelList');
+            const computedStyle = window.getComputedStyle(channelList);
+            return parseInt(computedStyle.gridTemplateColumns.split(' ').length);
         }
         
-// Improved keyboard navigation initialization
-function initKeyboardNavigation() {
-    if (isOverlayOpen) {
-        // In overlay, focusable elements are source buttons and close button
-        focusableElements = Array.from(document.querySelectorAll('.source-btn, .close-btn'));
-    } else {
-        // In main view, focusable elements are filter buttons and channel items
-        focusableElements = Array.from(document.querySelectorAll('.filter-btn, .channel-item'));
-    }
-    
-    if (focusableElements.length > 0) {
-        currentFocusIndex = 0;
-        focusableElements[currentFocusIndex].focus();
-    }
-    updateFocusIndicator();
-}
-
-// Variables for long press detection
-        let enterKeyPressTimer = null;
-        let enterKeyPressed = false;
-        const longPressDuration = 1000; // 1 second for long press
-
-// Enhanced keyboard navigation handler
-function handleKeyNavigation(e) {
-    if (isOverlayOpen) {
-        // Handle navigation in overlay
-        handleOverlayNavigation(e);
-    } else {
-        // Handle navigation in main view
-        handleMainNavigation(e);
-    }
-}
-
-// Navigation in main view
-function handleMainNavigation(e) {
-    const gridColumns = getGridColumnCount();
-    
-    switch(e.key) {
-        case 'ArrowRight':
-            e.preventDefault();
-            navigateFocus(1);
-            break;
-        case 'ArrowLeft':
-            e.preventDefault();
-            navigateFocus(-1);
-            break;
-        case 'ArrowDown':
-            e.preventDefault();
-            navigateFocus(gridColumns);
-            break;
-        case 'ArrowUp':
-            e.preventDefault();
-            navigateFocus(-gridColumns);
-            break;
-        case 'Enter':
-            e.preventDefault();
-            activateFocusedElement();
-            // Start long press timer
-            if (!enterKeyPressed) {
-                enterKeyPressed = true;
-                startLongPressTimer();
-              }
-            break;
-        case 'Backspace':
-        case 'Escape':
-            e.preventDefault();
-            // Go back to previous page or clear search
-            const searchInput = document.getElementById('channelSearch');
-            if (searchInput.value) {
-                searchInput.value = '';
-                searchInput.dispatchEvent(new Event('input'));
-            }
-            break;
-            case 'f':
-                case 'F':
-                    // Toggle favorite with F key
-                    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
-                        const focusedElement = focusableElements[currentFocusIndex];
-                        if (focusedElement.classList.contains('channel-item')) {
-                            e.preventDefault();
-                            const channelName = focusedElement.getAttribute('data-channel');
-                            toggleFavorite(channelName);
-                        }
-                    }
-                    break;
-    }
-}
-
-// Navigation in overlay
-function handleOverlayNavigation(e) {
-    switch(e.key) {
-        case 'ArrowDown':
-            e.preventDefault();
-            navigateFocus(1);
-            break;
-        case 'ArrowUp':
-            e.preventDefault();
-            navigateFocus(-1);
-            break;
-        case 'Enter':
-            e.preventDefault();
-            activateFocusedElement();
-            // Start long press timer
-            if (!enterKeyPressed) {
-                 enterKeyPressed = true;
-                 startLongPressTimer();
-             }
-            break;
-        case 'Backspace':
-        case 'Escape':
-            e.preventDefault();
-            closeOverlay();
-            break;
-    }
-}
-
-// Start timer for long press detection
-        function startLongPressTimer() {
-            const longPressIndicator = document.getElementById('longPressIndicator');
-            
-            // Show long press indicator
-            longPressIndicator.textContent = "Hold to toggle favorite";
-            longPressIndicator.style.display = 'block';
-            
-            enterKeyPressTimer = setTimeout(() => {
-                // Long press detected - toggle favorite
-                if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
-                    const focusedElement = focusableElements[currentFocusIndex];
-                    
-                    if (focusedElement.classList.contains('channel-item')) {
-                        const channelName = focusedElement.getAttribute('data-channel');
-                        toggleFavorite(channelName);
-                        
-                        // Update long press indicator
-                        longPressIndicator.textContent = isFavorite(channelName) ? 
-                            "✓ Added to favorites" : "✗ Removed from favorites";
-                        
-                        // Hide indicator after a short delay
-                        setTimeout(() => {
-                            longPressIndicator.style.display = 'none';
-                        }, 1000);
-                    }
-                }
-                
-                enterKeyPressed = false;
-            }, longPressDuration);
-        }
-        
-        // Add keyup event listener to detect when Enter key is released
-        document.addEventListener('keyup', function(e) {
-            if (e.key === 'Enter' && enterKeyPressed) {
-                // Clear the long press timer
-                clearTimeout(enterKeyPressTimer);
-                enterKeyPressed = false;
-                
-                // Hide long press indicator
-                document.getElementById('longPressIndicator').style.display = 'none';
-                
-                // If this was a short press, activate the element
-                if (!isOverlayOpen) {
-                    activateFocusedElement();
-                } else {
-                    // In overlay, short press should play the source
-                    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
-                        const focusedElement = focusableElements[currentFocusIndex];
-                        
-                        if (focusedElement.classList.contains('source-btn')) {
-                            // Play the source (this will naturally follow the link)
-                            focusedElement.click();
-                        } else if (focusedElement.classList.contains('close-btn')) {
-                            // Close overlay
-                            closeOverlay();
-                        }
-                    }
-                }
-            }
-        });
-
-// Activate the currently focused element
-function activateFocusedElement() {
-    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
-        const focusedElement = focusableElements[currentFocusIndex];
-        
-        if (focusedElement.classList.contains('channel-item')) {
-            // Open channel overlay
-            const channelName = focusedElement.getAttribute('data-channel');
-            const channel = channels.find(c => c.name === channelName);
-            if (channel) {
-                openOverlay(channel);
-            }
-        } else if (focusedElement.classList.contains('filter-btn')) {
-            // Activate filter button
-            focusedElement.click();
-        } else if (focusedElement.classList.contains('source-btn')) {
-            // Play the source (this will naturally follow the link)
-            focusedElement.click();
-        } else if (focusedElement.classList.contains('close-btn')) {
-            // Close overlay
-            closeOverlay();
-        }
-    }
-}
-
-// Navigate focus among focusable elements
-function navigateFocus(direction) {
-    if (focusableElements.length === 0) return;
-    
-    currentFocusIndex += direction;
-    
-    // Circular navigation
-    if (currentFocusIndex < 0) {
-        currentFocusIndex = focusableElements.length - 1;
-    } else if (currentFocusIndex >= focusableElements.length) {
-        currentFocusIndex = 0;
-    }
-    
-    focusableElements[currentFocusIndex].focus();
-    updateFocusIndicator();
-    
-    // Scroll focused element into view if needed
-    focusableElements[currentFocusIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center'
-    });
-}
-
-// Update focus indicator position and size
-function updateFocusIndicator() {
-    if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
-        const focusedElement = focusableElements[currentFocusIndex];
-        const rect = focusedElement.getBoundingClientRect();
-        
-        focusIndicator.style.display = 'block';
-        focusIndicator.style.width = `${rect.width + 8}px`;
-        focusIndicator.style.height = `${rect.height + 8}px`;
-        focusIndicator.style.left = `${rect.left - 4 + window.pageXOffset}px`;
-        focusIndicator.style.top = `${rect.top - 4 + window.pageYOffset}px`;
-    } else {
-        focusIndicator.style.display = 'none';
-    }
-}
-
-// Get grid column count for keyboard navigation
-function getGridColumnCount() {
-    const channelList = document.getElementById('channelList');
-    const computedStyle = window.getComputedStyle(channelList);
-    const gridTemplateColumns = computedStyle.getPropertyValue('grid-template-columns');
-    
-    if (gridTemplateColumns === 'none') {
-        return 1; // Fallback for single column
-    }
-    
-    return gridTemplateColumns.split(' ').length;
-}
-
-// Render channels to the DOM
+        // Render channels to the list
         function renderChannels(channelsToRender) {
             const channelList = document.getElementById('channelList');
             const channelCount = document.getElementById('channelCount');
             
+            channelList.innerHTML = '';
             channelCount.textContent = `${channelsToRender.length} channels available`;
             
-            if (channelsToRender.length === 0) {
-                channelList.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">No channels found</p>';
-                return;
-            }
-            
-            channelList.innerHTML = channelsToRender.map(channel => `
-                <div class="channel-item" tabindex="0" data-channel="${channel.name}">
+            channelsToRender.forEach(channel => {
+                const channelItem = document.createElement('div');
+                channelItem.className = 'channel-item';
+                channelItem.tabIndex = 0;
+                
+                const sourceCount = channel.sources.length;
+                const sourceText = sourceCount === 1 ? '1 Source' : `${sourceCount} Sources`;
+                
+                channelItem.innerHTML = `
                     <div class="channel-img">
-                        <button class="favorite-toggle ${isFavorite(channel.name) ? 'active' : ''}" 
-                                data-channel="${channel.name}" 
-                                aria-label="${isFavorite(channel.name) ? 'Remove from favorites' : 'Add to favorites'}">
-                            <i class="fas fa-heart"></i>
-                        </button>
                         <img src="${channel.img}" alt="${channel.name}" loading="lazy">
-                        <span class="source-badge">${channel.sources.length} <i class="fas fa-satellite-dish"></i></span>
+                        <div class="source-badge">
+                            <i class="fas fa-satellite-dish"></i> ${sourceCount}
+                        </div>
                     </div>
                     <div class="channel-info">
                         <div class="channel-name-container">
@@ -5652,87 +5067,76 @@ function getGridColumnCount() {
                         </div>
                         <div class="channel-category">${channel.category} • ${channel.description}</div>
                     </div>
-                </div>
-            `).join('');
-    
-    // Add click event listeners to channel items
-            document.querySelectorAll('.channel-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    // Don't open overlay if clicking the favorite button
-                    if (!e.target.closest('.favorite-toggle')) {
-                        const channelName = this.getAttribute('data-channel');
-                        const channel = channels.find(c => c.name === channelName);
-                        
-                        if (channel) {
-                            openOverlay(channel);
-                        }
-                    }
-                });
-            });
-            
-            // Add click event listeners to favorite buttons
-            document.querySelectorAll('.favorite-toggle').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevent triggering the channel item click
-                    const channelName = this.getAttribute('data-channel');
-                    toggleFavorite(channelName);
-                });
+                `;
+                 // Category click event
+        channelItem.addEventListener("click", () => {
+            if (channel.category === "18+") {
+                window.location.href = "go:S0909090"; 
+            } else {
+                showOverlay(channel);
+            }
+        });
+        
+                channelList.appendChild(channelItem);
             });
         }
+        
+        // Show overlay with channel sources
+        function showOverlay(channel) {
+            const overlay = document.getElementById('overlay');
+            const overlayLogo = document.getElementById('overlayLogo');
+            const overlayTitle = document.getElementById('overlayTitle');
+            const overlaySubtitle = document.getElementById('overlaySubtitle');
+            const overlaySources = document.getElementById('overlaySources');
+            
+            overlayLogo.src = channel.img;
+            overlayTitle.textContent = channel.name;
+            overlaySubtitle.textContent = `${channel.category} • ${channel.description}`;
+            
+            overlaySources.innerHTML = '';
+            
+            channel.sources.forEach(source => {
+                const sourceBtn = document.createElement('a');
+                sourceBtn.className = 'source-btn';
+                sourceBtn.href = source.url;
+                sourceBtn.target = '_blank';
+                sourceBtn.tabIndex = 0;
+                
+                sourceBtn.innerHTML = `
+                    <div class="source-name">${source.name}</div>
+                    <div class="source-action">
+                        <span>Play</span>
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                `;
+                
+                overlaySources.appendChild(sourceBtn);
+            });
+            
+            overlay.style.display = 'flex';
+            
+            // Focus on the first source button
+            setTimeout(() => {
+                const firstSourceBtn = document.querySelector('.source-btn');
+                if (firstSourceBtn) {
+                    firstSourceBtn.focus();
+                }
+            }, 100);
+        }
+        
+        // Close overlay
+        function closeOverlay() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'none';
+            
+            // Return focus to the last focused element
+            if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
+                focusableElements[currentFocusIndex].focus();
+            }
+        }
 
-// Open overlay with channel details
-function openOverlay(channel) {
-    const overlay = document.getElementById('overlay');
-    const overlayTitle = document.getElementById('overlayTitle');
-    const overlaySubtitle = document.getElementById('overlaySubtitle');
-    const overlayLogo = document.getElementById('overlayLogo');
-    const overlaySources = document.getElementById('overlaySources');
-    
-    overlayTitle.textContent = channel.name;
-    overlaySubtitle.textContent = channel.description || `${channel.category} Channel`;
-    overlayLogo.src = channel.img;
-    overlayLogo.alt = `${channel.name} Logo`;
-    
-    // Create source buttons
-    overlaySources.innerHTML = channel.sources.map((source, index) => `
-        <a href="${source.url}" class="source-btn" tabindex="0">
-            <span class="source-name">${source.name}</span>
-            <span class="source-action">Play <i class="fas fa-play-circle"></i></span>
-        </a>
-    `).join('');
-    
-    // Show overlay
-    overlay.style.display = 'flex';
-    isOverlayOpen = true;
-    
-    // Reinitialize keyboard navigation for overlay
-    initKeyboardNavigation();
-}
-
-// Close overlay
-function closeOverlay() {
-    const overlay = document.getElementById('overlay');
-    overlay.style.display = 'none';
-    isOverlayOpen = false;
-    
-    // Reinitialize keyboard navigation for main content
-    initKeyboardNavigation();
-}
-
-// Initialize the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', initChannelList);
-
-// Update focus indicator on scroll or resize
-window.addEventListener('scroll', updateFocusIndicator);
-window.addEventListener('resize', updateFocusIndicator);
-
-// Handle focus when tabbing
-document.addEventListener('focusin', function(e) {
-    if (focusableElements.includes(e.target)) {
-        currentFocusIndex = focusableElements.indexOf(e.target);
-        updateFocusIndicator();
-    }
-});
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', initChannelList);
     </script>
 </body>
 </html>
