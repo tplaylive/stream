@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amar Channel Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .player-container {
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+        }
+        
+        #video {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            background: #000;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .loading {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+        }
+        
+        .error {
+            color: red;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <video id="video" controls>
+            <source src="https://jmp2.uk/stvp-IN3800008CX" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button class="control-btn" onclick="playPause()">Play/Pause</button>
+            <button class="control-btn" onclick="toggleFullscreen()">Fullscreen</button>
+            <button class="control-btn" onclick="toggleMute()">Mute</button>
+        </div>
+        <div id="status" class="loading">Loading your channel...</div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const status = document.getElementById('status');
+        
+        // Video events
+        video.addEventListener('loadstart', function() {
+            status.textContent = 'Loading channel...';
+            status.className = 'loading';
+        });
+        
+        video.addEventListener('canplay', function() {
+            status.textContent = 'Ready to play';
+            status.className = 'loading';
+            // Auto play
+            video.play().catch(e => {
+                status.textContent = 'Click play to start';
+            });
+        });
+        
+        video.addEventListener('playing', function() {
+            status.style.display = 'none';
+        });
+        
+        video.addEventListener('error', function() {
+            status.textContent = 'Error loading channel. Trying alternative method...';
+            status.className = 'error';
+            tryAlternativeMethod();
+        });
+        
+        // Control functions
+        function playPause() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                video.requestFullscreen().catch(err => {
+                    console.log('Error attempting to enable fullscreen:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        
+        function toggleMute() {
+            video.muted = !video.muted;
+        }
+        
+        // Alternative method jodi direct video na chole
+        function tryAlternativeMethod() {
+            // Iframe method try korbo
+            setTimeout(() => {
+                status.innerHTML = 'Trying iframe method...<br>';
+                const iframe = document.createElement('iframe');
+                iframe.src = 'https://jmp2.uk/stvp-IN3800008CX';
+                iframe.style.width = '100%';
+                iframe.style.height = '80vh';
+                iframe.allowFullscreen = true;
+                
+                document.querySelector('.player-container').innerHTML = '';
+                document.querySelector('.player-container').appendChild(iframe);
+                document.querySelector('.player-container').appendChild(status);
+            }, 2000);
+        }
+        
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case ' ':
+                case 'Enter':
+                    playPause();
+                    break;
+                case 'f':
+                case 'F':
+                    toggleFullscreen();
+                    break;
+                case 'm':
+                case 'M':
+                    toggleMute();
+                    break;
+                case 'ArrowLeft':
+                    video.currentTime = Math.max(0, video.currentTime - 10);
+                    break;
+                case 'ArrowRight':
+                    video.currentTime = Math.min(video.duration, video.currentTime + 10);
+                    break;
+            }
+        });
+        
+        // Auto try to play after page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+                    video.play().catch(e => {
+                        status.textContent = 'Click the play button to start';
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
