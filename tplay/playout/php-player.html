@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zee Classic Player</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -34,11 +33,6 @@
             width: 100%;
             height: 100%;
             object-fit: fill;
-            display: none;
-        }
-        
-        #video.playing {
-            display: block;
         }
         
         .source-selector {
@@ -293,27 +287,6 @@
             display: flex;
         }
         
-        .resolution-menu {
-            position: absolute;
-            bottom: 60px;
-            right: 110px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .resolution-menu.active {
-            display: flex;
-        }
-        
         @media (min-width: 768px) {
             .pip-btn {
                 display: flex;
@@ -378,12 +351,6 @@
                 right: 50px;
                 min-width: 130px;
             }
-            
-            .resolution-menu {
-                bottom: 50px;
-                right: 90px;
-                min-width: 130px;
-            }
         }
         
         .loading-spinner {
@@ -441,17 +408,39 @@
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .quality-selector {
+            position: absolute;
+            bottom: 60px;
+            right: 110px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 150px;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quality-selector.active {
+            display: flex;
+        }
     </style>
 </head>
 <body>
     <div id="video-container">
-        <video id="video" crossorigin="anonymous"></video>
+        <video id="video" controls playsinline></video>
         
         <div class="loading-spinner" id="loading-spinner"></div>
         
         <div class="error-message" id="error-message">
             <p id="error-text">Failed to load stream</p>
             <button id="retry-btn">Retry</button>
+            <button id="alternative-btn" style="margin-left: 10px;">Try Alternative</button>
         </div>
 
         <div class="status-info" id="status-info">Loading Zee Classic...</div>
@@ -460,6 +449,7 @@
             <span>Source:</span>
             <select id="source-select">
                 <option value="zee">Zee Classic Live</option>
+                <option value="zee2">Zee Classic Alternative</option>
             </select>
         </div>
         
@@ -486,7 +476,7 @@
                 
                 <div class="right-controls">
                     <button class="control-btn" id="zoom-btn"><i class="fas fa-expand-alt"></i></button>
-                    <button class="control-btn" id="resolution-btn"><i class="fas fa-tv"></i></button>
+                    <button class="control-btn" id="quality-btn"><i class="fas fa-tv"></i></button>
                     <button class="control-btn" id="settings-btn"><i class="fas fa-gear"></i></button>
                     <button class="control-btn pip-btn" id="pip-btn"><i class="fas fa-clone"></i></button>
                     <button class="control-btn" id="fullscreen-btn"><i class="fas fa-expand"></i></button>
@@ -507,216 +497,231 @@
             <div class="settings-item" data-zoom="cover"><i class="fas fa-arrows-alt-v"></i>Cover</div>
             <div class="settings-item" data-zoom="contain"><i class="fas fa-arrows-alt"></i>Contain</div>
         </div>
-        
-        <div class="resolution-menu" id="resolution-menu">
-            <div class="settings-item" data-resolution="auto"><i class="fas fa-bolt"></i>Auto</div>
+
+        <div class="quality-selector" id="quality-selector">
+            <div class="settings-item active" data-quality="auto"><i class="fas fa-bolt"></i>Auto</div>
         </div>
     </div>
 
     <script>
-        let player;
+        let hls;
         let controlsTimeout;
         let isFullscreen = false;
         let isControlsVisible = true;
         const HIDE_DELAY = 3000;
         const HIDE_DELAY_NON_FULLSCREEN = 5000;
         
-        // Your specific Zee Classic stream
+        // Stream sources
         const streamSources = {
             zee: {
                 url: 'https://mini.allinonereborn.online/ze/live.php?id=https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8&token=JITENDRA_KUMAR&e.m3u8',
                 comment: 'Zee Classic Live Stream'
+            },
+            zee2: {
+                url: 'https://mini.allinonereborn.online/ze/live.php?id=https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8',
+                comment: 'Zee Classic Alternative'
             }
         };
         
-        async function initPlayer() {
-            // Check if Shaka Player is supported
-            if (!shaka.Player.isBrowserSupported()) {
-                showError('Shaka Player is not supported in this browser');
+        function initPlayer() {
+            const video = document.getElementById('video');
+            
+            // Hide native controls
+            video.controls = false;
+            
+            // Check HLS support
+            if (Hls.isSupported()) {
+                console.log('HLS.js is supported');
+                setupHLSPlayer();
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                console.log('Native HLS support detected');
+                setupNativeHLS();
+            } else {
+                showError('HLS is not supported in your browser');
                 return;
             }
             
+            setupEventListeners();
+            initCustomControls(video);
+        }
+        
+        function setupHLSPlayer() {
+            const video = document.getElementById('video');
+            hls = new Hls({
+                debug: false,
+                enableWorker: true,
+                lowLatencyMode: true,
+                backBufferLength: 90,
+                maxBufferLength: 30,
+                maxMaxBufferLength: 60,
+                maxBufferSize: 60 * 1000 * 1000,
+                maxBufferHole: 0.5,
+                maxFragLookUpTolerance: 0.2,
+                liveSyncDurationCount: 3,
+                liveMaxLatencyDurationCount: 10,
+                stretchShortVideoTrack: true,
+                maxLiveSyncPlaybackRate: 1.1
+            });
+            
+            hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+                console.log('Video and HLS.js are now bound together');
+                loadSelectedSource();
+            });
+            
+            hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+                console.log('Manifest loaded, found ' + data.levels.length + ' quality levels');
+                document.getElementById('loading-spinner').style.display = 'none';
+                document.getElementById('status-info').textContent = 'Stream loaded';
+                
+                // Auto-play
+                video.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                    document.getElementById('status-info').textContent = 'Click to play';
+                });
+                
+                // Update quality menu
+                updateQualityMenu();
+            });
+            
+            hls.on(Hls.Events.LEVEL_LOADED, function(event, data) {
+                console.log('Level loaded:', data);
+            });
+            
+            hls.on(Hls.Events.ERROR, function(event, data) {
+                console.error('HLS Error:', data);
+                
+                if (data.fatal) {
+                    switch(data.type) {
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            console.log('Network error, trying to recover...');
+                            hls.startLoad();
+                            break;
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            console.log('Media error, trying to recover...');
+                            hls.recoverMediaError();
+                            break;
+                        default:
+                            showError('Fatal HLS error: ' + data.details);
+                            hls.destroy();
+                            break;
+                    }
+                }
+            });
+            
+            hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) {
+                console.log('Quality switched to level: ' + data.level);
+                updateActiveQuality(data.level);
+            });
+            
+            // Attach HLS to video
+            hls.attachMedia(video);
+        }
+        
+        function setupNativeHLS() {
+            console.log('Using native HLS support');
             const video = document.getElementById('video');
             
-            try {
-                player = new shaka.Player(video);
-                
-                // Optimized configuration for your stream
-                player.configure({
-                    streaming: {
-                        bufferingGoal: 60,
-                        rebufferingGoal: 10,
-                        bufferBehind: 60,
-                        ignoreTextStreamFailures: true,
-                        lowLatencyMode: false,
-                        inaccurateManifestTolerance: 0,
-                        stallThreshold: 1,
-                        useNativeHlsOnSafari: true
-                    },
-                    manifest: {
-                        retryParameters: {
-                            maxAttempts: 5,
-                            baseDelay: 1000,
-                            backoffFactor: 2,
-                            fuzzFactor: 0.5,
-                            timeout: 30000
-                        },
-                        dash: {
-                            clockSyncUri: '',
-                            ignoreMinBufferTime: false
-                        },
-                        hls: {
-                            useFullSegmentsForStartTime: false
-                        }
-                    },
-                    abr: {
-                        enabled: true,
-                        defaultBandwidthEstimate: 500000,
-                        bandwidthDowngradeTarget: 0.85,
-                        bandwidthUpgradeTarget: 0.95,
-                        restrictions: {
-                            minWidth: 320,
-                            minHeight: 180,
-                            maxWidth: 1920,
-                            maxHeight: 1080
-                        }
-                    },
-                    drm: {
-                        clearKeys: {},
-                        retryParameters: {
-                            maxAttempts: 3,
-                            baseDelay: 1000,
-                            backoffFactor: 2
-                        }
-                    }
-                });
-                
-                // Event listeners
-                player.addEventListener('error', onPlayerErrorEvent);
-                player.addEventListener('loading', onPlayerLoading);
-                player.addEventListener('loaded', onPlayerLoaded);
-                player.addEventListener('buffering', onPlayerBuffering);
-                
-                const sourceSelect = document.getElementById('source-select');
-                sourceSelect.addEventListener('change', loadSelectedSource);
-                
-                document.getElementById('retry-btn').addEventListener('click', () => {
-                    document.getElementById('error-message').style.display = 'none';
-                    loadSelectedSource();
-                });
-                
-                await loadSelectedSource();
-                
-            } catch (error) {
-                console.error('Player initialization error:', error);
-                showError('Failed to initialize player: ' + error.message);
-            }
+            video.addEventListener('loadedmetadata', function() {
+                console.log('Native HLS metadata loaded');
+                document.getElementById('loading-spinner').style.display = 'none';
+                document.getElementById('status-info').textContent = 'Stream loaded';
+            });
+            
+            video.addEventListener('error', function(e) {
+                console.error('Native HLS error:', e);
+                showError('Native HLS playback error');
+            });
+            
+            loadSelectedSource();
         }
         
-        function onPlayerLoading() {
-            document.getElementById('status-info').textContent = 'Loading stream...';
-            document.getElementById('loading-spinner').style.display = 'block';
+        function setupEventListeners() {
+            const sourceSelect = document.getElementById('source-select');
+            sourceSelect.addEventListener('change', loadSelectedSource);
+            
+            document.getElementById('retry-btn').addEventListener('click', () => {
+                document.getElementById('error-message').style.display = 'none';
+                loadSelectedSource();
+            });
+            
+            document.getElementById('alternative-btn').addEventListener('click', () => {
+                document.getElementById('error-message').style.display = 'none';
+                const currentSource = document.getElementById('source-select').value;
+                const newSource = currentSource === 'zee' ? 'zee2' : 'zee';
+                document.getElementById('source-select').value = newSource;
+                loadSelectedSource();
+            });
         }
         
-        function onPlayerLoaded() {
-            document.getElementById('status-info').textContent = 'Stream loaded';
-            setTimeout(() => {
-                document.getElementById('status-info').style.display = 'none';
-            }, 2000);
-        }
-        
-        function onPlayerBuffering(event) {
-            if (event.buffering) {
-                document.getElementById('status-info').textContent = 'Buffering...';
-                document.getElementById('status-info').style.display = 'block';
-            } else {
-                document.getElementById('status-info').style.display = 'none';
-            }
-        }
-        
-        async function loadSelectedSource() {
+        function loadSelectedSource() {
             const sourceKey = document.getElementById('source-select').value;
             const source = streamSources[sourceKey];
-            
-            console.log('Loading Zee Classic stream...');
-            
             const video = document.getElementById('video');
-            video.classList.remove('playing');
+            
+            console.log('Loading source:', sourceKey);
+            
             document.getElementById('loading-spinner').style.display = 'block';
             document.getElementById('status-info').textContent = 'Connecting to Zee Classic...';
             document.getElementById('status-info').style.display = 'block';
             
             try {
-                // Clear any previous streams
-                if (player) {
-                    await player.unload();
+                if (Hls.isSupported() && hls) {
+                    hls.loadSource(source.url);
+                } else {
+                    // Native HLS
+                    video.src = source.url;
                 }
-                
-                // Add CORS headers and use fetch for better compatibility
-                const config = {
-                    retryParameters: {
-                        maxAttempts: 3,
-                        baseDelay: 2000,
-                        backoffFactor: 2
-                    }
-                };
-                
-                // Load the stream with optimized settings
-                await player.load(source.url, null, config);
-                
-                console.log('Zee Classic stream loaded successfully!');
-                
-                document.getElementById('loading-spinner').style.display = 'none';
-                document.getElementById('status-info').textContent = 'Playing Zee Classic';
-                
-                // Auto-play the video
-                try {
-                    await video.play();
-                    video.classList.add('playing');
-                    
-                    // Hide status after 2 seconds
-                    setTimeout(() => {
-                        document.getElementById('status-info').style.display = 'none';
-                    }, 2000);
-                    
-                } catch (playError) {
-                    console.warn('Auto-play failed:', playError);
-                    document.getElementById('status-info').textContent = 'Click to play';
-                    video.classList.add('playing');
-                }
-                
-                // Update resolution menu
-                updateResolutionMenu();
-                
             } catch (error) {
-                console.error('Error loading Zee Classic stream:', error);
-                document.getElementById('loading-spinner').style.display = 'none';
-                
-                let errorMessage = 'Failed to load Zee Classic stream';
-                
-                if (error.code === 1002) {
-                    errorMessage = 'Network error - Please check your internet connection';
-                } else if (error.code === 1000) {
-                    errorMessage = 'Video format not supported by your browser';
-                } else if (error.code === 4000) {
-                    errorMessage = 'DRM content not supported';
-                } else if (error.code === 4032) {
-                    errorMessage = 'Stream is currently unavailable';
-                } else if (error.code === 4031) {
-                    errorMessage = 'Stream access denied';
-                }
-                
-                showError(errorMessage + ' (Error: ' + error.code + ')');
+                console.error('Error loading stream:', error);
+                showError('Failed to load stream: ' + error.message);
             }
         }
         
-        function onPlayerErrorEvent(event) {
-            onPlayerError(event.detail);
+        function updateQualityMenu() {
+            if (!hls) return;
+            
+            const qualityMenu = document.getElementById('quality-selector');
+            qualityMenu.innerHTML = '<div class="settings-item active" data-quality="auto"><i class="fas fa-bolt"></i>Auto</div>';
+            
+            const levels = hls.levels;
+            levels.forEach((level, index) => {
+                const height = level.height || 'Unknown';
+                const bitrate = Math.round(level.bitrate / 1000);
+                const item = document.createElement('div');
+                item.className = 'settings-item';
+                item.setAttribute('data-quality', index);
+                item.innerHTML = `<i class="fas fa-tv"></i>${height}p (${bitrate}kbps)`;
+                qualityMenu.appendChild(item);
+            });
+            
+            const qualityItems = qualityMenu.querySelectorAll('.settings-item');
+            qualityItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const quality = item.getAttribute('data-quality');
+                    if (quality === 'auto') {
+                        hls.currentLevel = -1; // Auto
+                    } else {
+                        hls.currentLevel = parseInt(quality);
+                    }
+                    
+                    qualityItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    qualityMenu.classList.remove('active');
+                    resetControlsTimer();
+                });
+            });
         }
         
-        function onPlayerError(error) {
-            console.error('Player error:', error);
-            showError('Player error: ' + error.code + ' - ' + error.message);
+        function updateActiveQuality(level) {
+            const qualityItems = document.querySelectorAll('#quality-selector .settings-item');
+            qualityItems.forEach((item, index) => {
+                if (index === level + 1) { // +1 because auto is first
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
         }
         
         function showError(message) {
@@ -726,7 +731,7 @@
             document.getElementById('status-info').style.display = 'none';
         }
 
-        // Rest of the control functions remain the same as previous version
+        // Control functions
         function showControls() {
             const controls = document.querySelector('.custom-controls');
             const sourceSelector = document.querySelector('.source-selector');
@@ -754,77 +759,13 @@
             }
         }
         
-        function toggleControls() {
-            if (isControlsVisible) {
-                hideControls();
-            } else {
-                showControls();
-            }
-        }
-        
         function resetControlsTimer() {
             clearTimeout(controlsTimeout);
             const delay = isFullscreen ? HIDE_DELAY : HIDE_DELAY_NON_FULLSCREEN;
             controlsTimeout = setTimeout(hideControls, delay);
         }
-        
-        function updateResolutionMenu() {
-            const resolutionMenu = document.getElementById('resolution-menu');
-            while (resolutionMenu.children.length > 1) {
-                resolutionMenu.removeChild(resolutionMenu.lastChild);
-            }
-            
-            const tracks = player.getVariantTracks();
-            
-            const uniqueResolutions = {};
-            tracks.forEach(track => {
-                if (track.height) {
-                    uniqueResolutions[track.height] = track;
-                }
-            });
-            
-            const sortedResolutions = Object.keys(uniqueResolutions).sort((a, b) => b - a);
-            
-            sortedResolutions.forEach(height => {
-                const item = document.createElement('div');
-                item.className = 'settings-item';
-                item.setAttribute('data-resolution', height);
-                item.innerHTML = `<i class="fas fa-tv"></i>${height}p`;
-                resolutionMenu.appendChild(item);
-            });
-            
-            const resolutionItems = resolutionMenu.querySelectorAll('.settings-item');
-            resolutionItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const resolution = item.getAttribute('data-resolution');
-                    changeResolution(resolution);
-                    
-                    resolutionItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                    
-                    resolutionMenu.classList.remove('active');
-                    resetControlsTimer();
-                });
-            });
-        }
-        
-        function changeResolution(resolution) {
-            if (resolution === 'auto') {
-                player.configure({ abr: { enabled: true } });
-                return;
-            }
-            
-            player.configure({ abr: { enabled: false } });
-            
-            const tracks = player.getVariantTracks();
-            const selectedTrack = tracks.find(track => track.height === parseInt(resolution));
-            
-            if (selectedTrack) {
-                player.selectVariantTrack(selectedTrack, true);
-            }
-        }
-        
-        function initCustomControls(player, video) {
+
+        function initCustomControls(video) {
             const playPauseBtn = document.getElementById('play-pause-btn');
             const stopBtn = document.getElementById('stop-btn');
             const rewindBtn = document.getElementById('rewind-btn');
@@ -838,26 +779,22 @@
             const settingsBtn = document.getElementById('settings-btn');
             const pipBtn = document.getElementById('pip-btn');
             const zoomBtn = document.getElementById('zoom-btn');
-            const resolutionBtn = document.getElementById('resolution-btn');
+            const qualityBtn = document.getElementById('quality-btn');
             const settingsMenu = document.getElementById('settings-menu');
             const zoomMenu = document.getElementById('zoom-menu');
-            const resolutionMenu = document.getElementById('resolution-menu');
+            const qualityMenu = document.getElementById('quality-selector');
             const videoContainer = document.getElementById('video-container');
             
+            // Show controls on interaction
             videoContainer.addEventListener('mousemove', showControls);
-            
-            videoContainer.addEventListener('click', (e) => {
-                if (!isFullscreen && (e.target === videoContainer || e.target === video)) {
-                    toggleControls();
-                }
-            });
-            
             videoContainer.addEventListener('touchstart', showControls);
             
+            // Play/Pause
             playPauseBtn.addEventListener('click', () => {
                 if (video.paused) {
-                    video.play();
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    video.play().then(() => {
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    });
                 } else {
                     video.pause();
                     playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -865,6 +802,7 @@
                 resetControlsTimer();
             });
             
+            // Stop
             stopBtn.addEventListener('click', () => {
                 video.pause();
                 video.currentTime = 0;
@@ -872,22 +810,26 @@
                 resetControlsTimer();
             });
             
+            // Rewind 10 seconds
             rewindBtn.addEventListener('click', () => {
                 video.currentTime = Math.max(0, video.currentTime - 10);
                 resetControlsTimer();
             });
             
+            // Forward 10 seconds
             forwardBtn.addEventListener('click', () => {
                 video.currentTime = Math.min(video.duration, video.currentTime + 10);
                 resetControlsTimer();
             });
             
+            // Mute
             muteBtn.addEventListener('click', () => {
                 video.muted = !video.muted;
                 muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
                 resetControlsTimer();
             });
             
+            // Volume
             volumeSlider.addEventListener('input', () => {
                 video.volume = volumeSlider.value;
                 if (video.volume == 0) {
@@ -898,6 +840,7 @@
                 resetControlsTimer();
             });
             
+            // Time update
             video.addEventListener('timeupdate', () => {
                 const currentTime = formatTime(video.currentTime);
                 const duration = formatTime(video.duration);
@@ -907,6 +850,7 @@
                 progressBar.style.width = `${progressPercent}%`;
             });
             
+            // Seek
             progressContainer.addEventListener('click', (e) => {
                 const rect = progressContainer.getBoundingClientRect();
                 const percent = (e.clientX - rect.left) / rect.width;
@@ -914,21 +858,20 @@
                 resetControlsTimer();
             });
             
+            // Fullscreen
             fullscreenBtn.addEventListener('click', () => {
                 if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => {
+                    videoContainer.requestFullscreen().catch(err => {
                         console.error('Error enabling fullscreen:', err);
                     });
                     fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
                     isFullscreen = true;
                     resetControlsTimer();
                 } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                        isFullscreen = false;
-                        showControls();
-                    }
+                    document.exitFullscreen();
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                    isFullscreen = false;
+                    showControls();
                 }
             });
             
@@ -944,10 +887,11 @@
                 }
             });
             
+            // Menu toggles
             settingsBtn.addEventListener('click', (e) => {
                 settingsMenu.classList.toggle('active');
                 zoomMenu.classList.remove('active');
-                resolutionMenu.classList.remove('active');
+                qualityMenu.classList.remove('active');
                 e.stopPropagation();
                 resetControlsTimer();
             });
@@ -955,28 +899,20 @@
             zoomBtn.addEventListener('click', (e) => {
                 zoomMenu.classList.toggle('active');
                 settingsMenu.classList.remove('active');
-                resolutionMenu.classList.remove('active');
+                qualityMenu.classList.remove('active');
                 e.stopPropagation();
                 resetControlsTimer();
             });
             
-            resolutionBtn.addEventListener('click', (e) => {
-                resolutionMenu.classList.toggle('active');
+            qualityBtn.addEventListener('click', (e) => {
+                qualityMenu.classList.toggle('active');
                 settingsMenu.classList.remove('active');
                 zoomMenu.classList.remove('active');
                 e.stopPropagation();
                 resetControlsTimer();
             });
             
-            pipBtn.addEventListener('click', () => {
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture();
-                } else if (document.pictureInPictureEnabled) {
-                    video.requestPictureInPicture();
-                }
-                resetControlsTimer();
-            });
-            
+            // Close menus when clicking outside
             document.addEventListener('click', (e) => {
                 if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
                     settingsMenu.classList.remove('active');
@@ -984,11 +920,12 @@
                 if (!zoomBtn.contains(e.target) && !zoomMenu.contains(e.target)) {
                     zoomMenu.classList.remove('active');
                 }
-                if (!resolutionBtn.contains(e.target) && !resolutionMenu.contains(e.target)) {
-                    resolutionMenu.classList.remove('active');
+                if (!qualityBtn.contains(e.target) && !qualityMenu.contains(e.target)) {
+                    qualityMenu.classList.remove('active');
                 }
             });
             
+            // Playback speed
             const speedOptions = settingsMenu.querySelectorAll('.settings-item');
             speedOptions.forEach(option => {
                 option.addEventListener('click', () => {
@@ -1003,6 +940,7 @@
                 });
             });
             
+            // Zoom modes
             const zoomOptions = zoomMenu.querySelectorAll('.settings-item');
             zoomOptions.forEach(option => {
                 option.addEventListener('click', () => {
@@ -1017,28 +955,31 @@
                 });
             });
             
-            function formatTime(seconds) {
-                if (isNaN(seconds)) return "00:00";
-                const minutes = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
-            
+            // Video event listeners
             video.addEventListener('play', () => {
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                video.classList.add('playing');
+                document.getElementById('status-info').style.display = 'none';
             });
             
             video.addEventListener('pause', () => {
                 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             });
             
-            video.volume = volumeSlider.value;
+            video.addEventListener('waiting', () => {
+                document.getElementById('status-info').textContent = 'Buffering...';
+                document.getElementById('status-info').style.display = 'block';
+            });
             
+            video.addEventListener('playing', () => {
+                document.getElementById('status-info').style.display = 'none';
+            });
+            
+            // Keyboard shortcuts
             document.addEventListener('keydown', (e) => {
                 switch(e.key) {
                     case ' ':
                     case 'Enter':
+                        e.preventDefault();
                         if (video.paused) {
                             video.play();
                             playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1071,18 +1012,22 @@
                         muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
                         break;
                 }
-                
                 showControls();
             });
+            
+            // Set initial volume
+            video.volume = volumeSlider.value;
+        }
+        
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "00:00";
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initPlayer().then(() => {
-                const video = document.getElementById('video');
-                initCustomControls(player, video);
-                resetControlsTimer();
-            });
-        });
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initPlayer);
     </script>
 </body>
 </html>
