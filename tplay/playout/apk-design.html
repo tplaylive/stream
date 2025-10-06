@@ -211,7 +211,7 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 10px;
-            padding: 15px 0;
+            padding: 5px 0;
             margin-bottom: 10px;
             scrollbar-width: none;
         }
@@ -219,16 +219,19 @@
         .category-bar::-webkit-scrollbar {
             display: none;
         }
+        
+        .language-filter-container {
+            margin-bottom: 15px;
+         }
 
         .language-bar {
             display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: 10px;
-            padding: 10px 0;
-            margin-bottom: 15px;
+            padding: 0px 0;
+            margin-bottom: 0px;
             scrollbar-width: none;
-            display: none;
         }
 
         .language-bar::-webkit-scrollbar {
@@ -735,6 +738,12 @@
                     <span>Telegram Discussion Group</span>
                 </a>
             </li>
+            <li class="sidebar-nav-item">
+    <a href="#" class="sidebar-nav-link" id="toggleAdultContent">
+        <i class="fas fa-eye-slash"></i>
+        <span id="adultToggleText">Show 18+ Content</span>
+    </a>
+</li>
         </ul>
     </div>
 
@@ -753,6 +762,15 @@
 
     <div class="main-content">
         <div class="filter-container">
+        
+        <!-- Add this new language filter section -->
+    <div class="language-filter-container">
+        <div class="language-bar" id="languageBar">
+            <button class="filter-btn active" data-language="all">All Languages</button>
+            <!-- Language buttons will be dynamically added here -->
+        </div>
+    </div>
+        
             <div class="category-bar" id="categoryBar">
                 <button class="filter-btn active" data-category="all">All</button>
                 <button class="filter-btn" data-category="News">News</button>
@@ -766,12 +784,6 @@
                 <button class="filter-btn" data-category="Infotainment">Infotainment</button>
                 <button class="filter-btn" data-category="18+">18+</button>
             </div>
-            
-            <div class="language-bar" id="languageBar">
-                <button class="filter-btn active" data-language="all">All</button>
-                <!-- Language buttons will be dynamically added here -->
-            </div>
-        </div>
 
         <div class="channel-count" id="channelCount">0 channels available</div>
 
@@ -822,7 +834,7 @@
                 img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English","Tamil"]
             },
             { 
                 name: "Star Sports 2", 
@@ -835,7 +847,7 @@
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English","Kannada"]
             },
             { 
                 name: "Star Sports Select", 
@@ -847,7 +859,7 @@
                 img: "https://i.postimg.cc/PfBCcpm1/Star-Sports-Select.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["English"]
             },
             { 
                 name: "Sony Sports 1", 
@@ -859,7 +871,7 @@
                 img: "https://i.postimg.cc/j2TN0dcf/ten1.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Sony Sports 2", 
@@ -871,7 +883,7 @@
                 img: "https://i.postimg.cc/L8W14Vv2/ten2.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Sony Sports 3", 
@@ -882,7 +894,7 @@
                 img: "https://i.postimg.cc/HxdsTcGT/ten3.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Sony Sports 4", 
@@ -892,7 +904,7 @@
                 img: "https://i.postimg.cc/MGPqJsYm/ten4.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Sony Sports 5", 
@@ -904,7 +916,7 @@
                 img: "https://i.postimg.cc/gj3Cj435/ten5.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Willow", 
@@ -961,7 +973,7 @@
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
                 description: "Bangladesh",
-                languages: ["Bangladesh"]
+                languages: ["Bengali"]
             },
             { 
                 name: "DD Sports", 
@@ -972,7 +984,7 @@
                 img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Ten Cricket", 
@@ -983,7 +995,7 @@
                 img: "https://i.postimg.cc/hP38hnNY/ten-cricket.jpg", 
                 category: "Sports",
                 description: "India",
-                languages: ["India"]
+                languages: ["Hindi","English"]
             },
             { 
                 name: "Ten Sports", 
@@ -993,7 +1005,7 @@
                 img: "https://i.postimg.cc/Xvdsjr9v/ten-sports.jpg", 
                 category: "Sports",
                 description: "Pakistan",
-                languages: ["Pakistan"]
+                languages: ["Urdu"]
             },
             { 
                 name: "Euro Sport", 
@@ -1016,7 +1028,7 @@
                 img: "https://i.postimg.cc/wB1Hmg1s/knt-max.jpg", 
                 category: "Sports",
                 description: "Nepal",
-                languages: ["English","Nepali","Maithili"]
+                languages: ["English","Nepali"]
             },
             { 
                 name: "Star Plus", 
@@ -2003,7 +2015,7 @@
                 img: "https://i.postimg.cc/2yF06LmF/kantipur.jpg", 
                 category: "Mix-Entertainment",
                 description: "Nepal",
-                languages: ["Nepali","Maithili","English"]
+                languages: ["Nepali","English"]
             },
             { 
                 name: "AP1 HD", 
@@ -2324,7 +2336,7 @@
                 img: "https://i.postimg.cc/v8N2dkpt/boogle-bollywood.jpg", 
                 category: "Music",
                 description: "Hindi & Punjabi Music",
-                languages: ["Hindi & Punjabi"]
+                languages: ["Hindi", "Punjabi"]
             },
             { 
                 name: "Saga Music", 
@@ -2621,7 +2633,7 @@
                 img: "https://i.postimg.cc/xT68w6MJ/schlager-deluxe.jpg", 
                 category: "Music",
                 description: "Germany",
-                languages: ["German"]
+                languages: ["English"]
             },
             { 
                 name: "Deluxe Music", 
@@ -2631,7 +2643,7 @@
                 img: "https://i.postimg.cc/B6nx0jt4/deluxe-music.jpg", 
                 category: "Music",
                 description: "Germany",
-                languages: ["German"]
+                languages: ["English"]
             },
             { 
                 name: "Deluxe Rap", 
@@ -2641,7 +2653,7 @@
                 img: "https://i.postimg.cc/V6vbh2HN/dlx-rap.jpg", 
                 category: "Music",
                 description: "Germany",
-                languages: ["German"]
+                languages: ["English"]
             },
             { 
                 name: "Deluxe Dance", 
@@ -2651,7 +2663,7 @@
                 img: "https://i.postimg.cc/DzMq72GG/dlx-dance.jpg", 
                 category: "Music",
                 description: "Germany",
-                languages: ["German"]
+                languages: ["English"]
             },
             { 
                 name: "Joo Music", 
@@ -2671,7 +2683,7 @@
                 img: "https://i.postimg.cc/fW71krs0/kronehit.jpg", 
                 category: "Music",
                 description: "Austria",
-                languages: ["German"]
+                languages: ["English"]
             },
             { 
                 name: "MTV Live", 
@@ -2701,7 +2713,7 @@
                 img: "https://i.postimg.cc/TYgjTzvZ/muzzik.jpg", 
                 category: "Music",
                 description: "Serbia",
-                languages: ["Serbian"]
+                languages: ["English"]
             },
             { 
                 name: "Pop World TV", 
@@ -2811,7 +2823,7 @@
                 img: "https://i.postimg.cc/pXpnkN5c/afro-beats.jpg", 
                 category: "Music",
                 description: "African Music ",
-                languages: ["English", "Pidgin English"]
+                languages: ["English"]
             },
             { 
                 name: "Trace Urban", 
@@ -2821,7 +2833,7 @@
                 img: "https://i.postimg.cc/JnKTR9wN/trace-urban.jpg", 
                 category: "Music",
                 description: "France",
-                languages: ["French"]
+                languages: ["English"]
             },
             { 
                 name: "V2BEAT", 
@@ -3685,8 +3697,8 @@
                 ], 
                 img: "https://i.postimg.cc/8PQrRLN8/Animax.png", 
                 category: "Kids",
-                description: "World",
-                languages: ["Korean"]
+                description: "Korean",
+                languages: ["English"]
             },
             { 
                 name: "Anime X", 
@@ -3695,8 +3707,8 @@
                 ], 
                 img: "https://i.postimg.cc/jdMbr5cW/animeX.jpg", 
                 category: "Kids",
-                description: "World",
-                languages: ["Japanese"]
+                description: "Japanese",
+                languages: ["English"]
             },
             { 
                 name: "Minimax", 
@@ -3820,7 +3832,7 @@
                 img: "https://clipart-library.com/8300/1931/free-vector-dragon-ball-z-0_037372_dragon-ball-z-0.png", 
                 category: "Kids",
                 description: "24/7",
-                languages: ["Japanese","24/7"]
+                languages: ["24/7"]
             },
             { 
                 name: "Tom And Jerry", 
@@ -3979,7 +3991,7 @@
                 img: "https://i.postimg.cc/B6F4LGp8/bbc-news.jpg", 
                 category: "News",
                 description: "London",
-                languages: ["English","Arabic","Persian"]
+                languages: ["English","Arabic"]
             },
             { 
                 name: "Al Jazeera", 
@@ -4007,7 +4019,7 @@
                 img: "https://web-summit-avenger.imgix.net/production/logos/original/c7b51ad526fe3d1f4f299f1d802383268c903106.png?ixlib=rb-3.4.0&auto=format&fit=fill&fill=solid&fill-color=white&w=600&h=600", 
                 category: "News",
                 description: "China",
-                languages: ["English","Arabic","Español","Français","Русский"]
+                languages: ["English","Arabic"]
             },
             { 
                 name: "DD News", 
@@ -4119,7 +4131,7 @@
                 img: "https://i.postimg.cc/1XydD43H/rajasthan-news-18.jpg", 
                 category: "News",
                 description: "India",
-                languages: ["Rajasthan","Hindi"]
+                languages: ["Hindi"]
             },
             { 
                 name: "News18 Tamil Nadu", 
@@ -4723,7 +4735,7 @@
                 img: "https://i.postimg.cc/zGdP4tPR/travelxp.png", 
                 category: "Infotainment",
                 description: "World",
-                languages: ["English","Hindi","German","French"]
+                languages: ["English","Hindi"]
             },
             { 
                 name: "TLC", 
@@ -4892,6 +4904,9 @@
         // Variables for filtering
         let currentCategory = 'all';
         let currentLanguage = 'all';
+        
+        // 18+ Content Toggle
+        let showAdultContent = false;
 
         // Sidebar functionality
         const menuToggle = document.getElementById('menuToggle');
@@ -4907,6 +4922,43 @@
         menuToggle.addEventListener('click', toggleSidebar);
         closeSidebar.addEventListener('click', toggleSidebar);
         sidebarOverlay.addEventListener('click', toggleSidebar);
+        
+        // 18+ Toggle Functions
+function toggleAdultContent() {
+    showAdultContent = !showAdultContent;
+    updateAdultToggle();
+    updateCategoryBar();
+}
+
+function updateAdultToggle() {
+    const toggleText = document.getElementById('adultToggleText');
+    const toggleIcon = document.querySelector('#toggleAdultContent i');
+    
+    if (showAdultContent) {
+        toggleText.textContent = 'Hide 18+';
+        toggleIcon.className = 'fas fa-eye';
+    } else {
+        toggleText.textContent = 'Show 18+';
+        toggleIcon.className = 'fas fa-eye-slash';
+    }
+}
+
+function updateCategoryBar() {
+    const categoryBar = document.getElementById('categoryBar');
+    const adultButton = categoryBar.querySelector('[data-category="18+"]');
+    
+    if (adultButton) {
+        if (showAdultContent) {
+            adultButton.style.display = 'block';
+        } else {
+            adultButton.style.display = 'none';
+            // If 18+ is currently active, switch to All
+            if (currentCategory === '18+') {
+                document.querySelector('[data-category="all"]').click();
+            }
+        }
+    }
+}
 
         // Initialize the channel list
         function initChannelList() {
@@ -4914,6 +4966,17 @@
             const channelSearch = document.getElementById('channelSearch');
             const categoryButtons = document.querySelectorAll('#categoryBar .filter-btn');
             const languageBar = document.getElementById('languageBar');
+            
+            // Initialize language buttons
+            updateLanguageButtons();
+            
+            // Initialize 18+ toggle
+    document.getElementById('toggleAdultContent').addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleAdultContent();
+    });
+    updateAdultToggle();
+    updateCategoryBar();
             
             // Render all channels initially
             renderChannels(filterChannels());
@@ -4944,15 +5007,6 @@
                         return; // Stop further execution
                     }
                     
-                    // Show language bar when a specific category is selected
-                    if (currentCategory === 'all') {
-                        languageBar.style.display = 'none';
-                        currentLanguage = 'all';
-                    } else {
-                        languageBar.style.display = 'flex';
-                        updateLanguageButtons();
-                    }
-                    
                     renderChannels(filterChannels());
                     initKeyboardNavigation();
                 });
@@ -4972,21 +5026,11 @@
             // Get all unique languages from channels in the current category
             const availableLanguages = new Set();
             
-            if (currentCategory === 'all') {
-                // For "All Channels", get languages from all channels
-                channels.forEach(channel => {
-                    if (channel.languages) {
-                        channel.languages.forEach(lang => availableLanguages.add(lang));
-                    }
-                });
-            } else {
-                // For specific category, get languages only from channels in that category
-                channels.forEach(channel => {
-                    if (channel.category === currentCategory && channel.languages) {
-                        channel.languages.forEach(lang => availableLanguages.add(lang));
-                    }
-                });
-            }
+             channels.forEach(channel => {
+        if (channel.languages) {
+            channel.languages.forEach(lang => availableLanguages.add(lang));
+        }
+    });
             
             // Create language buttons HTML
             let languageButtonsHTML = '<button class="filter-btn active" data-language="all">All</button>';
