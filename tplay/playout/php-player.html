@@ -1,516 +1,297 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zee Classic Player</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: #fff;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        #video-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            background: #000;
-        }
-        
-        #video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .custom-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 20px 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-        }
-        
-        .custom-controls.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: #e50914;
-            border-radius: 3px;
-            width: 0%;
-            position: relative;
-        }
-        
-        .control-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-        
-        .left-controls, .right-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(5px);
-        }
-        
-        .control-btn:hover {
-            background: rgba(229, 9, 20, 0.7);
-            transform: scale(1.1);
-        }
-        
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .volume-slider {
-            width: 80px;
-            height: 5px;
-            -webkit-appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            outline: none;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
-            background: #e50914;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .time-display {
-            color: white;
-            font-size: 14px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-variant-numeric: tabular-nums;
-            font-weight: 500;
-        }
-        
-        .loading-spinner {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #e50914;
-            animation: spin 1s ease-in-out infinite;
-            z-index: 5;
-        }
-        
-        @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        .error-message {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 80%;
-            z-index: 20;
-        }
-        
-        .error-message button {
-            background: #e50914;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>T Play — HLS Player</title>
 
-        .channel-info {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 15px;
-            border-radius: 10px;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-        }
-        
-        .channel-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #e50914;
-        }
-        
-        .channel-subtitle {
-            font-size: 12px;
-            color: #ccc;
-        }
+  <!-- hls.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.1/dist/hls.min.js"></script>
 
-        @media (max-width: 600px) {
-            .custom-controls {
-                padding: 15px 20px;
-            }
-            
-            .control-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-            
-            .channel-info {
-                top: 10px;
-                left: 10px;
-                padding: 8px 12px;
-            }
-        }
-    </style>
+  <style>
+    :root{
+      --bg-black: rgba(0,0,0,0.55);
+      --panel-black: rgba(0,0,0,0.45);
+      --accent: #e60012; /* red accent */
+      --white: #ffffff;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      background:#000;
+      font-family: Inter, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .player-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      padding:12px;
+      box-sizing:border-box;
+    }
+
+    /* video container */
+    .tv-player{
+      width:100%;
+      max-width:1280px;
+      aspect-ratio:16/9;
+      background:#000;
+      position:relative;
+      overflow:hidden;
+      border-radius:12px;
+      box-shadow:0 6px 28px rgba(0,0,0,0.6);
+    }
+
+    video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      background:#000;
+      display:block;
+    }
+
+    /* bottom control bar */
+    .controls {
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:10px 14px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--panel-black) 60%);
+      box-sizing:border-box;
+      color:var(--white);
+      transform:translateY(0);
+    }
+
+    .btn {
+      background:transparent;
+      border:none;
+      color:var(--white);
+      padding:8px;
+      font-size:16px;
+      cursor:pointer;
+      border-radius:6px;
+    }
+    .btn:focus{ outline:2px solid rgba(255,255,255,0.08); }
+
+    .play-btn{
+      width:44px;height:44px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .seek{
+      flex:1;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .seek input[type="range"]{
+      -webkit-appearance:none;
+      width:100%;
+      height:6px;
+      background:rgba(255,255,255,0.06);
+      border-radius:6px;
+      outline:none;
+    }
+    .seek input[type="range"]::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      width:14px;height:14px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(230,0,18,0.12);
+      cursor:pointer;
+    }
+
+    .time{
+      min-width:72px;
+      text-align:right;
+      font-size:13px;
+      opacity:0.9;
+    }
+
+    /* top overlay title */
+    .title {
+      position:absolute;
+      left:14px;
+      top:10px;
+      color:var(--white);
+      background:var(--bg-black);
+      padding:6px 10px;
+      border-radius:8px;
+      font-weight:600;
+      font-size:14px;
+      max-width:70%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    /* responsive */
+    @media (max-width:600px){
+      .controls{ padding:8px; gap:8px }
+      .time{ display:none }
+      .play-btn{ width:40px;height:40px }
+    }
+  </style>
 </head>
 <body>
-    <div id="video-container">
-        <!-- Direct video tag with your stream URL -->
-        <video id="video" playsinline webkit-playsinline>
-            <source src="https://mini.allinonereborn.online/ze/live.php?id=https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8&token=JITENDRA_KUMAR&e.m3u8" type="application/x-mpegURL">
-        </video>
-        
-        <div class="loading-spinner" id="loading-spinner"></div>
-        
-        <div class="error-message" id="error-message">
-            <p id="error-text">Failed to load stream</p>
-            <button id="retry-btn">Retry</button>
+  <div class="player-wrap">
+    <div class="tv-player" id="playerContainer">
+      <div class="title" id="streamTitle">Zee Classic Stream</div>
+      <video id="video" playsinline webkit-playsinline controlslist="nodownload" preload="metadata"></video>
+
+      <div class="controls" id="controls">
+        <button class="btn play-btn" id="playPause" aria-label="Play/Pause">►</button>
+
+        <div class="seek">
+          <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1" />
         </div>
 
-        <div class="channel-info">
-            <div class="channel-title">ZEE CLASSIC</div>
-            <div class="channel-subtitle">MERI AWAZ SUNO</div>
-        </div>
-        
-        <div class="custom-controls">
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            
-            <div class="control-buttons">
-                <div class="left-controls">
-                    <button class="control-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
-                    <button class="control-btn" id="rewind-btn"><i class="fas fa-backward-step"></i></button>
-                    <button class="control-btn" id="forward-btn"><i class="fas fa-forward-step"></i></button>
-                    
-                    <div class="volume-container">
-                        <button class="control-btn" id="mute-btn"><i class="fas fa-volume-high"></i></button>
-                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
-                    </div>
-                    <div class="time-display" id="time-display">00:00 / 00:00</div>
-                </div>
-                
-                <div class="right-controls">
-                    <button class="control-btn" id="fullscreen-btn"><i class="fas fa-expand"></i></button>
-                </div>
-            </div>
-        </div>
+        <div class="time" id="timeDisplay">00:00 / LIVE</div>
+
+        <button class="btn" id="muteBtn" aria-label="Mute">🔊</button>
+        <button class="btn" id="fsBtn" aria-label="Fullscreen">⤢</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        let controlsTimeout;
-        let isFullscreen = false;
-        let isControlsVisible = true;
-        
-        const video = document.getElementById('video');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const rewindBtn = document.getElementById('rewind-btn');
-        const forwardBtn = document.getElementById('forward-btn');
-        const muteBtn = document.getElementById('mute-btn');
-        const volumeSlider = document.getElementById('volume-slider');
-        const timeDisplay = document.getElementById('time-display');
-        const progressContainer = document.getElementById('progress-container');
-        const progressBar = document.getElementById('progress-bar');
-        const fullscreenBtn = document.getElementById('fullscreen-btn');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const errorMessage = document.getElementById('error-message');
-        const errorText = document.getElementById('error-text');
-        const retryBtn = document.getElementById('retry-btn');
-        const customControls = document.querySelector('.custom-controls');
-        const videoContainer = document.getElementById('video-container');
+<script>
+  // Replace this with your actual stream URL
+  const STREAM_URL = "https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8?token=JITENDRA_KUMAR";
+  const video = document.getElementById('video');
+  const playPause = document.getElementById('playPause');
+  const muteBtn = document.getElementById('muteBtn');
+  const fsBtn = document.getElementById('fsBtn');
+  const seekBar = document.getElementById('seekBar');
+  const timeDisplay = document.getElementById('timeDisplay');
+  const streamTitle = document.getElementById('streamTitle');
 
-        // Initialize player
-        function initPlayer() {
-            console.log('Initializing Zee Classic Player...');
-            
-            // Show loading spinner
-            loadingSpinner.style.display = 'block';
-            
-            // Set up event listeners
-            setupEventListeners();
-            
-            // Try to auto-play
-            video.play().then(() => {
-                console.log('Auto-play successful');
-                loadingSpinner.style.display = 'none';
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            }).catch(error => {
-                console.log('Auto-play prevented:', error);
-                loadingSpinner.style.display = 'none';
-                // User needs to interact to play
-            });
+  streamTitle.textContent = "Zee Classic (Live)";
+
+  // Attach HLS if needed
+  function attachStream(url){
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // native HLS (Safari, iOS)
+      video.src = url;
+      video.addEventListener('loadedmetadata', ()=> video.play().catch(()=>{}));
+    } else if (window.Hls && Hls.isSupported()) {
+      const hls = new Hls({
+        // optional config
+        maxBufferLength: 30,
+        enableWorker: true
+      });
+      hls.loadSource(url);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        video.play().catch(()=>{});
+      });
+      // handle errors
+      hls.on(Hls.Events.ERROR, function(event, data) {
+        console.warn('hls.js error', data);
+        if (data.fatal) {
+          switch(data.type) {
+            case Hls.ErrorTypes.NETWORK_ERROR:
+              console.error("Network error, trying to recover...");
+              hls.startLoad();
+              break;
+            case Hls.ErrorTypes.MEDIA_ERROR:
+              console.error("Media error, trying to recover...");
+              hls.recoverMediaError();
+              break;
+            default:
+              console.error("Fatal error, destroying hls instance");
+              hls.destroy();
+              break;
+          }
         }
+      });
+    } else {
+      // no HLS support
+      timeDisplay.textContent = "এই ব্রাউজারে স্ট্রীমটি প্লে করা যাবে না";
+    }
+  }
 
-        function setupEventListeners() {
-            // Play/Pause
-            playPauseBtn.addEventListener('click', togglePlayPause);
-            
-            // Rewind 10 seconds
-            rewindBtn.addEventListener('click', () => {
-                video.currentTime = Math.max(0, video.currentTime - 10);
-            });
-            
-            // Forward 10 seconds
-            forwardBtn.addEventListener('click', () => {
-                video.currentTime = Math.min(video.duration, video.currentTime + 10);
-            });
-            
-            // Mute/Unmute
-            muteBtn.addEventListener('click', toggleMute);
-            
-            // Volume control
-            volumeSlider.addEventListener('input', () => {
-                video.volume = volumeSlider.value;
-                updateMuteButton();
-            });
-            
-            // Progress bar seeking
-            progressContainer.addEventListener('click', (e) => {
-                const rect = progressContainer.getBoundingClientRect();
-                const percent = (e.clientX - rect.left) / rect.width;
-                video.currentTime = percent * video.duration;
-            });
-            
-            // Fullscreen
-            fullscreenBtn.addEventListener('click', toggleFullscreen);
-            
-            // Retry button
-            retryBtn.addEventListener('click', () => {
-                errorMessage.style.display = 'none';
-                video.load();
-                video.play().catch(console.error);
-            });
-            
-            // Video events
-            video.addEventListener('loadeddata', () => {
-                console.log('Video data loaded');
-                loadingSpinner.style.display = 'none';
-            });
-            
-            video.addEventListener('canplay', () => {
-                console.log('Video can play');
-                loadingSpinner.style.display = 'none';
-            });
-            
-            video.addEventListener('waiting', () => {
-                loadingSpinner.style.display = 'block';
-            });
-            
-            video.addEventListener('playing', () => {
-                loadingSpinner.style.display = 'none';
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            });
-            
-            video.addEventListener('pause', () => {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            });
-            
-            video.addEventListener('timeupdate', updateProgress);
-            
-            video.addEventListener('error', (e) => {
-                console.error('Video error:', e);
-                loadingSpinner.style.display = 'none';
-                errorText.textContent = 'Stream loading error. Please try again.';
-                errorMessage.style.display = 'block';
-            });
-            
-            // Controls visibility
-            videoContainer.addEventListener('mousemove', showControls);
-            videoContainer.addEventListener('click', toggleControls);
-            
-            // Keyboard shortcuts
-            document.addEventListener('keydown', handleKeyboard);
-        }
+  attachStream(STREAM_URL);
 
-        function togglePlayPause() {
-            if (video.paused) {
-                video.play().then(() => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                }).catch(error => {
-                    console.error('Play failed:', error);
-                });
-            } else {
-                video.pause();
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        }
+  // Controls behavior
+  playPause.addEventListener('click', () => {
+    if (video.paused) {
+      video.play().catch(()=>{});
+    } else {
+      video.pause();
+    }
+  });
 
-        function toggleMute() {
-            video.muted = !video.muted;
-            updateMuteButton();
-        }
+  video.addEventListener('play', ()=> playPause.textContent = '❚❚');
+  video.addEventListener('pause', ()=> playPause.textContent = '►');
 
-        function updateMuteButton() {
-            if (video.muted || video.volume === 0) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                muteBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-            }
-        }
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.textContent = video.muted ? '🔇' : '🔊';
+  });
 
-        function updateProgress() {
-            const currentTime = formatTime(video.currentTime);
-            const duration = formatTime(video.duration);
-            timeDisplay.textContent = `${currentTime} / ${duration}`;
-            
-            const progressPercent = (video.currentTime / video.duration) * 100;
-            progressBar.style.width = `${progressPercent}%`;
-        }
+  fsBtn.addEventListener('click', () => {
+    const container = document.getElementById('playerContainer');
+    if (!document.fullscreenElement) {
+      container.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  });
 
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                videoContainer.requestFullscreen().catch(err => {
-                    console.error('Error enabling fullscreen:', err);
-                });
-                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-                isFullscreen = true;
-            } else {
-                document.exitFullscreen();
-                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                isFullscreen = false;
-            }
-        }
+  // Seek bar for live HLS: seeking not always meaningful for live. We'll attempt to show progress for VOD; for live show "LIVE".
+  function formatTime(s){
+    if (!isFinite(s)) return "00:00";
+    const h = Math.floor(s/3600);
+    const m = Math.floor((s%3600)/60).toString().padStart(2,'0');
+    const sec = Math.floor(s%60).toString().padStart(2,'0');
+    return (h>0 ? h+':'+m+':'+sec : m+':'+sec);
+  }
 
-        function showControls() {
-            customControls.classList.remove('hidden');
-            isControlsVisible = true;
-            clearTimeout(controlsTimeout);
-            controlsTimeout = setTimeout(hideControls, 3000);
-        }
+  video.addEventListener('timeupdate', () => {
+    if (video.duration && isFinite(video.duration) && video.duration > 0 && !video.duration === Infinity) {
+      const percent = (video.currentTime / video.duration) * 100;
+      seekBar.value = percent;
+      timeDisplay.textContent = formatTime(video.currentTime) + " / " + formatTime(video.duration);
+    } else {
+      // live stream
+      timeDisplay.textContent = "LIVE";
+      seekBar.value = 0;
+    }
+  });
 
-        function hideControls() {
-            if (isFullscreen) {
-                customControls.classList.add('hidden');
-                isControlsVisible = false;
-            }
-        }
+  seekBar.addEventListener('input', (e) => {
+    if (video.duration && isFinite(video.duration) && video.duration > 0) {
+      const pct = e.target.value;
+      video.currentTime = (pct/100) * video.duration;
+    }
+  });
 
-        function toggleControls() {
-            if (isControlsVisible) {
-                hideControls();
-            } else {
-                showControls();
-            }
-        }
+  // keyboard support (remote-friendly)
+  document.addEventListener('keydown', (e) => {
+    if ([' ', 'k'].includes(e.key)) { e.preventDefault(); playPause.click(); }
+    if (e.key === 'm') muteBtn.click();
+    if (e.key === 'f') fsBtn.click();
+    if (e.key === 'ArrowRight') { video.currentTime += 10; }
+    if (e.key === 'ArrowLeft') { video.currentTime -= 10; }
+  });
 
-        function handleKeyboard(e) {
-            switch(e.key) {
-                case ' ':
-                case 'Enter':
-                    e.preventDefault();
-                    togglePlayPause();
-                    break;
-                case 'ArrowLeft':
-                    video.currentTime = Math.max(0, video.currentTime - 10);
-                    break;
-                case 'ArrowRight':
-                    video.currentTime = Math.min(video.duration, video.currentTime + 10);
-                    break;
-                case 'ArrowUp':
-                    video.volume = Math.min(1, video.volume + 0.1);
-                    volumeSlider.value = video.volume;
-                    break;
-                case 'ArrowDown':
-                    video.volume = Math.max(0, video.volume - 0.1);
-                    volumeSlider.value = video.volume;
-                    break;
-                case 'f':
-                case 'F':
-                    toggleFullscreen();
-                    break;
-                case 'm':
-                case 'M':
-                    toggleMute();
-                    break;
-            }
-            showControls();
-        }
-
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return "00:00";
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', initPlayer);
-        
-        // Also try to play when user interacts with page
-        document.addEventListener('click', () => {
-            if (video.paused) {
-                video.play().catch(console.error);
-            }
-        }, { once: true });
-    </script>
+  // Auto-play attempt: unmuted autoplay often blocked; try muted then unmute later on user gesture
+  (async ()=>{
+    try {
+      await video.play();
+    } catch(err) {
+      // try muted autoplay then wait for user to unmute
+      video.muted = true;
+      try { await video.play(); } catch(e){}
+    }
+  })();
+</script>
 </body>
 </html>
