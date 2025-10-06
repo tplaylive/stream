@@ -1,297 +1,54 @@
-<!doctype html>
-<html lang="bn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>T Play — HLS Player</title>
-
-  <!-- hls.js CDN -->
+  <meta charset="UTF-8">
+  <title>T Play Live — Zee5 Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.1/dist/hls.min.js"></script>
-
   <style>
-    :root{
-      --bg-black: rgba(0,0,0,0.55);
-      --panel-black: rgba(0,0,0,0.45);
-      --accent: #e60012; /* red accent */
-      --white: #ffffff;
+    html,body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    html,body{
-      height:100%;
-      margin:0;
-      background:#000;
-      font-family: Inter, Roboto, Arial, sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    .player-wrap{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-      padding:12px;
-      box-sizing:border-box;
-    }
-
-    /* video container */
-    .tv-player{
-      width:100%;
-      max-width:1280px;
-      aspect-ratio:16/9;
-      background:#000;
-      position:relative;
-      overflow:hidden;
-      border-radius:12px;
-      box-shadow:0 6px 28px rgba(0,0,0,0.6);
-    }
-
-    video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      background:#000;
-      display:block;
-    }
-
-    /* bottom control bar */
-    .controls {
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:10px 14px;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--panel-black) 60%);
-      box-sizing:border-box;
-      color:var(--white);
-      transform:translateY(0);
-    }
-
-    .btn {
-      background:transparent;
-      border:none;
-      color:var(--white);
-      padding:8px;
-      font-size:16px;
-      cursor:pointer;
-      border-radius:6px;
-    }
-    .btn:focus{ outline:2px solid rgba(255,255,255,0.08); }
-
-    .play-btn{
-      width:44px;height:44px;
-      display:grid;place-items:center;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.06);
-    }
-
-    .seek{
-      flex:1;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .seek input[type="range"]{
-      -webkit-appearance:none;
-      width:100%;
-      height:6px;
-      background:rgba(255,255,255,0.06);
-      border-radius:6px;
-      outline:none;
-    }
-    .seek input[type="range"]::-webkit-slider-thumb{
-      -webkit-appearance:none;
-      width:14px;height:14px;border-radius:50%;
-      background:var(--accent);
-      box-shadow:0 0 0 6px rgba(230,0,18,0.12);
-      cursor:pointer;
-    }
-
-    .time{
-      min-width:72px;
-      text-align:right;
-      font-size:13px;
-      opacity:0.9;
-    }
-
-    /* top overlay title */
-    .title {
-      position:absolute;
-      left:14px;
-      top:10px;
-      color:var(--white);
-      background:var(--bg-black);
-      padding:6px 10px;
-      border-radius:8px;
-      font-weight:600;
-      font-size:14px;
-      max-width:70%;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    /* responsive */
-    @media (max-width:600px){
-      .controls{ padding:8px; gap:8px }
-      .time{ display:none }
-      .play-btn{ width:40px;height:40px }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
     }
   </style>
 </head>
 <body>
-  <div class="player-wrap">
-    <div class="tv-player" id="playerContainer">
-      <div class="title" id="streamTitle">Zee Classic Stream</div>
-      <video id="video" playsinline webkit-playsinline controlslist="nodownload" preload="metadata"></video>
+  <video id="video" controls autoplay playsinline></video>
 
-      <div class="controls" id="controls">
-        <button class="btn play-btn" id="playPause" aria-label="Play/Pause">►</button>
+  <script>
+    const proxy = "https://mini.allinonereborn.online/ze/live.php";
+    const stream = "https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8";
+    const video = document.getElementById("video");
 
-        <div class="seek">
-          <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1" />
-        </div>
+    const finalURL = proxy + "?url=" + encodeURIComponent(stream);
 
-        <div class="time" id="timeDisplay">00:00 / LIVE</div>
-
-        <button class="btn" id="muteBtn" aria-label="Mute">🔊</button>
-        <button class="btn" id="fsBtn" aria-label="Fullscreen">⤢</button>
-      </div>
-    </div>
-  </div>
-
-<script>
-  // Replace this with your actual stream URL
-  const STREAM_URL = "https://z5ak-cmaflive.zee5.com/cmaf/live/2105547/ZeeClassicELE/master.m3u8?token=JITENDRA_KUMAR";
-  const video = document.getElementById('video');
-  const playPause = document.getElementById('playPause');
-  const muteBtn = document.getElementById('muteBtn');
-  const fsBtn = document.getElementById('fsBtn');
-  const seekBar = document.getElementById('seekBar');
-  const timeDisplay = document.getElementById('timeDisplay');
-  const streamTitle = document.getElementById('streamTitle');
-
-  streamTitle.textContent = "Zee Classic (Live)";
-
-  // Attach HLS if needed
-  function attachStream(url){
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // native HLS (Safari, iOS)
-      video.src = url;
-      video.addEventListener('loadedmetadata', ()=> video.play().catch(()=>{}));
-    } else if (window.Hls && Hls.isSupported()) {
-      const hls = new Hls({
-        // optional config
-        maxBufferLength: 30,
-        enableWorker: true
-      });
-      hls.loadSource(url);
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(finalURL);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, function() {
-        video.play().catch(()=>{});
+        video.play();
       });
-      // handle errors
-      hls.on(Hls.Events.ERROR, function(event, data) {
-        console.warn('hls.js error', data);
-        if (data.fatal) {
-          switch(data.type) {
-            case Hls.ErrorTypes.NETWORK_ERROR:
-              console.error("Network error, trying to recover...");
-              hls.startLoad();
-              break;
-            case Hls.ErrorTypes.MEDIA_ERROR:
-              console.error("Media error, trying to recover...");
-              hls.recoverMediaError();
-              break;
-            default:
-              console.error("Fatal error, destroying hls instance");
-              hls.destroy();
-              break;
-          }
-        }
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = finalURL;
+      video.addEventListener("loadedmetadata", function() {
+        video.play();
       });
     } else {
-      // no HLS support
-      timeDisplay.textContent = "এই ব্রাউজারে স্ট্রীমটি প্লে করা যাবে না";
+      alert("Your device does not support HLS playback.");
     }
-  }
-
-  attachStream(STREAM_URL);
-
-  // Controls behavior
-  playPause.addEventListener('click', () => {
-    if (video.paused) {
-      video.play().catch(()=>{});
-    } else {
-      video.pause();
-    }
-  });
-
-  video.addEventListener('play', ()=> playPause.textContent = '❚❚');
-  video.addEventListener('pause', ()=> playPause.textContent = '►');
-
-  muteBtn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? '🔇' : '🔊';
-  });
-
-  fsBtn.addEventListener('click', () => {
-    const container = document.getElementById('playerContainer');
-    if (!document.fullscreenElement) {
-      container.requestFullscreen?.();
-    } else {
-      document.exitFullscreen?.();
-    }
-  });
-
-  // Seek bar for live HLS: seeking not always meaningful for live. We'll attempt to show progress for VOD; for live show "LIVE".
-  function formatTime(s){
-    if (!isFinite(s)) return "00:00";
-    const h = Math.floor(s/3600);
-    const m = Math.floor((s%3600)/60).toString().padStart(2,'0');
-    const sec = Math.floor(s%60).toString().padStart(2,'0');
-    return (h>0 ? h+':'+m+':'+sec : m+':'+sec);
-  }
-
-  video.addEventListener('timeupdate', () => {
-    if (video.duration && isFinite(video.duration) && video.duration > 0 && !video.duration === Infinity) {
-      const percent = (video.currentTime / video.duration) * 100;
-      seekBar.value = percent;
-      timeDisplay.textContent = formatTime(video.currentTime) + " / " + formatTime(video.duration);
-    } else {
-      // live stream
-      timeDisplay.textContent = "LIVE";
-      seekBar.value = 0;
-    }
-  });
-
-  seekBar.addEventListener('input', (e) => {
-    if (video.duration && isFinite(video.duration) && video.duration > 0) {
-      const pct = e.target.value;
-      video.currentTime = (pct/100) * video.duration;
-    }
-  });
-
-  // keyboard support (remote-friendly)
-  document.addEventListener('keydown', (e) => {
-    if ([' ', 'k'].includes(e.key)) { e.preventDefault(); playPause.click(); }
-    if (e.key === 'm') muteBtn.click();
-    if (e.key === 'f') fsBtn.click();
-    if (e.key === 'ArrowRight') { video.currentTime += 10; }
-    if (e.key === 'ArrowLeft') { video.currentTime -= 10; }
-  });
-
-  // Auto-play attempt: unmuted autoplay often blocked; try muted then unmute later on user gesture
-  (async ()=>{
-    try {
-      await video.play();
-    } catch(err) {
-      // try muted autoplay then wait for user to unmute
-      video.muted = true;
-      try { await video.play(); } catch(e){}
-    }
-  })();
-</script>
+  </script>
 </body>
 </html>
