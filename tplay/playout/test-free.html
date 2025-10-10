@@ -27,22 +27,20 @@
             height: 100vh;
             position: relative;
             background: #000;
-            cursor: none; /* Hide cursor in fullscreen when controls are hidden */
+            cursor: none;
         }
         
         #video {
             width: 100%;
             height: 100%;
             object-fit: fill;
-            display: none; /* Hide video initially */
+            display: none;
         }
         
-        /* Show video when it starts playing */
         #video.playing {
             display: block;
         }
         
-        /* Source selector */
         .source-selector {
             position: absolute;
             top: 15px;
@@ -82,7 +80,6 @@
             font-weight: 500;
         }
         
-        /* Custom Controls */
         .custom-controls {
             position: absolute;
             bottom: 0;
@@ -275,7 +272,6 @@
             display: none;
         }
         
-        /* Zoom menu */
         .zoom-menu {
             position: absolute;
             bottom: 60px;
@@ -297,7 +293,6 @@
             display: flex;
         }
         
-        /* Resolution menu */
         .resolution-menu {
             position: absolute;
             bottom: 60px;
@@ -324,7 +319,6 @@
                 display: flex;
             }
             
-            /* Responsive adjustments for larger screens */
             .custom-controls {
                 padding: 20px 30px;
             }
@@ -335,7 +329,6 @@
         }
         
         @media (max-width: 600px) {
-            /* Mobile optimizations */
             .custom-controls {
                 padding: 10px 15px;
             }
@@ -393,7 +386,6 @@
             }
         }
         
-        /* Loading spinner */
         .loading-spinner {
             display: none;
             position: absolute;
@@ -413,7 +405,6 @@
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
-        /* Error message */
         .error-message {
             display: none;
             position: absolute;
@@ -443,25 +434,20 @@
     <div id="video-container">
         <video id="video"></video>
         
-        <!-- Loading spinner -->
         <div class="loading-spinner" id="loading-spinner"></div>
         
-        <!-- Error message -->
         <div class="error-message" id="error-message">
             <p id="error-text">Failed to load stream</p>
             <button id="retry-btn">Retry</button>
         </div>
         
-        <!-- Source selector -->
         <div class="source-selector">
             <span>Source:</span>
             <select id="source-select">
-                <option value="default">XFireFlix Stream</option>
-                <option value="backup">Backup Server</option>
+                <option value="newSource">Your MPD Stream</option>
             </select>
         </div>
         
-        <!-- Custom Controls -->
         <div class="custom-controls">
             <div class="progress-container" id="progress-container">
                 <div class="progress-bar" id="progress-bar">
@@ -480,6 +466,8 @@
                         <button class="control-btn" id="mute-btn"><i class="fas fa-volume-high"></i></button>
                         <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
                     </div>
+                    
+                    <div class="time-display" id="time-display">00:00 / 00:00</div>
                 </div>
                 
                 <div class="right-controls">
@@ -493,7 +481,6 @@
             </div>
         </div>
         
-        <!-- Settings Menu -->
         <div class="settings-menu" id="settings-menu">
             <div class="settings-item" data-speed="0.5"><i class="fas fa-tachometer-alt"></i>0.5x Speed</div>
             <div class="settings-item active" data-speed="1"><i class="fas fa-tachometer-alt"></i>Normal Speed</div>
@@ -502,17 +489,14 @@
             <div class="settings-item" data-speed="2"><i class="fas fa-tachometer-alt"></i>2x Speed</div>
         </div>
         
-        <!-- Zoom Menu -->
         <div class="zoom-menu" id="zoom-menu">
             <div class="settings-item active" data-zoom="fill"><i class="fas fa-arrows-alt-h"></i>Fill</div>
             <div class="settings-item" data-zoom="cover"><i class="fas fa-arrows-alt-v"></i>Cover</div>
             <div class="settings-item" data-zoom="contain"><i class="fas fa-arrows-alt"></i>Contain</div>
         </div>
         
-        <!-- Resolution Menu -->
         <div class="resolution-menu" id="resolution-menu">
             <div class="settings-item" data-resolution="auto"><i class="fas fa-bolt"></i>Auto</div>
-            <!-- Will be populated dynamically -->
         </div>
     </div>
 
@@ -521,25 +505,16 @@
         let controlsTimeout;
         let isFullscreen = false;
         let isControlsVisible = true;
-        const HIDE_DELAY = 3000; // 3 seconds delay before hiding controls
-        const HIDE_DELAY_NON_FULLSCREEN = 5000; // 5 seconds for non-fullscreen
+        const HIDE_DELAY = 3000;
+        const HIDE_DELAY_NON_FULLSCREEN = 5000;
         
-        // Define all stream sources with comments
         const streamSources = {
-            // XFireFlix stream
-            default: {
-                url: 'https://tvsen5.aynascope.net/c9EpzZ6fQBJ3/index.m3u8?e=1760076625&u=7a511720-17fc-44bc-a9a7-9222de71898c&token=54db2f049266e382dbd34e69eeb5df26',
-                comment: 'XFireFlix - Live Stream',
-                drm: null
-            },
-            
-            // Backup server
-            backup: {
-                url: 'https://linearjitp-playback.astro.com.my/dash-wv/linear/408/default_ott.mpd',
-                comment: 'Backup Server',
+            newSource: {
+                url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.mpd",
+                comment: "Your MPD Stream",
                 drm: {
-                    clearkey: {
-                        '1a655189ab5c49eb235308c2b1a9e710': '3c4508af348844107f5e026a4fd6b16e'
+                    widevine: {
+                        licenseServerUrl: "https://akashgo.yflix.top/license?id=3c65b579-5825"
                     }
                 }
             }
@@ -547,24 +522,28 @@
         
         async function initPlayer() {
             const video = document.getElementById('video');
+            
+            if (!shaka.Player.isBrowserSupported()) {
+                console.error('Browser not supported!');
+                document.getElementById('error-text').textContent = 'Browser not supported for video playback';
+                document.getElementById('error-message').style.display = 'block';
+                return;
+            }
+            
             player = new shaka.Player(video);
             
-            // Listen for error events
             player.addEventListener('error', onPlayerErrorEvent);
             
-            // Set up source selector
             const sourceSelect = document.getElementById('source-select');
             sourceSelect.addEventListener('change', () => {
                 loadSelectedSource();
             });
             
-            // Set up retry button
             document.getElementById('retry-btn').addEventListener('click', () => {
                 document.getElementById('error-message').style.display = 'none';
                 loadSelectedSource();
             });
             
-            // Load the default source initially
             await loadSelectedSource();
         }
         
@@ -575,40 +554,38 @@
             console.log('Loading source:', sourceKey);
             console.log('Comment:', source.comment);
             
-            // Hide video and show loading spinner
             const video = document.getElementById('video');
             video.classList.remove('playing');
             document.getElementById('loading-spinner').style.display = 'block';
             
             try {
-                // Clear any previous configuration
                 player.configure({
                     drm: {
-                        clearKeys: {}
+                        clearKeys: {},
+                        servers: {}
                     }
                 });
                 
-                // Configure DRM if needed
                 if (source.drm) {
-                    player.configure({
-                        drm: {
-                            clearKeys: source.drm.clearkey
-                        }
-                    });
-                    console.log('DRM configured for this source');
+                    if (source.drm.widevine) {
+                        player.configure({
+                            drm: {
+                                servers: {
+                                    'com.widevine.alpha': source.drm.widevine.licenseServerUrl
+                                }
+                            }
+                        });
+                        console.log('Widevine DRM configured');
+                    }
                 }
                 
-                // Try to load the stream
                 await player.load(source.url);
                 console.log('Stream loaded successfully!');
                 
-                // Hide loading spinner
                 document.getElementById('loading-spinner').style.display = 'none';
                 
-                // Auto-play the video
                 video.play();
                 
-                // Update resolution menu
                 updateResolutionMenu();
                 
             } catch (error) {
@@ -637,10 +614,8 @@
             sourceSelector.classList.remove('hidden');
             isControlsVisible = true;
             
-            // Show cursor when controls are visible
             document.getElementById('video-container').style.cursor = 'auto';
             
-            // Set timeout to hide controls again
             resetControlsTimer();
         }
         
@@ -654,7 +629,6 @@
             sourceSelector.classList.add('hidden');
             isControlsVisible = false;
             
-            // Hide cursor when controls are hidden in fullscreen
             if (isFullscreen) {
                 document.getElementById('video-container').style.cursor = 'none';
             }
@@ -676,14 +650,12 @@
         
         function updateResolutionMenu() {
             const resolutionMenu = document.getElementById('resolution-menu');
-            // Clear existing items except the Auto option
             while (resolutionMenu.children.length > 1) {
                 resolutionMenu.removeChild(resolutionMenu.lastChild);
             }
             
             const tracks = player.getVariantTracks();
             
-            // Filter unique resolutions
             const uniqueResolutions = {};
             tracks.forEach(track => {
                 if (track.height) {
@@ -691,10 +663,8 @@
                 }
             });
             
-            // Sort resolutions from highest to lowest
             const sortedResolutions = Object.keys(uniqueResolutions).sort((a, b) => b - a);
             
-            // Add resolution options
             sortedResolutions.forEach(height => {
                 const item = document.createElement('div');
                 item.className = 'settings-item';
@@ -703,14 +673,12 @@
                 resolutionMenu.appendChild(item);
             });
             
-            // Add event listeners to resolution items
             const resolutionItems = resolutionMenu.querySelectorAll('.settings-item');
             resolutionItems.forEach(item => {
                 item.addEventListener('click', () => {
                     const resolution = item.getAttribute('data-resolution');
                     changeResolution(resolution);
                     
-                    // Update active state
                     resolutionItems.forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                     
@@ -729,8 +697,6 @@
             player.configure({ abr: { enabled: false } });
             
             const tracks = player.getVariantTracks();
-            
-            // Find the track with the matching resolution
             const selectedTrack = tracks.find(track => track.height === parseInt(resolution));
             
             if (selectedTrack) {
@@ -739,7 +705,6 @@
         }
         
         function initCustomControls(player, video) {
-            // Get all control elements
             const playPauseBtn = document.getElementById('play-pause-btn');
             const stopBtn = document.getElementById('stop-btn');
             const rewindBtn = document.getElementById('rewind-btn');
@@ -760,24 +725,20 @@
             const resolutionMenu = document.getElementById('resolution-menu');
             const videoContainer = document.getElementById('video-container');
             
-            // Show controls when mouse moves
             videoContainer.addEventListener('mousemove', () => {
                 showControls();
             });
             
-            // Toggle controls on click when not in fullscreen
             videoContainer.addEventListener('click', (e) => {
                 if (!isFullscreen && e.target === videoContainer || e.target === video) {
                     toggleControls();
                 }
             });
             
-            // Also show controls when touching the video on mobile
             videoContainer.addEventListener('touchstart', () => {
                 showControls();
             });
             
-            // Play/Pause functionality
             playPauseBtn.addEventListener('click', () => {
                 if (video.paused) {
                     video.play();
@@ -789,7 +750,6 @@
                 resetControlsTimer();
             });
             
-            // Stop functionality
             stopBtn.addEventListener('click', () => {
                 video.pause();
                 video.currentTime = 0;
@@ -797,26 +757,22 @@
                 resetControlsTimer();
             });
             
-            // Rewind functionality (10 seconds)
             rewindBtn.addEventListener('click', () => {
                 video.currentTime = Math.max(0, video.currentTime - 10);
                 resetControlsTimer();
             });
             
-            // Forward functionality (10 seconds)
             forwardBtn.addEventListener('click', () => {
                 video.currentTime = Math.min(video.duration, video.currentTime + 10);
                 resetControlsTimer();
             });
             
-            // Mute functionality
             muteBtn.addEventListener('click', () => {
                 video.muted = !video.muted;
                 muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
                 resetControlsTimer();
             });
             
-            // Volume slider
             volumeSlider.addEventListener('input', () => {
                 video.volume = volumeSlider.value;
                 if (video.volume == 0) {
@@ -827,7 +783,6 @@
                 resetControlsTimer();
             });
             
-            // Update time display and progress bar
             video.addEventListener('timeupdate', () => {
                 const currentTime = formatTime(video.currentTime);
                 const duration = formatTime(video.duration);
@@ -837,7 +792,6 @@
                 progressBar.style.width = `${progressPercent}%`;
             });
             
-            // Seek functionality
             progressContainer.addEventListener('click', (e) => {
                 const rect = progressContainer.getBoundingClientRect();
                 const percent = (e.clientX - rect.left) / rect.width;
@@ -845,7 +799,6 @@
                 resetControlsTimer();
             });
             
-            // Fullscreen functionality
             fullscreenBtn.addEventListener('click', () => {
                 if (!document.fullscreenElement) {
                     document.documentElement.requestFullscreen().catch(err => {
@@ -853,66 +806,53 @@
                     });
                     fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
                     isFullscreen = true;
-                    // Start the timer to hide controls in fullscreen
                     resetControlsTimer();
                 } else {
                     if (document.exitFullscreen) {
                         document.exitFullscreen();
                         fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
                         isFullscreen = false;
-                        // Show controls when exiting fullscreen
                         showControls();
                     }
                 }
             });
             
-            // Listen for fullscreen changes
             document.addEventListener('fullscreenchange', () => {
                 isFullscreen = !!document.fullscreenElement;
                 if (!isFullscreen) {
-                    // Show controls when exiting fullscreen
                     showControls();
-                    // Restore cursor
                     videoContainer.style.cursor = 'auto';
                     fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
                 } else {
-                    // Start the timer to hide controls in fullscreen
                     resetControlsTimer();
                     fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
                 }
             });
             
-            // Settings menu toggle
             settingsBtn.addEventListener('click', (e) => {
                 settingsMenu.classList.toggle('active');
-                // Close other menus
                 zoomMenu.classList.remove('active');
                 resolutionMenu.classList.remove('active');
                 e.stopPropagation();
                 resetControlsTimer();
             });
             
-            // Zoom menu toggle
             zoomBtn.addEventListener('click', (e) => {
                 zoomMenu.classList.toggle('active');
-                // Close other menus
                 settingsMenu.classList.remove('active');
                 resolutionMenu.classList.remove('active');
                 e.stopPropagation();
                 resetControlsTimer();
             });
             
-            // Resolution menu toggle
             resolutionBtn.addEventListener('click', (e) => {
                 resolutionMenu.classList.toggle('active');
-                // Close other menus
                 settingsMenu.classList.remove('active');
                 zoomMenu.classList.remove('active');
                 e.stopPropagation();
                 resetControlsTimer();
             });
             
-            // PiP functionality
             pipBtn.addEventListener('click', () => {
                 if (document.pictureInPictureElement) {
                     document.exitPictureInPicture();
@@ -922,7 +862,6 @@
                 resetControlsTimer();
             });
             
-            // Close menus when clicking elsewhere
             document.addEventListener('click', (e) => {
                 if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
                     settingsMenu.classList.remove('active');
@@ -935,14 +874,12 @@
                 }
             });
             
-            // Playback speed settings
             const speedOptions = settingsMenu.querySelectorAll('.settings-item');
             speedOptions.forEach(option => {
                 option.addEventListener('click', () => {
                     const speed = parseFloat(option.getAttribute('data-speed'));
                     video.playbackRate = speed;
                     
-                    // Update active state
                     speedOptions.forEach(opt => opt.classList.remove('active'));
                     option.classList.add('active');
                     
@@ -951,14 +888,12 @@
                 });
             });
             
-            // Zoom mode settings
             const zoomOptions = zoomMenu.querySelectorAll('.settings-item');
             zoomOptions.forEach(option => {
                 option.addEventListener('click', () => {
                     const zoomMode = option.getAttribute('data-zoom');
                     video.style.objectFit = zoomMode;
                     
-                    // Update active state
                     zoomOptions.forEach(opt => opt.classList.remove('active'));
                     option.classList.add('active');
                     
@@ -967,7 +902,6 @@
                 });
             });
             
-            // Helper function to format time
             function formatTime(seconds) {
                 if (isNaN(seconds)) return "00:00";
                 const minutes = Math.floor(seconds / 60);
@@ -975,10 +909,8 @@
                 return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
             }
             
-            // Update play/pause button based on video state
             video.addEventListener('play', () => {
                 playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                // Show video when it starts playing
                 video.classList.add('playing');
             });
             
@@ -986,15 +918,12 @@
                 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             });
             
-            // Set initial volume
             video.volume = volumeSlider.value;
             
-            // Add keyboard shortcuts for TV remote compatibility
             document.addEventListener('keydown', (e) => {
                 switch(e.key) {
                     case ' ':
                     case 'Enter':
-                        // Play/Pause
                         if (video.paused) {
                             video.play();
                             playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1004,37 +933,30 @@
                         }
                         break;
                     case 'ArrowLeft':
-                        // Rewind 10 seconds
                         video.currentTime = Math.max(0, video.currentTime - 10);
                         break;
                     case 'ArrowRight':
-                        // Forward 10 seconds
                         video.currentTime = Math.min(video.duration, video.currentTime + 10);
                         break;
                     case 'ArrowUp':
-                        // Volume up
                         video.volume = Math.min(1, video.volume + 0.1);
                         volumeSlider.value = video.volume;
                         break;
                     case 'ArrowDown':
-                        // Volume down
                         video.volume = Math.max(0, video.volume - 0.1);
                         volumeSlider.value = video.volume;
                         break;
                     case 'f':
                     case 'F':
-                        // Toggle fullscreen
                         fullscreenBtn.click();
                         break;
                     case 'm':
                     case 'M':
-                        // Toggle mute
                         video.muted = !video.muted;
                         muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
                         break;
                 }
                 
-                // Show controls when a key is pressed
                 showControls();
             });
         }
@@ -1044,7 +966,6 @@
                 const video = document.getElementById('video');
                 initCustomControls(player, video);
                 
-                // Start the controls timer
                 resetControlsTimer();
             });
         });
