@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Star Plus HD - DASH Player</title>
-  <link rel="icon" href="https://jiotvimages.cdn.jio.com/dare_images/images/Star_Plus_HD.png">
   <style>
     body {
       margin: 0;
@@ -27,13 +26,25 @@
 
   <script src="https://cdn.jsdelivr.net/npm/dashjs@4.7.3/dist/dash.all.min.js"></script>
   <script>
-    const url = "https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Plus_HD_BTS/output/index.mpd?__hdnea__=st=1760143127~exp=1760229527~acl=/*~hmac=adbbda1cef3e3d58f98da940986ed3d3534194d38b02a807aa1bcbd3948c350f";
+    // Original MPD link (geo-blocked)
+    const originalUrl = "https://jiotvpllive.cdn.jio.com/bpk-tv/Star_Plus_HD_BTS/output/index.mpd?__hdnea__=st=1760143127~exp=1760229527~acl=/*~hmac=adbbda1cef3e3d58f98da940986ed3d3534194d38b02a807aa1bcbd3948c350f";
+
+    // Proxy through tundracast CORS bypass
+    const proxyUrl = "http://cors.tundracast.com:2000/" + encodeURIComponent(originalUrl);
 
     const player = dashjs.MediaPlayer().create();
-    player.initialize(document.querySelector("#video"), url, true);
+    player.initialize(document.querySelector("#video"), proxyUrl, true);
 
-    // Custom User-Agent & Cookie (for some environments)
-    player.setXHRWithCredentials(false);
+    // Clearkey DRM
+    player.setProtectionData({
+      "org.w3.clearkey": {
+        "clearkeys": {
+          "b3tyQbKTWpCdOJ_jGOW6qg": "ZXgzMTE0NDk3MzM0OGYzNTlkYzE1NGJiNDFkYg"
+        }
+      }
+    });
+
+    // Optional: extra request headers (for better compatibility)
     player.extend("RequestModifier", function() {
       return {
         modifyRequestHeader: function(xhr) {
@@ -42,24 +53,6 @@
           return xhr;
         }
       };
-    });
-
-    // 🔐 Clearkey DRM config
-    const clearkey = {
-      "keys": [{
-        "kty": "oct",
-        "k": "ZXgzMTE0NDk3MzM0OGYzNTlkYzE1NGJiNDFkYg",
-        "kid": "b3tyQbKTWpCdOJ_jGOW6qg"
-      }],
-      "type": "temporary"
-    };
-
-    player.setProtectionData({
-      "org.w3.clearkey": {
-        "clearkeys": {
-          "b3tyQbKTWpCdOJ_jGOW6qg": "ZXgzMTE0NDk3MzM0OGYzNTlkYzE1NGJiNDFkYg"
-        }
-      }
     });
   </script>
 
