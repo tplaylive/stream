@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaka Player - Modern UI with Auto-Hide Controls</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Disney Channel Player</title>
     <style>
         * {
             margin: 0;
@@ -16,959 +13,298 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: #fff;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        #video-container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            background: #000;
-            cursor: none;
-        }
-        
-        #video {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-            display: none;
-        }
-        
-        #video.playing {
-            display: block;
-        }
-        
-        .source-selector {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 12px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            opacity: 1;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .source-selector.hidden {
-            opacity: 0;
-            transform: translateY(-20px);
-            pointer-events: none;
-        }
-        
-        .source-selector select {
-            background: #333;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 15px;
-            outline: none;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        .source-selector span {
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .custom-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 15px 20px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            opacity: 1;
-            z-index: 10;
+            align-items: center;
+            padding: 20px;
         }
         
-        .custom-controls.hidden {
-            opacity: 0;
-            transform: translateY(100%);
-            pointer-events: none;
-        }
-        
-        .progress-container {
+        .container {
+            max-width: 1200px;
             width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-            transition: height 0.2s ease;
+            margin: 0 auto;
         }
         
-        .progress-container:hover {
-            height: 8px;
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .progress-bar {
-            height: 100%;
-            background: #e50914;
-            border-radius: 3px;
-            width: 0%;
-            position: relative;
-            transition: background 0.2s ease;
-        }
-        
-        .progress-container:hover .progress-bar {
-            background: #f40612;
-        }
-        
-        .progress-thumb {
-            width: 14px;
-            height: 14px;
-            background: #e50914;
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: white;
             border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translate(50%, -50%);
-            display: none;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .progress-container:hover .progress-thumb {
-            display: block;
-        }
-        
-        .control-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-        
-        .left-controls, .right-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo img {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(5px);
+            object-fit: cover;
         }
         
-        .control-btn:hover {
-            background: rgba(229, 9, 20, 0.7);
-            transform: scale(1.1);
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .volume-slider {
-            width: 80px;
-            height: 5px;
-            -webkit-appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-        
-        .volume-slider:hover {
-            height: 7px;
-        }
-        
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
-            background: #e50914;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .time-display {
-            color: white;
-            font-size: 14px;
-            margin: 0 5px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
+        .player-container {
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
-            white-space: nowrap;
-            font-variant-numeric: tabular-nums;
-            font-weight: 500;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
         }
         
-        .settings-menu {
-            position: absolute;
-            bottom: 60px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        #videoPlayer {
+            width: 100%;
+            height: 500px;
+            background: #000;
         }
         
-        .settings-menu.active {
+        .controls {
             display: flex;
-        }
-        
-        .settings-item {
-            color: white;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .settings-item:hover {
-            background: rgba(229, 9, 20, 0.3);
-        }
-        
-        .settings-item.active {
-            background: rgba(229, 9, 20, 0.5);
-        }
-        
-        .settings-item i {
-            width: 20px;
-            text-align: center;
-        }
-        
-        .pip-btn {
-            display: none;
-        }
-        
-        .zoom-menu {
-            position: absolute;
-            bottom: 60px;
-            right: 60px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .zoom-menu.active {
-            display: flex;
-        }
-        
-        .resolution-menu {
-            position: absolute;
-            bottom: 60px;
-            right: 110px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 10px;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 150px;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .resolution-menu.active {
-            display: flex;
-        }
-        
-        @media (min-width: 768px) {
-            .pip-btn {
-                display: flex;
-            }
-            
-            .custom-controls {
-                padding: 20px 30px;
-            }
-            
-            .left-controls, .right-controls {
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .custom-controls {
-                padding: 10px 15px;
-            }
-            
-            .left-controls, .right-controls {
-                gap: 8px;
-            }
-            
-            .control-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 14px;
-            }
-            
-            .volume-slider {
-                width: 60px;
-            }
-            
-            .time-display {
-                font-size: 12px;
-                padding: 3px 8px;
-            }
-            
-            .source-selector {
-                top: 10px;
-                left: 10px;
-                padding: 6px 10px;
-            }
-            
-            .source-selector span {
-                font-size: 12px;
-            }
-            
-            .source-selector select {
-                padding: 4px 8px;
-                font-size: 12px;
-            }
-            
-            .settings-menu {
-                bottom: 50px;
-                right: 10px;
-                min-width: 130px;
-            }
-            
-            .zoom-menu {
-                bottom: 50px;
-                right: 50px;
-                min-width: 130px;
-            }
-            
-            .resolution-menu {
-                bottom: 50px;
-                right: 90px;
-                min-width: 130px;
-            }
-        }
-        
-        .loading-spinner {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #e50914;
-            animation: spin 1s ease-in-out infinite;
-            z-index: 5;
-        }
-        
-        @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        .error-message {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            gap: 15px;
             padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 80%;
-            z-index: 20;
+            background: rgba(0, 0, 0, 0.5);
         }
         
-        .error-message button {
-            background: #e50914;
+        button {
+            padding: 12px 25px;
+            background: #ff4081;
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            margin-top: 10px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: #e91e63;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .status {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 64, 129, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .info h2 {
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+        
+        .info ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .info li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info li:before {
+            content: "•";
+            color: #ff4081;
+            position: absolute;
+            left: 0;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            #videoPlayer {
+                height: 300px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 80%;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="video-container">
-        <video id="video"></video>
-        
-        <div class="loading-spinner" id="loading-spinner"></div>
-        
-        <div class="error-message" id="error-message">
-            <p id="error-text">Failed to load stream</p>
-            <button id="retry-btn">Retry</button>
-        </div>
-        
-        <div class="source-selector">
-            <span>Source:</span>
-            <select id="source-select">
-                <option value="newSource">Your MPD Stream</option>
-            </select>
-        </div>
-        
-        <div class="custom-controls">
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar">
-                    <div class="progress-thumb"></div>
-                </div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://jiotvimages.cdn.jio.com/dare_images/images/Disney_Channel.png" alt="Disney Channel Logo">
             </div>
-            
-            <div class="control-buttons">
-                <div class="left-controls">
-                    <button class="control-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
-                    <button class="control-btn" id="stop-btn"><i class="fas fa-stop"></i></button>
-                    <button class="control-btn" id="rewind-btn"><i class="fas fa-backward-step"></i></button>
-                    <button class="control-btn" id="forward-btn"><i class="fas fa-forward-step"></i></button>
-                    
-                    <div class="volume-container">
-                        <button class="control-btn" id="mute-btn"><i class="fas fa-volume-high"></i></button>
-                        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
-                    </div>
-                    
-                    <div class="time-display" id="time-display">00:00 / 00:00</div>
-                </div>
-                
-                <div class="right-controls">
-                    <button class="control-btn" id="zoom-btn"><i class="fas fa-expand-alt"></i></button>
-                    <button class="control-btn" id="resolution-btn"><i class="fas fa-tv"></i></button>
-                    <button class="control-btn" id="subtitle-btn"><i class="fas fa-closed-captioning"></i></button>
-                    <button class="control-btn" id="settings-btn"><i class="fas fa-gear"></i></button>
-                    <button class="control-btn pip-btn" id="pip-btn"><i class="fas fa-clone"></i></button>
-                    <button class="control-btn" id="fullscreen-btn"><i class="fas fa-expand"></i></button>
-                </div>
-            </div>
+            <h1>Disney Channel Live Stream</h1>
+            <p>Enjoy your favorite Disney shows and movies</p>
+        </header>
+        
+        <div class="player-container">
+            <video id="videoPlayer" controls>
+                Your browser does not support the video tag.
+            </video>
         </div>
         
-        <div class="settings-menu" id="settings-menu">
-            <div class="settings-item" data-speed="0.5"><i class="fas fa-tachometer-alt"></i>0.5x Speed</div>
-            <div class="settings-item active" data-speed="1"><i class="fas fa-tachometer-alt"></i>Normal Speed</div>
-            <div class="settings-item" data-speed="1.25"><i class="fas fa-tachometer-alt"></i>1.25x Speed</div>
-            <div class="settings-item" data-speed="1.5"><i class="fas fa-tachometer-alt"></i>1.5x Speed</div>
-            <div class="settings-item" data-speed="2"><i class="fas fa-tachometer-alt"></i>2x Speed</div>
+        <div class="controls">
+            <button id="playBtn">Play Stream</button>
+            <button id="fullscreenBtn">Fullscreen</button>
+            <button id="reloadBtn">Reload Player</button>
         </div>
         
-        <div class="zoom-menu" id="zoom-menu">
-            <div class="settings-item active" data-zoom="fill"><i class="fas fa-arrows-alt-h"></i>Fill</div>
-            <div class="settings-item" data-zoom="cover"><i class="fas fa-arrows-alt-v"></i>Cover</div>
-            <div class="settings-item" data-zoom="contain"><i class="fas fa-arrows-alt"></i>Contain</div>
+        <div class="status" id="status">
+            Click "Play Stream" to start watching Disney Channel
         </div>
         
-        <div class="resolution-menu" id="resolution-menu">
-            <div class="settings-item" data-resolution="auto"><i class="fas fa-bolt"></i>Auto</div>
+        <div class="info">
+            <h2>Stream Information</h2>
+            <ul>
+                <li><strong>Channel:</strong> Disney Channel</li>
+                <li><strong>Group:</strong> Jiostar</li>
+                <li><strong>Quality:</strong> Adaptive Bitrate</li>
+                <li><strong>Format:</strong> MPEG-DASH</li>
+                <li><strong>DRM:</strong> ClearKey</li>
+            </ul>
         </div>
+        
+        <footer>
+            <p>This player is for educational purposes. Please ensure you have the necessary rights to access the content.</p>
+        </footer>
     </div>
 
     <script>
-        let player;
-        let controlsTimeout;
-        let isFullscreen = false;
-        let isControlsVisible = true;
-        const HIDE_DELAY = 3000;
-        const HIDE_DELAY_NON_FULLSCREEN = 5000;
-        
-        const streamSources = {
-            newSource: {
-                url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.mpd",
-                comment: "Your MPD Stream",
-                drm: {
-                    widevine: {
-                        licenseServerUrl: "https://akashgo.yflix.top/license?id=3c65b579-5825"
-                    }
-                }
-            }
-        };
-        
-        async function initPlayer() {
-            const video = document.getElementById('video');
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const playBtn = document.getElementById('playBtn');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const reloadBtn = document.getElementById('reloadBtn');
+            const status = document.getElementById('status');
             
-            if (!shaka.Player.isBrowserSupported()) {
-                console.error('Browser not supported!');
-                document.getElementById('error-text').textContent = 'Browser not supported for video playback';
-                document.getElementById('error-message').style.display = 'block';
-                return;
-            }
+            // Stream URL from your M3U8 data
+            const streamUrl = "https://jiotvpllive.cdn.jio.com/bpk-tv/Disney_Channel_BTS/output/index.mpd?__hdnea__=st=1760143127~exp=1760229527~acl=/*~hmac=adbbda1cef3e3d58f98da940986ed3d3534194d38b02a807aa1bcbd3948c350f&xxx=%7Ccookie=__hdnea__=st=1760143127~exp=1760229527~acl=/*~hmac=adbbda1cef3e3d58f98da940986ed3d3534194d38b02a807aa1bcbd3948c350f";
             
-            player = new shaka.Player(video);
-            
-            player.addEventListener('error', onPlayerErrorEvent);
-            
-            const sourceSelect = document.getElementById('source-select');
-            sourceSelect.addEventListener('change', () => {
-                loadSelectedSource();
-            });
-            
-            document.getElementById('retry-btn').addEventListener('click', () => {
-                document.getElementById('error-message').style.display = 'none';
-                loadSelectedSource();
-            });
-            
-            await loadSelectedSource();
-        }
-        
-        async function loadSelectedSource() {
-            const sourceKey = document.getElementById('source-select').value;
-            const source = streamSources[sourceKey];
-            
-            console.log('Loading source:', sourceKey);
-            console.log('Comment:', source.comment);
-            
-            const video = document.getElementById('video');
-            video.classList.remove('playing');
-            document.getElementById('loading-spinner').style.display = 'block';
-            
-            try {
-                player.configure({
-                    drm: {
-                        clearKeys: {},
-                        servers: {}
-                    }
+            // Check if browser supports DASH
+            if (typeof dashjs !== 'undefined') {
+                const player = dashjs.MediaPlayer().create();
+                player.initialize(videoPlayer, streamUrl, true);
+                
+                player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, function() {
+                    status.textContent = "Stream loaded successfully!";
                 });
                 
-                if (source.drm) {
-                    if (source.drm.widevine) {
-                        player.configure({
-                            drm: {
-                                servers: {
-                                    'com.widevine.alpha': source.drm.widevine.licenseServerUrl
-                                }
-                            }
-                        });
-                        console.log('Widevine DRM configured');
-                    }
-                }
-                
-                await player.load(source.url);
-                console.log('Stream loaded successfully!');
-                
-                document.getElementById('loading-spinner').style.display = 'none';
-                
-                video.play();
-                
-                updateResolutionMenu();
-                
-            } catch (error) {
-                console.error('Error loading stream:', error);
-                document.getElementById('loading-spinner').style.display = 'none';
-                document.getElementById('error-text').textContent = 'Failed to load stream: ' + error.message;
-                document.getElementById('error-message').style.display = 'block';
-            }
-        }
-        
-        function onPlayerErrorEvent(event) {
-            onPlayerError(event.detail);
-        }
-        
-        function onPlayerError(error) {
-            console.error('Error code', error.code, 'object', error);
-            document.getElementById('error-text').textContent = 'Player error: ' + error.code;
-            document.getElementById('error-message').style.display = 'block';
-        }
-        
-        function showControls() {
-            const controls = document.querySelector('.custom-controls');
-            const sourceSelector = document.querySelector('.source-selector');
-            
-            controls.classList.remove('hidden');
-            sourceSelector.classList.remove('hidden');
-            isControlsVisible = true;
-            
-            document.getElementById('video-container').style.cursor = 'auto';
-            
-            resetControlsTimer();
-        }
-        
-        function hideControls() {
-            if (!isFullscreen && !isControlsVisible) return;
-            
-            const controls = document.querySelector('.custom-controls');
-            const sourceSelector = document.querySelector('.source-selector');
-            
-            controls.classList.add('hidden');
-            sourceSelector.classList.add('hidden');
-            isControlsVisible = false;
-            
-            if (isFullscreen) {
-                document.getElementById('video-container').style.cursor = 'none';
-            }
-        }
-        
-        function toggleControls() {
-            if (isControlsVisible) {
-                hideControls();
+                player.on(dashjs.MediaPlayer.events.ERROR, function(e) {
+                    status.textContent = "Error loading stream: " + (e.error || "Unknown error");
+                    console.error("DASH.js error:", e);
+                });
             } else {
-                showControls();
-            }
-        }
-        
-        function resetControlsTimer() {
-            clearTimeout(controlsTimeout);
-            const delay = isFullscreen ? HIDE_DELAY : HIDE_DELAY_NON_FULLSCREEN;
-            controlsTimeout = setTimeout(hideControls, delay);
-        }
-        
-        function updateResolutionMenu() {
-            const resolutionMenu = document.getElementById('resolution-menu');
-            while (resolutionMenu.children.length > 1) {
-                resolutionMenu.removeChild(resolutionMenu.lastChild);
+                // Fallback to native video player
+                videoPlayer.src = streamUrl;
             }
             
-            const tracks = player.getVariantTracks();
-            
-            const uniqueResolutions = {};
-            tracks.forEach(track => {
-                if (track.height) {
-                    uniqueResolutions[track.height] = track;
-                }
-            });
-            
-            const sortedResolutions = Object.keys(uniqueResolutions).sort((a, b) => b - a);
-            
-            sortedResolutions.forEach(height => {
-                const item = document.createElement('div');
-                item.className = 'settings-item';
-                item.setAttribute('data-resolution', height);
-                item.innerHTML = `<i class="fas fa-tv"></i>${height}p`;
-                resolutionMenu.appendChild(item);
-            });
-            
-            const resolutionItems = resolutionMenu.querySelectorAll('.settings-item');
-            resolutionItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const resolution = item.getAttribute('data-resolution');
-                    changeResolution(resolution);
-                    
-                    resolutionItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                    
-                    resolutionMenu.classList.remove('active');
-                    resetControlsTimer();
-                });
-            });
-        }
-        
-        function changeResolution(resolution) {
-            if (resolution === 'auto') {
-                player.configure({ abr: { enabled: true } });
-                return;
-            }
-            
-            player.configure({ abr: { enabled: false } });
-            
-            const tracks = player.getVariantTracks();
-            const selectedTrack = tracks.find(track => track.height === parseInt(resolution));
-            
-            if (selectedTrack) {
-                player.selectVariantTrack(selectedTrack, true);
-            }
-        }
-        
-        function initCustomControls(player, video) {
-            const playPauseBtn = document.getElementById('play-pause-btn');
-            const stopBtn = document.getElementById('stop-btn');
-            const rewindBtn = document.getElementById('rewind-btn');
-            const forwardBtn = document.getElementById('forward-btn');
-            const muteBtn = document.getElementById('mute-btn');
-            const volumeSlider = document.getElementById('volume-slider');
-            const timeDisplay = document.getElementById('time-display');
-            const progressContainer = document.getElementById('progress-container');
-            const progressBar = document.getElementById('progress-bar');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const subtitleBtn = document.getElementById('subtitle-btn');
-            const settingsBtn = document.getElementById('settings-btn');
-            const pipBtn = document.getElementById('pip-btn');
-            const zoomBtn = document.getElementById('zoom-btn');
-            const resolutionBtn = document.getElementById('resolution-btn');
-            const settingsMenu = document.getElementById('settings-menu');
-            const zoomMenu = document.getElementById('zoom-menu');
-            const resolutionMenu = document.getElementById('resolution-menu');
-            const videoContainer = document.getElementById('video-container');
-            
-            videoContainer.addEventListener('mousemove', () => {
-                showControls();
-            });
-            
-            videoContainer.addEventListener('click', (e) => {
-                if (!isFullscreen && e.target === videoContainer || e.target === video) {
-                    toggleControls();
-                }
-            });
-            
-            videoContainer.addEventListener('touchstart', () => {
-                showControls();
-            });
-            
-            playPauseBtn.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    video.pause();
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                }
-                resetControlsTimer();
-            });
-            
-            stopBtn.addEventListener('click', () => {
-                video.pause();
-                video.currentTime = 0;
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                resetControlsTimer();
-            });
-            
-            rewindBtn.addEventListener('click', () => {
-                video.currentTime = Math.max(0, video.currentTime - 10);
-                resetControlsTimer();
-            });
-            
-            forwardBtn.addEventListener('click', () => {
-                video.currentTime = Math.min(video.duration, video.currentTime + 10);
-                resetControlsTimer();
-            });
-            
-            muteBtn.addEventListener('click', () => {
-                video.muted = !video.muted;
-                muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
-                resetControlsTimer();
-            });
-            
-            volumeSlider.addEventListener('input', () => {
-                video.volume = volumeSlider.value;
-                if (video.volume == 0) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
-                }
-                resetControlsTimer();
-            });
-            
-            video.addEventListener('timeupdate', () => {
-                const currentTime = formatTime(video.currentTime);
-                const duration = formatTime(video.duration);
-                timeDisplay.textContent = `${currentTime} / ${duration}`;
+            // Play button functionality
+            playBtn.addEventListener('click', function() {
+                status.textContent = "Loading Disney Channel stream...";
                 
-                const progressPercent = (video.currentTime / video.duration) * 100;
-                progressBar.style.width = `${progressPercent}%`;
-            });
-            
-            progressContainer.addEventListener('click', (e) => {
-                const rect = progressContainer.getBoundingClientRect();
-                const percent = (e.clientX - rect.left) / rect.width;
-                video.currentTime = percent * video.duration;
-                resetControlsTimer();
-            });
-            
-            fullscreenBtn.addEventListener('click', () => {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => {
-                        console.error('Error attempting to enable fullscreen:', err);
+                if (videoPlayer.paused) {
+                    videoPlayer.play().then(() => {
+                        status.textContent = "Playing Disney Channel";
+                    }).catch(error => {
+                        status.textContent = "Error playing stream: " + error.message;
+                        console.error("Play error:", error);
                     });
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-                    isFullscreen = true;
-                    resetControlsTimer();
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                        isFullscreen = false;
-                        showControls();
-                    }
                 }
             });
             
-            document.addEventListener('fullscreenchange', () => {
-                isFullscreen = !!document.fullscreenElement;
-                if (!isFullscreen) {
-                    showControls();
-                    videoContainer.style.cursor = 'auto';
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                } else {
-                    resetControlsTimer();
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+            // Fullscreen button functionality
+            fullscreenBtn.addEventListener('click', function() {
+                if (videoPlayer.requestFullscreen) {
+                    videoPlayer.requestFullscreen();
+                } else if (videoPlayer.mozRequestFullScreen) {
+                    videoPlayer.mozRequestFullScreen();
+                } else if (videoPlayer.webkitRequestFullscreen) {
+                    videoPlayer.webkitRequestFullscreen();
+                } else if (videoPlayer.msRequestFullscreen) {
+                    videoPlayer.msRequestFullscreen();
                 }
             });
             
-            settingsBtn.addEventListener('click', (e) => {
-                settingsMenu.classList.toggle('active');
-                zoomMenu.classList.remove('active');
-                resolutionMenu.classList.remove('active');
-                e.stopPropagation();
-                resetControlsTimer();
+            // Reload button functionality
+            reloadBtn.addEventListener('click', function() {
+                status.textContent = "Reloading player...";
+                videoPlayer.load();
+                setTimeout(() => {
+                    status.textContent = "Player reloaded. Click 'Play Stream' to start.";
+                }, 1000);
             });
             
-            zoomBtn.addEventListener('click', (e) => {
-                zoomMenu.classList.toggle('active');
-                settingsMenu.classList.remove('active');
-                resolutionMenu.classList.remove('active');
-                e.stopPropagation();
-                resetControlsTimer();
+            // Video player event listeners
+            videoPlayer.addEventListener('loadstart', function() {
+                status.textContent = "Loading stream...";
             });
             
-            resolutionBtn.addEventListener('click', (e) => {
-                resolutionMenu.classList.toggle('active');
-                settingsMenu.classList.remove('active');
-                zoomMenu.classList.remove('active');
-                e.stopPropagation();
-                resetControlsTimer();
+            videoPlayer.addEventListener('canplay', function() {
+                status.textContent = "Stream ready to play";
             });
             
-            pipBtn.addEventListener('click', () => {
-                if (document.pictureInPictureElement) {
-                    document.exitPictureInPicture();
-                } else if (document.pictureInPictureEnabled) {
-                    video.requestPictureInPicture();
-                }
-                resetControlsTimer();
+            videoPlayer.addEventListener('waiting', function() {
+                status.textContent = "Buffering...";
             });
             
-            document.addEventListener('click', (e) => {
-                if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
-                    settingsMenu.classList.remove('active');
-                }
-                if (!zoomBtn.contains(e.target) && !zoomMenu.contains(e.target)) {
-                    zoomMenu.classList.remove('active');
-                }
-                if (!resolutionBtn.contains(e.target) && !resolutionMenu.contains(e.target)) {
-                    resolutionMenu.classList.remove('active');
-                }
+            videoPlayer.addEventListener('playing', function() {
+                status.textContent = "Playing Disney Channel";
             });
             
-            const speedOptions = settingsMenu.querySelectorAll('.settings-item');
-            speedOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const speed = parseFloat(option.getAttribute('data-speed'));
-                    video.playbackRate = speed;
-                    
-                    speedOptions.forEach(opt => opt.classList.remove('active'));
-                    option.classList.add('active');
-                    
-                    settingsMenu.classList.remove('active');
-                    resetControlsTimer();
-                });
-            });
-            
-            const zoomOptions = zoomMenu.querySelectorAll('.settings-item');
-            zoomOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const zoomMode = option.getAttribute('data-zoom');
-                    video.style.objectFit = zoomMode;
-                    
-                    zoomOptions.forEach(opt => opt.classList.remove('active'));
-                    option.classList.add('active');
-                    
-                    zoomMenu.classList.remove('active');
-                    resetControlsTimer();
-                });
-            });
-            
-            function formatTime(seconds) {
-                if (isNaN(seconds)) return "00:00";
-                const minutes = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
-            
-            video.addEventListener('play', () => {
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                video.classList.add('playing');
-            });
-            
-            video.addEventListener('pause', () => {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-            });
-            
-            video.volume = volumeSlider.value;
-            
-            document.addEventListener('keydown', (e) => {
-                switch(e.key) {
-                    case ' ':
-                    case 'Enter':
-                        if (video.paused) {
-                            video.play();
-                            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                        } else {
-                            video.pause();
-                            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                        }
-                        break;
-                    case 'ArrowLeft':
-                        video.currentTime = Math.max(0, video.currentTime - 10);
-                        break;
-                    case 'ArrowRight':
-                        video.currentTime = Math.min(video.duration, video.currentTime + 10);
-                        break;
-                    case 'ArrowUp':
-                        video.volume = Math.min(1, video.volume + 0.1);
-                        volumeSlider.value = video.volume;
-                        break;
-                    case 'ArrowDown':
-                        video.volume = Math.max(0, video.volume - 0.1);
-                        volumeSlider.value = video.volume;
-                        break;
-                    case 'f':
-                    case 'F':
-                        fullscreenBtn.click();
-                        break;
-                    case 'm':
-                    case 'M':
-                        video.muted = !video.muted;
-                        muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
-                        break;
-                }
-                
-                showControls();
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initPlayer().then(() => {
-                const video = document.getElementById('video');
-                initCustomControls(player, video);
-                
-                resetControlsTimer();
+            videoPlayer.addEventListener('error', function() {
+                status.textContent = "Error: Could not load the stream";
             });
         });
     </script>
+    
+    <!-- Include DASH.js library for better MPEG-DASH support -->
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 </body>
 </html>
