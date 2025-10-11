@@ -12,299 +12,271 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a237e, #311b92);
             color: white;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 1200px;
-            width: 100%;
+            max-width: 1000px;
             margin: 0 auto;
+            text-align: center;
         }
         
-        header {
-            text-align: center;
+        .header {
             margin-bottom: 30px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 15px;
             background: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-        
-        .logo img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
+            padding: 10px;
         }
         
         h1 {
-            font-size: 2.5rem;
+            color: #ff4081;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .player-container {
+        .player-section {
             background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            margin-bottom: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
         
         #videoPlayer {
             width: 100%;
-            height: 500px;
+            max-width: 800px;
+            height: 400px;
             background: #000;
+            border-radius: 10px;
         }
         
         .controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
         }
         
         button {
             padding: 12px 25px;
+            margin: 5px;
             background: #ff4081;
             color: white;
             border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
+            border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            transition: background 0.3s;
         }
         
         button:hover {
             background: #e91e63;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        button:active {
-            transform: translateY(0);
         }
         
         .status {
-            text-align: center;
             padding: 15px;
+            margin: 15px 0;
             background: rgba(255, 64, 129, 0.2);
             border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.1rem;
+            font-size: 16px;
         }
         
-        .info {
+        .error {
+            background: rgba(244, 67, 54, 0.3);
+            color: #ffcdd2;
+        }
+        
+        .warning {
+            background: rgba(255, 152, 0, 0.3);
+            color: #ffe0b2;
+        }
+        
+        .info-box {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
+            text-align: left;
             margin-top: 20px;
         }
         
-        .info h2 {
-            margin-bottom: 15px;
-            color: #ffcc00;
-        }
-        
-        .info ul {
-            list-style-type: none;
-            padding-left: 20px;
-        }
-        
-        .info li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .info li:before {
-            content: "•";
-            color: #ff4081;
-            position: absolute;
-            left: 0;
-        }
-        
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+        .stream-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
         }
         
         @media (max-width: 768px) {
             #videoPlayer {
-                height: 300px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            button {
-                width: 80%;
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <div class="header">
             <div class="logo">
-                <img src="https://jiotvimages.cdn.jio.com/dare_images/images/Disney_Channel.png" alt="Disney Channel Logo">
+                <img src="https://jiotvimages.cdn.jio.com/dare_images/images/Disney_Channel.png" 
+                     alt="Disney Channel" width="80" height="80" style="border-radius: 50%;">
             </div>
-            <h1>Disney Channel Live Stream</h1>
-            <p>Enjoy your favorite Disney shows and movies</p>
-        </header>
-        
-        <div class="player-container">
-            <video id="videoPlayer" controls>
-                Your browser does not support the video tag.
+            <h1>Disney Channel Player</h1>
+            <p>Alternative Streaming Solution</p>
+        </div>
+
+        <div class="player-section">
+            <div class="status" id="status">
+                Ready to play - Enter stream URL below
+            </div>
+            
+            <input type="text" class="stream-input" id="streamUrl" 
+                   placeholder="Enter M3U8 or MPD stream URL here" 
+                   value="https://jiotvpllive.cdn.jio.com/bpk-tv/Disney_Channel_BTS/output/index.mpd">
+            
+            <div class="controls">
+                <button onclick="loadStream()">Load Stream</button>
+                <button onclick="playStream()">Play</button>
+                <button onclick="pauseStream()">Pause</button>
+                <button onclick="toggleFullscreen()">Fullscreen</button>
+            </div>
+            
+            <video id="videoPlayer" controls crossorigin="anonymous">
+                Your browser does not support the video element.
             </video>
         </div>
-        
-        <div class="controls">
-            <button id="playBtn">Play Stream</button>
-            <button id="fullscreenBtn">Fullscreen</button>
-            <button id="reloadBtn">Reload Player</button>
-        </div>
-        
-        <div class="status" id="status">
-            Click "Play Stream" to start watching Disney Channel
-        </div>
-        
-        <div class="info">
-            <h2>Stream Information</h2>
-            <ul>
-                <li><strong>Channel:</strong> Disney Channel</li>
-                <li><strong>Group:</strong> Jiostar</li>
-                <li><strong>Quality:</strong> Adaptive Bitrate</li>
-                <li><strong>Format:</strong> MPEG-DASH</li>
-                <li><strong>DRM:</strong> ClearKey</li>
+
+        <div class="info-box">
+            <h3>Common Issues & Solutions:</h3>
+            <p><strong>Error 451:</strong> Content blocked due to legal restrictions</p>
+            <p><strong>Solutions:</strong></p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Use a VPN service with Indian servers</li>
+                <li>Try alternative stream URLs</li>
+                <li>Check if you have valid JioTV subscription</li>
+                <li>Ensure proper authentication tokens</li>
             </ul>
         </div>
-        
-        <footer>
-            <p>This player is for educational purposes. Please ensure you have the necessary rights to access the content.</p>
-        </footer>
+
+        <div class="info-box">
+            <h3>Alternative Stream Sources:</h3>
+            <div class="controls">
+                <button onclick="loadAlternative(1)">Try Source 1</button>
+                <button onclick="loadAlternative(2)">Try Source 2</button>
+                <button onclick="loadAlternative(3)">Try Source 3</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoPlayer = document.getElementById('videoPlayer');
-            const playBtn = document.getElementById('playBtn');
-            const fullscreenBtn = document.getElementById('fullscreenBtn');
-            const reloadBtn = document.getElementById('reloadBtn');
-            const status = document.getElementById('status');
-            
-            // Stream URL from your M3U8 data
-            const streamUrl = "https://jiotvpllive.cdn.jio.com/bpk-tv/Disney_Channel_BTS/output/index.mpd?__hdnea__=st=1760143127~exp=1760229527~acl=/*~hmac=adbbda1cef3e3d58f98da940986ed3d3534194d38b02a807aa1bcbd3948c350f&xxx=%7Ccookie=__hdnea__=st=1760143127~exp=1760229527~acl=/*~hmac=adbbda1cef3e3d58f98da940986ed3d3534194d38b02a807aa1bcbd3948c350f";
-            
-            // Check if browser supports DASH
-            if (typeof dashjs !== 'undefined') {
-                const player = dashjs.MediaPlayer().create();
-                player.initialize(videoPlayer, streamUrl, true);
-                
-                player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, function() {
-                    status.textContent = "Stream loaded successfully!";
-                });
-                
-                player.on(dashjs.MediaPlayer.events.ERROR, function(e) {
-                    status.textContent = "Error loading stream: " + (e.error || "Unknown error");
-                    console.error("DASH.js error:", e);
-                });
-            } else {
-                // Fallback to native video player
-                videoPlayer.src = streamUrl;
+        const videoPlayer = document.getElementById('videoPlayer');
+        const status = document.getElementById('status');
+        const streamUrlInput = document.getElementById('streamUrl');
+
+        // Alternative stream sources (you can add more)
+        const alternativeStreams = [
+            "https://jiotvpllive.cdn.jio.com/bpk-tv/Disney_Channel_BTS/output/index.mpd",
+            "https://example.com/alternative1.m3u8", // Replace with actual URLs
+            "https://example.com/alternative2.m3u8"  // Replace with actual URLs
+        ];
+
+        function updateStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = 'status ' + type;
+        }
+
+        function loadStream() {
+            const streamUrl = streamUrlInput.value.trim();
+            if (!streamUrl) {
+                updateStatus('Please enter a stream URL', 'error');
+                return;
             }
+
+            updateStatus('Loading stream...', 'warning');
             
-            // Play button functionality
-            playBtn.addEventListener('click', function() {
-                status.textContent = "Loading Disney Channel stream...";
-                
-                if (videoPlayer.paused) {
-                    videoPlayer.play().then(() => {
-                        status.textContent = "Playing Disney Channel";
-                    }).catch(error => {
-                        status.textContent = "Error playing stream: " + error.message;
-                        console.error("Play error:", error);
-                    });
-                }
-            });
+            // Clear previous source
+            videoPlayer.src = '';
             
-            // Fullscreen button functionality
-            fullscreenBtn.addEventListener('click', function() {
-                if (videoPlayer.requestFullscreen) {
-                    videoPlayer.requestFullscreen();
-                } else if (videoPlayer.mozRequestFullScreen) {
-                    videoPlayer.mozRequestFullScreen();
-                } else if (videoPlayer.webkitRequestFullscreen) {
-                    videoPlayer.webkitRequestFullscreen();
-                } else if (videoPlayer.msRequestFullscreen) {
-                    videoPlayer.msRequestFullscreen();
-                }
-            });
+            // Set new source
+            videoPlayer.src = streamUrl;
+            videoPlayer.load();
             
-            // Reload button functionality
-            reloadBtn.addEventListener('click', function() {
-                status.textContent = "Reloading player...";
-                videoPlayer.load();
-                setTimeout(() => {
-                    status.textContent = "Player reloaded. Click 'Play Stream' to start.";
-                }, 1000);
+            updateStatus('Stream loaded. Click Play to start.', 'info');
+        }
+
+        function playStream() {
+            videoPlayer.play().then(() => {
+                updateStatus('Playing stream...', 'info');
+            }).catch(error => {
+                updateStatus('Playback failed: ' + error.message, 'error');
+                console.error('Play error:', error);
             });
-            
-            // Video player event listeners
-            videoPlayer.addEventListener('loadstart', function() {
-                status.textContent = "Loading stream...";
-            });
-            
-            videoPlayer.addEventListener('canplay', function() {
-                status.textContent = "Stream ready to play";
-            });
-            
-            videoPlayer.addEventListener('waiting', function() {
-                status.textContent = "Buffering...";
-            });
-            
-            videoPlayer.addEventListener('playing', function() {
-                status.textContent = "Playing Disney Channel";
-            });
-            
-            videoPlayer.addEventListener('error', function() {
-                status.textContent = "Error: Could not load the stream";
-            });
+        }
+
+        function pauseStream() {
+            videoPlayer.pause();
+            updateStatus('Stream paused', 'warning');
+        }
+
+        function toggleFullscreen() {
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.mozRequestFullScreen) {
+                videoPlayer.mozRequestFullScreen();
+            } else if (videoPlayer.webkitRequestFullscreen) {
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) {
+                videoPlayer.msRequestFullscreen();
+            }
+        }
+
+        function loadAlternative(sourceNumber) {
+            if (sourceNumber >= 1 && sourceNumber <= alternativeStreams.length) {
+                streamUrlInput.value = alternativeStreams[sourceNumber - 1];
+                updateStatus(`Loaded alternative source ${sourceNumber}`, 'info');
+            }
+        }
+
+        // Event listeners for video player
+        videoPlayer.addEventListener('loadstart', () => {
+            updateStatus('Loading stream data...', 'warning');
         });
+
+        videoPlayer.addEventListener('canplay', () => {
+            updateStatus('Stream ready to play', 'info');
+        });
+
+        videoPlayer.addEventListener('waiting', () => {
+            updateStatus('Buffering...', 'warning');
+        });
+
+        videoPlayer.addEventListener('playing', () => {
+            updateStatus('Stream is now playing', 'info');
+        });
+
+        videoPlayer.addEventListener('error', (e) => {
+            updateStatus('Error: Could not load stream (Error 451 - Legal Restriction)', 'error');
+            console.error('Video error:', videoPlayer.error);
+        });
+
+        videoPlayer.addEventListener('loadeddata', () => {
+            updateStatus('Stream data loaded successfully', 'info');
+        });
+
+        // Initialize with default stream
+        window.onload = function() {
+            updateStatus('Player ready. Load a stream to begin.', 'info');
+        };
     </script>
-    
-    <!-- Include DASH.js library for better MPEG-DASH support -->
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 </body>
 </html>
