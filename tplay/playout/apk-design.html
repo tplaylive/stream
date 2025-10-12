@@ -499,62 +499,6 @@
             box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
             outline: none;
         }
-        
-        /* Favorite heart icon styles */
-.favorite-icon {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: #ccc; /* Default gray color for unfilled heart */
-    font-size: 16px;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition);
-    z-index: 2;
-}
-
-.favorite-icon:hover {
-    transform: scale(1.2);
-}
-
-.favorite-icon.active {
-    color: #ff4757; /* Red color for filled heart */
-}
-
-.favorite-icon.active:hover {
-    color: #ff3742;
-}
-
-/* Long press feedback animation */
-.channel-item.long-press-feedback {
-    animation: pulseFavorite 0.5s ease-in-out;
-    border-color: #ff4757 !important;
-    box-shadow: 0 0 20px rgba(255, 71, 87, 0.5) !important;
-}
-
-@keyframes pulseFavorite {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.favorite-icon.active {
-    color: #ff4757 !important;
-    animation: heartBeat 0.6s ease-in-out;
-}
-
-@keyframes heartBeat {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.3); }
-    50% { transform: scale(1); }
-    75% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
 
         /* Remote control instructions */
         .remote-info {
@@ -867,7 +811,7 @@
 
     <!-- Remote control instructions -->
     <div class="remote-info" id="remoteInfo">
-        <p>📺 Use Arrow Keys to navigate | OK to select | Long Press OK: Favorite | Esc to go back</p>
+        <p>📺 Use Arrow Keys to navigate | Enter to select | Esc to go back</p>
     </div>
 
     <!-- Focus indicator for keyboard navigation -->
@@ -986,6 +930,7 @@
                 description: "World",
                 languages: ["English"]
             },
+            
             { 
                 name: "Sky Sport 1", 
                 sources: [
@@ -5487,65 +5432,13 @@
         let currentFocusIndex = -1;
         let focusableElements = [];
         const focusIndicator = document.getElementById('focusIndicator');
-
-        // Variables for long press
-        let enterKeyPressTime = 0;
-        let isLongPress = false;
-        const LONG_PRESS_DURATION = 800; // 800ms for long press
-
+        
         // Variables for filtering
         let currentCategory = 'all';
         let currentLanguage = 'all';
-
+        
         // 18+ Content Toggle
         let showAdultContent = false;
-
-        // Variables for favorites
-        let favoriteChannels = JSON.parse(localStorage.getItem('favoriteChannels')) || [];
-
-        // Function to toggle favorite
-        function toggleFavorite(channelName, event) {
-            if (event) {
-                event.stopPropagation();
-            }
-            
-            const index = favoriteChannels.indexOf(channelName);
-            if (index === -1) {
-                favoriteChannels.push(channelName);
-            } else {
-                favoriteChannels.splice(index, 1);
-            }
-            
-            localStorage.setItem('favoriteChannels', JSON.stringify(favoriteChannels));
-            renderChannels(filterChannels());
-            updateLanguageButtons();
-            initKeyboardNavigation();
-            
-            // Show notification
-            showFavoriteNotification(channelName, index === -1);
-        }
-
-        // Show favorite notification
-        function showFavoriteNotification(channelName, added) {
-            // Simple console notification - you can enhance this with a toast UI
-            console.log(`${channelName} ${added ? 'added to' : 'removed from'} favorites`);
-        }
-
-        // Show visual feedback for long press
-        function showLongPressFeedback(element) {
-            // Add a temporary class for visual feedback
-            element.classList.add('long-press-feedback');
-            
-            // Remove the class after animation
-            setTimeout(() => {
-                element.classList.remove('long-press-feedback');
-            }, 500);
-        }
-
-        // Function to check if channel is favorite
-        function isFavorite(channelName) {
-            return favoriteChannels.includes(channelName);
-        }
 
         // Sidebar functionality
         const menuToggle = document.getElementById('menuToggle');
@@ -5561,43 +5454,43 @@
         menuToggle.addEventListener('click', toggleSidebar);
         closeSidebar.addEventListener('click', toggleSidebar);
         sidebarOverlay.addEventListener('click', toggleSidebar);
-
+        
         // 18+ Toggle Functions
-        function toggleAdultContent() {
-            showAdultContent = !showAdultContent;
-            updateAdultToggle();
-            updateCategoryBar();
-        }
+function toggleAdultContent() {
+    showAdultContent = !showAdultContent;
+    updateAdultToggle();
+    updateCategoryBar();
+}
 
-        function updateAdultToggle() {
-            const toggleText = document.getElementById('adultToggleText');
-            const toggleIcon = document.querySelector('#toggleAdultContent i');
-            
-            if (showAdultContent) {
-                toggleText.textContent = 'Hide 18+';
-                toggleIcon.className = 'fas fa-eye';
-            } else {
-                toggleText.textContent = 'Show 18+';
-                toggleIcon.className = 'fas fa-eye-slash';
+function updateAdultToggle() {
+    const toggleText = document.getElementById('adultToggleText');
+    const toggleIcon = document.querySelector('#toggleAdultContent i');
+    
+    if (showAdultContent) {
+        toggleText.textContent = 'Hide 18+';
+        toggleIcon.className = 'fas fa-eye';
+    } else {
+        toggleText.textContent = 'Show 18+';
+        toggleIcon.className = 'fas fa-eye-slash';
+    }
+}
+
+function updateCategoryBar() {
+    const categoryBar = document.getElementById('categoryBar');
+    const adultButton = categoryBar.querySelector('[data-category="18+"]');
+    
+    if (adultButton) {
+        if (showAdultContent) {
+            adultButton.style.display = 'block';
+        } else {
+            adultButton.style.display = 'none';
+            // If 18+ is currently active, switch to All
+            if (currentCategory === '18+') {
+                document.querySelector('[data-category="all"]').click();
             }
         }
-
-        function updateCategoryBar() {
-            const categoryBar = document.getElementById('categoryBar');
-            const adultButton = categoryBar.querySelector('[data-category="18+"]');
-            
-            if (adultButton) {
-                if (showAdultContent) {
-                    adultButton.style.display = 'block';
-                } else {
-                    adultButton.style.display = 'none';
-                    // If 18+ is currently active, switch to All
-                    if (currentCategory === '18+') {
-                        document.querySelector('[data-category="all"]').click();
-                    }
-                }
-            }
-        }
+    }
+}
 
         // Initialize the channel list
         function initChannelList() {
@@ -5610,12 +5503,12 @@
             updateLanguageButtons();
             
             // Initialize 18+ toggle
-            document.getElementById('toggleAdultContent').addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleAdultContent();
-            });
-            updateAdultToggle();
-            updateCategoryBar();
+    document.getElementById('toggleAdultContent').addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleAdultContent();
+    });
+    updateAdultToggle();
+    updateCategoryBar();
             
             // Render all channels initially
             renderChannels(filterChannels());
@@ -5656,29 +5549,23 @@
 
             // Add event listener for keyboard navigation
             document.addEventListener('keydown', handleKeyNavigation);
-            
-            // Add keyup event listener for Enter key
-            document.addEventListener('keyup', handleKeyUp);
         }
-
+        
         // Update language buttons based on available languages in the current category
         function updateLanguageButtons() {
             const languageBar = document.getElementById('languageBar');
             
-            // Get all unique languages from channels
+            // Get all unique languages from channels in the current category
             const availableLanguages = new Set();
             
-            channels.forEach(channel => {
-                if (channel.languages) {
-                    channel.languages.forEach(lang => availableLanguages.add(lang));
-                }
-            });
+             channels.forEach(channel => {
+        if (channel.languages) {
+            channel.languages.forEach(lang => availableLanguages.add(lang));
+        }
+    });
             
             // Create language buttons HTML
             let languageButtonsHTML = '<button class="filter-btn active" data-language="all">All</button>';
-            
-            // Always show Favorites button (even if empty)
-            languageButtonsHTML += '<button class="filter-btn" data-language="favorites"> Favorites</button>';
             
             // Convert Set to Array and sort alphabetically
             const sortedLanguages = Array.from(availableLanguages).sort();
@@ -5703,31 +5590,23 @@
                 });
             });
         }
-
+        
         // Filter channels based on current category and language
         function filterChannels() {
             return channels.filter(channel => {
                 const categoryMatch = currentCategory === 'all' || channel.category === currentCategory;
-                
-                let languageMatch = false;
-                if (currentLanguage === 'all') {
-                    languageMatch = true;
-                } else if (currentLanguage === 'favorites') {
-                    languageMatch = isFavorite(channel.name);
-                } else {
-                    languageMatch = channel.languages && channel.languages.includes(currentLanguage);
-                }
-                
+                const languageMatch = currentLanguage === 'all' || 
+                    (channel.languages && channel.languages.includes(currentLanguage));
                 return categoryMatch && languageMatch;
             });
         }
-
+        
         // Initialize keyboard navigation
         function initKeyboardNavigation() {
             focusableElements = Array.from(document.querySelectorAll('.channel-item, .filter-btn, .source-btn, .close-btn'));
             updateFocusIndicator();
         }
-
+        
         // Handle keyboard navigation
         function handleKeyNavigation(e) {
             if (document.getElementById('overlay').style.display === 'flex') {
@@ -5737,36 +5616,6 @@
             }
             
             switch(e.key) {
-                case 'Enter':
-                    e.preventDefault();
-                    
-                    // Record the time when Enter key is pressed
-                    enterKeyPressTime = Date.now();
-                    isLongPress = false;
-                    
-                    // Set a timeout to detect long press
-                    setTimeout(() => {
-                        if (Date.now() - enterKeyPressTime >= LONG_PRESS_DURATION - 100) {
-                            // This is a long press - toggle favorite
-                            isLongPress = true;
-                            if (currentFocusIndex >= 0) {
-                                const focusedElement = focusableElements[currentFocusIndex];
-                                if (focusedElement.classList.contains('channel-item')) {
-                                    // Get channel name from the focused element
-                                    const channelNameElement = focusedElement.querySelector('.channel-name');
-                                    if (channelNameElement) {
-                                        const channelName = channelNameElement.textContent.trim();
-                                        toggleFavorite(channelName);
-                                        
-                                        // Show visual feedback for long press
-                                        showLongPressFeedback(focusedElement);
-                                    }
-                                }
-                            }
-                        }
-                    }, LONG_PRESS_DURATION);
-                    break;
-                    
                 case 'ArrowRight':
                     e.preventDefault();
                     navigateFocus(1);
@@ -5783,27 +5632,18 @@
                     e.preventDefault();
                     navigateFocus(-getGridColumnCount());
                     break;
+                case 'Enter':
+                    e.preventDefault();
+                    if (currentFocusIndex >= 0) {
+                        focusableElements[currentFocusIndex].click();
+                    }
+                    break;
                 case 'Escape':
                     closeOverlay();
                     break;
             }
         }
-
-        // Handle keyup events
-        function handleKeyUp(e) {
-            if (e.key === 'Enter') {
-                // If it's not a long press and we have a valid focus index
-                if (!isLongPress && currentFocusIndex >= 0 && 
-                    Date.now() - enterKeyPressTime < LONG_PRESS_DURATION) {
-                    // This is a short press - normal click action
-                    focusableElements[currentFocusIndex].click();
-                }
-                // Reset the long press flag
-                isLongPress = false;
-                enterKeyPressTime = 0;
-            }
-        }
-
+        
         // Handle navigation in overlay
         function handleOverlayNavigation(e) {
             const overlayFocusable = Array.from(document.querySelectorAll('.source-btn, .close-btn'));
@@ -5827,7 +5667,7 @@
                     break;
             }
         }
-
+        
         // Navigate focus
         function navigateFocus(direction) {
             if (focusableElements.length === 0) return;
@@ -5836,7 +5676,7 @@
             focusableElements[currentFocusIndex].focus();
             updateFocusIndicator();
         }
-
+        
         // Update focus indicator position
         function updateFocusIndicator() {
             if (currentFocusIndex >= 0 && currentFocusIndex < focusableElements.length) {
@@ -5852,51 +5692,33 @@
                 focusIndicator.style.display = 'none';
             }
         }
-
+        
         // Get grid column count for keyboard navigation
         function getGridColumnCount() {
             const channelList = document.getElementById('channelList');
             const computedStyle = window.getComputedStyle(channelList);
             return parseInt(computedStyle.gridTemplateColumns.split(' ').length);
         }
-
+        
         // Render channels to the list
         function renderChannels(channelsToRender) {
             const channelList = document.getElementById('channelList');
             const channelCount = document.getElementById('channelCount');
             
             channelList.innerHTML = '';
-            
-            // Show appropriate message based on filter
-            if (channelsToRender.length === 0) {
-                if (currentLanguage === 'favorites' && favoriteChannels.length === 0) {
-                    channelCount.textContent = 'No favorite channels yet. Click the star icon to add favorites.';
-                } else if (currentLanguage === 'favorites') {
-                    channelCount.textContent = 'No favorite channels match the current category filter.';
-                } else {
-                    channelCount.textContent = 'No channels found matching your criteria.';
-                }
-            } else {
-                channelCount.textContent = `${channelsToRender.length} channels available`;
-            }
+            channelCount.textContent = `${channelsToRender.length} channels available`;
             
             channelsToRender.forEach(channel => {
                 const channelItem = document.createElement('div');
                 channelItem.className = 'channel-item';
-                if (isFavorite(channel.name)) {
-                    channelItem.classList.add('favorite');
-                }
                 channelItem.tabIndex = 0;
                 
                 const sourceCount = channel.sources.length;
-                const isFav = isFavorite(channel.name);
+                const sourceText = sourceCount === 1 ? '1 Source' : `${sourceCount} Sources`;
                 
                 channelItem.innerHTML = `
                     <div class="channel-img">
                         <img src="${channel.img}" alt="${channel.name}" loading="lazy">
-                        <div class="favorite-icon ${isFav ? 'active' : ''}" onclick="toggleFavorite('${channel.name}', event)">
-                            <i class="fas ${isFav ? 'fa-heart' : 'fa-heart'}"></i>
-                        </div>
                         <div class="source-badge">
                             <i class="fas fa-satellite-dish"></i> ${sourceCount}
                         </div>
@@ -5908,20 +5730,19 @@
                         <div class="channel-category">${channel.category} • ${channel.description}</div>
                     </div>
                 `;
-                
-                // Category click event
-                channelItem.addEventListener("click", () => {
-                    if (channel.category === "18+") {
-                        window.location.href = "go:S0909090"; 
-                    } else {
-                        showOverlay(channel);
-                    }
-                });
-                
+                 // Category click event
+        channelItem.addEventListener("click", () => {
+            if (channel.category === "18+") {
+                window.location.href = "go:S0909090"; 
+            } else {
+                showOverlay(channel);
+            }
+        });
+        
                 channelList.appendChild(channelItem);
             });
         }
-
+        
         // Show overlay with channel sources
         function showOverlay(channel) {
             const overlay = document.getElementById('overlay');
@@ -5964,7 +5785,7 @@
                 }
             }, 100);
         }
-
+        
         // Close overlay
         function closeOverlay() {
             const overlay = document.getElementById('overlay');
