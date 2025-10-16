@@ -1,169 +1,89 @@
-<!doctype html>
-<html lang="bn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>HLS Play Tester</title>
-<style>
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0b0b0b;color:#fff}
-  .wrap{max-width:1000px;margin:18px auto;padding:12px}
-  label{display:block;margin:8px 0 4px;color:#ddd}
-  input[type=text]{width:100%;padding:10px;border-radius:6px;border:1px solid #333;background:#111;color:#fff}
-  .row{display:flex;gap:8px;margin-top:8px}
-  button{padding:10px 14px;border-radius:6px;border:0;background:#1e90ff;color:#fff;cursor:pointer}
-  button.secondary{background:#444}
-  #player-container{position:relative;margin-top:12px;background:#000;border-radius:6px;overflow:hidden}
-  video{width:100%;height:56vh;background:#000;display:block}
-  #log{height:160px;overflow:auto;background:#080808;border:1px solid #222;padding:8px;margin-top:12px;color:#9f9}
-  .small{font-size:13px;color:#bbb;margin-top:6px}
-  .status{display:inline-block;padding:6px 8px;border-radius:6px;background:#222;margin-left:8px}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sun Neo HD - Live</title>
+
+  <!-- Shaka Player -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #000, #111);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .video-container {
+      width: 90%;
+      max-width: 900px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      outline: none;
+    }
+
+    .channel-logo {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 70px;
+      border-radius: 10px;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h2>HLS Play Tester — HTML সরাসরি প্লে</h2>
 
-  <label for="m3u8">m3u8 link (প্রাথমিকভাবে তোমার লিংক prefilled আছে)</label>
-  <input id="m3u8" type="text" value="https://dishmt.slivcdn.com/hls/live/2011746/SonyYaySD/master.m3u8?hdnea=exp=1760385610~acl=/*~id=9e8ffcf19e354849895eb6caf57658bc-1760342407475~hmac=7144a1e45bbde598c1591e3757df4249a13c6edf9c88e6d715a45fc59b264e4d">
-
-  <label class="small">Proxy URL (যদি ব্যবহার করতে চাও)</label>
-  <input id="proxy" type="text" value="https://allinonereborn.xyz/livtest598/stream_proxy.php?url=">
-
-  <div class="row">
-    <button id="play-direct">Play Direct</button>
-    <button id="play-proxy">Play via Proxy</button>
-    <button id="play-test" class="secondary">Play Public Test Stream</button>
-    <button id="stop" class="secondary">Stop</button>
-    <span class="status" id="status">Ready</span>
+  <div class="video-container">
+    <img src="https://i.ibb.co/2dwmRgM/Sun-NXT-logo-small.png" alt="Sun Neo HD" class="channel-logo">
+    <video id="video" poster="https://i.ibb.co/2dwmRgM/Sun-NXT-logo-small.png" controls autoplay></video>
   </div>
 
-  <div id="player-container">
-    <video id="video" playsinline webkit-playsinline muted controls></video>
-  </div>
+  <script>
+    async function initPlayer() {
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
 
-  <div id="log" aria-live="polite"></div>
-  <div class="small">
-    টিপস: যদি direct কাজ না করে, proxy দিয়ে চেষ্টা করো। যদি proxy-তেও কাজ না করে তাহলে নিশ্চিত হও যে proxy curl/GET এ remote কে fetch করতে পারে (token/403/403-ব্লকিং থাকতে পারে)। 
-  </div>
-</div>
+      // Debugging
+      window.player = player;
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.14/dist/hls.min.js"></script>
-<script>
-const video = document.getElementById('video');
-const input = document.getElementById('m3u8');
-const proxyInput = document.getElementById('proxy');
-const logEl = document.getElementById('log');
-const statusEl = document.getElementById('status');
+      // Error handling
+      player.addEventListener('error', (e) => console.error('Error:', e.detail));
 
-let hls = null;
+      // DRM & Stream setup
+      const manifestUri = 'https://livestream8.sunnxt.com/248c92b73514435686fd72ba325d4008/SunNeoHDB_IN_index.mpd';
 
-function log(...args){
-  const time = new Date().toLocaleTimeString();
-  logEl.innerText = `${time} › ${args.join(' ')}\n` + logEl.innerText;
-}
+      const clearkeys = {
+        '09ffaaff477d490abb4516b7e0711d35': '759cc157a993e8a76ff4d675e34b5400'
+      };
 
-function setStatus(s){
-  statusEl.textContent = s;
-}
+      try {
+        await player.configure({
+          drm: {
+            clearKeys: clearkeys
+          }
+        });
 
-function destroyHls(){
-  if(hls){
-    try{ hls.destroy(); }catch(e){}
-    hls = null;
-  }
-  try{ video.pause(); video.removeAttribute('src'); video.load(); }catch(e){}
-}
-
-async function tryPlayWithSource(src){
-  destroyHls();
-  setStatus('Loading...');
-  log('Attempting to play:', src);
-
-  if (Hls.isSupported()) {
-    hls = new Hls({
-      // conservative buffer config
-      maxBufferLength: 30,
-      fragLoadingTimeOut: 15000,
-      fragLoadingMaxRetry: 2,
-      startLevel: -1
-    });
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-      log('Media element attached. Loading source...');
-      hls.loadSource(src);
-    });
-
-    hls.on(Hls.Events.ERROR, (evt, data) => {
-      log('HLS error:', data.type, data.details, 'fatal=' + data.fatal);
-      if (data.fatal) {
-        if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-          log('Network error detected. You may see 403 / CORS / token issues.');
-        } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-          log('Media error — attempting recovery...');
-          hls.recoverMediaError();
-        } else {
-          log('Fatal error — destroying hls instance.');
-          setStatus('Error: ' + data.details);
-          destroyHls();
-        }
+        await player.load(manifestUri);
+        console.log('The video has now been loaded!');
+      } catch (error) {
+        console.error('Error loading video:', error);
       }
-    });
+    }
 
-    hls.on(Hls.Events.MANIFEST_PARSED, (evt, data) => {
-      log('Manifest parsed — levels:', data.levels.length);
-      setStatus('Playing');
-      video.muted = true; // try to allow autoplay
-      video.play().then(()=>log('Playback started')).catch(err=>log('Play promise rejected:', err));
-    });
-
-  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = src;
-    video.addEventListener('loadedmetadata', () => {
-      log('Native HLS ready');
-      video.play().then(()=>log('Native playback started')).catch(err=>log('Play rejected:', err));
-      setStatus('Playing (native)');
-    }, {once:true});
-  } else {
-    log('No HLS support in this browser');
-    setStatus('No HLS support');
-  }
-}
-
-document.getElementById('play-direct').addEventListener('click', ()=> {
-  const src = input.value.trim();
-  if(!src){ alert('Enter m3u8 link'); return; }
-  tryPlayWithSource(src);
-});
-
-document.getElementById('play-proxy').addEventListener('click', ()=> {
-  const src = input.value.trim();
-  const proxy = proxyInput.value.trim();
-  if(!src || !proxy){ alert('Enter both proxy and m3u8'); return; }
-  // encode once (proxy expects encoded original)
-  const proxied = proxy + encodeURIComponent(src);
-  tryPlayWithSource(proxied);
-  log('Using proxied URL (encoded):', proxied);
-});
-
-document.getElementById('play-test').addEventListener('click', ()=> {
-  const test = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
-  input.value = test;
-  tryPlayWithSource(test);
-});
-
-document.getElementById('stop').addEventListener('click', ()=> {
-  destroyHls();
-  setStatus('Stopped');
-  log('Stopped playback');
-});
-
-// Also log video errors
-video.addEventListener('error', (e) => {
-  const err = video.error;
-  log('Video element error code:', err ? err.code : 'unknown');
-  setStatus('Video error');
-});
-
-</script>
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  </script>
 </body>
 </html>
