@@ -1,242 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAR GOLD Live - Shaka Player</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: #fff;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #video-container {
-            width: 100%;
-            max-width: 1200px;
-            position: relative;
-            background: #000;
-        }
-        
-        #video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        }
-        
-        .loading-spinner {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #e50914;
-            animation: spin 1s ease-in-out infinite;
-            z-index: 5;
-        }
-        
-        @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        .error-message {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 80%;
-            z-index: 20;
-            border: 1px solid #333;
-        }
-        
-        .error-message button {
-            background: #e50914;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            margin-top: 15px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .channel-info {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 15px;
-            border-radius: 20px;
-            z-index: 10;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STAR GOLD Live - Shaka Player</title>
+
+  <!-- Shaka Player -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.compiled.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      background-color: #000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+    
+    #video-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    video {
+      width: 100%;
+      height: 100%;
+      max-width: 1400px;
+      object-fit: contain;
+    }
+    
+    /* Custom Controls */
+    .custom-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    #video-container:hover .custom-controls {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: #e50914;
+      border-radius: 3px;
+      width: 0%;
+      position: relative;
+    }
+    
+    .control-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .left-controls, .right-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .control-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .control-btn:hover {
+      background: rgba(229, 9, 20, 0.7);
+      transform: scale(1.1);
+    }
+    
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .volume-slider {
+      width: 80px;
+      height: 4px;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      outline: none;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      background: #e50914;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    .time-display {
+      font-size: 14px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-variant-numeric: tabular-nums;
+    }
+    
+    .channel-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .loading-spinner {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #e50914;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-    <div id="video-container">
-        <video id="video" controls autoplay playsinline></video>
-        
-        <div class="loading-spinner" id="loading-spinner"></div>
-        
-        <div class="error-message" id="error-message">
-            <h3>Stream Loading Error</h3>
-            <p id="error-text">Failed to load STAR GOLD stream</p>
-            <p style="color: #ccc; font-size: 12px; margin-top: 10px;">This may be due to CORS restrictions or server issues.</p>
-            <button id="retry-btn">Retry Loading</button>
-        </div>
-        
-        <div class="channel-info">
-            <strong>STAR GOLD Live</strong>
-        </div>
+
+  <div id="video-container">
+    <video id="video" poster="https://tstatic.akash-go.com/cms-ui/images/custom-content/1735554654688.png"></video>
+    
+    <div class="loading-spinner" id="loading-spinner"></div>
+    
+    <div class="channel-info">
+      <strong>STAR GOLD Live</strong>
     </div>
+    
+    <div class="custom-controls">
+      <div class="progress-container" id="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      
+      <div class="control-buttons">
+        <div class="left-controls">
+          <button class="control-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
+          <button class="control-btn" id="rewind-btn"><i class="fas fa-backward-step"></i></button>
+          <button class="control-btn" id="forward-btn"><i class="fas fa-forward-step"></i></button>
+          
+          <div class="volume-container">
+            <button class="control-btn" id="mute-btn"><i class="fas fa-volume-high"></i></button>
+            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
+          </div>
+          
+          <div class="time-display" id="time-display">00:00 / 00:00</div>
+        </div>
+        
+        <div class="right-controls">
+          <button class="control-btn" id="fullscreen-btn"><i class="fas fa-expand"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        let player;
-        
-        // STAR GOLD stream configuration
-        const starGoldConfig = {
-            url: 'https://owrcovcrpy.gpcdn.net/bpk-tv/1729/output/index.mpd',
-            drm: {
-                servers: {
-                    'com.widevine.alpha': 'https://akashgo.yflix.top/license?id=ssuwd28er-ihda'
-                }
-            }
-        };
-        
-        async function initPlayer() {
-            const video = document.getElementById('video');
-            
-            // Check if Shaka Player is supported
-            if (!shaka.Player.isBrowserSupported()) {
-                showError('Browser not supported! Please use a modern browser.');
-                return;
-            }
-            
-            player = new shaka.Player(video);
-            
-            // Set up error handling
-            player.addEventListener('error', onPlayerError);
-            
-            // Set up retry button
-            document.getElementById('retry-btn').addEventListener('click', loadStream);
-            
-            // Load the stream
-            await loadStream();
-        }
-        
-        async function loadStream() {
-            const video = document.getElementById('video');
-            
-            // Hide error and show loading
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('loading-spinner').style.display = 'block';
-            
-            try {
-                // Clear previous configuration
-                player.configure({
-                    drm: {
-                        servers: {}
-                    }
-                });
-                
-                console.log('Loading STAR GOLD stream...');
-                
-                // Configure DRM for Widevine
-                player.configure({
-                    drm: {
-                        servers: starGoldConfig.drm.servers
-                    }
-                });
-                
-                // Configure for CORS - important for cross-origin requests
-                player.getNetworkingEngine().registerRequestFilter(function(type, request) {
-                    if (type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
-                        request.allowCrossSiteCredentials = true;
-                    }
-                });
-                
-                // Try to load the stream with timeout
-                const loadPromise = player.load(starGoldConfig.url);
-                const timeoutPromise = new Promise((_, reject) => {
-                    setTimeout(() => reject(new Error('Load timeout')), 15000);
-                });
-                
-                await Promise.race([loadPromise, timeoutPromise]);
-                
-                console.log('STAR GOLD stream loaded successfully!');
-                
-                // Hide loading spinner
-                document.getElementById('loading-spinner').style.display = 'none';
-                
-                // Auto-play the video
-                video.play().catch(e => {
-                    console.log('Autoplay prevented:', e);
-                });
-                
-            } catch (error) {
-                console.error('Error loading STAR GOLD stream:', error);
-                document.getElementById('loading-spinner').style.display = 'none';
-                
-                let errorMessage = 'Failed to load stream: ' + error.message;
-                
-                // Specific error handling
-                if (error.message.includes('CORS') || error.message.includes('cross-origin')) {
-                    errorMessage = 'CORS Error: Cannot load stream due to browser security restrictions.';
-                } else if (error.message.includes('timeout')) {
-                    errorMessage = 'Stream loading timeout. Server may be busy.';
-                }
-                
-                showError(errorMessage);
-            }
-        }
-        
-        function onPlayerError(event) {
-            console.error('Player error:', event.detail);
-            showError('Player error: ' + event.detail.code);
-        }
-        
-        function showError(message) {
-            document.getElementById('error-text').textContent = message;
-            document.getElementById('error-message').style.display = 'block';
-        }
+  <script>
+    async function initPlayer() {
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
 
-        // Initialize player when page loads
-        document.addEventListener('DOMContentLoaded', initPlayer);
-        
-        // Handle page visibility changes
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                // Page is hidden, pause video
-                const video = document.getElementById('video');
-                if (video && !video.paused) {
-                    video.pause();
-                }
+      // Show loading spinner
+      document.getElementById('loading-spinner').style.display = 'block';
+
+      // Error handling
+      player.addEventListener('error', e => {
+        console.error('Error code', e.detail.code, e);
+        document.getElementById('loading-spinner').style.display = 'none';
+      });
+
+      try {
+        // Configure DRM
+        player.configure({
+          drm: {
+            servers: {
+              'com.widevine.alpha': 'https://akashgo.yflix.top/license?id=ssuwd28er-ihda'
             }
+          }
         });
-    </script>
+
+        // Load DASH Stream
+        await player.load('https://owrcovcrpy.gpcdn.net/bpk-tv/1729/output/index.mpd');
+        console.log('The video has now been loaded!');
+        
+        // Hide loading spinner
+        document.getElementById('loading-spinner').style.display = 'none';
+        
+        // Initialize custom controls
+        initCustomControls(video);
+        
+      } catch (error) {
+        console.error('Error loading stream', error);
+        document.getElementById('loading-spinner').style.display = 'none';
+      }
+    }
+
+    function initCustomControls(video) {
+      const playPauseBtn = document.getElementById('play-pause-btn');
+      const rewindBtn = document.getElementById('rewind-btn');
+      const forwardBtn = document.getElementById('forward-btn');
+      const muteBtn = document.getElementById('mute-btn');
+      const volumeSlider = document.getElementById('volume-slider');
+      const timeDisplay = document.getElementById('time-display');
+      const progressContainer = document.getElementById('progress-container');
+      const progressBar = document.getElementById('progress-bar');
+      const fullscreenBtn = document.getElementById('fullscreen-btn');
+      const videoContainer = document.getElementById('video-container');
+
+      // Play/Pause functionality
+      playPauseBtn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+          video.pause();
+          playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+      });
+
+      // Rewind 10 seconds
+      rewindBtn.addEventListener('click', () => {
+        video.currentTime = Math.max(0, video.currentTime - 10);
+      });
+
+      // Forward 10 seconds
+      forwardBtn.addEventListener('click', () => {
+        video.currentTime = Math.min(video.duration, video.currentTime + 10);
+      });
+
+      // Mute functionality
+      muteBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        muteBtn.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-high"></i>';
+      });
+
+      // Volume slider
+      volumeSlider.addEventListener('input', () => {
+        video.volume = volumeSlider.value;
+        if (video.volume == 0) {
+          muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+          muteBtn.innerHTML = '<i class="fas fa-volume-high"></i>';
+        }
+      });
+
+      // Update time display and progress bar
+      video.addEventListener('timeupdate', () => {
+        const currentTime = formatTime(video.currentTime);
+        const duration = formatTime(video.duration);
+        timeDisplay.textContent = `${currentTime} / ${duration}`;
+        
+        const progressPercent = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+      });
+
+      // Seek functionality
+      progressContainer.addEventListener('click', (e) => {
+        const rect = progressContainer.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        video.currentTime = percent * video.duration;
+      });
+
+      // Fullscreen functionality
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          videoContainer.requestFullscreen().catch(err => {
+            console.error('Error attempting to enable fullscreen:', err);
+          });
+          fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+          document.exitFullscreen();
+          fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+      });
+
+      // Format time helper function
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return "00:00";
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Update play/pause button based on video state
+      video.addEventListener('play', () => {
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      });
+      
+      video.addEventListener('pause', () => {
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      });
+
+      // Set initial volume
+      video.volume = volumeSlider.value;
+    }
+
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  </script>
 </body>
 </html>
