@@ -3,23 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>T Play Live TV</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.compiled.min.js"></script>
+<title>T Play Live TV Pro</title>
+
+<!-- Shaka Player -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/controls.min.css"/>
+
 <style>
-  body {margin:0;background:#000;color:#fff;font-family:Poppins,sans-serif;}
-  header{background:#e50914;text-align:center;padding:10px;font-size:1.5em;}
-  video{width:100%;height:60vh;background:#000;}
-  .channels{display:flex;overflow-x:auto;padding:10px;background:#111;gap:10px;}
-  .ch{flex:0 0 auto;text-align:center;cursor:pointer;}
-  .ch img{width:90px;height:90px;border-radius:12px;object-fit:contain;background:#222;}
-  .ch span{display:block;margin-top:5px;font-size:0.9em;}
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Poppins, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+header {
+  background: linear-gradient(90deg, #e50914, #221f1f);
+  text-align: center;
+  padding: 10px;
+  font-size: 1.6em;
+  letter-spacing: 1px;
+}
+#videoContainer {
+  flex: 1;
+  position: relative;
+  background: black;
+}
+video {
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+.channel-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  background: #111;
+  padding: 10px;
+}
+.channel {
+  flex: 0 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+.channel img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #222;
+  transition: transform 0.3s;
+}
+.channel:hover img {
+  transform: scale(1.05);
+}
+.channel span {
+  display: block;
+  font-size: 0.8em;
+  margin-top: 3px;
+}
+#infoOverlay {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  display: none;
+}
 </style>
 </head>
 <body>
 
-<header>T Play Live TV</header>
-<video id="video" controls autoplay></video>
-<div class="channels" id="list"></div>
+<header>T Play Live TV Pro</header>
+
+<div id="videoContainer">
+  <video id="video" autoplay controls></video>
+  <div id="infoOverlay"></div>
+</div>
+
+<div class="channel-list" id="channelList"></div>
 
 <script>
 const channels = [
@@ -57,35 +123,51 @@ const channels = [
   }
 ];
 
-const list = document.getElementById("list");
-const video = document.getElementById("video");
-let player;
+const container = document.getElementById('videoContainer');
+const video = document.getElementById('video');
+const channelList = document.getElementById('channelList');
+const infoOverlay = document.getElementById('infoOverlay');
 
-async function initApp() {
+let ui, player, controls, currentIndex = 0;
+
+// Init Shaka Player with UI controls
+function initPlayer() {
   shaka.polyfill.installAll();
+
   if (!shaka.Player.isBrowserSupported()) {
-    alert("Browser not supported");
+    alert("Browser not supported!");
     return;
   }
-  player = new shaka.Player(video);
-  loadChannel(channels[0]);
 
-  channels.forEach(ch => {
-    const div = document.createElement("div");
-    div.className = "ch";
-    div.innerHTML = `<img src="${ch.logo}"><span>${ch.name}</span>`;
-    div.onclick = () => loadChannel(ch);
-    list.appendChild(div);
-  });
+  const videoContainer = document.getElementById('videoContainer');
+  const video = document.getElementById('video');
+
+  const uiOverlay = shaka.ui.Overlay;
+  const config = {
+    controlPanelElements: [
+      'play_pause', 'mute', 'volume', 'spacer', 'quality', 
+      'audio', 'fullscreen', 'picture_in_picture', 'airplay', 'cast', 'rewind', 'fast_forward'
+    ],
+    enableKeyboardPlaybackControls: true
+  };
+
+  ui = new uiOverlay(new shaka.Player(video), videoContainer, config);
+  player = ui.getControls().getPlayer();
+  controls = ui.getControls();
+
+  loadChannel(channels[0]);
 }
 
+// Load selected channel
 async function loadChannel(ch) {
-  if (!player) return;
-
   try {
-    if (ch.type === "hls") {
+    infoOverlay.innerText = "Now Playing: " + ch.name;
+    infoOverlay.style.display = 'block';
+    setTimeout(() => infoOverlay.style.display = 'none', 3000);
+
+    if (ch.type === 'hls') {
       await player.load(ch.url);
-    } else if (ch.type === "dash") {
+    } else if (ch.type === 'dash') {
       player.configure({
         drm: {
           clearKeys: { [ch.license.kid]: ch.license.key }
@@ -94,13 +176,31 @@ async function loadChannel(ch) {
       await player.load(ch.url);
     }
     video.play();
-  } catch (e) {
-    console.error("Error loading", ch.name, e);
+  } catch (err) {
+    console.error("Error loading", ch.name, err);
     alert("Cannot play " + ch.name);
   }
 }
 
-initApp();
+// Build channel list
+channels.forEach((ch, i) => {
+  const div = document.createElement('div');
+  div.className = 'channel';
+  div.innerHTML = `<img src="${ch.logo}"><span>${ch.name}</span>`;
+  div.onclick = () => {
+    currentIndex = i;
+    loadChannel(ch);
+  };
+  channelList.appendChild(div);
+});
+
+// Auto next channel when ended
+video.addEventListener('ended', () => {
+  currentIndex = (currentIndex + 1) % channels.length;
+  loadChannel(channels[currentIndex]);
+});
+
+document.addEventListener("DOMContentLoaded", initPlayer);
 </script>
 </body>
 </html>
