@@ -4,91 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>T Play Live TV</title>
-<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.compiled.min.js"></script>
 <style>
-  body {
-    margin: 0;
-    font-family: Poppins, sans-serif;
-    background-color: #0d0d0d;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-
-  header {
-    background: linear-gradient(90deg, #e50914, #221f1f);
-    text-align: center;
-    padding: 10px;
-    font-size: 1.5em;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-  .player-container {
-    position: relative;
-    width: 100%;
-    background: black;
-    flex: 1;
-  }
-
-  #video {
-    width: 100%;
-    height: 100%;
-  }
-
-  .channel-list {
-    display: flex;
-    overflow-x: auto;
-    gap: 12px;
-    background: #111;
-    padding: 10px;
-    scroll-behavior: smooth;
-  }
-
-  .channel {
-    flex: 0 0 auto;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .channel img {
-    width: 80px;
-    height: 80px;
-    border-radius: 12px;
-    object-fit: contain;
-    background: #222;
-    transition: transform 0.3s;
-  }
-
-  .channel:hover img {
-    transform: scale(1.05);
-  }
-
-  .channel span {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.85em;
-  }
-
-  @media (min-width: 768px) {
-    .channel img { width: 100px; height: 100px; }
-  }
+  body {margin:0;background:#000;color:#fff;font-family:Poppins,sans-serif;}
+  header{background:#e50914;text-align:center;padding:10px;font-size:1.5em;}
+  video{width:100%;height:60vh;background:#000;}
+  .channels{display:flex;overflow-x:auto;padding:10px;background:#111;gap:10px;}
+  .ch{flex:0 0 auto;text-align:center;cursor:pointer;}
+  .ch img{width:90px;height:90px;border-radius:12px;object-fit:contain;background:#222;}
+  .ch span{display:block;margin-top:5px;font-size:0.9em;}
 </style>
 </head>
 <body>
 
 <header>T Play Live TV</header>
-
-<div class="player-container">
-  <video id="video" class="video-js vjs-default-skin" controls preload="auto" poster="" autoplay></video>
-</div>
-
-<div class="channel-list" id="channelList">
-  <!-- Channels will be added dynamically -->
-</div>
+<video id="video" controls autoplay></video>
+<div class="channels" id="list"></div>
 
 <script>
 const channels = [
@@ -110,8 +41,8 @@ const channels = [
     url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtv/default/manifest.mpd",
     type: "dash",
     license: {
-      type: "clearkey",
-      keys: [{ kid: "26df86eeebb04d7fbc45c948f76e81fd", key: "5f3a23f1a73c4c96ababce5fffe7b06b" }]
+      kid: "26df86eeebb04d7fbc45c948f76e81fd",
+      key: "5f3a23f1a73c4c96ababce5fffe7b06b"
     }
   },
   {
@@ -120,60 +51,56 @@ const channels = [
     url: "https://times-ott-live.akamaized.net/romedynow_wv_drm/index.mpd",
     type: "dash",
     license: {
-      type: "clearkey",
-      keys: [{ kid: "40f019b86241d23ef075633fd7f1e927", key: "058dec845bd340178a388edd104a015e" }]
+      kid: "40f019b86241d23ef075633fd7f1e927",
+      key: "058dec845bd340178a388edd104a015e"
     }
   }
 ];
 
-const channelList = document.getElementById("channelList");
-const videoElement = document.getElementById("video");
-const player = videojs(videoElement);
+const list = document.getElementById("list");
+const video = document.getElementById("video");
+let player;
 
-// Build UI dynamically
-channels.forEach((ch, i) => {
-  const div = document.createElement("div");
-  div.className = "channel";
-  div.innerHTML = `<img src="${ch.logo}" alt="${ch.name}"><span>${ch.name}</span>`;
-  div.addEventListener("click", () => loadChannel(ch));
-  channelList.appendChild(div);
-});
+async function initApp() {
+  shaka.polyfill.installAll();
+  if (!shaka.Player.isBrowserSupported()) {
+    alert("Browser not supported");
+    return;
+  }
+  player = new shaka.Player(video);
+  loadChannel(channels[0]);
 
-// Load first channel by default
-window.onload = () => loadChannel(channels[0]);
+  channels.forEach(ch => {
+    const div = document.createElement("div");
+    div.className = "ch";
+    div.innerHTML = `<img src="${ch.logo}"><span>${ch.name}</span>`;
+    div.onclick = () => loadChannel(ch);
+    list.appendChild(div);
+  });
+}
 
-async function loadChannel(channel) {
-  player.reset();
-  player.pause();
+async function loadChannel(ch) {
+  if (!player) return;
 
-  if (channel.type === "hls") {
-    player.src({ src: channel.url, type: "application/x-mpegURL" });
-    player.play();
-  } else if (channel.type === "dash") {
-    // Use Shaka for DASH + clearkey
-    videoElement.innerHTML = "";
-    const shakaPlayer = new shaka.Player(videoElement);
-
-    if (channel.license && channel.license.type === "clearkey") {
-      shakaPlayer.configure({
+  try {
+    if (ch.type === "hls") {
+      await player.load(ch.url);
+    } else if (ch.type === "dash") {
+      player.configure({
         drm: {
-          clearKeys: Object.fromEntries(
-            channel.license.keys.map(k => [k.kid, k.key])
-          )
+          clearKeys: { [ch.license.kid]: ch.license.key }
         }
       });
+      await player.load(ch.url);
     }
-
-    try {
-      await shakaPlayer.load(channel.url);
-      videoElement.play();
-    } catch (e) {
-      alert("Error loading stream: " + channel.name);
-      console.error(e);
-    }
+    video.play();
+  } catch (e) {
+    console.error("Error loading", ch.name, e);
+    alert("Cannot play " + ch.name);
   }
 }
-</script>
 
+initApp();
+</script>
 </body>
 </html>
