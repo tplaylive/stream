@@ -24,6 +24,18 @@
 <script>
 const channels = [
   {
+    name: "App Video 1",
+    logo: "https://tplay.live/icons/app-video-1.png",
+    url: "go:S2511",
+    type: "internal"
+  },
+  {
+    name: "App Video 2",
+    logo: "https://tplay.live/icons/app-video-2.png",
+    url: "go:S2512",
+    type: "internal"
+  },
+  {
     name: "Deewana",
     logo: "https://tplay.live/originals/deewana/deewana.png",
     url: "https://tplay.live/originals/deewana/index.m3u8",
@@ -83,7 +95,11 @@ async function loadChannel(ch) {
   if (!player) return;
 
   try {
-    if (ch.type === "hls") {
+    if (ch.type === "internal") {
+      // Directly call your app’s video section (internal navigation)
+      window.location.href = ch.url;
+      return;
+    } else if (ch.type === "hls") {
       await player.load(ch.url);
     } else if (ch.type === "dash") {
       player.configure({
