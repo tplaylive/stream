@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ferdos's AkashGo | Star Jalsha HD</title>
+  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
+  <link rel="icon" href="https://tstatic.akash-go.com/cms-ui/images/custom-content/1740372275659.png" />
+    <link rel="shortcut icon" href="https://tstatic.akash-go.com/cms-ui/images/custom-content/1740372275659.png" />
+  <link rel="stylesheet" href="player.css" />
+ <style>
+         #player {
+            position: absolute;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div id="player"></div>
+
+<script>
+
+  jwplayer("player").setup({
+    file: "https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.mpd",
+    type: "dash",
+    drm: {
+      widevine: {
+        url: "https://akashgo.yflix.top/license?id=3c65b579-5825"
+      }
+    },
+    image: "https://tstatic.akash-go.com/cms-ui/images/custom-content/1740372275659.png",
+    title: "Star Jalsha HD",
+    autostart: true,
+    controls: true,
+    skin: { name: "netflix" }
+  });
+</script>
+
+</body>
+</html>
