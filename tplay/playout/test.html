@@ -275,6 +275,12 @@
             background: var(--dark-bg);
             color: white;
         }
+        
+        .quality-select {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 
         .source-select {
             border-radius: 20px;
@@ -292,6 +298,11 @@
             background: var(--dark-bg);
             color: white;
         }
+        
+        /* Player এবং Source button hide করার জন্য */
+.source-select {
+    display: none !important;
+}
 
         .volume-container {
             display: flex;
@@ -798,6 +809,8 @@
                         <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
                     </div>
                     <button class="nav-btn" onclick="nextChannel()" title="Next Channel"><i class="fas fa-chevron-right"></i></button>
+                    <select class="source-select" id="sourceMenu">
+                        <option value="0">Main Source</option>
                     </select>
                     <select class="quality-select" id="qualityMenu">
                         <option value="auto">Auto Quality</option>
@@ -1050,8 +1063,8 @@
             { 
                 name: "Somoy TV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
-                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/HsVVr6FH/somoy-tv.png", 
                 category: "News",
@@ -1213,6 +1226,10 @@
                 if (hls) {
                     hls.currentLevel = parseInt(this.value);
                 }
+            });
+
+            sourceMenu.addEventListener("change", function() {
+                loadSource(parseInt(this.value));
             });
 
             loadChannels();
@@ -1409,7 +1426,7 @@
             qualityMenu.innerHTML = "";
             const autoOption = document.createElement("option");
             autoOption.value = -1;
-            autoOption.textContent = "Auto Quality";
+            autoOption.textContent = "Auto";
             qualityMenu.appendChild(autoOption);
             
             if (hls.levels && hls.levels.length > 1) {
