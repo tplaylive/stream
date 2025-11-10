@@ -1016,6 +1016,40 @@
                 description: "India"
             },
             { 
+                name: "Zee TV", 
+                sources: [
+                    { 
+                        name: "HD", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetvhd/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "65c3633157574361b191059e46e72968",
+                            key: "78450b11381340c297d96c13183d3744"
+                        }
+                    }
+                ], 
+                img: "https://preview.redd.it/zee-tv-new-logo-v0-rdavl0od4j5f1.jpeg?auto=webp&s=23fc180397ed9368e1b7e637e5c6a6d350647b1f", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
+                name: "MNX HD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://times-ott-live.akamaized.net/mnxhd_wv_drm/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "40f019b86241d23ef075633fd7f1e927",
+                            key: "058dec845bd340178a388edd104a015e"
+                        }
+                    }
+                ], 
+                img: "https://d229kpbsb5jevy.cloudfront.net/timesplay/content/common/logos/channel/logos/vunjev.jpeg", 
+                category: "Movies",
+                description: "India"
+            },
+            { 
                 name: "Somoy TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
@@ -1025,38 +1059,15 @@
                 category: "News",
                 description: "Bangladesh"
             },
-            {
-    name: "Deewana",
-    logo: "https://tplay.live/originals/deewana/deewana.png",
-    url: "https://tplay.live/originals/deewana/index.m3u8",
-    type: "hls"
-  },
-  {
-    name: "Saregama Music",
-    logo: "https://dnuk7lvye3m03.cloudfront.net/runntv/platform/channels/SRGMUS/TV/thumbnail/logo_tv.png",
-    url: "https://saregama.cdn.runn.tv/saregama/saregama_master.m3u8",
-    type: "hls"
-  },
-  {
-    name: "And TV SD",
-    logo: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/T1CCvaAQ.png",
-    url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtv/default/manifest.mpd",
-    type: "dash",
-    license: {
-      kid: "26df86eeebb04d7fbc45c948f76e81fd",
-      key: "5f3a23f1a73c4c96ababce5fffe7b06b"
-    }
-  },
-  {
-    name: "Romedy Now",
-    logo: "https://d229kpbsb5jevy.cloudfront.net/timesplay/content/common/logos/channel/logos/nchght.jpeg",
-    url: "https://times-ott-live.akamaized.net/romedynow_wv_drm/index.mpd",
-    type: "dash",
-    license: {
-      kid: "40f019b86241d23ef075633fd7f1e927",
-      key: "058dec845bd340178a388edd104a015e"
-    }
-  }
+            { 
+                name: "Saregama Music", 
+                sources: [
+                    { name: "Server 1", url: "https://saregama.cdn.runn.tv/saregama/saregama_master.m3u8" }
+                ], 
+                img: "https://dnuk7lvye3m03.cloudfront.net/runntv/platform/channels/SRGMUS/TV/thumbnail/logo_tv.png", 
+                category: "Music",
+                description: "India"
+            }
         ];
 
         // Shaka Player Initialization
