@@ -1199,13 +1199,13 @@
                 
                 // Add DRM badge for DRM channels
                 const hasDrm = channel.sources.some(source => source.drm);
-                const drmBadge = hasDrm ? '<span class="drm-badge">DRM</span>' : '';
+                const drmBadge = hasDrm ? '<span class="drm-badge"></span>' : '';
                 
                 channelItem.innerHTML = `
                     <div class="channel-item-img">
                         <img src="${channel.img}" alt="${channel.name}">
                         ${drmBadge}
-                        <span class="channel-item-live">LIVE</span>
+                        <span class="channel-item-live"></span>
                     </div>
                 `;
                 channelItem.addEventListener("click", () => {
