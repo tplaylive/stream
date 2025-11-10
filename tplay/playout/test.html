@@ -798,8 +798,6 @@
                         <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="1">
                     </div>
                     <button class="nav-btn" onclick="nextChannel()" title="Next Channel"><i class="fas fa-chevron-right"></i></button>
-                    <select class="source-select" id="sourceMenu">
-                        <option value="0">Main Source</option>
                     </select>
                     <select class="quality-select" id="qualityMenu">
                         <option value="auto">Auto Quality</option>
@@ -1215,10 +1213,6 @@
                 if (hls) {
                     hls.currentLevel = parseInt(this.value);
                 }
-            });
-
-            sourceMenu.addEventListener("change", function() {
-                loadSource(parseInt(this.value));
             });
 
             loadChannels();
