@@ -1,614 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMusicLive - 24/7 Music Channel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #ff3366;
-            --secondary: #3366ff;
-            --dark: #1a1a2e;
-            --darker: #0f0f1a;
-            --light: #f8f9fa;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--darker), var(--dark));
-            color: var(--light);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 30px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo i {
-            font-size: 2.5rem;
-            color: var(--primary);
-        }
-        
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .tagline {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-        
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .player-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .player-section h2 {
-            margin-bottom: 20px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .player-section h2 i {
-            font-size: 1.5rem;
-        }
-        
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .placeholder-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .placeholder-video i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .player-controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-            justify-content: center;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #ff1a53;
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .stream-info {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .stream-info h2 {
-            margin-bottom: 20px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .info-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .info-card h3 {
-            margin-bottom: 10px;
-            color: var(--secondary);
-        }
-        
-        .server-details {
-            background: rgba(51, 102, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .server-details h3 {
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        
-        .detail-item {
-            display: flex;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .detail-label {
-            width: 150px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .detail-value {
-            flex: 1;
-            font-family: monospace;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-        
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-        
-        .status-live {
-            background: rgba(255, 51, 102, 0.2);
-            color: var(--primary);
-        }
-        
-        .status-offline {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        
-        .live-dot {
-            background: var(--primary);
-            animation: pulse 1.5s infinite;
-        }
-        
-        .offline-dot {
-            background: rgba(255, 255, 255, 0.5);
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        .playlist-section {
-            grid-column: 1 / -1;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-        }
-        
-        .playlist-section h2 {
-            margin-bottom: 20px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .playlist-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .playlist-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .playlist-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .playlist-thumb {
-            height: 120px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-        
-        .playlist-info {
-            padding: 15px;
-        }
-        
-        .playlist-info h3 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        
-        .playlist-info p {
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: none;
-        }
-        
-        .alert-success {
-            background: rgba(76, 175, 80, 0.2);
-            border-left: 4px solid #4CAF50;
-        }
-        
-        .alert-error {
-            background: rgba(244, 67, 54, 0.2);
-            border-left: 4px solid #f44336;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-music"></i>
-                <div>
-                    <div class="logo-text">OMusicLive</div>
-                    <div class="tagline">24/7 Music Channel - Non-stop Entertainment</div>
-                </div>
-            </div>
-            <div class="status-indicator status-live">
-                <span class="status-dot live-dot"></span>
-                <span>LIVE NOW</span>
-            </div>
-        </header>
-        
-        <div class="alert alert-success" id="successAlert">
-            <i class="fas fa-check-circle"></i> Stream connected successfully!
-        </div>
-        
-        <div class="alert alert-error" id="errorAlert">
-            <i class="fas fa-exclamation-circle"></i> Error connecting to stream. Please try again.
-        </div>
-        
-        <div class="main-content">
-            <div class="player-section">
-                <h2><i class="fas fa-broadcast-tower"></i> Live Stream</h2>
-                <div class="video-container">
-                    <video id="streamVideo" controls style="display: none;">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="placeholder-video" id="placeholderVideo">
-                        <i class="fas fa-satellite-dish"></i>
-                        <h3>OMusicLive Stream</h3>
-                        <p>Click the button below to start the live stream</p>
-                    </div>
-                </div>
-                
-                <div class="player-controls">
-                    <button class="btn btn-primary" id="startStream">
-                        <i class="fas fa-play"></i> Start Stream
-                    </button>
-                    <button class="btn btn-secondary" id="stopStream" disabled>
-                        <i class="fas fa-stop"></i> Stop Stream
-                    </button>
-                </div>
-            </div>
-            
-            <div class="stream-info">
-                <h2><i class="fas fa-info-circle"></i> Stream Information</h2>
-                <div class="info-card">
-                    <h3>About OMusicLive</h3>
-                    <p>OMusicLive is a 24/7 music television channel broadcasting the latest hits, classic favorites, and exclusive artist content. Tune in for non-stop music entertainment!</p>
-                </div>
-                
-                <div class="server-details">
-                    <h3><i class="fas fa-server"></i> Stream Server Details</h3>
-                    <div class="detail-item">
-                        <div class="detail-label">Server Address:</div>
-                        <div class="detail-value">rtmp://36bay2.tulix.tv/giatv-omusiclive</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Stream Key:</div>
-                        <div class="detail-value">omusiclive</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Encoder Login:</div>
-                        <div class="detail-value">omusiclive</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Encoder Password:</div>
-                        <div class="detail-value">•••••••••</div>
-                    </div>
-                </div>
-                
-                <div class="info-card">
-                    <h3>24/7 Streaming</h3>
-                    <p>This website can be hosted on a cloud server to ensure the stream runs continuously, even when your local device is turned off.</p>
-                </div>
-            </div>
-            
-            <div class="playlist-section">
-                <h2><i class="fas fa-list"></i> Featured Playlists</h2>
-                <div class="playlist-items">
-                    <div class="playlist-item">
-                        <div class="playlist-thumb">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <div class="playlist-info">
-                            <h3>Top Hits 2023</h3>
-                            <p>Latest chart-toppers</p>
-                        </div>
-                    </div>
-                    <div class="playlist-item">
-                        <div class="playlist-thumb">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="playlist-info">
-                            <h3>Romantic Ballads</h3>
-                            <p>Love songs collection</p>
-                        </div>
-                    </div>
-                    <div class="playlist-item">
-                        <div class="playlist-thumb">
-                            <i class="fas fa-compact-disc"></i>
-                        </div>
-                        <div class="playlist-info">
-                            <h3>Throwback Classics</h3>
-                            <p>90s & 2000s hits</p>
-                        </div>
-                    </div>
-                    <div class="playlist-item">
-                        <div class="playlist-thumb">
-                            <i class="fas fa-guitar"></i>
-                        </div>
-                        <div class="playlist-info">
-                            <h3>Rock Anthems</h3>
-                            <p>Greatest rock songs</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>OMusicLive &copy; 2023 | 24/7 Music Television Channel</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-        </footer>
-    </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bostafull Live BDIX TV Server 24/7 BD IPTV</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1321980978077433" crossorigin="anonymous"></script>
+<style>
+body {
+    background-color: #F2F2F2;
+    margin: 0;
+    padding: 0;
+    color: #000; /* black text for white background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const startStreamBtn = document.getElementById('startStream');
-            const stopStreamBtn = document.getElementById('stopStream');
-            const streamVideo = document.getElementById('streamVideo');
-            const placeholderVideo = document.getElementById('placeholderVideo');
-            const successAlert = document.getElementById('successAlert');
-            const errorAlert = document.getElementById('errorAlert');
-            
-            // For demonstration, we'll use a sample stream URL
-            // In a real implementation, you would use the RTMP URL with a compatible player
-            const sampleStreamUrl = 'https://videos.gia.tv/giatv/movies/playlist/209901/Livin_La_Vida_Loca_480p.mp4';
-            
-            startStreamBtn.addEventListener('click', function() {
-                // Show loading state
-                startStreamBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
-                startStreamBtn.disabled = true;
-                
-                // Simulate connection delay
-                setTimeout(function() {
-                    // In a real implementation, you would connect to the RTMP stream
-                    // For this demo, we'll use a sample video
-                    streamVideo.src = sampleStreamUrl;
-                    streamVideo.style.display = 'block';
-                    placeholderVideo.style.display = 'none';
-                    
-                    // Enable controls
-                    startStreamBtn.disabled = true;
-                    stopStreamBtn.disabled = false;
-                    startStreamBtn.innerHTML = '<i class="fas fa-play"></i> Start Stream';
-                    
-                    // Show success message
-                    successAlert.style.display = 'block';
-                    errorAlert.style.display = 'none';
-                    
-                    // Auto-play the stream
-                    streamVideo.play().catch(e => {
-                        console.log('Autoplay prevented:', e);
-                    });
-                }, 1500);
-            });
-            
-            stopStreamBtn.addEventListener('click', function() {
-                streamVideo.pause();
-                streamVideo.style.display = 'none';
-                placeholderVideo.style.display = 'flex';
-                
-                startStreamBtn.disabled = false;
-                stopStreamBtn.disabled = true;
-                
-                successAlert.style.display = 'none';
-            });
-            
-            // Simulate a live stream status check
-            function updateStreamStatus() {
-                // In a real implementation, you would check if the stream is actually live
-                const isLive = Math.random() > 0.3; // 70% chance of being "live" for demo
-                
-                const statusIndicator = document.querySelector('.status-indicator');
-                const statusDot = document.querySelector('.status-dot');
-                const statusText = document.querySelector('.status-indicator span:last-child');
-                
-                if (isLive) {
-                    statusIndicator.className = 'status-indicator status-live';
-                    statusDot.className = 'status-dot live-dot';
-                    statusText.textContent = 'LIVE NOW';
-                } else {
-                    statusIndicator.className = 'status-indicator status-offline';
-                    statusDot.className = 'status-dot offline-dot';
-                    statusText.textContent = 'OFFLINE';
-                }
-            }
-            
-            // Update status every 10 seconds
-            setInterval(updateStreamStatus, 10000);
-            updateStreamStatus(); // Initial call
+/* Header styling */
+header {
+    background-color: #ff3c3c; /* red header */
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ff3c3c;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: red;
+    color: #fff;
+}
+
+/* Iframe container */
+.iframe-container {
+    padding-bottom: auto;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    margin: 20px auto;
+    max-width: 100%;
+    color: black;
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    background-color: black;
+}
+
+/* Server buttons */
+.server-buttons-container {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    display: none;
+    transition: all 0.3s ease;
+    color: #000;
+}
+
+.server-buttons-container.show {
+    display: block;
+}
+
+.server-buttons-container button {
+    background-color: white;
+    border: 1px solid #ff3c3c;
+    padding: 10px 18px;
+    margin: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #ff3c3c;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.server-buttons-container button:hover {
+    background-color: #ff3c3c;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Logo container */
+.logos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    margin: 20px auto;
+}
+
+.logos-container img {
+    width: 100px;
+    height: 75px; /* 4:3 container */
+    object-fit: contain;
+    aspect-ratio: 4 / 3;
+    padding: 6px;
+    border: 1px solid #ff3c3c; /* red border */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+    background-color: white;
+}
+
+.logos-container img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgba(255, 60, 60, 0.5);
+}
+
+/* Category filter */
+.category-filter {
+    margin: 25px auto;
+    text-align: center;
+    color: #ff3c3c;
+}
+
+.category-filter select {
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: white;
+    color: #ff3c3c;
+    border: 1px solid #555;
+    outline: none;
+}
+
+@media (min-width: 720px) {
+    .iframe-container {
+        max-height: 70vh;
+        max-width: 80%;
+        border: 3px solid red;
+    }
+    .logos-container {
+        max-width: 80vw;
+    }
+}
+
+@media (max-width: 720px) {
+    .iframe-container {
+        width: 100%;
+        border-top: 2px solid red;
+        border-bottom: 2px solid red;
+    }
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .logos-container img {
+        width: 80px;
+        height: 60px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+  <header>
+    <a href="https://bostaflix.vercel.app/index.html" class="logo">BOSTAFLIX</a>
+    <nav class="nav-links">
+      <a href="https://bostaflix.vercel.app/sports.html">Sports</a>
+      <a href="https://bostaflix.vercel.app/news.html">News</a>
+      <a href="https://bostaflix.vercel.app/entertainment.html">Entertainment</a>
+      <a href="https://bostaflix.vercel.app/movies.html">Movies</a>
+      <a href="https://bostaflix.vercel.app/kids.html">Kids</a>
+    </nav>
+  </header>
+
+  <div class="iframe-container">
+    <iframe id="videoFrame" allowfullscreen></iframe>
+  </div>
+
+  <div class="logos-container" id="logosContainer">
+    <!-- Dynamic JSON content goes here -->
+  </div>
+
+  <script>
+    const jsonURL = "https://bostaflix.vercel.app/ayna-proxy.json"; 
+    // 👆 Replace this with your real JSON endpoint
+
+    async function loadChannels() {
+      try {
+        const response = await fetch(jsonURL);
+        const data = await response.json();
+        const channels = data.data.list;
+        const container = document.getElementById("logosContainer");
+        container.innerHTML = "";
+
+        channels.forEach(ch => {
+          const img = document.createElement("img");
+          img.src = ch.logo;
+          img.alt = ch.title;
+          img.title = ch.title;
+          img.setAttribute("data-category", ch.category);
+          img.onclick = () => loadIframe(`https://bostaflix.vercel.app/ayna.html?id=${encodeURIComponent(ch.title)}`);
+          container.appendChild(img);
         });
-    </script>
+      } catch (err) {
+        console.error("Error loading JSON:", err);
+      }
+    }
+
+    function loadIframe(url) {
+      document.getElementById("videoFrame").src = url;
+      document.querySelector("header").scrollIntoView({behavior:"smooth"});
+    }
+
+    // load channel by ?id=Title
+    function getQueryParam(param) {
+      return new URLSearchParams(window.location.search).get(param);
+    }
+
+    window.onload = async function() {
+      await loadChannels();
+      const qid = getQueryParam("id");
+      if (qid) loadIframe(`ayna.html?id=${encodeURIComponent(qid)}`);
+    };
+  </script>
+
+  <footer style="color:white; background-color:rgba(0,0,0,0.5); padding:10px; text-align:center;">
+    &copy; Bostafull Live by Syed Ashraful Islam Mahbeer.  
+    Embedded content collected from the internet.  
+    Wait up to 1 min to load; if not, change server.
+  </footer>
 </body>
 </html>
