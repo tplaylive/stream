@@ -1,0 +1,722 @@
+[
+    {
+    "id": "natgeo",
+    "m3u8": "https://tvsen6.aynascope.net/tsportshd/index.m3u8?e=1751726666&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=c057ecf99803dfb9da0e954de34b130d",
+    "image": "https://s3.aynascope.net/storage/8e998f20a9cc52cb8eb1f52a5bf38204",
+    "landscapeImage": "https://s3.aynascope.net/storage/c09c06d578a6549cf023a09bc3e92dc1",
+    "title": "Nat Geo TV",
+    "author": "bostaflix"
+  },
+    {
+    "id": "tsportshd",
+    "m3u8": "https://tvsen7.aynascope.net/tsportshd/index.m3u8?e=1751726666&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=c057ecf99803dfb9da0e954de34b130d",
+    "image": "https://s3.aynascope.net/storage/8e998f20a9cc52cb8eb1f52a5bf38204",
+    "landscapeImage": "https://s3.aynascope.net/storage/c09c06d578a6549cf023a09bc3e92dc1",
+    "title": "T Sports HD",
+    "author": "bostaflix"
+  },
+    {
+    "id": "cnn",
+    "m3u8": "https://tvsen6.aynascope.net/tsportshd/index.m3u8?e=1751726666&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=c057ecf99803dfb9da0e954de34b130d",
+    "image": "https://s3.aynascope.net/storage/8e998f20a9cc52cb8eb1f52a5bf38204",
+    "landscapeImage": "https://s3.aynascope.net/storage/c09c06d578a6549cf023a09bc3e92dc1",
+    "title": "CNN",
+    "author": "bostaflix"
+  },
+  {
+    "id": "discovery_hd_bangla",
+    "m3u8": "https://tvsen6.aynascope.net/discovery_hd_bangla/index.m3u8?e=1751726666&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=c057ecf99803dfb9da0e954de34b130d",
+    "image": "https://s3.aynascope.net/storage/8e998f20a9cc52cb8eb1f52a5bf38204",
+    "landscapeImage": "https://s3.aynascope.net/storage/c09c06d578a6549cf023a09bc3e92dc1",
+    "title": "Discovery HD Bangla",
+    "author": "bostaflix"
+  },
+  {
+    "id": "banglatv",
+    "m3u8": "https://tvsen6.aynascope.net/banglatv/index.m3u8?e=1751726666&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=6e25b2fb3bd38310683c5a0f4e8aa9e4",
+    "image": "https://s3.aynascope.net/storage/8e998f20a9cc52cb8eb1f52a5bf38204",
+    "landscapeImage": "https://s3.aynascope.net/storage/78bfd4bdb173772172aee2c3ce585949",
+    "title": "Bangla Tv",
+    "author": "bostaflix"
+  },
+  {
+    "id": "xV4jEKf3D9zc",
+    "m3u8": "https://tvsen5.aynascope.net/xV4jEKf3D9zc/index.fmp4.m3u8?token=48677ea59b1d7654e95421baa25ebbf61f04f401-d441081ecdcbb5c09146733e268f1228-1751720066-1751719166&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/1a619c9b917eb35898020cd323e415a7",
+    "landscapeImage": "https://s3.aynascope.net/storage/af005bc3a19eb0f8d5f21cd4f23f560c",
+    "title": "NTV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "tgUzpPc9r6xw",
+    "m3u8": "https://tvsen5.aynascope.net/tgUzpPc9r6xw/index.m3u8?e=1751726666&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=8db5ca0c81f10d4ce10d607f9290ffb1",
+    "image": "https://s3.aynascope.net/storage/788ab3e49b2aa6af247722762ed6e72a",
+    "landscapeImage": "https://s3.aynascope.net/storage/1baf8551634683d3c3b0b58a61908395",
+    "title": "Bangla Vision",
+    "author": "bostaflix"
+  },
+  {
+    "id": "rtv",
+    "m3u8": "https://tvsen6.aynascope.net/ba47dHpDk3Se/index.m3u8?e=1751726667&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=9a265c38554eac7fbb81299cc458bdcf",
+    "image": "https://s3.aynascope.net/storage/094587a26f2c5e4f2962104728ec8c5d",
+    "landscapeImage": "https://s3.aynascope.net/storage/c1c4b68fd0182a6ebb438ce64415e263",
+    "title": "RTV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "P3y2URgG7LDe",
+    "m3u8": "https://tvsen5.aynascope.net/P3y2URgG7LDe/index.m3u8?e=1751726667&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=1274a51d026d9c14653f18829028fe96",
+    "image": "https://s3.aynascope.net/storage/eff41809fca04f7c1da5481e135d7913",
+    "landscapeImage": "https://s3.aynascope.net/storage/f7e8757bf6442707c2a47408d33df678",
+    "title": "ATN Bangla",
+    "author": "bostaflix"
+  },
+  {
+    "id": "etv",
+    "m3u8": "https://tvsen6.aynascope.net/etv/index.m3u8?e=1751726668&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=0b7648ae2e56b0f4ee5cd8a28feee37f",
+    "image": "https://s3.aynascope.net/storage/8a1af81802b0728c064c2adabcdc72c8",
+    "landscapeImage": "https://s3.aynascope.net/storage/47d59f0700ea9375b8adc3f53ad60701",
+    "title": "ETV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "maasrangatv",
+    "m3u8": "https://tvsen6.aynascope.net/tK2BNvT68fHZ/index.m3u8?e=1751726668&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=89aedb6670b0bf57570dd3c1547ddcb5",
+    "image": "https://s3.aynascope.net/storage/1b5cb8c7901739cd7d201a38d2ab4737",
+    "landscapeImage": "https://s3.aynascope.net/storage/a730c2dae3a45bbfc1f9e98fe5bb8c1d",
+    "title": "Maasranga TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nyGkuJxNL4aE",
+    "m3u8": "https://tvsen5.aynascope.net/nyGkuJxNL4aE/index.m3u8?e=1751726668&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=016e50054759754ea8073ea87573c1e5",
+    "image": "https://s3.aynascope.net/storage/76717b7a598a30815a1bdb16ecd3af6c",
+    "landscapeImage": "https://s3.aynascope.net/storage/3e68c056930f70e9b866c014a529f6be",
+    "title": "Deepto TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "somoytv",
+    "m3u8": "https://tvsen6.aynascope.net/somoytv/index.m3u8?e=1751726668&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=e0b0b44f9d2345a2cb6d5c178bbc68f7",
+    "image": "https://s3.aynascope.net/storage/ece71c1163a377fbe2d93f9d28c34f60",
+    "landscapeImage": "https://s3.aynascope.net/storage/2250e1fab5c775c9ebb7e610d862b64a",
+    "title": "Somoy News TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "asports-bkp",
+    "m3u8": "https://tvsen7.aynascope.net/asports-bkp/index.m3u8?e=1751726669&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=ae42d3addc11b3659fb640ba7d3f7b44",
+    "image": "https://s3.aynascope.net/storage/64de30d2df9b2a888cb73f17614a9a8b",
+    "landscapeImage": "https://s3.aynascope.net/storage/6608377f442e8ffbbf95f3288c46ffc4",
+    "title": "A sports",
+    "author": "bostaflix"
+  },
+  {
+    "id": "channeli",
+    "m3u8": "https://tvsen6.aynascope.net/channeli/index.m3u8?e=1751726671&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=eb0093544d65b52020b86fb40524a7e3",
+    "image": "https://s3.aynascope.net/storage/8e998f20a9cc52cb8eb1f52a5bf38204",
+    "landscapeImage": "https://s3.aynascope.net/storage/c09c06d578a6549cf023a09bc3e92dc1",
+    "title": "Channel I",
+    "author": "bostaflix"
+  },
+  {
+    "id": "xV4jEKf3D9zc",
+    "m3u8": "https://tvsen5.aynascope.net/xV4jEKf3D9zc/index.fmp4.m3u8?token=1f5429a07918a93b4ecb58f1c994eb73ba0f5e81-2c82e5ea39a1993984488ea10d5f0602-1751720071-1751719171&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/1a619c9b917eb35898020cd323e415a7",
+    "landscapeImage": "https://s3.aynascope.net/storage/af005bc3a19eb0f8d5f21cd4f23f560c",
+    "title": "NTV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "tgUzpPc9r6xw",
+    "m3u8": "https://tvsen5.aynascope.net/tgUzpPc9r6xw/index.m3u8?e=1751726672&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=bc25fcd1ee493f291dba3376d9301e78",
+    "image": "https://s3.aynascope.net/storage/788ab3e49b2aa6af247722762ed6e72a",
+    "landscapeImage": "https://s3.aynascope.net/storage/1baf8551634683d3c3b0b58a61908395",
+    "title": "Bangla Vision",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ba47dHpDk3Se",
+    "m3u8": "https://tvsen5.aynascope.net/ba47dHpDk3Se/index.m3u8?e=1751726672&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=f92bd3aca53e260b9d4c8ba0a0d4dff3",
+    "image": "https://s3.aynascope.net/storage/094587a26f2c5e4f2962104728ec8c5d",
+    "landscapeImage": "https://s3.aynascope.net/storage/c1c4b68fd0182a6ebb438ce64415e263",
+    "title": "RTV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "P3y2URgG7LDe",
+    "m3u8": "https://tvsen5.aynascope.net/P3y2URgG7LDe/index.m3u8?e=1751726672&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=2ac26d78ad74890827344af5d80f9ed9",
+    "image": "https://s3.aynascope.net/storage/eff41809fca04f7c1da5481e135d7913",
+    "landscapeImage": "https://s3.aynascope.net/storage/f7e8757bf6442707c2a47408d33df678",
+    "title": "ATN Bangla",
+    "author": "bostaflix"
+  },
+  {
+    "id": "tK2BNvT68fHZ",
+    "m3u8": "https://tvsen5.aynascope.net/tK2BNvT68fHZ/index.m3u8?e=1751726672&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=19ea707f32451d9d3a9bcfe94f890e5e",
+    "image": "https://s3.aynascope.net/storage/1b5cb8c7901739cd7d201a38d2ab4737",
+    "landscapeImage": "https://s3.aynascope.net/storage/a730c2dae3a45bbfc1f9e98fe5bb8c1d",
+    "title": "Maasranga TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nyGkuJxNL4aE",
+    "m3u8": "https://tvsen5.aynascope.net/nyGkuJxNL4aE/index.m3u8?e=1751726672&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=ce8a8443c45328a345ebc44df8df743e",
+    "image": "https://s3.aynascope.net/storage/76717b7a598a30815a1bdb16ecd3af6c",
+    "landscapeImage": "https://s3.aynascope.net/storage/3e68c056930f70e9b866c014a529f6be",
+    "title": "Deepto TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ABC7Bay",
+    "m3u8": "https://tvsen6.aynascope.net/ABC7Bay/index.m3u8?e=1751726673&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=20c11c00dbed065807e8a528392085ba",
+    "image": "https://s3.aynascope.net/storage/b28173a251bda1357f9884ca7eef7b89",
+    "landscapeImage": "https://s3.aynascope.net/storage/c25a2639f112b151d0025f3972ae122e",
+    "title": "ABC 7 Bay",
+    "author": "bostaflix"
+  },
+  {
+    "id": "AbcNews",
+    "m3u8": "https://tvsen6.aynascope.net/AbcNews/index.m3u8?e=1751726673&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=fb579c9a91dcee816b528a7a1da9bfe6",
+    "image": "https://s3.aynascope.net/storage/065af1ce1aa68d9d96c27050a8125413",
+    "landscapeImage": "https://s3.aynascope.net/storage/7da6a460f94ecce155fdf077c6f4dcb1",
+    "title": "ABC News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ABCNewsNY",
+    "m3u8": "https://tvsen6.aynascope.net/ABCNewsNY/index.m3u8?e=1751726673&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=89e947e314a158644898a2dd23e81f1a",
+    "image": "https://s3.aynascope.net/storage/9c204bbb29e7c73684fb5b047a75fea0",
+    "landscapeImage": "https://s3.aynascope.net/storage/b0c073800b53713d0e678f40b24fceb4",
+    "title": "ABC News NY",
+    "author": "bostaflix"
+  },
+  {
+    "id": "AmiricansVoiceNews",
+    "m3u8": "https://tvsen6.aynascope.net/AmiricansVoiceNews/index.m3u8?e=1751726674&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=a53fb72d49f67b70487b97b06b59f6e9",
+    "image": "https://s3.aynascope.net/storage/369efaefbc7b97f959725922707f8c00",
+    "landscapeImage": "https://s3.aynascope.net/storage/eb4f09780418f214b2c9f4ef0a0defc2",
+    "title": "Amiricans Voice News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "bbcnews",
+    "m3u8": "https://tvsen6.aynascope.net/bbcnews/index.m3u8?e=1751726674&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=d38245d5b3da12a4f7020d47876e1924",
+    "image": "https://s3.aynascope.net/storage/abb5e2004f0fac10f6c74ecaa1c90da2",
+    "landscapeImage": "https://s3.aynascope.net/storage/27bcc876a9ed45819531cafbb35298b5",
+    "title": "BBC News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "BekTvNews",
+    "m3u8": "https://tvsen6.aynascope.net/BekTvNews/index.m3u8?e=1751726675&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=1d8e750a37c58bf013a1a5dbaa3572e5",
+    "image": "https://s3.aynascope.net/storage/4eaf83274ee309489b535852b1780ad2",
+    "landscapeImage": "https://s3.aynascope.net/storage/8e4bbfa77d0c58560b781c920dac11ed",
+    "title": "BEK TV News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "somoytv",
+    "m3u8": "https://tvsen6.aynascope.net/somoytv/index.m3u8?e=1751726675&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=a0fefc0763fbbc4f0bc2dbbe32acdef5",
+    "image": "https://s3.aynascope.net/storage/ece71c1163a377fbe2d93f9d28c34f60",
+    "landscapeImage": "https://s3.aynascope.net/storage/2250e1fab5c775c9ebb7e610d862b64a",
+    "title": "Somoy News TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "channel24",
+    "m3u8": "https://tvsen6.aynascope.net/channel24/index.m3u8?e=1751726676&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=e80e3054d7ad0b7ff021068ac3193ca0",
+    "image": "https://s3.aynascope.net/storage/129b0d0a02566999a0c164cd7d506e55",
+    "landscapeImage": "https://s3.aynascope.net/storage/f38c8a14098fb9c74d2e8e25e59ffc2a",
+    "title": "Channel 24",
+    "author": "bostaflix"
+  },
+  {
+    "id": "atnnews",
+    "m3u8": "https://tvsen6.aynascope.net/atnnews/index.m3u8?e=1751726676&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=d2a8ae3b4779d8dbde5bb6ad01cf93fd",
+    "image": "https://s3.aynascope.net/storage/8a3c5215dc0b943dc0a80333c0ab21ce",
+    "landscapeImage": "https://s3.aynascope.net/storage/137700fc07cc158d4c2cbea8d9beceaa",
+    "title": "ATN News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "independenttv",
+    "m3u8": "https://tvsen6.aynascope.net/independenttv/index.m3u8?e=1751726676&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=36e33bbea4737b4fd3a66cf9552dcedc",
+    "image": "https://s3.aynascope.net/storage/6653326503fcade746d87881d5c99697",
+    "landscapeImage": "https://s3.aynascope.net/storage/6dfe49eb7c5a5d8ca1afd62ceeb7c83e",
+    "title": "Independent TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "durontotv-live",
+    "m3u8": "https://tvsen6.aynascope.net/durontotv-live/index.m3u8?e=1751726676&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=d6dccad33a544530ce7ef2b6a70ac74f",
+    "image": "https://s3.aynascope.net/storage/51f1530c076c027e431bf18a49613f0b",
+    "landscapeImage": "https://s3.aynascope.net/storage/51da8a724953d50a204f527850cc7ec4",
+    "title": "Duronto TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "cartoonnetwork",
+    "m3u8": "https://tvsen5.aynascope.net/cartoonnetwork/index.fmp4.m3u8?token=5b9b0474cc7a155e06b70ff9bde0c0c07d1ed374-ed450f62bbb64e9ada7c3d7dbff8bb8f-1751720077-1751719177&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/a89142109d049ae325fd1681b50bfffb",
+    "landscapeImage": "https://s3.aynascope.net/storage/d60262fa3e0819d0ed6a6e39a104f522",
+    "title": "Cartoon Network",
+    "author": "bostaflix"
+  },
+  {
+    "id": "pbskids",
+    "m3u8": "https://tvsen7.aynascope.net/pbskids/index.m3u8?e=1751726677&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=6e9b4be41e8ed8a618fb8e673c1e9b01",
+    "image": "https://s3.aynascope.net/storage/e15930189f48df6d429c269bd1edea99",
+    "landscapeImage": "https://s3.aynascope.net/storage/d8a03097fabda2ba59e7bdb71969c3d4",
+    "title": "PBS Kids",
+    "author": "bostaflix"
+  },
+  {
+    "id": "disneyjr",
+    "m3u8": "https://tvsen7.aynascope.net/disneyjr/index.m3u8?e=1751726677&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=d2be4f329996cc9a9a7c3a1ba3f0cc4e",
+    "image": "https://s3.aynascope.net/storage/31a070024b6516e3738baec70168f0b6",
+    "landscapeImage": "https://s3.aynascope.net/storage/2f34cad03657e5f3354210d81449a8ba",
+    "title": "Disney JR",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nicktoons",
+    "m3u8": "https://tvsen5.aynascope.net/nicktoons/index.fmp4.m3u8?token=224303f24a3a44884be5938eb11420ad9c6a8b39-cf6ba52cee9fc58fc7d9b24223d63f28-1751720078-1751719178&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/a130687320f6b07db4bc3729b9d5e96e",
+    "landscapeImage": "https://s3.aynascope.net/storage/93fa492d0aa0b8d5356d15d65ab8648c",
+    "title": "Nicktoons",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nickjr",
+    "m3u8": "https://tvsen5.aynascope.net/nickjr/index.fmp4.m3u8?token=0e79a7d4c81069fe1a9f0dd81a8850401630c18e-6ec4beda081db99676ff30d937a064da-1751720078-1751719178&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/921409bfe77e2e3d32492116bc22fa3e",
+    "landscapeImage": "https://s3.aynascope.net/storage/32bac68e42f70d11b66901b1dfda6821",
+    "title": "Nickjr",
+    "author": "bostaflix"
+  },
+  {
+    "id": "3abnkids",
+    "m3u8": "https://tvsen6.aynascope.net/3abnkids/index.m3u8?e=1751726678&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=49b101841780e42f4d78862becf9cea9",
+    "image": "https://s3.aynascope.net/storage/76e36f75bf11c815a76c5622d627c814",
+    "landscapeImage": "https://s3.aynascope.net/storage/d8e40473bb56b2162e60a25a337fe998",
+    "title": "3ABN Kids",
+    "author": "bostaflix"
+  },
+  {
+    "id": "diostevekids",
+    "m3u8": "https://tvsen6.aynascope.net/diostevekids/index.m3u8?e=1751726678&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=6ba7382acf7cab48a3c7ec744624b92e",
+    "image": "https://s3.aynascope.net/storage/6712a3c8a28689cfda4148faf095fa67",
+    "landscapeImage": "https://s3.aynascope.net/storage/89d8f159cf715975d14bf9147b9fb94a",
+    "title": "Dios Te Ve Kids",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ForeverKids",
+    "m3u8": "https://tvsen6.aynascope.net/ForeverKids/index.m3u8?e=1751726678&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=92f5602e20719f6ff9035e585518c0e4",
+    "image": "https://s3.aynascope.net/storage/61c87bda9e538dd52b3ef654e85a11ff",
+    "landscapeImage": "https://s3.aynascope.net/storage/b85e93d4bc29f8e98e8bc3fcaebc5f7c",
+    "title": "Forever Kids",
+    "author": "bostaflix"
+  },
+  {
+    "id": "islam",
+    "m3u8": "https://tvsen6.aynascope.net/islam/index.m3u8?e=1751726679&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=f35e5d8bd490117714abed4e9f7ba0c0",
+    "image": "https://s3.aynascope.net/storage/5e74c3498e10b3cd2dadfe676681d387",
+    "landscapeImage": "https://s3.aynascope.net/storage/34f72b417769d38c96f731b09d06b6e3",
+    "title": "Islam TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "AbcNews",
+    "m3u8": "https://tvsen6.aynascope.net/AbcNews/index.m3u8?e=1751726679&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=61103d5946973bc7b457003e04375304",
+    "image": "https://s3.aynascope.net/storage/065af1ce1aa68d9d96c27050a8125413",
+    "landscapeImage": "https://s3.aynascope.net/storage/7da6a460f94ecce155fdf077c6f4dcb1",
+    "title": "ABC News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ABCNewsNY",
+    "m3u8": "https://tvsen6.aynascope.net/ABCNewsNY/index.m3u8?e=1751726679&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=2bc4f37b64d57da89c71f686456691b9",
+    "image": "https://s3.aynascope.net/storage/9c204bbb29e7c73684fb5b047a75fea0",
+    "landscapeImage": "https://s3.aynascope.net/storage/b0c073800b53713d0e678f40b24fceb4",
+    "title": "ABC News NY",
+    "author": "bostaflix"
+  },
+  {
+    "id": "AmiricansVoiceNews",
+    "m3u8": "https://tvsen6.aynascope.net/AmiricansVoiceNews/index.m3u8?e=1751726679&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=3c5ba747debda297ffce8b0b722a5d8d",
+    "image": "https://s3.aynascope.net/storage/369efaefbc7b97f959725922707f8c00",
+    "landscapeImage": "https://s3.aynascope.net/storage/eb4f09780418f214b2c9f4ef0a0defc2",
+    "title": "Amiricans Voice News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "bbcnews",
+    "m3u8": "https://tvsen6.aynascope.net/bbcnews/index.m3u8?e=1751726679&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=0ee24969fbe6d6b13d1943b53cf43786",
+    "image": "https://s3.aynascope.net/storage/abb5e2004f0fac10f6c74ecaa1c90da2",
+    "landscapeImage": "https://s3.aynascope.net/storage/27bcc876a9ed45819531cafbb35298b5",
+    "title": "BBC News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "BekTvNews",
+    "m3u8": "https://tvsen6.aynascope.net/BekTvNews/index.m3u8?e=1751726679&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=68e1bd4a0e7eb5f6bf0febeb8800e552",
+    "image": "https://s3.aynascope.net/storage/4eaf83274ee309489b535852b1780ad2",
+    "landscapeImage": "https://s3.aynascope.net/storage/8e4bbfa77d0c58560b781c920dac11ed",
+    "title": "BEK TV News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "GlobalSocilTV",
+    "m3u8": "https://tvsen6.aynascope.net/GlobalSocilTV/index.m3u8?e=1751726680&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=615f0a7d029895ac7b7e1cbdf08833c5",
+    "image": "",
+    "landscapeImage": "",
+    "title": "Global Socil TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "RDSSocialTV",
+    "m3u8": "https://tvsen6.aynascope.net/RDSSocialTV/index.m3u8?e=1751726680&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=a69a6642403faa3fc4b2352d8b34de87",
+    "image": "https://s3.aynascope.net/storage/f1fbcbc6cd325f5324eabb3bc733584e",
+    "landscapeImage": "https://s3.aynascope.net/storage/8bbf99d892096dd5593b03e667912910",
+    "title": "RDS Social TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "AfroturkTV",
+    "m3u8": "https://tvsen6.aynascope.net/AfroturkTV/index.m3u8?e=1751726680&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=8266b2611de04117722a7fb06b88507c",
+    "image": "https://s3.aynascope.net/storage/f581d433008a3c1767023347190f01cf",
+    "landscapeImage": "https://s3.aynascope.net/storage/22f8fd29bb232004e7e26588c9b7cf33",
+    "title": "Afroturk TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "Finans",
+    "m3u8": "https://tvsen6.aynascope.net/Finans/index.m3u8?e=1751726680&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=6d9b6314072f721e64eb87240b538f0e",
+    "image": "https://s3.aynascope.net/storage/ac895381cfc9452384656cdfb4fbf5e4",
+    "landscapeImage": "https://s3.aynascope.net/storage/a7e5047b3d62e2e9bad7e7a70160be8e",
+    "title": "Finans Turk",
+    "author": "bostaflix"
+  },
+  {
+    "id": "islam",
+    "m3u8": "https://tvsen6.aynascope.net/islam/index.m3u8?e=1751726681&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=d21f55cd298425ee23b4c148b7747369",
+    "image": "https://s3.aynascope.net/storage/5e74c3498e10b3cd2dadfe676681d387",
+    "landscapeImage": "https://s3.aynascope.net/storage/34f72b417769d38c96f731b09d06b6e3",
+    "title": "Islam TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "rtvislam",
+    "m3u8": "https://tvsen6.aynascope.net/rtvislam/index.m3u8?e=1751726681&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=df876496bf0b68e0112d3d383a92fee4",
+    "image": "https://s3.aynascope.net/storage/f00eda9194eb13e8ef1d1387889173bf",
+    "landscapeImage": "https://s3.aynascope.net/storage/b580695f908f85944aa5155790b17186",
+    "title": "RTV Islam",
+    "author": "bostaflix"
+  },
+  {
+    "id": "AlZaharTVTurkic",
+    "m3u8": "https://tvsen6.aynascope.net/AlZaharTVTurkic/index.m3u8?e=1751726681&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=8eadee29f020cf978d0107c11ed2cbd8",
+    "image": "",
+    "landscapeImage": "",
+    "title": "Al-Zahar TV Turkic",
+    "author": "bostaflix"
+  },
+  {
+    "id": "banglatv",
+    "m3u8": "https://tvsen6.aynascope.net/banglatv/index.m3u8?e=1751726681&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=f5c79bab240f7f9965c489df59445815",
+    "image": "https://s3.aynascope.net/storage/78bfd4bdb173772172aee2c3ce585949",
+    "landscapeImage": "https://s3.aynascope.net/storage/78bfd4bdb173772172aee2c3ce585949",
+    "title": "Bangla TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "pbskids",
+    "m3u8": "https://tvsen7.aynascope.net/pbskids/index.m3u8?e=1751726682&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=2752650ee69e5860cf6577b24bb28137",
+    "image": "https://s3.aynascope.net/storage/c13a34a82616b5b23008e70913608b76",
+    "landscapeImage": "https://s3.aynascope.net/storage/c13a34a82616b5b23008e70913608b76",
+    "title": "PBS Kids",
+    "author": "bostaflix"
+  },
+  {
+    "id": "cartoonnetwork",
+    "m3u8": "https://tvsen5.aynascope.net/cartoonnetwork/index.fmp4.m3u8?token=6de375e6dfd4ed310795e3c0cc7931f8e17afb6a-6ddb32c683370c6b0c717332e72a8f33-1751720082-1751719182&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/1b957053dfb78669ba988aa04c8ca7f7",
+    "landscapeImage": "https://s3.aynascope.net/storage/1b957053dfb78669ba988aa04c8ca7f7",
+    "title": "Cartoon Network",
+    "author": "bostaflix"
+  },
+  {
+    "id": "anandatv",
+    "m3u8": "https://tvsen6.aynascope.net/anandatv/index.m3u8?e=1751726682&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=26788684e20d6f85bd49f4406e771013",
+    "image": "https://s3.aynascope.net/storage/c467e2c1fb461d21fd2511ce5b195dfd",
+    "landscapeImage": "https://s3.aynascope.net/storage/c467e2c1fb461d21fd2511ce5b195dfd",
+    "title": "Ananda TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "bijoytv",
+    "m3u8": "https://tvsen6.aynascope.net/bijoytv/index.m3u8?e=1751726682&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=253ea40bbdbee0fdd4352fbfc299bcfc",
+    "image": "https://s3.aynascope.net/storage/3fdc7ac5f98cb4f2218918cffbdc3a74",
+    "landscapeImage": "https://s3.aynascope.net/storage/3fdc7ac5f98cb4f2218918cffbdc3a74",
+    "title": "Bijoy TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "asports-bkp",
+    "m3u8": "https://tvsen7.aynascope.net/asports-bkp/index.m3u8?e=1751726682&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=167f7630cab57b128eb75e1782da1143",
+    "image": "https://s3.aynascope.net/storage/b05849905f36556c35dfba657f01ce0e",
+    "landscapeImage": "https://s3.aynascope.net/storage/b05849905f36556c35dfba657f01ce0e",
+    "title": "A sports",
+    "author": "bostaflix"
+  },
+  {
+    "id": "channeli",
+    "m3u8": "https://tvsen6.aynascope.net/channeli/index.m3u8?e=1751726683&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=a379ab8e0f4d9d67ca96497d7bb1aa7d",
+    "image": "https://s3.aynascope.net/storage/593a85ee23a5b064939bbecc6adde73c",
+    "landscapeImage": "https://s3.aynascope.net/storage/593a85ee23a5b064939bbecc6adde73c",
+    "title": "Channel I",
+    "author": "bostaflix"
+  },
+  {
+    "id": "tgUzpPc9r6xw",
+    "m3u8": "https://tvsen5.aynascope.net/tgUzpPc9r6xw/index.m3u8?e=1751726683&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=4a6e0d7bd6297214ce5679f5e1f65a6a",
+    "image": "https://s3.aynascope.net/storage/c26c408bed6ba787c80d371a70d455a6",
+    "landscapeImage": "https://s3.aynascope.net/storage/c26c408bed6ba787c80d371a70d455a6",
+    "title": "Bangla Vision",
+    "author": "bostaflix"
+  },
+  {
+    "id": "xV4jEKf3D9zc",
+    "m3u8": "https://tvsen5.aynascope.net/xV4jEKf3D9zc/index.fmp4.m3u8?token=b876c7651e9564d2fcdc5a1e2409b569d09f3b5e-0810a13e3e9d2d4130616ecb2090dafd-1751720083-1751719183&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/02ccf66e06c2bdf6f946e8f76c5eaa92",
+    "landscapeImage": "https://s3.aynascope.net/storage/02ccf66e06c2bdf6f946e8f76c5eaa92",
+    "title": "NTV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "somoytv",
+    "m3u8": "https://tvsen6.aynascope.net/somoytv/index.m3u8?e=1751726683&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=1a61333f8bbc8df8e4daf24578c5d9eb",
+    "image": "https://s3.aynascope.net/storage/8c2927726383985744b6e3e5cd75890b",
+    "landscapeImage": "https://s3.aynascope.net/storage/8c2927726383985744b6e3e5cd75890b",
+    "title": "Somoy News TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "satv",
+    "m3u8": "https://tvsen6.aynascope.net/satv/index.m3u8?e=1751726684&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=6966b2e130ee32a0b70ccc418b60862f",
+    "image": "https://s3.aynascope.net/storage/09a5d27cf20943362cbf7c2842b18c0e",
+    "landscapeImage": "https://s3.aynascope.net/storage/09a5d27cf20943362cbf7c2842b18c0e",
+    "title": "SA TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "mytv",
+    "m3u8": "https://tvsen6.aynascope.net/mytv/index.m3u8?e=1751726686&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=b6ee3f2c5c9ac6e4889949dee0a11939",
+    "image": "https://s3.aynascope.net/storage/c20e91df7bdf78f81ed086ecd426f6fd",
+    "landscapeImage": "https://s3.aynascope.net/storage/c20e91df7bdf78f81ed086ecd426f6fd",
+    "title": "My TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "jamunatv",
+    "m3u8": "https://tvsen6.aynascope.net/jamunatv/index.m3u8?e=1751726686&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=ee875db6d08590b598c80eabe9419612",
+    "image": "https://s3.aynascope.net/storage/bdf3b996d6848ac3a0f0cebb91e761ce",
+    "landscapeImage": "https://s3.aynascope.net/storage/bdf3b996d6848ac3a0f0cebb91e761ce",
+    "title": "Jamuna TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nexustv",
+    "m3u8": "https://tvsen6.aynascope.net/nexustv/index.m3u8?e=1751726686&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=90b0b081f3958be5fecfdbf446263f27",
+    "image": "https://s3.aynascope.net/storage/8cd65e452afed48e2153f472145741c8",
+    "landscapeImage": "https://s3.aynascope.net/storage/8cd65e452afed48e2153f472145741c8",
+    "title": "NEXUS TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ekattorbdtv",
+    "m3u8": "https://tvsen6.aynascope.net/ekattorbdtv/index.m3u8?e=1751726686&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=ddbec2975495ff8344ff7c8af977b75b",
+    "image": "https://s3.aynascope.net/storage/680c4cc43f3dbbb1d08bdda30e3f19f1",
+    "landscapeImage": "https://s3.aynascope.net/storage/680c4cc43f3dbbb1d08bdda30e3f19f1",
+    "title": "Ekattor TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "channel9",
+    "m3u8": "https://tvsen6.aynascope.net/channel9/index.m3u8?e=1751726687&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=e2121962b3d4ba90cbdcc08b25ff1bcf",
+    "image": "https://s3.aynascope.net/storage/33392936aab41ea6c855fc20c244553e",
+    "landscapeImage": "https://s3.aynascope.net/storage/33392936aab41ea6c855fc20c244553e",
+    "title": "Channel 9",
+    "author": "bostaflix"
+  },
+  {
+    "id": "tK2BNvT68fHZ",
+    "m3u8": "https://tvsen5.aynascope.net/tK2BNvT68fHZ/index.m3u8?e=1751726687&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=db27e3098f9f2237bb5f8486f8641d72",
+    "image": "https://s3.aynascope.net/storage/63507b16c2347b66ebe35ac3750b46bc",
+    "landscapeImage": "https://s3.aynascope.net/storage/63507b16c2347b66ebe35ac3750b46bc",
+    "title": "Maasranga TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "news24",
+    "m3u8": "https://tvsen6.aynascope.net/news24/index.m3u8?e=1751726687&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=e9612091bd946927915bc9ce5334d8f3",
+    "image": "https://s3.aynascope.net/storage/25d48d1688d314ee3bec642e7a6d5b7f",
+    "landscapeImage": "https://s3.aynascope.net/storage/25d48d1688d314ee3bec642e7a6d5b7f",
+    "title": "News 24 BD",
+    "author": "bostaflix"
+  },
+  {
+    "id": "deshtv",
+    "m3u8": "https://tvsen6.aynascope.net/deshtv/index.m3u8?e=1751726688&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=cdda1bc54685440fb84ad817559dcdf5",
+    "image": "https://s3.aynascope.net/storage/729f05477cc07d3f6dd5a4f556c47f75",
+    "landscapeImage": "https://s3.aynascope.net/storage/729f05477cc07d3f6dd5a4f556c47f75",
+    "title": "Desh TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "mohonatv",
+    "m3u8": "https://tvsen6.aynascope.net/mohonatv/index.m3u8?e=1751726688&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=e3013394d49874c152800efc5c58a0bb",
+    "image": "https://s3.aynascope.net/storage/7a4eb1441991b70f7e0a32df31ef8361",
+    "landscapeImage": "https://s3.aynascope.net/storage/7a4eb1441991b70f7e0a32df31ef8361",
+    "title": "Mohona TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "Ravc7gPCZpxk",
+    "m3u8": "https://tvsen5.aynascope.net/Ravc7gPCZpxk/index.m3u8?e=1751726688&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=c5dc7819c45212548971fdc0db5e88aa",
+    "image": "https://s3.aynascope.net/storage/2c446d0910b404be73652fb6363263d5",
+    "landscapeImage": "https://s3.aynascope.net/storage/2c446d0910b404be73652fb6363263d5",
+    "title": "Gazi TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "dbcnews",
+    "m3u8": "https://tvsen6.aynascope.net/dbcnews/index.m3u8?e=1751726688&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=999e121974abe305534f4b04b3d547df",
+    "image": "https://s3.aynascope.net/storage/90b5188b4586e2f479fbffab4579a05d",
+    "landscapeImage": "https://s3.aynascope.net/storage/90b5188b4586e2f479fbffab4579a05d",
+    "title": "DBC News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nicktoons",
+    "m3u8": "https://tvsen5.aynascope.net/nicktoons/index.fmp4.m3u8?token=f9997ca8c6df213563248040f42043a2f6297031-cded382000c90488d1edd107d35d3241-1751720089-1751719189&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/54a763656b2567e4f7ec761a2f2c3232",
+    "landscapeImage": "https://s3.aynascope.net/storage/54a763656b2567e4f7ec761a2f2c3232",
+    "title": "Nicktoons",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nickjr",
+    "m3u8": "https://tvsen5.aynascope.net/nickjr/index.fmp4.m3u8?token=de7f7580434dd470f2cb6e513578fa8829bbe7d7-c9c21c1c373d9724bd7b01a98387511f-1751720089-1751719189&remote=no_check_ip",
+    "image": "https://s3.aynascope.net/storage/769be5ba0c74bcb6fcf1018ce6f89194",
+    "landscapeImage": "https://s3.aynascope.net/storage/769be5ba0c74bcb6fcf1018ce6f89194",
+    "title": "Nickjr",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ekhontv",
+    "m3u8": "https://tvsen6.aynascope.net/ekhontv/index.m3u8?e=1751726689&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=cef36890c6c1e1f06933c9cf2e92eebd",
+    "image": "https://s3.aynascope.net/storage/7c199987cdc82350b0124362ad94a864",
+    "landscapeImage": "https://s3.aynascope.net/storage/7c199987cdc82350b0124362ad94a864",
+    "title": "Ekhon TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "etv",
+    "m3u8": "https://tvsen6.aynascope.net/etv/index.m3u8?e=1751726690&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=17ccf76bc6ca05cf175e129803767341",
+    "image": "https://s3.aynascope.net/storage/b154a0d0289dfddaa012e2ff7572adc6",
+    "landscapeImage": "https://s3.aynascope.net/storage/b154a0d0289dfddaa012e2ff7572adc6",
+    "title": "ETV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "boishakhitv",
+    "m3u8": "https://tvsen6.aynascope.net/boishakhitv/index.m3u8?e=1751726690&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=7587c5e7996db60d2bea2d2f44aaec91",
+    "image": "https://s3.aynascope.net/storage/deae689095b620313eda38dd3db2b24c",
+    "landscapeImage": "https://s3.aynascope.net/storage/deae689095b620313eda38dd3db2b24c",
+    "title": "Boishakhi TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "channel24",
+    "m3u8": "https://tvsen6.aynascope.net/channel24/index.m3u8?e=1751726691&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=48d0989cd22d1a06b564f100ef3d2c5c",
+    "image": "https://s3.aynascope.net/storage/6f3e8f5f61b275cc87b022e2a506c4f4",
+    "landscapeImage": "https://s3.aynascope.net/storage/6f3e8f5f61b275cc87b022e2a506c4f4",
+    "title": "Channel 24",
+    "author": "bostaflix"
+  },
+  {
+    "id": "durontotv",
+    "m3u8": "https://tvsen6.aynascope.net/durontotv/index.m3u8?e=1751726691&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=670d474c4313582ff427a38d1545424e",
+    "image": "https://s3.aynascope.net/storage/0561325550cca6aaf43abc17b741ac2e",
+    "landscapeImage": "https://s3.aynascope.net/storage/0561325550cca6aaf43abc17b741ac2e",
+    "title": "Duronto TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "atnnews",
+    "m3u8": "https://tvsen6.aynascope.net/atnnews/index.m3u8?e=1751726691&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=baf898efb5a411ba34b5dd1ca603e08d",
+    "image": "https://s3.aynascope.net/storage/f23fc5bbfe88696322f5259480f68e57",
+    "landscapeImage": "https://s3.aynascope.net/storage/f23fc5bbfe88696322f5259480f68e57",
+    "title": "ATN News",
+    "author": "bostaflix"
+  },
+  {
+    "id": "P3y2URgG7LDe",
+    "m3u8": "https://tvsen5.aynascope.net/P3y2URgG7LDe/index.m3u8?e=1751726691&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=ade9dfaf99cd67d86f7d988e9dae7023",
+    "image": "https://s3.aynascope.net/storage/c3fc583c6a77860eea75360949d85368",
+    "landscapeImage": "https://s3.aynascope.net/storage/c3fc583c6a77860eea75360949d85368",
+    "title": "ATN Bangla",
+    "author": "bostaflix"
+  },
+  {
+    "id": "globaltvhd",
+    "m3u8": "https://tvsen6.aynascope.net/globaltvhd/index.m3u8?e=1751726692&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=e202370fc8b09d2d3219a54352d8a7c2",
+    "image": "https://s3.aynascope.net/storage/c2f2ec93d2a02849d31f94ed95ece18f",
+    "landscapeImage": "https://s3.aynascope.net/storage/c2f2ec93d2a02849d31f94ed95ece18f",
+    "title": "Global TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "asiantv",
+    "m3u8": "https://tvsen6.aynascope.net/asiantv/index.m3u8?e=1751726692&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=dbcf00301bd08319de07864e06faeb0c",
+    "image": "https://s3.aynascope.net/storage/36b0e135f705e4598574536eb5ed06b4",
+    "landscapeImage": "https://s3.aynascope.net/storage/36b0e135f705e4598574536eb5ed06b4",
+    "title": "Asian TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "independenttv",
+    "m3u8": "https://tvsen6.aynascope.net/independenttv/index.m3u8?e=1751726692&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=3bec7218c3b0d25ef2ea7b6c9f6f526e",
+    "image": "https://s3.aynascope.net/storage/43da3aface6479c00844fa1c2593516c",
+    "landscapeImage": "https://s3.aynascope.net/storage/43da3aface6479c00844fa1c2593516c",
+    "title": "Independent TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "nyGkuJxNL4aE",
+    "m3u8": "https://tvsen5.aynascope.net/nyGkuJxNL4aE/index.m3u8?e=1751726693&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=fea53e6655c93387fd99087e59d5b236",
+    "image": "https://s3.aynascope.net/storage/effb608ccd66e46f6b263cfdbc541f09",
+    "landscapeImage": "https://s3.aynascope.net/storage/effb608ccd66e46f6b263cfdbc541f09",
+    "title": "Deepto TV",
+    "author": "bostaflix"
+  },
+  {
+    "id": "disneyjr",
+    "m3u8": "https://tvsen7.aynascope.net/disneyjr/index.m3u8?e=1751726693&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=6b5ed4c322fa26c9d22b5ade632be318",
+    "image": "https://s3.aynascope.net/storage/043e278ebacaacd2b600261022212efa",
+    "landscapeImage": "https://s3.aynascope.net/storage/043e278ebacaacd2b600261022212efa",
+    "title": "Disney JR",
+    "author": "bostaflix"
+  },
+  {
+    "id": "ba47dHpDk3Se",
+    "m3u8": "https://tvsen5.aynascope.net/ba47dHpDk3Se/index.m3u8?e=1751726693&u=1bf5053c-5d46-4d74-838b-f3370f2d4de8&token=9beef46551992c6f23f8a7e784a4a290",
+    "image": "https://s3.aynascope.net/storage/73e1e1de1f7e0f63a844f3f7585b6a24",
+    "landscapeImage": "https://s3.aynascope.net/storage/73e1e1de1f7e0f63a844f3f7585b6a24",
+    "title": "RTV",
+    "author": "bostaflix"
+  }
+]
