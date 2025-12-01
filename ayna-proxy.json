@@ -1,0 +1,1960 @@
+{
+    "status": "success",
+    "data": {
+        "list": [
+            {
+                "id": "20714fd4-dc3c-46d6-924f-3038d61f027c",
+                "title": "Channel I",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/0f95140efa1d458bf4a4ff154b1199e4",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "1a2c8ec3-61d5-4355-80e2-fc3c9b178a0d",
+                "title": "NTV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e8d11387c7ca6958e61a195e3282e331",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "21e75798-3b6a-4214-9d93-b3fecaa4e700",
+                "title": "Bangla Vision",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/dc9082087a3a8db6c3cb01e361fdac05",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "70e97db9-5a9e-4642-874e-af3d30ba9925",
+                "title": "RTV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/f40603ea8a1f35c2a443d35ea23eb6c5",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "9046949b-9847-4b5d-96c1-e82b0734444b",
+                "title": "ATN Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/372d5df41ba8d7ac8bfae9ec8953cc4d",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "9a94b22f-c4a4-4150-8eb9-129d0ddeb934",
+                "title": "Maasranga TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b1e3e206ddd29b7acdb2a50ba843f885",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "0be12af9-e713-4c65-b4ed-b735793a0418",
+                "title": "Deepto TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5621a9536b98118f326b7c55973277d7",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "fc95d30e-5323-4c12-bb38-7a1e3f04acc2",
+                "title": "T Sports HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/425600f6dcc6c5cef3070c357efe249b",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "9ab9aa29-3d3b-4527-ab47-d9b69f0ea80c",
+                "title": "Duronto TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/83fc0da93b2ef0f616487e628ea5ae95",
+                "category": "Recorded TV",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/3cc27a0f9221c60eeb2502652ef3447a"
+            },
+            {
+                "id": "b3f0df76-15ba-4ede-a7de-bbaaf23a630e",
+                "title": "ETV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b3a30c247346dae0cde396bebcd3d0a7",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "27ec4394-7640-4dab-abf8-6a48893dfdfe",
+                "title": "Somoy News TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/867186d8a607643511ce1dc607b40734",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b1808fb2-8892-49dc-965e-d038e5334995",
+                "title": "Gazi TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/00f1731674b41d5fca6b4dbd751a6df7",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "dd8c50e9-5dad-4cb9-9df8-5763e95281ad",
+                "title": "Desh TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/39b2dcfe12a32a0ac7c19dac91d49e8a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "92890d5c-473a-454c-ad10-2c6c0c91062a",
+                "title": "Boishakhi TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ada2f6165bcead815a397d73bbcb1586",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "56f7abf3-1586-4f6d-9df2-1726ccb43779",
+                "title": "Channel 9",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/34abe146e742b4f8fd66f9593a8abb9d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "89247cb9-3c3e-465c-bbc7-d444b0d65424",
+                "title": "Channel 24",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/c319dd78f51ae27b07c1b194a76daeca",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "4d629b90-cfc2-4426-9eef-62b879efdb02",
+                "title": "Asian TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ed1f694ccdd51168b730bdd06f2ca250",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a0a29f90-f7c2-4cc2-b0b4-667253585b84",
+                "title": "ATN News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/85e76bd86b4f8110fc67070d53a9814e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "22f28ae5-8c15-4904-b9f6-70bbd94cbc43",
+                "title": "Independent TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6455ee57373532a348609ced615016f4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d07563b0-7580-4cbd-a7c9-e67535c0164a",
+                "title": "SA TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/8fa054a67256deab0ee731708eea45c4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0875f2c8-2043-499b-9472-2872412a6340",
+                "title": "DBC News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4cee464cdd3d1ef232e2b65f9346c361",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0579659b-2854-40d1-ad6a-69b70641ad17",
+                "title": "Ekhon TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e9bf27d936267282310223b789f4f402",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2b1a4340-2557-4d57-b77c-657bb30ce0c8",
+                "title": "News 24 BD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/58827c0de42a1b6724f5cd2c406fb30f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "addb7014-1d2e-41d8-982d-7cafbdc48770",
+                "title": "Bangla TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9f849cc4b97784d6dc932989c5497f22",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1a7a1365-ae2c-470f-9fb2-25c6e83bb108",
+                "title": "Ekattor TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1058213943bdebaa9783946702d265b2",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8a1ff003-7cd5-4d75-8245-fa8aa3cdc6aa",
+                "title": "Jamuna TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9e2aa5d6db45fba5a9d680aa753bd8b2",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6662e038-604e-4cdc-87f7-8ec1cdf77a5e",
+                "title": "Mohona TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/eabbddaf0b9ce9ccf2d313f0bf5b92b3",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e64e1c11-1167-43a1-9e0f-995cbf6f7ff9",
+                "title": "NEXUS TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/8d53987d8c50e2f81049594d0ee4ab9a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f7c89459-37bf-4129-904d-33b0a4c0d590",
+                "title": "Bijoy TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/71350573a252a84cb2db9c1ee34df018",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0ac6af3d-acce-4d9d-9ce5-32d4b53f9326",
+                "title": "Global TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/93a188c5926e0a6bd4e8bfaf60c37551",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c0480a4a-f066-4a20-9f7d-73bbd852260f",
+                "title": "My TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5edb0478cfc2bdea518a82dc9f8426b1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a108c4e9-ccfa-42f2-8f8f-169ded28cca2",
+                "title": "Ananda TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/92e647d989168fef04fbe22dd0129247",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a3d48c46-7902-45e2-abf9-0fab60c4d117",
+                "title": "A sports",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3dd0cb2ee289359058b9c85eb026e632",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "5c62ff81-0efc-42eb-9dbe-65402fa54afb",
+                "title": "Baby TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e53b70622d29f4cdc2a53d5f61a669e3",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e73ffada-f80a-4c23-9bd8-76142e41c389",
+                "title": "Cartoon Network",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6d3c5b7c98b545719f81fb9a7e0d454e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d6d46db7-a14a-45ad-b576-b40c80406134",
+                "title": "PBS Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/fe52db4e8363299a9386986c6df1f0e8",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a9791899-66f2-4b94-9521-c333498f7ab9",
+                "title": "Disney JR",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ad2404259ef56968f7642e735ebbf740",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3830c379-539b-4e18-9943-9664574c850b",
+                "title": "Nicktoons",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5b729ef295812cfaa02deb4ce255b35e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c197b1bc-8909-4176-a50f-f855a4a51c1f",
+                "title": "Nickjr",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7dde121806942acc596d4aaf86e8af35",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a5b1267e-7ee9-42b0-958e-9cc739b84e6a",
+                "title": "All Sports Television Network",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5e8264be388ad68a8bab2bbac4591f5a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a51ed57c-a9cb-4dcb-9160-eb0726835c45",
+                "title": "DUBAI SPORTS 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9c1a44fbe8729b8607a55682a2bdbff2",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6e70514c-5f8e-483b-8c97-3c971b558a74",
+                "title": "Talk Sport",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/baf1a7b6b4968ef9355a450eb643ded6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3167764d-9154-4dda-a0cc-713ca5dee5d3",
+                "title": "KTV Sport Plus",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/23ea0166379a6a553ba0f3e1823bafa4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "79ce27a8-bbfa-4661-a6ff-e6006e1510a3",
+                "title": "SPORTS FIRST TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d6f61932971645f4506049132d7f8702",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "92f21f87-4dc5-4f5e-bc9b-3aec49c0a923",
+                "title": "Adventure Sports TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/030b7dae6ce41a2a84113143681e90b9",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d774d6a3-906e-42b4-b21a-9090b533a1b1",
+                "title": "Marquee Sports Network",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4a93be100502e1abe300a748cfababe2",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0e1fb643-581b-40c5-bb62-1277a6a75ebf",
+                "title": "MORE THEN SPORTS TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/44ffa6482cf03e28dd32b41a19593227",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "dcab1622-5b89-4da8-9a1b-2c53b565a3cf",
+                "title": "NBC SPORTS BAY",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d7c68da3f316140bdba4f00db07d2142",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "27d1e1ee-4794-458d-b373-59bf1e772557",
+                "title": "NBC SPORTS BOSTON",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d47097caae9160273b76460b021b5f7a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e0fe84eb-7d80-468c-8b1a-80fcaabf5629",
+                "title": "ORIGIN SPORTS",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5b5af70468f437d6281f963e88a3a845",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3c332dd0-4b54-417a-a310-75d5b70a16c5",
+                "title": "SHARJHA SPORTS TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/aeb996bc93c02d77506bb0c7a17d0795",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d49b0b2b-0132-4fd8-be49-88145477ee1d",
+                "title": "Sports Grid",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5d4161ad06002ba48fe2b7d12a09a4a7",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0c961fa9-e3ff-435a-b6d1-c32185485daa",
+                "title": "Swerve Sports",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/19394b65036e3d1d0df71e1def096f57",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6f4426c7-e48d-4b57-9747-4e0af8cc0365",
+                "title": "Tsport 7",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/376d9f5e55309616fe8c2f66512ebed4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "538b24c3-9493-44d5-be7c-482b51734f2c",
+                "title": "Xtream Sports",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/32ec090bbc9b54579774911c5a88c32e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f6096a6f-9891-4bfc-98d8-ea20ea1388fe",
+                "title": "Islam TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/cec418b136118772604e976af29da165",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "596e39ca-a957-4029-bbc6-55e89dc5d4d4",
+                "title": "RTV Islam",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/0c23bed301db19d36aaed20465f39ff1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "63b750d3-73e9-4e8a-b04b-6c79bbcd4f13",
+                "title": "ABC 7 Bay",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7700a2d14552fdcf51e447e9fb605cb5",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "50e2fe7f-fa1d-40ee-b37d-c19a992ed97c",
+                "title": "ABC News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1922cc7f36f18b7b17e7892778683596",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "5031a2f5-324e-4e3d-91b2-d16385052dd2",
+                "title": "ABC News NY",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/dc5a0b9c19e42975aa31d3b2736d5898",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "12467e84-4c98-4a15-841d-61852f4a8a42",
+                "title": "Amiricans Voice News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/0199148f87569c93fbf24becf228db78",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "140905b7-dfdf-4e51-aaf5-6fd132773fbe",
+                "title": "BEK TV News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/36ab079e12f89d97e11edcda4a2f9d93",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "5a010510-7f4f-491e-9f74-8438d5154202",
+                "title": "Sports Connect",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7d9badbf46609b3af59913acc038e9eb",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2be13775-7176-4b90-98d7-04c90ffe3b5a",
+                "title": "CNN",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9801b88ff036f0ba5607cbe40edb8b80",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "cb26514c-8cfb-4224-80e5-62a778c1a006",
+                "title": "AlJazeera",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d679a706ed8314a17292367e2855902c",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "4f059328-a08e-41c0-aa0e-fb11eb69da7e",
+                "title": "DW News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b9da60d18b2ceaafbcbae827fa4c3f64",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "369ffecf-00a9-49a9-864d-a8f45c7ef6db",
+                "title": "NHK World",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5fb956c00b13b5c6232412ce82658445",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "4ca61a59-e0e2-4566-94fb-055ef46dac9e",
+                "title": "Bloomberg TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/bfb277864618f3b4d16620aef8e20e14",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "fb22d339-2a01-4d88-b2af-8d5c9999bbe5",
+                "title": "BBC America",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e91f12fefeb4a1389db8d4c0ab845b10",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a0e6e9b6-b20b-4f54-82d6-881bef762cfd",
+                "title": "BTV NATIONAL HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/10d8f4030b616deea762c9837cfcc4dd",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "ed1ad924-f9f2-4302-97df-987bffb2b32e",
+                "title": "Aakaash Bangla TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7d6618c7c1c590c5f401602f007ec432",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8dc64f21-7dc8-4a41-a583-ddec9f112aeb",
+                "title": "R Plus",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d6ac89bc66c2e5e119885d3b5f1e5ae3",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "28d6e51f-2e35-4c83-9f18-3cf2b8ad1b77",
+                "title": "R Plus Gold",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e151bb066b00f1e9eccd82d23459758b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3aa4d27d-91e1-4afe-a6b5-de35beefae4f",
+                "title": "Rupshi Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/0b403acbb1e275569b6125314f3fd3d3",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "75412270-ce20-4376-8e7f-21fc76f84ed4",
+                "title": "Sangeet Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9bcb8338822b38fbab228f02f8f9b4e4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c8080032-034e-4f04-b1ee-0847a6e62a41",
+                "title": "News Time Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/891437722231ab88ce7e6df332e4f574",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7141c05b-97cd-4dd1-9584-423c7a5ce13d",
+                "title": "Republic Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e1f0b92a1eae5f7da9224a09ba7f2b95",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f6bbc77e-574c-4bb1-b1d5-44aae24ac5d6",
+                "title": "TV 9 Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/613e5bc90e0a8e6e2fdb29a8b01aadb0",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "71b599fa-1284-46c3-a2de-9eaab38d74de",
+                "title": "Zee 24 Ghanta",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/00481ab0eb212b3982bbc175e8f989cf",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "247cf723-3c1d-47bc-b765-64da2623a297",
+                "title": "News India 24x7",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/efa7f5bd037ff3604d2195e55913c683",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "262789f8-92af-4738-986c-c5deafeef997",
+                "title": "kolkata TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9cef770a793ca6debfe928efb667e27e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f35879ff-4b1e-46b7-b429-9a020a4a3242",
+                "title": "Hi Dost",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/201ce5c72ec28c5bbe732725bbd8af46",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "ff7cadd6-b13a-40af-9976-e92057e30a40",
+                "title": "Dabangg",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/70daa3c1cd8a34623f615646e36ad322",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "630b8f21-f5b8-4c05-b2c1-af8333d533c1",
+                "title": "Dhamaal",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b3246daa98736a35a7c8eab001b13725",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2571fc63-ed1e-4107-b92d-bd4335d601dc",
+                "title": "ShemarooTV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/8178c880a1ed966807deea821927d13c",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a787feb3-0d50-41ad-9d43-f2cc02fada70",
+                "title": "TheQ",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/772632847bc5f96dc2ea349586c22c3e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "56217203-21d2-4ca8-af74-b5b037a6f7f0",
+                "title": "Dangal",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/03532d5d65667fed44493733188b89a1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "31e02282-4cac-4747-ac93-bd74be3c78d5",
+                "title": "Dangal 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3ccc47165f98508cfbda8bd0b2abd038",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f9f17a87-2cef-4639-9788-f26422ac7fbe",
+                "title": "Taaza TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d3ecdd630fc5452a20a8708817da7770",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f7ef6919-d8e1-42da-8f34-ddd3364c27c1",
+                "title": "Assam Talks",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ba84f390edd256d1725d7ba34470ce55",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d15d9237-42e6-453c-ba74-0fa1b339d57a",
+                "title": "B4U Kadak",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ec3b74e0c23e3de5b3402bba0924529d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c7f57cda-5a87-48c5-a758-4273db0864d2",
+                "title": "Goldmines",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/fdce8118e9284870cc576c03848ac699",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b80579f2-22d3-4b12-881e-60139810a791",
+                "title": "Goldmines Bollywood",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4ea9bd076e09a61ba287b8da5f8158ce",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1f8a84b3-8079-4c29-9e73-f219664e9d4d",
+                "title": "Goldmines Movies",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1246a5d26fe7d1a13c8d5293c05f26ea",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7cbdba77-f10e-4bd5-965b-12c9825f7040",
+                "title": "B Flix",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7a8786190636b9348d008d5c55205131",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "47b010b6-9296-4e7f-9cfa-284e020a8984",
+                "title": "B4U Movies India",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/47f61010cccaf793eddbf1d42af0e31a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7ce49cae-2511-40ed-a687-3102c6e29872",
+                "title": "B4U Hitz",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/784d6c05d4444f0ae29bb17def1c54ea",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "16924cee-bc7a-470b-895f-4c8bf5fc9019",
+                "title": "B4u Music",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ef20a37392ffec0f15d8a72ec95beaf1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "140f1e47-362e-4fec-ba69-d766b6b03a32",
+                "title": "NTV Europe",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/a6f0fe8bad2ccd884689352c3cc38808",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "50de5fa7-d6a7-48bf-9058-bd7aa1809e56",
+                "title": "Millennium TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b443fbd365e5414c02232a089ea062e1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d80aa15f-6487-40de-9bf7-04dd8203d5f4",
+                "title": "Movie Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6e1cf8792df69a2cb40ea7a3ba976094",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "85a33fa5-d82b-47d9-ae05-9efe20ae8330",
+                "title": "ATN Bangla UK",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e24c421836dc25c183821b89049faede",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1124edfa-0c73-4389-8c8c-988b8ae65460",
+                "title": "HBO",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3130243df626037b65fffec8b03707ae",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b0684b5d-0e56-4429-8f64-55d8c18fcc1c",
+                "title": "Iqra Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/17bd61f1e8a7457b7e375e2f4720b54f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "5a6ca809-0fbd-44d5-bcf4-aeb4d4cbd849",
+                "title": "Peace TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ae1073eadaf46c3eb6726afa961c7e92",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "77aab6ef-59da-4e68-881f-b12ea01df543",
+                "title": "History",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6a78511dca1d156e3da59c310e6fd88d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2eb119c5-7864-421a-a153-8d6b7b372e9b",
+                "title": "TV ONE",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d4416ab36187358271d90a555726c36a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "888a4c91-241e-47de-b9e5-11495d6cc596",
+                "title": "BTV World",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/609c1d743f25356a2a295c80640935b6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8077a601-7b7f-4e58-88bd-7370c25d7001",
+                "title": "CGTN Docu",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4423480d00fb15be86175acb6c8d738b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8cf7e03a-c0c4-4373-8b4f-d2f0c809472c",
+                "title": "Goal TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2f75aa813abb39c02d1ebfa39dd4beb0",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7c5fee98-96e2-43df-95f4-ae8ded8e9efe",
+                "title": "BTV CTG",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b94de69d866a9ed9951ddb249d8d50ad",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c106cb9b-69a2-4759-94b6-2822f5155488",
+                "title": "Discovery Turbo",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7d65b3021faf9019deba61123b205698",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "de45f5c5-ea1e-4135-b7e1-05394e7bf6b7",
+                "title": "Movie live",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b5df0d8204335ec53a52b89bf66dfc4d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d7541d99-14a5-4775-b90f-8681070ba80a",
+                "title": "Rongeen TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/783f5b57d4ba21f6afe00b595f2d3120",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7b8ecade-cb1a-485e-b270-d128197ec444",
+                "title": "Discovery Science",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b7e4f017c34665093cdcdf483d13ce5f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3bcd0d1e-20ad-498c-b13f-33c64e86f54c",
+                "title": "APN",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1dde31c619850527bcc780c2779fe104",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b04e24f1-9260-484c-ad3b-4f3f1058b5db",
+                "title": "ASPARK TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ee838324f95a84fe2da92fbfad237a1b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0fc15069-e437-4138-a1bd-f62aaa93773e",
+                "title": "9x Jhakaas",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4f695b396d67cfcab0793002e771e1b4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6be81470-eb86-4df1-9726-a95396a293d0",
+                "title": "Fox business",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/8bfb854472c6c63ef60010ec97880abf",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "93d08244-7eb4-4294-80b5-43030f41ca9f",
+                "title": "9XM",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4df79f470a598a7f9fd1d7f3ce334949",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "631ca0d6-474b-41ad-9ffc-24adc9931731",
+                "title": "Manoranjan Movies",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/a0865170c818c6affce80049929db09a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "442d91ee-46f3-4dc7-bbde-05f6775e9e6f",
+                "title": "Fox 5",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/112771535f05609f9d360854462e9a9c",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a0ff33aa-aee8-4fe3-a391-42bbb7cbacec",
+                "title": "Mastiii Music",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/0bf00e989a8b57a262e5e40c62555b5b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6a3da04b-dacc-441f-9549-71da39b5af07",
+                "title": "Music India",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ec5e53ffcfb5bb871e02c3ed52eb2eb9",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "da617cc0-9209-434c-9156-0f9387182a3f",
+                "title": "9x Jalwa",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/f624e659100be8fee1e69f154ed0d2ea",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a5963ff0-36c4-4a1f-b8ce-5356c890a859",
+                "title": "pix 11",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/f9cfc00bfc56a614e4ff2895f6151d2f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "dbefbb0b-b2e0-4e34-8108-8852d53ee766",
+                "title": "9X Tashan",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/75706f51ba7b8fdda79d6e5c3a9884fe",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2b78b6b0-5711-438d-b2ec-33313b1806f4",
+                "title": "ANB News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/30406b58f3e521e904cfe3376dd5525a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a5e00efc-bb52-4e9f-9726-a256ffbf7397",
+                "title": "AMC TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4d9231c6ca83cb04a56dc69b2cb11cd7",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "353f1b20-3f65-4477-8251-6c3c58a3a12e",
+                "title": "Dhinchaak",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2ff7353eea6d9e9ced3ff32876040473",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "dc4a5da2-9423-4c3a-ac8e-62086ff7b6f1",
+                "title": "Khushboo",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3bc37ad2db639ec9bc3d927df1105c6f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "960d0db1-3409-49b7-87da-61fe83fa2d8b",
+                "title": "Manoranjan TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4bf67e87322a7399a4fc3ea510768ddd",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2f6357b3-11db-4fc3-aa84-ad1d48ee8526",
+                "title": "AXS",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/503101e937eb2903c4089b138aa15547",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "30c01099-08c9-45d3-91b2-572ca4c173eb",
+                "title": "Network 10",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4b65f9c4053755456551247db797d48e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a7a2ca97-da11-42fb-8310-db584907c81e",
+                "title": "News 1 India",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4d0abd91fdf6e89034b8f0b05e4cbb9e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8377452f-fbc7-4780-8bd2-6db42ac285c0",
+                "title": "Republic TV Bharat",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/351d29198dd2d393ff4c8f3bf77b0938",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b358a9bf-6c73-4901-bde6-0250b67330bc",
+                "title": "Sadhna Prime News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2444438cd5da2375965570bee371fc55",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "4b351549-878b-4f99-88ed-a50e7a4aa84b",
+                "title": "TV9 Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/28b62492a0c90c66b9061b1ded81f4d5",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3c57401b-76ef-486e-8c7b-b3eff2f3e0e6",
+                "title": "Movie Today",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/822f8c8c1e442ba4527769d0e7c3d00e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "cca69f06-02d4-4b39-aad9-f24688b81d0d",
+                "title": "Dhamaka Movies",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/be5aaafe7cb967a5d5159594d9d3ab29",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3ef6eb8b-32f9-4775-85a6-2ccc4b15d658",
+                "title": "TRT World",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9127cbefa7ab9610945c42c1412e2b6a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c3a6f6c5-1e55-4ad3-ba58-e80a271c8941",
+                "title": "TV9 Bharatvarsh",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/564e32f241d49dc786eb17ed9ef56396",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d0828e90-a8b9-4d2b-9bf7-ab996578147a",
+                "title": "Peace TV Bangla HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5205f7de23c5552f04d186d0da57abe5",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "dd837351-ae92-4ce1-b5d4-1ceece83accf",
+                "title": "Peace TV Urdu HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/292b6332c4516c749376378eb9c4f6df",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9b1539aa-d73b-4310-8809-d44b37995e6d",
+                "title": "Channel Win",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5c67d5bba702758a77d54d81ed3dfd8d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0b0235db-e5b4-48d9-95bc-30a7e3228947",
+                "title": "Sony TV HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/bd1c1879deceb58f643e13b5d71ea89f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6aa7469a-89a8-4c46-a141-90fe1fff7893",
+                "title": "Discovery Family",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1d2a6f207dc9dd3693efc0f349ee7a29",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1d7ad29d-ee4d-4590-a446-7db6d6aea230",
+                "title": "Disney Channel",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7f05c3dd3bb1afd9faebe494acba8675",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1f6fd722-dea2-4463-8938-81e6bdc94189",
+                "title": "Disney XD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/c6bdddea0a9e7440f04edc125d604d8b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d188a20a-8640-4511-a228-3a141c675629",
+                "title": "Family JR",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/bb06fda8ab6ee39e042a160d021d6723",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d8c19a31-9752-40cd-a392-fb95928a66b8",
+                "title": "Nickelodeon",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/92bc8868d0fa3985c3ea4028f6b18e30",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "319225e9-8bd9-4848-a93b-fd5737809b0c",
+                "title": "Teen Nick",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6d494343fc666f3feda2ebca9143ad0d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "db46c74d-d2d2-4044-bc04-173f15a23864",
+                "title": "Universal Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/158038f6e36106e15b6f4161be06aa72",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7c972a23-cee8-47f0-b61a-ac15d57002e4",
+                "title": "YTV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9e83ef6f583040dedf9261d977c47c9f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "72e3bc27-72a7-4c93-8953-66218fa7c51d",
+                "title": "Deen TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e7bf2c1418d05fafbb6fc6de70a96c7a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9feb93f4-0ffa-4877-b619-0870644562c4",
+                "title": "Eman Channel",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4660290e947b8cabc29c7d72953b475f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "202995ff-6d89-4f7e-9bcb-ab36cf530a17",
+                "title": "Quran",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d236122299c18132a65d85561b99a2d4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "feb40b2a-e10d-45d2-9e89-786f7d29ab2c",
+                "title": "SUNNAH",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/558762b2be8ae14f2ac04e73fd711ef9",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8846b2aa-7f7f-4d5e-965e-42bed0fdf092",
+                "title": "TAQBEER",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b2451af8c1549ba17af79edb2f654652",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "fb4c9119-ad73-4e37-8091-b26126d200b9",
+                "title": "Animal Planet HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5f53a355c6f992958271ffb52118f99f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "edebdbdf-3290-42e7-8cda-cc8584cb1c32",
+                "title": "BRAVO",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/604df2a1001da2dbfc11fd94115a995b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "26689f92-263e-417b-bdc3-fef8f7eb7fa5",
+                "title": "COMEDY CENTRAL",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9f86252272b835c54b2f5939bebcc30d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f3b88c27-c0ed-4a0b-a5fd-05cd9ab80a01",
+                "title": "COOKING TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9f379b3f11e59621212bfabd0be8c64b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "5b8f4aa1-7073-45c2-8d3d-9309db02d2d7",
+                "title": "EPIX TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ed6203cbce24c0b1cf83716879294ef1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d4175eaa-ec06-43fc-a022-cfd5432e31b9",
+                "title": "FX TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2ac4a33450750e2f75b44db739020913",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "98cbc702-3ebe-45bf-be48-0b5bd0957baf",
+                "title": "Food Network",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9c0cb854361961c4e609e35b566e7d79",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0f02e5af-c673-4498-8c62-cad669ee0cb5",
+                "title": "GB NEWS",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/cd6689f68ea9e6392309442be9dda687",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "67d12ffa-059f-4d79-a4e5-b36104d0af06",
+                "title": "Dhoom Music Bangla",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/55238411f3be9886a978848250dc3c2d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "32acaaeb-2b3b-4979-98d9-b45deecde3ec",
+                "title": "MADANI TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7f9a62a196e4dfd80685a731893d6ba5",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "4804c4fb-4d32-4a91-88e2-fa6d0798f6a5",
+                "title": "HBO 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2079d97fb99658b2067ab35ae89d04ea",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "472766de-e0af-4cf3-89b4-31390bbe0942",
+                "title": "HGTV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/453c9aeadbddd9973a5c12e5b629ad3c",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "02deb7af-2139-41ec-96af-3f805a168021",
+                "title": "LAFF TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/840f6c0d5efa383ca4830b51d9fc83a1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "393d86c3-5518-4f70-94f1-af2f388d9181",
+                "title": "LIFE TIME",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/19291b6e7aa4b2a954fe684aea49fc56",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f79543b0-41ab-433f-8bfc-53d6bba16399",
+                "title": "Nat Geo TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b7444c2e61aeebb75e94e5a2a512aa64",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1426f66b-7413-4bab-91a9-af2ac5c15474",
+                "title": "SKY CINEMA ANIMATION",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/c28ed8225237c4d6599a24b1f43d8287",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "979764c3-92a0-46d0-9408-a3d458fc761e",
+                "title": "SYFY TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/721afb49b8b0f9e26b69bbd0bda27010",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "63db4c23-d199-4be6-90a0-d46742c7d53e",
+                "title": "TLC HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7bce6deaca8eac2fa0b6c066c2ed4e36",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b158f4d7-ca43-4c1c-9a5c-fd2cf2a78132",
+                "title": "TNT TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d1d54ed17bb97381ba2f5efbf6be1339",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b32b87d2-828c-48e2-b32c-eec0ed92b1a5",
+                "title": "Travel Channel",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3d32446b7f588efb60fc282d2177274a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f7f53551-5bcf-4704-9652-18a8b70568ca",
+                "title": "IBTV USA",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5f116407ce0d9d909359425e1fe571e7",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "acc7957a-b9c4-482a-8639-154bdd7eada1",
+                "title": "WEATHER CHANNEL",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/21686fb6e258d8a19ba759979007344f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9954b40b-67df-4cd9-9303-e02d713ad0a0",
+                "title": "Golf Channel",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d7dc4f83e76764de4e79bcb85eb8fb4e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "594809c8-574e-46cf-a3e5-26e0bec1fe33",
+                "title": "Star Sport Select 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b50ce125d3bbecbf4d9380ebd7f473ce",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "eff32f41-b72d-456c-89e1-cf86a097202a",
+                "title": "CNBC TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4086d6a7cdf1a51b7d5549f224621da0",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "18a1811e-58b0-474a-9dde-00c3f6140749",
+                "title": "CBS TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/baebafc2b9865e9e6b9d75bd5b48259f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "398702be-6ac4-4878-90bb-ada4a7d56d21",
+                "title": "CP 24",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/73108129db858f85750367d79c5a5fd4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b4584eb3-f1da-4f1c-ac26-f547598ec2ed",
+                "title": "MTV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/974debd8ee3ac9cfd2383aee5aa56e0a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "f6f1a6ed-4629-4010-b50d-13fa4dd9a575",
+                "title": "   \t USA TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d7b1568d5beec590d11d7ef9adeb986a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "df14a727-6c91-4c8f-ba9f-2ae527ce27dd",
+                "title": "MSNBC News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/dac83fc4c0711ce838acc203384f9b03",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9fe49249-fae7-402d-b5b1-6710691bbcf6",
+                "title": "TIME TV USA",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5a1e3343cade20d9608d022763f484fc",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "aab9a12d-b5a5-4028-8c92-94ea9d302f4e",
+                "title": "Sky News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1cbc5175bd9cabaf47da3b0d6300945d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "abfabaee-3898-4279-8645-3da5b0232867",
+                "title": "Willow HD TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d8d770b20e73a8a6a5c6ebb265d7e497",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "94069990-c00c-401a-af81-169ed39d1cb4",
+                "title": "NFL Network",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/97c354bee13c34a5427b4d8e5a1dc537",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "963a3050-6e3b-4de0-a945-bf075677b685",
+                "title": "Hindi Khabar",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/dfdb542b0ec0bec9cdd37c1a16321571",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "4d545a29-276d-4843-97d7-533f94056c91",
+                "title": "News Nation",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b3246d3cc7f7a30880c7a7190303417f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "cc7357ac-f5cd-4824-ac68-5d26c56a5bbb",
+                "title": "Bharat Samachar",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/fb4368fecbb5f5d78668ab4b6d104f46",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7ba34de6-f932-440a-9fe4-190679a2d9a0",
+                "title": "VTV USA",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/45e34c8551da571f469b2f581ed61838",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a57241fe-02b1-4a39-a602-84a57622be6c",
+                "title": "BT Sport 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/30d11c24d327b91d6e8d056f77c5daea",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "719f4fb9-cc8b-496e-8bf3-a1e5648e2cdb",
+                "title": "Fox Sports 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/375ce31dcb54275313f386ca4a61aab7",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "576e5655-01d2-442f-b311-7c826d48fb7d",
+                "title": "TSN 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9cfdb3ab7aa1c2207e9bafeca7d588b4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9d3a1097-c171-4aee-99ad-e76c0c4a4c75",
+                "title": "TSN 3",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ad1e176436f717257cf4f63303ffb1ad",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e222a465-ce68-43df-881d-7d4901cf8ca1",
+                "title": "Axn HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3e5de646ce1064c50ba893f5ad5a9ac2",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e84dc0fa-25fb-4a56-a8e1-e1b0087af728",
+                "title": "Star Life HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e3dfd4fedcb418cbaa6cd0fb548104f6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7909a70a-f8c8-4766-913a-b57e941bdd9d",
+                "title": "Cgtn News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7173cea57c5740c98ba40368e44e6eca",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e6084a77-7e9c-457f-88e9-31d2254d2f61",
+                "title": "And Flix HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e49c4cf6392e72f8195ff62229a1e61f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "29d2a2b8-a7f2-4ca1-b09a-c55b60dcea3a",
+                "title": "TNT SPORTS 1 HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4e369ce5b557453588455f0237da301e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9498e53f-cba5-4525-8538-46cf54900da7",
+                "title": "SUPER SPORTS PSL",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4146a452ff47a41567745e1b5d632bd8",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a3b44c1f-3086-4f46-a533-c34a55a30eb9",
+                "title": "Sky Sports Cricket HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/a708649e08892c95b9ec9c72762fb212",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b2d5d52b-a280-41da-b95c-8a53bef2fc1b",
+                "title": "Sky Sports GOLF",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/8e86859bbd3db33b56ea9b95e7e3ceaf",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "bd578c46-5bce-409a-986d-376c85f20fc1",
+                "title": "Super Premier HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6b67d1aaf5f0c6a9cba0e781fa5ee6a6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "058490dc-acc7-4c54-9ca6-66f1f89cd556",
+                "title": "Super Cricket HD 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7f8b0e71375ad71208e2a2547d299c96",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a9abe815-1164-4cd0-9438-16a0e2561588",
+                "title": "Super Laliga HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2528184bb317f7061d993757ece5aedd",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a1c8c162-0892-444b-8e84-0d62b9aa69f6",
+                "title": "TBS",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/11ca6cfff43664e68104ad90ebfa1001",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "54b59c45-9064-4ce6-b6cd-12895b34319d",
+                "title": "Revolt",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/cd1c31cc5cceb46ba0e0094c4f5e6e75",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "058d18a5-18d8-47e3-bb7c-68320e4b39bf",
+                "title": "Fox News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/819a08879576d71cfe16400839f30b6f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "22f09081-19f6-4d52-a525-29045a6fa25c",
+                "title": "Sony SAB",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/11e17c24bb1bd52743f76f239b2d28be",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6fe8cee1-f638-4f9e-bb55-c28784799da3",
+                "title": "Sony BBC",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4e10edbd66dfc91b6a8f9cdd48421476",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "85353ec3-79c0-4e60-a75d-09a3a541d28d",
+                "title": "Sony PAL",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/235dc89868978c34fdee694db5d570d5",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b16ce52b-6067-415f-804b-cf96a47aea52",
+                "title": "Sony YAY",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/99b6e2a71536f5d89866b19dd460b6de",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "93224a3d-ce4f-4457-b34c-88b2175bd03a",
+                "title": "Sony MAX 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/4ece056f328069ae4806d2ec2af78d6f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6e3b1ff7-bd93-4925-bba1-800d5ab0730c",
+                "title": "Sony AATH",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b37a3be35c629a45d65d7d7392263fa4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "06e5c2bd-6981-4110-9b3c-3686b3087d89",
+                "title": "Sony MAX",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7322b97911a549ff9cb70f37b90937b8",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2f8edbf3-9856-426c-a17f-174bb41f67f4",
+                "title": "Sony PIX",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/9f0f899885b4939edf7cc28691e0a392",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "b04b3742-e2a1-4d56-8b3e-2b2154766ada",
+                "title": "Sony TEN 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ae3f6bd34d462a43509c773f254afe2f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "53b34289-f9ac-456b-b934-e380f5ec684f",
+                "title": "Sony TEN2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/b872f71ae3235332fe80edd5e3eaa0b0",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "dc80af9e-7ac4-4f17-8b2b-fba641ce2168",
+                "title": "Sony TEN 5",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/88442bda72d0442e54551daaed82f436",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "82e2a77e-38f9-438b-80de-da3aa7e5cf61",
+                "title": "Zee Cinema",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/756de1f0f18e8196e2b3051579ae95a4",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "890a1a92-0602-4c2d-93ca-a2c43e7aec54",
+                "title": "Zee Bangla International",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/745bd9c5b2008d31cb529c5a7806431d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "42cbbb02-3573-4d3c-b4c3-34b4bda4115f",
+                "title": "Zee Action",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3a6c68a6d6c7899508d1fc43799f57a1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "ae006a57-1f88-4436-9acc-dd86bc0339a7",
+                "title": "Zee Bollywood",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/f343fdf8b2104e9d557bc52b115d117e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "cd847504-8ebf-43ad-8beb-b53d80befb4b",
+                "title": "& Pictures",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/bb375897d8aa6230439dbfb65b2b5534",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "0e168ab9-1a05-4030-8b18-e7ff2342f7da",
+                "title": "& TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/5f2ebd81c674857a84edc999fc54fcaa",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "ff14d64f-0fcb-45af-8313-9ae3ff788052",
+                "title": "Zee\u00a0Bangla\u00a0Cinema",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/51e47d2d07136dd61efe5ea4460bef1f",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3d238aba-0b7f-4516-a6d6-c563e5814dbd",
+                "title": "Zee TV ",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/832823a34f5fb61488fe2d88effac31b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6b66f133-9d9b-44c6-870a-8441c8b99fe1",
+                "title": "Wion",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/a67ace4b71a56b8b46ba21b9b78612b9",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "71d85138-3dd6-4a6a-ac39-f47aa018a00a",
+                "title": "Live ...",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7cb9492f82610d2f5f6f4ce143cbe74d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9b959c71-2276-44cb-9146-6a094d0649fe",
+                "title": "Sportsman Channel",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6d2467ed3c6d2d43adfe1bc94e7a238a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "2b79654e-68b1-48ff-a9a9-c1631d0a73b3",
+                "title": "ERT Sports 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/797829f9eb6ccd47c5525484b08d2420",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9c8e02cf-4765-4156-8ecf-999935c0115d",
+                "title": "Dubai Sports 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/103d38637f265b0a19e39511c4effbb1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "c3b46ebd-871b-48e6-9d7c-cbf562a925e5",
+                "title": "CBS Sports Network USA",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d99f66a35374062a4cfefb485b32c934",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "033bbb18-00b9-4e7b-997b-9c738191be1d",
+                "title": "CBS Sports HQ",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/a32c9859799f6242b18adecd169ac186",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "6d75259a-cecb-4905-8146-358ec6938c62",
+                "title": "Bahrain Sports 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/126e6270bf76efebdac30ddf9c872bf8",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "cdc583dd-8031-4b7b-af12-34009af38744",
+                "title": "Abu Dhabi Sports 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/f40abd740be43c4d7145a4e5840e356b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a7c5f56e-52ea-47ca-8b0a-27bf6148c667",
+                "title": "Abu Dhabi Sports 1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/269150b4e39da41b4187806294520cd5",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7747ecdd-ba30-4737-a600-54fdcdbcfebd",
+                "title": "Cricket Gold",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/119c265ff0322f164890f1b9f4df3276",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "bdf309a5-d732-45d8-989a-5ad5defd0224",
+                "title": "Power Turk",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/dda8a24f3f8c67bc74a991d48481b885",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "ce1252de-2d9b-4f2f-b601-2ee995a13371",
+                "title": "NR1",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/fc85699c595f675048082ee1ef73d13c",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "93475856-6996-4ebd-9b1e-b39fefadfe9f",
+                "title": "Finans Turk",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/7e3cfd7044699231fd0a00187bcf51be",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9cf16121-07d4-48c1-9f36-14ee8b7e3f31",
+                "title": "Ekin Turk",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/266f0a357c894a350dcb4618dcbbb5d6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "525df3f4-ce22-4008-be5d-e25410fd7248",
+                "title": "Dream Turk",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/543b397e4fb576e056a9c344b1f7a07b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "11b82c1f-aeeb-45b3-85b0-0a753604a2bd",
+                "title": "Al-Zahar TV Turkic",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/0959a3a1514ceddb4748cd369c62467d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "06aecebc-0e41-4117-b069-d36dff730869",
+                "title": "Afroturk TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/bcedcac67e62498034211c5a942c4a44",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "ad3d7b22-47d4-40e2-9b9f-753039e5a1ab",
+                "title": "Y\u00fcksek Sosyete",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e2065d4b2313fe6c50986e2e2a4e44df",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3b0c8ed6-af02-479c-9135-1609e891e40e",
+                "title": "Sochi Live HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/dd02f1c781ef6a123f8f78ec25d95c9d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "fc4dfffa-ceff-404f-bf3b-1de7c6771ae5",
+                "title": "RDS Social TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e091464c4d71d431ec210b58e204eeed",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "7b485392-fa4e-4756-a88c-0df044f835e6",
+                "title": "Global Socil TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/cd2c47b31965c47ba5712a598aa2703e",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "1d07a144-9c0f-4cfd-86f0-70cca1837f23",
+                "title": "DAZN Women's Football",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/72acfc5affed917189bbd5380a5b08ff",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "909428fa-8473-43b2-aad5-23cf86b0d829",
+                "title": "Bleav Football",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/fc1a151cd77a14085925758d07e31386",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "581cac8b-5962-4686-adb7-cb15e4624020",
+                "title": "TVC Arabic Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1365a7021bcd4a4e7fa13a0a311b5bf6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "92719d66-9061-470f-9a7f-1ddf112720c1",
+                "title": "Pluto TV Kids Animation",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/cc5a70dccb29e67c0f07c7342bcf7ba6",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "240c79af-7625-4384-9052-88dd73134ea1",
+                "title": "Moonbug Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/e62358b537c39f227b2e42c8c2b863fc",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "d8909fcb-c413-48f5-b31b-54cbee95dd4e",
+                "title": "M NET Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/6dc865f0fdbf1dfd7553a73b947f8e16",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "79242874-bae7-449f-aec0-2bfe9593c694",
+                "title": "Kids Prang TV",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d579621c7a2be99af13fb754c349f032",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "210c516d-b1d2-4e76-9402-b1ba3e44440a",
+                "title": "kids Cartoon Movies",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/ee8ff75171d2a6d7775d7675069dbf15",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a36167ba-c4a4-422a-91c6-594228b8cae4",
+                "title": "Forever Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/2e71a13ce94f19bab3bf4563f2dd7b03",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a8b5e07e-b775-415f-b71f-9391bacc9e30",
+                "title": "Dios Te Ve Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/a03c9430ea1d1edbeacd6d848e4e40c0",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "8a87e892-cbf1-4361-8d46-06cce682c902",
+                "title": "3ABN Kids",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/799048718fab5430a8246907fd11bdcb",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "62d06278-50b4-48a1-b200-5a148e53fdbc",
+                "title": "BBC News",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/31bae4bc01bdfb5ef7e4b63bd086cf14",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "59308a2b-4110-461e-a2b3-ab035527d5a8",
+                "title": "Discovery HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/80caa643fe5eac0efdc3dbcbc5e75a2b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "db6759ab-4cf1-4970-9007-c15d977e33de",
+                "title": "Discovery HD (Bangla)",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/80caa643fe5eac0efdc3dbcbc5e75a2b",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "71e96376-d08c-4314-b2d6-449ff40a90b0",
+                "title": "Bahrain Sports 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1e24827b94d523b7f0e894d1cc95b836",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "e897cca2-8086-42cc-a492-e1f3e4d9aed9",
+                "title": "Dubai Sports 3",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/f0e00ca354e029ae3c37b17331dd7ec1",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a39479c5-a871-4b7f-ae57-b236a4cff25e",
+                "title": "ERT Sports 2",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/260fae142b0c9aca3e1f2f0ea8245047",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "54d1a43e-e26f-4a03-96b2-5911148617ae",
+                "title": "FanDuel Sports Network",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/22453d4326fed79ae20f4245db817494",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "a8a66371-81a4-475d-8916-74555c29f867",
+                "title": "Fox Sports",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/16b5f61a3ce38296cf20d15109353aaa",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "9f230f21-7a07-4b80-b845-77f9327ddad3",
+                "title": "NBC Sports",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/3df00d725490a44fba68dcd82fa9eb1a",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "3ac46078-2bf0-4998-a021-37b459e09fba",
+                "title": "STAR SPORTS 2 HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/1bd296707242957701e5d41b4d45c28d",
+                "category": "Channels",
+                "category_image": "https:\/\/s3.aynaott.com\/storage\/65bb0eaa0f0f20ffc3eb062d19a2e973"
+            },
+            {
+                "id": "74524e79-5f3a-4824-8202-b9e346acb9a4",
+                "title": "Star Plus HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/d86f6e008e7984688c4f0beb9a70b65b",
+                "category": "Latest",
+                "category_image": ""
+            },
+            {
+                "id": "f07177e9-d1a9-48b4-8e2e-1718d098bbfb",
+                "title": "Star Jalsha HD",
+                "logo": "https:\/\/s3.aynaott.com\/storage\/123f84a6f5cc4ec75621e8c82bdc28b0",
+                "category": "Latest",
+                "category_image": ""
+            }
+        ]
+    }
+}
