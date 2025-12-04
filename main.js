@@ -1204,6 +1204,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Green TV", 
+                sources: [
+                    { name: "Playlist", url: "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/greentv.stream/live-orgin/greentv.stream/chunks.m3u8" }
+                ], 
+                img: "https://media.licdn.com/dms/image/v2/D560BAQHElejP-dKJhg/company-logo_200_200/company-logo_200_200/0/1667384842286/green_tv_digital_logo?e=2147483647&v=beta&t=W0t2EpmzgDhkORaqs2SaZt0-LaRukY7CzF82EmhnAK8", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
                 name: "Boishakhi TV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/boishakhitv.index.m3u8" }
