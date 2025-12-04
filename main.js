@@ -1434,7 +1434,7 @@ const channels = [
             { 
                 name: "T Sports", 
                 sources: [
-                    { name: "Server 1", url: "https://tvsen7.aynascope.net/tsportshd/index.m3u8?e=1764585993&u=ef3dd85c-c300-4e09-b2f1-9138aec7211b&token=fd4ae355f34bff87d182e7f16d309699" }
+                    { name: "Server 1", url: "https://live.mncdn.shop/fc95d30e-5323-4c12-bb38-7a1e3f04acc2/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
