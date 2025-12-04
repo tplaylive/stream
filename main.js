@@ -893,7 +893,8 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://live.mncdn.shop/f07177e9-d1a9-48b4-8e2e-1718d098bbfb/index.m3u8" }
+                    { name: "Server 1", url: "https://tvsen1.aynaott.com/gUX8BJmNc2yF/index.m3u8" },
+                    { name: "Server 2", url: "https://live.mncdn.shop/f07177e9-d1a9-48b4-8e2e-1718d098bbfb/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: "Entertainment",
