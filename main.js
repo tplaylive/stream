@@ -1330,6 +1330,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "SRK TV", 
+                sources: [
+                    { name: "Playlist", url: "https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/HWEDk9BVcD7TT3VpzVdkVqJkLkyi7WRq7KduIaFdb-y5Bh7mZdfD3A8yxCFsz7OHcubTZv21=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
                 name: "My TV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/mytv.index.m3u8" }
