@@ -893,7 +893,7 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://bongoflixbd.top/stream.php?id=f07177e9-d1a9-48b4-8e2e-1718d098bbfb&e.m3u8" }
+                    { name: "Server 1", url: "https://live.mncdn.shop/f07177e9-d1a9-48b4-8e2e-1718d098bbfb/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: "Entertainment",
@@ -991,7 +991,7 @@ const channels = [
             { 
                 name: "Star Plus", 
                 sources: [
-                    { name: "Server 1", url: "https://bongoflixbd.top/stream.php?id=74524e79-5f3a-4824-8202-b9e346acb9a4&e.m3u8" },
+                    { name: "Server 1", url: "https://live.mncdn.shop/74524e79-5f3a-4824-8202-b9e346acb9a4/index.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/htNZQ0x0/Star-Plus.jpg", 
