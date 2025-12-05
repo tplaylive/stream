@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>T Play Live TV</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.compiled.min.js"></script>
+
 <style>
   body {margin:0;background:#000;color:#fff;font-family:Poppins,sans-serif;}
   header{background:#e50914;text-align:center;padding:10px;font-size:1.5em;}
@@ -21,6 +21,31 @@
 <video id="video" controls autoplay></video>
 <div class="channels" id="list"></div>
 
+
+<!-- ========================================= -->
+<!-- LOAD SHAKA PLAYER WITH FALLBACK LOADER    -->
+<!-- ========================================= -->
+<script>
+function loadShaka() {
+  const script = document.createElement("script");
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.min.js";
+  script.onload = () => {
+    console.log("Shaka Player loaded OK");
+    initApp();
+  };
+  script.onerror = () => {
+    alert("Shaka Player failed to load. CDN blocked.");
+  };
+  document.head.appendChild(script);
+}
+
+loadShaka();
+</script>
+
+
+<!-- ========================================= -->
+<!--        MAIN APP SCRIPT BELOW              -->
+<!-- ========================================= -->
 <script>
 const placeholderLogo = "https://via.placeholder.com/90x90?text=TV";
 
@@ -71,33 +96,39 @@ const channels = [
   }
 ];
 
+let player;
 const list = document.getElementById("list");
 const video = document.getElementById("video");
-let player;
+
 
 async function initApp() {
-  shaka.polyfill.installAll();
-  if (!shaka.Player.isBrowserSupported()) {
-    alert("Browser not supported");
+  if (!window.shaka) {
+    alert("Shaka not available!");
     return;
   }
 
+  shaka.polyfill.installAll();
+
   player = new shaka.Player(video);
 
+  // Build channel list UI
   channels.forEach(ch => {
     const div = document.createElement("div");
     div.className = "ch";
-    div.innerHTML = `<img src="${ch.logo}" onerror="this.src='${placeholderLogo}'"><span>${ch.name}</span>`;
+    div.innerHTML = `
+      <img src="${ch.logo}" onerror="this.src='${placeholderLogo}'">
+      <span>${ch.name}</span>
+    `;
     div.onclick = () => loadChannel(ch);
     list.appendChild(div);
   });
 
+  // Auto play first channel
   loadChannel(channels[0]);
 }
 
-async function loadChannel(ch) {
-  if (!player) return;
 
+async function loadChannel(ch) {
   try {
     if (ch.type === "internal") {
       window.location.href = ch.url;
@@ -119,13 +150,12 @@ async function loadChannel(ch) {
 
     video.play();
 
-  } catch (e) {
-    console.error("Error loading", ch.name, e);
+  } catch (err) {
+    console.error(err);
     alert("Cannot play " + ch.name);
   }
 }
-
-initApp();
 </script>
+
 </body>
 </html>
