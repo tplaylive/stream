@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>T Play Live TV</title>
 
+<!-- Shaka only for DASH -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.5/shaka-player.compiled.min.js"></script>
 
 <style>
@@ -27,18 +28,6 @@
 <script>
 const channels = [
   {
-    name: "App Video 1",
-    logo: "https://tplay.live/icons/app-video-1.png",
-    url: "go:S2511",
-    type: "internal"
-  },
-  {
-    name: "App Video 2",
-    logo: "https://tplay.live/icons/app-video-2.png",
-    url: "go:S2512",
-    type: "internal"
-  },
-  {
     name: "Deewana",
     logo: "https://tplay.live/originals/deewana/deewana.png",
     url: "https://tplay.live/originals/deewana/index.m3u8",
@@ -59,74 +48,58 @@ const channels = [
       kid: "26df86eeebb04d7fbc45c948f76e81fd",
       key: "5f3a23f1a73c4c96ababce5fffe7b06b"
     }
-  },
-  {
-    name: "Romedy Now",
-    logo: "https://d229kpbsb5jevy.cloudfront.net/timesplay/content/common/logos/channel/logos/nchght.jpeg",
-    url: "https://times-ott-live.akamaized.net/romedynow_wv_drm/index.mpd",
-    type: "dash",
-    license: {
-      kid: "40f019b86241d23ef075633fd7f1e927",
-      key: "058dec845bd340178a388edd104a015e"
-    }
   }
 ];
 
 const list = document.getElementById("list");
 const video = document.getElementById("video");
-let player;
+let player = null;
 
-async function initApp() {
-  shaka.polyfill.installAll();
-  if (!shaka.Player.isBrowserSupported()) {
-    alert("Browser not supported");
-    return;
-  }
-  
-  player = new shaka.Player(video);
-
+// Show channels ALWAYS — no JS error before this point!
+function loadChannelList() {
   channels.forEach(ch => {
     const div = document.createElement("div");
     div.className = "ch";
     div.innerHTML = `<img src="${ch.logo}"><span>${ch.name}</span>`;
-    div.onclick = () => loadChannel(ch);
+    div.onclick = () => playChannel(ch);
     list.appendChild(div);
   });
-
-  loadChannel(channels[0]);
 }
 
-async function loadChannel(ch) {
+async function playChannel(ch) {
   try {
-    if (ch.type === "internal") {
-      window.location.href = ch.url;
-      return;
+    // STOP Shaka before loading new channel
+    if (player) {
+      await player.destroy();
+      player = null;
     }
 
+    // HLS → use native player → NO ERROR
     if (ch.type === "hls") {
-      await player.unload();
       video.src = ch.url;
       video.play();
       return;
     }
 
+    // DASH → Use Shaka Player
     if (ch.type === "dash") {
+      player = new shaka.Player(video);
       player.configure({
         drm: {
           clearKeys: { [ch.license.kid]: ch.license.key }
         }
       });
       await player.load(ch.url);
+      video.play();
     }
 
-    video.play();
-  } catch (e) {
-    console.error("Error loading", ch.name, e);
+  } catch (err) {
+    console.error("Playback error:", err);
     alert("Cannot play " + ch.name);
   }
 }
 
-initApp();
+loadChannelList(); // SHOW CHANNELS FIRST
 </script>
 
 </body>
