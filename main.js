@@ -28,6 +28,15 @@ const channels = [
                 description: "Bangladesh"
             },
             { 
+                name: "BTV News", 
+                sources: [
+                    { name: "Server 1", url: "https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/7hdvpw4F/btv-news.jpg", 
+                category: "News",
+                description: "Bangladesh"
+            },
+            { 
                 name: "Somoy TV", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
