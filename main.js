@@ -15,7 +15,7 @@ const channels = [
                     { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/nzQXt33R/btv.jpg", 
-                category: "News",
+                category: "Mix-Entertainment",
                 description: "Bangladesh"
             },
             { 
