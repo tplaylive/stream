@@ -364,7 +364,7 @@ const channels = [
             { 
                 name: "Mastiii", 
                 sources: [
-                    { name: "Server 1", url: "https://sablive-ddpb.akamaized.net/mastii/playlist.m3u8" }
+                    { name: "Server 1", url: "https://d1taaads3ztvmu.cloudfront.net/120723/mastii/chunklist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L4f6PQnh/mastiii.jpg", 
                 category: "Music",
