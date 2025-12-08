@@ -30,7 +30,7 @@ const channels = [
             { 
                 name: "BTV News", 
                 sources: [
-                    { name: "Server 1", url: "https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/news/btv-news.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/7hdvpw4F/btv-news.jpg", 
                 category: "News",
