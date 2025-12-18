@@ -1579,7 +1579,8 @@ const channels = [
             { 
                 name: "Willow", 
                 sources: [
-                    { name: "Server 1", url: "https://fl1.moveonjoy.com/WILLOW_CRICKET/index.m3u8" }
+                    { name: "Server 1", url: "https://fl1.moveonjoy.com/WILLOW_CRICKET/index.m3u8" },
+                    { name: "Server 2", url: "https://amg01269-amg01269c1-sportstribal-emea-5204.playouts.now.amagi.tv/ts-eu-w1-n2/playlist/amg01269-willowtvfast-willowplus-sportstribalemea/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L4b8S5Df/willow.jpg", 
                 category: "Sports",
