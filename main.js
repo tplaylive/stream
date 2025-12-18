@@ -1672,6 +1672,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Food Food", 
+                sources: [
+                    { name: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScAbJrrlwZGX-DbVkrRtj0XUNMwTyY3C04KQ&s" }
+                ], 
+                img: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "Peace TV", 
                 sources: [
                     { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8" },
