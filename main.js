@@ -146,6 +146,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Kolkata TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/KOLKATATV/index.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/9/92/Kolkata_TV.svg/revision/latest?cb=20200609063455", 
+                category: "News",
+                description: "India"
+            },
+            { 
                 name: "WION", 
                 sources: [
                     { name: "Server 1", url: "https://d7x8z4yuq42qn.cloudfront.net/index_1.m3u8" }
