@@ -1375,6 +1375,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "GTV", 
+                sources: [
+                    { name: "Playlist", url: "https://tvsen6.aynaott.com/gtvhdforgame/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/yNLC1Rfw/gtv.jpg", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
                 name: "My TV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/mytv.index.m3u8" }
