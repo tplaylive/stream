@@ -999,6 +999,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Sony Aath", 
+                sources: [
+                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonyaath&e=.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Akash Aath", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-4.pishow.tv/live/969/master.m3u8" },
@@ -1008,11 +1017,11 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Sony Aath", 
+                name: "R Plus Gold", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonyaath&e=.m3u8" }
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/RPLUSGOLD/index.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
+                img: "https://static.wikia.nocookie.net/etv-gspn-bangla/images/d/d6/RPlus_Gold_logo_with_slogan_%282013%29.png/revision/latest?cb=20210424140135", 
                 category: "Entertainment",
                 description: "India"
             },
