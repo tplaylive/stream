@@ -1717,6 +1717,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Shquran Tv", 
+                sources: [
+                    { name: "Server 1", url: "https://live.kwikmotion.com/sharjahtvquranlive/shqurantv.smil/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/g03Jqxvn/sharjahtvquranlive.jpg", 
+                category: "Religious",
+                description: "World"
+            },
+            { 
                 name: "Om Bangla", 
                 sources: [
                     { name: "Originals", url: "https://tplay.live/originals/om-bangla/index.m3u8" }
