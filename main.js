@@ -1404,7 +1404,8 @@ const channels = [
             { 
                 name: "Live 2", 
                 sources: [
-                    { name: "Server 1", url: "https://ayna.linkchur.top/apis/ayna/stream.php?id=fc95d30e-5323-4c12-bb38-7a1e3f04acc2&e=.m3u8" }
+                    { name: "Server 1", url: "https://ayna.linkchur.top/apis/ayna/stream.php?id=fc95d30e-5323-4c12-bb38-7a1e3f04acc2&e=.m3u8" },
+                    { name: "Server 1", url: "https://edge1-moblive.yuppcdn.net/drm/smil:peosports1drm.smil/index.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
