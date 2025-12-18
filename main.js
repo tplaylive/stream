@@ -693,6 +693,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Goldmines Bollywood", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/GOLDMINESBOLLYWOOD/index.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/BMAiZnOGPMbMXWFW-lYwgp1-qJD6iPbBtB6YS3Kyr9lPM1jlegCl83vHjyasFEjPJrBYAsaeLQ=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_max_hd&e=.m3u8" },
