@@ -1413,7 +1413,7 @@ const channels = [
             { 
                 name: "Live 3", 
                 sources: [
-                    { name: "Server 1", url: "https://livetv-fa.tubi.video/fubo/master.m3u8" }
+                    { name: "Server 1", url: "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-ariana/index.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
