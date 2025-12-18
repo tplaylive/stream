@@ -150,7 +150,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/KOLKATATV/index.m3u8" }
                 ], 
-                img: "https://static.wikia.nocookie.net/logopedia/images/9/92/Kolkata_TV.svg/revision/latest?cb=20200609063455", 
+                img: "https://i.postimg.cc/mkVfbs7P/kolkatatv.jpg", 
                 category: "News",
                 description: "India"
             },
@@ -1021,7 +1021,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/RPLUSGOLD/index.m3u8" }
                 ], 
-                img: "https://static.wikia.nocookie.net/etv-gspn-bangla/images/d/d6/RPlus_Gold_logo_with_slogan_%282013%29.png/revision/latest?cb=20210424140135", 
+                img: "https://i.postimg.cc/fbWdLj4y/rplusgold.jpg", 
                 category: "Entertainment",
                 description: "India"
             },
@@ -1674,7 +1674,7 @@ const channels = [
             { 
                 name: "Food Food", 
                 sources: [
-                    { name: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScAbJrrlwZGX-DbVkrRtj0XUNMwTyY3C04KQ&s" }
+                    { name: "https://i.postimg.cc/SRRYryQS/foodfood.jpg" }
                 ], 
                 img: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8", 
                 category: "Infotainment",
