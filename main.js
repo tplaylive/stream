@@ -1678,9 +1678,9 @@ const channels = [
             { 
                 name: "Food Food", 
                 sources: [
-                    { name: "https://i.postimg.cc/SRRYryQS/foodfood.jpg" }
+                    { name: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8" }
                 ], 
-                img: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8", 
+                img: "https://i.postimg.cc/SRRYryQS/foodfood.jpg", 
                 category: "Infotainment",
                 description: "India"
             },
