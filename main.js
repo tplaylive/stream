@@ -1425,7 +1425,7 @@ const channels = [
                 name: "Live 3", 
                 sources: [
                     { name: "Server 1", url: "https://live-en.aisports.cc/moviebox/device01/playlist.m3u8" },
-                    { name: "Server 2", url: "https://sdmmt162.provegooott.com/2_.m3u8" },
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://178.33.239.54:8080/507/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-ariana/index.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
