@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#000"/>
+  <text x="50%" y="46%" text-anchor="middle" font-size="64" fill="#fff" font-family="Arial, Helvetica, sans-serif">
+    T Play
+  </text>
+  <text x="50%" y="56%" text-anchor="middle" font-size="26" fill="#bdbdbd" font-family="Arial, Helvetica, sans-serif">
+    Loading…
+  </text>
+</svg>
