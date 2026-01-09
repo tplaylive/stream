@@ -1,1 +1,79 @@
-test
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>T Play</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- HLS playback for most Android/desktop browsers -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+
+<body>
+  <!-- Splash -->
+  <div id="splash" class="splash" aria-hidden="true">
+    <img src="assets/splash.svg" alt="T Play loading" />
+  </div>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <img class="brandLogo" src="assets/logo.png" alt="T Play logo" />
+      <div class="brandText">
+        <div class="brandName">T Play</div>
+        <div class="brandSub" id="modeLabel">Detecting device…</div>
+      </div>
+    </div>
+
+    <div class="topActions">
+      <input id="search" class="search" type="search" placeholder="Search channels…" autocomplete="off" />
+      <button id="toggleMode" class="btn" type="button" title="Switch Mobile/TV UI">Switch UI</button>
+    </div>
+  </header>
+
+  <!-- Layout -->
+  <main class="layout" id="app">
+    <!-- Left: categories -->
+    <aside class="panel categories" aria-label="Categories">
+      <div class="panelTitle">Categories</div>
+      <div id="catList" class="list" role="listbox" aria-label="Category list"></div>
+    </aside>
+
+    <!-- Middle: channel grid/list -->
+    <section class="panel channels" aria-label="Channels">
+      <div class="panelTitleRow">
+        <div class="panelTitle" id="channelTitle">Channels</div>
+        <div class="hint" id="remoteHint">Remote: ↑↓←→, OK/Enter, Back/Esc</div>
+      </div>
+      <div id="chList" class="grid" role="listbox" aria-label="Channel list"></div>
+    </section>
+
+    <!-- Right: player -->
+    <section class="panel player" aria-label="Player">
+      <div class="playerHeader">
+        <div class="nowPlaying">
+          <div class="npLabel">Now Playing</div>
+          <div class="npName" id="nowName">—</div>
+        </div>
+        <div class="playerBtns">
+          <button class="btn" id="btnPlayPause" type="button">Play/Pause</button>
+          <button class="btn" id="btnFullscreen" type="button">Fullscreen</button>
+        </div>
+      </div>
+
+      <div class="videoWrap">
+        <video id="video" controls playsinline></video>
+        <div id="videoOverlay" class="videoOverlay hidden">Select a channel to start</div>
+      </div>
+
+      <div class="footnote">
+        Tip: TV mode uses bigger focusable tiles + arrow key navigation.
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
