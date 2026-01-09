@@ -1,1 +1,40 @@
-test
+{
+  "categories": [
+    {
+      "id": "news",
+      "name": "News",
+      "channels": [
+        {
+          "id": "demo-news-1",
+          "name": "Demo News 1",
+          "logo": "assets/logo.png",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "channels": [
+        {
+          "id": "demo-sports-1",
+          "name": "Demo Sports 1",
+          "logo": "assets/logo.png",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        }
+      ]
+    },
+    {
+      "id": "movies",
+      "name": "Movies",
+      "channels": [
+        {
+          "id": "demo-movies-1",
+          "name": "Demo Movies 1",
+          "logo": "assets/logo.png",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+        }
+      ]
+    }
+  ]
+}
