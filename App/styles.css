@@ -1,1 +1,199 @@
-test
+:root{
+  --bg:#0b0b0b;
+  --panel:#121212;
+  --text:#ffffff;
+  --muted:#bdbdbd;
+  --stroke:#242424;
+  --focus:#ffffff;
+  --accent:#1f8cff;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.splash img{ width:min(900px, 92vw); height:auto; opacity:0.95; }
+
+.topbar{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 16px;
+  border-bottom:1px solid var(--stroke);
+  background:#090909;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.brand{ display:flex; align-items:center; gap:12px; }
+.brandLogo{ width:44px; height:44px; border-radius:10px; object-fit:contain; background:#111; padding:6px; border:1px solid var(--stroke); }
+.brandName{ font-size:18px; font-weight:700; }
+.brandSub{ font-size:12px; color:var(--muted); margin-top:2px; }
+
+.topActions{ display:flex; align-items:center; gap:10px; }
+.search{
+  width:min(340px, 42vw);
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  background:#0f0f0f;
+  color:var(--text);
+  outline:none;
+}
+.search:focus{ border-color:var(--accent); }
+
+.btn{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  background:#101010;
+  color:var(--text);
+  cursor:pointer;
+}
+.btn:focus{ outline:3px solid var(--focus); outline-offset:2px; }
+
+.layout{
+  display:grid;
+  grid-template-columns: 240px minmax(320px, 1fr) minmax(360px, 560px);
+  gap:12px;
+  padding:12px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:12px;
+  min-height: calc(100vh - 84px);
+}
+
+.panelTitleRow{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+.panelTitle{ font-weight:700; font-size:14px; color:var(--muted); margin-bottom:10px; }
+.hint{ font-size:12px; color:var(--muted); }
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.catItem{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 12px;
+  border-radius:14px;
+  border:1px solid var(--stroke);
+  background:#0f0f0f;
+  cursor:pointer;
+}
+.catItem:focus{ outline:3px solid var(--focus); outline-offset:2px; }
+.catItem.active{ border-color:var(--accent); }
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  gap:12px;
+}
+
+.tile{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:14px 12px;
+  border-radius:16px;
+  border:1px solid var(--stroke);
+  background:#0f0f0f;
+  cursor:pointer;
+  min-height:72px;
+}
+.tile img{
+  width:42px; height:42px;
+  border-radius:12px;
+  object-fit:contain;
+  background:#111;
+  padding:6px;
+  border:1px solid var(--stroke);
+}
+.tile .tName{ font-size:15px; font-weight:700; }
+.tile .tMeta{ font-size:12px; color:var(--muted); margin-top:3px; }
+.tile:focus{ outline:3px solid var(--focus); outline-offset:2px; }
+.tile.playing{ border-color:var(--accent); }
+
+.playerHeader{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.npLabel{ font-size:12px; color:var(--muted); }
+.npName{ font-size:16px; font-weight:700; margin-top:4px; }
+
+.videoWrap{
+  position:relative;
+  margin-top:12px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  background:#000;
+}
+video{
+  width:100%;
+  height: calc(100vh - 240px);
+  background:#000;
+}
+.videoOverlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:14px;
+  padding:20px;
+  text-align:center;
+  background:rgba(0,0,0,0.5);
+}
+.hidden{ display:none; }
+
+.footnote{
+  margin-top:10px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+/* Mobile mode tweaks */
+body.mobile .layout{
+  grid-template-columns: 1fr;
+}
+body.mobile .panel{
+  min-height:auto;
+}
+body.mobile .grid{
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+}
+body.mobile video{
+  height: 46vh;
+}
+
+/* TV mode bigger focus targets */
+body.tv .catItem{ padding:18px 14px; font-size:16px; }
+body.tv .tile{ min-height:86px; }
+body.tv .tile .tName{ font-size:16px; }
