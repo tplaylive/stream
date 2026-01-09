@@ -1,15 +1,329 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live TV (M3U Player)</title>
+
+  <!-- HLS.js (for .m3u8 playback in most browsers) -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <style>
+    :root { color-scheme: dark; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0b0f14; color:#e6edf3; }
+    header { padding:14px 16px; border-bottom:1px solid #1f2a37; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    header h1 { margin:0; font-size:16px; font-weight:650; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; width:100%; }
+    input, select, button { background:#0f172a; border:1px solid #223046; color:#e6edf3; padding:10px 10px; border-radius:10px; outline:none; }
+    input { flex: 1 1 320px; }
+    select { flex: 0 0 220px; }
+    button { cursor:pointer; }
+    button:hover { filter:brightness(1.08); }
+
+    main { display:grid; grid-template-columns: 420px 1fr; min-height: calc(100vh - 70px); }
+    @media (max-width: 980px){ main { grid-template-columns: 1fr; } }
+
+    .panel { border-right:1px solid #1f2a37; }
+    @media (max-width: 980px){ .panel { border-right:none; border-bottom:1px solid #1f2a37; } }
+
+    .status { padding:10px 16px; font-size:12px; color:#9fb2c8; border-bottom:1px solid #1f2a37; }
+    .list { overflow:auto; max-height: calc(100vh - 70px - 42px); }
+    .item { display:flex; gap:10px; padding:12px 14px; border-bottom:1px solid #142033; align-items:center; cursor:pointer; }
+    .item:hover { background:#0d1524; }
+    .item.active { background:#10203a; outline:1px solid #24446b; }
+    .logo { width:36px; height:36px; border-radius:10px; background:#0f172a; border:1px solid #223046; object-fit:cover; }
+    .meta { min-width:0; }
+    .name { font-size:14px; font-weight:650; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sub { font-size:12px; color:#9fb2c8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    .player { padding:14px 16px; }
+    video { width:100%; max-height: 72vh; background:black; border-radius:14px; border:1px solid #223046; }
+    .now { margin-top:12px; padding:12px; border:1px solid #223046; border-radius:14px; background:#0f172a; }
+    .now .title { font-weight:700; margin-bottom:6px; }
+    .tiny { font-size:12px; color:#9fb2c8; word-break:break-all; }
+    .warn { margin-top:10px; font-size:12px; color:#fbbf24; }
+  </style>
+</head>
+
 <body>
+<header>
+  <h1>📺 Live TV (M3U Player)</h1>
+  <div class="row">
+    <input id="m3uUrl" placeholder="M3U URL দিন..." />
+    <button id="loadBtn">Load</button>
+    <input id="search" placeholder="Search channel..." />
+    <select id="group"></select>
+  </div>
+</header>
 
-<video id="video" width="100%" height="auto" controls></video>
+<main>
+  <section class="panel">
+    <div class="status" id="status">Ready.</div>
+    <div class="list" id="list"></div>
+  </section>
 
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+  <section class="player">
+    <video id="video" controls playsinline></video>
+    <div class="now" id="now">
+      <div class="title">No channel selected</div>
+      <div class="tiny" id="nowGroup"></div>
+      <div class="tiny" id="nowUrl"></div>
+      <div class="warn">
+        ⚠️ যদি কোনো স্ট্রিম প্লে না হয়, বেশিরভাগ সময় কারণ হয় CORS/DRM/Geo-block। তখন ব্রাউজার থেকে সরাসরি প্লে নাও হতে পারে।
+      </div>
+    </div>
+  </section>
+</main>
+
 <script>
-    var url = "https://playyonogames.in/dlive.php?id=156&format=.mpd";
-    var player = dashjs.MediaPlayer().create();
-    player.initialize(document.querySelector("#video"), url, true);
-</script>
+  // ✅ Default playlist (your link)
+  const DEFAULT_M3U = "https://raw.githubusercontent.com/alex8875/m3u/refs/heads/main/jcinema.m3u";
 
+  const els = {
+    m3uUrl: document.getElementById("m3uUrl"),
+    loadBtn: document.getElementById("loadBtn"),
+    search: document.getElementById("search"),
+    group: document.getElementById("group"),
+    status: document.getElementById("status"),
+    list: document.getElementById("list"),
+    video: document.getElementById("video"),
+    nowTitle: document.querySelector("#now .title"),
+    nowGroup: document.getElementById("nowGroup"),
+    nowUrl: document.getElementById("nowUrl"),
+  };
+
+  els.m3uUrl.value = DEFAULT_M3U;
+
+  let allChannels = [];
+  let hls = null;
+  let activeId = null;
+
+  function setStatus(msg){ els.status.textContent = msg; }
+
+  function safeText(s){ return (s ?? "").toString(); }
+
+  // Robust M3U parser (handles normal newlines AND weird "single-line" playlists)
+  function parseM3U(text){
+    let t = text.replace(/\r/g, "\n");
+
+    // If it's suspiciously one line, try to split by EXTINF markers
+    if (!t.includes("\n") && t.includes("#EXTINF")) {
+      t = t.replace(/#EXTINF/g, "\n#EXTINF").trim();
+    }
+
+    const lines = t.split("\n").map(x => x.trim()).filter(Boolean);
+
+    const out = [];
+    for (let i = 0; i < lines.length; i++){
+      const line = lines[i];
+
+      if (line.startsWith("#EXTINF")) {
+        const next = lines[i+1] || "";
+        if (!next || next.startsWith("#")) continue;
+
+        // Name is after last comma
+        const commaIdx = line.lastIndexOf(",");
+        const name = commaIdx >= 0 ? line.slice(commaIdx + 1).trim() : "Unknown";
+
+        // Attributes inside EXTINF
+        const attrs = {};
+        const attrPart = commaIdx >= 0 ? line.slice(0, commaIdx) : line;
+
+        // matches key="value"
+        const re = /([\w-]+)="([^"]*)"/g;
+        let m;
+        while ((m = re.exec(attrPart)) !== null){
+          attrs[m[1]] = m[2];
+        }
+
+        // group-title="..."
+        const groupMatch = attrPart.match(/group-title="([^"]*)"/i);
+        const group = groupMatch ? groupMatch[1] : (attrs["group-title"] || "Other");
+
+        out.push({
+          id: out.length + 1,
+          name,
+          url: next,
+          group: group || "Other",
+          logo: attrs["tvg-logo"] || "",
+          tvgId: attrs["tvg-id"] || "",
+          tvgName: attrs["tvg-name"] || "",
+        });
+
+        i++; // skip url line
+      }
+    }
+    return out;
+  }
+
+  function uniqueGroups(channels){
+    const set = new Set(channels.map(c => c.group || "Other"));
+    return ["All", ...Array.from(set).sort((a,b)=>a.localeCompare(b))];
+  }
+
+  function renderGroups(){
+    const groups = uniqueGroups(allChannels);
+    els.group.innerHTML = "";
+    for (const g of groups){
+      const opt = document.createElement("option");
+      opt.value = g;
+      opt.textContent = g;
+      els.group.appendChild(opt);
+    }
+  }
+
+  function getFiltered(){
+    const q = els.search.value.trim().toLowerCase();
+    const g = els.group.value;
+
+    return allChannels.filter(c => {
+      const okGroup = (g === "All") || (safeText(c.group) === g);
+      if (!okGroup) return false;
+
+      if (!q) return true;
+      const hay = `${c.name} ${c.group} ${c.tvgName} ${c.tvgId}`.toLowerCase();
+      return hay.includes(q);
+    });
+  }
+
+  function renderList(){
+    const filtered = getFiltered();
+    els.list.innerHTML = "";
+
+    if (!filtered.length){
+      const div = document.createElement("div");
+      div.style.padding = "14px";
+      div.style.color = "#9fb2c8";
+      div.textContent = "No channels found.";
+      els.list.appendChild(div);
+      return;
+    }
+
+    for (const c of filtered){
+      const item = document.createElement("div");
+      item.className = "item" + (c.id === activeId ? " active" : "");
+      item.onclick = () => playChannel(c);
+
+      const img = document.createElement("img");
+      img.className = "logo";
+      img.alt = "";
+      img.src = c.logo || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23111827'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%239fb2c8' font-size='18'%3ETV%3C/text%3E%3C/svg%3E";
+      img.onerror = () => { img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23111827'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%239fb2c8' font-size='18'%3ETV%3C/text%3E%3C/svg%3E"; };
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+
+      const name = document.createElement("div");
+      name.className = "name";
+      name.textContent = c.name;
+
+      const sub = document.createElement("div");
+      sub.className = "sub";
+      sub.textContent = c.group || "Other";
+
+      meta.appendChild(name);
+      meta.appendChild(sub);
+
+      item.appendChild(img);
+      item.appendChild(meta);
+
+      els.list.appendChild(item);
+    }
+
+    setStatus(`Loaded: ${allChannels.length} | Showing: ${filtered.length}`);
+  }
+
+  function stopPlayback(){
+    try {
+      els.video.pause();
+      els.video.removeAttribute("src");
+      els.video.load();
+    } catch {}
+
+    if (hls){
+      try { hls.destroy(); } catch {}
+      hls = null;
+    }
+  }
+
+  function isLikelyHls(url){
+    return /\.m3u8(\?|#|$)/i.test(url) || url.includes(".m3u8");
+  }
+
+  function playChannel(c){
+    activeId = c.id;
+    renderList();
+
+    stopPlayback();
+
+    els.nowTitle.textContent = c.name;
+    els.nowGroup.textContent = `Group: ${c.group || "Other"}`;
+    els.nowUrl.textContent = `URL: ${c.url}`;
+
+    const url = c.url;
+
+    // Native HLS on Safari; HLS.js for most others
+    if (isLikelyHls(url)) {
+      if (els.video.canPlayType("application/vnd.apple.mpegurl")) {
+        els.video.src = url;
+        els.video.play().catch(()=>{});
+      } else if (window.Hls && Hls.isSupported()) {
+        hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+        hls.loadSource(url);
+        hls.attachMedia(els.video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          els.video.play().catch(()=>{});
+        });
+        hls.on(Hls.Events.ERROR, (evt, data) => {
+          console.warn("HLS error:", data);
+          setStatus("Stream error (maybe CORS/blocked). Try another channel.");
+        });
+      } else {
+        setStatus("Your browser doesn't support HLS playback.");
+      }
+    } else {
+      // mp4 / ts / etc (if browser supports)
+      els.video.src = url;
+      els.video.play().catch(()=>{});
+    }
+  }
+
+  async function loadPlaylist(){
+    const url = els.m3uUrl.value.trim() || DEFAULT_M3U;
+    setStatus("Loading M3U...");
+
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+
+      const channels = parseM3U(text);
+      allChannels = channels;
+
+      if (!channels.length){
+        setStatus("Parsed 0 channels. M3U format may be different.");
+      } else {
+        setStatus(`Loaded ${channels.length} channels.`);
+      }
+
+      renderGroups();
+      els.group.value = "All";
+      renderList();
+    } catch (e){
+      console.error(e);
+      setStatus("Failed to load. (CORS/URL/Network issue)");
+      allChannels = [];
+      renderGroups();
+      renderList();
+    }
+  }
+
+  els.loadBtn.addEventListener("click", loadPlaylist);
+  els.search.addEventListener("input", renderList);
+  els.group.addEventListener("change", renderList);
+
+  // Auto-load on open
+  loadPlaylist();
+</script>
 </body>
 </html>
