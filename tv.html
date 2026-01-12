@@ -511,12 +511,12 @@ async function failAllSources(msg){
 function showInfoBar(sticky=false, timeout=8000){
   infoBar.classList.add("show");
   clearTimeout(infoHideTimer);
-  infoHideTimer = setTimeout(()=>infoBar.classList.remove("show"), sticky ? 3600 : timeout);
+  infoHideTimer = setTimeout(()=>infoBar.classList.remove("show"), sticky ? 8000 : timeout);
 }
 function setBadge(text, kind){
   const base = channelSubText();
   infoSub.innerHTML = escapeHtml(base) + ` <span class="badge ${kind||"warn"}">${escapeHtml(text)}</span>`;
-  showInfoBar(true, 3600);
+  showInfoBar(true, 8000);
 }
 function channelSubText(){
   const ch = channels[currentIndex];
