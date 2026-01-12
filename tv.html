@@ -508,7 +508,7 @@ async function failAllSources(msg){
 }
 
 /* ===================== UI helpers ===================== */
-function showInfoBar(sticky=false, timeout=2400){
+function showInfoBar(sticky=false, timeout=8000){
   infoBar.classList.add("show");
   clearTimeout(infoHideTimer);
   infoHideTimer = setTimeout(()=>infoBar.classList.remove("show"), sticky ? 3600 : timeout);
