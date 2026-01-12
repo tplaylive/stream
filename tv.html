@@ -782,7 +782,7 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowDown":
       if(!guide.classList.contains("show")){
-        showInfoBar(true, 3600); // Show Player Controls
+        showInfoBar(true, 8000); // Show Player Controls
       } else {
         // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
