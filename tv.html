@@ -632,6 +632,8 @@ function updateGridFocus(){
     tile.classList.remove("focus");
     if(idx === focusTileIndex){
       tile.classList.add("focus");
+      // Also update the data attribute for click reference
+      tile.dataset.tileIndex = idx;
       tile.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
     }
   });
@@ -648,7 +650,12 @@ function buildGrid(){
 
     const tile = document.createElement("div");
     tile.className = "tile" + (tileIdx===focusTileIndex ? " focus" : "");
+    tile.dataset.tileIndex = tileIdx; // Store tile index for reference
     tile.onclick = () => {
+      // Update focus index when tile is clicked
+      focusTileIndex = tileIdx;
+      updateGridFocus();
+      // Then play the channel
       toggleGuide(false);
       playChannel(chIdx);
     };
@@ -759,6 +766,7 @@ document.addEventListener("keydown", (e) => {
         // Guide open: select channel
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
+          console.log("Playing channel from guide:", chIdx, "Tile index:", focusTileIndex);
           toggleGuide(false);
           playChannel(chIdx);
         }
