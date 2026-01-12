@@ -308,7 +308,10 @@ window.addEventListener("load", () => {
   document.getElementById("btnFav").onclick = toggleFavCurrent;
 
   // guide search
-  search.addEventListener("input", () => { focusTileIndex = 0; buildGrid(); });
+  search.addEventListener("input", () => { 
+    focusTileIndex = 0; 
+    buildGrid(); 
+  });
 
   buildCategories();
 
@@ -339,7 +342,12 @@ function isDash(src){
 }
 
 async function playChannel(index){
-  if(isTrying) return;
+  // লোডিং চলাকালীন বাটন কাজ করতে দিতে হবে, তাই শুধু isTrying check
+  if(isTrying) {
+    console.log("Already trying to load, please wait...");
+    return;
+  }
+  
   isTrying = true;
 
   currentIndex = clamp(index, 0, channels.length-1);
@@ -523,8 +531,12 @@ function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
-function nextChannel(){ playChannel((currentIndex+1) % channels.length); }
-function prevChannel(){ playChannel((currentIndex-1 + channels.length) % channels.length); }
+function nextChannel(){ 
+  playChannel((currentIndex+1) % channels.length); 
+}
+function prevChannel(){ 
+  playChannel((currentIndex-1 + channels.length) % channels.length); 
+}
 
 /* ===================== Favorites ===================== */
 function updateFavIcon(){
@@ -608,9 +620,12 @@ function getFilteredIndexes(){
   for(let i=0;i<channels.length;i++){
     const ch = channels[i];
     const cat = ch.category || "General";
+    
+    // First check category filter
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
 
+    // Then check search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
       if(!hay.includes(q)) continue;
@@ -664,33 +679,56 @@ function buildGrid(){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
+  // Prevent default for arrow keys to avoid scrolling
+  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
+    e.preventDefault();
+  }
+
   /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
       if(!guide.classList.contains("show")){
         prevChannel();
-        e.preventDefault();
+      } else {
+        // Guide open: category navigation
+        focusCatIndex = Math.max(0, focusCatIndex-1);
+        currentCat = categories[focusCatIndex];
+        focusTileIndex = 0;
+        buildCategoriesUI();
+        buildGrid();
       }
       break;
 
     case "ArrowRight":
       if(!guide.classList.contains("show")){
         nextChannel();
-        e.preventDefault();
+      } else {
+        // Guide open: move to next tile
+        const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
+        focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
+        buildGrid();
       }
       break;
 
     case "ArrowUp":
       if(!guide.classList.contains("show")){
         toggleGuide(true); // Open Guide
-        e.preventDefault();
+      } else {
+        // Guide open: move up in grid
+        const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
+        focusTileIndex = Math.max(0, focusTileIndex - cols);
+        buildGrid();
       }
       break;
 
     case "ArrowDown":
       if(!guide.classList.contains("show")){
         showInfoBar(true, 3600); // Show Player Controls
-        e.preventDefault();
+      } else {
+        // Guide open: move down in grid
+        const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
+        focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
+        buildGrid();
       }
       break;
 
@@ -709,7 +747,13 @@ document.addEventListener("keydown", (e) => {
             okClickTimer = null;
           }, DOUBLE_CLICK_DELAY);
         }
-        e.preventDefault();
+      } else if(!inSearch){
+        // Guide open: select channel
+        const chIdx = filteredIndexes[focusTileIndex];
+        if(typeof chIdx === "number"){
+          toggleGuide(false);
+          playChannel(chIdx);
+        }
       }
       break;
 
@@ -732,45 +776,7 @@ document.addEventListener("keydown", (e) => {
           backClickTimer = null;
         }, DOUBLE_CLICK_DELAY);
       }
-      e.preventDefault();
       break;
-  }
-
-  /* ---- Guide Navigation (if guide is open) ---- */
-  if(guide.classList.contains("show")){
-    if(e.key === "ArrowLeft"){
-      focusCatIndex = Math.max(0, focusCatIndex-1);
-      currentCat = categories[focusCatIndex];
-      focusTileIndex = 0;
-      buildCategoriesUI();
-      buildGrid();
-      e.preventDefault(); return;
-    }
-    if(e.key === "ArrowRight"){
-      focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex+1);
-      buildGrid();
-      e.preventDefault(); return;
-    }
-    if(e.key === "ArrowUp"){
-      const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
-      focusTileIndex = Math.max(0, focusTileIndex - cols);
-      buildGrid();
-      e.preventDefault(); return;
-    }
-    if(e.key === "ArrowDown"){
-      const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
-      focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
-      buildGrid();
-      e.preventDefault(); return;
-    }
-    if(e.key === "Enter" && !inSearch){
-      const chIdx = filteredIndexes[focusTileIndex];
-      if(typeof chIdx === "number"){
-        toggleGuide(false);
-        playChannel(chIdx);
-      }
-      e.preventDefault(); return;
-    }
   }
 });
 
