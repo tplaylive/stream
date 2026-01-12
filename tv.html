@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>T Play TV</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
@@ -13,110 +13,196 @@ body{background:#000;color:#fff;overflow:hidden}
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill}
 
-/* CONTROLS */
+/* ===== Controls (auto-hide) ===== */
 .controls{
-    position:absolute;bottom:20px;left:50%;
-    transform:translateX(-50%);
-    display:flex;gap:10px;
-    padding:10px 16px;
-    background:rgba(0,0,0,.6);
-    border-radius:40px;
-    opacity:0;pointer-events:none;
-    transition:.3s;z-index:40
+  position:absolute;bottom:20px;left:50%;
+  transform:translateX(-50%);
+  display:flex;gap:10px;
+  padding:10px 16px;
+  background:rgba(0,0,0,.6);
+  border-radius:40px;
+  opacity:0;pointer-events:none;
+  transition:.25s;z-index:40;
+  backdrop-filter:blur(6px);
 }
 .controls.show{opacity:1;pointer-events:auto}
 .control-btn{
-    width:38px;height:38px;border-radius:50%;
-    border:none;background:rgba(255,255,255,.15);
-    color:#fff;cursor:pointer
+  width:42px;height:42px;border-radius:50%;
+  border:none;background:rgba(255,255,255,.15);
+  color:#fff;cursor:pointer;font-size:15px;
 }
 .control-btn:hover{background:#e50914}
 
-/* DTH OVERLAY */
+/* ===== Guide Overlay (DTH style) ===== */
 .dth-overlay{
-    position:absolute;inset:0;
-    background:rgba(0,0,0,.92);
-    display:none;flex-direction:column;
-    z-index:80
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.92);
+  display:none;flex-direction:column;
+  z-index:80;
 }
 .dth-overlay.show{display:flex}
+
 .dth-top{
-    padding:12px 18px;
-    display:flex;justify-content:space-between;
-    background:#111
+  padding:12px 18px;
+  display:flex;justify-content:space-between;
+  align-items:center;
+  background:#111;
 }
+.dth-top b{font-size:18px}
+.dth-top button{
+  background:none;border:none;color:#fff;
+  font-size:24px;cursor:pointer;
+}
+
 .now-playing{
-    display:flex;gap:12px;
-    padding:10px 18px;
-    background:#1a1a1a
+  display:flex;gap:12px;align-items:center;
+  padding:12px 18px;
+  background:#1a1a1a;
+  border-bottom:1px solid #222;
 }
-.now-playing img{width:46px;height:46px;border-radius:6px}
+.now-playing img{width:52px;height:52px;border-radius:10px}
+.now-playing small{color:#aaa}
+
 .dth-body{flex:1;display:flex;overflow:hidden}
 .category-panel{
-    width:160px;background:#111;overflow-y:auto
+  width:180px;background:#0f0f0f;overflow-y:auto;
+  border-right:1px solid #222;
 }
 .category-panel div{
-    padding:12px;color:#aaa;cursor:pointer
+  padding:14px 12px;color:#aaa;cursor:pointer;
+  display:flex;gap:10px;align-items:center;
 }
 .category-panel div.active{
-    background:#e50914;color:#fff
+  background:#e50914;color:#fff;font-weight:600;
 }
-.channel-panel{flex:1;display:flex;flex-direction:column}
-.channel-search{padding:10px}
+.category-panel i{width:18px;text-align:center}
+
+.channel-panel{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.channel-search{
+  padding:12px;border-bottom:1px solid #222;background:#0b0b0b;
+}
 .channel-search input{
-    width:100%;padding:8px 12px;border-radius:20px;border:none
+  width:100%;padding:10px 14px;border:none;outline:none;
+  border-radius:22px;background:#151515;color:#fff;
 }
-.channel-list{flex:1;overflow-y:auto}
-.channel-row{
-    display:flex;align-items:center;gap:12px;
-    padding:10px 14px;border-bottom:1px solid #222;
-    cursor:pointer
+
+/* ===== GRID LIST (more channels at once + bigger logo) ===== */
+.channel-grid{
+  flex:1;overflow-y:auto;
+  padding:12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:10px;
 }
-.channel-row.active,
-.channel-row:hover{background:#222}
-.channel-row span{width:40px;text-align:right;color:#aaa}
-.channel-row img{width:40px;height:40px;border-radius:6px}
+.ch-tile{
+  background:#111;border:1px solid #222;
+  border-radius:14px;
+  padding:10px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;
+  transition:.15s;
+}
+.ch-tile:hover{transform:scale(1.01);background:#181818;border-color:#333}
+.ch-tile.active{outline:2px solid rgba(229,9,20,.9)}
+.ch-logo{
+  width:64px;height:64px;border-radius:12px;
+  object-fit:cover;flex:0 0 auto;
+}
+.ch-meta{flex:1;min-width:0}
+.ch-title{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch-sub{font-size:12px;color:#aaa;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch-no{
+  font-size:14px;color:#aaa;min-width:42px;text-align:right;
+}
+.fav-btn{
+  width:34px;height:34px;border-radius:50%;
+  border:none;background:rgba(255,255,255,.12);
+  color:#fff;cursor:pointer;flex:0 0 auto;
+}
+.fav-btn:hover{background:rgba(229,9,20,.9)}
+.fav-btn.on{background:rgba(229,9,20,.9)}
+
+/* ===== Number Zap Overlay ===== */
+.zap{
+  position:absolute;top:18px;left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.75);
+  border:1px solid rgba(255,255,255,.15);
+  padding:10px 14px;border-radius:14px;
+  display:flex;gap:10px;align-items:center;
+  z-index:90;
+  opacity:0;pointer-events:none;
+  transition:.2s;
+  backdrop-filter:blur(6px);
+}
+.zap.show{opacity:1}
+.zap .num{
+  font-size:26px;font-weight:800;letter-spacing:2px;
+}
+.zap .hint{font-size:12px;color:#bbb}
+
+/* ===== Channel Number Big flash (optional) ===== */
+.channel-number{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:80px;font-weight:900;
+  background:rgba(0,0,0,.6);
+  padding:18px 30px;border-radius:18px;
+  opacity:0;transition:.2s;z-index:60;
+}
+.channel-number.show{opacity:1}
 </style>
 </head>
 
 <body>
-
 <div class="video-container">
 
-<video id="video" autoplay muted playsinline></video>
+  <video id="video" autoplay muted playsinline></video>
 
-<div class="controls">
-    <button class="control-btn" onclick="prevChannel()"><i class="fas fa-chevron-left"></i></button>
-    <button class="control-btn" onclick="togglePlay()"><i id="playIcon" class="fas fa-play"></i></button>
-    <button class="control-btn" onclick="toggleMute()"><i id="muteIcon" class="fas fa-volume-up"></i></button>
-    <button class="control-btn" onclick="toggleGuide()"><i class="fas fa-list"></i></button>
-    <button class="control-btn" onclick="nextChannel()"><i class="fas fa-chevron-right"></i></button>
-</div>
+  <!-- small zap overlay -->
+  <div id="zapBox" class="zap">
+    <div class="num" id="zapNum">—</div>
+    <div class="hint" id="zapHint">Type channel number (1–999)</div>
+  </div>
 
-<div class="dth-overlay" id="guide">
+  <!-- big center channel number flash -->
+  <div id="channelNumber" class="channel-number"></div>
+
+  <!-- Controls -->
+  <div class="controls" id="controls">
+    <button class="control-btn" onclick="prevChannel()" title="Prev"><i class="fas fa-chevron-left"></i></button>
+    <button class="control-btn" onclick="togglePlay()" title="Play/Pause"><i id="playIcon" class="fas fa-play"></i></button>
+    <button class="control-btn" onclick="toggleMute()" title="Mute"><i id="muteIcon" class="fas fa-volume-up"></i></button>
+    <button class="control-btn" onclick="toggleGuide()" title="Guide"><i class="fas fa-list"></i></button>
+    <button class="control-btn" onclick="nextChannel()" title="Next"><i class="fas fa-chevron-right"></i></button>
+    <button class="control-btn" onclick="toggleFavCurrent()" title="Favorite"><i id="favIcon" class="fas fa-star"></i></button>
+  </div>
+
+  <!-- DTH Guide -->
+  <div class="dth-overlay" id="guide">
     <div class="dth-top">
-        <b>Channel Guide</b>
-        <button onclick="toggleGuide()">✕</button>
+      <b>Channel Guide</b>
+      <button onclick="toggleGuide()">✕</button>
     </div>
 
     <div class="now-playing">
-        <img id="nowImg">
-        <div>
-            <b id="nowName"></b><br>
-            <small id="nowCat"></small>
-        </div>
+      <img id="nowImg" alt="logo">
+      <div>
+        <b id="nowName"></b><br>
+        <small><span id="nowCat"></span> • <span id="nowDesc"></span></small>
+      </div>
     </div>
 
     <div class="dth-body">
-        <div class="category-panel" id="catPanel"></div>
-        <div class="channel-panel">
-            <div class="channel-search">
-                <input placeholder="Search channel..." oninput="searchChannel(this.value)">
-            </div>
-            <div class="channel-list" id="chList"></div>
+      <div class="category-panel" id="catPanel"></div>
+      <div class="channel-panel">
+        <div class="channel-search">
+          <input id="searchBox" placeholder="Search channel (name/number)..." oninput="applyFilters()" />
         </div>
+        <div class="channel-grid" id="chGrid"></div>
+      </div>
     </div>
-</div>
+  </div>
 
 </div>
 
@@ -125,122 +211,305 @@ body{background:#000;color:#fff;overflow:hidden}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
-const video=document.getElementById("video");
-let hls=null,shakaP=null,currentIndex=0,currentCat="All";
+/* ===================== Core Player (main.js compatible) ===================== */
+const video = document.getElementById("video");
+const playIcon = document.getElementById("playIcon");
+const muteIcon = document.getElementById("muteIcon");
+const favIcon  = document.getElementById("favIcon");
+const guideEl  = document.getElementById("guide");
+const controlsEl = document.getElementById("controls");
 
-/* INIT */
-window.onload=()=>{
-    const saved=localStorage.getItem("lastChannel");
-    playChannel(saved?+saved:0);
-    buildCategories();
-    buildList();
-    showControls();
+let hls = null;
+let shakaP = null;
+let currentIndex = 0;
+
+let currentCat = "All";
+let categories = [];
+
+/* ===================== Favorites ===================== */
+function favKey(){ return "favorites_v1"; } // store channel names
+function loadFavs(){
+  try { return new Set(JSON.parse(localStorage.getItem(favKey()) || "[]")); }
+  catch(e){ return new Set(); }
+}
+function saveFavs(set){
+  localStorage.setItem(favKey(), JSON.stringify([...set]));
+}
+function isFav(ch){ return favs.has(ch.name); }
+function setFavIcon(){
+  favIcon.className = isFav(channels[currentIndex]) ? "fas fa-star" : "far fa-star";
+  favIcon.style.color = isFav(channels[currentIndex]) ? "#ffd54a" : "#fff";
+}
+let favs = loadFavs();
+
+function toggleFavByIndex(i){
+  const ch = channels[i];
+  if(!ch?.name) return;
+  if(favs.has(ch.name)) favs.delete(ch.name);
+  else favs.add(ch.name);
+  saveFavs(favs);
+  setFavIcon();
+  buildList(); // refresh star icons
+}
+function toggleFavCurrent(){ toggleFavByIndex(currentIndex); }
+
+/* ===================== Init ===================== */
+window.onload = () => {
+  if(typeof channels === "undefined" || !channels.length){
+    console.error("channels not found in main.js");
+    return;
+  }
+  // build categories from main.js (category exists) :contentReference[oaicite:1]{index=1}
+  buildCategories();
+
+  const saved = localStorage.getItem("lastChannel");
+  playChannel(saved ? +saved : 0);
+
+  buildList();
+  showControls();
 };
 
-/* PLAY CHANNEL (HLS + MPD + DRM) */
+/* ===================== Play Channel: HLS + DASH(MPD) + ClearKey DRM ===================== */
 async function playChannel(i){
-    currentIndex=i;
-    localStorage.setItem("lastChannel",i);
+  currentIndex = Math.max(0, Math.min(channels.length-1, i));
+  localStorage.setItem("lastChannel", currentIndex);
 
-    if(hls){hls.destroy();hls=null}
-    if(shakaP){await shakaP.destroy();shakaP=null}
+  flashChannelNumber(currentIndex + 1);
+  setFavIcon();
 
-    const ch=channels[i];
-    const src=ch.sources[0];
-    const url=src.url;
+  // cleanup old engines
+  if(hls){ hls.destroy(); hls = null; }
+  if(shakaP){ try{ await shakaP.destroy(); }catch(e){} shakaP = null; }
 
-    document.getElementById("nowImg").src=ch.img;
-    document.getElementById("nowName").textContent=ch.name;
-    document.getElementById("nowCat").textContent=ch.category;
+  const ch = channels[currentIndex];
+  const src = ch.sources?.[0] || ch;
+  const url = src.url;
 
-    if(src.type==="dash" || url.includes(".mpd")){
-        shaka.polyfill.installAll();
-        shakaP=new shaka.Player(video);
+  // update "Now Playing" bar
+  document.getElementById("nowImg").src = ch.img || "";
+  document.getElementById("nowName").textContent = ch.name || "";
+  document.getElementById("nowCat").textContent = ch.category || "General";
+  document.getElementById("nowDesc").textContent = ch.description || "";
 
-        if(src.drm){
-            await shakaP.configure({
-                drm:{clearKeys:{[src.drm.kid]:src.drm.key}}
-            });
-        }
-        await shakaP.load(url);
-        video.play();
-        return;
+  const isDash = (src.type === "dash") || (typeof url === "string" && url.includes(".mpd"));
+
+  if(isDash){
+    if(!shaka.Player.isBrowserSupported()){
+      console.error("Shaka not supported on this browser.");
+      return;
+    }
+    shaka.polyfill.installAll();
+    shakaP = new shaka.Player(video);
+
+    // ClearKey DRM from main.js: drm: {kid, key} :contentReference[oaicite:2]{index=2}
+    if(src.drm?.kid && src.drm?.key){
+      await shakaP.configure({
+        drm: { clearKeys: { [src.drm.kid]: src.drm.key } }
+      });
     }
 
-    if(Hls.isSupported()){
-        hls=new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play());
-    }else{
-        video.src=url;
-        video.play();
+    try{
+      await shakaP.load(url);
+      await video.play();
+    }catch(err){
+      console.error("DASH/MPD load failed:", err);
     }
+    return;
+  }
+
+  // HLS
+  if(Hls.isSupported()){
+    hls = new Hls();
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(()=>{}));
+    hls.on(Hls.Events.ERROR, (evt, data) => console.error("HLS error:", data));
+  }else{
+    // Safari native HLS
+    video.src = url;
+    video.play().catch(()=>{});
+  }
 }
 
-/* CONTROLS */
+/* ===================== Controls ===================== */
 function togglePlay(){
-    const i=document.getElementById("playIcon");
-    video.paused?(video.play(),i.className="fas fa-pause")
-                 :(video.pause(),i.className="fas fa-play");
+  if(video.paused){
+    video.play().catch(()=>{});
+    playIcon.className = "fas fa-pause";
+  }else{
+    video.pause();
+    playIcon.className = "fas fa-play";
+  }
 }
 function toggleMute(){
-    const i=document.getElementById("muteIcon");
-    video.muted=!video.muted;
-    i.className=video.muted?"fas fa-volume-mute":"fas fa-volume-up";
+  video.muted = !video.muted;
+  muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
-function nextChannel(){playChannel((currentIndex+1)%channels.length)}
-function prevChannel(){playChannel((currentIndex-1+channels.length)%channels.length)}
+function nextChannel(){ playChannel((currentIndex+1) % channels.length); }
+function prevChannel(){ playChannel((currentIndex-1 + channels.length) % channels.length); }
+
 function toggleGuide(){
-    document.getElementById("guide").classList.toggle("show");
+  guideEl.classList.toggle("show");
+  if(guideEl.classList.contains("show")){
+    // focus search for TV/keyboard typing
+    setTimeout(()=>document.getElementById("searchBox")?.focus(), 50);
+  }
 }
 
-/* GUIDE UI */
-function buildCategories(){
-    const cats=["All",...new Set(channels.map(c=>c.category))];
-    const p=document.getElementById("catPanel");
-    p.innerHTML="";
-    cats.forEach(c=>{
-        const d=document.createElement("div");
-        d.textContent=c;
-        if(c==="All")d.classList.add("active");
-        d.onclick=()=>{
-            currentCat=c;
-            [...p.children].forEach(x=>x.classList.remove("active"));
-            d.classList.add("active");
-            buildList();
-        };
-        p.appendChild(d);
-    });
-}
-function buildList(){
-    const l=document.getElementById("chList");
-    l.innerHTML="";
-    channels.forEach((c,i)=>{
-        if(currentCat!=="All" && c.category!==currentCat)return;
-        const r=document.createElement("div");
-        r.className="channel-row"+(i===currentIndex?" active":"");
-        r.innerHTML=`<span>${i+1}</span><img src="${c.img}"><div>${c.name}</div>`;
-        r.onclick=()=>{playChannel(i);toggleGuide()};
-        l.appendChild(r);
-    });
-}
-function searchChannel(q){
-    q=q.toLowerCase();
-    document.querySelectorAll(".channel-row").forEach(r=>{
-        r.style.display=r.textContent.toLowerCase().includes(q)?"flex":"none";
-    });
-}
-
-/* AUTO CONTROLS */
+/* Netflix-style controls auto hide */
 let ct;
 function showControls(){
-    document.querySelector(".controls").classList.add("show");
-    clearTimeout(ct);
-    ct=setTimeout(()=>document.querySelector(".controls").classList.remove("show"),3000);
+  controlsEl.classList.add("show");
+  clearTimeout(ct);
+  ct = setTimeout(()=>controlsEl.classList.remove("show"), 2800);
 }
-video.addEventListener("mousemove",showControls);
-video.addEventListener("touchstart",showControls);
+video.addEventListener("mousemove", showControls);
+video.addEventListener("touchstart", showControls);
+document.addEventListener("keydown", showControls);
+
+/* ===================== Channel Number Flash ===================== */
+function flashChannelNumber(n){
+  const el = document.getElementById("channelNumber");
+  el.textContent = n;
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"), 700);
+}
+
+/* ===================== Categories + Grid List ===================== */
+function buildCategories(){
+  const set = new Set(channels.map(c => c.category || "General"));
+  categories = ["★ Favorites", "All", ...[...set].sort()];
+
+  const p = document.getElementById("catPanel");
+  p.innerHTML = "";
+
+  categories.forEach((c, idx) => {
+    const d = document.createElement("div");
+    const icon = (c === "★ Favorites") ? "fa-star" : (c === "All" ? "fa-border-all" : "fa-folder");
+    d.innerHTML = `<i class="fas ${icon}"></i><span>${c}</span>`;
+    if(idx === 1){ d.classList.add("active"); } // default "All"
+    d.onclick = () => {
+      currentCat = c;
+      [...p.children].forEach(x => x.classList.remove("active"));
+      d.classList.add("active");
+      applyFilters();
+    };
+    p.appendChild(d);
+  });
+
+  currentCat = "All";
+}
+
+function applyFilters(){
+  const q = (document.getElementById("searchBox").value || "").trim().toLowerCase();
+  buildList(q);
+}
+
+function buildList(query=""){
+  const grid = document.getElementById("chGrid");
+  grid.innerHTML = "";
+
+  const isFavCat = (currentCat === "★ Favorites");
+  const isAll = (currentCat === "All");
+
+  channels.forEach((ch, idx) => {
+    // category filter
+    if(isFavCat){
+      if(!favs.has(ch.name)) return;
+    }else if(!isAll){
+      if((ch.category || "General") !== currentCat) return;
+    }
+
+    // search filter: by name or number
+    if(query){
+      const numStr = String(idx+1);
+      const hay = (ch.name || "").toLowerCase() + " " + numStr;
+      if(!hay.includes(query)) return;
+    }
+
+    const tile = document.createElement("div");
+    tile.className = "ch-tile" + (idx===currentIndex ? " active" : "");
+    tile.onclick = () => { playChannel(idx); if(guideEl.classList.contains("show")) toggleGuide(); };
+
+    const starOn = favs.has(ch.name);
+    tile.innerHTML = `
+      <div class="ch-no">${idx+1}</div>
+      <img class="ch-logo" src="${ch.img || ""}" alt="logo">
+      <div class="ch-meta">
+        <div class="ch-title">${ch.name || ""}</div>
+        <div class="ch-sub">${ch.category || "General"}${ch.description ? " • " + ch.description : ""}</div>
+      </div>
+      <button class="fav-btn ${starOn ? "on":""}" title="Favorite" onclick="event.stopPropagation(); toggleFavByIndex(${idx});">
+        <i class="fas fa-star"></i>
+      </button>
+    `;
+    grid.appendChild(tile);
+  });
+}
+
+/* ===================== Remote-style Number Zap (1–999) ===================== */
+let zapBuffer = "";
+let zapTimer = null;
+const zapBox = document.getElementById("zapBox");
+const zapNum = document.getElementById("zapNum");
+const zapHint = document.getElementById("zapHint");
+
+function showZap(){
+  zapNum.textContent = zapBuffer || "—";
+  zapHint.textContent = "Type channel number (1–999)";
+  zapBox.classList.add("show");
+  clearTimeout(zapTimer);
+  zapTimer = setTimeout(commitZap, 1200); // wait for user to finish typing
+}
+function hideZap(){
+  zapBox.classList.remove("show");
+}
+function commitZap(){
+  if(!zapBuffer){ hideZap(); return; }
+  const n = parseInt(zapBuffer, 10);
+  zapBuffer = "";
+  hideZap();
+  if(!Number.isFinite(n) || n < 1 || n > channels.length) return;
+  playChannel(n-1);
+}
+
+document.addEventListener("keydown", (e) => {
+  // Ignore typing inside search input
+  const active = document.activeElement;
+  if(active && active.id === "searchBox") return;
+
+  // digits
+  if(e.key >= "0" && e.key <= "9"){
+    if(zapBuffer.length >= 3) return;
+    zapBuffer += e.key;
+    showZap();
+    return;
+  }
+
+  if(e.key === "Enter"){
+    commitZap();
+    return;
+  }
+
+  if(e.key === "Backspace"){
+    zapBuffer = zapBuffer.slice(0, -1);
+    showZap();
+    return;
+  }
+
+  if(e.key === "Escape"){
+    zapBuffer = "";
+    hideZap();
+    if(guideEl.classList.contains("show")) toggleGuide();
+    return;
+  }
+
+  // helpful remote keys
+  if(e.key === "ArrowRight") nextChannel();
+  if(e.key === "ArrowLeft")  prevChannel();
+  if(e.key === "g" || e.key === "G") toggleGuide();
+  if(e.key === "f" || e.key === "F") toggleFavCurrent();
+});
 </script>
 
 </body>
