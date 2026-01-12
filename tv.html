@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>T Play</title>
+<title>T Play Live</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -48,6 +48,7 @@ body{background:#000;color:#fff;overflow:hidden}
     background:rgba(255,255,255,.15);
     color:#fff;
     cursor:pointer;
+    font-size:15px;
 }
 .control-btn:hover{background:#e50914}
 
@@ -71,7 +72,8 @@ body{background:#000;color:#fff;overflow:hidden}
     margin-bottom:10px;
 }
 .overlay-header button{
-    background:none;border:none;color:#fff;font-size:24px;cursor:pointer
+    background:none;border:none;color:#fff;
+    font-size:24px;cursor:pointer
 }
 
 .channel-list{
@@ -104,15 +106,29 @@ body{background:#000;color:#fff;overflow:hidden}
 
 <div class="video-container">
 
+    <!-- VIDEO -->
     <video id="video" autoplay muted playsinline></video>
 
+    <!-- CONTROLS -->
     <div class="controls">
-        <button class="control-btn" onclick="togglePlay()"><i class="fas fa-play" id="playIcon"></i></button>
-        <button class="control-btn" onclick="toggleMute()"><i class="fas fa-volume-up" id="muteIcon"></i></button>
-        <button class="control-btn" onclick="toggleChannelOverlay()"><i class="fas fa-th-large"></i></button>
-        <button class="control-btn" onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+        <button class="control-btn" onclick="togglePlay()">
+            <i class="fas fa-play" id="playIcon"></i>
+        </button>
+
+        <button class="control-btn" onclick="toggleMute()">
+            <i class="fas fa-volume-up" id="muteIcon"></i>
+        </button>
+
+        <button class="control-btn" onclick="toggleChannelOverlay()">
+            <i class="fas fa-th-large"></i>
+        </button>
+
+        <button class="control-btn" onclick="toggleFullscreen()">
+            <i class="fas fa-expand"></i>
+        </button>
     </div>
 
+    <!-- CHANNEL OVERLAY -->
     <div class="channel-overlay" id="channelOverlay">
         <div class="overlay-header">
             <span>Live Channels</span>
@@ -123,7 +139,115 @@ body{background:#000;color:#fff;overflow:hidden}
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<!-- IMPORTANT: order matters -->
 <script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<script>
+/* ================= PLAYER LOGIC ================= */
+
+const video = document.getElementById("video");
+let hls = null;
+let currentIndex = 0;
+
+/* autoplay first channel */
+window.addEventListener("load", () => {
+    if (typeof channels === "undefined" || !channels.length) {
+        console.error("channels not found in main.js");
+        return;
+    }
+    playChannel(0);
+    renderOverlayChannels();
+});
+
+/* play channel */
+function playChannel(index){
+    currentIndex = index;
+
+    if(hls){
+        hls.destroy();
+        hls = null;
+    }
+
+    const ch = channels[index];
+    const url =
+        ch.sources?.[0]?.url ||
+        ch.url;
+
+    if(!url){
+        console.error("No stream url for channel", ch);
+        return;
+    }
+
+    if (Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            video.play().catch(()=>{});
+        });
+    } else {
+        video.src = url;
+        video.play().catch(()=>{});
+    }
+}
+
+/* ================= CONTROLS ================= */
+
+function togglePlay(){
+    const icon = document.getElementById("playIcon");
+    if(video.paused){
+        video.play();
+        if(icon) icon.className = "fas fa-pause";
+    }else{
+        video.pause();
+        if(icon) icon.className = "fas fa-play";
+    }
+}
+
+function toggleMute(){
+    const icon = document.getElementById("muteIcon");
+    video.muted = !video.muted;
+    if(icon){
+        icon.className = video.muted
+            ? "fas fa-volume-mute"
+            : "fas fa-volume-up";
+    }
+}
+
+function toggleFullscreen(){
+    if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen().catch(()=>{});
+    }else{
+        document.exitFullscreen();
+    }
+}
+
+function toggleChannelOverlay(){
+    document.getElementById("channelOverlay")
+        .classList.toggle("show");
+}
+
+/* ================= OVERLAY CHANNEL LIST ================= */
+
+function renderOverlayChannels(){
+    const list = document.getElementById("channelList");
+    list.innerHTML = "";
+
+    channels.forEach((ch, i) => {
+        const div = document.createElement("div");
+        div.className = "channel-item";
+        div.innerHTML = `
+            <img src="${ch.img}" alt="${ch.name}">
+        `;
+        div.onclick = () => {
+            playChannel(i);
+            toggleChannelOverlay();
+        };
+        list.appendChild(div);
+    });
+}
+</script>
+
 </body>
 </html>
