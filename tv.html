@@ -14,13 +14,20 @@ body{background:#000;color:#fff;overflow:hidden}
 /* ===== Fixed Video Logo Watermark (YouTube Style) ===== */
 .video-logo-watermark {
   position: fixed;
-  bottom: 105px;
-  right: 120px;
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
-  opacity: 0.6;
+  opacity: 0.4;
   pointer-events: none;
   mix-blend-mode: screen;
   filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
+  transition: opacity 0.5s ease; /* Smooth transition */
+}
+
+/* লোগো শুরুতে hidden */
+.video-logo-watermark.hidden {
+  opacity: 0 !important;
+  visibility: hidden;
 }
 
 .video-logo-watermark img {
@@ -247,7 +254,7 @@ body{background:#000;color:#fff;overflow:hidden}
 </div>
 
 <!-- ✅ FIXED WATERMARK -->
-<div class="video-logo-watermark">
+<div class="video-logo-watermark hidden" id="videoLogoWatermark">
   <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
 </div>
 
@@ -262,6 +269,7 @@ body{background:#000;color:#fff;overflow:hidden}
 ========================================================== */
 
 const video = document.getElementById("video");
+const videoLogoWatermark = document.getElementById("videoLogoWatermark"); // ✅ লোগো রেফারেন্স
 
 /* UI */
 const loading = document.getElementById("loading");
@@ -313,6 +321,15 @@ let okClickTimer = null;
 let backClickTimer = null;
 const DOUBLE_CLICK_DELAY = 400;
 
+/* ===================== Logo Control Functions ===================== */
+function showLogo() {
+  videoLogoWatermark.classList.remove('hidden');
+}
+
+function hideLogo() {
+  videoLogoWatermark.classList.add('hidden');
+}
+
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
   if(typeof channels === "undefined" || !channels.length){
@@ -339,6 +356,9 @@ window.addEventListener("load", () => {
   });
 
   buildCategories();
+
+  // Start with logo hidden
+  hideLogo();
 
   const saved = localStorage.getItem("lastChannel");
   playChannel(saved ? +saved : 0);
@@ -367,6 +387,9 @@ function isDash(src){
 }
 
 async function playChannel(index){
+  // Hide logo when changing channel
+  hideLogo();
+  
   currentIndex = clamp(index, 0, channels.length-1);
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
@@ -414,6 +437,7 @@ async function loadSource(srcIdx){
   setBadge(`Loading ${src.name || ("Server " + (srcIdx+1))}…`, "warn");
   showLoading(true);
   showNoSignal(false);
+  hideLogo(); // Hide logo during loading
 
   await cleanupPlayers();
 
@@ -460,6 +484,8 @@ async function loadSource(srcIdx){
       await video.play();
       updateMuteIcon();
       updatePlayIcon();
+      // ✅ Show logo ONLY when video successfully starts playing
+      setTimeout(() => showLogo(), 500); // Small delay for smooth transition
       return true;
     }catch(err){
       console.warn("Autoplay with sound blocked:", err);
@@ -468,6 +494,8 @@ async function loadSource(srcIdx){
       await video.play().catch(()=>{});
       setBadge("Muted. Press OK to unmute", "warn");
       updatePlayIcon();
+      // ✅ Show logo even if muted
+      setTimeout(() => showLogo(), 500);
       return true;
     }
 
@@ -482,6 +510,7 @@ async function failAllSources(msg){
   showLoading(false);
   showNoSignal(true, msg);
   setBadge("NO SIGNAL", "err");
+  hideLogo(); // Hide logo on no signal
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
@@ -528,8 +557,16 @@ function updateNowPlayingUI(){
 
 /* ===================== Controls ===================== */
 function togglePlay(){
-  if(video.paused) video.play().catch(()=>{});
-  else video.pause();
+  if(video.paused) {
+    video.play().catch(()=>{});
+    // Show logo when playing
+    showLogo();
+  }
+  else {
+    video.pause();
+    // Hide logo when paused (optional - you can remove this if you want logo to stay)
+    // hideLogo();
+  }
   updatePlayIcon();
   showInfoBar(true, 2400);
 }
@@ -801,7 +838,7 @@ document.addEventListener("keydown", (e) => {
         clearTimeout(backClickTimer);
         backClickTimer = null;
         // Double click: Exit App
-        if(confirm("Exit T Play?")){
+        if(confirm("Exit T Play TV?")){
           window.close();
         }
       } else {
@@ -820,8 +857,26 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* Keep icons synced */
-video.addEventListener("play", () => updatePlayIcon());
-video.addEventListener("pause", () => updatePlayIcon());
+video.addEventListener("play", () => {
+  updatePlayIcon();
+  showLogo(); // ✅ Show logo when video plays
+});
+
+video.addEventListener("pause", () => {
+  updatePlayIcon();
+  // Optional: hide logo when paused
+  // hideLogo();
+});
+
+// Hide logo when video is seeking/buffering
+video.addEventListener('waiting', () => {
+  hideLogo();
+});
+
+// Show logo when video can play again
+video.addEventListener('playing', () => {
+  showLogo();
+});
 
 /* Show info bar on click/tap */
 video.addEventListener("click", () => showInfoBar(true, 2400));
