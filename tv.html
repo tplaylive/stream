@@ -36,16 +36,29 @@ body{background:#000;color:#fff;overflow:hidden}
 .noSignal i{font-size:64px;color:#e50914}
 .noSignal span{color:#bbb}
 
-/* ===== Big number flash ===== */
+/* ===== Big number flash (also used for number-zap buffer) ===== */
 .bigNum{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-size:82px;font-weight:900;
-  background:rgba(0,0,0,.6);
-  border:1px solid rgba(255,255,255,.12);
+  font-size:82px;font-weight:900;letter-spacing:2px;
+  background:rgba(0,0,0,.65);
+  border:1px solid rgba(255,255,255,.14);
   padding:16px 28px;border-radius:18px;
   opacity:0;transition:.18s;z-index:60;
+  text-align:center;
 }
 .bigNum.show{opacity:1}
+.bigNum.zapMode{
+  font-size:70px;
+  padding:18px 30px;
+}
+.bigNum .hint{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0;
+  color:#bbb;
+  margin-top:10px;
+}
 
 /* ===== Bottom Info + Controls ===== */
 .infoBar{
@@ -262,7 +275,6 @@ body{background:#000;color:#fff;overflow:hidden}
       </div>
     </div>
   </div>
-
 </div>
 
 <script src="main.js"></script>
@@ -271,10 +283,10 @@ body{background:#000;color:#fff;overflow:hidden}
 
 <script>
 /* ===================== Requirements =====================
-- main.js provides: channels[] each has sources[] with url, name, type ("dash"), drm {kid,key} 
+- main.js provides: channels[] each has sources[] with url, name, type ("dash"), drm {kid,key}
 - If a source fails -> try next source; if all fail -> show No Signal -> auto next channel.
 - Source select manual.
-- Autoplay unmuted; if blocked -> muted fallback + OK to unmute.
+- Autoplay unmuted; if blocked -> muted fallback + user OK to unmute.
 ========================================================== */
 
 const video = document.getElementById("video");
@@ -328,6 +340,75 @@ let favs = loadFavs();
 /* Info bar hide timer */
 let infoHideTimer = null;
 
+/* ===================== Number Zap (1–999) ===================== */
+let zapBuf = "";         // string buffer
+let zapTimer = null;     // timer id
+const ZAP_DELAY = 1200;  // ms
+
+function showZapBuffer(){
+  // show overlay with buffer
+  bigNum.classList.add("zapMode");
+  bigNum.innerHTML = `${zapBuf}<span class="hint">OK to jump • wait to auto</span>`;
+  bigNum.classList.add("show");
+}
+
+function hideZapBuffer(){
+  bigNum.classList.remove("zapMode");
+  bigNum.classList.remove("show");
+  bigNum.innerHTML = "";
+}
+
+function resetZapTimer(){
+  if(zapTimer) clearTimeout(zapTimer);
+  zapTimer = setTimeout(()=>commitZap(), ZAP_DELAY);
+}
+
+function startZapDigit(d){
+  if(zapBuf.length >= 3) return;
+  // prevent leading zeros like "000" -> still allow "0" then next digits, we'll clamp later
+  zapBuf += d;
+  showZapBuffer();
+  resetZapTimer();
+}
+
+function backspaceZap(){
+  if(!zapBuf) return;
+  zapBuf = zapBuf.slice(0, -1);
+  if(!zapBuf){
+    if(zapTimer) clearTimeout(zapTimer);
+    zapTimer = null;
+    hideZapBuffer();
+    return;
+  }
+  showZapBuffer();
+  resetZapTimer();
+}
+
+async function commitZap(){
+  if(!zapBuf) return;
+  if(zapTimer) clearTimeout(zapTimer);
+  zapTimer = null;
+
+  const n = parseInt(zapBuf, 10);
+  zapBuf = "";
+  hideZapBuffer();
+
+  if(!Number.isFinite(n)){
+    setBadge("Invalid number", "warn");
+    return;
+  }
+
+  // Accept 1..channels.length (1–999 requested; your list size may be smaller)
+  const max = channels.length;
+  if(n < 1 || n > max){
+    setBadge(`Channel ${n} not found (1–${max})`, "warn");
+    flashNumber(n);
+    return;
+  }
+
+  await playChannel(n - 1);
+}
+
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
   if(typeof channels === "undefined" || !channels.length){
@@ -375,6 +456,7 @@ function showNoSignal(on, msg){
   if(msg) noSignalText.textContent = msg;
 }
 function flashNumber(n){
+  bigNum.classList.remove("zapMode");
   bigNum.textContent = n;
   bigNum.classList.add("show");
   setTimeout(()=>bigNum.classList.remove("show"), 650);
@@ -796,8 +878,41 @@ function moveFocus(delta){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
-  // ESC closes guide or source popup
+  /* ---- Number Zap: digits 0-9 (ONLY when not typing in search) ---- */
+  if(!inSearch){
+    // Digits
+    if(/^[0-9]$/.test(e.key)){
+      // if guide open and you want digits to go to search, just focus search manually
+      startZapDigit(e.key);
+      showInfoBar(true);
+      e.preventDefault();
+      return;
+    }
+
+    // Backspace edits zap buffer
+    if(e.key === "Backspace" && zapBuf){
+      backspaceZap();
+      showInfoBar(true);
+      e.preventDefault();
+      return;
+    }
+
+    // Enter commits zap if buffer exists
+    if(e.key === "Enter" && zapBuf){
+      commitZap();
+      e.preventDefault();
+      return;
+    }
+  }
+
+  // ESC closes guide or source popup (and also cancels zap)
   if(e.key === "Escape"){
+    if(zapBuf){
+      zapBuf = "";
+      if(zapTimer) clearTimeout(zapTimer);
+      zapTimer = null;
+      hideZapBuffer();
+    }
     if(srcPopup.classList.contains("show")){
       srcPopup.classList.remove("show");
       e.preventDefault(); return;
