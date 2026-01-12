@@ -229,7 +229,7 @@ const channels = [
             { 
                 name: "Pogo", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=pogo_sd&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=667189f69164&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
                 category: "Kids",
@@ -238,7 +238,7 @@ const channels = [
             { 
                 name: "Cartoon Network", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=cartoon_network_sd&e=.m3u8" },
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=8be5ec5d5d7c&e=.m3u8" },
                     { name: "Server 2", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
@@ -248,7 +248,7 @@ const channels = [
             { 
                 name: "Cartoon Network HD+", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=cartoon_network_hd&e=.m3u8" },                ], 
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=eb6b38bdd902&e=.m3u8" },                ], 
                 img: "https://i.postimg.cc/d06FD9xw/cnhd.jpg", 
                 category: "Kids",
                 description: "India"
