@@ -1001,7 +1001,7 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonyaath&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=707e4efbda57&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
                 category: "Entertainment",
@@ -1116,7 +1116,7 @@ const channels = [
             { 
                 name: "Sony Sab", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonysab_hd&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=978d421e4729&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
                 category: "Entertainment",
@@ -1125,7 +1125,7 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonyentertainmnt_hd&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=2604a4cd22ee&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
                 category: "Entertainment",
@@ -1538,7 +1538,7 @@ const channels = [
             { 
                 name: "Sony Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=afd176a5b887&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mg0RC192/ten1.jpg", 
                 category: "Sports",
@@ -1547,7 +1547,7 @@ const channels = [
             { 
                 name: "Sony Sports 2", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_sports_2_hd&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=0a0ad851d705&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8SC16G7/ten2.jpg", 
                 category: "Sports",
@@ -1565,7 +1565,7 @@ const channels = [
             { 
                 name: "Sony Sports 5", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_sports_5_hd&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=2dece57b30a1&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/qqgZ1jVH/ten5.jpg", 
                 category: "Sports",
