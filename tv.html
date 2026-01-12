@@ -265,7 +265,6 @@ let shakaP = null;
 /* State */
 let currentIndex = 0;
 let currentSourceIndex = 0;
-let isTrying = false;
 
 /* Guide state */
 let categories = [];
@@ -342,14 +341,6 @@ function isDash(src){
 }
 
 async function playChannel(index){
-  // লোডিং চলাকালীন বাটন কাজ করতে দিতে হবে, তাই শুধু isTrying check
-  if(isTrying) {
-    console.log("Already trying to load, please wait...");
-    return;
-  }
-  
-  isTrying = true;
-
   currentIndex = clamp(index, 0, channels.length-1);
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
@@ -363,8 +354,6 @@ async function playChannel(index){
   showInfoBar(true, 3600);
 
   await tryLoadSourceLoop();
-
-  isTrying = false;
 }
 
 async function tryLoadSourceLoop(){
@@ -577,9 +566,10 @@ function toggleGuide(force){
     buildCategoriesUI();
     buildGrid();
 
+    // Find current channel in filtered list
     const pos = filteredIndexes.indexOf(currentIndex);
     focusTileIndex = pos >= 0 ? pos : 0;
-    buildGrid();
+    updateGridFocus();
 
     setTimeout(()=>search.focus(), 50);
   }else{
@@ -607,6 +597,7 @@ function buildCategoriesUI(){
       focusTileIndex = 0;
       buildCategoriesUI();
       buildGrid();
+      updateGridFocus();
     };
     catPanel.appendChild(d);
   });
@@ -634,6 +625,18 @@ function getFilteredIndexes(){
   }
   return idxs;
 }
+
+function updateGridFocus(){
+  const tiles = grid.querySelectorAll(".tile");
+  tiles.forEach((tile, idx) => {
+    tile.classList.remove("focus");
+    if(idx === focusTileIndex){
+      tile.classList.add("focus");
+      tile.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
+    }
+  });
+}
+
 function buildGrid(){
   filteredIndexes = getFilteredIndexes();
   if(focusTileIndex >= filteredIndexes.length) focusTileIndex = Math.max(0, filteredIndexes.length-1);
@@ -671,8 +674,11 @@ function buildGrid(){
     grid.appendChild(tile);
   });
 
+  // Ensure focused tile is visible
   const focused = grid.querySelector(".tile.focus");
-  if(focused) focused.scrollIntoView({block:"nearest", inline:"nearest"});
+  if(focused){
+    focused.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
+  }
 }
 
 /* ===================== Keyboard / Remote ===================== */
@@ -719,7 +725,7 @@ document.addEventListener("keydown", (e) => {
         // Guide open: UP for tile navigation (previous row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.max(0, focusTileIndex - cols);
-        buildGrid();
+        updateGridFocus();
       }
       break;
 
@@ -730,7 +736,7 @@ document.addEventListener("keydown", (e) => {
         // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
-        buildGrid();
+        updateGridFocus();
       }
       break;
 
@@ -751,8 +757,8 @@ document.addEventListener("keydown", (e) => {
         }
       } else if(!inSearch){
         // Guide open: select channel
-        const chIdx = filteredIndexes[focusTileIndex];
-        if(typeof chIdx === "number"){
+        if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
+          const chIdx = filteredIndexes[focusTileIndex];
           toggleGuide(false);
           playChannel(chIdx);
         }
