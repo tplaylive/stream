@@ -632,8 +632,6 @@ function updateGridFocus(){
     tile.classList.remove("focus");
     if(idx === focusTileIndex){
       tile.classList.add("focus");
-      // Also update the data attribute for click reference
-      tile.dataset.tileIndex = idx;
       tile.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
     }
   });
@@ -650,7 +648,6 @@ function buildGrid(){
 
     const tile = document.createElement("div");
     tile.className = "tile" + (tileIdx===focusTileIndex ? " focus" : "");
-    tile.dataset.tileIndex = tileIdx; // Store tile index for reference
     tile.onclick = () => {
       // Update focus index when tile is clicked
       focusTileIndex = tileIdx;
@@ -682,10 +679,7 @@ function buildGrid(){
   });
 
   // Ensure focused tile is visible
-  const focused = grid.querySelector(".tile.focus");
-  if(focused){
-    focused.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
-  }
+  updateGridFocus();
 }
 
 /* ===================== Keyboard / Remote ===================== */
@@ -763,12 +757,15 @@ document.addEventListener("keydown", (e) => {
           }, DOUBLE_CLICK_DELAY);
         }
       } else if(!inSearch){
-        // Guide open: select channel
+        // Guide open: select channel - FIXED
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
-          console.log("Playing channel from guide:", chIdx, "Tile index:", focusTileIndex);
+          console.log("Playing channel:", chIdx + 1, channels[chIdx]?.name);
           toggleGuide(false);
-          playChannel(chIdx);
+          // Small delay to ensure guide closes before playing
+          setTimeout(() => {
+            playChannel(chIdx);
+          }, 100);
         }
       }
       break;
