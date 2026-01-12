@@ -3,13 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>T Play</title>
+<title>T Play TV</title>
 <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
+
+/* ===== Fixed Video Logo Watermark (YouTube Style) ===== */
+.video-logo-watermark {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 0.4;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
+}
+
+.video-logo-watermark img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
 
 /* VIDEO */
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
@@ -224,6 +242,11 @@ body{background:#000;color:#fff;overflow:hidden}
       </div>
     </div>
   </div>
+</div>
+
+<!-- ✅ FIXED WATERMARK -->
+<div class="video-logo-watermark">
+  <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
 </div>
 
 <script src="main.js"></script>
@@ -776,7 +799,7 @@ document.addEventListener("keydown", (e) => {
         clearTimeout(backClickTimer);
         backClickTimer = null;
         // Double click: Exit App
-        if(confirm("Exit T Play TV?")){
+        if(confirm("Exit T Play?")){
           window.close();
         }
       } else {
