@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>T Play Live</title>
+<title>T Play TV</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -12,92 +12,81 @@
 body{background:#000;color:#fff;overflow:hidden}
 
 /* PLAYER */
-.video-container{
-    position:relative;
-    width:100vw;
-    height:100vh;
-    background:#000;
-}
-#video{
-    width:100%;
-    height:100%;
-    object-fit:fill;
-}
+.video-container{position:relative;width:100vw;height:100vh;background:#000}
+#video{width:100%;height:100%;object-fit:fill}
 
 /* CONTROLS */
 .controls{
-    position:absolute;
-    bottom:20px;
-    left:50%;
+    position:absolute;bottom:20px;left:50%;
     transform:translateX(-50%);
-    display:flex;
-    gap:10px;
+    display:flex;gap:10px;
     padding:10px 16px;
     background:rgba(0,0,0,.6);
     border-radius:40px;
     backdrop-filter:blur(6px);
-    opacity:0;
-    transition:.3s;
+    opacity:0;pointer-events:none;
+    transition:.3s;z-index:40
 }
-.video-container:hover .controls{opacity:1}
-
+.controls.show{opacity:1;pointer-events:auto}
 .control-btn{
-    width:38px;height:38px;
-    border-radius:50%;
-    border:none;
-    background:rgba(255,255,255,.15);
-    color:#fff;
-    cursor:pointer;
-    font-size:15px;
+    width:38px;height:38px;border-radius:50%;
+    border:none;background:rgba(255,255,255,.15);
+    color:#fff;cursor:pointer
 }
 .control-btn:hover{background:#e50914}
 
 /* CHANNEL OVERLAY */
 .channel-overlay{
-    position:absolute;
-    inset:0;
+    position:absolute;inset:0;
     background:rgba(0,0,0,.88);
-    z-index:50;
-    display:none;
-    flex-direction:column;
-    padding:15px;
+    display:none;flex-direction:column;
+    padding:15px;z-index:50
 }
 .channel-overlay.show{display:flex}
-
 .overlay-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:18px;
-    margin-bottom:10px;
+    display:flex;justify-content:space-between;
+    align-items:center;font-size:18px;
+    margin-bottom:10px
 }
 .overlay-header button{
-    background:none;border:none;color:#fff;
-    font-size:24px;cursor:pointer
+    background:none;border:none;
+    color:#fff;font-size:24px;cursor:pointer
 }
-
 .channel-list{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
-    gap:15px;
-    overflow-y:auto;
+    gap:15px;overflow-y:auto
 }
 .channel-item{
-    background:#111;
-    border-radius:50%;
-    aspect-ratio:1/1;
-    cursor:pointer;
-    transition:.2s;
+    background:#111;border-radius:50%;
+    aspect-ratio:1/1;cursor:pointer;
+    transition:.2s
 }
 .channel-item:hover{
     transform:scale(1.08);
-    box-shadow:0 0 15px #e50914;
+    box-shadow:0 0 15px #e50914
 }
 .channel-item img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
+    width:100%;height:100%;
+    object-fit:cover;border-radius:50%
+}
+
+/* CHANNEL NUMBER */
+.channel-number{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    font-size:80px;font-weight:bold;
+    background:rgba(0,0,0,.6);
+    padding:20px 35px;border-radius:20px;
+    opacity:0;transition:.3s;z-index:60
+}
+.channel-number.show{opacity:1}
+
+/* BRIGHTNESS */
+#brightnessOverlay{
+    position:absolute;inset:0;
+    background:black;opacity:0;
+    pointer-events:none;z-index:20
 }
 </style>
 </head>
@@ -106,147 +95,164 @@ body{background:#000;color:#fff;overflow:hidden}
 
 <div class="video-container">
 
-    <!-- VIDEO -->
-    <video id="video" autoplay muted playsinline></video>
+<video id="video" autoplay muted playsinline></video>
+<div id="brightnessOverlay"></div>
+<div id="channelNumber" class="channel-number"></div>
 
-    <!-- CONTROLS -->
-    <div class="controls">
-        <button class="control-btn" onclick="togglePlay()">
-            <i class="fas fa-play" id="playIcon"></i>
-        </button>
+<!-- CONTROLS -->
+<div class="controls">
+    <button class="control-btn" onclick="prevChannel()"><i class="fas fa-chevron-left"></i></button>
+    <button class="control-btn" onclick="togglePlay()"><i id="playIcon" class="fas fa-play"></i></button>
+    <button class="control-btn" onclick="toggleMute()"><i id="muteIcon" class="fas fa-volume-up"></i></button>
+    <button class="control-btn" onclick="toggleChannelOverlay()"><i class="fas fa-th-large"></i></button>
+    <button class="control-btn" onclick="nextChannel()"><i class="fas fa-chevron-right"></i></button>
+    <button class="control-btn" onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+</div>
 
-        <button class="control-btn" onclick="toggleMute()">
-            <i class="fas fa-volume-up" id="muteIcon"></i>
-        </button>
-
-        <button class="control-btn" onclick="toggleChannelOverlay()">
-            <i class="fas fa-th-large"></i>
-        </button>
-
-        <button class="control-btn" onclick="toggleFullscreen()">
-            <i class="fas fa-expand"></i>
-        </button>
+<!-- CHANNEL OVERLAY -->
+<div class="channel-overlay" id="channelOverlay">
+    <div class="overlay-header">
+        <span>Live Channels</span>
+        <button onclick="toggleChannelOverlay()">✕</button>
     </div>
-
-    <!-- CHANNEL OVERLAY -->
-    <div class="channel-overlay" id="channelOverlay">
-        <div class="overlay-header">
-            <span>Live Channels</span>
-            <button onclick="toggleChannelOverlay()">✕</button>
-        </div>
-        <div class="channel-list" id="channelList"></div>
-    </div>
+    <div class="channel-list" id="channelList"></div>
+</div>
 
 </div>
 
-<!-- IMPORTANT: order matters -->
+<!-- SCRIPTS -->
 <script src="main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
-/* ================= PLAYER LOGIC ================= */
+const video=document.getElementById("video");
+let hls=null,shakaPlayer=null,currentIndex=0;
 
-const video = document.getElementById("video");
-let hls = null;
-let currentIndex = 0;
-
-/* autoplay first channel */
-window.addEventListener("load", () => {
-    if (typeof channels === "undefined" || !channels.length) {
-        console.error("channels not found in main.js");
-        return;
-    }
-    playChannel(0);
+/* AUTO LOAD */
+window.addEventListener("load",()=>{
+    const saved=localStorage.getItem("lastChannel");
+    playChannel(saved?parseInt(saved):0);
     renderOverlayChannels();
+    showControls();
 });
 
-/* play channel */
-function playChannel(index){
-    currentIndex = index;
+/* PLAY CHANNEL */
+async function playChannel(i){
+    currentIndex=i;
+    localStorage.setItem("lastChannel",i);
+    showChannelNumber(i+1);
 
-    if(hls){
-        hls.destroy();
-        hls = null;
-    }
+    if(hls){hls.destroy();hls=null}
+    if(shakaPlayer){await shakaPlayer.destroy();shakaPlayer=null}
 
-    const ch = channels[index];
-    const url =
-        ch.sources?.[0]?.url ||
-        ch.url;
+    const ch=channels[i];
+    const src=ch.sources?.[0]||ch;
+    const url=src.url;
 
-    if(!url){
-        console.error("No stream url for channel", ch);
+    if(src.drm){
+        shakaPlayer=new shaka.Player(video);
+        await shakaPlayer.configure({
+            drm:{clearKeys:{[src.drm.kid]:src.drm.key}}
+        });
+        await shakaPlayer.load(url);
+        video.play().catch(()=>{});
         return;
     }
 
-    if (Hls.isSupported()) {
-        hls = new Hls();
+    if(Hls.isSupported()){
+        hls=new Hls();
         hls.loadSource(url);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            video.play().catch(()=>{});
-        });
-    } else {
-        video.src = url;
+        hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play().catch(()=>{}));
+    }else{
+        video.src=url;
         video.play().catch(()=>{});
     }
 }
 
-/* ================= CONTROLS ================= */
-
+/* CONTROLS */
 function togglePlay(){
-    const icon = document.getElementById("playIcon");
-    if(video.paused){
-        video.play();
-        if(icon) icon.className = "fas fa-pause";
-    }else{
-        video.pause();
-        if(icon) icon.className = "fas fa-play";
-    }
+    const i=document.getElementById("playIcon");
+    if(video.paused){video.play();i.className="fas fa-pause"}
+    else{video.pause();i.className="fas fa-play"}
 }
-
 function toggleMute(){
-    const icon = document.getElementById("muteIcon");
-    video.muted = !video.muted;
-    if(icon){
-        icon.className = video.muted
-            ? "fas fa-volume-mute"
-            : "fas fa-volume-up";
-    }
+    const i=document.getElementById("muteIcon");
+    video.muted=!video.muted;
+    i.className=video.muted?"fas fa-volume-mute":"fas fa-volume-up";
 }
-
 function toggleFullscreen(){
-    if(!document.fullscreenElement){
-        document.documentElement.requestFullscreen().catch(()=>{});
-    }else{
-        document.exitFullscreen();
-    }
+    !document.fullscreenElement
+        ?document.documentElement.requestFullscreen()
+        :document.exitFullscreen();
 }
-
+function nextChannel(){playChannel((currentIndex+1)%channels.length)}
+function prevChannel(){playChannel((currentIndex-1+channels.length)%channels.length)}
 function toggleChannelOverlay(){
-    document.getElementById("channelOverlay")
-        .classList.toggle("show");
+    document.getElementById("channelOverlay").classList.toggle("show");
 }
 
-/* ================= OVERLAY CHANNEL LIST ================= */
-
+/* OVERLAY LIST */
 function renderOverlayChannels(){
-    const list = document.getElementById("channelList");
-    list.innerHTML = "";
-
-    channels.forEach((ch, i) => {
-        const div = document.createElement("div");
-        div.className = "channel-item";
-        div.innerHTML = `
-            <img src="${ch.img}" alt="${ch.name}">
-        `;
-        div.onclick = () => {
-            playChannel(i);
-            toggleChannelOverlay();
-        };
-        list.appendChild(div);
+    const list=document.getElementById("channelList");
+    list.innerHTML="";
+    channels.forEach((c,i)=>{
+        const d=document.createElement("div");
+        d.className="channel-item";
+        d.innerHTML=`<img src="${c.img}">`;
+        d.onclick=()=>{playChannel(i);toggleChannelOverlay()};
+        list.appendChild(d);
     });
 }
+
+/* CHANNEL NUMBER */
+function showChannelNumber(n){
+    const el=document.getElementById("channelNumber");
+    el.textContent=n;
+    el.classList.add("show");
+    setTimeout(()=>el.classList.remove("show"),800);
+}
+
+/* AUTO HIDE CONTROLS */
+let ct;
+function showControls(){
+    document.querySelector(".controls").classList.add("show");
+    clearTimeout(ct);
+    ct=setTimeout(()=>document.querySelector(".controls").classList.remove("show"),3000);
+}
+video.addEventListener("mousemove",showControls);
+video.addEventListener("touchstart",showControls);
+
+/* SWIPE */
+let sx=0,sy=0,lv=1,br=1;
+video.addEventListener("touchstart",e=>{
+    sx=e.touches[0].screenX;
+    sy=e.touches[0].screenY;
+    lv=video.volume;
+});
+video.addEventListener("touchend",e=>{
+    const dx=e.changedTouches[0].screenX-sx;
+    if(Math.abs(dx)>50) dx<0?nextChannel():prevChannel();
+});
+video.addEventListener("touchmove",e=>{
+    const dy=sy-e.touches[0].screenY;
+    if(e.touches[0].screenX<innerWidth/2){
+        let v=Math.max(0,Math.min(1,lv+dy/400));
+        video.volume=v;
+    }else{
+        br=Math.max(0.2,Math.min(1,br+dy/400));
+        document.getElementById("brightnessOverlay").style.opacity=1-br;
+    }
+});
+
+/* LONG PRESS FAST ZAP */
+let zap=null;
+video.addEventListener("mousedown",()=>zap=setInterval(nextChannel,700));
+video.addEventListener("mouseup",()=>clearInterval(zap));
+video.addEventListener("mouseleave",()=>clearInterval(zap));
+video.addEventListener("touchstart",()=>zap=setInterval(nextChannel,700));
+video.addEventListener("touchend",()=>clearInterval(zap));
 </script>
 
 </body>
