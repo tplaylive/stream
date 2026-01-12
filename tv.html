@@ -555,7 +555,7 @@ function togglePlay(){
     video.pause();
   }
   updatePlayIcon();
-  showInfoBar(true, 2400);
+  showInfoBar(true, 8000);
 }
 function updatePlayIcon(){
   playIcon.className = video.paused ? "fas fa-play" : "fas fa-pause";
@@ -564,7 +564,7 @@ function updatePlayIcon(){
 function toggleMute(){
   video.muted = !video.muted;
   updateMuteIcon();
-  showInfoBar(true, 2400);
+  showInfoBar(true, 8000);
 }
 function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
@@ -592,7 +592,7 @@ function toggleFavCurrent(){
   saveFavs(favs);
   updateFavIcon();
   buildGrid();
-  showInfoBar(true, 2400);
+  showInfoBar(true, 8000);
 }
 function toggleFavByChannelIndex(idx){
   const ch = channels[idx];
@@ -625,7 +625,7 @@ function toggleGuide(force){
   }else{
     search.blur();
   }
-  showInfoBar(true, 2400);
+  showInfoBar(true, 8000);
 }
 
 function buildCategories(){
