@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T Play</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
+
+/* PLAYER */
+.video-container{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    background:#000;
+}
+#video{
+    width:100%;
+    height:100%;
+    object-fit:fill;
+}
+
+/* CONTROLS */
+.controls{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    padding:10px 16px;
+    background:rgba(0,0,0,.6);
+    border-radius:40px;
+    backdrop-filter:blur(6px);
+    opacity:0;
+    transition:.3s;
+}
+.video-container:hover .controls{opacity:1}
+
+.control-btn{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    cursor:pointer;
+}
+.control-btn:hover{background:#e50914}
+
+/* CHANNEL OVERLAY */
+.channel-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.88);
+    z-index:50;
+    display:none;
+    flex-direction:column;
+    padding:15px;
+}
+.channel-overlay.show{display:flex}
+
+.overlay-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.overlay-header button{
+    background:none;border:none;color:#fff;font-size:24px;cursor:pointer
+}
+
+.channel-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
+    gap:15px;
+    overflow-y:auto;
+}
+.channel-item{
+    background:#111;
+    border-radius:50%;
+    aspect-ratio:1/1;
+    cursor:pointer;
+    transition:.2s;
+}
+.channel-item:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 15px #e50914;
+}
+.channel-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="video-container">
+
+    <video id="video" autoplay muted playsinline></video>
+
+    <div class="controls">
+        <button class="control-btn" onclick="togglePlay()"><i class="fas fa-play" id="playIcon"></i></button>
+        <button class="control-btn" onclick="toggleMute()"><i class="fas fa-volume-up" id="muteIcon"></i></button>
+        <button class="control-btn" onclick="toggleChannelOverlay()"><i class="fas fa-th-large"></i></button>
+        <button class="control-btn" onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+    </div>
+
+    <div class="channel-overlay" id="channelOverlay">
+        <div class="overlay-header">
+            <span>Live Channels</span>
+            <button onclick="toggleChannelOverlay()">✕</button>
+        </div>
+        <div class="channel-list" id="channelList"></div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="main.js"></script>
+</body>
+</html>
