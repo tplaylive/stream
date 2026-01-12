@@ -690,7 +690,7 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         prevChannel();
       } else {
-        // Guide open: category navigation
+        // Guide open: LEFT for category navigation (previous category)
         focusCatIndex = Math.max(0, focusCatIndex-1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -703,9 +703,11 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         nextChannel();
       } else {
-        // Guide open: move to next tile
-        const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
-        focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
+        // Guide open: RIGHT for category navigation (next category)
+        focusCatIndex = Math.min(categories.length-1, focusCatIndex+1);
+        currentCat = categories[focusCatIndex];
+        focusTileIndex = 0;
+        buildCategoriesUI();
         buildGrid();
       }
       break;
@@ -714,7 +716,7 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         toggleGuide(true); // Open Guide
       } else {
-        // Guide open: move up in grid
+        // Guide open: UP for tile navigation (previous row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.max(0, focusTileIndex - cols);
         buildGrid();
@@ -725,7 +727,7 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         showInfoBar(true, 3600); // Show Player Controls
       } else {
-        // Guide open: move down in grid
+        // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
         buildGrid();
