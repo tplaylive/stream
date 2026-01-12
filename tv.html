@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>T Play TV</title>
+<link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <style>
@@ -12,14 +13,14 @@ body{background:#000;color:#fff;overflow:hidden}
 
 .video-logo-watermark {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 120px;
+  right: 120px;
   z-index: 1000;
   opacity: 0.4;
   pointer-events: none;
   mix-blend-mode: screen;
   filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease; /* Smooth transition */
 }
 
 .video-logo-watermark.hidden {
@@ -31,13 +32,15 @@ body{background:#000;color:#fff;overflow:hidden}
   display: block;
   height: auto;
   width: 5vw;
-  max-width: 70px;
+  max-width: 50px;
   min-width: 25px;
 }
 
+/* VIDEO */
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill;background:#000}
 
+/* ===== Loading / No Signal overlays ===== */
 .overlayCenter{
   position:absolute;inset:0;display:none;align-items:center;justify-content:center;
   background:rgba(0,0,0,.55);z-index:95;
@@ -59,6 +62,7 @@ body{background:#000;color:#fff;overflow:hidden}
 .noSignal i{font-size:64px;color:#e50914}
 .noSignal span{color:#bbb}
 
+/* ===== Bottom Info + Controls ===== */
 .infoBar{
   position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
   width:min(1120px,92vw);
@@ -102,32 +106,7 @@ body{background:#000;color:#fff;overflow:hidden}
 .btn.starOn:hover{background:rgba(255,213,74,.35)}
 .btn i{pointer-events:none}
 
-.resPopup {
-  position: absolute;
-  right: 22px;
-  bottom: 92px;
-  background: rgba(0, 0, 0, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  padding: 10px;
-  z-index: 85;
-  display: none;
-  min-width: 180px;
-  backdrop-filter: blur(6px);
-}
-
-.resPopup.show { display: block; }
-.resPopup .item {
-  padding: 10px 12px; border-radius: 10px; cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  color: #ddd;
-}
-.resPopup .item:hover, .resPopup .item.active {
-  background: rgba(229, 9, 20, 0.9); color: #fff;
-}
-.resPopup .small { font-size: 11px; color: #bbb; }
-.resPopup .item:hover .small, .resPopup .item.active .small { color: #fff; }
-
+/* ===== Left Guide Overlay (on top of video) ===== */
 .guide{
   position:absolute;top:0;left:0;height:100%;
   width:34vw;max-width:520px;min-width:360px;
@@ -161,6 +140,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 .gBody{flex:1;display:flex;overflow:hidden}
 
+/* Categories */
 .cat{
   width:140px;background:rgba(10,10,10,.9);
   border-right:1px solid rgba(255,255,255,.08);
@@ -173,6 +153,7 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 .catItem.focus{background:rgba(229,9,20,.9);color:#fff;border-left-color:#fff}
 
+/* Search + Grid */
 .chArea{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .searchBox{padding:10px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(12,12,12,.9)}
 .searchBox input{
@@ -226,6 +207,7 @@ body{background:#000;color:#fff;overflow:hidden}
     <span id="noSignalText">Trying next source…</span>
   </div>
 
+  <!-- Bottom Info + Controls -->
   <div id="infoBar" class="infoBar">
     <div class="infoLeft">
       <img id="infoLogo" class="infoLogo" alt="logo">
@@ -238,13 +220,13 @@ body{background:#000;color:#fff;overflow:hidden}
       <button class="btn" id="btnPrev" title="Prev"><i class="fas fa-chevron-left"></i></button>
       <button class="btn" id="btnPlay" title="Play/Pause"><i class="fas fa-play" id="playIcon"></i></button>
       <button class="btn" id="btnMute" title="Mute/Unmute"><i class="fas fa-volume-up" id="muteIcon"></i></button>
-      <button class="btn" id="btnRes" title="Resolution" style="display:none"><i class="fas fa-expand"></i></button>
       <button class="btn" id="btnGuide" title="Guide"><i class="fas fa-list"></i></button>
       <button class="btn" id="btnNext" title="Next"><i class="fas fa-chevron-right"></i></button>
       <button class="btn" id="btnFav" title="Favorite"><i class="fas fa-star" id="favIcon"></i></button>
     </div>
   </div>
 
+  <!-- Left Guide -->
   <div id="guide" class="guide">
     <div class="gTop">
       <b>Channel Guide</b>
@@ -269,22 +251,29 @@ body{background:#000;color:#fff;overflow:hidden}
   </div>
 </div>
 
+<!-- ✅ FIXED WATERMARK -->
 <div class="video-logo-watermark hidden" id="videoLogoWatermark">
   <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
 </div>
-
-<div id="resPopup" class="resPopup"></div>
 
 <script src="main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
+/* ===================== Requirements =====================
+- main.js provides: channels[] each has sources[] with url, name, type ("dash"), drm {kid,key}
+- If a source fails -> try next source; if all fail -> show No Signal -> auto next channel.
+========================================================== */
+
 const video = document.getElementById("video");
-const videoLogoWatermark = document.getElementById("videoLogoWatermark");
+const videoLogoWatermark = document.getElementById("videoLogoWatermark"); // ✅ লোগো রেফারেন্স
+
+/* UI */
 const loading = document.getElementById("loading");
 const noSignal = document.getElementById("noSignal");
 const noSignalText = document.getElementById("noSignalText");
+
 const infoBar = document.getElementById("infoBar");
 const infoLogo = document.getElementById("infoLogo");
 const infoTitle = document.getElementById("infoTitle");
@@ -292,6 +281,7 @@ const infoSub = document.getElementById("infoSub");
 const playIcon = document.getElementById("playIcon");
 const muteIcon = document.getElementById("muteIcon");
 const favIcon = document.getElementById("favIcon");
+
 const guide = document.getElementById("guide");
 const catPanel = document.getElementById("catPanel");
 const grid = document.getElementById("grid");
@@ -299,33 +289,37 @@ const search = document.getElementById("search");
 const gNowLogo = document.getElementById("gNowLogo");
 const gNowName = document.getElementById("gNowName");
 const gNowCat  = document.getElementById("gNowCat");
-const resPopup = document.getElementById("resPopup");
-const btnRes = document.getElementById("btnRes");
 
+/* Players */
 let hls = null;
 let shakaP = null;
+
+/* State */
 let currentIndex = 0;
 let currentSourceIndex = 0;
+
+/* Guide state */
 let categories = [];
 let currentCat = "All";
 let filteredIndexes = [];
 let focusCatIndex = 0;
 let focusTileIndex = 0;
 
+/* Favorites */
 const FAV_KEY = "tplay_favs_v1";
 function loadFavs(){ try{ return new Set(JSON.parse(localStorage.getItem(FAV_KEY)||"[]")); }catch{ return new Set(); } }
 function saveFavs(set){ localStorage.setItem(FAV_KEY, JSON.stringify([...set])); }
 let favs = loadFavs();
 
+/* Info bar hide timer */
 let infoHideTimer = null;
+
+/* Double click timers */
 let okClickTimer = null;
 let backClickTimer = null;
 const DOUBLE_CLICK_DELAY = 400;
 
-let currentResolution = "auto";
-let availableResolutions = [];
-let hlsLevels = [];
-
+/* ===================== Logo Control Functions ===================== */
 function showLogo() {
   videoLogoWatermark.classList.remove('hidden');
 }
@@ -334,201 +328,26 @@ function hideLogo() {
   videoLogoWatermark.classList.add('hidden');
 }
 
-function updateResolutionButton() {
-  const hasMultipleRes = availableResolutions.length > 1;
-  btnRes.style.display = hasMultipleRes ? "inline-flex" : "none";
-  
-  if (!hasMultipleRes && resPopup.classList.contains("show")) {
-    resPopup.classList.remove("show");
-  }
-}
-
-function detectAvailableResolutions() {
-  availableResolutions = [{ label: "Auto", value: "auto", bitrate: 0 }];
-  
-  if (hls && hls.levels && hls.levels.length > 0) {
-    hlsLevels = hls.levels;
-    const uniqueRes = new Map();
-    
-    hls.levels.forEach((level, index) => {
-      if (level.height) {
-        const height = level.height.toString();
-        if (!uniqueRes.has(height)) {
-          uniqueRes.set(height, {
-            label: `${height}p`,
-            value: height,
-            bitrate: level.bitrate || 0,
-            levelIndex: index
-          });
-        }
-      }
-    });
-    
-    const sortedRes = Array.from(uniqueRes.values())
-      .sort((a, b) => b.bitrate - a.bitrate);
-    
-    availableResolutions.push(...sortedRes);
-  }
-  else if (shakaP) {
-    try {
-      const tracks = shakaP.getVariantTracks();
-      const uniqueRes = new Map();
-      
-      tracks.forEach(track => {
-        if (track.height) {
-          const height = track.height.toString();
-          if (!uniqueRes.has(height)) {
-            uniqueRes.set(height, {
-              label: `${height}p`,
-              value: height,
-              bitrate: track.bandwidth || 0
-            });
-          }
-        }
-      });
-      
-      const sortedRes = Array.from(uniqueRes.values())
-        .sort((a, b) => b.bitrate - a.bitrate);
-      
-      availableResolutions.push(...sortedRes);
-    } catch (e) {}
-  }
-  
-  if (video.videoHeight && availableResolutions.length === 1) {
-    availableResolutions.push({
-      label: `${video.videoHeight}p`,
-      value: video.videoHeight.toString(),
-      bitrate: 0
-    });
-  }
-  
-  updateResolutionButton();
-  buildResolutionPopup();
-}
-
-function buildResolutionPopup() {
-  resPopup.innerHTML = "";
-  
-  if (availableResolutions.length <= 1) {
-    const item = document.createElement("div");
-    item.className = "item";
-    item.innerHTML = `
-      <div>
-        <div>No quality options</div>
-        <div class="small">Single resolution stream</div>
-      </div>
-    `;
-    item.style.cursor = "default";
-    item.style.opacity = "0.7";
-    resPopup.appendChild(item);
-    return;
-  }
-  
-  availableResolutions.forEach(res => {
-    const item = document.createElement("div");
-    item.className = "item" + (res.value === currentResolution ? " active" : "");
-    
-    let bitrateInfo = "";
-    if (res.bitrate > 0) {
-      const mbps = (res.bitrate / 1000000).toFixed(1);
-      bitrateInfo = ` • ${mbps} Mbps`;
-    }
-    
-    item.innerHTML = `
-      <div>
-        <div>${res.label}</div>
-        <div class="small">${res.value === "auto" ? "Auto" : res.value + "p" + bitrateInfo}</div>
-      </div>
-      <div class="small">${res.value === currentResolution ? "✓" : ""}</div>
-    `;
-    
-    if (res.value !== currentResolution) {
-      item.onclick = () => {
-        selectResolution(res.value);
-        resPopup.classList.remove("show");
-        showInfoBar(true, 2400);
-      };
-    } else {
-      item.style.cursor = "default";
-    }
-    
-    resPopup.appendChild(item);
-  });
-}
-
-function selectResolution(res) {
-  currentResolution = res;
-  buildResolutionPopup();
-  
-  applyResolution(res);
-  
-  const resLabel = availableResolutions.find(r => r.value === res)?.label || "Auto";
-  setBadge(`Quality: ${resLabel}`, "live");
-}
-
-function applyResolution(res) {
-  if (res === "auto") {
-    if (hls) hls.currentLevel = -1;
-    return;
-  }
-  
-  const targetHeight = parseInt(res);
-  
-  if (hls && hlsLevels.length > 0) {
-    let selectedLevel = -1;
-    
-    for (let i = 0; i < hlsLevels.length; i++) {
-      if (hlsLevels[i].height === targetHeight) {
-        selectedLevel = i;
-        break;
-      }
-    }
-    
-    if (selectedLevel === -1) {
-      let closestDiff = Infinity;
-      for (let i = 0; i < hlsLevels.length; i++) {
-        const diff = Math.abs(hlsLevels[i].height - targetHeight);
-        if (diff < closestDiff) {
-          closestDiff = diff;
-          selectedLevel = i;
-        }
-      }
-    }
-    
-    if (selectedLevel >= 0) {
-      hls.currentLevel = selectedLevel;
-    }
-  }
-}
-
-function toggleResolutionPopup() {
-  if (resPopup.classList.contains("show")) {
-    resPopup.classList.remove("show");
-  } else {
-    detectAvailableResolutions();
-    buildResolutionPopup();
-    resPopup.classList.add("show");
-    showInfoBar(true, 2400);
-  }
-}
-
+/* ===================== Init ===================== */
 window.addEventListener("load", () => {
   if(typeof channels === "undefined" || !channels.length){
     console.error("channels not found in main.js");
     return;
   }
 
+  // auto mute OFF
   video.muted = false;
   video.volume = 1;
 
+  // buttons (for mouse users)
   document.getElementById("btnPrev").onclick = prevChannel;
   document.getElementById("btnNext").onclick = nextChannel;
   document.getElementById("btnGuide").onclick = () => toggleGuide();
   document.getElementById("btnPlay").onclick = togglePlay;
   document.getElementById("btnMute").onclick = toggleMute;
   document.getElementById("btnFav").onclick = toggleFavCurrent;
-  btnRes.onclick = toggleResolutionPopup;
 
+  // guide search
   search.addEventListener("input", () => { 
     focusTileIndex = 0; 
     buildGrid(); 
@@ -536,12 +355,14 @@ window.addEventListener("load", () => {
 
   buildCategories();
 
+  // Start with logo hidden
   hideLogo();
 
   const saved = localStorage.getItem("lastChannel");
   playChannel(saved ? +saved : 0);
 });
 
+/* ===================== Playback core ===================== */
 function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
 
 function showLoading(on){
@@ -564,16 +385,16 @@ function isDash(src){
 }
 
 async function playChannel(index){
+  // Hide logo when changing channel
   hideLogo();
-  btnRes.style.display = "none";
-  resPopup.classList.remove("show");
   
   currentIndex = clamp(index, 0, channels.length-1);
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
+  // UI updates
   updateNowPlayingUI();
-  buildGrid();
+  buildGrid(); // refresh highlights
 
   showNoSignal(false);
   showLoading(true);
@@ -614,7 +435,7 @@ async function loadSource(srcIdx){
   setBadge(`Loading ${src.name || ("Server " + (srcIdx+1))}…`, "warn");
   showLoading(true);
   showNoSignal(false);
-  hideLogo();
+  hideLogo(); // Hide logo during loading
 
   await cleanupPlayers();
 
@@ -636,20 +457,6 @@ async function loadSource(srcIdx){
         hls = new Hls({ enableWorker:true, lowLatencyMode:true });
         hls.loadSource(src.url);
         hls.attachMedia(video);
-
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          setTimeout(() => detectAvailableResolutions(), 1000);
-        });
-
-        hls.on(Hls.Events.LEVEL_SWITCHED, (event, data) => {
-          if (data.level !== -1 && hls.levels[data.level]) {
-            const height = hls.levels[data.level].height;
-            if (height) {
-              currentResolution = height.toString();
-              buildResolutionPopup();
-            }
-          }
-        });
 
         await new Promise((resolve, reject) => {
           const t = setTimeout(()=>reject(new Error("HLS timeout")), 9000);
@@ -675,7 +482,8 @@ async function loadSource(srcIdx){
       await video.play();
       updateMuteIcon();
       updatePlayIcon();
-      setTimeout(() => showLogo(), 500);
+      // ✅ Show logo ONLY when video successfully starts playing
+      setTimeout(() => showLogo(), 500); // Small delay for smooth transition
       return true;
     }catch(err){
       console.warn("Autoplay with sound blocked:", err);
@@ -684,6 +492,7 @@ async function loadSource(srcIdx){
       await video.play().catch(()=>{});
       setBadge("Muted. Press OK to unmute", "warn");
       updatePlayIcon();
+      // ✅ Show logo even if muted
       setTimeout(() => showLogo(), 500);
       return true;
     }
@@ -699,13 +508,14 @@ async function failAllSources(msg){
   showLoading(false);
   showNoSignal(true, msg);
   setBadge("NO SIGNAL", "err");
-  hideLogo();
+  hideLogo(); // Hide logo on no signal
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
   await playChannel((currentIndex + 1) % channels.length);
 }
 
+/* ===================== UI helpers ===================== */
 function showInfoBar(sticky=false, timeout=2400){
   infoBar.classList.add("show");
   clearTimeout(infoHideTimer);
@@ -743,13 +553,17 @@ function updateNowPlayingUI(){
   updateMuteIcon();
 }
 
+/* ===================== Controls ===================== */
 function togglePlay(){
   if(video.paused) {
     video.play().catch(()=>{});
+    // Show logo when playing
     showLogo();
   }
   else {
     video.pause();
+    // Hide logo when paused (optional - you can remove this if you want logo to stay)
+    // hideLogo();
   }
   updatePlayIcon();
   showInfoBar(true, 2400);
@@ -774,6 +588,7 @@ function prevChannel(){
   playChannel((currentIndex-1 + channels.length) % channels.length); 
 }
 
+/* ===================== Favorites ===================== */
 function updateFavIcon(){
   const ch = channels[currentIndex];
   const on = favs.has(ch.name);
@@ -800,6 +615,7 @@ function toggleFavByChannelIndex(idx){
   buildGrid();
 }
 
+/* ===================== Guide (left overlay) ===================== */
 function toggleGuide(force){
   const wantOpen = (typeof force === "boolean") ? force : !guide.classList.contains("show");
   guide.classList.toggle("show", wantOpen);
@@ -811,6 +627,7 @@ function toggleGuide(force){
     buildCategoriesUI();
     buildGrid();
 
+    // Find current channel in filtered list
     const pos = filteredIndexes.indexOf(currentIndex);
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
@@ -856,9 +673,11 @@ function getFilteredIndexes(){
     const ch = channels[i];
     const cat = ch.category || "General";
     
+    // First check category filter
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
 
+    // Then check search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
       if(!hay.includes(q)) continue;
@@ -891,8 +710,10 @@ function buildGrid(){
     const tile = document.createElement("div");
     tile.className = "tile" + (tileIdx===focusTileIndex ? " focus" : "");
     tile.onclick = () => {
+      // Update focus index when tile is clicked
       focusTileIndex = tileIdx;
       updateGridFocus();
+      // Then play the channel
       toggleGuide(false);
       playChannel(chIdx);
     };
@@ -918,21 +739,26 @@ function buildGrid(){
     grid.appendChild(tile);
   });
 
+  // Ensure focused tile is visible
   updateGridFocus();
 }
 
+/* ===================== Keyboard / Remote ===================== */
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
+  // Prevent default for arrow keys to avoid scrolling
   if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
     e.preventDefault();
   }
 
+  /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
       if(!guide.classList.contains("show")){
         prevChannel();
       } else {
+        // Guide open: LEFT for category navigation (previous category)
         focusCatIndex = Math.max(0, focusCatIndex-1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -945,6 +771,7 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         nextChannel();
       } else {
+        // Guide open: RIGHT for category navigation (next category)
         focusCatIndex = Math.min(categories.length-1, focusCatIndex+1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -955,8 +782,9 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowUp":
       if(!guide.classList.contains("show")){
-        toggleGuide(true);
+        toggleGuide(true); // Open Guide
       } else {
+        // Guide open: UP for tile navigation (previous row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.max(0, focusTileIndex - cols);
         updateGridFocus();
@@ -965,8 +793,9 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowDown":
       if(!guide.classList.contains("show")){
-        showInfoBar(true, 3600);
+        showInfoBar(true, 3600); // Show Player Controls
       } else {
+        // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
         updateGridFocus();
@@ -975,9 +804,11 @@ document.addEventListener("keydown", (e) => {
 
     case "Enter":
       if(!guide.classList.contains("show")){
+        // Single click: Play/Pause
         if(okClickTimer){
           clearTimeout(okClickTimer);
           okClickTimer = null;
+          // Double click: Toggle Favorite
           toggleFavCurrent();
           setBadge("Favorite updated", "live");
         } else {
@@ -987,9 +818,12 @@ document.addEventListener("keydown", (e) => {
           }, DOUBLE_CLICK_DELAY);
         }
       } else if(!inSearch){
+        // Guide open: select channel - FIXED
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
+          console.log("Playing channel:", chIdx + 1, channels[chIdx]?.name);
           toggleGuide(false);
+          // Small delay to ensure guide closes before playing
           setTimeout(() => {
             playChannel(chIdx);
           }, 100);
@@ -1001,11 +835,13 @@ document.addEventListener("keydown", (e) => {
       if(backClickTimer){
         clearTimeout(backClickTimer);
         backClickTimer = null;
+        // Double click: Exit App
         if(confirm("Exit T Play TV?")){
           window.close();
         }
       } else {
         backClickTimer = setTimeout(() => {
+          // Single click: Close Guide / Controls
           if(guide.classList.contains("show")){
             toggleGuide(false);
           } else if(infoBar.classList.contains("show")){
@@ -1015,42 +851,34 @@ document.addEventListener("keydown", (e) => {
         }, DOUBLE_CLICK_DELAY);
       }
       break;
-      
-    case "r":
-    case "R":
-      if(!guide.classList.contains("show") && btnRes.style.display !== "none"){
-        toggleResolutionPopup();
-        e.preventDefault();
-      }
-      break;
   }
 });
 
+/* Keep icons synced */
 video.addEventListener("play", () => {
   updatePlayIcon();
-  showLogo();
+  showLogo(); // ✅ Show logo when video plays
 });
 
 video.addEventListener("pause", () => {
   updatePlayIcon();
+  // Optional: hide logo when paused
+  // hideLogo();
 });
 
+// Hide logo when video is seeking/buffering
 video.addEventListener('waiting', () => {
   hideLogo();
 });
 
+// Show logo when video can play again
 video.addEventListener('playing', () => {
   showLogo();
 });
 
+/* Show info bar on click/tap */
 video.addEventListener("click", () => showInfoBar(true, 2400));
 video.addEventListener("touchstart", () => showInfoBar(true, 2400), {passive:true});
-
-document.addEventListener("click", (e) => {
-  if(!resPopup.contains(e.target) && e.target !== btnRes){
-    resPopup.classList.remove("show");
-  }
-});
 </script>
 </body>
 </html>
