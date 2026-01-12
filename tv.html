@@ -15,7 +15,116 @@ body{background:#000;color:#fff;overflow:hidden}
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill}
 
-/* CONTROLS */
+/* ================= DTH OVERLAY ================= */
+.dth-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    z-index:80;
+    display:none;
+    flex-direction:column;
+}
+.dth-overlay.show{display:flex}
+
+/* TOP BAR */
+.dth-top{
+    padding:12px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(20,20,20,.9);
+}
+.dth-top h3{font-size:18px}
+.dth-top button{
+    background:none;border:none;
+    color:white;font-size:22px;cursor:pointer
+}
+
+/* RUNNING CHANNEL INFO */
+.now-playing{
+    padding:12px 18px;
+    background:rgba(30,30,30,.9);
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.now-playing img{
+    width:48px;height:48px;border-radius:8px
+}
+.now-playing div span{
+    font-size:13px;color:#aaa
+}
+
+/* BODY */
+.dth-body{
+    flex:1;
+    display:flex;
+    overflow:hidden;
+}
+
+/* CATEGORY */
+.category-panel{
+    width:160px;
+    background:#111;
+    overflow-y:auto;
+}
+.category-panel div{
+    padding:12px;
+    cursor:pointer;
+    color:#aaa;
+}
+.category-panel div.active{
+    background:#e50914;
+    color:#fff;
+}
+
+/* CHANNEL LIST */
+.channel-panel{
+    flex:1;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+}
+
+/* SEARCH */
+.channel-search{
+    padding:10px;
+}
+.channel-search input{
+    width:100%;
+    padding:8px 12px;
+    border:none;
+    border-radius:20px;
+    outline:none;
+}
+
+/* LIST */
+.channel-list{
+    flex:1;
+    overflow-y:auto;
+}
+.channel-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 14px;
+    cursor:pointer;
+    border-bottom:1px solid #222;
+}
+.channel-row:hover,
+.channel-row.active{
+    background:#222;
+}
+.channel-row span{
+    width:40px;
+    text-align:right;
+    color:#aaa;
+}
+.channel-row img{
+    width:40px;height:40px;border-radius:6px
+}
+
+/* CONTROLS (AUTO HIDE) */
 .controls{
     position:absolute;bottom:20px;left:50%;
     transform:translateX(-50%);
@@ -34,42 +143,6 @@ body{background:#000;color:#fff;overflow:hidden}
     color:#fff;cursor:pointer
 }
 .control-btn:hover{background:#e50914}
-
-/* CHANNEL OVERLAY */
-.channel-overlay{
-    position:absolute;inset:0;
-    background:rgba(0,0,0,.88);
-    display:none;flex-direction:column;
-    padding:15px;z-index:50
-}
-.channel-overlay.show{display:flex}
-.overlay-header{
-    display:flex;justify-content:space-between;
-    align-items:center;font-size:18px;
-    margin-bottom:10px
-}
-.overlay-header button{
-    background:none;border:none;
-    color:#fff;font-size:24px;cursor:pointer
-}
-.channel-list{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
-    gap:15px;overflow-y:auto
-}
-.channel-item{
-    background:#111;border-radius:50%;
-    aspect-ratio:1/1;cursor:pointer;
-    transition:.2s
-}
-.channel-item:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 15px #e50914
-}
-.channel-item img{
-    width:100%;height:100%;
-    object-fit:cover;border-radius:50%
-}
 
 /* CHANNEL NUMBER */
 .channel-number{
@@ -104,106 +177,97 @@ body{background:#000;color:#fff;overflow:hidden}
     <button class="control-btn" onclick="prevChannel()"><i class="fas fa-chevron-left"></i></button>
     <button class="control-btn" onclick="togglePlay()"><i id="playIcon" class="fas fa-play"></i></button>
     <button class="control-btn" onclick="toggleMute()"><i id="muteIcon" class="fas fa-volume-up"></i></button>
-    <button class="control-btn" onclick="toggleChannelOverlay()"><i class="fas fa-th-large"></i></button>
+    <button class="control-btn" onclick="toggleDthOverlay()"><i class="fas fa-list"></i></button>
     <button class="control-btn" onclick="nextChannel()"><i class="fas fa-chevron-right"></i></button>
-    <button class="control-btn" onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
 </div>
 
-<!-- CHANNEL OVERLAY -->
-<div class="channel-overlay" id="channelOverlay">
-    <div class="overlay-header">
-        <span>Live Channels</span>
-        <button onclick="toggleChannelOverlay()">✕</button>
+<!-- DTH OVERLAY -->
+<div class="dth-overlay" id="dthOverlay">
+
+    <div class="dth-top">
+        <h3>Channel Guide</h3>
+        <button onclick="toggleDthOverlay()">✕</button>
     </div>
-    <div class="channel-list" id="channelList"></div>
+
+    <div class="now-playing">
+        <img id="nowImg">
+        <div>
+            <b id="nowName"></b><br>
+            <span id="nowCat"></span>
+        </div>
+    </div>
+
+    <div class="dth-body">
+
+        <div class="category-panel" id="categoryPanel"></div>
+
+        <div class="channel-panel">
+            <div class="channel-search">
+                <input type="text" placeholder="Search channel..." oninput="filterChannels(this.value)">
+            </div>
+            <div class="channel-list" id="channelList"></div>
+        </div>
+
+    </div>
 </div>
 
 </div>
 
-<!-- SCRIPTS -->
 <script src="main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
 const video=document.getElementById("video");
-let hls=null,shakaPlayer=null,currentIndex=0;
+let hls=null,currentIndex=0,currentCategory="All";
 
-/* AUTO LOAD */
-window.addEventListener("load",()=>{
+/* INIT */
+window.onload=()=>{
     const saved=localStorage.getItem("lastChannel");
-    playChannel(saved?parseInt(saved):0);
-    renderOverlayChannels();
-    showControls();
-});
+    playChannel(saved?+saved:0);
+    buildCategories();
+    buildChannelList();
+};
 
-/* PLAY CHANNEL */
-async function playChannel(i){
+/* PLAY */
+function playChannel(i){
     currentIndex=i;
     localStorage.setItem("lastChannel",i);
     showChannelNumber(i+1);
 
     if(hls){hls.destroy();hls=null}
-    if(shakaPlayer){await shakaPlayer.destroy();shakaPlayer=null}
-
     const ch=channels[i];
-    const src=ch.sources?.[0]||ch;
-    const url=src.url;
-
-    if(src.drm){
-        shakaPlayer=new shaka.Player(video);
-        await shakaPlayer.configure({
-            drm:{clearKeys:{[src.drm.kid]:src.drm.key}}
-        });
-        await shakaPlayer.load(url);
-        video.play().catch(()=>{});
-        return;
-    }
+    const url=ch.sources?.[0]?.url||ch.url;
 
     if(Hls.isSupported()){
         hls=new Hls();
         hls.loadSource(url);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play().catch(()=>{}));
+        hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play());
     }else{
         video.src=url;
-        video.play().catch(()=>{});
+        video.play();
     }
+
+    document.getElementById("nowImg").src=ch.img;
+    document.getElementById("nowName").textContent=ch.name;
+    document.getElementById("nowCat").textContent=ch.category||"General";
 }
 
 /* CONTROLS */
 function togglePlay(){
     const i=document.getElementById("playIcon");
-    if(video.paused){video.play();i.className="fas fa-pause"}
-    else{video.pause();i.className="fas fa-play"}
+    video.paused?(video.play(),i.className="fas fa-pause")
+                 :(video.pause(),i.className="fas fa-play");
 }
 function toggleMute(){
     const i=document.getElementById("muteIcon");
     video.muted=!video.muted;
     i.className=video.muted?"fas fa-volume-mute":"fas fa-volume-up";
 }
-function toggleFullscreen(){
-    !document.fullscreenElement
-        ?document.documentElement.requestFullscreen()
-        :document.exitFullscreen();
-}
 function nextChannel(){playChannel((currentIndex+1)%channels.length)}
 function prevChannel(){playChannel((currentIndex-1+channels.length)%channels.length)}
-function toggleChannelOverlay(){
-    document.getElementById("channelOverlay").classList.toggle("show");
-}
-
-/* OVERLAY LIST */
-function renderOverlayChannels(){
-    const list=document.getElementById("channelList");
-    list.innerHTML="";
-    channels.forEach((c,i)=>{
-        const d=document.createElement("div");
-        d.className="channel-item";
-        d.innerHTML=`<img src="${c.img}">`;
-        d.onclick=()=>{playChannel(i);toggleChannelOverlay()};
-        list.appendChild(d);
-    });
+function toggleDthOverlay(){
+    document.getElementById("dthOverlay").classList.toggle("show");
 }
 
 /* CHANNEL NUMBER */
@@ -212,6 +276,45 @@ function showChannelNumber(n){
     el.textContent=n;
     el.classList.add("show");
     setTimeout(()=>el.classList.remove("show"),800);
+}
+
+/* CATEGORIES */
+function buildCategories(){
+    const cats=["All",...new Set(channels.map(c=>c.category||"General"))];
+    const p=document.getElementById("categoryPanel");
+    p.innerHTML="";
+    cats.forEach(c=>{
+        const d=document.createElement("div");
+        d.textContent=c;
+        if(c==="All")d.classList.add("active");
+        d.onclick=()=>{
+            currentCategory=c;
+            [...p.children].forEach(x=>x.classList.remove("active"));
+            d.classList.add("active");
+            buildChannelList();
+        };
+        p.appendChild(d);
+    });
+}
+
+/* CHANNEL LIST */
+function buildChannelList(){
+    const list=document.getElementById("channelList");
+    list.innerHTML="";
+    channels.forEach((c,i)=>{
+        if(currentCategory!=="All" && c.category!==currentCategory)return;
+        const r=document.createElement("div");
+        r.className="channel-row"+(i===currentIndex?" active":"");
+        r.innerHTML=`<span>${i+1}</span><img src="${c.img}"><div>${c.name}</div>`;
+        r.onclick=()=>{playChannel(i);toggleDthOverlay()};
+        list.appendChild(r);
+    });
+}
+function filterChannels(q){
+    q=q.toLowerCase();
+    document.querySelectorAll(".channel-row").forEach(r=>{
+        r.style.display=r.textContent.toLowerCase().includes(q)?"flex":"none";
+    });
 }
 
 /* AUTO HIDE CONTROLS */
@@ -223,36 +326,6 @@ function showControls(){
 }
 video.addEventListener("mousemove",showControls);
 video.addEventListener("touchstart",showControls);
-
-/* SWIPE */
-let sx=0,sy=0,lv=1,br=1;
-video.addEventListener("touchstart",e=>{
-    sx=e.touches[0].screenX;
-    sy=e.touches[0].screenY;
-    lv=video.volume;
-});
-video.addEventListener("touchend",e=>{
-    const dx=e.changedTouches[0].screenX-sx;
-    if(Math.abs(dx)>50) dx<0?nextChannel():prevChannel();
-});
-video.addEventListener("touchmove",e=>{
-    const dy=sy-e.touches[0].screenY;
-    if(e.touches[0].screenX<innerWidth/2){
-        let v=Math.max(0,Math.min(1,lv+dy/400));
-        video.volume=v;
-    }else{
-        br=Math.max(0.2,Math.min(1,br+dy/400));
-        document.getElementById("brightnessOverlay").style.opacity=1-br;
-    }
-});
-
-/* LONG PRESS FAST ZAP */
-let zap=null;
-video.addEventListener("mousedown",()=>zap=setInterval(nextChannel,700));
-video.addEventListener("mouseup",()=>clearInterval(zap));
-video.addEventListener("mouseleave",()=>clearInterval(zap));
-video.addEventListener("touchstart",()=>zap=setInterval(nextChannel,700));
-video.addEventListener("touchend",()=>clearInterval(zap));
 </script>
 
 </body>
