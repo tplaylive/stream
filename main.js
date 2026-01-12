@@ -203,7 +203,7 @@ const channels = [
             {
                 name: "Sony Yay",
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonyyay&e=.m3u8" },
+                    { name: "Server 1", url: "https://falconftp.noobmaster.xyz/SONYYAY/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
                 category: "Kids",
