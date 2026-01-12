@@ -10,121 +10,10 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
-
-/* PLAYER */
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill}
 
-/* ================= DTH OVERLAY ================= */
-.dth-overlay{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.9);
-    z-index:80;
-    display:none;
-    flex-direction:column;
-}
-.dth-overlay.show{display:flex}
-
-/* TOP BAR */
-.dth-top{
-    padding:12px 18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(20,20,20,.9);
-}
-.dth-top h3{font-size:18px}
-.dth-top button{
-    background:none;border:none;
-    color:white;font-size:22px;cursor:pointer
-}
-
-/* RUNNING CHANNEL INFO */
-.now-playing{
-    padding:12px 18px;
-    background:rgba(30,30,30,.9);
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-.now-playing img{
-    width:48px;height:48px;border-radius:8px
-}
-.now-playing div span{
-    font-size:13px;color:#aaa
-}
-
-/* BODY */
-.dth-body{
-    flex:1;
-    display:flex;
-    overflow:hidden;
-}
-
-/* CATEGORY */
-.category-panel{
-    width:160px;
-    background:#111;
-    overflow-y:auto;
-}
-.category-panel div{
-    padding:12px;
-    cursor:pointer;
-    color:#aaa;
-}
-.category-panel div.active{
-    background:#e50914;
-    color:#fff;
-}
-
-/* CHANNEL LIST */
-.channel-panel{
-    flex:1;
-    background:#000;
-    display:flex;
-    flex-direction:column;
-}
-
-/* SEARCH */
-.channel-search{
-    padding:10px;
-}
-.channel-search input{
-    width:100%;
-    padding:8px 12px;
-    border:none;
-    border-radius:20px;
-    outline:none;
-}
-
-/* LIST */
-.channel-list{
-    flex:1;
-    overflow-y:auto;
-}
-.channel-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:10px 14px;
-    cursor:pointer;
-    border-bottom:1px solid #222;
-}
-.channel-row:hover,
-.channel-row.active{
-    background:#222;
-}
-.channel-row span{
-    width:40px;
-    text-align:right;
-    color:#aaa;
-}
-.channel-row img{
-    width:40px;height:40px;border-radius:6px
-}
-
-/* CONTROLS (AUTO HIDE) */
+/* CONTROLS */
 .controls{
     position:absolute;bottom:20px;left:50%;
     transform:translateX(-50%);
@@ -132,7 +21,6 @@ body{background:#000;color:#fff;overflow:hidden}
     padding:10px 16px;
     background:rgba(0,0,0,.6);
     border-radius:40px;
-    backdrop-filter:blur(6px);
     opacity:0;pointer-events:none;
     transition:.3s;z-index:40
 }
@@ -144,23 +32,50 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 .control-btn:hover{background:#e50914}
 
-/* CHANNEL NUMBER */
-.channel-number{
-    position:absolute;top:50%;left:50%;
-    transform:translate(-50%,-50%);
-    font-size:80px;font-weight:bold;
-    background:rgba(0,0,0,.6);
-    padding:20px 35px;border-radius:20px;
-    opacity:0;transition:.3s;z-index:60
-}
-.channel-number.show{opacity:1}
-
-/* BRIGHTNESS */
-#brightnessOverlay{
+/* DTH OVERLAY */
+.dth-overlay{
     position:absolute;inset:0;
-    background:black;opacity:0;
-    pointer-events:none;z-index:20
+    background:rgba(0,0,0,.92);
+    display:none;flex-direction:column;
+    z-index:80
 }
+.dth-overlay.show{display:flex}
+.dth-top{
+    padding:12px 18px;
+    display:flex;justify-content:space-between;
+    background:#111
+}
+.now-playing{
+    display:flex;gap:12px;
+    padding:10px 18px;
+    background:#1a1a1a
+}
+.now-playing img{width:46px;height:46px;border-radius:6px}
+.dth-body{flex:1;display:flex;overflow:hidden}
+.category-panel{
+    width:160px;background:#111;overflow-y:auto
+}
+.category-panel div{
+    padding:12px;color:#aaa;cursor:pointer
+}
+.category-panel div.active{
+    background:#e50914;color:#fff
+}
+.channel-panel{flex:1;display:flex;flex-direction:column}
+.channel-search{padding:10px}
+.channel-search input{
+    width:100%;padding:8px 12px;border-radius:20px;border:none
+}
+.channel-list{flex:1;overflow-y:auto}
+.channel-row{
+    display:flex;align-items:center;gap:12px;
+    padding:10px 14px;border-bottom:1px solid #222;
+    cursor:pointer
+}
+.channel-row.active,
+.channel-row:hover{background:#222}
+.channel-row span{width:40px;text-align:right;color:#aaa}
+.channel-row img{width:40px;height:40px;border-radius:6px}
 </style>
 </head>
 
@@ -169,45 +84,37 @@ body{background:#000;color:#fff;overflow:hidden}
 <div class="video-container">
 
 <video id="video" autoplay muted playsinline></video>
-<div id="brightnessOverlay"></div>
-<div id="channelNumber" class="channel-number"></div>
 
-<!-- CONTROLS -->
 <div class="controls">
     <button class="control-btn" onclick="prevChannel()"><i class="fas fa-chevron-left"></i></button>
     <button class="control-btn" onclick="togglePlay()"><i id="playIcon" class="fas fa-play"></i></button>
     <button class="control-btn" onclick="toggleMute()"><i id="muteIcon" class="fas fa-volume-up"></i></button>
-    <button class="control-btn" onclick="toggleDthOverlay()"><i class="fas fa-list"></i></button>
+    <button class="control-btn" onclick="toggleGuide()"><i class="fas fa-list"></i></button>
     <button class="control-btn" onclick="nextChannel()"><i class="fas fa-chevron-right"></i></button>
 </div>
 
-<!-- DTH OVERLAY -->
-<div class="dth-overlay" id="dthOverlay">
-
+<div class="dth-overlay" id="guide">
     <div class="dth-top">
-        <h3>Channel Guide</h3>
-        <button onclick="toggleDthOverlay()">✕</button>
+        <b>Channel Guide</b>
+        <button onclick="toggleGuide()">✕</button>
     </div>
 
     <div class="now-playing">
         <img id="nowImg">
         <div>
             <b id="nowName"></b><br>
-            <span id="nowCat"></span>
+            <small id="nowCat"></small>
         </div>
     </div>
 
     <div class="dth-body">
-
-        <div class="category-panel" id="categoryPanel"></div>
-
+        <div class="category-panel" id="catPanel"></div>
         <div class="channel-panel">
             <div class="channel-search">
-                <input type="text" placeholder="Search channel..." oninput="filterChannels(this.value)">
+                <input placeholder="Search channel..." oninput="searchChannel(this.value)">
             </div>
-            <div class="channel-list" id="channelList"></div>
+            <div class="channel-list" id="chList"></div>
         </div>
-
     </div>
 </div>
 
@@ -215,28 +122,50 @@ body{background:#000;color:#fff;overflow:hidden}
 
 <script src="main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
 const video=document.getElementById("video");
-let hls=null,currentIndex=0,currentCategory="All";
+let hls=null,shakaP=null,currentIndex=0,currentCat="All";
 
 /* INIT */
 window.onload=()=>{
     const saved=localStorage.getItem("lastChannel");
     playChannel(saved?+saved:0);
     buildCategories();
-    buildChannelList();
+    buildList();
+    showControls();
 };
 
-/* PLAY */
-function playChannel(i){
+/* PLAY CHANNEL (HLS + MPD + DRM) */
+async function playChannel(i){
     currentIndex=i;
     localStorage.setItem("lastChannel",i);
-    showChannelNumber(i+1);
 
     if(hls){hls.destroy();hls=null}
+    if(shakaP){await shakaP.destroy();shakaP=null}
+
     const ch=channels[i];
-    const url=ch.sources?.[0]?.url||ch.url;
+    const src=ch.sources[0];
+    const url=src.url;
+
+    document.getElementById("nowImg").src=ch.img;
+    document.getElementById("nowName").textContent=ch.name;
+    document.getElementById("nowCat").textContent=ch.category;
+
+    if(src.type==="dash" || url.includes(".mpd")){
+        shaka.polyfill.installAll();
+        shakaP=new shaka.Player(video);
+
+        if(src.drm){
+            await shakaP.configure({
+                drm:{clearKeys:{[src.drm.kid]:src.drm.key}}
+            });
+        }
+        await shakaP.load(url);
+        video.play();
+        return;
+    }
 
     if(Hls.isSupported()){
         hls=new Hls();
@@ -247,10 +176,6 @@ function playChannel(i){
         video.src=url;
         video.play();
     }
-
-    document.getElementById("nowImg").src=ch.img;
-    document.getElementById("nowName").textContent=ch.name;
-    document.getElementById("nowCat").textContent=ch.category||"General";
 }
 
 /* CONTROLS */
@@ -266,58 +191,48 @@ function toggleMute(){
 }
 function nextChannel(){playChannel((currentIndex+1)%channels.length)}
 function prevChannel(){playChannel((currentIndex-1+channels.length)%channels.length)}
-function toggleDthOverlay(){
-    document.getElementById("dthOverlay").classList.toggle("show");
+function toggleGuide(){
+    document.getElementById("guide").classList.toggle("show");
 }
 
-/* CHANNEL NUMBER */
-function showChannelNumber(n){
-    const el=document.getElementById("channelNumber");
-    el.textContent=n;
-    el.classList.add("show");
-    setTimeout(()=>el.classList.remove("show"),800);
-}
-
-/* CATEGORIES */
+/* GUIDE UI */
 function buildCategories(){
-    const cats=["All",...new Set(channels.map(c=>c.category||"General"))];
-    const p=document.getElementById("categoryPanel");
+    const cats=["All",...new Set(channels.map(c=>c.category))];
+    const p=document.getElementById("catPanel");
     p.innerHTML="";
     cats.forEach(c=>{
         const d=document.createElement("div");
         d.textContent=c;
         if(c==="All")d.classList.add("active");
         d.onclick=()=>{
-            currentCategory=c;
+            currentCat=c;
             [...p.children].forEach(x=>x.classList.remove("active"));
             d.classList.add("active");
-            buildChannelList();
+            buildList();
         };
         p.appendChild(d);
     });
 }
-
-/* CHANNEL LIST */
-function buildChannelList(){
-    const list=document.getElementById("channelList");
-    list.innerHTML="";
+function buildList(){
+    const l=document.getElementById("chList");
+    l.innerHTML="";
     channels.forEach((c,i)=>{
-        if(currentCategory!=="All" && c.category!==currentCategory)return;
+        if(currentCat!=="All" && c.category!==currentCat)return;
         const r=document.createElement("div");
         r.className="channel-row"+(i===currentIndex?" active":"");
         r.innerHTML=`<span>${i+1}</span><img src="${c.img}"><div>${c.name}</div>`;
-        r.onclick=()=>{playChannel(i);toggleDthOverlay()};
-        list.appendChild(r);
+        r.onclick=()=>{playChannel(i);toggleGuide()};
+        l.appendChild(r);
     });
 }
-function filterChannels(q){
+function searchChannel(q){
     q=q.toLowerCase();
     document.querySelectorAll(".channel-row").forEach(r=>{
         r.style.display=r.textContent.toLowerCase().includes(q)?"flex":"none";
     });
 }
 
-/* AUTO HIDE CONTROLS */
+/* AUTO CONTROLS */
 let ct;
 function showControls(){
     document.querySelector(".controls").classList.add("show");
