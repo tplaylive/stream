@@ -14,34 +14,70 @@ body{background:#000;color:#fff;overflow:hidden}
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill;background:#000}
 
-/* ===== Bottom Info + Controls (one bar) ===== */
+/* ===== Loading / No Signal overlays ===== */
+.overlayCenter{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.55);z-index:95;
+}
+.overlayCenter.show{display:flex}
+.spinner{
+  width:64px;height:64px;border-radius:50%;
+  border:7px solid rgba(255,255,255,.18);
+  border-top-color:#e50914;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.noSignal{
+  position:absolute;inset:0;display:none;flex-direction:column;gap:10px;
+  align-items:center;justify-content:center;background:#000;z-index:96;
+}
+.noSignal.show{display:flex}
+.noSignal i{font-size:64px;color:#e50914}
+.noSignal span{color:#bbb}
+
+/* ===== Big number flash ===== */
+.bigNum{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:82px;font-weight:900;
+  background:rgba(0,0,0,.6);
+  border:1px solid rgba(255,255,255,.12);
+  padding:16px 28px;border-radius:18px;
+  opacity:0;transition:.18s;z-index:60;
+}
+.bigNum.show{opacity:1}
+
+/* ===== Bottom Info + Controls ===== */
 .infoBar{
   position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
-  width:min(1100px,92vw);
-  background:rgba(0,0,0,.72);
+  width:min(1120px,92vw);
+  background:rgba(0,0,0,.75);
   border:1px solid rgba(255,255,255,.12);
   backdrop-filter:blur(8px);
   border-radius:18px;
   padding:12px 14px;
   display:flex;align-items:center;gap:14px;
   opacity:0;pointer-events:none;
-  transition:.2s;z-index:60;
+  transition:.2s;z-index:70;
 }
 .infoBar.show{opacity:1;pointer-events:auto}
 
 .infoLeft{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
 .infoLogo{width:54px;height:54px;border-radius:12px;object-fit:cover;background:#111}
 .infoText{min-width:0}
-.infoTitle{font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.infoSub{font-size:13px;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.infoTitle{font-size:17px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.infoSub{
+  font-size:13px;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
 .badge{
   display:inline-block;margin-left:8px;
   font-size:11px;padding:3px 8px;border-radius:999px;
-  background:rgba(229,9,20,.9);color:#fff;
+  background:rgba(255,255,255,.16);color:#fff;
   vertical-align:middle;
 }
-.badge.muted{background:rgba(255,255,255,.18)}
-.badge.ok{background:rgba(255,255,255,.16)}
+.badge.live{background:rgba(229,9,20,.9)}
+.badge.warn{background:rgba(255,255,255,.18)}
+.badge.err{background:rgba(255,255,255,.16)}
 
 .infoRight{display:flex;align-items:center;gap:10px}
 .btn{
@@ -55,19 +91,29 @@ body{background:#000;color:#fff;overflow:hidden}
 .btn.starOn:hover{background:rgba(255,213,74,.35)}
 .btn i{pointer-events:none}
 
-/* Big channel number flash */
-.bigNum{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  font-size:82px;font-weight:900;
-  background:rgba(0,0,0,.6);
+/* ===== Source popup ===== */
+.srcPopup{
+  position:absolute;right:22px;bottom:92px;
+  background:rgba(0,0,0,.88);
   border:1px solid rgba(255,255,255,.12);
-  padding:16px 28px;border-radius:18px;
-  opacity:0;transition:.18s;z-index:55;
+  border-radius:14px;
+  padding:10px;z-index:85;
+  display:none;
+  min-width:210px;
+  backdrop-filter:blur(6px);
 }
-.bigNum.show{opacity:1}
+.srcPopup.show{display:block}
+.srcPopup .item{
+  padding:10px 12px;border-radius:10px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  color:#ddd;
+}
+.srcPopup .item:hover{background:rgba(229,9,20,.9);color:#fff}
+.srcPopup .item.active{background:rgba(229,9,20,.9);color:#fff}
+.srcPopup .small{font-size:11px;color:#bbb}
+.srcPopup .item:hover .small, .srcPopup .item.active .small{color:#fff}
 
-/* ===== Left Guide Overlay (on top of video, no resize) ===== */
+/* ===== Left Guide Overlay (on top of video) ===== */
 .guide{
   position:absolute;top:0;left:0;height:100%;
   width:34vw;max-width:520px;min-width:360px;
@@ -101,7 +147,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 .gBody{flex:1;display:flex;overflow:hidden}
 
-/* Categories (left inside guide) */
+/* Categories */
 .cat{
   width:140px;background:rgba(10,10,10,.9);
   border-right:1px solid rgba(255,255,255,.08);
@@ -114,7 +160,7 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 .catItem.focus{background:rgba(229,9,20,.9);color:#fff;border-left-color:#fff}
 
-/* Channels area */
+/* Search + Grid */
 .chArea{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .searchBox{padding:10px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(12,12,12,.9)}
 .searchBox input{
@@ -122,7 +168,6 @@ body{background:#000;color:#fff;overflow:hidden}
   border-radius:18px;background:rgba(255,255,255,.10);color:#fff;
 }
 
-/* Grid list */
 .grid{
   flex:1;overflow-y:auto;padding:10px;
   display:grid;gap:10px;
@@ -136,11 +181,15 @@ body{background:#000;color:#fff;overflow:hidden}
   cursor:pointer;user-select:none;
 }
 .tile:hover{background:rgba(255,255,255,.11)}
-.tile.focus{border-color:rgba(229,9,20,.95);box-shadow:0 0 0 2px rgba(229,9,20,.30);transform:scale(1.02)}
-.no{width:42px;text-align:right;color:#bbb;font-weight:700}
+.tile.focus{
+  border-color:rgba(229,9,20,.95);
+  box-shadow:0 0 0 2px rgba(229,9,20,.30);
+  transform:scale(1.02)
+}
+.no{width:42px;text-align:right;color:#bbb;font-weight:800}
 .logo{width:72px;height:72px;border-radius:14px;object-fit:cover;background:#111}
 .meta{flex:1;min-width:0}
-.meta .name{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta .name{font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .meta .sub{font-size:12px;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .favBtn{
   width:36px;height:36px;border-radius:50%;
@@ -150,20 +199,6 @@ body{background:#000;color:#fff;overflow:hidden}
 .favBtn.on{background:rgba(255,213,74,.28)}
 .favBtn:hover{background:rgba(229,9,20,.9)}
 .favBtn.on:hover{background:rgba(255,213,74,.36)}
-
-/* Small zap overlay */
-.zap{
-  position:absolute;top:16px;left:50%;transform:translateX(-50%);
-  background:rgba(0,0,0,.70);
-  border:1px solid rgba(255,255,255,.12);
-  padding:10px 14px;border-radius:14px;
-  display:flex;gap:10px;align-items:center;
-  z-index:90;opacity:0;pointer-events:none;transition:.15s;
-  backdrop-filter:blur(6px);
-}
-.zap.show{opacity:1}
-.zap .n{font-size:26px;font-weight:900;letter-spacing:2px}
-.zap .h{font-size:12px;color:#bbb}
 </style>
 </head>
 
@@ -171,7 +206,14 @@ body{background:#000;color:#fff;overflow:hidden}
 <div class="video-container">
   <video id="video" autoplay playsinline></video>
 
-  <div id="zap" class="zap"><div class="n" id="zapN">—</div><div class="h" id="zapH">Type channel (1–999)</div></div>
+  <div id="loading" class="overlayCenter"><div class="spinner"></div></div>
+
+  <div id="noSignal" class="noSignal">
+    <i class="fas fa-tv"></i>
+    <b>No Signal</b>
+    <span id="noSignalText">Trying next source…</span>
+  </div>
+
   <div id="bigNum" class="bigNum"></div>
 
   <!-- Bottom Info + Controls -->
@@ -179,25 +221,29 @@ body{background:#000;color:#fff;overflow:hidden}
     <div class="infoLeft">
       <img id="infoLogo" class="infoLogo" alt="logo">
       <div class="infoText">
-        <div class="infoTitle" id="infoTitle">Loading…</div>
-        <div class="infoSub" id="infoSub"> </div>
+        <div id="infoTitle" class="infoTitle">Loading…</div>
+        <div id="infoSub" class="infoSub"></div>
       </div>
     </div>
     <div class="infoRight">
       <button class="btn" id="btnPrev" title="Prev"><i class="fas fa-chevron-left"></i></button>
       <button class="btn" id="btnPlay" title="Play/Pause"><i class="fas fa-play" id="playIcon"></i></button>
       <button class="btn" id="btnMute" title="Mute/Unmute"><i class="fas fa-volume-up" id="muteIcon"></i></button>
+      <button class="btn" id="btnSrc" title="Source"><i class="fas fa-server"></i></button>
       <button class="btn" id="btnGuide" title="Guide"><i class="fas fa-list"></i></button>
       <button class="btn" id="btnNext" title="Next"><i class="fas fa-chevron-right"></i></button>
       <button class="btn" id="btnFav" title="Favorite"><i class="fas fa-star" id="favIcon"></i></button>
     </div>
   </div>
 
+  <!-- Source Popup -->
+  <div id="srcPopup" class="srcPopup"></div>
+
   <!-- Left Guide -->
   <div id="guide" class="guide">
     <div class="gTop">
       <b>Channel Guide</b>
-      <span>←/→ Category • ↑/↓/→ Tiles • OK Play • ESC Back</span>
+      <span>←/→ Cat • ↑/↓/→ Tiles • OK Play • ESC Back</span>
     </div>
     <div class="gNow">
       <img id="gNowLogo" alt="logo">
@@ -216,6 +262,7 @@ body{background:#000;color:#fff;overflow:hidden}
       </div>
     </div>
   </div>
+
 </div>
 
 <script src="main.js"></script>
@@ -223,14 +270,21 @@ body{background:#000;color:#fff;overflow:hidden}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
-/* ===================== Assumptions from main.js =====================
-   channels[]: { name, img, category, description?, sources:[{name,url,type?,drm?}] } 
-   DRM for dash: drm:{kid,key} :contentReference[oaicite:3]{index=3}
-===================================================================== */
+/* ===================== Requirements =====================
+- main.js provides: channels[] each has sources[] with url, name, type ("dash"), drm {kid,key} 
+- If a source fails -> try next source; if all fail -> show No Signal -> auto next channel.
+- Source select manual.
+- Autoplay unmuted; if blocked -> muted fallback + OK to unmute.
+========================================================== */
 
 const video = document.getElementById("video");
 
-/* UI refs */
+/* UI */
+const loading = document.getElementById("loading");
+const noSignal = document.getElementById("noSignal");
+const noSignalText = document.getElementById("noSignalText");
+const bigNum = document.getElementById("bigNum");
+
 const infoBar = document.getElementById("infoBar");
 const infoLogo = document.getElementById("infoLogo");
 const infoTitle = document.getElementById("infoTitle");
@@ -239,20 +293,15 @@ const playIcon = document.getElementById("playIcon");
 const muteIcon = document.getElementById("muteIcon");
 const favIcon = document.getElementById("favIcon");
 
-const bigNum = document.getElementById("bigNum");
+const srcPopup = document.getElementById("srcPopup");
 
 const guide = document.getElementById("guide");
 const catPanel = document.getElementById("catPanel");
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
-
 const gNowLogo = document.getElementById("gNowLogo");
 const gNowName = document.getElementById("gNowName");
 const gNowCat  = document.getElementById("gNowCat");
-
-const zap = document.getElementById("zap");
-const zapN = document.getElementById("zapN");
-const zapH = document.getElementById("zapH");
 
 /* Players */
 let hls = null;
@@ -260,33 +309,24 @@ let shakaP = null;
 
 /* State */
 let currentIndex = 0;
-let currentSourceIndex = 0;           // per channel (backup servers)
-let lastUserInteracted = false;
+let currentSourceIndex = 0;
+let isTrying = false;
 
+/* Guide state */
 let categories = [];
 let currentCat = "All";
-let filteredIndexes = [];             // indexes into channels for current grid
+let filteredIndexes = [];
 let focusCatIndex = 0;
 let focusTileIndex = 0;
 
-let infoHideTimer = null;
-
 /* Favorites */
 const FAV_KEY = "tplay_favs_v1";
-function loadFavs(){
-  try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")); }
-  catch { return new Set(); }
-}
+function loadFavs(){ try{ return new Set(JSON.parse(localStorage.getItem(FAV_KEY)||"[]")); }catch{ return new Set(); } }
 function saveFavs(set){ localStorage.setItem(FAV_KEY, JSON.stringify([...set])); }
 let favs = loadFavs();
 
-/* ============ Autoplay policy safe unmute handling ============ */
-function markUserInteraction(){
-  lastUserInteracted = true;
-}
-["click","touchstart","keydown"].forEach(evt => {
-  document.addEventListener(evt, markUserInteraction, {passive:true});
-});
+/* Info bar hide timer */
+let infoHideTimer = null;
 
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
@@ -299,218 +339,240 @@ window.addEventListener("load", () => {
   video.muted = false;
   video.volume = 1;
 
-  buildCategories();
-  const saved = localStorage.getItem("lastChannel");
-  playChannel(saved ? +saved : 0);
-
   // buttons
   document.getElementById("btnPrev").onclick = prevChannel;
   document.getElementById("btnNext").onclick = nextChannel;
-  document.getElementById("btnGuide").onclick = toggleGuide;
+  document.getElementById("btnGuide").onclick = () => toggleGuide();
   document.getElementById("btnPlay").onclick = togglePlay;
   document.getElementById("btnMute").onclick = toggleMute;
   document.getElementById("btnFav").onclick = toggleFavCurrent;
+  document.getElementById("btnSrc").onclick = toggleSourcePopup;
 
-  // search
+  // close source popup on click outside
+  document.addEventListener("click", (e) => {
+    if(!srcPopup.contains(e.target) && e.target.id !== "btnSrc"){
+      srcPopup.classList.remove("show");
+    }
+  });
+
+  // guide search
   search.addEventListener("input", () => { focusTileIndex = 0; buildGrid(); });
 
-  showInfoBar(true);
+  buildCategories();
+
+  const saved = localStorage.getItem("lastChannel");
+  playChannel(saved ? +saved : 0);
 });
 
 /* ===================== Playback core ===================== */
+function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+
+function showLoading(on){
+  loading.classList.toggle("show", !!on);
+}
+function showNoSignal(on, msg){
+  noSignal.classList.toggle("show", !!on);
+  if(msg) noSignalText.textContent = msg;
+}
+function flashNumber(n){
+  bigNum.textContent = n;
+  bigNum.classList.add("show");
+  setTimeout(()=>bigNum.classList.remove("show"), 650);
+}
+
 async function cleanupPlayers(){
   if(hls){ try{ hls.destroy(); }catch{} hls=null; }
   if(shakaP){ try{ await shakaP.destroy(); }catch{} shakaP=null; }
   try{ video.removeAttribute("src"); video.load(); }catch{}
 }
 
-function isDashSource(src){
+function isDash(src){
   const url = src?.url || "";
   return src?.type === "dash" || (typeof url === "string" && url.includes(".mpd"));
 }
 
 async function playChannel(index){
+  if(isTrying) return; // prevent double calls
+  isTrying = true;
+
   currentIndex = clamp(index, 0, channels.length-1);
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
-  flashBigNumber(currentIndex + 1);
-
+  // UI updates
   updateNowPlayingUI();
-  buildGrid();        // refresh focus + stars
+  buildSourcePopup(); // for current channel
+  buildGrid();        // refresh highlights
+  flashNumber(currentIndex + 1);
+
+  showNoSignal(false);
+  showLoading(true);
   showInfoBar(true);
 
-  await loadCurrentSource();
+  await tryLoadSourceLoop();
+
+  isTrying = false;
 }
 
-async function loadCurrentSource(){
+async function tryLoadSourceLoop(){
   const ch = channels[currentIndex];
   const sources = ch.sources || [];
-  const src = sources[currentSourceIndex] || sources[0];
 
-  if(!src || !src.url){
-    showStatus(`No source for this channel`, true);
+  // if no sources -> skip channel
+  if(!sources.length){
+    await failAllSources("No sources. Switching next channel…");
     return;
   }
 
-  await cleanupPlayers();
-  showStatus(`Loading: ${src.name || ("Server " + (currentSourceIndex+1))}`, false);
-
-  // DASH (MPD)
-  if(isDashSource(src)){
-    if(!shaka.Player.isBrowserSupported()){
-      showStatus("Shaka not supported in this browser", true);
+  while(currentSourceIndex < sources.length){
+    const ok = await loadSource(currentSourceIndex);
+    if(ok){
+      showLoading(false);
+      showNoSignal(false);
+      setBadge("LIVE", "live");
       return;
     }
-    shaka.polyfill.installAll();
-    shakaP = new shaka.Player(video);
-
-    // DRM (ClearKey) as in main.js :contentReference[oaicite:4]{index=4}
-    if(src.drm?.kid && src.drm?.key){
-      await shakaP.configure({ drm: { clearKeys: { [src.drm.kid]: src.drm.key } } });
-    }else{
-      // clear any previous drm config
-      await shakaP.configure({ drm: { clearKeys: {} } });
-    }
-
-    shakaP.addEventListener("error", (e) => {
-      console.error("Shaka error:", e?.detail || e);
-      tryNextBackup("DRM/DASH error");
-    });
-
-    try{
-      await shakaP.load(src.url);
-      await tryPlayWithAudioPolicy();
-      showStatus("LIVE", false);
-    }catch(err){
-      console.error("DASH load failed:", err);
-      tryNextBackup("DASH load failed");
-    }
-    return;
+    currentSourceIndex++;
   }
 
-  // HLS
-  if(Hls.isSupported()){
-    hls = new Hls({
-      maxBufferLength: 30,
-      backBufferLength: 30,
-      enableWorker: true,
-      lowLatencyMode: true
-    });
-
-    hls.loadSource(src.url);
-    hls.attachMedia(video);
-
-    hls.on(Hls.Events.MANIFEST_PARSED, async () => {
-      try{
-        await tryPlayWithAudioPolicy();
-        showStatus("LIVE", false);
-      }catch{}
-    });
-
-    hls.on(Hls.Events.ERROR, (evt, data) => {
-      console.error("HLS error:", data);
-      if(data?.fatal){
-        tryNextBackup("HLS fatal error");
-      }
-    });
-
-  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    video.src = src.url;
-    video.addEventListener("loadedmetadata", async () => {
-      try{
-        await tryPlayWithAudioPolicy();
-        showStatus("LIVE", false);
-      }catch{}
-    }, {once:true});
-    video.addEventListener("error", () => tryNextBackup("Native HLS error"), {once:true});
-  } else {
-    showStatus("Browser doesn't support HLS", true);
-  }
+  // all sources failed
+  await failAllSources("All sources failed. Switching next channel…");
 }
 
-async function tryPlayWithAudioPolicy(){
-  // You asked: auto mute OFF.
-  // But browsers may block autoplay with sound unless user interacted.
-  // So: try unmuted play first; if blocked -> muted play + show hint to press OK to unmute.
-  video.muted = false;
+async function loadSource(srcIdx){
+  const ch = channels[currentIndex];
+  const src = (ch.sources || [])[srcIdx];
+
+  if(!src || !src.url) return false;
+
+  setBadge(`Loading ${src.name || ("Server " + (srcIdx+1))}…`, "warn");
+  showLoading(true);
+  showNoSignal(false);
+
+  // cleanup old
+  await cleanupPlayers();
 
   try{
-    await video.play();
-    updateMuteIcon();
-    return;
-  }catch(err){
-    console.warn("Autoplay with sound blocked:", err);
-    video.muted = true;
-    updateMuteIcon();
-    await video.play().catch(()=>{});
-    showStatus("Muted (Press OK/Click to unmute)", false, true);
+    if(isDash(src)){
+      if(!shaka.Player.isBrowserSupported()) throw new Error("Shaka not supported");
+      shaka.polyfill.installAll();
+      shakaP = new shaka.Player(video);
+
+      // DRM ClearKey
+      if(src.drm?.kid && src.drm?.key){
+        await shakaP.configure({ drm: { clearKeys: { [src.drm.kid]: src.drm.key } } });
+      }else{
+        await shakaP.configure({ drm: { clearKeys: {} } });
+      }
+
+      // Shaka load
+      await shakaP.load(src.url);
+    } else {
+      // HLS
+      if(Hls.isSupported()){
+        hls = new Hls({ enableWorker:true, lowLatencyMode:true });
+        hls.loadSource(src.url);
+        hls.attachMedia(video);
+
+        // wait a moment for manifest parse/play
+        await new Promise((resolve, reject) => {
+          const t = setTimeout(()=>reject(new Error("HLS timeout")), 9000);
+          hls.on(Hls.Events.MANIFEST_PARSED, () => { clearTimeout(t); resolve(); });
+          hls.on(Hls.Events.ERROR, (evt, data) => {
+            if(data?.fatal){ clearTimeout(t); reject(new Error("HLS fatal")); }
+          });
+        });
+      }else if(video.canPlayType("application/vnd.apple.mpegurl")){
+        video.src = src.url;
+        await new Promise((resolve, reject) => {
+          const t = setTimeout(()=>reject(new Error("Native HLS timeout")), 9000);
+          video.addEventListener("loadedmetadata", () => { clearTimeout(t); resolve(); }, {once:true});
+          video.addEventListener("error", () => { clearTimeout(t); reject(new Error("Native HLS error")); }, {once:true});
+        });
+      }else{
+        throw new Error("No HLS support");
+      }
+    }
+
+    // autoplay unmuted attempt
+    try{
+      video.muted = false;
+      await video.play();
+      updateMuteIcon();
+      updatePlayIcon();
+      return true;
+    }catch(err){
+      // autoplay sound blocked -> fallback muted + user OK to unmute
+      console.warn("Autoplay with sound blocked:", err);
+      video.muted = true;
+      updateMuteIcon();
+      await video.play().catch(()=>{});
+      setBadge("Muted. Press OK/Enter to unmute", "warn");
+      updatePlayIcon();
+      return true;
+    }
+
+  }catch(e){
+    console.warn("Source failed:", srcIdx, e);
+    setBadge(`Source failed → trying next`, "warn");
+    return false;
   }
 }
 
-function tryNextBackup(reason){
+async function failAllSources(msg){
+  showLoading(false);
+  showNoSignal(true, msg);
+  setBadge("NO SIGNAL", "err");
+
+  // small delay, then next channel
+  await new Promise(r => setTimeout(r, 1600));
+  showNoSignal(false);
+  await playChannel((currentIndex + 1) % channels.length);
+}
+
+/* ===================== UI helpers ===================== */
+function showInfoBar(sticky=false){
+  infoBar.classList.add("show");
+  clearTimeout(infoHideTimer);
+  infoHideTimer = setTimeout(()=>infoBar.classList.remove("show"), sticky ? 3600 : 2400);
+}
+function setBadge(text, kind){
+  const base = channelSubText();
+  infoSub.innerHTML = escapeHtml(base) + ` <span class="badge ${kind||"warn"}">${escapeHtml(text)}</span>`;
+  showInfoBar(true);
+}
+function channelSubText(){
   const ch = channels[currentIndex];
-  const sources = ch.sources || [];
-  if(currentSourceIndex + 1 < sources.length){
-    currentSourceIndex++;
-    showStatus(`${reason} → Trying ${sources[currentSourceIndex].name || ("Server " + (currentSourceIndex+1))}`, true);
-    loadCurrentSource();
-  }else{
-    showStatus(`${reason}. No more servers.`, true);
-  }
+  const cat = ch.category || "General";
+  const desc = ch.description ? ` • ${ch.description}` : "";
+  // show current server name too
+  const src = ch.sources?.[currentSourceIndex];
+  const sname = src?.name ? ` • ${src.name}` : (ch.sources?.length ? ` • Server ${currentSourceIndex+1}` : "");
+  return `${cat}${desc}${sname}`;
+}
+function escapeHtml(s){
+  return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
 }
 
-/* ===================== UI updates ===================== */
 function updateNowPlayingUI(){
   const ch = channels[currentIndex];
   infoLogo.src = ch.img || "";
   infoTitle.textContent = `${currentIndex+1}. ${ch.name || "Unknown"}`;
-
-  const cat = ch.category || "General";
-  const desc = ch.description ? ` • ${ch.description}` : "";
-  infoSub.textContent = `${cat}${desc}`;
+  infoSub.textContent = channelSubText();
 
   gNowLogo.src = ch.img || "";
   gNowName.textContent = ch.name || "—";
-  gNowCat.textContent = cat;
+  gNowCat.textContent = ch.category || "General";
 
   updateFavIcon();
   updatePlayIcon();
   updateMuteIcon();
 }
 
-function flashBigNumber(n){
-  bigNum.textContent = n;
-  bigNum.classList.add("show");
-  setTimeout(()=>bigNum.classList.remove("show"), 650);
-}
-
-function showInfoBar(sticky=false){
-  infoBar.classList.add("show");
-  clearTimeout(infoHideTimer);
-  // sticky: channel change / user action -> keep longer
-  infoHideTimer = setTimeout(()=>infoBar.classList.remove("show"), sticky ? 3500 : 2200);
-}
-
-function showStatus(text, isError=false, isMutedHint=false){
-  // Put status as badge on subtitle line
-  // Keep channel sub text but append badge
-  const base = (channels[currentIndex]?.category || "General") + (channels[currentIndex]?.description ? ` • ${channels[currentIndex].description}` : "");
-  infoSub.innerHTML = escapeHtml(base) + ` <span class="badge ${isMutedHint ? "muted" : (isError ? "muted" : "ok")}">${escapeHtml(text)}</span>`;
-  showInfoBar(true);
-}
-
-function escapeHtml(s){
-  return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
-}
-
 /* ===================== Controls ===================== */
 function togglePlay(){
-  if(video.paused){
-    video.play().catch(()=>{});
-  }else{
-    video.pause();
-  }
+  if(video.paused) video.play().catch(()=>{});
+  else video.pause();
   updatePlayIcon();
   showInfoBar(true);
 }
@@ -557,18 +619,77 @@ function toggleFavByChannelIndex(idx){
   buildGrid();
 }
 
+/* ===================== Source select ===================== */
+function buildSourcePopup(){
+  const ch = channels[currentIndex];
+  const sources = ch.sources || [];
+  srcPopup.innerHTML = "";
+
+  sources.forEach((s, i) => {
+    const d = document.createElement("div");
+    d.className = "item" + (i===currentSourceIndex ? " active" : "");
+    d.innerHTML = `
+      <div>
+        <div>${escapeHtml(s.name || ("Server " + (i+1)))}</div>
+        <div class="small">${escapeHtml(s.type || (s.url.includes(".mpd") ? "dash" : "hls"))}</div>
+      </div>
+      <div class="small">${i===currentSourceIndex ? "ON" : ""}</div>
+    `;
+    d.onclick = () => {
+      srcPopup.classList.remove("show");
+      manualSwitchSource(i);
+    };
+    srcPopup.appendChild(d);
+  });
+}
+function toggleSourcePopup(){
+  if(srcPopup.classList.contains("show")) srcPopup.classList.remove("show");
+  else{
+    buildSourcePopup();
+    srcPopup.classList.add("show");
+    showInfoBar(true);
+  }
+}
+async function manualSwitchSource(i){
+  const ch = channels[currentIndex];
+  if(!ch.sources || !ch.sources[i]) return;
+
+  currentSourceIndex = i;
+  buildSourcePopup();
+  updateNowPlayingUI();
+  showNoSignal(false);
+  showLoading(true);
+  showInfoBar(true);
+
+  const ok = await loadSource(currentSourceIndex);
+  if(ok){
+    showLoading(false);
+    showNoSignal(false);
+    setBadge("LIVE", "live");
+  }else{
+    // if manual source fails, continue auto fallback to next sources
+    currentSourceIndex++;
+    await tryLoadSourceLoop();
+  }
+}
+
 /* ===================== Guide (left overlay) ===================== */
 function toggleGuide(force){
   const wantOpen = (typeof force === "boolean") ? force : !guide.classList.contains("show");
   guide.classList.toggle("show", wantOpen);
+
   if(wantOpen){
-    // sync focus to current channel if visible
     focusCatIndex = categories.indexOf(currentCat);
     if(focusCatIndex < 0) focusCatIndex = 0;
-    focusTileIndex = Math.max(0, filteredIndexes.indexOf(currentIndex));
-    if(focusTileIndex < 0) focusTileIndex = 0;
+
     buildCategoriesUI();
     buildGrid();
+
+    // focus current channel in list if present
+    const pos = filteredIndexes.indexOf(currentIndex);
+    focusTileIndex = pos >= 0 ? pos : 0;
+    buildGrid();
+
     setTimeout(()=>search.focus(), 50);
   }else{
     search.blur();
@@ -599,7 +720,6 @@ function buildCategoriesUI(){
     catPanel.appendChild(d);
   });
 }
-
 function getFilteredIndexes(){
   const q = (search.value || "").trim().toLowerCase();
   const isFav = currentCat === "★ Favorites";
@@ -620,7 +740,6 @@ function getFilteredIndexes(){
   }
   return idxs;
 }
-
 function buildGrid(){
   filteredIndexes = getFilteredIndexes();
   if(focusTileIndex >= filteredIndexes.length) focusTileIndex = Math.max(0, filteredIndexes.length-1);
@@ -633,8 +752,8 @@ function buildGrid(){
     const tile = document.createElement("div");
     tile.className = "tile" + (tileIdx===focusTileIndex ? " focus" : "");
     tile.onclick = () => {
-      playChannel(chIdx);
       toggleGuide(false);
+      playChannel(chIdx);
     };
 
     tile.innerHTML = `
@@ -658,160 +777,93 @@ function buildGrid(){
     grid.appendChild(tile);
   });
 
-  // scroll focused tile into view
   const focused = grid.querySelector(".tile.focus");
   if(focused) focused.scrollIntoView({block:"nearest", inline:"nearest"});
 }
 
-/* ===================== Remote navigation (↑ ↓ ← →) ===================== */
-document.addEventListener("keydown", (e) => {
-  // Number zap handled first if guide is not open and not typing in search
-  const inSearch = (document.activeElement === search);
-
-  // Global: ESC closes guide
-  if(e.key === "Escape"){
-    if(guide.classList.contains("show")){
-      toggleGuide(false);
-      e.preventDefault();
-      return;
-    }
-  }
-
-  // Show info on OK/Enter always (and try unmute if hint)
-  if(e.key === "Enter"){
-    showInfoBar(true);
-    // if muted because autoplay policy, allow OK to unmute
-    if(video.muted){
-      // only unmute if user interaction exists (Enter counts)
-      video.muted = false;
-      updateMuteIcon();
-      video.play().catch(()=>{});
-      showStatus("Unmuted", false);
-    }
-  }
-
-  // When guide CLOSED: allow quick controls + number zap
-  if(!guide.classList.contains("show")){
-    if(e.key === "ArrowRight"){ nextChannel(); e.preventDefault(); return; }
-    if(e.key === "ArrowLeft"){ prevChannel(); e.preventDefault(); return; }
-    if(e.key.toLowerCase() === "g"){ toggleGuide(true); e.preventDefault(); return; }
-    if(e.key.toLowerCase() === "f"){ toggleFavCurrent(); e.preventDefault(); return; }
-
-    handleNumberZap(e);
-    return;
-  }
-
-  // When guide OPEN:
-  if(e.key === "ArrowLeft"){
-    // move focus to category side (cycle categories)
-    focusCatIndex = Math.max(0, focusCatIndex-1);
-    currentCat = categories[focusCatIndex];
-    focusTileIndex = 0;
-    buildCategoriesUI();
-    buildGrid();
-    e.preventDefault();
-    return;
-  }
-
-  if(e.key === "ArrowRight"){
-    // move focus within tiles
-    moveTileFocus(1);
-    e.preventDefault();
-    return;
-  }
-
-  if(e.key === "ArrowUp"){
-    moveTileFocus(-getCols());
-    e.preventDefault();
-    return;
-  }
-
-  if(e.key === "ArrowDown"){
-    moveTileFocus(getCols());
-    e.preventDefault();
-    return;
-  }
-
-  if(e.key === "Enter"){
-    // play focused tile
-    const chIdx = filteredIndexes[focusTileIndex];
-    if(typeof chIdx === "number"){
-      playChannel(chIdx);
-      toggleGuide(false);
-    }
-    e.preventDefault();
-    return;
-  }
-
-  // typing in search should work normally
-});
-
+/* Remote focus navigation */
 function getCols(){
-  // approximate columns based on grid width and tile min width
   const w = grid.clientWidth || 1;
-  const col = Math.max(1, Math.floor(w / 240));
-  return col;
+  return Math.max(1, Math.floor(w / 240));
 }
-function moveTileFocus(delta){
+function moveFocus(delta){
   if(!filteredIndexes.length) return;
   focusTileIndex = clamp(focusTileIndex + delta, 0, filteredIndexes.length-1);
   buildGrid();
 }
 
-/* ===================== Number zap (1–999) ===================== */
-let zapBuf = "";
-let zapTimer = null;
+/* ===================== Keyboard / Remote ===================== */
+document.addEventListener("keydown", (e) => {
+  const inSearch = (document.activeElement === search);
 
-function handleNumberZap(e){
-  // ignore when typing into search
-  if(document.activeElement === search) return;
+  // ESC closes guide or source popup
+  if(e.key === "Escape"){
+    if(srcPopup.classList.contains("show")){
+      srcPopup.classList.remove("show");
+      e.preventDefault(); return;
+    }
+    if(guide.classList.contains("show")){
+      toggleGuide(false);
+      e.preventDefault(); return;
+    }
+  }
 
-  if(e.key >= "0" && e.key <= "9"){
-    if(zapBuf.length >= 3) return;
-    zapBuf += e.key;
-    showZap();
-    e.preventDefault();
-    return;
-  }
-  if(e.key === "Backspace"){
-    zapBuf = zapBuf.slice(0,-1);
-    showZap();
-    e.preventDefault();
-    return;
-  }
+  // OK/Enter: show info bar; if muted due to autoplay policy -> unmute
   if(e.key === "Enter"){
-    commitZap();
+    showInfoBar(true);
+    if(video.muted){
+      video.muted = false;
+      updateMuteIcon();
+      video.play().catch(()=>{});
+      setBadge("Unmuted", "live");
+    }
+  }
+
+  // If guide closed: arrows zap channels, G opens guide, S opens sources
+  if(!guide.classList.contains("show")){
+    if(e.key === "ArrowRight"){ nextChannel(); e.preventDefault(); return; }
+    if(e.key === "ArrowLeft"){ prevChannel(); e.preventDefault(); return; }
+    if(e.key.toLowerCase() === "g"){ toggleGuide(true); e.preventDefault(); return; }
+    if(e.key.toLowerCase() === "s"){ toggleSourcePopup(); e.preventDefault(); return; }
     return;
   }
-}
 
-function showZap(){
-  zapN.textContent = zapBuf || "—";
-  zap.classList.add("show");
-  clearTimeout(zapTimer);
-  zapTimer = setTimeout(commitZap, 1100);
-}
-function hideZap(){
-  zap.classList.remove("show");
-}
-function commitZap(){
-  if(!zapBuf){ hideZap(); return; }
-  const n = parseInt(zapBuf, 10);
-  zapBuf = "";
-  hideZap();
-  if(Number.isFinite(n) && n >= 1 && n <= channels.length){
-    playChannel(n-1);
+  // If guide open:
+  if(e.key === "ArrowLeft"){
+    focusCatIndex = Math.max(0, focusCatIndex-1);
+    currentCat = categories[focusCatIndex];
+    focusTileIndex = 0;
+    buildCategoriesUI();
+    buildGrid();
+    e.preventDefault(); return;
   }
-}
+  if(e.key === "ArrowRight"){
+    moveFocus(1);
+    e.preventDefault(); return;
+  }
+  if(e.key === "ArrowUp"){
+    moveFocus(-getCols());
+    e.preventDefault(); return;
+  }
+  if(e.key === "ArrowDown"){
+    moveFocus(getCols());
+    e.preventDefault(); return;
+  }
+  if(e.key === "Enter" && !inSearch){
+    const chIdx = filteredIndexes[focusTileIndex];
+    if(typeof chIdx === "number"){
+      toggleGuide(false);
+      playChannel(chIdx);
+    }
+    e.preventDefault(); return;
+  }
+});
 
-/* ===================== Helpers ===================== */
-function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+/* Keep icons synced */
+video.addEventListener("play", () => updatePlayIcon());
+video.addEventListener("pause", () => updatePlayIcon());
 
-/* Video state icons keep synced */
-video.addEventListener("play", () => { updatePlayIcon(); });
-video.addEventListener("pause", () => { updatePlayIcon(); });
-
-/* If user clicks video area, show bar */
+/* Show info bar on click/tap */
 video.addEventListener("click", () => showInfoBar(true));
 video.addEventListener("touchstart", () => showInfoBar(true), {passive:true});
 </script>
