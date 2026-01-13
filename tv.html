@@ -566,9 +566,6 @@ const guide = document.getElementById("guide");
 const catPanel = document.getElementById("catPanel");
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
-const gNowLogo = document.getElementById("gNowLogo");
-const gNowName = document.getElementById("gNowName");
-const gNowCat  = document.getElementById("gNowCat");
 
 const settingsOverlay = document.getElementById("settingsOverlay");
 const resolutionList = document.getElementById("resolutionList");
@@ -1046,9 +1043,6 @@ function updateNowPlayingUI(){
   infoTitle.textContent = `${currentIndex+1}. ${ch.name || "Unknown"}`;
   infoSub.textContent = channelSubText();
 
-  gNowLogo.src = ch.img || "";
-  gNowName.textContent = ch.name || "—";
-  gNowCat.textContent = ch.category || "General";
 
   updateFavIcon();
   updatePlayIcon();
