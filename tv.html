@@ -9,18 +9,96 @@
 
 <style>
 @media (max-width: 768px) {
-  .guide{
+
+]  .guide{
+    top: auto;
+    bottom: 0;
+    left: 0;
     width: 100vw;
+    height: 85vh;
     max-width: 100vw;
     min-width: 100vw;
-    transform: translateX(-100%);
     border-right: none;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    transform: translateY(100%);
+    transition: transform .28s ease;
   }
 
   .guide.show{
-    transform: translateX(0);
+    transform: translateY(0);
+  }
+
+  .gTop{
+    justify-content: center;
+    position: relative;
+  }
+
+  .gTop::before{
+    content:"";
+    position:absolute;
+    top:8px;
+    width:40px;
+    height:4px;
+    border-radius:10px;
+    background:#666;
+  }
+
+  .gTop b,
+  .gTop span{
+    display:none;
+  }
+
+  .cat{
+    width: 100%;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+
+  .catItem{
+    white-space: nowrap;
+    padding: 14px 18px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .catItem.focus{
+    border-bottom-color: #e50914;
+    background: transparent;
+  }
+
+  .grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tile{
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .logo{
+    width: 56px;
+    height: 56px;
+  }
+
+  .infoBar{
+    bottom: 12px;
+    border-radius: 22px;
+    padding: 10px 12px;
+  }
+
+  .btn{
+    width: 40px;
+    height: 40px;
   }
 }
+
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
