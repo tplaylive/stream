@@ -9,7 +9,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-body{background:#000;color:#fff;overflow:hidden;touch-action:none}
+body{background:#000;color:#fff;overflow:hidden}
 
 .video-logo-watermark {
   position: fixed;
@@ -39,58 +39,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
 /* VIDEO */
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill;background:#000}
-
-/* Touch Controls Overlay */
-.touch-controls-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 60;
-  display: flex;
-  pointer-events: none;
-}
-
-.touch-left-area,
-.touch-right-area,
-.touch-center-area {
-  flex: 1;
-  height: 100%;
-  pointer-events: auto;
-}
-
-.touch-left-area {
-  /* For channel previous */
-}
-
-.touch-right-area {
-  /* For channel next */
-}
-
-.touch-center-area {
-  /* For play/pause and info bar */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.touch-hint {
-  position: absolute;
-  bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  display: none;
-  z-index: 65;
-  white-space: nowrap;
-  pointer-events: none;
-}
 
 /* ===== Loading / No Signal overlays ===== */
 .overlayCenter{
@@ -153,40 +101,11 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
   background:rgba(255,255,255,.16);
   color:#fff;font-size:16px;
   display:flex;align-items:center;justify-content:center;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
 }
 .btn:hover{background:#e50914}
 .btn.starOn{background:rgba(255,213,74,.25)}
 .btn.starOn:hover{background:rgba(255,213,74,.35)}
 .btn i{pointer-events:none}
-
-/* Mobile Touch Menu */
-.mobile-menu {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.85);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  padding: 15px;
-  display: none;
-  flex-direction: row;
-  gap: 10px;
-  z-index: 75;
-}
-
-.mobile-menu.show {
-  display: flex;
-}
-
-.mobile-menu .btn {
-  width: 50px;
-  height: 50px;
-  font-size: 18px;
-}
 
 /* ===== Settings Overlay ===== */
 .settingsOverlay{
@@ -213,7 +132,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
   width:34px;height:34px;border-radius:50%;border:none;
   background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  -webkit-tap-highlight-color: transparent;
 }
 .settingsClose:hover{background:#e50914}
 
@@ -234,8 +152,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
   padding:10px 14px;margin:6px 0;
   background:rgba(255,255,255,.07);border-radius:10px;
   cursor:pointer;transition:.2s;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
 }
 .settingsOption:hover{background:rgba(255,255,255,.1)}
 .settingsOption.active{
@@ -296,7 +212,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
   padding:12px 10px;color:#bbb;cursor:pointer;
   border-left:4px solid transparent;
   user-select:none;
-  -webkit-tap-highlight-color: transparent;
 }
 .catItem.focus{background:rgba(229,9,20,.9);color:#fff;border-left-color:#fff}
 
@@ -306,7 +221,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
 .searchBox input{
   width:100%;padding:10px 12px;border:none;outline:none;
   border-radius:18px;background:rgba(255,255,255,.10);color:#fff;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .grid{
@@ -320,7 +234,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
   background:rgba(255,255,255,.08);
   border:2px solid transparent;
   cursor:pointer;user-select:none;
-  -webkit-tap-highlight-color: transparent;
 }
 .tile:hover{background:rgba(255,255,255,.11)}
 .tile.focus{
@@ -337,7 +250,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
   width:36px;height:36px;border-radius:50%;
   border:none;background:rgba(255,255,255,.14);
   color:#fff;cursor:pointer;
-  -webkit-tap-highlight-color: transparent;
 }
 .favBtn.on{background:rgba(255,213,74,.28)}
 .favBtn:hover{background:rgba(229,9,20,.9)}
@@ -348,34 +260,6 @@ body{background:#000;color:#fff;overflow:hidden;touch-action:none}
 <body>
 <div class="video-container">
   <video id="video" autoplay playsinline></video>
-
-  <!-- Touch Controls -->
-  <div class="touch-controls-overlay" id="touchControls">
-    <div class="touch-left-area" id="touchLeft"></div>
-    <div class="touch-center-area" id="touchCenter"></div>
-    <div class="touch-right-area" id="touchRight"></div>
-  </div>
-  
-  <div class="touch-hint" id="touchHint"></div>
-
-  <!-- Mobile Quick Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="btn" id="mobilePrev" title="Previous Channel">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="btn" id="mobilePlay" title="Play/Pause">
-      <i class="fas fa-play" id="mobilePlayIcon"></i>
-    </button>
-    <button class="btn" id="mobileMute" title="Mute/Unmute">
-      <i class="fas fa-volume-up" id="mobileMuteIcon"></i>
-    </button>
-    <button class="btn" id="mobileMenuBtn" title="Menu">
-      <i class="fas fa-bars"></i>
-    </button>
-    <button class="btn" id="mobileNext" title="Next Channel">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-  </div>
 
   <div id="loading" class="overlayCenter"><div class="spinner"></div></div>
 
@@ -511,18 +395,6 @@ const resolutionList = document.getElementById("resolutionList");
 const audioList = document.getElementById("audioList");
 const serverList = document.getElementById("serverList");
 
-/* Touch Controls */
-const touchControls = document.getElementById("touchControls");
-const touchLeft = document.getElementById("touchLeft");
-const touchCenter = document.getElementById("touchCenter");
-const touchRight = document.getElementById("touchRight");
-const touchHint = document.getElementById("touchHint");
-
-/* Mobile Menu */
-const mobileMenu = document.getElementById("mobileMenu");
-const mobilePlayIcon = document.getElementById("mobilePlayIcon");
-const mobileMuteIcon = document.getElementById("mobileMuteIcon");
-
 /* Players */
 let hls = null;
 let shakaP = null;
@@ -530,7 +402,6 @@ let shakaP = null;
 /* State */
 let currentIndex = 0;
 let currentSourceIndex = 0;
-let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 /* Guide state */
 let categories = [];
@@ -541,13 +412,6 @@ let focusTileIndex = 0;
 
 /* Fullscreen state */
 let isFullscreen = false;
-
-/* Touch state */
-let touchStartX = 0;
-let touchStartY = 0;
-let touchStartTime = 0;
-let lastTapTime = 0;
-let touchHintTimeout = null;
 
 /* Favorites */
 const FAV_KEY = "tplay_favs_v1";
@@ -562,120 +426,6 @@ let infoHideTimer = null;
 let okClickTimer = null;
 let backClickTimer = null;
 const DOUBLE_CLICK_DELAY = 400;
-
-/* Mobile menu hide timer */
-let mobileMenuHideTimer = null;
-
-/* ===================== Touch Controls ===================== */
-function showTouchHint(text) {
-  touchHint.textContent = text;
-  touchHint.style.display = 'block';
-  
-  clearTimeout(touchHintTimeout);
-  touchHintTimeout = setTimeout(() => {
-    touchHint.style.display = 'none';
-  }, 1500);
-}
-
-function initTouchControls() {
-  // Setup touch areas
-  touchLeft.addEventListener('touchstart', handleTouchStart);
-  touchCenter.addEventListener('touchstart', handleTouchStart);
-  touchRight.addEventListener('touchstart', handleTouchStart);
-  
-  touchLeft.addEventListener('touchend', (e) => handleTouchEnd(e, 'left'));
-  touchCenter.addEventListener('touchend', (e) => handleTouchEnd(e, 'center'));
-  touchRight.addEventListener('touchend', (e) => handleTouchEnd(e, 'right'));
-  
-  // Setup video touch for play/pause
-  video.addEventListener('touchstart', handleVideoTouch);
-  
-  // Setup mobile menu buttons
-  document.getElementById('mobilePrev').addEventListener('click', prevChannel);
-  document.getElementById('mobilePlay').addEventListener('click', togglePlay);
-  document.getElementById('mobileMute').addEventListener('click', toggleMute);
-  document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
-  document.getElementById('mobileNext').addEventListener('click', nextChannel);
-}
-
-function handleTouchStart(e) {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-  touchStartTime = Date.now();
-  e.preventDefault();
-}
-
-function handleTouchEnd(e, area) {
-  const touchEndX = e.changedTouches[0].clientX;
-  const touchEndY = e.changedTouches[0].clientY;
-  const deltaX = touchEndX - touchStartX;
-  const deltaY = touchEndY - touchStartY;
-  const duration = Date.now() - touchStartTime;
-  
-  // Prevent default to avoid scrolling
-  e.preventDefault();
-  
-  // Handle swipe gestures
-  if (duration < 300 && Math.abs(deltaX) > 30 && Math.abs(deltaY) < 50) {
-    if (deltaX > 0) {
-      // Swipe right - previous channel
-      prevChannel();
-      showTouchHint("← Previous Channel");
-    } else {
-      // Swipe left - next channel
-      nextChannel();
-      showTouchHint("Next Channel →");
-    }
-  } else if (area === 'left') {
-    // Tap on left area - previous channel
-    prevChannel();
-    showTouchHint("← Previous Channel");
-  } else if (area === 'right') {
-    // Tap on right area - next channel
-    nextChannel();
-    showTouchHint("Next Channel →");
-  } else if (area === 'center') {
-    // Tap on center area - toggle info bar
-    showInfoBar(true, 5000);
-    showTouchHint("Controls");
-  }
-}
-
-function handleVideoTouch(e) {
-  const currentTime = Date.now();
-  
-  if (currentTime - lastTapTime < DOUBLE_CLICK_DELAY) {
-    // Double tap - toggle play/pause
-    clearTimeout(okClickTimer);
-    okClickTimer = null;
-    togglePlay();
-    showTouchHint(video.paused ? "▶ Play" : "⏸ Pause");
-  } else {
-    // Single tap - show mobile menu or info bar
-    okClickTimer = setTimeout(() => {
-      if (isMobile) {
-        toggleMobileMenu();
-      } else {
-        showInfoBar(true, 5000);
-      }
-      okClickTimer = null;
-    }, DOUBLE_CLICK_DELAY);
-  }
-  
-  lastTapTime = currentTime;
-  e.preventDefault();
-}
-
-function toggleMobileMenu() {
-  mobileMenu.classList.toggle('show');
-  showInfoBar(true, 8000);
-  
-  // Auto hide mobile menu after 5 seconds
-  clearTimeout(mobileMenuHideTimer);
-  mobileMenuHideTimer = setTimeout(() => {
-    mobileMenu.classList.remove('show');
-  }, 5000);
-}
 
 /* ===================== Logo Control Functions ===================== */
 function showLogo() {
@@ -728,8 +478,6 @@ function toggleSettings(force) {
     loadAudioTracks();
     loadServerSources();
     showInfoBar(true, 8000);
-    // Hide mobile menu when settings open
-    mobileMenu.classList.remove('show');
   }
 }
 
@@ -908,9 +656,6 @@ window.addEventListener("load", () => {
     console.error("channels not found in main.js");
     return;
   }
-
-  // Initialize touch controls
-  initTouchControls();
 
   // auto mute OFF
   video.muted = false;
@@ -1135,26 +880,15 @@ function togglePlay(){
   if(video.paused) {
     video.play().catch(()=>{});
     showLogo();
-    if (isMobile) {
-      mobilePlayIcon.className = "fas fa-pause";
-      playIcon.className = "fas fa-pause";
-    }
   }
   else {
     video.pause();
-    if (isMobile) {
-      mobilePlayIcon.className = "fas fa-play";
-      playIcon.className = "fas fa-play";
-    }
   }
   updatePlayIcon();
   showInfoBar(true, 8000);
 }
 function updatePlayIcon(){
   playIcon.className = video.paused ? "fas fa-play" : "fas fa-pause";
-  if (isMobile) {
-    mobilePlayIcon.className = video.paused ? "fas fa-play" : "fas fa-pause";
-  }
 }
 
 function toggleMute(){
@@ -1164,9 +898,6 @@ function toggleMute(){
 }
 function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
-  if (isMobile) {
-    mobileMuteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
-  }
 }
 
 function nextChannel(){ 
@@ -1467,11 +1198,8 @@ video.addEventListener('playing', () => {
   showLogo();
 });
 
-video.addEventListener("click", () => {
-  if (!isMobile) {
-    showInfoBar(true, 2400);
-  }
-});
+video.addEventListener("click", () => showInfoBar(true, 2400));
+video.addEventListener("touchstart", () => showInfoBar(true, 2400), {passive:true});
 </script>
 </body>
 </html>
