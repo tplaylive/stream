@@ -110,27 +110,27 @@ body{background:#000;color:#fff;overflow:hidden}
 /* ===== Settings Overlay ===== */
 .settingsOverlay{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(500px,90vw);max-height:80vh;
-  background:rgba(0,0,0,.92);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(10px);
-  border-radius:20px;
+  width:min(400px,85vw);max-height:75vh;
+  background:rgba(0,0,0,.94);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  border-radius:16px;
   padding:0;
   display:none;flex-direction:column;
   z-index:150;overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.6);
+  box-shadow:0 15px 40px rgba(0,0,0,.7);
 }
 .settingsOverlay.show{display:flex}
 
 .settingsHeader{
-  padding:18px 20px;background:rgba(20,20,20,.95);
-  border-bottom:1px solid rgba(255,255,255,.1);
+  padding:16px 20px;background:rgba(25,25,25,.98);
+  border-bottom:1px solid rgba(255,255,255,.12);
   display:flex;justify-content:space-between;align-items:center;
 }
-.settingsHeader b{font-size:20px}
+.settingsHeader b{font-size:18px}
 .settingsClose{
-  width:36px;height:36px;border-radius:50%;border:none;
-  background:rgba(255,255,255,.12);color:#fff;cursor:pointer;
+  width:34px;height:34px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
 }
 .settingsClose:hover{background:#e50914}
@@ -139,29 +139,33 @@ body{background:#000;color:#fff;overflow:hidden}
   flex:1;padding:20px;overflow-y:auto;
 }
 .settingsSection{
-  margin-bottom:24px;
+  margin-bottom:20px;
 }
 .settingsTitle{
-  font-size:16px;font-weight:700;margin-bottom:12px;
-  color:#fff;display:flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:600;margin-bottom:10px;
+  color:#ccc;display:flex;align-items:center;gap:8px;
 }
-.settingsTitle i{color:#e50914;font-size:14px}
+.settingsTitle i{color:#e50914;font-size:13px}
 
 .settingsOption{
   display:flex;align-items:center;justify-content:space-between;
-  padding:12px 16px;margin:8px 0;
-  background:rgba(255,255,255,.08);border-radius:12px;
+  padding:10px 14px;margin:6px 0;
+  background:rgba(255,255,255,.07);border-radius:10px;
   cursor:pointer;transition:.2s;
 }
-.settingsOption:hover{background:rgba(255,255,255,.12)}
-.settingsOption.active{background:rgba(229,9,20,.2);border-left:4px solid #e50914}
-.optionLabel{font-size:15px;color:#fff}
-.optionValue{font-size:14px;color:#bbb}
+.settingsOption:hover{background:rgba(255,255,255,.1)}
+.settingsOption.active{
+  background:rgba(229,9,20,.25);
+  border-left:3px solid #e50914;
+}
+.optionLabel{font-size:14px;color:#fff}
+.optionValue{font-size:13px;color:#bbb;font-weight:500}
 .settingsOption.disabled{opacity:.5;cursor:not-allowed}
+.settingsOption.disabled .optionLabel{color:#888}
 
-.resolutionList, .audioList{
-  max-height:200px;overflow-y:auto;margin-top:8px;
-  border-radius:10px;background:rgba(10,10,10,.9);
+.noOptions{
+  padding:12px;text-align:center;color:#888;font-size:14px;
+  background:rgba(255,255,255,.05);border-radius:10px;
 }
 
 /* ===== Left Guide Overlay ===== */
@@ -322,9 +326,9 @@ body{background:#000;color:#fff;overflow:hidden}
       <div class="settingsSection">
         <div class="settingsTitle">
           <i class="fas fa-tv"></i>
-          <span>Video Quality</span>
+          <span>Video Resolution</span>
         </div>
-        <div class="resolutionList" id="resolutionList">
+        <div id="resolutionList">
           <!-- Dynamic resolution options will be added here -->
         </div>
       </div>
@@ -334,38 +338,18 @@ body{background:#000;color:#fff;overflow:hidden}
           <i class="fas fa-volume-up"></i>
           <span>Audio Language</span>
         </div>
-        <div class="audioList" id="audioList">
+        <div id="audioList">
           <!-- Dynamic audio track options will be added here -->
         </div>
       </div>
       
       <div class="settingsSection">
         <div class="settingsTitle">
-          <i class="fas fa-broadcast-tower"></i>
-          <span>Playback Settings</span>
+          <i class="fas fa-server"></i>
+          <span>Server Source</span>
         </div>
-        <div class="settingsOption" id="autoNextChannel">
-          <div class="optionLabel">Auto Next Channel on Error</div>
-          <div class="optionValue" id="autoNextValue">ON</div>
-        </div>
-        <div class="settingsOption" id="showWatermark">
-          <div class="optionLabel">Show Watermark</div>
-          <div class="optionValue" id="watermarkValue">ON</div>
-        </div>
-        <div class="settingsOption" id="lowLatency">
-          <div class="optionLabel">Low Latency Mode</div>
-          <div class="optionValue" id="latencyValue">ON</div>
-        </div>
-      </div>
-      
-      <div class="settingsSection">
-        <div class="settingsTitle">
-          <i class="fas fa-info-circle"></i>
-          <span>About</span>
-        </div>
-        <div style="padding:12px 16px;background:rgba(255,255,255,.05);border-radius:12px;">
-          <div style="font-size:14px;color:#bbb;margin-bottom:8px;">T Play TV v2.0</div>
-          <div style="font-size:12px;color:#888;">© 2023 T Play • HLS/DASH Player</div>
+        <div id="serverList">
+          <!-- Dynamic server options will be added here -->
         </div>
       </div>
     </div>
@@ -409,6 +393,7 @@ const gNowCat  = document.getElementById("gNowCat");
 const settingsOverlay = document.getElementById("settingsOverlay");
 const resolutionList = document.getElementById("resolutionList");
 const audioList = document.getElementById("audioList");
+const serverList = document.getElementById("serverList");
 
 /* Players */
 let hls = null;
@@ -417,11 +402,6 @@ let shakaP = null;
 /* State */
 let currentIndex = 0;
 let currentSourceIndex = 0;
-
-/* Settings State */
-let autoNextEnabled = true;
-let watermarkEnabled = true;
-let lowLatencyEnabled = true;
 
 /* Guide state */
 let categories = [];
@@ -449,9 +429,7 @@ const DOUBLE_CLICK_DELAY = 400;
 
 /* ===================== Logo Control Functions ===================== */
 function showLogo() {
-  if(watermarkEnabled) {
-    videoLogoWatermark.classList.remove('hidden');
-  }
+  videoLogoWatermark.classList.remove('hidden');
 }
 
 function hideLogo() {
@@ -496,22 +474,11 @@ function toggleSettings(force) {
   settingsOverlay.classList.toggle('show', wantOpen);
   
   if(wantOpen) {
-    updateSettingsUI();
     loadAvailableResolutions();
     loadAudioTracks();
+    loadServerSources();
     showInfoBar(true, 8000);
   }
-}
-
-function updateSettingsUI() {
-  document.getElementById('autoNextValue').textContent = autoNextEnabled ? 'ON' : 'OFF';
-  document.getElementById('watermarkValue').textContent = watermarkEnabled ? 'ON' : 'OFF';
-  document.getElementById('latencyValue').textContent = lowLatencyEnabled ? 'ON' : 'OFF';
-  
-  // Update toggle classes
-  document.getElementById('autoNextChannel').classList.toggle('active', autoNextEnabled);
-  document.getElementById('showWatermark').classList.toggle('active', watermarkEnabled);
-  document.getElementById('lowLatency').classList.toggle('active', lowLatencyEnabled);
 }
 
 function loadAvailableResolutions() {
@@ -523,7 +490,7 @@ function loadAvailableResolutions() {
   if (hls && hls.levels && hls.levels.length > 0) {
     qualities = hls.levels.map((level, index) => ({
       id: index,
-      label: level.height ? `${level.height}p` : `${level.bitrate/1000}Kbps`,
+      label: level.height ? `${level.height}p` : `${Math.round(level.bitrate/1000)}kbps`,
       height: level.height,
       selected: index === hls.currentLevel
     }));
@@ -532,22 +499,32 @@ function loadAvailableResolutions() {
     const tracks = shakaP.getVariantTracks();
     qualities = tracks.map(track => ({
       id: track.id,
-      label: track.height ? `${track.height}p` : `${track.bandwidth/1000}Kbps`,
+      label: track.height ? `${track.height}p` : `${Math.round(track.bandwidth/1000)}kbps`,
       height: track.height,
       selected: track.active
     }));
   }
   
-  // If no dynamic qualities, show static options
+  // If no dynamic qualities found
   if (qualities.length === 0) {
-    qualities = [
-      { id: 'auto', label: 'Auto', selected: true },
-      { id: '720p', label: '720p', selected: false },
-      { id: '480p', label: '480p', selected: false },
-      { id: '360p', label: '360p', selected: false }
-    ];
+    const noOpt = document.createElement('div');
+    noOpt.className = 'noOptions';
+    noOpt.textContent = 'No resolution options available';
+    resolutionList.appendChild(noOpt);
+    return;
   }
   
+  // Add Auto option first
+  const autoOption = document.createElement('div');
+  autoOption.className = `settingsOption ${hls?.currentLevel === -1 ? 'active' : ''}`;
+  autoOption.innerHTML = `
+    <div class="optionLabel">Auto (Best)</div>
+    <div class="optionValue">${hls?.currentLevel === -1 ? '✓' : ''}</div>
+  `;
+  autoOption.onclick = () => selectResolution(-1, 'Auto');
+  resolutionList.appendChild(autoOption);
+  
+  // Add available qualities
   qualities.forEach(quality => {
     const option = document.createElement('div');
     option.className = `settingsOption ${quality.selected ? 'active' : ''}`;
@@ -573,7 +550,6 @@ function selectResolution(id, label) {
   
   setBadge(`Resolution: ${label}`, 'live');
   toggleSettings(false);
-  loadAvailableResolutions();
 }
 
 function loadAudioTracks() {
@@ -585,18 +561,18 @@ function loadAudioTracks() {
     const tracks = shakaP.getTextTracks();
     audioTracks = tracks.map(track => ({
       id: track.id,
-      label: track.language || 'Unknown',
+      label: track.language ? ` ${track.language.toUpperCase()}` : 'Unknown',
       selected: track.active
     }));
   }
   
-  // If no dynamic audio tracks, show static options
+  // If no audio tracks found
   if (audioTracks.length === 0) {
-    audioTracks = [
-      { id: 'en', label: 'English', selected: true },
-      { id: 'es', label: 'Spanish', selected: false },
-      { id: 'fr', label: 'French', selected: false }
-    ];
+    const noOpt = document.createElement('div');
+    noOpt.className = 'noOptions';
+    noOpt.textContent = 'No audio language options';
+    audioList.appendChild(noOpt);
+    return;
   }
   
   audioTracks.forEach(track => {
@@ -622,35 +598,55 @@ function selectAudioTrack(id, label) {
   
   setBadge(`Audio: ${label}`, 'live');
   toggleSettings(false);
-  loadAudioTracks();
 }
 
-// Settings toggle handlers
-document.getElementById('autoNextChannel').onclick = function() {
-  autoNextEnabled = !autoNextEnabled;
-  updateSettingsUI();
-  localStorage.setItem('tplay_autoNext', autoNextEnabled);
-};
-
-document.getElementById('showWatermark').onclick = function() {
-  watermarkEnabled = !watermarkEnabled;
-  updateSettingsUI();
-  localStorage.setItem('tplay_watermark', watermarkEnabled);
+function loadServerSources() {
+  serverList.innerHTML = '';
   
-  if (watermarkEnabled && !video.paused) {
-    showLogo();
-  } else {
-    hideLogo();
+  const ch = channels[currentIndex];
+  const sources = ch.sources || [];
+  
+  // If no multiple sources
+  if (sources.length <= 1) {
+    const noOpt = document.createElement('div');
+    noOpt.className = 'noOptions';
+    noOpt.textContent = 'Only one server available';
+    serverList.appendChild(noOpt);
+    return;
   }
-};
+  
+  sources.forEach((source, index) => {
+    const option = document.createElement('div');
+    option.className = `settingsOption ${index === currentSourceIndex ? 'active' : ''}`;
+    const sourceName = source.name || `Server ${index + 1}`;
+    const sourceType = source.type ? ` (${source.type.toUpperCase()})` : '';
+    option.innerHTML = `
+      <div class="optionLabel">${sourceName}${sourceType}</div>
+      <div class="optionValue">${index === currentSourceIndex ? '✓' : ''}</div>
+    `;
+    option.onclick = () => selectServerSource(index, sourceName);
+    serverList.appendChild(option);
+  });
+}
 
-document.getElementById('lowLatency').onclick = function() {
-  lowLatencyEnabled = !lowLatencyEnabled;
-  updateSettingsUI();
-  localStorage.setItem('tplay_lowLatency', lowLatencyEnabled);
-};
+function selectServerSource(index, name) {
+  currentSourceIndex = index;
+  setBadge(`Switched to ${name}`, 'live');
+  toggleSettings(false);
+  
+  // Reload the source
+  showLoading(true);
+  setTimeout(() => {
+    loadSource(currentSourceIndex).then(success => {
+      if (success) {
+        showLoading(false);
+        updateNowPlayingUI();
+      }
+    });
+  }, 300);
+}
 
-document.getElementById('btnCloseSettings').onclick = function() {
+document.getElementById("btnCloseSettings").onclick = function() {
   toggleSettings(false);
 };
 
@@ -660,11 +656,6 @@ window.addEventListener("load", () => {
     console.error("channels not found in main.js");
     return;
   }
-
-  // Load settings
-  autoNextEnabled = localStorage.getItem('tplay_autoNext') !== 'false';
-  watermarkEnabled = localStorage.getItem('tplay_watermark') !== 'false';
-  lowLatencyEnabled = localStorage.getItem('tplay_lowLatency') !== 'false';
 
   // auto mute OFF
   video.muted = false;
@@ -756,14 +747,7 @@ async function tryLoadSourceLoop(){
     currentSourceIndex++;
   }
 
-  if(autoNextEnabled) {
-    await failAllSources("Switching next channel…");
-  } else {
-    showLoading(false);
-    showNoSignal(true, "All sources failed. Press OK to retry.");
-    setBadge("ALL SOURCES FAILED", "err");
-    hideLogo();
-  }
+  await failAllSources("Switching next channel…");
 }
 
 async function loadSource(srcIdx){
@@ -794,12 +778,7 @@ async function loadSource(srcIdx){
       await shakaP.load(src.url);
     } else {
       if(Hls.isSupported()){
-        hls = new Hls({ 
-          enableWorker:true, 
-          lowLatencyMode:lowLatencyEnabled,
-          maxBufferLength: 15,
-          maxMaxBufferLength: 60
-        });
+        hls = new Hls({ enableWorker:true, lowLatencyMode:true });
         hls.loadSource(src.url);
         hls.attachMedia(video);
 
@@ -855,9 +834,7 @@ async function failAllSources(msg){
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
-  if(autoNextEnabled) {
-    await playChannel((currentIndex + 1) % channels.length);
-  }
+  await playChannel((currentIndex + 1) % channels.length);
 }
 
 /* ===================== UI helpers ===================== */
@@ -1090,7 +1067,7 @@ document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
   // Prevent default for arrow keys to avoid scrolling
-  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F"].includes(e.key)) {
+  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S"].includes(e.key)) {
     e.preventDefault();
   }
 
@@ -1195,6 +1172,11 @@ document.addEventListener("keydown", (e) => {
     case "f":
     case "F":
       toggleFullscreen();
+      break;
+      
+    case "s":
+    case "S":
+      toggleSettings();
       break;
   }
 });
