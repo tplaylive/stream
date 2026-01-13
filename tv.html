@@ -20,7 +20,7 @@ body{background:#000;color:#fff;overflow:hidden}
   pointer-events: none;
   mix-blend-mode: screen;
   filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
-  transition: opacity 0.5s ease; /* Smooth transition */
+  transition: opacity 0.5s ease;
 }
 
 .video-logo-watermark.hidden {
@@ -100,13 +100,71 @@ body{background:#000;color:#fff;overflow:hidden}
   border:none;cursor:pointer;
   background:rgba(255,255,255,.16);
   color:#fff;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
 }
 .btn:hover{background:#e50914}
 .btn.starOn{background:rgba(255,213,74,.25)}
 .btn.starOn:hover{background:rgba(255,213,74,.35)}
 .btn i{pointer-events:none}
 
-/* ===== Left Guide Overlay (on top of video) ===== */
+/* ===== Settings Overlay ===== */
+.settingsOverlay{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(500px,90vw);max-height:80vh;
+  background:rgba(0,0,0,.92);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:0;
+  display:none;flex-direction:column;
+  z-index:150;overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+.settingsOverlay.show{display:flex}
+
+.settingsHeader{
+  padding:18px 20px;background:rgba(20,20,20,.95);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.settingsHeader b{font-size:20px}
+.settingsClose{
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.12);color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.settingsClose:hover{background:#e50914}
+
+.settingsBody{
+  flex:1;padding:20px;overflow-y:auto;
+}
+.settingsSection{
+  margin-bottom:24px;
+}
+.settingsTitle{
+  font-size:16px;font-weight:700;margin-bottom:12px;
+  color:#fff;display:flex;align-items:center;gap:8px;
+}
+.settingsTitle i{color:#e50914;font-size:14px}
+
+.settingsOption{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;margin:8px 0;
+  background:rgba(255,255,255,.08);border-radius:12px;
+  cursor:pointer;transition:.2s;
+}
+.settingsOption:hover{background:rgba(255,255,255,.12)}
+.settingsOption.active{background:rgba(229,9,20,.2);border-left:4px solid #e50914}
+.optionLabel{font-size:15px;color:#fff}
+.optionValue{font-size:14px;color:#bbb}
+.settingsOption.disabled{opacity:.5;cursor:not-allowed}
+
+.resolutionList, .audioList{
+  max-height:200px;overflow-y:auto;margin-top:8px;
+  border-radius:10px;background:rgba(10,10,10,.9);
+}
+
+/* ===== Left Guide Overlay ===== */
 .guide{
   position:absolute;top:0;left:0;height:100%;
   width:34vw;max-width:520px;min-width:360px;
@@ -220,6 +278,8 @@ body{background:#000;color:#fff;overflow:hidden}
       <button class="btn" id="btnPrev" title="Prev"><i class="fas fa-chevron-left"></i></button>
       <button class="btn" id="btnPlay" title="Play/Pause"><i class="fas fa-play" id="playIcon"></i></button>
       <button class="btn" id="btnMute" title="Mute/Unmute"><i class="fas fa-volume-up" id="muteIcon"></i></button>
+      <button class="btn" id="btnFullscreen" title="Fullscreen"><i class="fas fa-expand" id="fullscreenIcon"></i></button>
+      <button class="btn" id="btnSettings" title="Settings"><i class="fas fa-cog"></i></button>
       <button class="btn" id="btnGuide" title="Guide"><i class="fas fa-list"></i></button>
       <button class="btn" id="btnNext" title="Next"><i class="fas fa-chevron-right"></i></button>
       <button class="btn" id="btnFav" title="Favorite"><i class="fas fa-star" id="favIcon"></i></button>
@@ -249,6 +309,67 @@ body{background:#000;color:#fff;overflow:hidden}
       </div>
     </div>
   </div>
+
+  <!-- Settings Overlay -->
+  <div id="settingsOverlay" class="settingsOverlay">
+    <div class="settingsHeader">
+      <b><i class="fas fa-cog"></i> Settings</b>
+      <button class="settingsClose" id="btnCloseSettings">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="settingsBody">
+      <div class="settingsSection">
+        <div class="settingsTitle">
+          <i class="fas fa-tv"></i>
+          <span>Video Quality</span>
+        </div>
+        <div class="resolutionList" id="resolutionList">
+          <!-- Dynamic resolution options will be added here -->
+        </div>
+      </div>
+      
+      <div class="settingsSection">
+        <div class="settingsTitle">
+          <i class="fas fa-volume-up"></i>
+          <span>Audio Language</span>
+        </div>
+        <div class="audioList" id="audioList">
+          <!-- Dynamic audio track options will be added here -->
+        </div>
+      </div>
+      
+      <div class="settingsSection">
+        <div class="settingsTitle">
+          <i class="fas fa-broadcast-tower"></i>
+          <span>Playback Settings</span>
+        </div>
+        <div class="settingsOption" id="autoNextChannel">
+          <div class="optionLabel">Auto Next Channel on Error</div>
+          <div class="optionValue" id="autoNextValue">ON</div>
+        </div>
+        <div class="settingsOption" id="showWatermark">
+          <div class="optionLabel">Show Watermark</div>
+          <div class="optionValue" id="watermarkValue">ON</div>
+        </div>
+        <div class="settingsOption" id="lowLatency">
+          <div class="optionLabel">Low Latency Mode</div>
+          <div class="optionValue" id="latencyValue">ON</div>
+        </div>
+      </div>
+      
+      <div class="settingsSection">
+        <div class="settingsTitle">
+          <i class="fas fa-info-circle"></i>
+          <span>About</span>
+        </div>
+        <div style="padding:12px 16px;background:rgba(255,255,255,.05);border-radius:12px;">
+          <div style="font-size:14px;color:#bbb;margin-bottom:8px;">T Play TV v2.0</div>
+          <div style="font-size:12px;color:#888;">© 2023 T Play • HLS/DASH Player</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="video-logo-watermark hidden" id="videoLogoWatermark">
@@ -275,6 +396,7 @@ const infoSub = document.getElementById("infoSub");
 const playIcon = document.getElementById("playIcon");
 const muteIcon = document.getElementById("muteIcon");
 const favIcon = document.getElementById("favIcon");
+const fullscreenIcon = document.getElementById("fullscreenIcon");
 
 const guide = document.getElementById("guide");
 const catPanel = document.getElementById("catPanel");
@@ -284,6 +406,10 @@ const gNowLogo = document.getElementById("gNowLogo");
 const gNowName = document.getElementById("gNowName");
 const gNowCat  = document.getElementById("gNowCat");
 
+const settingsOverlay = document.getElementById("settingsOverlay");
+const resolutionList = document.getElementById("resolutionList");
+const audioList = document.getElementById("audioList");
+
 /* Players */
 let hls = null;
 let shakaP = null;
@@ -292,12 +418,20 @@ let shakaP = null;
 let currentIndex = 0;
 let currentSourceIndex = 0;
 
+/* Settings State */
+let autoNextEnabled = true;
+let watermarkEnabled = true;
+let lowLatencyEnabled = true;
+
 /* Guide state */
 let categories = [];
 let currentCat = "All";
 let filteredIndexes = [];
 let focusCatIndex = 0;
 let focusTileIndex = 0;
+
+/* Fullscreen state */
+let isFullscreen = false;
 
 /* Favorites */
 const FAV_KEY = "tplay_favs_v1";
@@ -315,12 +449,210 @@ const DOUBLE_CLICK_DELAY = 400;
 
 /* ===================== Logo Control Functions ===================== */
 function showLogo() {
-  videoLogoWatermark.classList.remove('hidden');
+  if(watermarkEnabled) {
+    videoLogoWatermark.classList.remove('hidden');
+  }
 }
 
 function hideLogo() {
   videoLogoWatermark.classList.add('hidden');
 }
+
+/* ===================== Fullscreen Functions ===================== */
+function toggleFullscreen() {
+  if (!isFullscreen) {
+    const container = document.querySelector('.video-container');
+    if (container.requestFullscreen) {
+      container.requestFullscreen();
+    } else if (container.webkitRequestFullscreen) {
+      container.webkitRequestFullscreen();
+    } else if (container.msRequestFullscreen) {
+      container.msRequestFullscreen();
+    }
+    fullscreenIcon.className = "fas fa-compress";
+    isFullscreen = true;
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+    fullscreenIcon.className = "fas fa-expand";
+    isFullscreen = false;
+  }
+  showInfoBar(true, 8000);
+}
+
+document.addEventListener('fullscreenchange', () => {
+  isFullscreen = !!document.fullscreenElement;
+  fullscreenIcon.className = isFullscreen ? "fas fa-compress" : "fas fa-expand";
+});
+
+/* ===================== Settings Functions ===================== */
+function toggleSettings(force) {
+  const wantOpen = (typeof force === 'boolean') ? force : !settingsOverlay.classList.contains('show');
+  settingsOverlay.classList.toggle('show', wantOpen);
+  
+  if(wantOpen) {
+    updateSettingsUI();
+    loadAvailableResolutions();
+    loadAudioTracks();
+    showInfoBar(true, 8000);
+  }
+}
+
+function updateSettingsUI() {
+  document.getElementById('autoNextValue').textContent = autoNextEnabled ? 'ON' : 'OFF';
+  document.getElementById('watermarkValue').textContent = watermarkEnabled ? 'ON' : 'OFF';
+  document.getElementById('latencyValue').textContent = lowLatencyEnabled ? 'ON' : 'OFF';
+  
+  // Update toggle classes
+  document.getElementById('autoNextChannel').classList.toggle('active', autoNextEnabled);
+  document.getElementById('showWatermark').classList.toggle('active', watermarkEnabled);
+  document.getElementById('lowLatency').classList.toggle('active', lowLatencyEnabled);
+}
+
+function loadAvailableResolutions() {
+  resolutionList.innerHTML = '';
+  
+  // Check current player for available qualities
+  let qualities = [];
+  
+  if (hls && hls.levels && hls.levels.length > 0) {
+    qualities = hls.levels.map((level, index) => ({
+      id: index,
+      label: level.height ? `${level.height}p` : `${level.bitrate/1000}Kbps`,
+      height: level.height,
+      selected: index === hls.currentLevel
+    }));
+  } else if (shakaP) {
+    // Shaka Player tracks
+    const tracks = shakaP.getVariantTracks();
+    qualities = tracks.map(track => ({
+      id: track.id,
+      label: track.height ? `${track.height}p` : `${track.bandwidth/1000}Kbps`,
+      height: track.height,
+      selected: track.active
+    }));
+  }
+  
+  // If no dynamic qualities, show static options
+  if (qualities.length === 0) {
+    qualities = [
+      { id: 'auto', label: 'Auto', selected: true },
+      { id: '720p', label: '720p', selected: false },
+      { id: '480p', label: '480p', selected: false },
+      { id: '360p', label: '360p', selected: false }
+    ];
+  }
+  
+  qualities.forEach(quality => {
+    const option = document.createElement('div');
+    option.className = `settingsOption ${quality.selected ? 'active' : ''}`;
+    option.innerHTML = `
+      <div class="optionLabel">${quality.label}</div>
+      <div class="optionValue">${quality.selected ? '✓' : ''}</div>
+    `;
+    option.onclick = () => selectResolution(quality.id, quality.label);
+    resolutionList.appendChild(option);
+  });
+}
+
+function selectResolution(id, label) {
+  if (hls) {
+    hls.currentLevel = id;
+  } else if (shakaP) {
+    const tracks = shakaP.getVariantTracks();
+    const track = tracks.find(t => t.id === id);
+    if (track) {
+      shakaP.selectVariantTrack(track, true);
+    }
+  }
+  
+  setBadge(`Resolution: ${label}`, 'live');
+  toggleSettings(false);
+  loadAvailableResolutions();
+}
+
+function loadAudioTracks() {
+  audioList.innerHTML = '';
+  
+  let audioTracks = [];
+  
+  if (shakaP) {
+    const tracks = shakaP.getTextTracks();
+    audioTracks = tracks.map(track => ({
+      id: track.id,
+      label: track.language || 'Unknown',
+      selected: track.active
+    }));
+  }
+  
+  // If no dynamic audio tracks, show static options
+  if (audioTracks.length === 0) {
+    audioTracks = [
+      { id: 'en', label: 'English', selected: true },
+      { id: 'es', label: 'Spanish', selected: false },
+      { id: 'fr', label: 'French', selected: false }
+    ];
+  }
+  
+  audioTracks.forEach(track => {
+    const option = document.createElement('div');
+    option.className = `settingsOption ${track.selected ? 'active' : ''}`;
+    option.innerHTML = `
+      <div class="optionLabel">${track.label}</div>
+      <div class="optionValue">${track.selected ? '✓' : ''}</div>
+    `;
+    option.onclick = () => selectAudioTrack(track.id, track.label);
+    audioList.appendChild(option);
+  });
+}
+
+function selectAudioTrack(id, label) {
+  if (shakaP) {
+    const tracks = shakaP.getTextTracks();
+    const track = tracks.find(t => t.id === id);
+    if (track) {
+      shakaP.selectTextTrack(track);
+    }
+  }
+  
+  setBadge(`Audio: ${label}`, 'live');
+  toggleSettings(false);
+  loadAudioTracks();
+}
+
+// Settings toggle handlers
+document.getElementById('autoNextChannel').onclick = function() {
+  autoNextEnabled = !autoNextEnabled;
+  updateSettingsUI();
+  localStorage.setItem('tplay_autoNext', autoNextEnabled);
+};
+
+document.getElementById('showWatermark').onclick = function() {
+  watermarkEnabled = !watermarkEnabled;
+  updateSettingsUI();
+  localStorage.setItem('tplay_watermark', watermarkEnabled);
+  
+  if (watermarkEnabled && !video.paused) {
+    showLogo();
+  } else {
+    hideLogo();
+  }
+};
+
+document.getElementById('lowLatency').onclick = function() {
+  lowLatencyEnabled = !lowLatencyEnabled;
+  updateSettingsUI();
+  localStorage.setItem('tplay_lowLatency', lowLatencyEnabled);
+};
+
+document.getElementById('btnCloseSettings').onclick = function() {
+  toggleSettings(false);
+};
 
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
@@ -328,6 +660,11 @@ window.addEventListener("load", () => {
     console.error("channels not found in main.js");
     return;
   }
+
+  // Load settings
+  autoNextEnabled = localStorage.getItem('tplay_autoNext') !== 'false';
+  watermarkEnabled = localStorage.getItem('tplay_watermark') !== 'false';
+  lowLatencyEnabled = localStorage.getItem('tplay_lowLatency') !== 'false';
 
   // auto mute OFF
   video.muted = false;
@@ -339,6 +676,8 @@ window.addEventListener("load", () => {
   document.getElementById("btnGuide").onclick = () => toggleGuide();
   document.getElementById("btnPlay").onclick = togglePlay;
   document.getElementById("btnMute").onclick = toggleMute;
+  document.getElementById("btnFullscreen").onclick = toggleFullscreen;
+  document.getElementById("btnSettings").onclick = () => toggleSettings();
   document.getElementById("btnFav").onclick = toggleFavCurrent;
 
   // guide search
@@ -417,7 +756,14 @@ async function tryLoadSourceLoop(){
     currentSourceIndex++;
   }
 
-  await failAllSources("Switching next channel…");
+  if(autoNextEnabled) {
+    await failAllSources("Switching next channel…");
+  } else {
+    showLoading(false);
+    showNoSignal(true, "All sources failed. Press OK to retry.");
+    setBadge("ALL SOURCES FAILED", "err");
+    hideLogo();
+  }
 }
 
 async function loadSource(srcIdx){
@@ -448,7 +794,12 @@ async function loadSource(srcIdx){
       await shakaP.load(src.url);
     } else {
       if(Hls.isSupported()){
-        hls = new Hls({ enableWorker:true, lowLatencyMode:true });
+        hls = new Hls({ 
+          enableWorker:true, 
+          lowLatencyMode:lowLatencyEnabled,
+          maxBufferLength: 15,
+          maxMaxBufferLength: 60
+        });
         hls.loadSource(src.url);
         hls.attachMedia(video);
 
@@ -504,7 +855,9 @@ async function failAllSources(msg){
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
-  await playChannel((currentIndex + 1) % channels.length);
+  if(autoNextEnabled) {
+    await playChannel((currentIndex + 1) % channels.length);
+  }
 }
 
 /* ===================== UI helpers ===================== */
@@ -737,7 +1090,7 @@ document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
   // Prevent default for arrow keys to avoid scrolling
-  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
+  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F"].includes(e.key)) {
     e.preventDefault();
   }
 
@@ -827,7 +1180,9 @@ document.addEventListener("keydown", (e) => {
         }
       } else {
         backClickTimer = setTimeout(() => {
-          if(guide.classList.contains("show")){
+          if(settingsOverlay.classList.contains("show")){
+            toggleSettings(false);
+          } else if(guide.classList.contains("show")){
             toggleGuide(false);
           } else if(infoBar.classList.contains("show")){
             infoBar.classList.remove("show");
@@ -835,6 +1190,11 @@ document.addEventListener("keydown", (e) => {
           backClickTimer = null;
         }, DOUBLE_CLICK_DELAY);
       }
+      break;
+      
+    case "f":
+    case "F":
+      toggleFullscreen();
       break;
   }
 });
