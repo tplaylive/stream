@@ -267,38 +267,49 @@ body{background:#000;color:#fff;overflow:hidden}
   grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
 }
   
-/* ===== Guide: Logo-only Grid (Round Logos) ===== */
+/* ===== Guide: Logo-only Grid (Round + Focus Ring) ===== */
 .tile.logoOnly{
   position:relative;
   justify-content:center;
   align-items:center;
   padding:14px;
+  background:transparent;
+  border:none;
 }
 
 .tile.logoOnly .logo{
-  width:72px;
-  height:72px;
+  width:78px;
+  height:78px;
   object-fit:contain;
   border-radius:50%;
   background:#111;
   padding:10px;
+  transition:.2s ease;
 }
 
 .tile.logoOnly .favBtn{
   position:absolute;
-  top:6px;
-  right:6px;
-  width:30px;
-  height:30px;
-  font-size:13px;
-  opacity:.85;
+  bottom:8px;
+  right:8px;
+  width:28px;
+  height:28px;
+  font-size:12px;
+  border-radius:50%;
+  background:rgba(0,0,0,.65);
+  opacity:.9;
 }
 
-.tile.logoOnly.focus{
-  border:2px solid #e50914;
-  transform:scale(1.08);
-  background:rgba(255,255,255,.12);
+.tile.logoOnly.focus .logo{
+  transform:scale(1.12);
+  box-shadow:
+    0 0 0 3px #e50914,
+    0 0 18px rgba(229,9,20,.65);
 }
+
+.tile.logoOnly:hover .logo{
+  transform:scale(1.08);
+}
+
 
 /* ================= MOBILE SCALE (SAME DESIGN) ================= */
 @media (max-width:600px){
