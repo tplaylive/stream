@@ -266,7 +266,6 @@ body{background:#000;color:#fff;overflow:hidden}
   gap:10px;
   grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
 }
-/* ===== Guide: Logo-only Grid ===== */
 .tile.logoOnly {
   position: relative;
   justify-content: center;
@@ -284,6 +283,8 @@ body{background:#000;color:#fff;overflow:hidden}
   height: 80%;
   object-fit: contain;
   border-radius: 50%;
+  position: relative;
+  z-index: 1;
 }
 
 .tile.logoOnly .favBtn {
@@ -300,13 +301,6 @@ body{background:#000;color:#fff;overflow:hidden}
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.tile.logoOnly.focus {
-  border: 2px solid #e50914;
-  transform: scale(1.06);
-  background: rgba(255, 255, 255, .12);
-  box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
 }
 
 /* ================= MOBILE SCALE (SAME DESIGN) ================= */
