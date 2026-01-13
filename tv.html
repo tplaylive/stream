@@ -266,7 +266,7 @@ body{background:#000;color:#fff;overflow:hidden}
   padding:10px;
   display:grid;
   gap:10px;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
 }
 .tile{
   display:flex;
@@ -302,7 +302,7 @@ body{background:#000;color:#fff;overflow:hidden}
   border-radius:18px;
   display:none;
   flex-direction:column;
-  z-index:130; /* controller er opore */
+  z-index:130;
   opacity:0;
   transition:.25s ease;
   box-shadow:0 20px 50px rgba(0,0,0,.8);
@@ -323,30 +323,6 @@ body{background:#000;color:#fff;overflow:hidden}
   align-items:center;
 }
 .gTop b{font-size:18px}
-
-/* Now Playing */
-.gNow{
-  padding:10px 16px;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  background:rgba(25,25,25,.95);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.gNow img{
-  width:44px;
-  height:44px;
-  border-radius:10px;
-  object-fit:cover;
-  background:#111;
-}
-.gNow .t b{
-  display:block;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.gNow .t small{color:#bbb}
 
 /* Guide Body */
 .gBody{
@@ -401,7 +377,7 @@ body{background:#000;color:#fff;overflow:hidden}
   padding:10px;
   display:grid;
   gap:10px;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
 }
 .tile{
   display:flex;
@@ -433,7 +409,7 @@ body{background:#000;color:#fff;overflow:hidden}
     width:90px;
   }
   .grid{
-    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
   }
   .btn{
     width:40px;
