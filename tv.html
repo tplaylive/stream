@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>T Play</title>
 <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -14,7 +14,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 /* ===== Watermark ===== */
 .video-logo-watermark{
-  position: absolute;
+  position: fixed;
   bottom: 100px;
   right: 170px;
   z-index: 1000;
@@ -27,14 +27,6 @@ body{background:#000;color:#fff;overflow:hidden}
 .video-logo-watermark.hidden{opacity:0 !important;visibility:hidden}
 .video-logo-watermark img{
   display:block;height:auto;width:5vw;max-width:50px;min-width:25px;
-}
-
-/* Fullscreen support for watermark */
-:fullscreen .video-logo-watermark,
-:-webkit-full-screen .video-logo-watermark,
-:-moz-full-screen .video-logo-watermark {
-  position: absolute !important;
-  z-index: 10000 !important;
 }
 
 /* ===== VIDEO ===== */
@@ -50,7 +42,6 @@ body{background:#000;color:#fff;overflow:hidden}
   justify-content:center;
   background: url("https://i.postimg.cc/Pr9sC68t/T-Play-Cover.jpg") center center / cover no-repeat;
   z-index:95;
-  pointer-events: none;
 }
 .overlayCenter.show{display:flex}
 
@@ -60,10 +51,9 @@ body{background:#000;color:#fff;overflow:hidden}
   position:absolute;
   inset:0;
   background:rgba(0,0,0,.55);
-  pointer-events: none;
 }
 .spinner{
-  position:relative;
+  position:relative; /* keep above ::before */
   z-index:2;
   width:64px;height:64px;border-radius:50%;
   border:7px solid rgba(255,255,255,.18);
@@ -89,7 +79,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 /* ===== Bottom Info + Controls ===== */
 .infoBar{
-  position:absolute;left:50%;bottom:30px;transform:translateX(-50%);
+  position:absolute;left:50%;bottom:60px;transform:translateX(-50%);
   width:min(1120px,92vw);
   background:rgba(0,0,0,.75);
   border:1px solid rgba(255,255,255,.12);
@@ -99,7 +89,7 @@ body{background:#000;color:#fff;overflow:hidden}
   display:flex;align-items:center;gap:14px;
   opacity:0;pointer-events:none;
   transition:.2s;
-  z-index:100 !important;
+  z-index:70;
 }
 .infoBar.show{opacity:1;pointer-events:auto}
 .infoLeft{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
@@ -201,7 +191,7 @@ body{background:#000;color:#fff;overflow:hidden}
   border-radius:18px;
   display:none;
   flex-direction:column;
-  z-index:130;
+  z-index:130; 
   opacity:0;
   transition:.25s ease;
   box-shadow:0 20px 50px rgba(0,0,0,.8);
@@ -218,8 +208,31 @@ body{background:#000;color:#fff;overflow:hidden}
   display:flex;
   justify-content:space-between;
   align-items:center;
+  position:relative;
 }
-.gTop b{font-size:14px}
+.gTop b{font-size:14px; flex:1;}
+.gTop span{
+  font-size:12px;
+  color:#bbb;
+  margin-left:10px;
+}
+
+/* Guide Close Button */
+.guideClose{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  margin-left:10px;
+}
+.guideClose:hover{background:#e50914}
 
 /* Guide Body */
 .gBody{
@@ -232,8 +245,6 @@ body{background:#000;color:#fff;overflow:hidden}
 .cat{
   width:150px;
   min-width:120px;
-  background:rgba(15,15,15,.95);
-  border-right:1px solid rgba(255,255,255,.08);
   overflow-y:auto;
 }
 .catItem{
@@ -276,7 +287,7 @@ body{background:#000;color:#fff;overflow:hidden}
   gap:6px;
   grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
 }
-
+  
 /* ===== Guide: Logo-only Grid (Round + Focus Ring) ===== */
 .tile.logoOnly{
   position:relative;
@@ -308,7 +319,7 @@ body{background:#000;color:#fff;overflow:hidden}
   align-items:center;
   justify-content:center;
   background:rgba(0,0,0,.75);
-  color:#bbb;
+  color:#bbb; 
   font-size:13px;
   box-shadow:0 2px 6px rgba(0,0,0,.6);
   opacity:1;
@@ -332,74 +343,30 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 
 /* ================= MOBILE SCALE (SAME DESIGN) ================= */
-@media (max-width:768px){
-  .infoBar {
-    bottom: 20px;
-    width: 96vw;
-    padding: 10px 12px;
-    border-radius: 16px;
+@media (max-width:600px){
+  .guide{
+    width:96vw;
+    height:85vh;
   }
-
-  .btn {
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 18px;
+  .cat{
+    width:90px;
   }
-
-  .infoRight {
-    gap: 8px;
+  .grid{
+    grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
   }
-
-  .guide {
-    width: 98vw;
-    height: 90vh;
-    border-radius: 16px;
+  .btn{
+    width:40px;
+    height:40px;
   }
-
-  .cat {
-    width: 100px;
+  
+  /* Mobile-এ Guide header text */
+  .gTop span{
+    font-size:10px;
+    display:none;
   }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  }
-
-  .video-logo-watermark {
-    bottom: 80px;
-    right: 20px;
-  }
-
-  .video-logo-watermark img {
-    width: 40px;
-  }
-}
-
-/* Extra small phones */
-@media (max-width: 480px) {
-  .infoBar {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .infoLeft {
-    order: 1;
-    width: 100%;
-    margin-bottom: 8px;
-  }
-
-  .infoRight {
-    order: 2;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .btn {
-    width: 42px !important;
-    height: 42px !important;
-  }
-
-  .btn:nth-child(n+7) {
-    display: none;
+  
+  .gTop b{
+    font-size:12px;
   }
 }
 </style>
@@ -410,10 +377,6 @@ body{background:#000;color:#fff;overflow:hidden}
 <div class="video-container">
   <video id="video" autoplay playsinline></video>
 
-  <div class="video-logo-watermark hidden" id="videoLogoWatermark">
-    <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
-  </div>
-
   <div id="loading" class="overlayCenter"><div class="spinner"></div></div>
 
   <div id="noSignal" class="noSignal">
@@ -422,6 +385,7 @@ body{background:#000;color:#fff;overflow:hidden}
     <span id="noSignalText">Trying next source…</span>
   </div>
 
+  <!-- Bottom Info + Controls -->
   <div id="infoBar" class="infoBar">
     <div class="infoLeft">
       <img id="infoLogo" class="infoLogo" alt="logo">
@@ -442,10 +406,14 @@ body{background:#000;color:#fff;overflow:hidden}
     </div>
   </div>
 
+  <!-- Left Guide -->
   <div id="guide" class="guide">
     <div class="gTop">
       <b>Channel Guide</b>
       <span>←/→ Cat • ↑/↓/→ Tiles • OK Play • ESC Back</span>
+      <button class="guideClose" id="btnCloseGuide">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
     <div class="gBody">
       <div class="cat" id="catPanel"></div>
@@ -457,7 +425,8 @@ body{background:#000;color:#fff;overflow:hidden}
       </div>
     </div>
   </div>
-
+  
+  <!-- Settings Overlay -->
   <div id="settingsOverlay" class="settingsOverlay">
     <div class="settingsHeader">
       <b><i class="fas fa-cog"></i> Settings</b>
@@ -471,26 +440,36 @@ body{background:#000;color:#fff;overflow:hidden}
           <i class="fas fa-tv"></i>
           <span>Video Resolution</span>
         </div>
-        <div id="resolutionList"></div>
+        <div id="resolutionList">
+          <!-- Dynamic resolution options will be added here -->
+        </div>
       </div>
-
+      
       <div class="settingsSection">
         <div class="settingsTitle">
           <i class="fas fa-volume-up"></i>
           <span>Audio Language</span>
         </div>
-        <div id="audioList"></div>
+        <div id="audioList">
+          <!-- Dynamic audio track options will be added here -->
+        </div>
       </div>
-
+      
       <div class="settingsSection">
         <div class="settingsTitle">
           <i class="fas fa-server"></i>
           <span>Server Source</span>
         </div>
-        <div id="serverList"></div>
+        <div id="serverList">
+          <!-- Dynamic server options will be added here -->
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="video-logo-watermark hidden" id="videoLogoWatermark">
+  <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
 </div>
 
 <script src="main.js"></script>
@@ -519,6 +498,7 @@ const guide = document.getElementById("guide");
 const catPanel = document.getElementById("catPanel");
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
+const guideCloseBtn = document.getElementById("btnCloseGuide");
 
 const settingsOverlay = document.getElementById("settingsOverlay");
 const resolutionList = document.getElementById("resolutionList");
@@ -557,44 +537,13 @@ let okClickTimer = null;
 let backClickTimer = null;
 const DOUBLE_CLICK_DELAY = 400;
 
-/* ===================== Mobile Detection ===================== */
-function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-         (window.innerWidth <= 768);
-}
-
-/* ===================== Watermark Visibility Manager ===================== */
-function updateWatermarkPosition() {
-  if (isFullscreen) {
-    videoLogoWatermark.style.zIndex = '10000';
-  } else {
-    videoLogoWatermark.style.zIndex = '1000';
-  }
-
-  if (isMobile()) {
-    videoLogoWatermark.style.bottom = '80px';
-    videoLogoWatermark.style.right = '20px';
-  } else {
-    videoLogoWatermark.style.bottom = '100px';
-    videoLogoWatermark.style.right = '170px';
-  }
-
-  videoLogoWatermark.style.position = 'absolute';
-  videoLogoWatermark.style.display = 'block';
-}
-
 /* ===================== Logo Control Functions ===================== */
 function showLogo() {
   videoLogoWatermark.classList.remove('hidden');
-  videoLogoWatermark.style.opacity = '0.4';
-  videoLogoWatermark.style.visibility = 'visible';
-  updateWatermarkPosition();
 }
 
 function hideLogo() {
   videoLogoWatermark.classList.add('hidden');
-  videoLogoWatermark.style.opacity = '0';
-  videoLogoWatermark.style.visibility = 'hidden';
 }
 
 /* ===================== Fullscreen Functions ===================== */
@@ -621,36 +570,33 @@ function toggleFullscreen() {
     fullscreenIcon.className = "fas fa-expand";
     isFullscreen = false;
   }
-
-  setTimeout(updateWatermarkPosition, 100);
   showInfoBar(true, 8000);
 }
 
-document.addEventListener('fullscreenchange', handleFullscreenChange);
-document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-
-function handleFullscreenChange() {
-  isFullscreen = !!document.fullscreenElement ||
-                 !!document.webkitFullscreenElement ||
-                 !!document.mozFullScreenElement;
-
+document.addEventListener('fullscreenchange', () => {
+  isFullscreen = !!document.fullscreenElement;
   fullscreenIcon.className = isFullscreen ? "fas fa-compress" : "fas fa-expand";
-
-  updateWatermarkPosition();
-
-  if (!videoLogoWatermark.classList.contains('hidden')) {
-    showLogo();
-  }
-
-  showInfoBar(true, 8000);
-}
+});
 
 /* ===================== Settings Functions ===================== */
 function toggleSettings(force) {
   const wantOpen = (typeof force === 'boolean') ? force : !settingsOverlay.classList.contains('show');
+  
+  // যদি Guide open থাকে, প্রথমে close করুন
+  if(wantOpen && guide.classList.contains('show')) {
+    toggleGuide(false);
+    setTimeout(() => {
+      settingsOverlay.classList.toggle('show', true);
+      loadAvailableResolutions();
+      loadAudioTracks();
+      loadServerSources();
+      showInfoBar(true, 8000);
+    }, 200);
+    return;
+  }
+  
   settingsOverlay.classList.toggle('show', wantOpen);
-
+  
   if(wantOpen) {
     loadAvailableResolutions();
     loadAudioTracks();
@@ -661,9 +607,10 @@ function toggleSettings(force) {
 
 function loadAvailableResolutions() {
   resolutionList.innerHTML = '';
-
+  
+  // Check current player for available qualities
   let qualities = [];
-
+  
   if (hls && hls.levels && hls.levels.length > 0) {
     qualities = hls.levels.map((level, index) => ({
       id: index,
@@ -672,6 +619,7 @@ function loadAvailableResolutions() {
       selected: index === hls.currentLevel
     }));
   } else if (shakaP) {
+    // Shaka Player tracks
     const tracks = shakaP.getVariantTracks();
     qualities = tracks.map(track => ({
       id: track.id,
@@ -680,7 +628,8 @@ function loadAvailableResolutions() {
       selected: track.active
     }));
   }
-
+  
+  // If no dynamic qualities found
   if (qualities.length === 0) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -688,7 +637,8 @@ function loadAvailableResolutions() {
     resolutionList.appendChild(noOpt);
     return;
   }
-
+  
+  // Add Auto option first
   const autoOption = document.createElement('div');
   autoOption.className = `settingsOption ${hls?.currentLevel === -1 ? 'active' : ''}`;
   autoOption.innerHTML = `
@@ -697,7 +647,8 @@ function loadAvailableResolutions() {
   `;
   autoOption.onclick = () => selectResolution(-1, 'Auto');
   resolutionList.appendChild(autoOption);
-
+  
+  // Add available qualities
   qualities.forEach(quality => {
     const option = document.createElement('div');
     option.className = `settingsOption ${quality.selected ? 'active' : ''}`;
@@ -720,16 +671,16 @@ function selectResolution(id, label) {
       shakaP.selectVariantTrack(track, true);
     }
   }
-
+  
   setBadge(`Resolution: ${label}`, 'live');
   toggleSettings(false);
 }
 
 function loadAudioTracks() {
   audioList.innerHTML = '';
-
+  
   let audioTracks = [];
-
+  
   if (shakaP) {
     const tracks = shakaP.getTextTracks();
     audioTracks = tracks.map(track => ({
@@ -738,7 +689,8 @@ function loadAudioTracks() {
       selected: track.active
     }));
   }
-
+  
+  // If no audio tracks found
   if (audioTracks.length === 0) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -746,7 +698,7 @@ function loadAudioTracks() {
     audioList.appendChild(noOpt);
     return;
   }
-
+  
   audioTracks.forEach(track => {
     const option = document.createElement('div');
     option.className = `settingsOption ${track.selected ? 'active' : ''}`;
@@ -767,17 +719,18 @@ function selectAudioTrack(id, label) {
       shakaP.selectTextTrack(track);
     }
   }
-
+  
   setBadge(`Audio: ${label}`, 'live');
   toggleSettings(false);
 }
 
 function loadServerSources() {
   serverList.innerHTML = '';
-
+  
   const ch = channels[currentIndex];
   const sources = ch.sources || [];
-
+  
+  // If no multiple sources
   if (sources.length <= 1) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -785,7 +738,7 @@ function loadServerSources() {
     serverList.appendChild(noOpt);
     return;
   }
-
+  
   sources.forEach((source, index) => {
     const option = document.createElement('div');
     option.className = `settingsOption ${index === currentSourceIndex ? 'active' : ''}`;
@@ -804,7 +757,8 @@ function selectServerSource(index, name) {
   currentSourceIndex = index;
   setBadge(`Switched to ${name}`, 'live');
   toggleSettings(false);
-
+  
+  // Reload the source
   showLoading(true);
   setTimeout(() => {
     loadSource(currentSourceIndex).then(success => {
@@ -820,16 +774,29 @@ document.getElementById("btnCloseSettings").onclick = function() {
   toggleSettings(false);
 };
 
+/* ===================== Guide Close Button Function ===================== */
+guideCloseBtn.onclick = function() {
+  toggleGuide(false);
+};
+
+// টাচ স্ক্রিনের জন্য close button-এ event যোগ করুন
+guideCloseBtn.addEventListener("touchstart", function(e) {
+  e.stopPropagation(); // Prevent event bubbling
+  toggleGuide(false);
+}, {passive: true});
+
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
-if (typeof channels === "undefined" || !channels.length) {
+  if(typeof channels === "undefined" || !channels.length){
     console.error("channels not found in main.js");
     return;
   }
 
+  // auto mute OFF
   video.muted = false;
   video.volume = 1;
 
+  // buttons (for mouse users)
   document.getElementById("btnPrev").onclick = prevChannel;
   document.getElementById("btnNext").onclick = nextChannel;
   document.getElementById("btnGuide").onclick = () => toggleGuide();
@@ -839,13 +806,15 @@ if (typeof channels === "undefined" || !channels.length) {
   document.getElementById("btnSettings").onclick = () => toggleSettings();
   document.getElementById("btnFav").onclick = toggleFavCurrent;
 
-  search.addEventListener("input", () => {
-    focusTileIndex = 0;
-    buildGrid();
+  // guide search
+  search.addEventListener("input", () => { 
+    focusTileIndex = 0; 
+    buildGrid(); 
   });
 
   buildCategories();
 
+  // Start with logo hidden
   hideLogo();
 
   const saved = localStorage.getItem("lastChannel");
@@ -857,20 +826,10 @@ function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
 
 function showLoading(on){
   loading.classList.toggle("show", !!on);
-  if(on){
-    infoBar.classList.add("show");
-    clearTimeout(infoHideTimer);
-  }else{
-    showInfoBar(false, isMobile() ? 6000 : 3500);
-  }
 }
-
 function showNoSignal(on, msg){
   noSignal.classList.toggle("show", !!on);
   if(msg) noSignalText.textContent = msg;
-  if(on){
-    showInfoBar(false, isMobile() ? 8000 : 6000);
-  }
 }
 
 async function cleanupPlayers(){
@@ -885,17 +844,20 @@ function isDash(src){
 }
 
 async function playChannel(index){
+  // Hide logo when changing channel
   hideLogo();
-
+  
   currentIndex = clamp(index, 0, channels.length-1);
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
+  // UI updates
   updateNowPlayingUI();
   buildGrid();
 
   showNoSignal(false);
   showLoading(true);
+  showInfoBar(true, 8000);
 
   await tryLoadSourceLoop();
 }
@@ -915,7 +877,6 @@ async function tryLoadSourceLoop(){
       showLoading(false);
       showNoSignal(false);
       setBadge("LIVE", "live");
-      showInfoBar(true, isMobile() ? 6500 : 4500);
       return;
     }
     currentSourceIndex++;
@@ -1015,22 +976,13 @@ async function failAllSources(msg){
 function showInfoBar(sticky=false, timeout=8000){
   infoBar.classList.add("show");
   clearTimeout(infoHideTimer);
-
-  if(loading.classList.contains("show")) return;
-
-  const t = sticky ? timeout : timeout;
-  infoHideTimer = setTimeout(() => {
-    if(guide.classList.contains("show") || settingsOverlay.classList.contains("show")) return;
-    infoBar.classList.remove("show");
-  }, t);
+  infoHideTimer = setTimeout(()=>infoBar.classList.remove("show"), sticky ? 8000 : timeout);
 }
-
 function setBadge(text, kind){
   const base = channelSubText();
   infoSub.innerHTML = escapeHtml(base) + ` <span class="badge ${kind||"warn"}">${escapeHtml(text)}</span>`;
-  showInfoBar(true, isMobile() ? 7000 : 6000);
+  showInfoBar(true, 8000);
 }
-
 function channelSubText(){
   const ch = channels[currentIndex];
   const cat = ch.category || "General";
@@ -1039,7 +991,6 @@ function channelSubText(){
   const sname = src?.name ? ` • ${src.name}` : (ch.sources?.length ? ` • Server ${currentSourceIndex+1}` : "");
   return `${cat}${desc}${sname}`;
 }
-
 function escapeHtml(s){
   return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
 }
@@ -1065,9 +1016,8 @@ function togglePlay(){
     video.pause();
   }
   updatePlayIcon();
-  showInfoBar(true, isMobile() ? 6000 : 4500);
+  showInfoBar(true, 8000);
 }
-
 function updatePlayIcon(){
   playIcon.className = video.paused ? "fas fa-play" : "fas fa-pause";
 }
@@ -1075,19 +1025,17 @@ function updatePlayIcon(){
 function toggleMute(){
   video.muted = !video.muted;
   updateMuteIcon();
-  showInfoBar(true, isMobile() ? 6000 : 4500);
+  showInfoBar(true, 8000);
 }
-
 function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
-function nextChannel(){
-  playChannel((currentIndex+1) % channels.length);
+function nextChannel(){ 
+  playChannel((currentIndex+1) % channels.length); 
 }
-
-function prevChannel(){
-  playChannel((currentIndex-1 + channels.length) % channels.length);
+function prevChannel(){ 
+  playChannel((currentIndex-1 + channels.length) % channels.length); 
 }
 
 /* ===================== Favorites ===================== */
@@ -1097,7 +1045,6 @@ function updateFavIcon(){
   favIcon.style.color = on ? "#ffd54a" : "#fff";
   document.getElementById("btnFav").classList.toggle("starOn", on);
 }
-
 function toggleFavCurrent(){
   const ch = channels[currentIndex];
   if(!ch?.name) return;
@@ -1106,9 +1053,8 @@ function toggleFavCurrent(){
   saveFavs(favs);
   updateFavIcon();
   buildGrid();
-  showInfoBar(true, isMobile() ? 6000 : 4500);
+  showInfoBar(true, 8000);
 }
-
 function toggleFavByChannelIndex(idx){
   const ch = channels[idx];
   if(!ch?.name) return;
@@ -1122,7 +1068,28 @@ function toggleFavByChannelIndex(idx){
 /* ===================== Guide (left overlay) ===================== */
 function toggleGuide(force){
   const wantOpen = (typeof force === "boolean") ? force : !guide.classList.contains("show");
-  guide.classList.toggle("show", wantOpen);
+  
+  // যদি Settings open থাকে, প্রথমে close করুন
+  if(wantOpen && settingsOverlay.classList.contains('show')) {
+    toggleSettings(false);
+    setTimeout(() => {
+      guide.classList.toggle('show', true);
+      focusCatIndex = categories.indexOf(currentCat);
+      if(focusCatIndex < 0) focusCatIndex = 0;
+
+      buildCategoriesUI();
+      buildGrid();
+
+      const pos = filteredIndexes.indexOf(currentIndex);
+      focusTileIndex = pos >= 0 ? pos : 0;
+      updateGridFocus();
+
+      setTimeout(()=>search.focus(), 50);
+    }, 200);
+    return;
+  }
+  
+  guide.classList.toggle('show', wantOpen);
 
   if(wantOpen){
     focusCatIndex = categories.indexOf(currentCat);
@@ -1131,6 +1098,7 @@ function toggleGuide(force){
     buildCategoriesUI();
     buildGrid();
 
+    // Find current channel in filtered list
     const pos = filteredIndexes.indexOf(currentIndex);
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
@@ -1139,7 +1107,7 @@ function toggleGuide(force){
   }else{
     search.blur();
   }
-  showInfoBar(true, isMobile() ? 6000 : 4500);
+  showInfoBar(true, 8000);
 }
 
 function buildCategories(){
@@ -1149,7 +1117,6 @@ function buildCategories(){
   focusCatIndex = categories.indexOf(currentCat);
   buildCategoriesUI();
 }
-
 function buildCategoriesUI(){
   catPanel.innerHTML = "";
   categories.forEach((c, idx) => {
@@ -1167,7 +1134,6 @@ function buildCategoriesUI(){
     catPanel.appendChild(d);
   });
 }
-
 function getFilteredIndexes(){
   const q = (search.value || "").trim().toLowerCase();
   const isFav = currentCat === "★ Favorites";
@@ -1177,10 +1143,12 @@ function getFilteredIndexes(){
   for(let i=0;i<channels.length;i++){
     const ch = channels[i];
     const cat = ch.category || "General";
-
+    
+    // First check category filter
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
 
+    // Then check search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
       if(!hay.includes(q)) continue;
@@ -1246,15 +1214,18 @@ function buildGrid(){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
-  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S"].includes(e.key)) {
+  // Prevent default for arrow keys to avoid scrolling
+  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S", "g", "G"].includes(e.key)) {
     e.preventDefault();
   }
 
+  /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
       if(!guide.classList.contains("show")){
         prevChannel();
       } else {
+        // Guide open: LEFT for category navigation (previous category)
         focusCatIndex = Math.max(0, focusCatIndex-1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -1267,6 +1238,7 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         nextChannel();
       } else {
+        // Guide open: RIGHT for category navigation (next category)
         focusCatIndex = Math.min(categories.length-1, focusCatIndex+1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -1277,8 +1249,9 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowUp":
       if(!guide.classList.contains("show")){
-        toggleGuide(true);
+        toggleGuide(true); // Open Guide
       } else {
+        // Guide open: UP for tile navigation (previous row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.max(0, focusTileIndex - cols);
         updateGridFocus();
@@ -1287,8 +1260,9 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowDown":
       if(!guide.classList.contains("show")){
-        showInfoBar(true, 6000);
+        showInfoBar(true, 8000); // Show Player Controls
       } else {
+        // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
         updateGridFocus();
@@ -1297,9 +1271,11 @@ document.addEventListener("keydown", (e) => {
 
     case "Enter":
       if(!guide.classList.contains("show")){
+        // Single click: Play/Pause
         if(okClickTimer){
           clearTimeout(okClickTimer);
           okClickTimer = null;
+          // Double click: Toggle Favorite
           toggleFavCurrent();
           setBadge("Favorite updated", "live");
         } else {
@@ -1311,6 +1287,7 @@ document.addEventListener("keydown", (e) => {
       } else if(!inSearch){
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
+          console.log("Playing channel:", chIdx + 1, channels[chIdx]?.name);
           toggleGuide(false);
           setTimeout(() => {
             playChannel(chIdx);
@@ -1339,15 +1316,22 @@ document.addEventListener("keydown", (e) => {
         }, DOUBLE_CLICK_DELAY);
       }
       break;
-
+      
     case "f":
     case "F":
       toggleFullscreen();
       break;
-
+      
     case "s":
     case "S":
       toggleSettings();
+      break;
+      
+    case "g":
+    case "G":
+      if(!settingsOverlay.classList.contains("show")) {
+        toggleGuide();
+      }
       break;
   }
 });
@@ -1355,7 +1339,6 @@ document.addEventListener("keydown", (e) => {
 video.addEventListener("play", () => {
   updatePlayIcon();
   showLogo();
-  showInfoBar(true, isMobile() ? 6000 : 4500);
 });
 
 video.addEventListener("pause", () => {
@@ -1364,94 +1347,14 @@ video.addEventListener("pause", () => {
 
 video.addEventListener('waiting', () => {
   hideLogo();
-  showInfoBar(true, isMobile() ? 8000 : 6000);
 });
 
 video.addEventListener('playing', () => {
   showLogo();
-  showInfoBar(true, isMobile() ? 6000 : 4500);
 });
 
 video.addEventListener("click", () => showInfoBar(true, 2400));
-
-/* ===================== Mobile Touch Support ===================== */
-video.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  showInfoBar(true, 6000);
-}, {passive: false});
-
-infoBar.addEventListener("touchstart", (e) => {
-  e.stopPropagation();
-  showInfoBar(true, 6000);
-}, {passive: false});
-
-/* ===================== Mobile Touch Gestures ===================== */
-let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
-let touchFromUI = false;
-
-document.addEventListener('touchstart', (e) => {
-  const t = e.target;
-  touchFromUI = !!(t && (t.closest('#infoBar') || t.closest('#guide') || t.closest('#settingsOverlay')));
-  touchStartX = e.changedTouches[0].screenX;
-  touchStartY = e.changedTouches[0].screenY;
-}, {passive: true});
-
-document.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  touchEndY = e.changedTouches[0].screenY;
-  handleSwipe();
-}, {passive: true});
-
-function handleSwipe() {
-  if(touchFromUI) return;
-
-  const minSwipeDistance = 50;
-  const dx = touchEndX - touchStartX;
-  const dy = touchEndY - touchStartY;
-
-  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > minSwipeDistance) {
-    if (dx > 0) prevChannel();
-    else nextChannel();
-  }
-  else if (Math.abs(dy) > minSwipeDistance) {
-    if (dy > 0) showInfoBar(true, 5000);
-    else {
-      if (!guide.classList.contains('show')) toggleGuide(true);
-    }
-  }
-}
-
-/* Double tap to play/pause */
-let lastTap = 0;
-video.addEventListener('touchend', (e) => {
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
-
-  if (tapLength < 300 && tapLength > 0) {
-    e.preventDefault();
-    togglePlay();
-  }
-
-  lastTap = currentTime;
-}, {passive: false});
-
-/* Handle screen rotation */
-window.addEventListener('orientationchange', () => {
-  setTimeout(() => {
-    showInfoBar(true, 6000);
-    updateWatermarkPosition();
-    if (guide.classList.contains('show')) {
-      buildGrid();
-    }
-  }, 300);
-});
-
-window.addEventListener('resize', () => {
-  updateWatermarkPosition();
-});
+video.addEventListener("touchstart", () => showInfoBar(true, 2400), {passive:true});
 </script>
 </body>
 </html>
