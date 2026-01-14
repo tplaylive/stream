@@ -402,29 +402,31 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Show Box", 
+                name: "NH BollyRaga", 
                 sources: [
-                    { name: "Originals", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
+                    { name: "Stream 1", url: "https://cc-up9j649x4thrj.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-up9j649x4thrj/SBUM/RunnTV/BollyRaga_IN/BollyRaga_IN.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
+                img: "https://i.postimg.cc/7PmcCFcy/nh-bollyraga.jpg", 
                 category: "Music",
                 description: "India"
             },
             { 
                 name: "yrf MUSIC", 
                 sources: [
-                    { name: "Server 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8" }
+                    { name: "Stream 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8" },
+                    { name: "Stream 2", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/yrf-music/master.m3u8" }
+
                 ], 
                 img: "https://i.postimg.cc/pdHkcC7q/yrf-music.jpg", 
                 category: "Music",
                 description: "India"
             },
             { 
-                name: "NH BollyRaga", 
+                name: "Show Box", 
                 sources: [
-                    { name: "Server 1", url: "https://cc-up9j649x4thrj.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-up9j649x4thrj/SBUM/RunnTV/BollyRaga_IN/BollyRaga_IN.m3u8" }
+                    { name: "Originals", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/7PmcCFcy/nh-bollyraga.jpg", 
+                img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
                 category: "Music",
                 description: "India"
             },
