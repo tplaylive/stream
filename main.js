@@ -436,9 +436,20 @@ const channels = [
             { 
                 name: "Show Box", 
                 sources: [
-                    { name: "Originals", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
+                    { name: "Stream 1", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
+                category: "Music",
+                description: "India"
+            },
+            { 
+                name: "E 24", 
+                sources: [
+                    { name: "Stream 1", url: "https://amg13643-amg13643c2-amgplt0173.playout.now3.amagi.tv/playlist/amg13643-amg13643c2-amgplt0173/playlist.m3u8" },
+                    { name: "Stream 2", url: "https://bagnetwork.digivive.com/hlslive/Admin/px09241091/live/E24LiveB/master_1.m3u8" },
+                    { name: "Stream 3", url: "https://live-e24.dailyhunt.in/eternowsa/live/amlst:E24_,b256,b512,b1024,b1824,.smil/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/wBKM5G7V/e-24.jpg", 
                 category: "Music",
                 description: "India"
             },
