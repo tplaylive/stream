@@ -346,8 +346,8 @@ const channels = [
             { 
                 name: "9XM", 
                 sources: [
-                    { name: "Server 1", url: "https://wiselp.wiseplayout.com/9XM/master.m3u8" },
-                    { name: "Server 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" }
+                    { name: "wiseplayout", url: "https://wiselp.wiseplayout.com/9XM/master.m3u8" },
+                    { name: "cloudfront", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Wb8VmBjp/9xm.jpg", 
                 category: "Music",
@@ -356,9 +356,21 @@ const channels = [
             { 
                 name: "9X Jalwa", 
                 sources: [
-                    { name: "Server 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" }
+                    { name: "wiseplayout", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
+                    { name: "cloudfront", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
+                category: "Music",
+                description: "India"
+            },
+            { 
+                name: "B4U Music", 
+                sources: [
+                    { name: "wiseplayout", url: "https://cdnb4u.wiseplayout.com/B4U_Music/master.m3u8" },
+                    { name: "toffee", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=6f73e4079aa2&e=.m3u8" },
+                    { name: "cloudfront", url: "https://d3kdywbtdfbp9z.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/dff423e0-3c82-46d6-9ecb-3baa96b5694a/4598c408-0e38-488c-9b64-fc845d1ea2b6/0.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/mrvFm9CF/B4-U-Music.png", 
                 category: "Music",
                 description: "India"
             },
@@ -386,15 +398,6 @@ const channels = [
                     { name: "Originals", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
-                category: "Music",
-                description: "India"
-            },
-            { 
-                name: "B4U Music", 
-                sources: [
-                    { name: "Server 1", url: "https://cdnb4u.wiseplayout.com/B4U_Music/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/mrvFm9CF/B4-U-Music.png", 
                 category: "Music",
                 description: "India"
             },
