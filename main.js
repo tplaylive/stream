@@ -456,7 +456,7 @@ const channels = [
             { 
                 name: "Punjabi Hits", 
                 sources: [
-                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/punjabi-hits/index.m3u8" }
+                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/punjabi-hits/index.m3u8" },
                     { name: "Stream 2", url: "https://cdn-4.pishow.tv/live/1504/master.m3u8" },
                     { name: "Stream 3", url: "https://server.livelegitpro.in/punjabihits/index.m3u8" },                ], 
                 img: "https://i.postimg.cc/h472GJVw/punjabi-hits.jpg", 
