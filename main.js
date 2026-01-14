@@ -476,6 +476,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Brit Asia TV", 
+                sources: [
+                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/britasiatv/master.m3u8" },
+                    { name: "Stream 2", url: "https://www.yupptv.com/yupptvnew/channels/wah-punjabi//live/embed" },
+                ], 
+                img: "https://i.postimg.cc/BbM871q3/brit-asia.jpg", 
+                category: "Music",
+                description: "India"
+            },
+            { 
                 name: "Bengali Beats", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/tplay/playout/209587/master.m3u8" },
