@@ -387,11 +387,19 @@ const channels = [
             { 
                 name: "Deewana", 
                 sources: [
-                    { name: "Originals", url: "https://tplay.live/originals/deewana/index.m3u8" }
-                ], 
+                    { name: "Stream 1", url: "https://tplay.live/originals/deewana/index.m3u8" }                ], 
                 img: "https://i.postimg.cc/9Q7G21N6/Deewana.png", 
                 category: "Music",
-                description: "Asia"
+                description: "India"
+            },
+            { 
+                name: "Shemaroo Filmigaane", 
+                sources: [
+                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-filmigaane/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/nhhtDKYk/sfg.jpg", 
+                category: "Music",
+                description: "India"
             },
             { 
                 name: "Show Box", 
