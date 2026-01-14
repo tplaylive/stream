@@ -50,8 +50,7 @@ body{background:#000;color:#fff;overflow:hidden}
   justify-content:center;
   background: url("https://i.postimg.cc/Pr9sC68t/T-Play-Cover.jpg") center center / cover no-repeat;
   z-index:95;
-  /* Make sure controls are above loading overlay */
-  pointer-events: none; /* Allow clicks to pass through to controls */
+  pointer-events: none;
 }
 .overlayCenter.show{display:flex}
 
@@ -61,10 +60,10 @@ body{background:#000;color:#fff;overflow:hidden}
   position:absolute;
   inset:0;
   background:rgba(0,0,0,.55);
-  pointer-events: none; /* Allow clicks to pass through */
+  pointer-events: none;
 }
 .spinner{
-  position:relative; /* keep above ::before */
+  position:relative;
   z-index:2;
   width:64px;height:64px;border-radius:50%;
   border:7px solid rgba(255,255,255,.18);
@@ -100,7 +99,7 @@ body{background:#000;color:#fff;overflow:hidden}
   display:flex;align-items:center;gap:14px;
   opacity:0;pointer-events:none;
   transition:.2s;
-  z-index:100 !important; /* Higher than loading overlay */
+  z-index:100 !important;
 }
 .infoBar.show{opacity:1;pointer-events:auto}
 .infoLeft{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
@@ -202,7 +201,7 @@ body{background:#000;color:#fff;overflow:hidden}
   border-radius:18px;
   display:none;
   flex-direction:column;
-  z-index:130; 
+  z-index:130;
   opacity:0;
   transition:.25s ease;
   box-shadow:0 20px 50px rgba(0,0,0,.8);
@@ -277,7 +276,7 @@ body{background:#000;color:#fff;overflow:hidden}
   gap:6px;
   grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
 }
-  
+
 /* ===== Guide: Logo-only Grid (Round + Focus Ring) ===== */
 .tile.logoOnly{
   position:relative;
@@ -309,7 +308,7 @@ body{background:#000;color:#fff;overflow:hidden}
   align-items:center;
   justify-content:center;
   background:rgba(0,0,0,.75);
-  color:#bbb; 
+  color:#bbb;
   font-size:13px;
   box-shadow:0 2px 6px rgba(0,0,0,.6);
   opacity:1;
@@ -334,49 +333,42 @@ body{background:#000;color:#fff;overflow:hidden}
 
 /* ================= MOBILE SCALE (SAME DESIGN) ================= */
 @media (max-width:768px){
-  /* Make info bar more visible on mobile */
   .infoBar {
     bottom: 20px;
     width: 96vw;
     padding: 10px 12px;
     border-radius: 16px;
-    opacity: 1 !important; /* Force visible during loading */
-    pointer-events: auto !important;
   }
-  
-  /* Increase button size for touch */
+
   .btn {
     width: 44px !important;
     height: 44px !important;
     font-size: 18px;
   }
-  
-  /* Adjust spacing */
+
   .infoRight {
     gap: 8px;
   }
-  
-  /* Make guide more mobile friendly */
+
   .guide {
     width: 98vw;
     height: 90vh;
     border-radius: 16px;
   }
-  
+
   .cat {
     width: 100px;
   }
-  
+
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   }
-  
-  /* Make watermark smaller on mobile */
+
   .video-logo-watermark {
     bottom: 80px;
     right: 20px;
   }
-  
+
   .video-logo-watermark img {
     width: 40px;
   }
@@ -388,34 +380,27 @@ body{background:#000;color:#fff;overflow:hidden}
     flex-wrap: wrap;
     gap: 8px;
   }
-  
+
   .infoLeft {
     order: 1;
     width: 100%;
     margin-bottom: 8px;
   }
-  
+
   .infoRight {
     order: 2;
     justify-content: space-between;
     width: 100%;
   }
-  
+
   .btn {
     width: 42px !important;
     height: 42px !important;
   }
-  
-  /* Hide some buttons if needed */
+
   .btn:nth-child(n+7) {
     display: none;
   }
-}
-
-/* For loading state - always show controls */
-.loading-active .infoBar {
-  opacity: 1 !important;
-  pointer-events: auto !important;
 }
 </style>
 
@@ -425,7 +410,6 @@ body{background:#000;color:#fff;overflow:hidden}
 <div class="video-container">
   <video id="video" autoplay playsinline></video>
 
-  <!-- Watermark inside video container -->
   <div class="video-logo-watermark hidden" id="videoLogoWatermark">
     <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
   </div>
@@ -438,7 +422,6 @@ body{background:#000;color:#fff;overflow:hidden}
     <span id="noSignalText">Trying next source…</span>
   </div>
 
-  <!-- Bottom Info + Controls -->
   <div id="infoBar" class="infoBar">
     <div class="infoLeft">
       <img id="infoLogo" class="infoLogo" alt="logo">
@@ -459,7 +442,6 @@ body{background:#000;color:#fff;overflow:hidden}
     </div>
   </div>
 
-  <!-- Left Guide -->
   <div id="guide" class="guide">
     <div class="gTop">
       <b>Channel Guide</b>
@@ -475,8 +457,7 @@ body{background:#000;color:#fff;overflow:hidden}
       </div>
     </div>
   </div>
-  
-  <!-- Settings Overlay -->
+
   <div id="settingsOverlay" class="settingsOverlay">
     <div class="settingsHeader">
       <b><i class="fas fa-cog"></i> Settings</b>
@@ -490,29 +471,23 @@ body{background:#000;color:#fff;overflow:hidden}
           <i class="fas fa-tv"></i>
           <span>Video Resolution</span>
         </div>
-        <div id="resolutionList">
-          <!-- Dynamic resolution options will be added here -->
-        </div>
+        <div id="resolutionList"></div>
       </div>
-      
+
       <div class="settingsSection">
         <div class="settingsTitle">
           <i class="fas fa-volume-up"></i>
           <span>Audio Language</span>
         </div>
-        <div id="audioList">
-          <!-- Dynamic audio track options will be added here -->
-        </div>
+        <div id="audioList"></div>
       </div>
-      
+
       <div class="settingsSection">
         <div class="settingsTitle">
           <i class="fas fa-server"></i>
           <span>Server Source</span>
         </div>
-        <div id="serverList">
-          <!-- Dynamic server options will be added here -->
-        </div>
+        <div id="serverList"></div>
       </div>
     </div>
   </div>
@@ -584,21 +559,18 @@ const DOUBLE_CLICK_DELAY = 400;
 
 /* ===================== Mobile Detection ===================== */
 function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
          (window.innerWidth <= 768);
 }
 
 /* ===================== Watermark Visibility Manager ===================== */
 function updateWatermarkPosition() {
   if (isFullscreen) {
-    // In fullscreen, ensure watermark stays visible with higher z-index
     videoLogoWatermark.style.zIndex = '10000';
   } else {
-    // In normal mode
     videoLogoWatermark.style.zIndex = '1000';
   }
-  
-  // Adjust position for mobile
+
   if (isMobile()) {
     videoLogoWatermark.style.bottom = '80px';
     videoLogoWatermark.style.right = '20px';
@@ -606,8 +578,7 @@ function updateWatermarkPosition() {
     videoLogoWatermark.style.bottom = '100px';
     videoLogoWatermark.style.right = '170px';
   }
-  
-  // Ensure watermark is properly positioned
+
   videoLogoWatermark.style.position = 'absolute';
   videoLogoWatermark.style.display = 'block';
 }
@@ -650,32 +621,28 @@ function toggleFullscreen() {
     fullscreenIcon.className = "fas fa-expand";
     isFullscreen = false;
   }
-  
-  // Update watermark position after fullscreen change
+
   setTimeout(updateWatermarkPosition, 100);
   showInfoBar(true, 8000);
 }
 
-// Fullscreen change event listeners
 document.addEventListener('fullscreenchange', handleFullscreenChange);
 document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 document.addEventListener('mozfullscreenchange', handleFullscreenChange);
 
 function handleFullscreenChange() {
-  isFullscreen = !!document.fullscreenElement || 
-                 !!document.webkitFullscreenElement || 
+  isFullscreen = !!document.fullscreenElement ||
+                 !!document.webkitFullscreenElement ||
                  !!document.mozFullScreenElement;
-  
+
   fullscreenIcon.className = isFullscreen ? "fas fa-compress" : "fas fa-expand";
-  
-  // Update watermark position
+
   updateWatermarkPosition();
-  
-  // Ensure watermark is visible if it should be
+
   if (!videoLogoWatermark.classList.contains('hidden')) {
     showLogo();
   }
-  
+
   showInfoBar(true, 8000);
 }
 
@@ -683,7 +650,7 @@ function handleFullscreenChange() {
 function toggleSettings(force) {
   const wantOpen = (typeof force === 'boolean') ? force : !settingsOverlay.classList.contains('show');
   settingsOverlay.classList.toggle('show', wantOpen);
-  
+
   if(wantOpen) {
     loadAvailableResolutions();
     loadAudioTracks();
@@ -694,10 +661,9 @@ function toggleSettings(force) {
 
 function loadAvailableResolutions() {
   resolutionList.innerHTML = '';
-  
-  // Check current player for available qualities
+
   let qualities = [];
-  
+
   if (hls && hls.levels && hls.levels.length > 0) {
     qualities = hls.levels.map((level, index) => ({
       id: index,
@@ -706,7 +672,6 @@ function loadAvailableResolutions() {
       selected: index === hls.currentLevel
     }));
   } else if (shakaP) {
-    // Shaka Player tracks
     const tracks = shakaP.getVariantTracks();
     qualities = tracks.map(track => ({
       id: track.id,
@@ -715,8 +680,7 @@ function loadAvailableResolutions() {
       selected: track.active
     }));
   }
-  
-  // If no dynamic qualities found
+
   if (qualities.length === 0) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -724,8 +688,7 @@ function loadAvailableResolutions() {
     resolutionList.appendChild(noOpt);
     return;
   }
-  
-  // Add Auto option first
+
   const autoOption = document.createElement('div');
   autoOption.className = `settingsOption ${hls?.currentLevel === -1 ? 'active' : ''}`;
   autoOption.innerHTML = `
@@ -734,8 +697,7 @@ function loadAvailableResolutions() {
   `;
   autoOption.onclick = () => selectResolution(-1, 'Auto');
   resolutionList.appendChild(autoOption);
-  
-  // Add available qualities
+
   qualities.forEach(quality => {
     const option = document.createElement('div');
     option.className = `settingsOption ${quality.selected ? 'active' : ''}`;
@@ -758,16 +720,16 @@ function selectResolution(id, label) {
       shakaP.selectVariantTrack(track, true);
     }
   }
-  
+
   setBadge(`Resolution: ${label}`, 'live');
   toggleSettings(false);
 }
 
 function loadAudioTracks() {
   audioList.innerHTML = '';
-  
+
   let audioTracks = [];
-  
+
   if (shakaP) {
     const tracks = shakaP.getTextTracks();
     audioTracks = tracks.map(track => ({
@@ -776,8 +738,7 @@ function loadAudioTracks() {
       selected: track.active
     }));
   }
-  
-  // If no audio tracks found
+
   if (audioTracks.length === 0) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -785,7 +746,7 @@ function loadAudioTracks() {
     audioList.appendChild(noOpt);
     return;
   }
-  
+
   audioTracks.forEach(track => {
     const option = document.createElement('div');
     option.className = `settingsOption ${track.selected ? 'active' : ''}`;
@@ -806,18 +767,17 @@ function selectAudioTrack(id, label) {
       shakaP.selectTextTrack(track);
     }
   }
-  
+
   setBadge(`Audio: ${label}`, 'live');
   toggleSettings(false);
 }
 
 function loadServerSources() {
   serverList.innerHTML = '';
-  
+
   const ch = channels[currentIndex];
   const sources = ch.sources || [];
-  
-  // If no multiple sources
+
   if (sources.length <= 1) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -825,7 +785,7 @@ function loadServerSources() {
     serverList.appendChild(noOpt);
     return;
   }
-  
+
   sources.forEach((source, index) => {
     const option = document.createElement('div');
     option.className = `settingsOption ${index === currentSourceIndex ? 'active' : ''}`;
@@ -844,8 +804,7 @@ function selectServerSource(index, name) {
   currentSourceIndex = index;
   setBadge(`Switched to ${name}`, 'live');
   toggleSettings(false);
-  
-  // Reload the source
+
   showLoading(true);
   setTimeout(() => {
     loadSource(currentSourceIndex).then(success => {
@@ -863,16 +822,14 @@ document.getElementById("btnCloseSettings").onclick = function() {
 
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
-  if(typeof channels === "undefined" || !channels.length){
+  if(typeoftypeof(channels) === "undefined" || !channels.length){
     console.error("channels not found in main.js");
     return;
   }
 
-  // auto mute OFF
   video.muted = false;
   video.volume = 1;
 
-  // buttons (for mouse users)
   document.getElementById("btnPrev").onclick = prevChannel;
   document.getElementById("btnNext").onclick = nextChannel;
   document.getElementById("btnGuide").onclick = () => toggleGuide();
@@ -882,15 +839,13 @@ window.addEventListener("load", () => {
   document.getElementById("btnSettings").onclick = () => toggleSettings();
   document.getElementById("btnFav").onclick = toggleFavCurrent;
 
-  // guide search
-  search.addEventListener("input", () => { 
-    focusTileIndex = 0; 
-    buildGrid(); 
+  search.addEventListener("input", () => {
+    focusTileIndex = 0;
+    buildGrid();
   });
 
   buildCategories();
 
-  // Start with logo hidden
   hideLogo();
 
   const saved = localStorage.getItem("lastChannel");
@@ -902,22 +857,19 @@ function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
 
 function showLoading(on){
   loading.classList.toggle("show", !!on);
-  // Keep controls visible during loading
-  if (on) {
-    showInfoBar(true, 20000); // Show for longer during loading
-    // Add loading-active class to body
-    document.body.classList.add('loading-active');
-  } else {
-    document.body.classList.remove('loading-active');
+  if(on){
+    infoBar.classList.add("show");
+    clearTimeout(infoHideTimer);
+  }else{
+    showInfoBar(false, isMobile() ? 6000 : 3500);
   }
 }
 
 function showNoSignal(on, msg){
   noSignal.classList.toggle("show", !!on);
   if(msg) noSignalText.textContent = msg;
-  // Show controls even when no signal
-  if (on) {
-    showInfoBar(true, 15000);
+  if(on){
+    showInfoBar(false, isMobile() ? 8000 : 6000);
   }
 }
 
@@ -933,20 +885,17 @@ function isDash(src){
 }
 
 async function playChannel(index){
-  // Hide logo when changing channel
   hideLogo();
-  
+
   currentIndex = clamp(index, 0, channels.length-1);
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
-  // UI updates
   updateNowPlayingUI();
   buildGrid();
 
   showNoSignal(false);
   showLoading(true);
-  showInfoBar(true, 20000); // Show controls longer when switching
 
   await tryLoadSourceLoop();
 }
@@ -961,16 +910,12 @@ async function tryLoadSourceLoop(){
   }
 
   while(currentSourceIndex < sources.length){
-    // Show controls before starting to load
-    showInfoBar(true, 20000);
-    
     const ok = await loadSource(currentSourceIndex);
     if(ok){
       showLoading(false);
       showNoSignal(false);
       setBadge("LIVE", "live");
-      // Keep controls visible
-      showInfoBar(true, 10000);
+      showInfoBar(true, isMobile() ? 6500 : 4500);
       return;
     }
     currentSourceIndex++;
@@ -989,9 +934,6 @@ async function loadSource(srcIdx){
   showLoading(true);
   showNoSignal(false);
   hideLogo();
-
-  // Always show controls when loading starts
-  showInfoBar(true, 20000);
 
   await cleanupPlayers();
 
@@ -1039,9 +981,6 @@ async function loadSource(srcIdx){
       updateMuteIcon();
       updatePlayIcon();
       setTimeout(() => showLogo(), 500);
-      
-      // Keep controls visible after loading completes
-      showInfoBar(true, 10000);
       return true;
     }catch(err){
       console.warn("Autoplay with sound blocked:", err);
@@ -1051,17 +990,12 @@ async function loadSource(srcIdx){
       setBadge("Muted. Press OK to unmute", "warn");
       updatePlayIcon();
       setTimeout(() => showLogo(), 500);
-      
-      // Keep controls visible
-      showInfoBar(true, 10000);
       return true;
     }
 
   }catch(e){
     console.warn("Source failed:", srcIdx, e);
     setBadge(`Source failed → trying next`, "warn");
-    // Keep controls visible even on failure
-    showInfoBar(true, 10000);
     return false;
   }
 }
@@ -1072,9 +1006,6 @@ async function failAllSources(msg){
   setBadge("NO SIGNAL", "err");
   hideLogo();
 
-  // Show controls even when no signal
-  showInfoBar(true, 15000);
-
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
   await playChannel((currentIndex + 1) % channels.length);
@@ -1084,28 +1015,20 @@ async function failAllSources(msg){
 function showInfoBar(sticky=false, timeout=8000){
   infoBar.classList.add("show");
   clearTimeout(infoHideTimer);
-  
-  // On mobile or during loading, keep controls visible longer
-  if (isMobile() || loading.classList.contains('show')) {
-    // During loading on mobile, keep controls visible longer
-    infoHideTimer = setTimeout(() => {
-      // Only hide if loading is complete and not on mobile
-      if (!loading.classList.contains('show') && !isMobile()) {
-        infoBar.classList.remove("show");
-      } else if (loading.classList.contains('show')) {
-        // If still loading, show again
-        showInfoBar(true, timeout);
-      }
-    }, timeout);
-  } else {
-    infoHideTimer = setTimeout(() => infoBar.classList.remove("show"), sticky ? timeout : timeout);
-  }
+
+  if(loading.classList.contains("show")) return;
+
+  const t = sticky ? timeout : timeout;
+  infoHideTimer = setTimeout(() => {
+    if(guide.classList.contains("show") || settingsOverlay.classList.contains("show")) return;
+    infoBar.classList.remove("show");
+  }, t);
 }
 
 function setBadge(text, kind){
   const base = channelSubText();
   infoSub.innerHTML = escapeHtml(base) + ` <span class="badge ${kind||"warn"}">${escapeHtml(text)}</span>`;
-  showInfoBar(true, 10000);
+  showInfoBar(true, isMobile() ? 7000 : 6000);
 }
 
 function channelSubText(){
@@ -1142,7 +1065,7 @@ function togglePlay(){
     video.pause();
   }
   updatePlayIcon();
-  showInfoBar(true, 8000);
+  showInfoBar(true, isMobile() ? 6000 : 4500);
 }
 
 function updatePlayIcon(){
@@ -1152,19 +1075,19 @@ function updatePlayIcon(){
 function toggleMute(){
   video.muted = !video.muted;
   updateMuteIcon();
-  showInfoBar(true, 8000);
+  showInfoBar(true, isMobile() ? 6000 : 4500);
 }
 
 function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
-function nextChannel(){ 
-  playChannel((currentIndex+1) % channels.length); 
+function nextChannel(){
+  playChannel((currentIndex+1) % channels.length);
 }
 
-function prevChannel(){ 
-  playChannel((currentIndex-1 + channels.length) % channels.length); 
+function prevChannel(){
+  playChannel((currentIndex-1 + channels.length) % channels.length);
 }
 
 /* ===================== Favorites ===================== */
@@ -1183,7 +1106,7 @@ function toggleFavCurrent(){
   saveFavs(favs);
   updateFavIcon();
   buildGrid();
-  showInfoBar(true, 8000);
+  showInfoBar(true, isMobile() ? 6000 : 4500);
 }
 
 function toggleFavByChannelIndex(idx){
@@ -1208,7 +1131,6 @@ function toggleGuide(force){
     buildCategoriesUI();
     buildGrid();
 
-    // Find current channel in filtered list
     const pos = filteredIndexes.indexOf(currentIndex);
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
@@ -1217,7 +1139,7 @@ function toggleGuide(force){
   }else{
     search.blur();
   }
-  showInfoBar(true, 8000);
+  showInfoBar(true, isMobile() ? 6000 : 4500);
 }
 
 function buildCategories(){
@@ -1255,12 +1177,10 @@ function getFilteredIndexes(){
   for(let i=0;i<channels.length;i++){
     const ch = channels[i];
     const cat = ch.category || "General";
-    
-    // First check category filter
+
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
 
-    // Then check search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
       if(!hay.includes(q)) continue;
@@ -1326,18 +1246,15 @@ function buildGrid(){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
-  // Prevent default for arrow keys to avoid scrolling
   if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S"].includes(e.key)) {
     e.preventDefault();
   }
 
-  /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
       if(!guide.classList.contains("show")){
         prevChannel();
       } else {
-        // Guide open: LEFT for category navigation (previous category)
         focusCatIndex = Math.max(0, focusCatIndex-1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -1350,7 +1267,6 @@ document.addEventListener("keydown", (e) => {
       if(!guide.classList.contains("show")){
         nextChannel();
       } else {
-        // Guide open: RIGHT for category navigation (next category)
         focusCatIndex = Math.min(categories.length-1, focusCatIndex+1);
         currentCat = categories[focusCatIndex];
         focusTileIndex = 0;
@@ -1361,9 +1277,8 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowUp":
       if(!guide.classList.contains("show")){
-        toggleGuide(true); // Open Guide
+        toggleGuide(true);
       } else {
-        // Guide open: UP for tile navigation (previous row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.max(0, focusTileIndex - cols);
         updateGridFocus();
@@ -1372,9 +1287,8 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowDown":
       if(!guide.classList.contains("show")){
-        showInfoBar(true, 8000); // Show Player Controls
+        showInfoBar(true, 6000);
       } else {
-        // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
         updateGridFocus();
@@ -1383,11 +1297,9 @@ document.addEventListener("keydown", (e) => {
 
     case "Enter":
       if(!guide.classList.contains("show")){
-        // Single click: Play/Pause
         if(okClickTimer){
           clearTimeout(okClickTimer);
           okClickTimer = null;
-          // Double click: Toggle Favorite
           toggleFavCurrent();
           setBadge("Favorite updated", "live");
         } else {
@@ -1399,7 +1311,6 @@ document.addEventListener("keydown", (e) => {
       } else if(!inSearch){
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
-          console.log("Playing channel:", chIdx + 1, channels[chIdx]?.name);
           toggleGuide(false);
           setTimeout(() => {
             playChannel(chIdx);
@@ -1428,12 +1339,12 @@ document.addEventListener("keydown", (e) => {
         }, DOUBLE_CLICK_DELAY);
       }
       break;
-      
+
     case "f":
     case "F":
       toggleFullscreen();
       break;
-      
+
     case "s":
     case "S":
       toggleSettings();
@@ -1444,8 +1355,7 @@ document.addEventListener("keydown", (e) => {
 video.addEventListener("play", () => {
   updatePlayIcon();
   showLogo();
-  // Show controls when video starts playing
-  showInfoBar(true, 8000);
+  showInfoBar(true, isMobile() ? 6000 : 4500);
 });
 
 video.addEventListener("pause", () => {
@@ -1454,14 +1364,12 @@ video.addEventListener("pause", () => {
 
 video.addEventListener('waiting', () => {
   hideLogo();
-  // Show controls when buffering
-  showInfoBar(true, 10000);
+  showInfoBar(true, isMobile() ? 8000 : 6000);
 });
 
 video.addEventListener('playing', () => {
   showLogo();
-  // Show controls when playing resumes
-  showInfoBar(true, 8000);
+  showInfoBar(true, isMobile() ? 6000 : 4500);
 });
 
 video.addEventListener("click", () => showInfoBar(true, 2400));
@@ -1469,13 +1377,12 @@ video.addEventListener("click", () => showInfoBar(true, 2400));
 /* ===================== Mobile Touch Support ===================== */
 video.addEventListener("touchstart", (e) => {
   e.preventDefault();
-  showInfoBar(true, 8000);
+  showInfoBar(true, 6000);
 }, {passive: false});
 
-// Add touch event for info bar
 infoBar.addEventListener("touchstart", (e) => {
   e.stopPropagation();
-  showInfoBar(true, 8000);
+  showInfoBar(true, 6000);
 }, {passive: false});
 
 /* ===================== Mobile Touch Gestures ===================== */
@@ -1483,8 +1390,11 @@ let touchStartX = 0;
 let touchStartY = 0;
 let touchEndX = 0;
 let touchEndY = 0;
+let touchFromUI = false;
 
 document.addEventListener('touchstart', (e) => {
+  const t = e.target;
+  touchFromUI = !!(t && (t.closest('#infoBar') || t.closest('#guide') || t.closest('#settingsOverlay')));
   touchStartX = e.changedTouches[0].screenX;
   touchStartY = e.changedTouches[0].screenY;
 }, {passive: true});
@@ -1496,31 +1406,20 @@ document.addEventListener('touchend', (e) => {
 }, {passive: true});
 
 function handleSwipe() {
+  if(touchFromUI) return;
+
   const minSwipeDistance = 50;
   const dx = touchEndX - touchStartX;
   const dy = touchEndY - touchStartY;
-  
-  // Horizontal swipe (channel change)
+
   if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > minSwipeDistance) {
-    if (dx > 0) {
-      // Swipe right - previous channel
-      prevChannel();
-    } else {
-      // Swipe left - next channel
-      nextChannel();
-    }
+    if (dx > 0) prevChannel();
+    else nextChannel();
   }
-  
-  // Vertical swipe (show/hide controls)
   else if (Math.abs(dy) > minSwipeDistance) {
-    if (dy > 0) {
-      // Swipe down - show controls
-      showInfoBar(true, 5000);
-    } else {
-      // Swipe up - toggle guide
-      if (!guide.classList.contains('show')) {
-        toggleGuide(true);
-      }
+    if (dy > 0) showInfoBar(true, 5000);
+    else {
+      if (!guide.classList.contains('show')) toggleGuide(true);
     }
   }
 }
@@ -1530,34 +1429,28 @@ let lastTap = 0;
 video.addEventListener('touchend', (e) => {
   const currentTime = new Date().getTime();
   const tapLength = currentTime - lastTap;
-  
+
   if (tapLength < 300 && tapLength > 0) {
-    // Double tap detected
     e.preventDefault();
     togglePlay();
   }
-  
+
   lastTap = currentTime;
 }, {passive: false});
 
 /* Handle screen rotation */
 window.addEventListener('orientationchange', () => {
   setTimeout(() => {
-    showInfoBar(true, 8000);
+    showInfoBar(true, 6000);
     updateWatermarkPosition();
-    // Rebuild grid if guide is open
     if (guide.classList.contains('show')) {
       buildGrid();
     }
   }, 300);
 });
 
-/* Reset on resize */
 window.addEventListener('resize', () => {
   updateWatermarkPosition();
-  if (isMobile()) {
-    showInfoBar(true, 8000);
-  }
 });
 </script>
 </body>
