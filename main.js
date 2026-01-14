@@ -422,6 +422,18 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zoom Music", 
+                sources: [
+                    { name: "Stream 1", url: "https://pubads.g.doubleclick.net/ssai/event/JCAm25qkRXiKcK1AJMlvKQ/master.m3u8" },
+                    { name: "Stream 2", url: "https://d1g66oqspoyxao.cloudfront.net/master.m3u8" },
+                    { name: "Stream 3", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/zoom-tv/master.m3u8" }
+
+                ], 
+                img: "https://i.postimg.cc/pdHkcC7q/yrf-music.jpg", 
+                category: "Music",
+                description: "India"
+            },
+            { 
                 name: "Show Box", 
                 sources: [
                     { name: "Originals", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
