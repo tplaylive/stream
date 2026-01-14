@@ -346,7 +346,8 @@ const channels = [
             { 
                 name: "9XM", 
                 sources: [
-                    { name: "Server 1", url: "https://wiselp.wiseplayout.com/9XM/master.m3u8" }
+                    { name: "Server 1", url: "https://wiselp.wiseplayout.com/9XM/master.m3u8" },
+                    { name: "Server 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Wb8VmBjp/9xm.jpg", 
                 category: "Music",
