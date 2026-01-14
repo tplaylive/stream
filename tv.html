@@ -14,7 +14,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 /* ===== Watermark ===== */
 .video-logo-watermark{
-  position: fixed;
+  position: absolute;
   bottom: 100px;
   right: 170px;
   z-index: 1000;
@@ -27,6 +27,14 @@ body{background:#000;color:#fff;overflow:hidden}
 .video-logo-watermark.hidden{opacity:0 !important;visibility:hidden}
 .video-logo-watermark img{
   display:block;height:auto;width:5vw;max-width:50px;min-width:25px;
+}
+
+/* Fullscreen support for watermark */
+:fullscreen .video-logo-watermark,
+:-webkit-full-screen .video-logo-watermark,
+:-moz-full-screen .video-logo-watermark {
+  position: absolute !important;
+  z-index: 10000 !important;
 }
 
 /* ===== VIDEO ===== */
@@ -417,6 +425,11 @@ body{background:#000;color:#fff;overflow:hidden}
 <div class="video-container">
   <video id="video" autoplay playsinline></video>
 
+  <!-- Watermark inside video container -->
+  <div class="video-logo-watermark hidden" id="videoLogoWatermark">
+    <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
+  </div>
+
   <div id="loading" class="overlayCenter"><div class="spinner"></div></div>
 
   <div id="noSignal" class="noSignal">
@@ -505,10 +518,6 @@ body{background:#000;color:#fff;overflow:hidden}
   </div>
 </div>
 
-<div class="video-logo-watermark hidden" id="videoLogoWatermark">
-  <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
-</div>
-
 <script src="main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
@@ -573,19 +582,48 @@ let okClickTimer = null;
 let backClickTimer = null;
 const DOUBLE_CLICK_DELAY = 400;
 
-/* ===================== Logo Control Functions ===================== */
-function showLogo() {
-  videoLogoWatermark.classList.remove('hidden');
-}
-
-function hideLogo() {
-  videoLogoWatermark.classList.add('hidden');
-}
-
 /* ===================== Mobile Detection ===================== */
 function isMobile() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
          (window.innerWidth <= 768);
+}
+
+/* ===================== Watermark Visibility Manager ===================== */
+function updateWatermarkPosition() {
+  if (isFullscreen) {
+    // In fullscreen, ensure watermark stays visible with higher z-index
+    videoLogoWatermark.style.zIndex = '10000';
+  } else {
+    // In normal mode
+    videoLogoWatermark.style.zIndex = '1000';
+  }
+  
+  // Adjust position for mobile
+  if (isMobile()) {
+    videoLogoWatermark.style.bottom = '80px';
+    videoLogoWatermark.style.right = '20px';
+  } else {
+    videoLogoWatermark.style.bottom = '100px';
+    videoLogoWatermark.style.right = '170px';
+  }
+  
+  // Ensure watermark is properly positioned
+  videoLogoWatermark.style.position = 'absolute';
+  videoLogoWatermark.style.display = 'block';
+}
+
+/* ===================== Logo Control Functions ===================== */
+function showLogo() {
+  videoLogoWatermark.classList.remove('hidden');
+  videoLogoWatermark.style.opacity = '0.4';
+  videoLogoWatermark.style.visibility = 'visible';
+  updateWatermarkPosition();
+}
+
+function hideLogo() {
+  videoLogoWatermark.classList.add('hidden');
+  videoLogoWatermark.style.opacity = '0';
+  videoLogoWatermark.style.visibility = 'hidden';
 }
 
 /* ===================== Fullscreen Functions ===================== */
@@ -612,13 +650,34 @@ function toggleFullscreen() {
     fullscreenIcon.className = "fas fa-expand";
     isFullscreen = false;
   }
+  
+  // Update watermark position after fullscreen change
+  setTimeout(updateWatermarkPosition, 100);
   showInfoBar(true, 8000);
 }
 
-document.addEventListener('fullscreenchange', () => {
-  isFullscreen = !!document.fullscreenElement;
+// Fullscreen change event listeners
+document.addEventListener('fullscreenchange', handleFullscreenChange);
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+
+function handleFullscreenChange() {
+  isFullscreen = !!document.fullscreenElement || 
+                 !!document.webkitFullscreenElement || 
+                 !!document.mozFullScreenElement;
+  
   fullscreenIcon.className = isFullscreen ? "fas fa-compress" : "fas fa-expand";
-});
+  
+  // Update watermark position
+  updateWatermarkPosition();
+  
+  // Ensure watermark is visible if it should be
+  if (!videoLogoWatermark.classList.contains('hidden')) {
+    showLogo();
+  }
+  
+  showInfoBar(true, 8000);
+}
 
 /* ===================== Settings Functions ===================== */
 function toggleSettings(force) {
@@ -1485,6 +1544,7 @@ video.addEventListener('touchend', (e) => {
 window.addEventListener('orientationchange', () => {
   setTimeout(() => {
     showInfoBar(true, 8000);
+    updateWatermarkPosition();
     // Rebuild grid if guide is open
     if (guide.classList.contains('show')) {
       buildGrid();
@@ -1494,6 +1554,7 @@ window.addEventListener('orientationchange', () => {
 
 /* Reset on resize */
 window.addEventListener('resize', () => {
+  updateWatermarkPosition();
   if (isMobile()) {
     showInfoBar(true, 8000);
   }
