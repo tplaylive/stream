@@ -357,7 +357,7 @@ const channels = [
                 name: "9X Jalwa", 
                 sources: [
                     { name: "wiseplayout", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
-                    { name: "cloudfront", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" }
+                    { name: "cloudfront", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xjalwa/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
                 category: "Music",
