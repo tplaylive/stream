@@ -479,9 +479,26 @@ const channels = [
                 name: "Brit Asia TV", 
                 sources: [
                     { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/britasiatv/master.m3u8" },
-                    { name: "Stream 2", url: "https://www.yupptv.com/yupptvnew/channels/wah-punjabi//live/embed" },
                 ], 
                 img: "https://i.postimg.cc/BbM871q3/brit-asia.jpg", 
+                category: "Music",
+                description: "India"
+            },
+            { 
+                name: "PTC Music", 
+                sources: [
+                    { name: "Stream 1", url: "https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/zvj04hnW/ptc-music.jpg", 
+                category: "Music",
+                description: "India"
+            },
+            { 
+                name: "PTC Chak De", 
+                sources: [
+                    { name: "Stream 1", url: "https://cdn-1.pishow.tv/live/449/master.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/G2BRLcM2/ptc-chakde.jpg", 
                 category: "Music",
                 description: "India"
             },
