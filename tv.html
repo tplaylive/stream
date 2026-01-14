@@ -208,8 +208,31 @@ body{background:#000;color:#fff;overflow:hidden}
   display:flex;
   justify-content:space-between;
   align-items:center;
+  position:relative;
 }
-.gTop b{font-size:14px}
+.gTop b{font-size:14px; flex:1;}
+.gTop span{
+  font-size:12px;
+  color:#bbb;
+  margin-left:10px;
+}
+
+/* Guide Close Button */
+.guideClose{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:none;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  margin-left:10px;
+}
+.guideClose:hover{background:#e50914}
 
 /* Guide Body */
 .gBody{
@@ -337,6 +360,16 @@ body{background:#000;color:#fff;overflow:hidden}
     width:40px;
     height:40px;
   }
+  
+  /* Mobile-এ Guide header text */
+  .gTop span{
+    font-size:10px;
+    display:none;
+  }
+  
+  .gTop b{
+    font-size:12px;
+  }
 }
 </style>
 
@@ -380,6 +413,9 @@ body{background:#000;color:#fff;overflow:hidden}
     <div class="gTop">
       <b>Channel Guide</b>
       <span>←/→ Cat • ↑/↓/→ Tiles • OK Play • ESC Back</span>
+      <button class="guideClose" id="btnCloseGuide">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
     <div class="gBody">
       <div class="cat" id="catPanel"></div>
@@ -464,6 +500,7 @@ const guide = document.getElementById("guide");
 const catPanel = document.getElementById("catPanel");
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
+const guideCloseBtn = document.getElementById("btnCloseGuide");
 
 const settingsOverlay = document.getElementById("settingsOverlay");
 const resolutionList = document.getElementById("resolutionList");
@@ -546,6 +583,20 @@ document.addEventListener('fullscreenchange', () => {
 /* ===================== Settings Functions ===================== */
 function toggleSettings(force) {
   const wantOpen = (typeof force === 'boolean') ? force : !settingsOverlay.classList.contains('show');
+  
+  // যদি Guide open থাকে, প্রথমে close করুন
+  if(wantOpen && guide.classList.contains('show')) {
+    toggleGuide(false);
+    setTimeout(() => {
+      settingsOverlay.classList.toggle('show', true);
+      loadAvailableResolutions();
+      loadAudioTracks();
+      loadServerSources();
+      showInfoBar(true, 8000);
+    }, 200);
+    return;
+  }
+  
   settingsOverlay.classList.toggle('show', wantOpen);
   
   if(wantOpen) {
@@ -724,6 +775,17 @@ function selectServerSource(index, name) {
 document.getElementById("btnCloseSettings").onclick = function() {
   toggleSettings(false);
 };
+
+/* ===================== Guide Close Button Function ===================== */
+guideCloseBtn.onclick = function() {
+  toggleGuide(false);
+};
+
+// টাচ স্ক্রিনের জন্য close button-এ event যোগ করুন
+guideCloseBtn.addEventListener("touchstart", function(e) {
+  e.stopPropagation(); // Prevent event bubbling
+  toggleGuide(false);
+}, {passive: true});
 
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
@@ -941,7 +1003,6 @@ function updateNowPlayingUI(){
   infoTitle.textContent = `${currentIndex+1}. ${ch.name || "Unknown"}`;
   infoSub.textContent = channelSubText();
 
-
   updateFavIcon();
   updatePlayIcon();
   updateMuteIcon();
@@ -1009,7 +1070,28 @@ function toggleFavByChannelIndex(idx){
 /* ===================== Guide (left overlay) ===================== */
 function toggleGuide(force){
   const wantOpen = (typeof force === "boolean") ? force : !guide.classList.contains("show");
-  guide.classList.toggle("show", wantOpen);
+  
+  // যদি Settings open থাকে, প্রথমে close করুন
+  if(wantOpen && settingsOverlay.classList.contains('show')) {
+    toggleSettings(false);
+    setTimeout(() => {
+      guide.classList.toggle('show', true);
+      focusCatIndex = categories.indexOf(currentCat);
+      if(focusCatIndex < 0) focusCatIndex = 0;
+
+      buildCategoriesUI();
+      buildGrid();
+
+      const pos = filteredIndexes.indexOf(currentIndex);
+      focusTileIndex = pos >= 0 ? pos : 0;
+      updateGridFocus();
+
+      setTimeout(()=>search.focus(), 50);
+    }, 200);
+    return;
+  }
+  
+  guide.classList.toggle('show', wantOpen);
 
   if(wantOpen){
     focusCatIndex = categories.indexOf(currentCat);
@@ -1135,7 +1217,7 @@ document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
 
   // Prevent default for arrow keys to avoid scrolling
-  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S"].includes(e.key)) {
+  if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S", "g", "G"].includes(e.key)) {
     e.preventDefault();
   }
 
@@ -1245,6 +1327,13 @@ document.addEventListener("keydown", (e) => {
     case "s":
     case "S":
       toggleSettings();
+      break;
+      
+    case "g":
+    case "G":
+      if(!settingsOverlay.classList.contains("show")) {
+        toggleGuide();
+      }
       break;
   }
 });
