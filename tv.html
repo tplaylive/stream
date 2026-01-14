@@ -822,7 +822,7 @@ document.getElementById("btnCloseSettings").onclick = function() {
 
 /* ===================== Init ===================== */
 window.addEventListener("load", () => {
-  if(typeoftypeof(channels) === "undefined" || !channels.length){
+if (typeof channels === "undefined" || !channels.length) {
     console.error("channels not found in main.js");
     return;
   }
