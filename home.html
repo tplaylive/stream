@@ -1,611 +1,416 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TPlay IPTV - Select Your Device</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T Play — Device Select</title>
+  <meta name="color-scheme" content="dark" />
+  <style>
+    :root{
+      --bg:#070A12;
+      --card:#0E1426;
+      --card2:#0B1020;
+      --text:#EAF0FF;
+      --muted:#A6B0CC;
+      --accent:#4B7BFF;
+      --accent2:#22D3EE;
+      --ring: 0 0 0 3px rgba(75,123,255,.35), 0 0 0 1px rgba(255,255,255,.12) inset;
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans Bengali", "Noto Sans", sans-serif;
+      background:
+        radial-gradient(900px 500px at 20% 20%, rgba(75,123,255,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(34,211,238,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 85%, rgba(168,85,247,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      overflow:hidden;
+    }
 
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
+    .wrap{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: clamp(16px, 3vw, 40px);
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
+    .panel{
+      width:min(980px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      border-radius: clamp(18px, 2vw, 28px);
+      padding: clamp(18px, 3vw, 34px);
+      backdrop-filter: blur(10px);
+    }
 
-        header {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      user-select:none;
+    }
+    .logo{
+      width:44px;height:44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display:grid;place-items:center;
+      box-shadow: 0 10px 25px rgba(75,123,255,.25);
+      flex:0 0 auto;
+    }
+    .logo span{
+      font-weight:900;
+      color:#081024;
+      letter-spacing:.5px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 30px);
+      line-height:1.1;
+    }
+    .sub{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size: clamp(13px, 1.4vw, 16px);
+      line-height:1.4;
+    }
 
-        .logo-icon {
-            font-size: 2.2rem;
-        }
+    .help{
+      text-align:right;
+      color:var(--muted);
+      font-size: 13px;
+      line-height:1.35;
+      user-select:none;
+    }
+    .kbd{
+      display:inline-flex;
+      gap:6px;
+      margin-top:6px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .key{
+      padding:4px 8px;
+      border-radius:10px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:12px;
+      color:var(--text);
+    }
 
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 700;
-        }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
 
-        .tagline {
-            font-size: 1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    @media (max-width: 860px){
+      body{overflow:auto}
+      .grid{grid-template-columns:1fr}
+      .help{text-align:left}
+      header{flex-direction:column; align-items:flex-start}
+    }
 
-        .content {
-            padding: 30px;
-        }
+    .card{
+      position:relative;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      padding: 18px 18px 16px 18px;
+      min-height: 132px;
+      cursor:pointer;
+      outline:none;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(75,123,255,.35); }
+    .card:active{ transform: translateY(0px) scale(.99); }
 
-        .device-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+    /* TV remote focus ring */
+    .card:focus-visible{
+      box-shadow: var(--ring);
+      border-color: rgba(75,123,255,.55);
+    }
 
-        .device-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 2px solid #e5e7eb;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
+    .toprow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
 
-        .device-card:hover, .device-card:focus {
-            transform: translateY(-3px);
-            border-color: #2563eb;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
-        }
+    .title{
+      font-size: 18px;
+      font-weight: 800;
+      margin:0;
+    }
+    .desc{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.35;
+    }
 
-        .device-card.selected {
-            border-color: #2563eb;
-            background-color: #eff6ff;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.15);
-        }
+    .pill{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(75,123,255,.16);
+      border: 1px solid rgba(75,123,255,.30);
+      color: var(--text);
+      flex:0 0 auto;
+      white-space:nowrap;
+    }
 
-        .device-card i {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            color: #2563eb;
-        }
+    .icon{
+      width:44px;height:44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      display:grid;place-items:center;
+      font-size: 22px;
+    }
 
-        .device-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #1f2937;
-        }
+    .footer{
+      margin-top: 14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      flex-wrap:wrap;
+    }
 
-        .device-card p {
-            color: #6b7280;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
+    .note{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background: rgba(34,211,238,.85);
+      box-shadow: 0 0 0 4px rgba(34,211,238,.12);
+    }
 
-        .input-support {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #f3f4f6;
-        }
-
-        .input-badge {
-            background-color: #f3f4f6;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #4b5563;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .input-badge i {
-            font-size: 0.8rem;
-            margin-bottom: 0;
-            color: #6b7280;
-        }
-
-        .url-section {
-            background-color: #f9fafb;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-        }
-
-        .url-section h3 {
-            color: #1f2937;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .url-display {
-            margin-top: 10px;
-            padding: 15px;
-            background-color: white;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 1rem;
-            border: 1px solid #d1d5db;
-            color: #2563eb;
-            font-weight: 500;
-            word-break: break-all;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            min-width: 180px;
-        }
-
-        .btn-primary {
-            background-color: #2563eb;
-            color: white;
-        }
-
-        .btn-primary:hover, .btn-primary:focus {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: white;
-            color: #4b5563;
-            border: 2px solid #d1d5db;
-        }
-
-        .btn-secondary:hover, .btn-secondary:focus {
-            border-color: #2563eb;
-            color: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        .instructions {
-            background-color: #f9fafb;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .instructions h3 {
-            color: #1f2937;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .instructions p {
-            color: #6b7280;
-            margin-bottom: 10px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        .key-navigation {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-            color: #6b7280;
-            font-size: 0.85rem;
-        }
-
-        .key {
-            background-color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            border: 1px solid #d1d5db;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-            color: #6b7280;
-            font-size: 0.85rem;
-        }
-
-        /* Focus styles for keyboard/remote navigation */
-        .device-card:focus, .btn:focus {
-            outline: 2px solid #2563eb;
-            outline-offset: 2px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .device-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .logo-text {
-                font-size: 1.7rem;
-            }
-            
-            .btn {
-                min-width: 160px;
-                padding: 12px 20px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .device-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            body {
-                padding: 10px;
-            }
-        }
-
-        .selected-device-info {
-            background-color: #eff6ff;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-left: 4px solid #2563eb;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .selected-device-info i {
-            font-size: 1.5rem;
-            color: #2563eb;
-        }
-
-        .selected-device-text h4 {
-            color: #1f2937;
-            margin-bottom: 5px;
-        }
-
-        .selected-device-text p {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-    </style>
+    /* Loading overlay (optional) */
+    .overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      z-index: 50;
+    }
+    .overlay.show{display:flex}
+    .spinner{
+      width:38px;height:38px;border-radius:50%;
+      border: 3px solid rgba(255,255,255,.20);
+      border-top-color: rgba(75,123,255,.95);
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin{ to{transform:rotate(360deg)} }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-play-circle logo-icon"></i>
-                <h1 class="logo-text">TPlay IPTV</h1>
-            </div>
-            <p class="tagline">Select your device to start streaming</p>
-        </header>
-
-        <div class="content">
-            <div class="selected-device-info" id="selected-device-info">
-                <i class="fas fa-desktop"></i>
-                <div class="selected-device-text">
-                    <h4>Select a device</h4>
-                    <p>Choose your device type to optimize your viewing experience</p>
-                </div>
-            </div>
-
-            <div class="device-grid">
-                <div class="device-card" tabindex="0" data-device="tv">
-                    <i class="fas fa-tv"></i>
-                    <h3>Smart TV</h3>
-                    <p>Optimized for television with remote control navigation</p>
-                    <div class="input-support">
-                        <div class="input-badge"><i class="fas fa-gamepad"></i> TV Remote</div>
-                        <div class="input-badge"><i class="fas fa-mouse-pointer"></i> Pointer</div>
-                    </div>
-                </div>
-
-                <div class="device-card" tabindex="0" data-device="mobile">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Mobile Phone</h3>
-                    <p>Touch-optimized interface for smartphones</p>
-                    <div class="input-support">
-                        <div class="input-badge"><i class="fas fa-hand-point-up"></i> Touch</div>
-                        <div class="input-badge"><i class="fas fa-arrows-alt"></i> Swipe</div>
-                    </div>
-                </div>
-
-                <div class="device-card" tabindex="0" data-device="tablet">
-                    <i class="fas fa-tablet-alt"></i>
-                    <h3>Tablet</h3>
-                    <p>Larger touch interface for tablets</p>
-                    <div class="input-support">
-                        <div class="input-badge"><i class="fas fa-hand-point-up"></i> Touch</div>
-                        <div class="input-badge"><i class="fas fa-keyboard"></i> Keyboard</div>
-                    </div>
-                </div>
-
-                <div class="device-card" tabindex="0" data-device="pc">
-                    <i class="fas fa-desktop"></i>
-                    <h3>Desktop PC</h3>
-                    <p>Full interface for desktop with keyboard and mouse</p>
-                    <div class="input-support">
-                        <div class="input-badge"><i class="fas fa-keyboard"></i> Keyboard</div>
-                        <div class="input-badge"><i class="fas fa-mouse"></i> Mouse</div>
-                    </div>
-                </div>
-
-                <div class="device-card" tabindex="0" data-device="laptop">
-                    <i class="fas fa-laptop"></i>
-                    <h3>Laptop</h3>
-                    <p>Adaptive interface for laptops</p>
-                    <div class="input-support">
-                        <div class="input-badge"><i class="fas fa-keyboard"></i> Keyboard</div>
-                        <div class="input-badge"><i class="fas fa-mouse"></i> Touchpad</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="url-section">
-                <h3>TPlay IPTV URL</h3>
-                <div class="url-display">https://tplay.live</div>
-                <p style="color: #6b7280; margin-top: 10px; font-size: 0.9rem;">All devices use the same TPlay URL</p>
-            </div>
-
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="launch-btn" tabindex="0">
-                    <i class="fas fa-external-link-alt"></i> Go to TPlay
-                </button>
-                <button class="btn btn-secondary" id="reset-btn" tabindex="0">
-                    <i class="fas fa-redo"></i> Clear Selection
-                </button>
-            </div>
-
-            <div class="instructions">
-                <h3>Navigation Guide</h3>
-                <p>• <strong>TV Remote:</strong> Use arrow keys to navigate, Enter to select</p>
-                <p>• <strong>Keyboard:</strong> Use Tab/Arrow keys to navigate, Enter/Space to select</p>
-                <p>• <strong>Mouse:</strong> Click on any device card or button</p>
-                <p>• <strong>Touchscreen:</strong> Tap on any device card or button</p>
-                
-                <div class="key-navigation">
-                    <span>Navigate:</span>
-                    <span class="key">TAB</span>
-                    <span class="key">ARROWS</span>
-                    <span>Select:</span>
-                    <span class="key">ENTER</span>
-                    <span class="key">SPACE</span>
-                </div>
-            </div>
+  <div class="wrap">
+    <main class="panel" role="application" aria-label="T Play device selector">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"><span>T</span></div>
+          <div>
+            <h1>T Play — Device নির্বাচন করুন</h1>
+            <p class="sub">আপনি কোন ডিভাইসে দেখবেন? TV Remote, Mouse/Keyboard, Touch—সবই সাপোর্টেড।</p>
+          </div>
         </div>
 
-        <footer>
-            <p>TPlay IPTV &copy; 2023 | https://tplay.live | Stream on any device</p>
-        </footer>
-    </div>
+        <div class="help" aria-hidden="true">
+          TV Remote: ↑ ↓ ← → + OK/Enter<br/>
+          Keyboard: Arrow + Enter / Space<br/>
+          Touch: Tap
+          <div class="kbd">
+            <span class="key">↑</span><span class="key">↓</span><span class="key">←</span><span class="key">→</span>
+            <span class="key">Enter</span><span class="key">Esc</span>
+          </div>
+        </div>
+      </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Device detection
-            const userAgent = navigator.userAgent.toLowerCase();
-            let detectedDevice = 'pc';
-            let deviceIcon = 'fas fa-desktop';
-            let deviceName = 'Desktop PC';
-            
-            if (/tv|smart-tv|google-tv|appletv|roku|crkey|boxee|netcast|viera|bravia|cast|firetv|smarttv|tizen|webos|xbox|playstation/i.test(userAgent)) {
-                detectedDevice = 'tv';
-                deviceIcon = 'fas fa-tv';
-                deviceName = 'Smart TV';
-            } else if (/mobile|iphone|ipod|android.*mobile|blackberry|iemobile/i.test(userAgent)) {
-                detectedDevice = 'mobile';
-                deviceIcon = 'fas fa-mobile-alt';
-                deviceName = 'Mobile Phone';
-            } else if (/tablet|ipad|android(?!.*mobile)|kindle|silk/i.test(userAgent)) {
-                detectedDevice = 'tablet';
-                deviceIcon = 'fas fa-tablet-alt';
-                deviceName = 'Tablet';
-            } else if (/macintosh|mac os x|mac_powerpc/i.test(userAgent)) {
-                detectedDevice = 'laptop';
-                deviceIcon = 'fas fa-laptop';
-                deviceName = 'Laptop';
-            }
-            
-            // Update selected device info
-            const selectedDeviceInfo = document.getElementById('selected-device-info');
-            selectedDeviceInfo.innerHTML = `
-                <i class="${deviceIcon}"></i>
-                <div class="selected-device-text">
-                    <h4>Detected: ${deviceName}</h4>
-                    <p>We've detected you're using a ${deviceName}. Select a different device below if needed.</p>
-                </div>
-            `;
-            
-            // Select the detected device card
-            const deviceCards = document.querySelectorAll('.device-card');
-            let selectedDevice = detectedDevice;
-            
-            // Highlight the detected device
-            deviceCards.forEach(card => {
-                if (card.dataset.device === detectedDevice) {
-                    card.classList.add('selected');
-                }
-                
-                // Add click/tap event
-                card.addEventListener('click', function() {
-                    selectDevice(this);
-                });
-                
-                // Add keyboard/remote event
-                card.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        selectDevice(this);
-                    }
-                });
-            });
-            
-            // Function to select a device
-            function selectDevice(card) {
-                // Remove selected class from all cards
-                deviceCards.forEach(c => c.classList.remove('selected'));
-                
-                // Add selected class to clicked card
-                card.classList.add('selected');
-                
-                // Update selected device
-                selectedDevice = card.dataset.device;
-                
-                // Update the selected device info
-                const deviceNames = {
-                    'tv': 'Smart TV',
-                    'mobile': 'Mobile Phone',
-                    'tablet': 'Tablet',
-                    'pc': 'Desktop PC',
-                    'laptop': 'Laptop'
-                };
-                
-                const deviceIcons = {
-                    'tv': 'fas fa-tv',
-                    'mobile': 'fas fa-mobile-alt',
-                    'tablet': 'fas fa-tablet-alt',
-                    'pc': 'fas fa-desktop',
-                    'laptop': 'fas fa-laptop'
-                };
-                
-                selectedDeviceInfo.innerHTML = `
-                    <i class="${deviceIcons[selectedDevice]}"></i>
-                    <div class="selected-device-text">
-                        <h4>Selected: ${deviceNames[selectedDevice]}</h4>
-                        <p>Ready to launch TPlay IPTV for ${deviceNames[selectedDevice]}</p>
-                    </div>
-                `;
-                
-                // Focus on the launch button for better navigation flow
-                document.getElementById('launch-btn').focus();
-            }
-            
-            // Launch button functionality
-            document.getElementById('launch-btn').addEventListener('click', function() {
-                // All devices use the same URL
-                const tplayUrl = "https://tplay.live";
-                
-                // In a real app, this would redirect to the TPlay URL
-                // For demo, we'll show an alert and simulate redirect
-                alert(`Launching TPlay IPTV...\nRedirecting to: ${tplayUrl}`);
-                // window.location.href = tplayUrl; // Uncomment for real redirect
-            });
-            
-            // Reset button functionality
-            document.getElementById('reset-btn').addEventListener('click', function() {
-                // Reset to detected device
-                deviceCards.forEach(card => {
-                    card.classList.remove('selected');
-                    if (card.dataset.device === detectedDevice) {
-                        card.classList.add('selected');
-                        selectedDevice = detectedDevice;
-                    }
-                });
-                
-                // Reset the selected device info
-                selectedDeviceInfo.innerHTML = `
-                    <i class="${deviceIcon}"></i>
-                    <div class="selected-device-text">
-                        <h4>Detected: ${deviceName}</h4>
-                        <p>We've detected you're using a ${deviceName}. Select a different device below if needed.</p>
-                    </div>
-                `;
-                
-                // Focus on the first device card
-                deviceCards[0].focus();
-            });
-            
-            // Keyboard navigation for TV remote/keyboard users
-            let currentFocusIndex = 0;
-            const focusableElements = document.querySelectorAll('.device-card, .btn');
-            
-            document.addEventListener('keydown', function(e) {
-                // Only handle arrow keys and tab for navigation
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    currentFocusIndex = (currentFocusIndex + 1) % focusableElements.length;
-                    focusableElements[currentFocusIndex].focus();
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    currentFocusIndex = (currentFocusIndex - 1 + focusableElements.length) % focusableElements.length;
-                    focusableElements[currentFocusIndex].focus();
-                } else if (e.key === 'Tab') {
-                    // Update current focus index when using Tab
-                    setTimeout(() => {
-                        focusableElements.forEach((el, index) => {
-                            if (el === document.activeElement) {
-                                currentFocusIndex = index;
-                            }
-                        });
-                    }, 10);
-                }
-            });
+      <section class="grid" aria-label="Device options">
+        <!-- TV -->
+        <div class="card" role="button" tabindex="0"
+             data-url="https://tplay.live/tv"
+             aria-label="TV mode খুলুন">
+          <div class="toprow">
+            <div>
+              <p class="title">TV</p>
+              <p class="desc">Remote-friendly UI (D-pad focus)।</p>
+            </div>
+            <span class="pill">Recommended</span>
+          </div>
+          <div class="toprow">
+            <div class="note">
+              <span class="dot"></span><span>Smart TV / Android TV / Fire TV</span>
+            </div>
+            <div class="icon" aria-hidden="true">📺</div>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="card" role="button" tabindex="0"
+             data-url="https://tplay.live/mobile"
+             aria-label="Mobile mode খুলুন">
+          <div class="toprow">
+            <div>
+              <p class="title">Mobile</p>
+              <p class="desc">Touch-first UI (one-hand friendly)।</p>
+            </div>
+            <span class="pill">Touch</span>
+          </div>
+          <div class="toprow">
+            <div class="note">
+              <span class="dot"></span><span>Android / iPhone</span>
+            </div>
+            <div class="icon" aria-hidden="true">📱</div>
+          </div>
+        </div>
+
+        <!-- Universal -->
+        <div class="card" role="button" tabindex="0"
+             data-url="https://tplay.live"
+             aria-label="All devices mode খুলুন">
+          <div class="toprow">
+            <div>
+              <p class="title">All Devices</p>
+              <p class="desc">TV/Mobile/Tab/PC—সবখানেই চলবে।</p>
+            </div>
+            <span class="pill">Universal</span>
+          </div>
+          <div class="toprow">
+            <div class="note">
+              <span class="dot"></span><span>Tablet / PC / Laptop</span>
+            </div>
+            <div class="icon" aria-hidden="true">💻</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        <div>© T Play • IPTV</div>
+        <div>Tip: TV-তে প্রথম কার্ডটা auto-focus হবে ✅</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="spinner" aria-label="Loading"></div>
+  </div>
+
+  <script>
+    (function () {
+      const cards = Array.from(document.querySelectorAll(".card"));
+      const overlay = document.getElementById("overlay");
+
+      function go(url){
+        // Smooth UX for TV devices / slow webviews
+        overlay.classList.add("show");
+        // Small delay so overlay paints before navigation
+        setTimeout(() => { window.location.href = url; }, 120);
+      }
+
+      // Click / Tap
+      cards.forEach((card) => {
+        card.addEventListener("click", () => go(card.dataset.url));
+        card.addEventListener("touchend", (e) => {
+          // Prevent double-trigger on some devices
+          e.preventDefault();
+          go(card.dataset.url);
+        }, {passive:false});
+
+        // Enter/Space activates
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            go(card.dataset.url);
+          }
         });
-    </script>
+      });
+
+      // D-pad navigation (Arrow keys)
+      // Works best for grid (3 columns desktop, 1 column mobile)
+      function getCols(){
+        // Detect current grid columns using computed style
+        const grid = document.querySelector(".grid");
+        const style = window.getComputedStyle(grid);
+        const cols = style.gridTemplateColumns.split(" ").length;
+        return Math.max(1, cols);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        const key = e.key;
+        if (!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Escape"].includes(key)) return;
+
+        const active = document.activeElement;
+        const idx = cards.indexOf(active);
+
+        if (key === "Escape") {
+          // Escape = focus first card
+          cards[0].focus();
+          e.preventDefault();
+          return;
+        }
+
+        if (idx === -1) return;
+
+        const cols = getCols();
+        let next = idx;
+
+        if (key === "ArrowLeft") next = idx - 1;
+        if (key === "ArrowRight") next = idx + 1;
+        if (key === "ArrowUp") next = idx - cols;
+        if (key === "ArrowDown") next = idx + cols;
+
+        // Clamp within bounds
+        next = Math.max(0, Math.min(cards.length - 1, next));
+
+        if (next !== idx) {
+          cards[next].focus();
+          e.preventDefault();
+        }
+      });
+
+      // Auto-focus first option (good for TVs)
+      window.addEventListener("load", () => {
+        // Slight delay to allow TV browsers to settle
+        setTimeout(() => {
+          if (!document.activeElement || document.activeElement === document.body) {
+            cards[0].focus();
+          }
+        }, 50);
+      });
+    })();
+  </script>
 </body>
 </html>
