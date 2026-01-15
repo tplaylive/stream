@@ -1643,11 +1643,22 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Star Sports", 
+                name: "Star Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://live.mncdn.shop/3ac46078-2bf0-4998-a021-37b459e09fba/index.m3u8" }
+                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=18283d4f5f13c0cac5cab4433a0ed8f0&e=.m3u8" },
+                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY7ffw6x-c0JnBVjcBdy3rnCfjKpWUhYHWGMqzL4Ch7JLNO6T8VEV-vpLJ7aenFoMytjc&usqp=CAU", 
+                img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
+                category: "Sports",
+                description: "India"
+            },
+            { 
+                name: "Star Sports 2", 
+                sources: [
+                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=1e8e3ca973f7808849df688219554a90&e=.m3u8" },
+                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
                 description: "India"
             },
