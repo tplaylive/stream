@@ -595,6 +595,9 @@ function toggleFullscreen() {
 document.addEventListener('fullscreenchange', () => {
   isFullscreen = !!document.fullscreenElement;
   fullscreenIcon.className = isFullscreen ? "fas fa-compress" : "fas fa-expand";
+  if(isFullscreen){
+    showLogo();
+  }
 });
 
 /* ===================== Settings Functions ===================== */
