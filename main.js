@@ -227,6 +227,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Nick", 
+                sources: [
+                    { name: "Hindi", url: "https://mrzplayin.fun/roarzon/stream.php?id=e2e42a07550863f8b67f5eb252581f6d&e=.m3u8" },
+                    { name: "Bangla", url: "https://satoshi-cors.herokuapp.com/http://103.140.254.2:3500/live/1341.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
+                category: "Kids",
+                description: "India"
+            },
+              { 
                 name: "Pogo", 
                 sources: [
                     { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=667189f69164&e=.m3u8" }
