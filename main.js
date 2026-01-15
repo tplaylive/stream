@@ -774,7 +774,8 @@ const channels = [
             { 
                 name: "Star Gold", 
                 sources: [
-                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" }
+                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" },
+                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
                 category: "Movie",
