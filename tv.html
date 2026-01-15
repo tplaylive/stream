@@ -848,7 +848,6 @@ function isDash(src){
 }
 
 async function playChannel(index){
-  // Hide logo when changing channel
   hideLogo();
   
   currentIndex = clamp(index, 0, channels.length-1);
@@ -861,7 +860,7 @@ async function playChannel(index){
 
   showNoSignal(false);
   showLoading(true);
-  showInfoBar(true, 8000);
+  showInfoBar(true, 10000);
 
   await tryLoadSourceLoop();
 }
