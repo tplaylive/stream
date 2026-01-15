@@ -335,6 +335,25 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "24/7 Music", 
+                sources: [
+                  { name: "Hindi Music", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
+                  { name: "Hindi Music 2", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
+                  { name: "World Music", url: "https://tplay.live/out/music/world-music.index.m3u8" },
+                  { name: "World Music 2", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
+                  { name: "World Music 3", url: "https://tplay.live/out/music/world-music3.index.m3u8" },
+                  { name: "Arabic", url: "https://tplay.live/out/music/arabic-music.index.m3u8" },
+                  { name: "Adnan Sami Playlist", url: "https://tplay.live/playlist/music/adnan-sami/index.m3u8" },
+                  { name: "Wind of Change Playlist", url: "https://tplay.live/playlist/music/wind-of-change/index.m3u8" },
+                  { name: "Coke Studio Bangla Playlist", url: "https://tplay.live/playlist/music/coke-studio-bangla/index.m3u8" },
+                  { name: "Dance Playlist", url: "https://tplay.live/playlist/music/dance-performance/index.m3u8" },
+                  { name: "Bhojpuri Playlist", url: "https://tplay.live/playlist/music/bhojpuri/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                category: "Music",
+                description: "World"
+            },
+            { 
                 name: "Music India", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-2.pishow.tv/live/226/master.m3u8" }
@@ -593,51 +612,6 @@ const channels = [
                 img: "https://i.postimg.cc/wMrpYMsN/kpop-music.jpg", 
                 category: "Music",
                 description: "World"
-            },
-            { 
-                name: "24/7 Coke Studio Bangla", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/music/coke-studio-bangla/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/jj5QHB7R/csb.jpg", 
-                category: "Music",
-                description: "Bangladesh"
-            },
-            { 
-                name: "24/7 Wind of Change", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/music/wind-of-change/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/HnyQPzkF/wind-of-change.jpg", 
-                category: "Music",
-                description: "Bangladesh"
-            },
-            { 
-                name: "24/7 Dance Performance", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/music/dance-performance/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/QMQsqnGY/dance.jpg", 
-                category: "Music",
-                description: "India"
-            },
-            { 
-                name: "24/7 Bhojpuri Songs", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/music/bhojpuri/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/mk6mMRdL/bhojpuri.jpg", 
-                category: "Music",
-                description: "India"
-            },
-            { 
-                name: "24/7 Adnan Sami", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/music/adnan-sami/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/SxVJGs6X/adnan-sami.jpg", 
-                category: "Music",
-                description: "India"
             },
             { 
                 name: "24/7 Bollywood Movies", 
