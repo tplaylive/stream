@@ -41,7 +41,8 @@ body{background:#000;color:#fff;overflow:hidden}
   align-items:center;
   justify-content:center;
   background: url("https://i.postimg.cc/Pr9sC68t/T-Play-Cover.jpg") center center / cover no-repeat;
-  z-index:95;
+  z-index:60;
+  pointer-events:none;
 }
 .overlayCenter.show{display:flex}
 
@@ -89,7 +90,7 @@ body{background:#000;color:#fff;overflow:hidden}
   display:flex;align-items:center;gap:14px;
   opacity:0;pointer-events:none;
   transition:.2s;
-  z-index:70;
+  z-index:120;
 }
 .infoBar.show{opacity:1;pointer-events:auto}
 .infoLeft{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
