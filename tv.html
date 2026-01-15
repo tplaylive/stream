@@ -29,6 +29,23 @@ body{background:#000;color:#fff;overflow:hidden}
   display:block;height:auto;width:5vw;max-width:50px;min-width:25px;
 }
 
+/* watermark force visible */
+.video-container:fullscreen .video-logo-watermark,
+.video-container:-webkit-full-screen .video-logo-watermark,
+.video-container:-moz-full-screen .video-logo-watermark,
+.video-container:-ms-fullscreen .video-logo-watermark{
+  opacity:0.45 !important;
+  visibility:visible !important;
+  display:block !important;
+}
+
+/* watermark top layer */
+.video-logo-watermark{
+  z-index:9999 !important;
+  position:fixed;
+  pointer-events:none;
+}
+  
 /* ===== VIDEO ===== */
 .video-container{position:relative;width:100vw;height:100vh;background:#000}
 #video{width:100%;height:100%;object-fit:fill;background:#000}
@@ -471,6 +488,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 <div class="video-logo-watermark hidden" id="videoLogoWatermark">
   <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
+</div>
 </div>
 
 <script src="main.js"></script>
