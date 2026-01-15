@@ -5,109 +5,187 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T Play IPTV</title>
 
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
 <style>
+:root{
+  --bg:#050814;
+  --card:#0b1020;
+  --border:#1f2a6b;
+  --accent:#2b5cff;
+  --text:#ffffff;
+  --muted:#aab2d5;
+}
+
+*{box-sizing:border-box}
+
 body{
   margin:0;
-  background:#050814;
-  color:#fff;
+  height:100vh;
+  background:var(--bg);
+  color:var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
-  height:100vh;
 }
-.box{
-  background:#0b1020;
-  border-radius:20px;
-  padding:34px;
-  width:min(440px,92%);
-  text-align:center;
-  box-shadow:0 22px 55px rgba(0,0,0,.65);
-}
-h1{margin:0 0 10px;font-size:26px}
-p{color:#aab2d5;margin:8px 0 22px;font-size:15px}
 
-.btn{
-  display:block;
-  width:100%;
-  margin:12px 0;
-  padding:15px;
-  border-radius:15px;
-  background:#11183a;
-  border:1px solid #1f2a6b;
-  color:#fff;
-  font-size:16px;
+.container{
+  width:min(900px,94%);
+  text-align:center;
+}
+
+h1{
+  margin:0 0 10px;
+  font-size:28px;
+}
+
+.subtitle{
+  color:var(--muted);
+  margin-bottom:30px;
+  font-size:15px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+@media (max-width:768px){
+  .grid{grid-template-columns:1fr}
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:30px 20px;
   cursor:pointer;
-}
-.btn:hover,
-.btn:focus-visible{
   outline:none;
-  background:#1a2bff;
+  transition:.15s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
 }
-.small{
+
+.card:hover{
+  background:#10183a;
+}
+
+.card:focus-visible{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(43,92,255,.35);
+}
+
+.icon{
+  font-size:46px;
+  color:#dbe2ff;
+}
+
+.title{
+  font-size:18px;
+  font-weight:700;
+}
+
+.desc{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.footer{
+  margin-top:26px;
   font-size:13px;
-  opacity:.8;
-  margin-top:18px;
+  color:var(--muted);
 }
 </style>
 </head>
 
 <body>
-<div class="box">
+<div class="container">
   <h1>T Play IPTV</h1>
-  <p id="status">Detecting your device...</p>
+  <div class="subtitle">Select your device to continue</div>
 
-  <button class="btn" onclick="go(tv)">📺 TV Mode</button>
-  <button class="btn" onclick="go(mobile)">📱 Mobile Mode</button>
-  <button class="btn" onclick="go(all)">💻 All Devices</button>
+  <div class="grid">
+    <!-- TV -->
+    <div class="card" tabindex="0" data-url="https://tplay.live/tv.html">
+      <div class="icon"><i class="fa-solid fa-tv"></i></div>
+      <div class="title">TV</div>
+      <div class="desc">Smart TV / Android TV / Fire TV</div>
+    </div>
 
-  <div class="small">Remote • Keyboard • Mouse • Touch supported</div>
+    <!-- Mobile -->
+    <div class="card" tabindex="0" data-url="https://tplay.live/mobile.html">
+      <div class="icon"><i class="fa-solid fa-mobile-screen"></i></div>
+      <div class="title">Mobile</div>
+      <div class="desc">Android / iPhone / Touch devices</div>
+    </div>
+
+    <!-- Laptop / PC -->
+    <div class="card" tabindex="0" data-url="https://tplay.live">
+      <div class="icon"><i class="fa-solid fa-laptop"></i></div>
+      <div class="title">Laptop / PC</div>
+      <div class="desc">Desktop & tablet browsers</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Remote • Keyboard • Mouse • Touch supported
+  </div>
 </div>
 
 <script>
-const tv = "https://tplay.live/tv.html";
-const mobile = "https://tplay.live/mobile.html";
-const all = "https://tplay.live";
+const cards=[...document.querySelectorAll(".card")];
 
-function isTV(){
-  const ua = navigator.userAgent.toLowerCase();
-  return ua.includes("smart-tv") || ua.includes("tizen") ||
-         ua.includes("webos") || ua.includes("android tv") ||
-         ua.includes("aft");
-}
+cards.forEach(card=>{
+  card.addEventListener("click",()=>go(card.dataset.url));
+  card.addEventListener("touchend",e=>{
+    e.preventDefault();
+    go(card.dataset.url);
+  },{passive:false});
 
-function isMobile(){
-  return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
-}
+  card.addEventListener("keydown",e=>{
+    if(e.key==="Enter"||e.key===" "){
+      e.preventDefault();
+      go(card.dataset.url);
+    }
+  });
+});
 
 function go(url){
-  window.location.href = url;
+  window.location.href=url;
 }
 
-// AUTO REDIRECT LOGIC
-let target = all;
-let modeText = "Universal Mode";
-let seconds = 5;
+// TV Remote navigation
+document.addEventListener("keydown",e=>{
+  const arrows=["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"];
+  if(!arrows.includes(e.key)) return;
 
-if(isTV()){
-  target = tv;
-  modeText = "Smart TV detected → TV Mode";
-}
-else if(isMobile()){
-  target = mobile;
-  modeText = "Mobile device detected → Mobile Mode";
-}
+  const active=document.activeElement;
+  const index=cards.indexOf(active);
+  if(index===-1) return;
 
-const status = document.getElementById("status");
+  const cols=window.innerWidth<=768?1:3;
+  let next=index;
 
-const timer = setInterval(()=>{
-  status.innerText = `${modeText} (redirecting in ${seconds}s)`;
-  seconds--;
-  if(seconds < 0){
-    clearInterval(timer);
-    go(target);
+  if(e.key==="ArrowRight") next=index+1;
+  if(e.key==="ArrowLeft") next=index-1;
+  if(e.key==="ArrowDown") next=index+cols;
+  if(e.key==="ArrowUp") next=index-cols;
+
+  next=Math.max(0,Math.min(cards.length-1,next));
+  if(next!==index){
+    cards[next].focus();
+    e.preventDefault();
   }
-},1000);
+});
+
+// Auto focus for TV
+window.addEventListener("load",()=>{
+  cards[0].focus();
+});
 </script>
 </body>
 </html>
