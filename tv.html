@@ -827,6 +827,9 @@ function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
 
 function showLoading(on){
   loading.classList.toggle("show", !!on);
+  if(on){
+    showInfoBar(true, 10000);
+  }
 }
 function showNoSignal(on, msg){
   noSignal.classList.toggle("show", !!on);
