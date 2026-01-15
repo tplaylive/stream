@@ -772,6 +772,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Star Gold", 
+                sources: [
+                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_max_hd&e=.m3u8" },
