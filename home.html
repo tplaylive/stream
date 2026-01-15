@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@ body{
   margin:0;
   background:#050814;
   color:#fff;
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -18,35 +18,36 @@ body{
 }
 .box{
   background:#0b1020;
-  border-radius:18px;
-  padding:30px;
-  width:min(420px,90%);
+  border-radius:20px;
+  padding:34px;
+  width:min(440px,92%);
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.6);
+  box-shadow:0 22px 55px rgba(0,0,0,.65);
 }
-h1{margin:0 0 10px}
-p{color:#aab2d5;margin:6px 0 20px}
+h1{margin:0 0 10px;font-size:26px}
+p{color:#aab2d5;margin:8px 0 22px;font-size:15px}
 
 .btn{
   display:block;
-  margin:10px 0;
-  padding:14px;
-  border-radius:14px;
+  width:100%;
+  margin:12px 0;
+  padding:15px;
+  border-radius:15px;
   background:#11183a;
   border:1px solid #1f2a6b;
   color:#fff;
   font-size:16px;
   cursor:pointer;
 }
-.btn:focus-visible,
-.btn:hover{
+.btn:hover,
+.btn:focus-visible{
   outline:none;
   background:#1a2bff;
 }
 .small{
   font-size:13px;
   opacity:.8;
-  margin-top:15px;
+  margin-top:18px;
 }
 </style>
 </head>
@@ -54,13 +55,13 @@ p{color:#aab2d5;margin:6px 0 20px}
 <body>
 <div class="box">
   <h1>T Play IPTV</h1>
-  <p id="status">Device detect করা হচ্ছে...</p>
+  <p id="status">Detecting your device...</p>
 
   <button class="btn" onclick="go(tv)">📺 TV Mode</button>
   <button class="btn" onclick="go(mobile)">📱 Mobile Mode</button>
   <button class="btn" onclick="go(all)">💻 All Devices</button>
 
-  <div class="small">Remote • Keyboard • Touch supported</div>
+  <div class="small">Remote • Keyboard • Mouse • Touch supported</div>
 </div>
 
 <script>
@@ -83,22 +84,30 @@ function go(url){
   window.location.href = url;
 }
 
-// AUTO REDIRECT
+// AUTO REDIRECT LOGIC
 let target = all;
-let text = "Universal Mode";
+let modeText = "Universal Mode";
+let seconds = 5;
 
 if(isTV()){
   target = tv;
-  text = "TV detected → TV Mode";
+  modeText = "Smart TV detected → TV Mode";
 }
 else if(isMobile()){
   target = mobile;
-  text = "Mobile detected → Mobile Mode";
+  modeText = "Mobile device detected → Mobile Mode";
 }
 
-document.getElementById("status").innerText = text + " (2s)";
+const status = document.getElementById("status");
 
-setTimeout(()=>go(target), 2000);
+const timer = setInterval(()=>{
+  status.innerText = `${modeText} (redirecting in ${seconds}s)`;
+  seconds--;
+  if(seconds < 0){
+    clearInterval(timer);
+    go(target);
+  }
+},1000);
 </script>
 </body>
 </html>
