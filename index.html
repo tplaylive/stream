@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T Play IPTV</title>
+<title>T Play</title>
 
 <!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root{
@@ -18,11 +18,15 @@
   --muted:#aab2d5;
 }
 
+/* RESET */
 *{box-sizing:border-box}
+html,body{height:100%;margin:0}
 
+/* MOBILE SAFE HEIGHT FIX */
 body{
-  margin:0;
-  height:100vh;
+  min-height:100svh;
+  min-height:100dvh;
+  min-height:calc(var(--vh, 1vh) * 100);
   background:var(--bg);
   color:var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -31,9 +35,17 @@ body{
   justify-content:center;
 }
 
+/* MAIN CONTAINER */
 .container{
   width:min(900px,94%);
   text-align:center;
+
+  /* Notch / gesture safe */
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
 }
 
 h1{
@@ -47,6 +59,7 @@ h1{
   font-size:15px;
 }
 
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -55,8 +68,10 @@ h1{
 
 @media (max-width:768px){
   .grid{grid-template-columns:1fr}
+  .subtitle{margin-bottom:22px}
 }
 
+/* CARD */
 .card{
   background:var(--card);
   border:1px solid var(--border);
@@ -95,6 +110,7 @@ h1{
   color:var(--muted);
 }
 
+/* FOOTER */
 .footer{
   margin-top:26px;
   font-size:13px;
@@ -104,6 +120,7 @@ h1{
 </head>
 
 <body>
+
 <div class="container">
   <h1>T Play IPTV</h1>
   <div class="subtitle">Select your device to continue</div>
@@ -127,7 +144,7 @@ h1{
     <div class="card" tabindex="0" data-url="https://tplay.live/mix">
       <div class="icon"><i class="fa-solid fa-laptop"></i></div>
       <div class="title">Mix</div>
-      <div class="desc">Old mix ui</div>
+      <div class="desc">2.0 mix ui</div>
     </div>
   </div>
 
@@ -137,8 +154,24 @@ h1{
 </div>
 
 <script>
-const cards=[...document.querySelectorAll(".card")];
+/* ===== MOBILE VIEWPORT HEIGHT FIX ===== */
+function setVH(){
+  document.documentElement.style.setProperty(
+    '--vh',
+    window.innerHeight * 0.01 + 'px'
+  );
+}
+setVH();
+window.addEventListener('resize', setVH);
 
+/* ===== INTERACTION ===== */
+const cards = [...document.querySelectorAll(".card")];
+
+function go(url){
+  window.location.href = url;
+}
+
+// Click + Touch
 cards.forEach(card=>{
   card.addEventListener("click",()=>go(card.dataset.url));
   card.addEventListener("touchend",e=>{
@@ -146,19 +179,16 @@ cards.forEach(card=>{
     go(card.dataset.url);
   },{passive:false});
 
+  // Enter / Space
   card.addEventListener("keydown",e=>{
-    if(e.key==="Enter"||e.key===" "){
+    if(e.key==="Enter" || e.key===" "){
       e.preventDefault();
       go(card.dataset.url);
     }
   });
 });
 
-function go(url){
-  window.location.href=url;
-}
-
-// TV Remote navigation
+// TV Remote Navigation
 document.addEventListener("keydown",e=>{
   const arrows=["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"];
   if(!arrows.includes(e.key)) return;
@@ -167,7 +197,7 @@ document.addEventListener("keydown",e=>{
   const index=cards.indexOf(active);
   if(index===-1) return;
 
-  const cols=window.innerWidth<=768?1:3;
+  const cols = window.innerWidth <= 768 ? 1 : 3;
   let next=index;
 
   if(e.key==="ArrowRight") next=index+1;
@@ -182,10 +212,11 @@ document.addEventListener("keydown",e=>{
   }
 });
 
-// Auto focus for TV
+// Auto focus first card (TV friendly)
 window.addEventListener("load",()=>{
   cards[0].focus();
 });
 </script>
+
 </body>
 </html>
