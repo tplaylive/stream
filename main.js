@@ -1,15 +1,5 @@
 const channels = [
              { 
-                name: "Bengali Beats", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/tplay/playout/209587/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209587/tracks-v1a1/mono.ts.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/jSLNzXgM/Bengali-Beats.png", 
-                category: "Music",
-                description: "India"
-             },
-             { 
                 name: "Sangsad TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" }
