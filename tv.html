@@ -833,6 +833,7 @@ window.addEventListener("load", () => {
   search.addEventListener("input", () => { 
     focusTileIndex = 0; 
     buildGrid(); 
+    updateGridFocus();
   });
 
   buildCategories();
@@ -1189,7 +1190,16 @@ function updateGridFocus(){
     tile.classList.remove("focus");
     if(idx === focusTileIndex){
       tile.classList.add("focus");
-      tile.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
+      // Scroll into view
+      const container = grid;
+      const tileRect = tile.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      if (tileRect.top < containerRect.top) {
+        tile.scrollIntoView({behavior: 'smooth', block: 'start'});
+      } else if (tileRect.bottom > containerRect.bottom) {
+        tile.scrollIntoView({behavior: 'smooth', block: 'end'});
+      }
     }
   });
 }
@@ -1208,6 +1218,7 @@ function buildGrid(){
 
     const tile = document.createElement("div");
     tile.className = "tile logoOnly" + (tileIdx === focusTileIndex ? " focus" : "");
+    tile.dataset.channelIndex = chIdx; // Add data attribute for easy access
 
     tile.onclick = () => {
       focusTileIndex = tileIdx;
@@ -1246,6 +1257,8 @@ document.addEventListener("keydown", (e) => {
     // Search bar-এ focus থাকলে শুধুমাত্র Enter key টিপলে tile select হবে
     if (e.key === "Enter") {
       e.preventDefault();
+      // Search থেকে বেরিয়ে এসে tile focus করুন
+      search.blur();
       if (filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length) {
         const chIdx = filteredIndexes[focusTileIndex];
         toggleGuide(false);
@@ -1277,6 +1290,7 @@ document.addEventListener("keydown", (e) => {
         focusTileIndex = 0;
         buildCategoriesUI();
         buildGrid();
+        updateGridFocus();
       }
       break;
 
@@ -1290,6 +1304,7 @@ document.addEventListener("keydown", (e) => {
         focusTileIndex = 0;
         buildCategoriesUI();
         buildGrid();
+        updateGridFocus();
       }
       break;
 
