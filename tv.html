@@ -1108,13 +1108,9 @@ function toggleGuide(force){
       const pos = filteredIndexes.indexOf(currentIndex);
       focusTileIndex = pos >= 0 ? pos : 0;
       updateGridFocus();
-      
-      setTimeout(() => {
-  if (!('ontouchstart' in window)) {
-    search.focus();
-  }
-}, 50);
 
+      setTimeout(()=>search.focus(), 50);
+    }, 200);
     return;
   }
   
@@ -1132,13 +1128,8 @@ function toggleGuide(force){
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
 
-    setTimeout(() => {
-  if (!('ontouchstart' in window)) {
-    search.focus();
-  }
-}, 50);
-
-    else{
+    setTimeout(()=>search.focus(), 50);
+  }else{
     search.blur();
   }
   showInfoBar(true, 8000);
@@ -1247,6 +1238,27 @@ function buildGrid(){
 /* ===================== Keyboard / Remote ===================== */
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
+  const guideOpen = guide.classList.contains("show");
+  
+  // Search bar-এ focus থাকলে সাধারণ navigation keys (arrow keys) কাজ করবে না
+  // শুধুমাত্র Enter key কাজ করবে search bar-এর জন্য
+  if (inSearch) {
+    // Search bar-এ focus থাকলে শুধুমাত্র Enter key টিপলে tile select হবে
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length) {
+        const chIdx = filteredIndexes[focusTileIndex];
+        toggleGuide(false);
+        setTimeout(() => {
+          playChannel(chIdx);
+        }, 100);
+      }
+      return;
+    }
+    // Search bar-এ focus থাকলে arrow keys দিয়ে typing cursor move করার জন্য allow করুন
+    // এই case-এ navigation কাজ করবে না
+    return;
+  }
 
   // Prevent default for arrow keys to avoid scrolling
   if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S", "g", "G"].includes(e.key)) {
@@ -1256,7 +1268,7 @@ document.addEventListener("keydown", (e) => {
   /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
-      if(!guide.classList.contains("show")){
+      if(!guideOpen){
         prevChannel();
       } else {
         // Guide open: LEFT for category navigation (previous category)
@@ -1269,7 +1281,7 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "ArrowRight":
-      if(!guide.classList.contains("show")){
+      if(!guideOpen){
         nextChannel();
       } else {
         // Guide open: RIGHT for category navigation (next category)
@@ -1282,7 +1294,7 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "ArrowUp":
-      if(!guide.classList.contains("show")){
+      if(!guideOpen){
         toggleGuide(true); // Open Guide
       } else {
         // Guide open: UP for tile navigation (previous row)
@@ -1293,7 +1305,7 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "ArrowDown":
-      if(!guide.classList.contains("show")){
+      if(!guideOpen){
         showInfoBar(true, 8000); // Show Player Controls
       } else {
         // Guide open: DOWN for tile navigation (next row)
@@ -1304,7 +1316,7 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "Enter":
-      if(!guide.classList.contains("show")){
+      if(!guideOpen){
         // Single click: Play/Pause
         if(okClickTimer){
           clearTimeout(okClickTimer);
@@ -1318,7 +1330,8 @@ document.addEventListener("keydown", (e) => {
             okClickTimer = null;
           }, DOUBLE_CLICK_DELAY);
         }
-      } else if(!inSearch){
+      } else {
+        // Guide open: Enter to select channel
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
           console.log("Playing channel:", chIdx + 1, channels[chIdx]?.name);
