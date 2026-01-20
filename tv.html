@@ -1109,9 +1109,12 @@ function toggleGuide(force){
       focusTileIndex = pos >= 0 ? pos : 0;
       updateGridFocus();
       
-      if (!('ontouchstart' in window)) {
-      setTimeout(()=>search.focus(), 50);
-    }, 200);
+      setTimeout(() => {
+  if (!('ontouchstart' in window)) {
+    search.focus();
+  }
+}, 50);
+
     return;
   }
   
@@ -1129,9 +1132,13 @@ function toggleGuide(force){
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
 
-    if (!('ontouchstart' in window)) {
-    setTimeout(()=>search.focus(), 50);
-  }else{
+    setTimeout(() => {
+  if (!('ontouchstart' in window)) {
+    search.focus();
+  }
+}, 50);
+
+    else{
     search.blur();
   }
   showInfoBar(true, 8000);
