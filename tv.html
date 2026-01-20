@@ -1108,7 +1108,8 @@ function toggleGuide(force){
       const pos = filteredIndexes.indexOf(currentIndex);
       focusTileIndex = pos >= 0 ? pos : 0;
       updateGridFocus();
-
+      
+      if (!('ontouchstart' in window)) {
       setTimeout(()=>search.focus(), 50);
     }, 200);
     return;
@@ -1128,6 +1129,7 @@ function toggleGuide(force){
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
 
+    if (!('ontouchstart' in window)) {
     setTimeout(()=>search.focus(), 50);
   }else{
     search.blur();
