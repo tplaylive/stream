@@ -1201,6 +1201,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Korean Dramas", 
+                sources: [
+                    { 
+                        name: "SD", 
+                        url: "https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/clients/dash/enc/f60kqesunw/out/v1/a435ed7a00f947deb4369b46d8f2fb70/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "1779c27b9d077a3ba0c9cc1bb9a94b9f",
+                            key: "cc5cf3b7928fb9e0a1ee6a8b566f0a8e"
+                        }
+                    }
+                ], 
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/BNu8WvFw.png", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Colors", 
                 sources: [
                     { name: "Server 1", url: "https://streamer2.nexgen.bz/COLORS/index.m3u8" },
