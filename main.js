@@ -1912,6 +1912,33 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "House of Crime", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-y2z89muounal4.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-y2z89muounal4/IQJW/WBD/HouseOfCrime_IN/HouseOfCrime_IN.m3u8" }
+                ], 
+                img: "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IN4600004HW_20250416T005413SQUARE.png", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "XXTreme Jobs", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-zko1curyce7jh.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-zko1curyce7jh/IQJW/WBD/XXtremeJobs_IN/XXtremeJobs_IN.m3u8" }
+                ], 
+                img: "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IN46000011Q_20250205T004626SQUARE.png", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "Wild Flix", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-qgrxgp51645lw.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-qgrxgp51645lw/IQJW/WBD/WildFlix_IN/WildFlix_IN.m3u8" }
+                ], 
+                img: "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IN460000585_20250416T020413SQUARE.png", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "TLC", 
                 sources: [
                     { 
@@ -1947,6 +1974,24 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "BBC Earth", 
+                sources: [
+                    { name: "Server 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/HkdbcXH0/bbcearth.jpg", 
+                category: "Infotainment",
+                description: "UK"
+            },
+            { 
+                name: "CGTN Documentary", 
+                sources: [
+                    { name: "Server 1", url: "https://0472.org/hls/cgtnd.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/7ZKXqmzp/cgtn-docu.jpg", 
+                category: "Infotainment",
+                description: "China"
+            },
+            { 
                 name: "History", 
                 sources: [
                     { 
@@ -1962,6 +2007,15 @@ const channels = [
                 img: "https://i.postimg.cc/LsC3pgKH/history.jpg", 
                 category: "Infotainment",
                 description: "India"
+            },
+            { 
+                name: "HGTV", 
+                sources: [
+                    { name: "Server 1", url: "https://mediapackage-hgtv-source.fullscreen.nz/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/tCVphVLB/hgtv.jpg", 
+                category: "Infotainment",
+                description: "UK"
             },
             { 
                 name: "Peace TV", 
