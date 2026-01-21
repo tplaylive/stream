@@ -1734,6 +1734,57 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Discovery Science", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoveryscience2/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "5458f45efedb4d6f8aa6ac76c85b621b",
+                            key: "dbf8a0a306a64525ba3012fd225370c0"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/vZMgj4YQ/d-sci.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "Investigation Discovery", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Investigationdiscovery2/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "2828ea6f6a984505b0454da0c03f68b9",
+                            key: "5d3b7195086544c2807aa8c1544e7379"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/cHKNTBPr/id.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "TLC", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Tlc2/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "e48e7373d6be47ecab83a20849f6823e",
+                            key: "513ce07a2ee24ffdbe667eff5a9d46a8"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/63p7Yght/tlc-1.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "History", 
                 sources: [
                     { 
@@ -1747,23 +1798,6 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/LsC3pgKH/history.jpg", 
-                category: "Infotainment",
-                description: "India"
-            },
-            { 
-                name: "TLC", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoverykids2/default/manifest.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "601f58d4b7094d2baf78c85d1d9cb6c9",
-                            key: "609e0cc03198455fa36fd2cc3e7f940d"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/63p7Yght/tlc-1.jpg", 
                 category: "Infotainment",
                 description: "India"
             },
