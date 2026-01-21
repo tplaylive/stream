@@ -1939,6 +1939,42 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Love the Planet", 
+                sources: [
+                    { name: "Server 1", url: "https://amg01821-lovetvchannels-lovetheplanetuksamsung-samsunguk-apopw.amagi.tv/ts-eu-w1-n2/playlist/amg01821-lovetvchannels-lovetheplanetuksamsung-samsunguk/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/VLJ8Bbbc/love-the-planet.jpg", 
+                category: "Infotainment",
+                description: "United States"
+            },
+            { 
+                name: "BBC Earth", 
+                sources: [
+                    { name: "Server 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/HkdbcXH0/bbcearth.jpg", 
+                category: "Infotainment",
+                description: "UK"
+            },
+            { 
+                name: "INWILD", 
+                sources: [
+                    { name: "Server 1", url: "https://d30jgtzu0azlqq.cloudfront.net/playlist/samsungus-insighttv/playlist.m3u8" }
+                ], 
+                img: "https://cdn.uc.assets.prezly.com/92770c71-9d6f-400f-8311-38e9cfec52c2/InWild_landscape-green.png", 
+                category: "Infotainment",
+                description: "Netherlands"
+            },
+            { 
+                name: "INFAST", 
+                sources: [
+                    { name: "Server 1", url: "https://d30jgtzu0azlqq.cloudfront.net/playlist/samsungus-insighttv/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvNWNOQ2CVYM3nP66GmeQlS_1D-tNJo4GnjX4_1fSMozIMfIN_oHrKwi3C2zVsZbB9E90&usqp=CAU", 
+                category: "Infotainment",
+                description: "Netherlands"
+            },
+            { 
                 name: "TLC", 
                 sources: [
                     { 
@@ -1974,15 +2010,6 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "BBC Earth", 
-                sources: [
-                    { name: "Server 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/HkdbcXH0/bbcearth.jpg", 
-                category: "Infotainment",
-                description: "UK"
-            },
-            { 
                 name: "CGTN Documentary", 
                 sources: [
                     { name: "Server 1", url: "https://0472.org/hls/cgtnd.m3u8" }
@@ -2016,6 +2043,15 @@ const channels = [
                 img: "https://i.postimg.cc/tCVphVLB/hgtv.jpg", 
                 category: "Infotainment",
                 description: "UK"
+            },
+            { 
+                name: "Popular Science", 
+                sources: [
+                    { name: "Server 1", url: "https://amg13231-actve-amg13231c5-sportstribal-emea-1269.playouts.now.amagi.tv/playlist/amg13231-actvefast-powder-sportstribalemea/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/FzhNb9Jj/popular.jpg", 
+                category: "Infotainment",
+                description: "United States"
             },
             { 
                 name: "Peace TV", 
