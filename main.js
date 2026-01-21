@@ -1826,6 +1826,24 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Discovery Pakistan", 
+                sources: [
+                    { name: "Server 1", url: "https://livecdn.live247stream.com/discoverpakistan/web/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/cH9LLc8m/d-pak.jpg", 
+                category: "Infotainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Discovery Asia", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Discovery_Asia/HLSv3-FTA/Discovery_Asia.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/7hkmbg85/d-asia.jpg", 
+                category: "Infotainment",
+                description: "Asia"
+            },
+            { 
                 name: "Discovery", 
                 sources: [
                     { 
