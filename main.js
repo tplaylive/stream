@@ -2001,6 +2001,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "ETV Abhiruchi", 
+                sources: [
+                    { name: "Server 1", url: "https://dg3721c3ez5m0.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_ABHIRUCHI_H264_cloud-in/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/6QMwP2Hc/etv-abhiruchi.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "Travelxp", 
                 sources: [
                     { name: "Server 1", url: "https://travelxp-travelxp-1-eu.rakuten.wurl.tv/playlist.m3u8" }
