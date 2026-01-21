@@ -2010,6 +2010,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Epic", 
+                sources: [
+                    { name: "Server 1", url: "https://epiconvh.akamaized.net/live/epic/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/c1X91C4M/epic.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "CGTN Documentary", 
                 sources: [
                     { name: "Server 1", url: "https://0472.org/hls/cgtnd.m3u8" }
