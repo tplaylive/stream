@@ -1778,9 +1778,60 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/BNu8WvFw.png", 
+                img: "https://i.postimg.cc/L4b8S5Df/willow.jpg", 
                 category: "Sports",
                 description: "World"
+            },
+            { 
+                name: "Bein Sports 1", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ghwcl6hv68/out/v1/83536910d8034e9b9895a20fbe1c1687/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "335DAD778109954503DCBB21DC92015F",
+                            key: "24bfd75d436cbf73168a2a2dccd40281"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/dQBQkL01/bein1.jpg", 
+                category: "Sports",
+                description: "Qatar"
+            },
+            { 
+                name: "Bein Sports 2", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://aba5sdmaaaaaaaamdwujas5g6mg4r.otte.live.cf.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/8m8cd46i1t/out/v1/83985c68e4174e90a58a1f2c024be4c9/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "0b42be2664d7e811d04f3e504e0924c5",
+                            key: "ae24090123b8c72ac5404dc152847cb8"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/RZjv5tgh/bein2.jpg", 
+                category: "Sports",
+                description: "Qatar"
+            },
+            { 
+                name: "Bein Sports 3", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://aba5sdmaaaaaaaamhq2w5oosrf5ae.otte.live.cf.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/out/v1/18de6d3e65934f3a8de4358e69eab86c/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "7995c724a13748ed970840a8ab5bb9b3",
+                            key: "67bdaf1e2175b9ff682fcdf0e2354b1e"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/bJRPtBpR/bein3.jpg", 
+                category: "Sports",
+                description: "Qatar"
             },
             { 
                 name: "WWE Network", 
