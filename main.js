@@ -1734,6 +1734,15 @@ const channels = [
             { 
                 name: "Animal Planet", 
                 sources: [
+                    { name: "Server 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/RFm9McDx/animal-planet.png", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "Animal Planet HD",
+                sources: [
                     { 
                         name: "Server 1", 
                         url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Animalplanethd2/default/index.mpd",
@@ -1744,9 +1753,9 @@ const channels = [
                         }
                     }
                 ],
-                img: "https://i.postimg.cc/RFm9McDx/animal-planet.png", 
+                img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
                 category: "Infotainment",
-                description: "World"
+                description: "India"
             },
             { 
                 name: "Discovery", 
