@@ -1133,7 +1133,7 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "And TV", 
+                name: "& TV", 
                 sources: [
                     { 
                         name: "DRM Source", 
@@ -1150,7 +1150,7 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "And TV HD", 
+                name: "& TV HD", 
                 sources: [
                     { 
                         name: "DRM Source", 
