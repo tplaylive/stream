@@ -1145,7 +1145,24 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://yt3.googleusercontent.com/6Hg2El_eMujZPFE550K1xXmX1h7s8QR-ZtylPKLHulf-UBUWmPFWG7SMSl-XNYFtlWlWpeuu=s900-c-k-c0x00ffffff-no-rj", 
+                img: "https://i.postimg.cc/MHqdfgbZ/tv.jpg", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
+                name: "And TV HD", 
+                sources: [
+                    { 
+                        name: "DRM Source", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtvhd/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "67d18634ccb04875875c60fb8d9caaba",
+                            key: "99a66471c09e4b8a8dc39a0de6803f75"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/xTjxKHqG/tvhd.jpg", 
                 category: "Entertainment",
                 description: "India"
             },
@@ -1747,6 +1764,23 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/vZMgj4YQ/d-sci.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "Discovery Turbo", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Discoveryturbo2/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "c011525969e44b99a86059dbb3cdf4e8",
+                            key: "6700a5d93203417b8585f7de7dd1a09b"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/0ySHyHDk/d-turbo.jpg", 
                 category: "Infotainment",
                 description: "India"
             },
