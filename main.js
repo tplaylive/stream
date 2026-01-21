@@ -1734,7 +1734,15 @@ const channels = [
             { 
                 name: "Animal Planet", 
                 sources: [
-                    { name: "Server 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8" }
+                    { 
+                        name: "Server 1", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Animalplanethd2/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "df81f15150f74c799fdde64ef49dfb75",
+                            key: "05794a012ae74d77953f2b9fae6804c7"
+                        },
+                    { name: "Server 2", url: "https://vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/RFm9McDx/animal-planet.png", 
                 category: "Infotainment",
