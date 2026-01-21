@@ -1,4 +1,72 @@
 const channels = [
+            { 
+                name: "Ndtv India",
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Ndtvindia2/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "d78c01625c3f4ed98912609799298544",
+                            key: "b91bb882f9624872ada6125006fe5c73"
+                        }
+                    }
+                ],
+                img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/iqfloc.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "Zee Zindustan",
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeehindustan/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "10616d7c4bee41f1825bd805c6295172",
+                            key: "dc85f2112f63477fb39fc149493c49be"
+                        }
+                    }
+                ],
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/TknReKLD.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "Zee Business",
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebusiness/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "bef87892e58c446d893b16a848703b70",
+                            key: "51959fcbc8fe4091b570ba254bf749ae"
+                        }
+                    }
+                ],
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/vExrDK9r.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "Zee Bihar Jharkhand",
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebiharjharkhand/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "e1ec6098b5014ac7aae0b37f72d5e85e",
+                            key: "c04950f25d8e4107a96e828e7911e53b"
+                        }
+                    }
+                ],
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png", 
+                category: "News",
+                description: "India"
+            },
              { 
                 name: "Sangsad TV", 
                 sources: [
