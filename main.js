@@ -1785,6 +1785,24 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Food Food", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/SRRYryQS/foodfood.jpg", 
+                category: "Infotainment",
+                description: "World"
+            },
+            { 
+                name: "Travelxp", 
+                sources: [
+                    { name: "Server 1", url: "https://travelxp-travelxp-1-eu.rakuten.wurl.tv/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/zGdP4tPR/travelxp.png", 
+                category: "Infotainment",
+                description: "World"
+            },
+            { 
                 name: "History", 
                 sources: [
                     { 
@@ -1798,24 +1816,6 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/LsC3pgKH/history.jpg", 
-                category: "Infotainment",
-                description: "India"
-            },
-            { 
-                name: "Travelxp", 
-                sources: [
-                    { name: "Server 1", url: "https://travelxp-travelxp-1-eu.rakuten.wurl.tv/playlist.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/zGdP4tPR/travelxp.png", 
-                category: "Infotainment",
-                description: "World"
-            },
-            { 
-                name: "Food Food", 
-                sources: [
-                    { name: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/SRRYryQS/foodfood.jpg", 
                 category: "Infotainment",
                 description: "India"
             },
