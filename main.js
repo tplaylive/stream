@@ -1,10 +1,55 @@
 const channels = [
-             { 
+              { 
                 name: "DD News", 
                 sources: [
                     { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/c4y3Vd73/dd.png", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "News18 India", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_India_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://erp.adgully.com/artical_image/a4f638aa199ee1ccb9ffdc24d9c2af25.jpeg", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "News18 Odia", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Odia_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_lKSOQ8zd8GU5-2gdBlhzeXM8JyUd-2_4UK7Y9bOzOrPa4=s900-c-k-c0x00ffffff-no-rj", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "News18 Urdu", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Urdu_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/News18_Urdu_logo.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "News18 Kerala", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Kerala_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/0/05/News18_Kerala.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "News18 Kerala", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Kerala_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/0/05/News18_Kerala.png", 
                 category: "News",
                 description: "India"
             },
