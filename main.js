@@ -26,6 +26,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zee Bihar Jharkhand",
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebiharjharkhand/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "e1ec6098b5014ac7aae0b37f72d5e85e",
+                            key: "c04950f25d8e4107a96e828e7911e53b"
+                        }
+                    }
+                ],
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
                 name: "Zee Business",
                 sources: [
                     { 
@@ -43,22 +60,14 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Zee Bihar Jharkhand",
+                name: "ET Now Swadesh", 
                 sources: [
-                    { 
-                        name: "Server 1", 
-                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebiharjharkhand/default/manifest.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "e1ec6098b5014ac7aae0b37f72d5e85e",
-                            key: "c04950f25d8e4107a96e828e7911e53b"
-                        }
-                    }
-                ],
-                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png", 
+                    { name: "Server 1", url: "https://d32gxr3r1ksq2p.cloudfront.net/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8s5ukJJCvsZwP7vO8PlUKJHwlnyHZqBiYlA&s", 
                 category: "News",
                 description: "India"
-            },
+             },
              { 
                 name: "Sangsad TV", 
                 sources: [
