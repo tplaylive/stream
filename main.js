@@ -133,6 +133,42 @@ const channels = [
                 description: "India"
              },
              { 
+                name: "CNBC Awaaz", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_Awaaz_NW18_MOB/output01/master.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/f/f8/CNBC_Awwaz_2025.svg", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "CNBC Bajar", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_Bazaar_NW18_MOB/output01/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/27307b18067a6f2784b1597da20426ff.png", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "CNBC TV18", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_TV18_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://media.licdn.com/dms/image/v2/D4D0BAQGXbP9MEGQ2MA/company-logo_200_200/B4DZcIT5xiGgAI-/0/1748191125673/cnbc_tv18_logo?e=2147483647&v=beta&t=KFbzWG-tLyBsxJILxVo9cAiyFHaZP_BPhTVOCTH_AFc", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "CNN News18", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNN_News18_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://erp.adgully.com/artical_image/43d69552e24c92ea14e14bca3007eb78.jpeg", 
+                category: "News",
+                description: "India"
+             },
+             { 
                 name: "Sangsad TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" }
