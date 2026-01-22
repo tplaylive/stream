@@ -571,7 +571,7 @@ const channels = [
                     { name: "Stream 3", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/zoom-tv/master.m3u8" }
 
                 ], 
-                img: "https://i.postimg.cc/pdHkcC7q/yrf-music.jpg", 
+                img: "https://i.postimg.cc/D0GYG0Dr/zoom.jpg", 
                 category: "Music",
                 description: "India"
             },
