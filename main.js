@@ -54,6 +54,25 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Aaj Tak", 
+                sources: [
+                    { name: "Server 1", url: "https://aajtaklive-amd.akamaized.net/hls/live/2014416/aajtak/aajtaklive/live_404p/chunks.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/7/77/Aaj_Tak_logo.svg", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "Aaj Tak HD", 
+                sources: [
+                    { name: "Server 1", url: "https://livehub-voidnet.onrender.com/cluster/streamcore/in/AAJTAK_REDIS.m3u8" },
+                    { name: "Server 2", url: "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/0jjjL9vR/aaj-tak.jpg", 
+                category: "News",
+                description: "India"
+            },
+            { 
                 name: "Zee Bharat",
                 sources: [
                     { 
