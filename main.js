@@ -1,23 +1,15 @@
 const channels = [
-            { 
-                name: "Ndtv India",
+             { 
+                name: "DD News", 
                 sources: [
-                    { 
-                        name: "Server 1", 
-                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Ndtvindia2/default/manifest.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "d78c01625c3f4ed98912609799298544",
-                            key: "b91bb882f9624872ada6125006fe5c73"
-                        }
-                    }
-                ],
-                img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/iqfloc.png", 
+                    { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/c4y3Vd73/dd.png", 
                 category: "News",
                 description: "India"
             },
             { 
-                name: "Zee Zindustan",
+                name: "Zee Bharat",
                 sources: [
                     { 
                         name: "Server 1", 
