@@ -414,7 +414,16 @@ const channels = [
                 category: "Kids",
                 description: "India"
             },
-              { 
+            { 
+                name: "Gubbare", 
+                sources: [
+                    { name: "Hindi", url: "https://epiconvh.akamaized.net/live/gubbare/master.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/0/01/Gubbare-TV_channel.jpg", 
+                category: "Kids",
+                description: "India"
+            },
+            { 
                 name: "Pogo", 
                 sources: [
                     { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=667189f69164&e=.m3u8" }
