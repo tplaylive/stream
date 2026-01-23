@@ -1718,6 +1718,23 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Live 5", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/clients/dash/enc/oc3slvlq7n/out/v1/e4b93c0e3e4d4dcb9527c5b0dfe2ae90/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "b86fa94988debfa3f1dff4cfd0d45345",
+                            key: "ab64c1dc3e8f309e61cf0c8318618f05"
+                        }
+                    }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "TNT Sports 1", 
                 sources: [
                     { 
