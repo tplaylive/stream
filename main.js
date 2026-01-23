@@ -953,7 +953,7 @@ const channels = [
                 name: "Star Gold", 
                 sources: [
                     { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" },
-                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
+                    { name: "Stream 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
                 category: "Movie",
@@ -1170,7 +1170,8 @@ const channels = [
                 name: "Star Jalsha", 
                 sources: [
                     { name: "Server 1", url: "https://tvsen1.aynaott.com/gUX8BJmNc2yF/index.m3u8" },
-                    { name: "Server 2", url: "https://live.mncdn.shop/f07177e9-d1a9-48b4-8e2e-1718d098bbfb/index.m3u8" }
+                    { name: "Server 2", url: "https://live.mncdn.shop/f07177e9-d1a9-48b4-8e2e-1718d098bbfb/index.m3u8" },
+                    { name: "Server 3", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: "Entertainment",
@@ -1643,7 +1644,8 @@ const channels = [
             { 
                 name: "GTV", 
                 sources: [
-                    { name: "Playlist", url: "https://tvsen6.aynaott.com/gtvhdforgame/index.m3u8" }
+                    { name: "Server 1", url: "https://tvsen6.aynaott.com/gtvhdforgame/index.m3u8" },
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/gazitv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/yNLC1Rfw/gtv.jpg", 
                 category: "Mix-Entertainment",
@@ -1786,7 +1788,8 @@ const channels = [
             { 
                 name: "T Sports", 
                 sources: [
-                    { name: "Server 1", url: "https://tvsen1.aynaott.com/YNMn5kZz8aLm/tracks-v1a1/mono.ts.m3u8" }
+                    { name: "Server 1", url: "https://tvsen1.aynaott.com/YNMn5kZz8aLm/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/tsport/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
