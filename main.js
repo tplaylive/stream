@@ -1582,7 +1582,7 @@ const channels = [
             { 
                 name: "Channel 9", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/channel9.index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/channel9.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/76Xhyb76/channel-9.jpg", 
                 category: "Mix-Entertainment",
@@ -1591,7 +1591,8 @@ const channels = [
             { 
                 name: "Channel i", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/4NzjyVPN/channel-i.jpg", 
                 category: "Mix-Entertainment",
