@@ -9,6 +9,15 @@ const channels = [
                 description: "India"
              },
              { 
+                name: "First India News", 
+                sources: [
+                    { name: "Server 1", url: "https://xlbor37ydvaj-hls-live.wmncdn.net/firstindianewstv1/live.stream/index.m3u8" }
+                ], 
+                img: "https://play-lh.googleusercontent.com/iJZoVQx0zOCpmQ-z_ey2Y2NspoXA2vjQDm49KPioIzUka9sT8-HAEnmdQXuzxSwauQ=w600-h300-pc0xffffff-pd", 
+                category: "News",
+                description: "India"
+             },
+             { 
                 name: "News18 India", 
                 sources: [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_India_NW18_MOB/output01/index.m3u8" }
