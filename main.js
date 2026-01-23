@@ -1598,6 +1598,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Banglavision", 
+                sources: [
+                    { name: "Playlist", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/PJxGv57P/banglavision.jpg", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
                 name: "Channel S", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/channels.index.m3u8" }
