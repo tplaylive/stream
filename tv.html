@@ -689,7 +689,6 @@ function loadServerOptions() {
     option.innerHTML = `
       <div>
         <div class="serverLabel">${sourceName}${sourceType}</div>
-        <div class="serverStats">${source.url ? source.url.substring(0, 40) + '...' : ''}${sourceStats}</div>
       </div>
       <div class="serverValue">${index === currentSourceIndex ? '✓' : ''}</div>
     `;
