@@ -1600,9 +1600,18 @@ const channels = [
             { 
                 name: "Banglavision", 
                 sources: [
-                    { name: "Playlist", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/PJxGv57P/banglavision.jpg", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
+                name: "ATN Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/BbLck5F4/atn-bangla.jpg", 
                 category: "Mix-Entertainment",
                 description: "Bengali"
             },
