@@ -1701,6 +1701,23 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Live 4", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://ev-fast-mpd.starzplayarabia.com/live/eds/Criclife_3/DASH/Criclife_3.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "4e8b5ddac5332a4e66c002b4c0f22322",
+                            key: "d06de29b0eacb81ac6e3f325849047e8"
+                        }
+                    }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "TNT Sports 1", 
                 sources: [
                     { 
