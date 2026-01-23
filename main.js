@@ -11,9 +11,23 @@ const channels = [
              { 
                 name: "India News", 
                 sources: [
-                    { name: "Server 1", url: "https://newsxott.in/hls/indianewsnational.m3u8" }
+                    { name: "National", url: "https://newsxott.in/hls/indianewsnational.m3u8" },
+                    { name: "Gujarat", url: "https://newsxott.in/hls/indianewsgujarat.m3u8" },
+                    { name: "Haryana", url: "https://newsxott.in/hls/indianewsharyana.m3u8" },
+                    { name: "Punjab", url: "https://newsxott.in/hls/indianewspunjab.m3u8" },
+                    { name: "Uttar Pradesh", url: "https://newsxott.in/hls/indianewsupuk.m3u8" },
                 ], 
                 img: "https://karthavya.com/wp-content/uploads/2019/07/India-News-Live.png", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "News X", 
+                sources: [
+                    { name: "News X", url: "https://newsxott.in/hls/newsx.m3u8" },
+                    { name: "News X World", url: "https://newsxott.in/hls/newsxworld.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/zwrmWphe47oXEHVndsokIHupuBpVWq2_a_LCxiV_JA0YmaosO7S3kMeFyTNhNLUO8ovmT3hDfX0=s900-c-k-c0x00ffffff-no-rj", 
                 category: "News",
                 description: "India"
              },
