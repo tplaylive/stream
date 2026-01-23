@@ -1463,6 +1463,15 @@ const channels = [
                 description: "Marathi"
             },
             { 
+                name: "Gemini TV", 
+                sources: [
+                    { name: "Server 1", url: "https://livestream10.sunnxt.com/DolbyVision/GeminiTV_HDR/GeminiTV_HDR_Endpoints/GeminiTV-HDR10-IN-index.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/6/63/Gemini_TV_Logo.png", 
+                category: "Entertainment",
+                description: "Telugu"
+            },
+            { 
                 name: "Bollywood Masala", 
                 sources: [
                     { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-masala/index.m3u8" },
