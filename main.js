@@ -1673,7 +1673,8 @@ const channels = [
             { 
                 name: "NTV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/ntv.index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/ntv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/xjZDZLjt/ntvbd.jpg", 
                 category: "Mix-Entertainment",
