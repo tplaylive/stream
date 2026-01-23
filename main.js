@@ -373,6 +373,7 @@ const channels = [
                 name: "Sony Yay",
                 sources: [
                     { name: "Server 1", url: "https://falconftp.noobmaster.xyz/SONYYAY/index.m3u8" },
+                    { name: "Server 2", url: "https://bostaflix.vercel.app/api/roarzone.m3u8?stream=toffee/sonyyay" },
                 ], 
                 img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
                 category: "Kids",
