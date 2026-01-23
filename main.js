@@ -9,6 +9,15 @@ const channels = [
                 description: "India"
              },
              { 
+                name: "India News", 
+                sources: [
+                    { name: "Server 1", url: "https://newsxott.in/hls/indianewsnational.m3u8" }
+                ], 
+                img: "https://karthavya.com/wp-content/uploads/2019/07/India-News-Live.png", 
+                category: "News",
+                description: "India"
+             },
+             { 
                 name: "First India News", 
                 sources: [
                     { name: "Server 1", url: "https://xlbor37ydvaj-hls-live.wmncdn.net/firstindianewstv1/live.stream/index.m3u8" }
