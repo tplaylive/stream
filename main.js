@@ -1436,6 +1436,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Fakt Marathi", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10002/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/87bc6f3984109dd5ef35e2e4fb1b64cb.png", 
+                category: "Entertainment",
+                description: "Marathi"
+            },
+            { 
                 name: "Bollywood Masala", 
                 sources: [
                     { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-masala/index.m3u8" },
