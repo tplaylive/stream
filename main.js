@@ -1694,7 +1694,7 @@ const channels = [
             { 
                 name: "Live 1", 
                 sources: [
-                    { name: "Server 1", url: "https://tvsen1.aynaott.com/YNMn5kZz8aLm/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 1", url: "https://premierleagpl23.akamaized.net/hls/live/2107108/Tapmad-29514-Enc-Seriea-1.3/master.m3u8" },
                     { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
                     { name: "Server 3", url: "https://stream.snexus.co/live/SN_WILDLIFE/main_stream.m3u8" }
                 ], 
