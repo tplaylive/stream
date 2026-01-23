@@ -1472,6 +1472,24 @@ const channels = [
                 description: "Telugu"
             },
             { 
+                name: "Surya TV", 
+                sources: [
+                    { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/https://livestream10.sunnxt.com/DolbyVision/SuryaTV_HDR/SuryaTV_HDR_Endpoints/SuryaTV-HDR10-IN-index.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/5/5e/Surya_TV_logo.png", 
+                category: "Entertainment",
+                description: "Telugu"
+            },
+            { 
+                name: "Sun TV", 
+                sources: [
+                    { name: "Server 1", url: "https://livestream10.sunnxt.com/DolbyVision/SunTV_HDR/SunTV_HDR_Endpoints/SunTV-HDR10-IN-index.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/6/6a/Sun_TV_logo.svg", 
+                category: "Entertainment",
+                description: "Telugu"
+            },
+            { 
                 name: "Bollywood Masala", 
                 sources: [
                     { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-masala/index.m3u8" },
