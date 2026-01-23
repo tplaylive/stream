@@ -1500,7 +1500,8 @@ const channels = [
             { 
                 name: "Deepto TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/deeptotv.index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1711/output/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/deeptotv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/m2tN6sc9/deepto-tv.jpg", 
                 category: "Mix-Entertainment",
