@@ -1071,6 +1071,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Filamchi Bhojpuri", 
+                sources: [
+                    { name: "Server 1", url: "https://epiconvh.akamaized.net/live/filamchi/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2025-10-31/2510313384016.jpg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Bhojpuri Cinema", 
                 sources: [
                     { name: "Server 1", url: "https://live-bhojpuri.akamaized.net/liveabr/playlist.m3u8" },
