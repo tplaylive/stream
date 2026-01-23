@@ -195,6 +195,59 @@ body{background:#000;color:#fff;overflow:hidden}
   background:rgba(255,255,255,.05);border-radius:10px;
 }
 
+/* ===== Server Selection Overlay ===== */
+.serverOverlay{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(420px,85vw);max-height:70vh;
+  background:rgba(0,0,0,.94);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  border-radius:16px;
+  padding:0;
+  display:none;
+  flex-direction:column;
+  z-index:140;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.7);
+}
+.serverOverlay.show{display:flex}
+.serverHeader{
+  padding:16px 20px;background:rgba(25,25,25,.98);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.serverHeader b{font-size:18px}
+.serverClose{
+  width:34px;height:34px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.serverClose:hover{background:#e50914}
+.serverBody{flex:1;padding:20px;overflow-y:auto}
+.serverTitle{
+  font-size:15px;font-weight:600;margin-bottom:10px;
+  color:#ccc;display:flex;align-items:center;gap:8px;
+}
+.serverTitle i{color:#e50914;font-size:13px}
+.serverOption{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;margin:8px 0;
+  background:rgba(255,255,255,.07);
+  border-radius:10px;
+  cursor:pointer;
+  transition:.2s;
+}
+.serverOption:hover{background:rgba(255,255,255,.1)}
+.serverOption.active{
+  background:rgba(229,9,20,.25);
+  border-left:3px solid #e50914;
+}
+.serverLabel{font-size:14px;color:#fff}
+.serverValue{font-size:13px;color:#bbb;font-weight:500}
+.serverStats{
+  font-size:12px;color:#aaa;margin-top:4px;
+}
+
 /* ================= GUIDE (MODAL STYLE) ================= */
 .guide{
   position:absolute;
@@ -377,7 +430,7 @@ body{background:#000;color:#fff;overflow:hidden}
     height:40px;
   }
   
-  /* Mobile-এ Guide header text */
+  /* Mobile Guide header text */
   .gTop span{
     font-size:10px;
     display:none;
@@ -427,6 +480,25 @@ body{background:#000;color:#fff;overflow:hidden}
   <div class="video-logo-watermark hidden" id="videoLogoWatermark">
   <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="T Play Logo">
 </div>
+
+  <!-- Server Selection Overlay -->
+  <div id="serverOverlay" class="serverOverlay">
+    <div class="serverHeader">
+      <b><i class="fas fa-server"></i> Switch Server</b>
+      <button class="serverClose" id="btnCloseServer">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="serverBody">
+      <div class="serverTitle">
+        <i class="fas fa-tv"></i>
+        <span id="serverChannelName">Current Channel</span>
+      </div>
+      <div id="serverOptions">
+        <!-- Dynamic server options will be added here -->
+      </div>
+    </div>
+  </div>
 
   <!-- Left Guide -->
   <div id="guide" class="guide">
@@ -525,6 +597,11 @@ const resolutionList = document.getElementById("resolutionList");
 const audioList = document.getElementById("audioList");
 const serverList = document.getElementById("serverList");
 
+const serverOverlay = document.getElementById("serverOverlay");
+const serverOptions = document.getElementById("serverOptions");
+const serverChannelName = document.getElementById("serverChannelName");
+const serverCloseBtn = document.getElementById("btnCloseServer");
+
 /* Players */
 let hls = null;
 let shakaP = null;
@@ -540,8 +617,9 @@ let filteredIndexes = [];
 let focusCatIndex = 0;
 let focusTileIndex = 0;
 
-/* Fullscreen state */
+/* Overlay state */
 let isFullscreen = false;
+let serverFocusIndex = 0;
 
 /* Favorites */
 const FAV_KEY = "tplay_favs_v1";
@@ -565,6 +643,114 @@ function showLogo() {
 function hideLogo() {
   videoLogoWatermark.classList.add('hidden');
 }
+
+/* ===================== Server Selection Functions ===================== */
+function toggleServerOverlay(force) {
+  const wantOpen = (typeof force === 'boolean') ? force : !serverOverlay.classList.contains('show');
+  
+  if (wantOpen) {
+    if (settingsOverlay.classList.contains('show')) toggleSettings(false);
+    if (guide.classList.contains('show')) toggleGuide(false);
+  }
+  
+  serverOverlay.classList.toggle('show', wantOpen);
+  
+  if (wantOpen) {
+    loadServerOptions();
+    serverFocusIndex = currentSourceIndex;
+    updateServerFocus();
+  }
+}
+
+function loadServerOptions() {
+  serverOptions.innerHTML = '';
+  const ch = channels[currentIndex];
+  serverChannelName.textContent = `${currentIndex+1}. ${ch.name || "Unknown"}`;
+  
+  const sources = ch.sources || [];
+  
+  if (sources.length === 0) {
+    const noOpt = document.createElement('div');
+    noOpt.className = 'noOptions';
+    noOpt.textContent = 'No servers available';
+    serverOptions.appendChild(noOpt);
+    return;
+  }
+  
+  sources.forEach((source, index) => {
+    const option = document.createElement('div');
+    option.className = `serverOption ${index === currentSourceIndex ? 'active' : ''}`;
+    option.dataset.index = index;
+    
+    const sourceName = source.name || `Server ${index + 1}`;
+    const sourceType = source.type ? ` (${source.type.toUpperCase()})` : '';
+    const sourceStats = source.quality ? ` • ${source.quality}` : '';
+    
+    option.innerHTML = `
+      <div>
+        <div class="serverLabel">${sourceName}${sourceType}</div>
+        <div class="serverStats">${source.url ? source.url.substring(0, 40) + '...' : ''}${sourceStats}</div>
+      </div>
+      <div class="serverValue">${index === currentSourceIndex ? '✓' : ''}</div>
+    `;
+    
+    option.onclick = () => selectServer(index);
+    serverOptions.appendChild(option);
+  });
+}
+
+function updateServerFocus() {
+  const options = serverOptions.querySelectorAll('.serverOption');
+  options.forEach((option, index) => {
+    option.classList.remove('active');
+    if (index === serverFocusIndex) {
+      option.classList.add('active');
+      // Scroll into view
+      const container = serverOptions;
+      const optionRect = option.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
+      if (optionRect.top < containerRect.top) {
+        option.scrollIntoView({behavior: 'smooth', block: 'start'});
+      } else if (optionRect.bottom > containerRect.bottom) {
+        option.scrollIntoView({behavior: 'smooth', block: 'end'});
+      }
+    }
+  });
+}
+
+function selectServer(index) {
+  if (index === currentSourceIndex) {
+    toggleServerOverlay(false);
+    return;
+  }
+  
+  currentSourceIndex = index;
+  const ch = channels[currentIndex];
+  const source = ch.sources?.[index];
+  const sourceName = source?.name || `Server ${index + 1}`;
+  
+  setBadge(`Switching to ${sourceName}...`, 'warn');
+  toggleServerOverlay(false);
+  
+  // Reload the source
+  showLoading(true);
+  setTimeout(() => {
+    loadSource(currentSourceIndex).then(success => {
+      if (success) {
+        showLoading(false);
+        updateNowPlayingUI();
+        setBadge(`Switched to ${sourceName}`, 'live');
+      } else {
+        setBadge(`Failed to switch server`, 'err');
+      }
+    });
+  }, 300);
+}
+
+serverCloseBtn.onclick = function() {
+  toggleServerOverlay(false);
+};
 
 /* ===================== Fullscreen Functions ===================== */
 function toggleFullscreen() {
@@ -605,7 +791,6 @@ document.addEventListener('fullscreenchange', () => {
 function toggleSettings(force) {
   const wantOpen = (typeof force === 'boolean') ? force : !settingsOverlay.classList.contains('show');
   
-  // যদি Guide open থাকে, প্রথমে close করুন
   if(wantOpen && guide.classList.contains('show')) {
     toggleGuide(false);
     setTimeout(() => {
@@ -802,7 +987,6 @@ guideCloseBtn.onclick = function() {
   toggleGuide(false);
 };
 
-// টাচ স্ক্রিনের জন্য close button-এ event যোগ করুন
 guideCloseBtn.addEventListener("touchstart", function(e) {
   e.stopPropagation(); // Prevent event bubbling
   toggleGuide(false);
@@ -1095,7 +1279,6 @@ function toggleFavByChannelIndex(idx){
 function toggleGuide(force){
   const wantOpen = (typeof force === "boolean") ? force : !guide.classList.contains("show");
   
-  // যদি Settings open থাকে, প্রথমে close করুন
   if(wantOpen && settingsOverlay.classList.contains('show')) {
     toggleSettings(false);
     setTimeout(() => {
@@ -1250,14 +1433,12 @@ function buildGrid(){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
   const guideOpen = guide.classList.contains("show");
+  const settingsOpen = settingsOverlay.classList.contains("show");
+  const serverOpen = serverOverlay.classList.contains("show");
   
-  // Search bar-এ focus থাকলে সাধারণ navigation keys (arrow keys) কাজ করবে না
-  // শুধুমাত্র Enter key কাজ করবে search bar-এর জন্য
   if (inSearch) {
-    // Search bar-এ focus থাকলে শুধুমাত্র Enter key টিপলে tile select হবে
     if (e.key === "Enter") {
       e.preventDefault();
-      // Search থেকে বেরিয়ে এসে tile focus করুন
       search.blur();
       if (filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length) {
         const chIdx = filteredIndexes[focusTileIndex];
@@ -1268,9 +1449,38 @@ document.addEventListener("keydown", (e) => {
       }
       return;
     }
-    // Search bar-এ focus থাকলে arrow keys দিয়ে typing cursor move করার জন্য allow করুন
-    // এই case-এ navigation কাজ করবে না
     return;
+  }
+
+  // Server Overlay- navigation
+  if (serverOpen) {
+    if (["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
+      e.preventDefault();
+      
+      switch(e.key) {
+        case "ArrowUp":
+          serverFocusIndex = Math.max(0, serverFocusIndex - 1);
+          updateServerFocus();
+          break;
+          
+        case "ArrowDown":
+          const options = serverOptions.querySelectorAll('.serverOption');
+          serverFocusIndex = Math.min(options.length - 1, serverFocusIndex + 1);
+          updateServerFocus();
+          break;
+          
+        case "Enter":
+          if (serverFocusIndex >= 0) {
+            selectServer(serverFocusIndex);
+          }
+          break;
+          
+        case "Escape":
+          toggleServerOverlay(false);
+          break;
+      }
+      return;
+    }
   }
 
   // Prevent default for arrow keys to avoid scrolling
@@ -1281,9 +1491,9 @@ document.addEventListener("keydown", (e) => {
   /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
-      if(!guideOpen){
+      if(!guideOpen && !settingsOpen && !serverOpen){
         prevChannel();
-      } else {
+      } else if (guideOpen) {
         // Guide open: LEFT for category navigation (previous category)
         focusCatIndex = Math.max(0, focusCatIndex-1);
         currentCat = categories[focusCatIndex];
@@ -1295,9 +1505,9 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "ArrowRight":
-      if(!guideOpen){
+      if(!guideOpen && !settingsOpen && !serverOpen){
         nextChannel();
-      } else {
+      } else if (guideOpen) {
         // Guide open: RIGHT for category navigation (next category)
         focusCatIndex = Math.min(categories.length-1, focusCatIndex+1);
         currentCat = categories[focusCatIndex];
@@ -1309,9 +1519,9 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "ArrowUp":
-      if(!guideOpen){
+      if(!guideOpen && !settingsOpen && !serverOpen){
         toggleGuide(true); // Open Guide
-      } else {
+      } else if (guideOpen) {
         // Guide open: UP for tile navigation (previous row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.max(0, focusTileIndex - cols);
@@ -1320,9 +1530,10 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "ArrowDown":
-      if(!guideOpen){
-        showInfoBar(true, 8000); // Show Player Controls
-      } else {
+      if(!guideOpen && !settingsOpen && !serverOpen){
+        // Down Arrow now opens server selection
+        toggleServerOverlay(true);
+      } else if (guideOpen) {
         // Guide open: DOWN for tile navigation (next row)
         const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
         focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
@@ -1331,7 +1542,7 @@ document.addEventListener("keydown", (e) => {
       break;
 
     case "Enter":
-      if(!guideOpen){
+      if(!guideOpen && !settingsOpen && !serverOpen){
         // Single click: Play/Pause
         if(okClickTimer){
           clearTimeout(okClickTimer);
@@ -1345,7 +1556,7 @@ document.addEventListener("keydown", (e) => {
             okClickTimer = null;
           }, DOUBLE_CLICK_DELAY);
         }
-      } else {
+      } else if (guideOpen) {
         // Guide open: Enter to select channel
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
@@ -1371,6 +1582,8 @@ document.addEventListener("keydown", (e) => {
             toggleSettings(false);
           } else if(guide.classList.contains("show")){
             toggleGuide(false);
+          } else if(serverOverlay.classList.contains("show")){
+            toggleServerOverlay(false);
           } else if(infoBar.classList.contains("show")){
             infoBar.classList.remove("show");
           }
@@ -1391,7 +1604,7 @@ document.addEventListener("keydown", (e) => {
       
     case "g":
     case "G":
-      if(!settingsOverlay.classList.contains("show")) {
+      if(!settingsOverlay.classList.contains("show") && !serverOverlay.classList.contains("show")) {
         toggleGuide();
       }
       break;
