@@ -2435,6 +2435,15 @@ const channels = [
                 description: "United States"
             },
             { 
+                name: "KITE Victers", 
+                sources: [
+                    { name: "Server 1", url: "https://932y4x26ljv8-hls-live.5centscdn.com/victers/tv.stream/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRw5j21VYGJhzIzhCA-EZ51uIbdDNMBe96CA&s", 
+                category: "Infotainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "Peace TV", 
                 sources: [
                     { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8" },
