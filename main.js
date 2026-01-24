@@ -1559,31 +1559,14 @@ const channels = [
                 description: "Marathi"
             },
             { 
-                name: "Gemini TV", 
+                name: "Mazhavil Manorama", 
                 sources: [
-                    { name: "Server 1", url: "https://livestream10.sunnxt.com/DolbyVision/GeminiTV_HDR/GeminiTV_HDR_Endpoints/GeminiTV-HDR10-IN-index.m3u8" },
+                    { name: "SD", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/mazhavilmanorama_nim_https/050522/mazhavilmanorama/playlist.m3u8" },
+                    { name: "HD", url: "https://cdn-7.pishow.tv/live/1129/master.m3u8" },
                 ], 
-                img: "https://upload.wikimedia.org/wikipedia/en/6/63/Gemini_TV_Logo.png", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcbf005fdbbe3c4c5224827def2387b8.png", 
                 category: "Entertainment",
-                description: "Telugu"
-            },
-            { 
-                name: "Surya TV", 
-                sources: [
-                    { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/https://livestream10.sunnxt.com/DolbyVision/SuryaTV_HDR/SuryaTV_HDR_Endpoints/SuryaTV-HDR10-IN-index.m3u8" },
-                ], 
-                img: "https://upload.wikimedia.org/wikipedia/en/5/5e/Surya_TV_logo.png", 
-                category: "Entertainment",
-                description: "Telugu"
-            },
-            { 
-                name: "Sun TV", 
-                sources: [
-                    { name: "Server 1", url: "https://livestream10.sunnxt.com/DolbyVision/SunTV_HDR/SunTV_HDR_Endpoints/SunTV-HDR10-IN-index.m3u8" },
-                ], 
-                img: "https://upload.wikimedia.org/wikipedia/en/6/6a/Sun_TV_logo.svg", 
-                category: "Entertainment",
-                description: "Telugu"
+                description: "Malayalam"
             },
             { 
                 name: "Bollywood Masala", 
