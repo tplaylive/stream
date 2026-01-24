@@ -1102,11 +1102,20 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "All Time Movies ", 
+                name: "All Time Movies", 
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/ALLTIMEMOVIES/index.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/U4INXhwmEUOABHoemQBpI6C9t4jb9iBmDvZ3ZT3lAb9Au_jVl32NL8XDpy-9cBjRJ2LP69Ovzg=s160-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
+                name: "Maha Movie", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10007/master.m3u8" },
+                ], 
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Maha_Movies.png", 
                 category: "Movie",
                 description: "India"
             },
