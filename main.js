@@ -210,6 +210,15 @@ const channels = [
                 description: "Malayalam"
              },
              { 
+                name: "Manorama News", 
+                sources: [
+                    { name: "Server 1", url: "https://mmtvnews1.akamaized.net/v1/master/673630b269b766886555eebfddd4f27f3de3ab50/mmtvNewsCampaign1/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0a22e24d565a1f951c03e2008216de15.png", 
+                category: "News",
+                description: "Malayalam"
+             },
+             { 
                 name: "Malai Murasu TV", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1606/master.m3u8" }
