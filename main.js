@@ -192,6 +192,15 @@ const channels = [
                 description: "India"
              },
              { 
+                name: "Kashish News", 
+                sources: [
+                    { name: "Server 1", url: "https://server.thelegitpro.in/kashishnews/kashishnews/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/8d69aeee54fa6a6d9feae943d972eaa7.png", 
+                category: "News",
+                description: "Jharkhand & Bihar"
+             },
+             { 
                 name: "Kairali News", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1469/master.m3u8" }
