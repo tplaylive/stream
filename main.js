@@ -219,6 +219,15 @@ const channels = [
                 description: "Malayalam"
              },
              { 
+                name: "Media One", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1481/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-MXv3hLTU1hj3ZUPC8g5RH4-0J7CbrakGzA&s", 
+                category: "News",
+                description: "Malayalam"
+             },
+             { 
                 name: "Malai Murasu TV", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1606/master.m3u8" }
