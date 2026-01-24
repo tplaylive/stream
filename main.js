@@ -2526,6 +2526,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Mercy TV", 
+                sources: [
+                    { name: "Server 1", url: "https://5dd3981940faa.streamlock.net/mercytv/mercytv/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXMFfcf9s50fsWGifUc9Do21MCTfRN6Y9-yw&s", 
+                category: "Religious",
+                description: "Hindi/Urdu"
+            },
+            { 
                 name: "Ilm TV", 
                 sources: [
                     { name: "Originals", url: "https://tplay.live/originals/ilm-tv/index.m3u8" }
