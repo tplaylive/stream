@@ -1586,6 +1586,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Kaumudy TV", 
+                sources: [
+                    { name: "Playlist", url: "https://oqgdrkxby4rm-hls-live.5centscdn.com/kaumudytv/live.stream/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5d7wjWkHY_VaaFcpji37s3CZwssMsXSxLZlgvTlgWYzfZBEexD1_f-ocxH0kBZBYitPA&usqp=CAU", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "Kannur Vision", 
                 sources: [
                     { name: "Playlist", url: "https://stream.logichost.in/kannurvision/live/playlist.m3u8" }
