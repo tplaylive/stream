@@ -1577,6 +1577,15 @@ const channels = [
                 description: "Malayalam"
             },
             { 
+                name: "Kalaignar TV", 
+                sources: [
+                    { name: "Playlist", url: "https://segment.yuppcdn.net/240122/kalaignartv/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/3/3a/Kalaignar_logo.jpg", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
                 name: "RTV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
