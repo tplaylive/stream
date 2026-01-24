@@ -77,15 +77,6 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "News18 Kerala", 
-                sources: [
-                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Kerala_NW18_MOB/output01/index.m3u8" }
-                ], 
-                img: "https://upload.wikimedia.org/wikipedia/commons/0/05/News18_Kerala.png", 
-                category: "News",
-                description: "India"
-            },
-            { 
                 name: "Aaj Tak", 
                 sources: [
                     { name: "Server 1", url: "https://aajtaklive-amd.akamaized.net/hls/live/2014416/aajtak/aajtaklive/live_404p/chunks.m3u8" }
@@ -199,6 +190,15 @@ const channels = [
                 img: "https://erp.adgully.com/artical_image/43d69552e24c92ea14e14bca3007eb78.jpeg", 
                 category: "News",
                 description: "India"
+             },
+             { 
+                name: "Kairali News", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1469/master.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/6/6e/Kairali_TV.svg", 
+                category: "News",
+                description: "Malayalam"
              },
              { 
                 name: "Sangsad TV", 
