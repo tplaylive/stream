@@ -1568,6 +1568,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Kannur Vision", 
+                sources: [
+                    { name: "Playlist", url: "https://stream.logichost.in/kannurvision/live/playlist.m3u8" }
+                ], 
+                img: "https://play-lh.googleusercontent.com/667r12fkQRMAXtdves9sb6D9QRjxNn5gY9UjSNsQkYjAfh_YyIvVwtkt8t0LWujWT7U", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "Kairali We", 
                 sources: [
                     { name: "Playlist", url: "https://cdn-3.pishow.tv/live/1530/master.m3u8" }
