@@ -797,6 +797,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Kappa TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1123/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/575e7238007c7695a7c2bc5d7b6d0ff9.png", 
+                category: "Music",
+                description: "Malayalam"
+            },
+            { 
                 name: "Kalaignar Murasu", 
                 sources: [
                     { name: "Server 1", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/murasu_nim_https/050522/murasu/playlist.m3u8" },
