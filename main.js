@@ -2462,6 +2462,15 @@ const channels = [
                 description: "Malayalam"
             },
             { 
+                name: "Makkal TV", 
+                sources: [
+                    { name: "Server 1", url: "https://5k8q87azdy4v-hls-live.wmncdn.net/MAKKAL/271ddf829afeece44d8732757fba1a66.sdp/playlist.m3u8" }
+                ], 
+                img: "https://play-lh.googleusercontent.com/ipwuom_ArR-0tJ21BVOOWR85CTXFG57eEf24M_kN6AXVb9iXM61ijrk9PzUwLtkd1A=w600-h300-pc0xffffff-pd", 
+                category: "Infotainment",
+                description: "Tamil"
+            },
+            { 
                 name: "Peace TV", 
                 sources: [
                     { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8" },
