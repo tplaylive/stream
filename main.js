@@ -1832,11 +1832,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/clients/dash/enc/oc3slvlq7n/out/v1/e4b93c0e3e4d4dcb9527c5b0dfe2ae90/cenc.mpd",
+                        url: "https://shahid-sports-4-enc.edgenextcdn.net/out/v1/f813ab47644d4c41a99285513f6c7409/index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "b86fa94988debfa3f1dff4cfd0d45345",
-                            key: "ab64c1dc3e8f309e61cf0c8318618f05"
+                            kid: "6477160076644679af1028534f03f67e",
+                            key: "1267f99705113a62c7782c4d5281a7eb"
                         }
                     }
                 ], 
