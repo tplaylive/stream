@@ -1649,6 +1649,15 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Malar TV", 
+                sources: [
+                    { name: "Playlist", url: "https://cdn-3.pishow.tv/live/473/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ1Uz2UXWDNxARKK2evE0wVMbx-OnqP85IfA&s", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
                 name: "RTV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
