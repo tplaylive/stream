@@ -1129,6 +1129,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Manoranjan Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-2.pishow.tv/live/228/master.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Manoranjan-Movies-Logo.jpg", 
+                category: "Movie",
+                description: "Punjabi"
+            },
+              { 
                 name: "Maha Movie", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10007/master.m3u8" },
