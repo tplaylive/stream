@@ -1622,6 +1622,15 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Madhimugam TV", 
+                sources: [
+                    { name: "Playlist", url: "https://cdn-3.pishow.tv/live/1476/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2ba9fac03ad789ed0eac205fad948d12.png", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
                 name: "RTV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
