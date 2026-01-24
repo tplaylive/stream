@@ -210,6 +210,15 @@ const channels = [
                 description: "Malayalam"
              },
              { 
+                name: "Malai Murasu TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1606/master.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/d/d1/Malai_Murasu.png/revision/latest?cb=20191229035538", 
+                category: "News",
+                description: "Tamil"
+             },
+             { 
                 name: "Sangsad TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" }
