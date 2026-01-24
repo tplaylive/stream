@@ -147,6 +147,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Mirror Now", 
+                sources: [
+                    { name: "Server 1", url: "https://dai.google.com/linear/hls/event/ClPOullTQky5vGPf7fMZ8g/master.m3u8" },
+                    { name: "Server 2", url: "https://pubads.g.doubleclick.net/ssai/event/DXkHhH2QSnma-HnE3QJqlA/master.m3u8" },
+                ], 
+                img: "https://media.licdn.com/dms/image/v2/C4D0BAQERZwk1iL4m_w/company-logo_200_200/company-logo_200_200/0/1631322422535?e=2147483647&v=beta&t=Dk2eJzcMflN0nQxbryoMPfaCZRSgCmlrPk4A6XbCebI", 
+                category: "News",
+                description: "India"
+             },
+            { 
                 name: "ET Now Swadesh", 
                 sources: [
                     { name: "Server 1", url: "https://d32gxr3r1ksq2p.cloudfront.net/master.m3u8" }
