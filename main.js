@@ -1558,6 +1558,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Kairali We", 
+                sources: [
+                    { name: "Playlist", url: "https://cdn-3.pishow.tv/live/1530/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXFziJMtfaHaW2j77isHF0VepKF9qs78qCow&s", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "RTV", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
