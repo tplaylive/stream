@@ -1622,6 +1622,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Manoranjan TV", 
+                sources: [
+                    { name: "Playlist", url: "https://cdn-1.pishow.tv/live/1013/master.m3u8" }
+                ], 
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Manoranjan_TV.png", 
+                category: "Mix-Entertainment",
+                description: "Hindi"
+            },
+            { 
                 name: "Kaumudy TV", 
                 sources: [
                     { name: "Playlist", url: "https://oqgdrkxby4rm-hls-live.5centscdn.com/kaumudytv/live.stream/playlist.m3u8" }
