@@ -797,6 +797,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Kalaignar Murasu", 
+                sources: [
+                    { name: "Server 1", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/murasu_nim_https/050522/murasu/playlist.m3u8" },
+                    { name: "Server 2", url: "https://segment.yuppcdn.net/050522/murasu/playlist.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/QQBHnrVMU6Ex_Y1s64zndprXIJX4uhCh8OUwq1sfgrp3MENL1zR1KP1Adv0aXX3f-yK0uCP15A=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Music",
+                description: "Tamil"
+            },
+            { 
                 name: "Oxygen Music", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/tplay/playout/209901/master.m3u8" },
