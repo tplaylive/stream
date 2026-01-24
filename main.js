@@ -1815,11 +1815,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ev-fast-mpd.starzplayarabia.com/live/eds/Criclife_3/DASH/Criclife_3.mpd",
+                        url: "https://shahid-sports-5-enc.edgenextcdn.net/out/v1/ae00715d1c2c4432852b44a254c04a3d/index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "4e8b5ddac5332a4e66c002b4c0f22322",
-                            key: "d06de29b0eacb81ac6e3f325849047e8"
+                            kid: "e2df3c205b674360bc6f364ba1090e70",
+                            key: "93da2c77bc812bc05a6e20ad8d35ea78"
                         }
                     }
                 ], 
