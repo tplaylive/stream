@@ -547,6 +547,15 @@ const channels = [
                 description: "Southeast Asia"
             },
             { 
+                name: "24/7 Jungle Book", 
+                sources: [
+                    { name: "Playlist", url: "https://cc-4bhi5osabejc9.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-4bhi5osabejc9/junglebook.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzWHwxLoNifJmfg_l-i380r8xqKhPheAuYLQ&s", 
+                category: "Kids",
+                description: "Hindi"
+            },
+            { 
                 name: "24/7 Motu Patlu", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/playlist/kids/motu-patlu/index.m3u8" }
