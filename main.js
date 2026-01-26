@@ -432,7 +432,7 @@ const channels = [
             {
                 name: "Duronto",
                 sources: [
-                    { name: "Server 1", url: "https://tvsen4.aynaott.com/durontotv/index.m3u8" },
+                    { name: "Bangla", url: "https://tvsen4.aynaott.com/durontotv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/4xgPNDrf/duronto.jpg", 
                 category: "Kids",
@@ -504,8 +504,8 @@ const channels = [
             { 
                 name: "Cartoon Network", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=8be5ec5d5d7c&e=.m3u8" },
-                    { name: "Server 2", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" }
+                    { name: "Hindi", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=8be5ec5d5d7c&e=.m3u8" },
+                    { name: "Urdu", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
                 category: "Kids",
@@ -517,7 +517,7 @@ const channels = [
                     { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=eb6b38bdd902&e=.m3u8" },                ], 
                 img: "https://i.postimg.cc/d06FD9xw/cnhd.jpg", 
                 category: "Kids",
-                description: "India"
+                description: "Hindi/English"
             },
             { 
                 name: "Minimax", 
@@ -526,7 +526,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/xC2TbNWn/minimax.jpg", 
                 category: "Kids",
-                description: "Pakistan"
+                description: "Urdu"
             },
             {
                 name: "Animax",
@@ -535,7 +535,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/8PQrRLN8/Animax.png", 
                 category: "Kids",
-                description: "Asia"
+                description: "English"
             },
             { 
                 name: "Zoo Moo",
@@ -544,16 +544,16 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/3J0Thmrb/zoo-moo.jpg", 
                 category: "Kids",
-                description: "Southeast Asia"
+                description: "English"
             },
             { 
-                name: "24/7 Tom And Jerry",
+                name: "Power Kids",
                 sources: [
-                    { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8" },
+                    { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
+                img: "https://i.postimg.cc/gr9v9Tt9/pk.jpg", 
                 category: "Kids",
-                description: "Asia"
+                description: "Hindi"
             },
             { 
                 name: "24/7 Jungle Book", 
@@ -617,6 +617,15 @@ const channels = [
                 img: "https://i.postimg.cc/X7pGtkJb/bantul.jpg", 
                 category: "Kids",
                 description: "Bengali"
+            },
+            { 
+                name: "24/7 Tom And Jerry",
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
+                category: "Kids",
+                description: "English"
             },
             { 
                 name: "24/7 Music", 
