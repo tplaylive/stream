@@ -1094,6 +1094,16 @@ async function tryLoadSourceLoop(){
   await failAllSources("Switching next channel…");
 }
 
+function isSmartTV(){
+  const ua = navigator.userAgent || "";
+  return /(SMART-TV|SmartTV|HbbTV|NetCast|Web0S|webOS|Tizen|VIDAA|Viera|BRAVIA|AFTT|Roku|AppleTV|CrKey|Android TV|GoogleTV)/i.test(ua);
+}
+// Some smart TV browsers expose MSE/Hls.js support but render video as white while audio plays.
+// Prefer native HLS when it's available on those devices.
+function shouldUseNativeHls(){
+  return isSmartTV();
+}
+
 async function loadSource(srcIdx){
   const ch = channels[currentIndex];
   const src = (ch.sources || [])[srcIdx];
@@ -1113,16 +1123,6 @@ async function loadSource(srcIdx){
       shaka.polyfill.installAll();
       shakaP = new shaka.Player(video);
 
-      // Fix for audio-only streams: enable ABR for better compatibility
-      await shakaP.configure({
-        abr: { enabled: true },
-        streaming: {
-          bufferingGoal: 10,
-          rebufferingGoal: 2,
-          bufferBehind: 30
-        }
-      });
-
       if(src.drm?.kid && src.drm?.key){
         await shakaP.configure({ drm: { clearKeys: { [src.drm.kid]: src.drm.key } } });
       }else{
@@ -1131,102 +1131,76 @@ async function loadSource(srcIdx){
 
       await shakaP.load(src.url);
     } else {
-      if(Hls.isSupported()){
-        // FIX: Audio codec compatibility for HLS
+      const canNative = video.canPlayType("application/vnd.apple.mpegurl");
+      const preferNative = shouldUseNativeHls() && !!canNative;
+
+      if(preferNative){
+        video.src = src.url;
+        await new Promise((resolve, reject) => {
+          const t = setTimeout(()=>reject(new Error("Native HLS timeout")), 9000);
+          video.addEventListener("loadedmetadata", () => { clearTimeout(t); resolve(); }, {once:true});
+          video.addEventListener("error", () => { clearTimeout(t); reject(new Error("Native HLS error")); }, {once:true});
+        });
+      }else if(Hls.isSupported()){
         hls = new Hls({
+          maxBufferLength: 30,
+          backBufferLength: 30,
           enableWorker: true,
           lowLatencyMode: true,
-          // Audio codec compatibility settings
-          enableAudioTrackSwitching: true,
-          audioTrackSwitchMode: 'seamless',
-          // Try to handle audio-only or problematic streams
-          manifestLoadingTimeOut: 10000,
-          manifestLoadingMaxRetry: 2,
-          manifestLoadingRetryDelay: 500,
-          levelLoadingTimeOut: 10000,
-          levelLoadingMaxRetry: 4,
-          levelLoadingRetryDelay: 500,
-          fragLoadingTimeOut: 20000,
-          fragLoadingMaxRetry: 6,
-          fragLoadingRetryDelay: 500,
+          abrEwmaDefaultEstimate: 500000,
+          abrEwmaSlowVoD: 30000
         });
-        
         hls.loadSource(src.url);
         hls.attachMedia(video);
 
-        // Handle audio-only streams specially
-        hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-          console.log('Manifest parsed:', data.levels);
-          
-          // Check if stream has video
-          const hasVideo = data.levels.some(level => level.width > 0 && level.height > 0);
-          if (!hasVideo) {
-            console.warn('Stream appears to be audio-only or missing video tracks');
-            // For audio-only streams, ensure video element is properly configured
-            video.style.backgroundColor = '#000';
-          }
-        });
-
         await new Promise((resolve, reject) => {
-          const t = setTimeout(()=>reject(new Error("HLS timeout")), 12000);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => { 
-            clearTimeout(t); 
-            
-            // Check if we have video tracks
-            const levels = hls.levels;
-            const hasVideoTracks = levels && levels.length > 0 && 
-                                  levels.some(level => level.width > 0 && level.height > 0);
-            
-            if (!hasVideoTracks) {
-              console.warn('No video tracks found - stream may be audio-only');
-              // Set a black background for audio-only streams
-              video.style.backgroundColor = '#000';
-            }
-            
-            resolve(); 
+          let settled = false;
+          const t = setTimeout(()=>{
+            if(settled) return;
+            settled = true;
+            reject(new Error("HLS timeout"));
+          }, 12000);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            if(settled) return;
+            settled = true;
+            clearTimeout(t);
+            resolve();
           });
+
           hls.on(Hls.Events.ERROR, (evt, data) => {
-            console.error('HLS Error:', data);
-            if(data?.fatal){ 
-              clearTimeout(t); 
-              reject(new Error("HLS fatal error: " + (data.details || "Unknown"))); 
+            if(!data?.fatal) return;
+
+            if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
+              if(settled) return;
+              settled = true;
+              clearTimeout(t);
+              reject(new Error("HLS network"));
+              return;
             }
+
+            if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
+              try{ hls.recoverMediaError(); }catch{}
+              return; // keep waiting (timeout will handle if it can't recover)
+            }
+
+            if(settled) return;
+            settled = true;
+            clearTimeout(t);
+            reject(new Error("HLS fatal"));
           });
         });
-      }else if(video.canPlayType("application/vnd.apple.mpegurl")){
+      }else if(canNative){
         video.src = src.url;
         await new Promise((resolve, reject) => {
-          const t = setTimeout(()=>reject(new Error("Native HLS timeout")), 12000);
-          video.addEventListener("loadedmetadata", () => { 
-            clearTimeout(t); 
-            
-            // Check for video tracks in native HLS
-            if (video.videoWidth === 0 && video.videoHeight === 0) {
-              console.warn('Native HLS: No video dimensions detected');
-              video.style.backgroundColor = '#000';
-            }
-            
-            resolve(); 
-          }, {once:true});
-          video.addEventListener("error", (e) => { 
-            console.error('Native HLS error:', e);
-            clearTimeout(t); 
-            reject(new Error("Native HLS error")); 
-          }, {once:true});
+          const t = setTimeout(()=>reject(new Error("Native HLS timeout")), 9000);
+          video.addEventListener("loadedmetadata", () => { clearTimeout(t); resolve(); }, {once:true});
+          video.addEventListener("error", () => { clearTimeout(t); reject(new Error("Native HLS error")); }, {once:true});
         });
       }else{
         throw new Error("No HLS support");
       }
     }
-
-    // Additional check for video playback
-    setTimeout(() => {
-      if (video.videoWidth === 0 && video.videoHeight === 0) {
-        console.warn('Video dimensions are 0 - stream may be audio-only');
-        video.style.backgroundColor = '#000';
-        setBadge("Audio-only stream detected", "warn");
-      }
-    }, 1000);
 
     try{
       video.muted = false;
@@ -1712,30 +1686,6 @@ video.addEventListener('playing', () => {
 
 video.addEventListener("click", () => showInfoBar(true, 2400));
 video.addEventListener("touchstart", () => showInfoBar(true, 2400), {passive:true});
-
-// Add event listeners to detect video issues
-video.addEventListener('error', (e) => {
-  console.error('Video element error:', video.error);
-  if (video.error && video.error.code === 4) {
-    // MEDIA_ERR_SRC_NOT_SUPPORTED
-    console.warn('Video source not supported, trying next source');
-    nextChannel();
-  }
-});
-
-// Check for video dimension changes
-const videoDimensionObserver = new MutationObserver(() => {
-  if (video.videoWidth === 0 && video.videoHeight === 0) {
-    // Video dimensions are 0, might be audio-only
-    video.style.backgroundColor = '#000';
-  }
-});
-
-videoDimensionObserver.observe(video, { 
-  attributes: true, 
-  attributeFilter: ['videoWidth', 'videoHeight'] 
-});
-
 </script>
 </body>
 </html>
