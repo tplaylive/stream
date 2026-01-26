@@ -885,10 +885,13 @@
         </div>
     </div>
 
+    <!-- Load main.js FIRST before our script -->
+    <script src="main.js"></script>
+
     <script>
         // Global Variables
         let player;
-        let channels = [];
+        let channels = window.channels || []; // Load channels from main.js
         let currentIndex = 0;
         let currentSourceIndex = 0;
         let isFullscreen = false;
@@ -955,8 +958,14 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', async () => {
-            // Load channels from main.js
-            await loadChannels();
+            console.log('DOM loaded, checking channels...');
+            console.log('Channels loaded from main.js:', channels.length);
+            
+            // If channels not loaded from main.js, use fallback
+            if (!channels || channels.length === 0) {
+                console.warn('No channels found, using fallback');
+                channels = getDefaultChannels();
+            }
             
             // Initialize Shaka Player
             await initPlayer();
@@ -964,83 +973,43 @@
             // Setup event listeners
             setupEventListeners();
             
+            // Build categories
+            buildCategories();
+            
             // Load last channel or first channel
             const savedIndex = localStorage.getItem('lastChannel');
             playChannel(savedIndex ? parseInt(savedIndex) : 0);
             
             // Start controls timer
             resetControlsTimer();
+            
+            console.log('Player initialized successfully');
         });
-        
-        // Load channels from main.js
-        async function loadChannels() {
-            try {
-                // Try to load from main.js
-                if (typeof window.channels !== 'undefined') {
-                    channels = window.channels;
-                } else {
-                    // Fallback to fetching main.js
-                    const response = await fetch('main.js');
-                    const text = await response.text();
-                    
-                    // Extract channels array from main.js
-                    const channelsMatch = text.match(/const channels\s*=\s*(\[.*?\])/s);
-                    if (channelsMatch) {
-                        // Use Function constructor to safely parse the array
-                        const channelsStr = channelsMatch[1];
-                        channels = new Function('return ' + channelsStr)();
-                    } else {
-                        // Fallback to default channels if main.js not found
-                        channels = [{
-                            name: "Test Channel",
-                            img: "https://via.placeholder.com/150",
-                            category: "General",
-                            description: "Test stream",
-                            sources: [{
-                                name: "Server 1",
-                                type: "hls",
-                                url: "https://stream.kliv.fun/allplus13nov/jtv/manifest.mpd?id=1151",
-                                drm: {
-                                    clearkey: {
-                                        'ee6e9f18a6c155e3855700b34fa8436f': 'b670c81b0e4f7f19f1fbeac0eaa7fba8'
-                                    }
-                                }
-                            }]
-                        }];
-                    }
-                }
-                
-                console.log(`Loaded ${channels.length} channels`);
-                buildCategories();
-            } catch (error) {
-                console.error('Error loading channels:', error);
-                channels = [{
-                    name: "Error Loading Channels",
-                    img: "https://via.placeholder.com/150",
-                    category: "General",
-                    description: "Check main.js file",
-                    sources: []
-                }];
-            }
-        }
         
         // Initialize Shaka Player
         async function initPlayer() {
             if (!shaka.Player.isBrowserSupported()) {
                 console.error('Shaka Player not supported in this browser');
+                showNoSignal(true, 'Browser not supported. Please use a modern browser.');
                 return;
             }
             
-            player = new shaka.Player(video);
-            
-            // Listen for error events
-            player.addEventListener('error', onPlayerErrorEvent);
-            
-            // Listen for loaded events
-            player.addEventListener('loaded', () => {
-                console.log('Stream loaded successfully');
-                updateResolutionMenu();
-            });
+            try {
+                player = new shaka.Player(video);
+                
+                // Listen for error events
+                player.addEventListener('error', onPlayerErrorEvent);
+                
+                // Listen for loaded events
+                player.addEventListener('loaded', () => {
+                    console.log('Stream loaded successfully');
+                    updateResolutionMenu();
+                });
+                
+                console.log('Shaka Player initialized');
+            } catch (error) {
+                console.error('Error initializing Shaka Player:', error);
+            }
         }
         
         // Player error handler
@@ -1052,18 +1021,32 @@
         // Favorites functions
         function loadFavorites() {
             try {
-                return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
-            } catch {
-                return new Set();
+                const favs = localStorage.getItem(FAV_KEY);
+                if (favs) {
+                    return new Set(JSON.parse(favs));
+                }
+            } catch (error) {
+                console.error('Error loading favorites:', error);
             }
+            return new Set();
         }
         
         function saveFavorites(set) {
-            localStorage.setItem(FAV_KEY, JSON.stringify([...set]));
+            try {
+                localStorage.setItem(FAV_KEY, JSON.stringify([...set]));
+            } catch (error) {
+                console.error('Error saving favorites:', error);
+            }
         }
         
         // Play channel by index
         async function playChannel(index) {
+            if (!channels || channels.length === 0) {
+                console.error('No channels available');
+                showNoSignal(true, 'No channels available');
+                return;
+            }
+            
             hideLogo();
             
             currentIndex = clamp(index, 0, channels.length - 1);
@@ -1084,6 +1067,13 @@
         // Try loading sources sequentially
         async function tryLoadSourceLoop() {
             const channel = channels[currentIndex];
+            
+            if (!channel) {
+                console.error('Channel not found at index:', currentIndex);
+                await failAllSources('Channel not found');
+                return;
+            }
+            
             const sources = channel.sources || [];
             
             if (!sources.length) {
@@ -1108,7 +1098,12 @@
         // Load specific source
         async function loadSource(sourceIndex) {
             const channel = channels[currentIndex];
-            const source = channel.sources[sourceIndex];
+            if (!channel) return false;
+            
+            const sources = channel.sources || [];
+            if (!sources[sourceIndex]) return false;
+            
+            const source = sources[sourceIndex];
             
             if (!source || !source.url) return false;
             
@@ -1124,9 +1119,14 @@
                 });
                 
                 // Configure DRM if available
-                if (source.drm?.clearkey) {
+                if (source.drm && source.drm.clearkey) {
                     player.configure({
                         drm: { clearKeys: source.drm.clearkey }
+                    });
+                } else if (source.drm && source.drm.kid && source.drm.key) {
+                    // Support for old DRM format
+                    player.configure({
+                        drm: { clearKeys: { [source.drm.kid]: source.drm.key } }
                     });
                 }
                 
@@ -1134,13 +1134,16 @@
                 await player.load(source.url);
                 
                 // Try to play
-                video.muted = false;
-                await video.play().catch(async () => {
+                try {
+                    video.muted = false;
+                    await video.play();
+                } catch (playError) {
                     // Fallback to muted autoplay
+                    console.log('Autoplay blocked, trying muted:', playError);
                     video.muted = true;
                     await video.play();
                     setBadge('Muted. Press play to unmute', 'warn');
-                });
+                }
                 
                 updateMuteIcon();
                 updatePlayIcon();
@@ -1148,6 +1151,7 @@
                 // Show watermark after a delay
                 setTimeout(() => showLogo(), 500);
                 
+                console.log('Source loaded successfully:', sourceIndex);
                 return true;
             } catch (error) {
                 console.warn('Source failed:', sourceIndex, error);
@@ -1210,6 +1214,8 @@
         
         function getChannelSubText() {
             const channel = channels[currentIndex];
+            if (!channel) return '';
+            
             const category = channel.category || 'General';
             const desc = channel.description ? ` • ${channel.description}` : '';
             const source = channel.sources?.[currentSourceIndex];
@@ -1219,6 +1225,8 @@
         
         function updateNowPlayingUI() {
             const channel = channels[currentIndex];
+            if (!channel) return;
+            
             infoLogo.src = channel.img || '';
             infoTitle.textContent = `${currentIndex + 1}. ${channel.name || 'Unknown'}`;
             infoSub.textContent = getChannelSubText();
@@ -1230,6 +1238,8 @@
         
         // Playback controls
         function togglePlay() {
+            if (!video) return;
+            
             if (video.paused) {
                 video.play();
                 showLogo();
@@ -1241,30 +1251,38 @@
         }
         
         function updatePlayIcon() {
+            if (!video) return;
             playIcon.className = video.paused ? 'fas fa-play' : 'fas fa-pause';
         }
         
         function toggleMute() {
+            if (!video) return;
+            
             video.muted = !video.muted;
             updateMuteIcon();
             showInfoBar(true, 8000);
         }
         
         function updateMuteIcon() {
+            if (!video) return;
             muteIcon.className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
         }
         
         function nextChannel() {
+            if (!channels || channels.length === 0) return;
             playChannel((currentIndex + 1) % channels.length);
         }
         
         function prevChannel() {
+            if (!channels || channels.length === 0) return;
             playChannel((currentIndex - 1 + channels.length) % channels.length);
         }
         
         // Favorites
         function updateFavIcon() {
             const channel = channels[currentIndex];
+            if (!channel?.name) return;
+            
             const isFavorite = favorites.has(channel.name);
             favIcon.style.color = isFavorite ? '#ffd54a' : '#fff';
             btnFav.classList.toggle('star-on', isFavorite);
@@ -1302,6 +1320,19 @@
         }
         
         // Guide functions
+        function buildCategories() {
+            if (!channels || channels.length === 0) {
+                categories = ["All"];
+                currentCategory = "All";
+                return;
+            }
+            
+            const categorySet = new Set(channels.map(c => c.category || 'General'));
+            categories = ['★ Favorites', 'All', ...[...categorySet].sort()];
+            currentCategory = 'All';
+            focusCatIndex = categories.indexOf(currentCategory);
+        }
+        
         function toggleGuide(force) {
             const wantOpen = (typeof force === 'boolean') ? force : !guideModal.classList.contains('show');
             
@@ -1344,13 +1375,6 @@
             showInfoBar(true, 8000);
         }
         
-        function buildCategories() {
-            const categorySet = new Set(channels.map(c => c.category || 'General'));
-            categories = ['★ Favorites', 'All', ...[...categorySet].sort()];
-            currentCategory = 'All';
-            focusCatIndex = categories.indexOf(currentCategory);
-        }
-        
         function buildCategoriesUI() {
             categoriesPanel.innerHTML = '';
             categories.forEach((category, index) => {
@@ -1370,6 +1394,8 @@
         }
         
         function getFilteredIndexes() {
+            if (!channels || channels.length === 0) return [];
+            
             const query = (searchInput.value || '').trim().toLowerCase();
             const isFav = currentCategory === '★ Favorites';
             const isAll = currentCategory === 'All';
@@ -1413,6 +1439,8 @@
             
             filteredIndexes.forEach((channelIndex, tileIndex) => {
                 const channel = channels[channelIndex];
+                if (!channel) return;
+                
                 const isFavorite = favorites.has(channel.name);
                 
                 const tile = document.createElement('div');
@@ -1427,7 +1455,7 @@
                 };
                 
                 tile.innerHTML = `
-                    <img class="channel-logo" src="${channel.img || ''}" alt="${escapeHtml(channel.name || '')}">
+                    <img class="channel-logo" src="${channel.img || ''}" alt="${escapeHtml(channel.name || '')}" onerror="this.src='https://via.placeholder.com/70?text=No+Logo'">
                     <div class="channel-name">${escapeHtml(channel.name || 'Channel ' + (channelIndex + 1))}</div>
                     <button class="favorite-btn ${isFavorite ? 'on' : ''}" title="Favorite">
                         <i class="fas fa-star"></i>
@@ -1435,10 +1463,12 @@
                 `;
                 
                 const favBtn = tile.querySelector('.favorite-btn');
-                favBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    toggleFavByIndex(channelIndex);
-                };
+                if (favBtn) {
+                    favBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        toggleFavByIndex(channelIndex);
+                    };
+                }
                 
                 channelsGrid.appendChild(tile);
             });
@@ -1471,17 +1501,23 @@
         }
         
         function updateResolutionMenu() {
+            if (!resolutionList) return;
+            
             resolutionList.innerHTML = '';
             
             let qualities = [];
             if (player) {
-                const tracks = player.getVariantTracks();
-                qualities = tracks.map(track => ({
-                    id: track.id,
-                    label: track.height ? `${track.height}p` : `${Math.round(track.bandwidth / 1000)}kbps`,
-                    height: track.height,
-                    selected: track.active
-                }));
+                try {
+                    const tracks = player.getVariantTracks();
+                    qualities = tracks.map(track => ({
+                        id: track.id,
+                        label: track.height ? `${track.height}p` : `${Math.round(track.bandwidth / 1000)}kbps`,
+                        height: track.height,
+                        selected: track.active
+                    }));
+                } catch (error) {
+                    console.warn('Could not get variant tracks:', error);
+                }
             }
             
             // Auto option
@@ -1509,10 +1545,14 @@
         
         function selectResolution(id, label) {
             if (player && id !== -1) {
-                const tracks = player.getVariantTracks();
-                const track = tracks.find(t => t.id === id);
-                if (track) {
-                    player.selectVariantTrack(track, true);
+                try {
+                    const tracks = player.getVariantTracks();
+                    const track = tracks.find(t => t.id === id);
+                    if (track) {
+                        player.selectVariantTrack(track, true);
+                    }
+                } catch (error) {
+                    console.error('Error selecting resolution:', error);
                 }
             }
             
@@ -1521,9 +1561,13 @@
         }
         
         function loadServerSources() {
+            if (!serverList) return;
+            
             serverList.innerHTML = '';
             
             const channel = channels[currentIndex];
+            if (!channel) return;
+            
             const sources = channel.sources || [];
             
             if (sources.length <= 1) {
@@ -1561,6 +1605,8 @@
                     if (success) {
                         showLoading(false);
                         updateNowPlayingUI();
+                    } else {
+                        showLoading(false);
                     }
                 });
             }, 300);
@@ -1623,9 +1669,35 @@
         }
         
         function escapeHtml(text) {
+            if (!text) return '';
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
+        }
+        
+        // Fallback channels if main.js cannot be loaded
+        function getDefaultChannels() {
+            return [
+                {
+                    name: "Sangsad TV",
+                    sources: [
+                        { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" }
+                    ],
+                    img: "https://i.postimg.cc/RVR9YF6Y/sangsad.jpg",
+                    category: "News",
+                    description: "Bangladesh"
+                },
+                {
+                    name: "BTV",
+                    sources: [
+                        { name: "Server 1", url: "https://bongoflixbd.top/stream.php?id=a0e6e9b6-b20b-4f54-82d6-881bef762cfd&e.m3u8" },
+                        { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
+                    ],
+                    img: "https://i.postimg.cc/nzQXt33R/btv.jpg",
+                    category: "Mix-Entertainment",
+                    description: "Bangladesh"
+                }
+            ];
         }
         
         // Setup event listeners
