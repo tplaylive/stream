@@ -526,7 +526,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/xC2TbNWn/minimax.jpg", 
                 category: "Kids",
-                description: "India"
+                description: "Pakistan"
             },
             {
                 name: "Animax",
@@ -545,6 +545,15 @@ const channels = [
                 img: "https://i.postimg.cc/3J0Thmrb/zoo-moo.jpg", 
                 category: "Kids",
                 description: "Southeast Asia"
+            },
+            { 
+                name: "24/7 Tom And Jerry",
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
+                category: "Kids",
+                description: "Asia"
             },
             { 
                 name: "24/7 Jungle Book", 
