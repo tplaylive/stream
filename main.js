@@ -2589,4 +2589,718 @@ const channels = [
                 category: "Religious",
                 description: "Bengali"
             },
+  {
+    "name": "ARY Digital",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/ARY_Digital/DASH/ARY_Digital.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "5e0d91714448de0b2e29e53b9ef7ac5d",
+                "key": "00bd26a1aa83373aeef27f4774b8defb"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/ary-digital.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Hum TV",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/HUM_TV/DASH/HUM_TV.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "83404dd4292fec9e27173696f6e42dee",
+                "key": "a9dd477034d4fb2e7e5dc7c21ce73fed"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Hum.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Geo Entertainment",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Geo_Entertainment/DASH/Geo_Entertainment.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "4150a88a441372bcc8899aee17df71f9",
+                "key": "e43b95c25267faea20b2582e978f7f70"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/geo.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Bol Entertainment",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Bol_Entertainment/DASH/Bol_Entertainment.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "1ab9491349c9b6217b8e7cec08e6b5a3",
+                "key": "f37b1bbe691db067003522b053251945"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/bol-entertainment.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "ARY Zindagi",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/ARY_Zindagae/DASH/ARY_Zindagae.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "b7a0caf4ffb4b8010eeb51558ca2d29a",
+                "key": "26220c96f83015d580f455baa4dbfe20"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/ARY-Zindagi.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Geo Kahani",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Geo_Kahani/DASH/Geo_Kahani.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "b6be026722c0e0f5d3b6fe4b32e51734",
+                "key": "bd3a91241ac6c52999ada34f8fa73a38"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/geo-kahani.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Geo News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Geo_News/DASH/Geo_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "a7c70965dd6e0138bba0e754a782ba76",
+                "key": "4f78ca41cda11fb207631815f0d414f4"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/geo-news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "ARY News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/ARY_News/DASH/ARY_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "5fa84110cc26554aeb7c9530e4a2b980",
+                "key": "8abac986087083230fcdc1a3b365e74a"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/ary-news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Dunya News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Dunya_News/DASH/Dunya_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "fb1e0185d33f69df1187da4cb2fcf390",
+                "key": "9da941665723e2e21d422d113e3e3eca"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/dunya.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Bol News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Bol_News/DASH/Bol_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "45f5c3607b89a29e9b7495eb011a3b0e",
+                "key": "3f2aaf642deeb4ead9daa9c941bac1e8"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/bol-news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Aaj News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Aaj_News/DASH/Aaj_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "be2bd90ba46603e147f7e2c75ed367bf",
+                "key": "d826e19c7a637a80d3ba9299ad2b822d"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Aaj%20news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "PTV Sports",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/PTV_Sports/DASH/PTV_Sports.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "9ecad6c4413f8bdc54712ce6c072a2cf",
+                "key": "442df559c369bdada8ba3abe97811575"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/PTV-Sports.png",
+    "category": "Sports",
+    "description": "Pakistan"
+},
+{
+    "name": "Geo Super",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Geo_Super/DASH/Geo_Super.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "7641daa5bacfbb61936c40a221c9e78e",
+                "key": "5732dd242f28338e909dc06cb1a1e5a2"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/geo-super.png",
+    "category": "Sports",
+    "description": "Pakistan"
+},
+{
+    "name": "Fast Sports HD",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Fast_Sports_HD/DASH/Fast_Sports_HD.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "ba9b637b639af897f228114363e882fa",
+                "key": "27508374902bd52361f08a2ad4dba3a3"
+            }
+        }
+    ],
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkjmoUatVnbQsL-NNHSj2L9zjbbMg92x5pNA&s",
+    "category": "Sports",
+    "description": "Pakistan"
+},
+{
+    "name": "Criclife 2",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Criclife2/DASH/Criclife2.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "4301796d6d67374043c4a43c18dff7ea",
+                "key": "96a3dc8766317aa169149a604928ebb6"
+            }
+        }
+    ],
+    "img": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/logos/live/criclife2.png",
+    "category": "Sports",
+    "description": "Pakistan"
+},
+{
+    "name": "B4U Movies",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/B4U_Movies/DASH/B4U_Movies.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "bb0c6b6f0e2c873a174e63e16f3a3f62",
+                "key": "a8c4fae3ea8023b51707e470ec336209"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/B4Umovies.png",
+    "category": "Movies",
+    "description": "Pakistan"
+},
+{
+    "name": "Film World",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Film_World/DASH/Film_World.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "501c219f6640b42b454a1fc3bda48a7e",
+                "key": "d547a7eaac74ae83cadcaddb6243978f"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Film-World.png",
+    "category": "Movies",
+    "description": "Pakistan"
+},
+{
+    "name": "Filmax",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/FILMAX/DASH/FILMAX.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "eefc4c6db6d961885314bb5c58fd226b",
+                "key": "da646d01cc7a852b093854299dbc7b87"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/filmax.png",
+    "category": "Movies",
+    "description": "Pakistan"
+},
+{
+    "name": "Kids Zone Plus",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Kids_Zone_Plus/DASH/Kids_Zone_Plus.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "ec087eb4cd899e1a068083608f0aa3f6",
+                "key": "f36cd5dddd56ca76246a62b7b02148c9"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/kids-Zone.png",
+    "category": "Kids",
+    "description": "Pakistan"
+},
+{
+    "name": "Planet Fun",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Planet_Fun/DASH/Planet_Fun.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "55f8fb7e199225c06268117fe3ff232a",
+                "key": "30f8dcb48a1b4a7b60ae04b88fe5397a"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Planet-Fun.png",
+    "category": "Kids",
+    "description": "Pakistan"
+},
+{
+    "name": "Minimax",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Minimax/DASH/Minimax.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "034c919e34f1de07c325a7b23ad451a0",
+                "key": "cf88732938381b02d3fbfa09de6860ae"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/minimax.png",
+    "category": "Kids",
+    "description": "Pakistan"
+},
+{
+    "name": "8 XM",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/8_XM/DASH/8_XM.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "7ebaeb181f20ef45689a3b306545792c",
+                "key": "41ff280dc2d57eaf290bc588d821bb35"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/8XM.png",
+    "category": "Music",
+    "description": "Pakistan"
+},
+{
+    "name": "Express Entertainment",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Express_Entertainment/DASH/Express_Entertainment.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "06a8aac1edf5574817efa6903759e24c",
+                "key": "cc1ce0c7195d763cd59e2b90d7176f78"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Express.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "A Plus",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/A_Plus/DASH/A_Plus.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "54aa47ddf8d6cbc147b7e61854d06dbb",
+                "key": "afbef7ea4cce38bd7c84303bb7246756"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/A-Plus_TV_Logo.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Urdu 1",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Urdu_1/DASH/Urdu_1.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "cf56a165967418484e82689dd48432b2",
+                "key": "bbea8c027a9008b08e50f532ea8f0b8d"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/urdu-1.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "LTN Family",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/LTN_Family/DASH/LTN_Family.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "c99a24c82f16a3792bd21a262fea52a0",
+                "key": "bf418e034623e18dc0102dc3731e43d8"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/LTN-Family.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Aaj Entertainment",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Aaj_Entertainment/DASH/Aaj_Entertainment.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "b9f250ad063063dce2b66bc97b8a7be3",
+                "key": "9b4b55014b2cccf176a3388ef79d20ec"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/aaj-entertainment.png",
+    "category": "Entertainment",
+    "description": "Pakistan"
+},
+{
+    "name": "Express News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Express_News/DASH/Express_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "3cc797eec44e9de28e0383d6f8053ef1",
+                "key": "a27a46fc0b462ee9d35845b086284728"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/express-news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Hum News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Hum_News/DASH/Hum_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "b1c67ca001fd4c7d72ea38291d0c36ea",
+                "key": "8b1462cce1f9e03305d7d6df3409cb6b"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/hum-news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Abb Takk News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Abb_Takk_News/DASH/Abb_Takk_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "971afc4c7b4a29686ee22a282f50e9da",
+                "key": "f204a8ed43fb4efd3cea8115b56f5884"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/abb-tak.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "News One",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/News_One/DASH/News_One.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "a77b3c9d1a352d759aa88c6d2490b07d",
+                "key": "dfd749936ca6fbdbb580135cd2bc623e"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/news-one.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Dawn News",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Dawn_News/DASH/Dawn_News.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "1e81332129957ee4b3b16ebf04abcb45",
+                "key": "92754de589fbd6d3b288bb30d66c7e06"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Dawn-news.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Neo TV",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Neo_TV/DASH/Neo_TV.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "8508ff2a5f04345f3353e112d7ce2c09",
+                "key": "73ed2d9eb8287f8a56b73e6243c57755"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/NEO.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Geo Taiz",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Geo_Taiz/DASH/Geo_Taiz.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "c452271b17b1bccf977ae176c327544d",
+                "key": "077da319f1718d2ec989a528bdd62b5f"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Geo-taiz.png",
+    "category": "News",
+    "description": "Pakistan"
+},
+{
+    "name": "Lahore News HD",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Lahore_News_HD/DASH/Lahore_News_HD.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "862f51c48d8e562377602b63393215ef",
+                "key": "9b96cb09903396cb5cfaa7253b103d26"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Lahore-News.png",
+    "category": "Regional",
+    "description": "Pakistan"
+},
+{
+    "name": "City 42",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/City_42/DASH/City_42.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "3bb15c2db2a7bf86ffa5375cd308e2aa",
+                "key": "c58cfa4890b72b939bfd64c95f94f7aa"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/city-42.png",
+    "category": "Regional",
+    "description": "Pakistan"
+},
+{
+    "name": "City 21",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/City_21/DASH/City_21.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "c1ac1dd655f85140d18f7c0fc2617345",
+                "key": "9ecaefa3a20f1a7b7b157633832a79a3"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/City-21.png",
+    "category": "Regional",
+    "description": "Pakistan"
+},
+{
+    "name": "Aan TV",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/AAN_TV/DASH/AAN_TV.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "3e6eb6c5fc1753defa332911efb51f74",
+                "key": "2eb8d7fa82d8e1d2c08aecb26ce109fd"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/Aan-TV.png",
+    "category": "Regional",
+    "description": "Pakistan"
+},
+{
+    "name": "Discovery Science",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Discovery_Science/DASH/Discovery_Science.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "c00da2a838a8989bc26e314dd7fb3775",
+                "key": "1e4c2a8c011e138a2190ab19c2b30f86"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/discovery-science.png",
+    "category": "Education",
+    "description": "Pakistan"
+},
+{
+    "name": "Discover Pakistan",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Discover_Pakistan/DASH/Discover_Pakistan.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "93c6258dbedced1dab30a88d89c32557",
+                "key": "113607765a0faaa15a2cea43a0697453"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/discover-pakistan.png",
+    "category": "Education",
+    "description": "Pakistan"
+},
+{
+    "name": "QTV",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/QTV/DASH/QTV.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "9b4be48e99f2f376cc19004b813202a2",
+                "key": "cc100b986e8c6f0da97268f9390da5d1"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/qtv.png",
+    "category": "Religious",
+    "description": "Pakistan"
+},
+{
+    "name": "Paigham TV",
+    "sources": [
+        {
+            "name": "Shoq Live",
+            "url": "https://live2.shoq.com.pk/live/eds/Paigham_TV/DASH/Paigham_TV.mpd",
+            "type": "dash",
+            "drm": {
+                "kid": "3a15c0eb8af0f8dbf3ce80f2e8a4ad3f",
+                "key": "2f1221c47815d301f217e5a70a2040da"
+            }
+        }
+    ],
+    "img": "https://ev-img-cdn-lb.shoq.com.pk/prd-peg-data/default/images/logos/live/paigham-tv.png",
+    "category": "Religious",
+    "description": "Pakistan"
+},
         ];
