@@ -2636,6 +2636,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Saudi Quran TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_quran/hls_roku/index.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_mesiGG76gww2WnpFVUFbMz-s2d4IjJJVhDqJuCVscqKLY=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Religious",
+                description: "World"
+            },
+            { 
                 name: "Om Bangla", 
                 sources: [
                     { name: "Originals", url: "https://tplay.live/originals/om-bangla/index.m3u8" }
