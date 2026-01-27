@@ -1437,6 +1437,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Tara TV", 
+                sources: [
+                    { name: "Server 1", url: "https://legitpro.co.in/taratv/taratv/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_njjooSlwTJnKdIZCGueYfSfotEcv0VLNzeeX8C_3735g=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Star Plus", 
                 sources: [
                     { name: "Server 1", url: "https://live.mncdn.shop/74524e79-5f3a-4824-8202-b9e346acb9a4/index.m3u8" },
