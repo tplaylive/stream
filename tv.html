@@ -565,7 +565,7 @@ body{background:#000;color:#fff;overflow:hidden}
 </div>
   
 <script src="main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<!-- Shaka Player only - HLS removed -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
 
 <script>
@@ -603,7 +603,6 @@ const serverChannelName = document.getElementById("serverChannelName");
 const serverCloseBtn = document.getElementById("btnCloseServer");
 
 /* Players */
-let hls = null;
 let shakaP = null;
 
 /* State */
@@ -815,18 +814,9 @@ function toggleSettings(force) {
 function loadAvailableResolutions() {
   resolutionList.innerHTML = '';
   
-  // Check current player for available qualities
   let qualities = [];
   
-  if (hls && hls.levels && hls.levels.length > 0) {
-    qualities = hls.levels.map((level, index) => ({
-      id: index,
-      label: level.height ? `${level.height}p` : `${Math.round(level.bitrate/1000)}kbps`,
-      height: level.height,
-      selected: index === hls.currentLevel
-    }));
-  } else if (shakaP) {
-    // Shaka Player tracks
+  if (shakaP) {
     const tracks = shakaP.getVariantTracks();
     qualities = tracks.map(track => ({
       id: track.id,
@@ -847,12 +837,18 @@ function loadAvailableResolutions() {
   
   // Add Auto option first
   const autoOption = document.createElement('div');
-  autoOption.className = `settingsOption ${hls?.currentLevel === -1 ? 'active' : ''}`;
+  autoOption.className = `settingsOption active`; // Always active for Shaka
   autoOption.innerHTML = `
     <div class="optionLabel">Auto (Best)</div>
-    <div class="optionValue">${hls?.currentLevel === -1 ? '✓' : ''}</div>
+    <div class="optionValue">✓</div>
   `;
-  autoOption.onclick = () => selectResolution(-1, 'Auto');
+  autoOption.onclick = () => {
+    if (shakaP) {
+      shakaP.configure('abr.enabled', true);
+      setBadge(`Resolution: Auto`, 'live');
+    }
+    toggleSettings(false);
+  };
   resolutionList.appendChild(autoOption);
   
   // Add available qualities
@@ -869,12 +865,11 @@ function loadAvailableResolutions() {
 }
 
 function selectResolution(id, label) {
-  if (hls) {
-    hls.currentLevel = id;
-  } else if (shakaP) {
+  if (shakaP) {
     const tracks = shakaP.getVariantTracks();
     const track = tracks.find(t => t.id === id);
     if (track) {
+      shakaP.configure('abr.enabled', false);
       shakaP.selectVariantTrack(track, true);
     }
   }
@@ -889,12 +884,14 @@ function loadAudioTracks() {
   let audioTracks = [];
   
   if (shakaP) {
-    const tracks = shakaP.getTextTracks();
-    audioTracks = tracks.map(track => ({
-      id: track.id,
-      label: track.language ? ` ${track.language.toUpperCase()}` : 'Unknown',
-      selected: track.active
-    }));
+    const tracks = shakaP.getAudioLanguages && shakaP.getAudioLanguages();
+    if (tracks && tracks.length > 0) {
+      audioTracks = tracks.map((lang, index) => ({
+        id: index,
+        label: lang ? ` ${lang.toUpperCase()}` : 'Unknown',
+        selected: index === 0 // Default to first
+      }));
+    }
   }
   
   // If no audio tracks found
@@ -919,11 +916,10 @@ function loadAudioTracks() {
 }
 
 function selectAudioTrack(id, label) {
-  if (shakaP) {
-    const tracks = shakaP.getTextTracks();
-    const track = tracks.find(t => t.id === id);
-    if (track) {
-      shakaP.selectTextTrack(track);
+  if (shakaP && shakaP.selectAudioLanguage) {
+    const tracks = shakaP.getAudioLanguages && shakaP.getAudioLanguages();
+    if (tracks && tracks[id]) {
+      shakaP.selectAudioLanguage(tracks[id]);
     }
   }
   
@@ -1043,14 +1039,25 @@ function showNoSignal(on, msg){
 }
 
 async function cleanupPlayers(){
-  if(hls){ try{ hls.destroy(); }catch{} hls=null; }
-  if(shakaP){ try{ await shakaP.destroy(); }catch{} shakaP=null; }
-  try{ video.removeAttribute("src"); video.load(); }catch{}
+  if(shakaP){ 
+    try{ 
+      await shakaP.destroy(); 
+    }catch(e){ 
+      console.warn("Shaka cleanup error:", e); 
+    }
+    shakaP = null; 
+  }
+  try{ 
+    video.removeAttribute("src"); 
+    video.load(); 
+  }catch(e){
+    console.warn("Video cleanup error:", e);
+  }
 }
 
 function isDash(src){
   const url = src?.url || "";
-  return src?.type === "dash" || (typeof url === "string" && url.includes(".mpd"));
+  return src?.type === "dash" || src?.type === "hls" || (typeof url === "string" && (url.includes(".mpd") || url.includes(".m3u8")));
 }
 
 async function playChannel(index){
@@ -1108,43 +1115,45 @@ async function loadSource(srcIdx){
   await cleanupPlayers();
 
   try{
-    if(isDash(src)){
-      if(!shaka.Player.isBrowserSupported()) throw new Error("Shaka not supported");
-      shaka.polyfill.installAll();
-      shakaP = new shaka.Player(video);
-
-      if(src.drm?.kid && src.drm?.key){
-        await shakaP.configure({ drm: { clearKeys: { [src.drm.kid]: src.drm.key } } });
-      }else{
-        await shakaP.configure({ drm: { clearKeys: {} } });
-      }
-
-      await shakaP.load(src.url);
-    } else {
-      if(Hls.isSupported()){
-        hls = new Hls({ enableWorker:true, lowLatencyMode:true });
-        hls.loadSource(src.url);
-        hls.attachMedia(video);
-
-        await new Promise((resolve, reject) => {
-          const t = setTimeout(()=>reject(new Error("HLS timeout")), 9000);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => { clearTimeout(t); resolve(); });
-          hls.on(Hls.Events.ERROR, (evt, data) => {
-            if(data?.fatal){ clearTimeout(t); reject(new Error("HLS fatal")); }
-          });
-        });
-      }else if(video.canPlayType("application/vnd.apple.mpegurl")){
-        video.src = src.url;
-        await new Promise((resolve, reject) => {
-          const t = setTimeout(()=>reject(new Error("Native HLS timeout")), 9000);
-          video.addEventListener("loadedmetadata", () => { clearTimeout(t); resolve(); }, {once:true});
-          video.addEventListener("error", () => { clearTimeout(t); reject(new Error("Native HLS error")); }, {once:true});
-        });
-      }else{
-        throw new Error("No HLS support");
-      }
+    // Check if Shaka Player is supported
+    if(!shaka.Player.isBrowserSupported()) {
+      throw new Error("Shaka Player not supported in this browser");
     }
 
+    // Always use Shaka Player for both DASH and HLS
+    shaka.polyfill.installAll();
+    shakaP = new shaka.Player(video);
+
+    // Configure for better compatibility
+    const config = {
+      drm: { 
+        clearKeys: {}
+      },
+      streaming: {
+        bufferingGoal: 30,
+        rebufferingGoal: 10,
+        bufferBehind: 30,
+        ignoreTextStreamFailures: true,
+        smallGapLimit: 2.0,
+        jumpLargeGaps: true
+      },
+      abr: {
+        enabled: true,
+        defaultBandwidthEstimate: 5000000
+      }
+    };
+
+    // Add DRM if available
+    if(src.drm?.kid && src.drm?.key){
+      config.drm.clearKeys[src.drm.kid] = src.drm.key;
+    }
+
+    await shakaP.configure(config);
+
+    // Load the stream
+    await shakaP.load(src.url);
+
+    // Try to play
     try{
       video.muted = false;
       await video.play();
