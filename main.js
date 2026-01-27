@@ -962,6 +962,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Tara Bangla Cinema", 
+                sources: [
+                    { name: "Playlist", url: "https://serene-garden-87090.herokuapp.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/503Bkwmk/tarabanglacinema.jpg", 
+                category: "Movie",
+                description: "Bengali"
+            },
+            { 
                 name: "Cine Jomjomat", 
                 sources: [
                     { name: "Playlist", url: "https://amg13779-amg13779c1-amgplt0173.playout.now3.amagi.tv/playlist/amg13779-amg13779c1-amgplt0173/playlist.m3u8" }
