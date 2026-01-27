@@ -2327,7 +2327,16 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
                 category: "Sports",
-                description: "Bangladesh"
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 2 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-2/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
+                category: "Sports",
+                description: "World"
             },
             { 
                 name: "WWE Network", 
