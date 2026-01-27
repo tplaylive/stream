@@ -410,15 +410,6 @@ const channels = [
                 category: "News",
                 description: "India"
             },
-            { 
-                name: "Al Jazeera", 
-                sources: [
-                    { name: "Server 1", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
-                category: "News",
-                description: "Qatar"
-            },
             {
                 name: "BBC News", 
                 sources: [
@@ -428,6 +419,24 @@ const channels = [
                 img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
                 category: "News",
                 description: "London"
+            },
+            { 
+                name: "Al Jazeera", 
+                sources: [
+                    { name: "Server 1", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
+                category: "News",
+                description: "Qatar"
+            },
+            { 
+                name: "Al Ekhbariya", 
+                sources: [
+                    { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/al_ekhbariya/hls_roku/index.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/e/e3/%D8%A7%D9%84%D9%82%D9%86%D8%A7.png", 
+                category: "News",
+                description: "Saudi Arabia"
             },
             {
                 name: "Duronto",
@@ -2641,6 +2650,15 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_quran/hls_roku/index.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_mesiGG76gww2WnpFVUFbMz-s2d4IjJJVhDqJuCVscqKLY=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Religious",
+                description: "Islam"
+            },
+            { 
+                name: "Saudi Sunnah TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_sunnah/hls_roku/index.m3u8" },
+                ], 
+                img: "https://www.lyngsat.com/logo/tv/ss/sunna-tv-sa.png", 
                 category: "Religious",
                 description: "Islam"
             },
