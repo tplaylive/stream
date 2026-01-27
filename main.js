@@ -2588,7 +2588,7 @@ const channels = [
                 ], 
                 img: "https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/jzxlzmgwj9tfpyv8ldpf", 
                 category: "Religious",
-                description: "World"
+                description: "Islam"
             },
             { 
                 name: "Madani Bangla", 
@@ -2597,7 +2597,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/BvfMPnSP/madani-bangla.jpg", 
                 category: "Religious",
-                description: "World"
+                description: "Islam"
             },
             { 
                 name: "Mercy TV", 
@@ -2606,7 +2606,7 @@ const channels = [
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXMFfcf9s50fsWGifUc9Do21MCTfRN6Y9-yw&s", 
                 category: "Religious",
-                description: "Hindi/Urdu"
+                description: "Islam"
             },
             { 
                 name: "Ilm TV", 
@@ -2615,7 +2615,7 @@ const channels = [
                 ],
                 img: "https://i.postimg.cc/tTkx4MWv/ilm.jpg", 
                 category: "Religious",
-                description: "Asia"
+                description: "Islam"
             },
             { 
                 name: "Islam Bangla", 
@@ -2624,7 +2624,7 @@ const channels = [
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPhxUqZi3tzsjdt5rn7AWyC2CQgH8z14fd2g&s", 
                 category: "Religious",
-                description: "World"
+                description: "Islam"
             },
             { 
                 name: "Shquran Tv", 
@@ -2633,7 +2633,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/g03Jqxvn/sharjahtvquranlive.jpg", 
                 category: "Religious",
-                description: "World"
+                description: "Islam"
             },
             { 
                 name: "Saudi Quran TV", 
@@ -2642,7 +2642,16 @@ const channels = [
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_mesiGG76gww2WnpFVUFbMz-s2d4IjJJVhDqJuCVscqKLY=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Religious",
-                description: "World"
+                description: "Islam"
+            },
+            { 
+                name: "Akaal Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/akaal_tv/hls1_smart_akaal/akaal_tv.m3u8" },
+                ], 
+                img: "https://www.sikhentrepreneur.com/wp-content/uploads/2013/09/akaalch.png", 
+                category: "Religious",
+                description: "Sikhism"
             },
             { 
                 name: "Om Bangla", 
@@ -2651,7 +2660,7 @@ const channels = [
                 ],
                 img: "https://i.postimg.cc/jjmyWm0m/om-bangla-2.jpg", 
                 category: "Religious",
-                description: "Asia"
+                description: "Hinduism"
             },
             { 
                 name: "24/7 Bangla Kirtan", 
@@ -2660,6 +2669,6 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/QMtrZNRk/bangla-kirtan.jpg", 
                 category: "Religious",
-                description: "Bengali"
+                description: "Hinduism"
             },
         ];
