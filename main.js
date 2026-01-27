@@ -1998,6 +1998,24 @@ const channels = [
                 description: "Kuwait"
             },
             { 
+                name: "Oman TV", 
+                sources: [
+                    { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/oman_tv/hls_roku/index.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Saghhjjdegh.jpg", 
+                category: "Mix-Entertainment",
+                description: "Sultanate of Oman"
+            },
+            { 
+                name: "Sudan TV", 
+                sources: [
+                    { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/sudan_tv/hls_roku/index.m3u8" },
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/c/cc/Sudan_TV_logo_2000.png", 
+                category: "Mix-Entertainment",
+                description: "Sudan"
+            },
+            { 
                 name: "Live 1", 
                 sources: [
                     { name: "Server 1", url: "https://premierleagpl23.akamaized.net/hls/live/2107108/Tapmad-29514-Enc-Seriea-1.3/master.m3u8" },
