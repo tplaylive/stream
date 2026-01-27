@@ -964,7 +964,9 @@ const channels = [
             { 
                 name: "Tara Bangla Cinema", 
                 sources: [
-                    { name: "Playlist", url: "https://serene-garden-87090.herokuapp.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" }
+                    { name: "Playlist", url: "https://serene-garden-87090.herokuapp.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
+                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
+                    { name: "Playlist", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/503Bkwmk/tarabanglacinema.jpg", 
                 category: "Movie",
