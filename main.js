@@ -953,6 +953,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Movie Bangla", 
+                sources: [
+                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://alvetv.com/moviebanglatv/8080/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/vHRnL2MH/movie-bangla.jpg", 
+                category: "Movie",
+                description: "Bengali"
+            },
+            { 
                 name: "Sanonda", 
                 sources: [
                     { name: "Playlist", url: "https://live.sanonda.tv/sanonda/tracks-v1a1/mono.m3u8" }
@@ -964,9 +973,7 @@ const channels = [
             { 
                 name: "Tara Bangla Cinema", 
                 sources: [
-                    { name: "Playlist", url: "https://serene-garden-87090.herokuapp.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
                     { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
-                    { name: "Playlist", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/503Bkwmk/tarabanglacinema.jpg", 
                 category: "Movie",
