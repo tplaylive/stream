@@ -639,7 +639,7 @@ const channels = [
             { 
                 name: "24/7 Tom And Jerry",
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://live.iill.top/huya.php?id=11352879&e=.m3u8" },
+                    { name: "Server 1", url: "https://live.iill.top/huya.php?id=11352879&e=.m3u8" },
                     { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
