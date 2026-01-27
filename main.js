@@ -955,16 +955,26 @@ const channels = [
             { 
                 name: "Movie Bangla", 
                 sources: [
-                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://alvetv.com/moviebanglatv/8080/index.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://alvetv.com/moviebanglatv/8080/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vHRnL2MH/movie-bangla.jpg", 
                 category: "Movie",
                 description: "Bengali"
             },
             { 
+                name: "Filmy Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.145.48.150:90/laosat24/filmytv/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/43r4kMWY/filmi-bangla.jpg", 
+                category: "Movie",
+                description: "Bengali"
+            },
+            { 
                 name: "Sanonda", 
                 sources: [
-                    { name: "Playlist", url: "https://live.sanonda.tv/sanonda/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://live.sanonda.tv/sanonda/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://115.187.41.216:8080/hls/sanandatv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/TwTnMYrW/sananda.jpg", 
                 category: "Movie",
