@@ -438,6 +438,15 @@ const channels = [
                 category: "News",
                 description: "Saudi Arabia"
             },
+            { 
+                name: "Libya Al Wataniya", 
+                sources: [
+                    { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/libya_al_watanya/hls_roku/index.m3u8" }
+                ], 
+                img: "https://i.imgur.com/KSUny9D.jpeg", 
+                category: "News",
+                description: "Libya"
+            },
             {
                 name: "Duronto",
                 sources: [
@@ -1978,6 +1987,15 @@ const channels = [
                 img: "https://i.postimg.cc/xjZDZLjt/ntvbd.jpg", 
                 category: "Mix-Entertainment",
                 description: "Bengali"
+            },
+            { 
+                name: "Kuwait TV", 
+                sources: [
+                    { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/kuwait_tv1/hls_roku/index.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/KuwaitTV.svg/250px-KuwaitTV.svg.png", 
+                category: "Mix-Entertainment",
+                description: "Kuwait"
             },
             { 
                 name: "Live 1", 
