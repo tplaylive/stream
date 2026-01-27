@@ -1990,6 +1990,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Bongo Drama", 
+                sources: [
+                    { name: "Server 1", url: "https://streams2.sofast.tv/ptnr-runntv/title-Bongo_Drama/sofastplayout/restream/6509864e-6447-4085-9053-c643734bbc1c/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/-WoL9dA-we7-4A1cWu_SHjzRl7e0_sdMrr-lFrznSAIyn__k7Hs89hvW8jV3_DpYP9PzjBQikw=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
                 name: "Kuwait TV", 
                 sources: [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/kuwait_tv1/hls_roku/index.m3u8" },
