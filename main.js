@@ -2632,11 +2632,22 @@ const channels = [
             { 
                 name: "BBC Earth", 
                 sources: [
-                    { name: "Server 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" }
+                    { name: "UK 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" },
+                    { name: "Asia", url: "https://hls.iill.top/api/BBC-Earth/playlist.m3u8" },
+
                 ], 
-                img: "https://i.postimg.cc/HkdbcXH0/bbcearth.jpg", 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNXOrjX8auopIAAKFRHx1Y-KLi8Ync-CWUfw&s", 
                 category: "Infotainment",
-                description: "UK"
+                description: "World"
+            },
+            { 
+                name: "BBC Lifestyle", 
+                sources: [
+                    { name: "Asia", url: "https://hls.iill.top/api/BBC-Lifestyle/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVYpn7TbifrC432Irpa2jXdlTdmCDDu0ThaQ&s", 
+                category: "Infotainment",
+                description: "World"
             },
             { 
                 name: "INWILD", 
