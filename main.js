@@ -2321,11 +2321,83 @@ const channels = [
                 description: "Qatar"
             },
             { 
+                name: "Hub Sports 1", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-1/playlist.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logos/images/d/d4/HUB_Sports_1.png/revision/latest/scale-to-width-down/1200?cb=20240218062835&path-prefix=vi", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 2", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-2/playlist.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logosfake/images/2/25/HubSports_2.png/revision/latest?cb=20190619114541", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 3", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-3/playlist.m3u8" }
+                ], 
+                img: "https://r2.thesportsdb.com/images/media/channel/logo/tmpwbb1655810489.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 4", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-4/playlist.m3u8" }
+                ], 
+                img: "https://i.vimeocdn.com/video/2065871386-1e9bff68a218b46f95c503bc69cf9d566c5021dae6479880b15ba09efa83da70-d?f=webp", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 5", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-5/playlist.m3u8" }
+                ], 
+                img: "https://epg.pw/media/images/epg/2025/02/12/20250212042641983979_50.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 6", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-6/playlist.m3u8" }
+                ], 
+                img: "https://epg.pw/media/images/epg/2025/02/12/20250212042824169600_35.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 7", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-7/playlist.m3u8" }
+                ], 
+                img: "https://epg.pw/media/images/epg/2025/09/09/20250909042505032176_56.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Sports 8", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Sports-8/playlist.m3u8" }
+                ], 
+                img: "https://epg.pw/media/images/epg/2025/09/09/20250909042510381850_84.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "Hub Premier 1 HD", 
                 sources: [
                     { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-1/playlist.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279488754%27&EntityType=%27Item%27&EntityId=%27567123%27&Width=1920&Height=1080", 
                 category: "Sports",
                 description: "World"
             },
@@ -2334,7 +2406,61 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-2/playlist.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624578%27&EntityType=%27Item%27&EntityId=%27572415%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 3 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-3/playlist.m3u8" }
+                ], 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624617%27&EntityType=%27Item%27&EntityId=%27572419%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 4 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-4/playlist.m3u8" }
+                ], 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624656%27&EntityType=%27Item%27&EntityId=%27572423%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 5 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-5/playlist.m3u8" }
+                ], 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624630%27&EntityType=%27Item%27&EntityId=%27572420%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 6 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-6/playlist.m3u8" }
+                ], 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624633%27&EntityType=%27Item%27&EntityId=%27572421%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 7 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-7/playlist.m3u8" }
+                ], 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624605%27&EntityType=%27Item%27&EntityId=%27572417%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Hub Premier 8 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-8/playlist.m3u8" }
+                ], 
+                img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624577%27&EntityType=%27Item%27&EntityId=%27572414%27&Width=1920&Height=1080", 
                 category: "Sports",
                 description: "World"
             },
