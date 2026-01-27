@@ -2185,7 +2185,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
                 category: "Sports",
-                description: "Bangladesh"
+                description: "India"
             },
             { 
                 name: "Sony Sports 1", 
@@ -2319,6 +2319,15 @@ const channels = [
                 img: "https://i.postimg.cc/bJRPtBpR/bein3.jpg", 
                 category: "Sports",
                 description: "Qatar"
+            },
+            { 
+                name: "Hub Premier 1 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-1/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
+                category: "Sports",
+                description: "Bangladesh"
             },
             { 
                 name: "WWE Network", 
