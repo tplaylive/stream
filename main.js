@@ -2677,6 +2677,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Foodie Hub", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-oq5ndvigrlkaa.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-oq5ndvigrlkaa/IQJW/WBD/FoodieHub_IN/FoodieHub_IN.m3u8" }
+                ], 
+                img: "https://cdn.sportika.net/cropped-foodie-hub(1).png", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "Wild Flix", 
                 sources: [
                     { name: "Server 1", url: "https://cc-qgrxgp51645lw.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-qgrxgp51645lw/IQJW/WBD/WildFlix_IN/WildFlix_IN.m3u8" }
