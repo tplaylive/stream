@@ -1652,6 +1652,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Hum TV", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/HUM_ENTERTAINMENT/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/NMyGY6FT/hum.jpg", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
                 name: "Fakt Marathi", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10002/master.m3u8" },
