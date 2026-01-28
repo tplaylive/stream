@@ -2739,6 +2739,15 @@ const channels = [
                 description: "China"
             },
             { 
+                name: "CGTN Discovering China", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-hwc.myco.io/CGTN/hls/index.m3u8" }
+                ], 
+                img: "https://d2gpx7np84fwh1.cloudfront.net/external/d2y2efdi5wgkcl.cloudfront.net/fit-in/688x464/media-io/2025/10/17/Channel_Logo.80dcf707.png?width=1920", 
+                category: "Infotainment",
+                description: "China"
+            },
+            { 
                 name: "History", 
                 sources: [
                     { 
