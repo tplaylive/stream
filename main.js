@@ -2695,6 +2695,23 @@ const channels = [
                 description: "United States"
             },
             { 
+                name: "Love Nature", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(LoveNature)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "3af2407f93664272a2b0c24be3632d93",
+                            key: "6504d3e04a92a7d0d0d36818f477cae4"
+                        }
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Love_Nature_logo_%282025%29.svg", 
+                category: "Infotainment",
+                description: "United States"
+            },
+            { 
                 name: "BBC Earth", 
                 sources: [
                     { name: "UK 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" },
