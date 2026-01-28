@@ -1654,10 +1654,72 @@ const channels = [
             { 
                 name: "Hum TV", 
                 sources: [
-                    { name: "Server 2", url: "https://ml-pull-dvc-myco.io:2096/HUM_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/https://ml-pull-dvc-myco.io:2096/ARY_DIGITAL/index.m3u8" },
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/HUM_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/NMyGY6FT/hum.jpg", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Ary Digital", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/ARY_DIGITAL/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://mir-s3-cdn-cf.behance.net/projects/404/90ecb9218167821.Y3JvcCw1NzUzLDQ1MDAsMTEyNSww.jpg", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Express Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/EXPRESS_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://r2.thesportsdb.com/images/media/channel/logo/sswurt1476662766.png", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Green Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/GREEN_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOMJrXPGx1YIFBC6ogdcJ87M35xQjneLhKA&s", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Geo Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/GEO_ENTERTAINEMNT/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/GpLH0TvJ/geo-ent.jpg", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Bol Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/BOL_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/HstckCdt/bol-ent.jpg", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Sab Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/SAB_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGE8uyneXAmDlEikCnonDG2YX9SxfvfWnFWg&s", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Mun TV", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/MUN_TV/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://media.licdn.com/dms/image/v2/D4D0BAQFEQlJZEt9u8w/company-logo_200_200/company-logo_200_200/0/1697180175196?e=2147483647&v=beta&t=_qhFwyXTYEWa5QTTUDI3MwI8aefVr39xDxYKItDNLS0", 
                 category: "Entertainment",
                 description: "Pakistan"
             },
