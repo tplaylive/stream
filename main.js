@@ -1769,6 +1769,15 @@ const channels = [
                 description: "Marathi"
             },
             { 
+                name: "Asianet", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/asianet/index.m3u8" },
+                ], 
+                img: "https://www.medianews4u.com/wp-content/uploads/2025/09/Asianet-dominates-Malayalam-TV-with-64-prime-time-share-Bigg-Boss-7-leads-the-charge.png", 
+                category: "Entertainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "Mazhavil Manorama", 
                 sources: [
                     { name: "SD", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/mazhavilmanorama_nim_https/050522/mazhavilmanorama/playlist.m3u8" },
