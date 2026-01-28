@@ -1627,11 +1627,12 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=2604a4cd22ee&e=.m3u8" }
+                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=2604a4cd22ee&e=.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
                 category: "Entertainment",
-                description: "Bangladesh"
+                description: "India"
             },
             { 
                 name: "DD National", 
