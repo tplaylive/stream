@@ -2777,15 +2777,6 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "Epic", 
-                sources: [
-                    { name: "Server 1", url: "https://epiconvh.akamaized.net/live/epic/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/c1X91C4M/epic.jpg", 
-                category: "Infotainment",
-                description: "India"
-            },
-            { 
                 name: "CGTN Documentary", 
                 sources: [
                     { name: "Server 1", url: "https://0472.org/hls/cgtnd.m3u8" }
@@ -2804,6 +2795,15 @@ const channels = [
                 description: "China"
             },
             { 
+                name: "Epic", 
+                sources: [
+                    { name: "Server 1", url: "https://epiconvh.akamaized.net/live/epic/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/c1X91C4M/epic.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "History", 
                 sources: [
                     { 
@@ -2819,6 +2819,23 @@ const channels = [
                 img: "https://i.postimg.cc/LsC3pgKH/history.jpg", 
                 category: "Infotainment",
                 description: "India"
+            },
+            { 
+                name: "National Geographic Wild", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://v4-pan-n79-cdn-01.live.cdn.cgates.lt/live/dash/561201/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "ffa7c3ca6020428c919e13b817b7e31b",
+                            key: "adf163c6c1729e6f77668d4e49f32352"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/9MHP15XD/nat-geo-wild.jpg", 
+                category: "Infotainment",
+                description: "World"
             },
             { 
                 name: "HGTV", 
