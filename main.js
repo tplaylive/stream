@@ -1670,6 +1670,15 @@ const channels = [
                 description: "Pakistan"
             },
             { 
+                name: "Aaj Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/AAJ_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/dU-Bp46E2XlBaw376I_Boc-0lTEHgBrFJffOK4g1qQvQW5Ah00qL1IYGfWTYjekh8HibJb7nsQ=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
                 name: "Express Entertainment", 
                 sources: [
                     { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/EXPRESS_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
@@ -2131,40 +2140,6 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "Live 4", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://shahid-sports-5-enc.edgenextcdn.net/out/v1/ae00715d1c2c4432852b44a254c04a3d/index.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "e2df3c205b674360bc6f364ba1090e70",
-                            key: "93da2c77bc812bc05a6e20ad8d35ea78"
-                        }
-                    }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "Live 5", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://shahid-sports-4-enc.edgenextcdn.net/out/v1/f813ab47644d4c41a99285513f6c7409/index.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "6477160076644679af1028534f03f67e",
-                            key: "1267f99705113a62c7782c4d5281a7eb"
-                        }
-                    }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
                 name: "TNT Sports 1", 
                 sources: [
                     { 
@@ -2248,6 +2223,15 @@ const channels = [
                 img: "https://i.postimg.cc/fTNwg9q7/ten-cric.jpg", 
                 category: "Sports",
                 description: "World"
+            },
+            { 
+                name: "Geo Super", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/GEO_SUPER/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://flix.bdtype.com/uploads/tv_image/geo-super.jpg", 
+                category: "Sports",
+                description: "Pakistan"
             },
             { 
                 name: "T Sports", 
