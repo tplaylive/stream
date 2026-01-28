@@ -2821,6 +2821,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "National Geographic", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://v4-pan-n79-cdn-01.live.cdn.cgates.lt/live/dash/561901/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "6d647aff767c453daa5fb54a44c783c6",
+                            key: "2f971e6a1cc58e7085afc761a3f13162"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
+                category: "Infotainment",
+                description: "World"
+            },
+            { 
                 name: "National Geographic Wild", 
                 sources: [
                     { 
