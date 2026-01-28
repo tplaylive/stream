@@ -1052,6 +1052,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zee Bolly World", 
+                sources: [
+                    { name: "Playlist", url: "https://stream.ads.ottera.tv/playlist.m3u8?network_id=6640" },
+                ], 
+                img: "https://www.zeetvusa.com/wp-content/uploads/2020/07/zbollyworld-new-332-03.png", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Zee Cine Classic", 
                 sources: [
                     { name: "Playlist", url: "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8" }
@@ -1355,6 +1364,15 @@ const channels = [
                 img: "https://i.postimg.cc/KvFqjytv/mix-h.jpg", 
                 category: "Movie",
                 description: "World"
+            },
+            { 
+                name: "Superfine Films", 
+                sources: [
+                    { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
+                category: "Movie",
+                description: "India"
             },
             { 
                 name: "Lotus Macau", 
