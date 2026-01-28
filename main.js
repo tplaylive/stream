@@ -2776,6 +2776,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Asian Food Network", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(AsianFoodNetwork)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "d6f69611e9e94a1cba591f855b191362",
+                            key: "bbd319d36c1728a8e4cc6bb4a8ad12f4"
+                        }
+                    }
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_mDtpbQ4xPiWFR0hhWISS-9i7jCBDorMcMBeBkEoQ805V4=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Infotainment",
+                description: "World"
+            },
+            { 
                 name: "Food Food", 
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8" }
