@@ -1654,8 +1654,8 @@ const channels = [
             { 
                 name: "Hum TV", 
                 sources: [
-                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/HUM_ENTERTAINMENT/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/https://ml-pull-dvc-myco.io:2096/ARY_DIGITAL/index.m3u8" },
+                    { name: "Server 2", url: "https://ml-pull-dvc-myco.io:2096/HUM_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/https://ml-pull-dvc-myco.io:2096/ARY_DIGITAL/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/NMyGY6FT/hum.jpg", 
                 category: "Entertainment",
