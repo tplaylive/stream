@@ -2147,7 +2147,7 @@ const channels = [
             { 
                 name: "Live 1", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://ccdn.bdixsports.live:1935/live/live.stream/chunklist_w1167642283.m3u8" },
+                    { name: "Server 1", url: "https://dai.google.com/ssai/event/X9tnEM9wQHKUIX6nWcZ4TA/master.m3u8" },
                     { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
                     { name: "Server 3", url: "https://stream.snexus.co/live/SN_WILDLIFE/main_stream.m3u8" }
                 ], 
