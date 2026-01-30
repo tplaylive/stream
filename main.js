@@ -972,6 +972,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Bongo Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://streams2.sofast.tv/ptnr-runntv/title-Bongo_Movies/sofastplayout/restream/a02e1e3c-eeba-4339-88e1-d6f7e99669e2/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/-WoL9dA-we7-4A1cWu_SHjzRl7e0_sdMrr-lFrznSAIyn__k7Hs89hvW8jV3_DpYP9PzjBQikw=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "Bengali"
+            },
+            { 
                 name: "Movie Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://alvetv.com/moviebanglatv/8080/index.m3u8" },
