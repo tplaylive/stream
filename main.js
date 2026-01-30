@@ -976,7 +976,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://streams2.sofast.tv/ptnr-runntv/title-Bongo_Movies/sofastplayout/restream/a02e1e3c-eeba-4339-88e1-d6f7e99669e2/master.m3u8" },
                 ], 
-                img: "https://yt3.googleusercontent.com/-WoL9dA-we7-4A1cWu_SHjzRl7e0_sdMrr-lFrznSAIyn__k7Hs89hvW8jV3_DpYP9PzjBQikw=s900-c-k-c0x00ffffff-no-rj", 
+                img: "https://yt3.googleusercontent.com/BmBoIPeUL6mxko43qsipKqKc-tsdoZfE5Jl_kZXvgVNxsWOvN7UTqdMQl_6r1GB2fksOI91qXCw=s176-c-k-c0x00ffffff-no-rj-mo", 
                 category: "Movie",
                 description: "Bengali"
             },
