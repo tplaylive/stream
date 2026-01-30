@@ -992,8 +992,9 @@ const channels = [
             { 
                 name: "Sanonda", 
                 sources: [
-                    { name: "Server 1", url: "https://live.sanonda.tv/sanonda/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://115.187.41.216:8080/hls/sanandatv/index.m3u8" },
+                    { name: "Server 1", url: "https://sananda.bengaldigital.live/Sananda/index.m3u8" },
+                    { name: "Server 2", url: "https://live.sanonda.tv/sanonda/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://115.187.41.216:8080/hls/sanandatv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/TwTnMYrW/sananda.jpg", 
                 category: "Movie",
