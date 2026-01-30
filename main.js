@@ -718,7 +718,9 @@ const channels = [
             { 
                 name: "Deewana", 
                 sources: [
-                    { name: "Stream 1", url: "https://tplay.live/originals/deewana/index.m3u8" }                ], 
+                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/https://tplay.live/originals/deewana/index.m3u8" },
+                    { name: "Stream 2", url: "https://tplay.live/originals/deewana/index.m3u8" },
+                ], 
                 img: "https://i.postimg.cc/9Q7G21N6/Deewana.png", 
                 category: "Music",
                 description: "India"
@@ -837,7 +839,7 @@ const channels = [
                 name: "Bengali Beats", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/tplay/playout/209587/master.m3u8" },
-                    { name: "Server 2", url: "https://live20.bozztv.com/giatvplayout7/giatv-209587/tracks-v1a1/mono.ts.m3u8" }
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/https://live20.bozztv.com/giatvplayout7/giatv-209587/tracks-v1a1/mono.ts.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/jSLNzXgM/Bengali-Beats.png", 
                 category: "Music",
