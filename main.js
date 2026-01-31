@@ -1396,6 +1396,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Movie Box", 
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-210731/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/xdVgw5yG/movie-box.png", 
+                category: "Movie",
+                description: "Asia"
+            },
+            { 
                 name: "Lotus Macau", 
                 sources: [
                     { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Lotus/HLSv3-FTA/Lotus.m3u8" },
