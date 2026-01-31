@@ -656,6 +656,16 @@ const channels = [
                 description: "English"
             },
             { 
+                name: "24/7 Tom And Jerry",
+                sources: [
+                    { name: "Server 1", url: "https://1tv41.icu:8080/robinbrown70@yahoo.com/robinbrown70@2024/66311.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://1tv41.icu:8080/robinbrown70@yahoo.com/robinbrown70@2024/66311&e=.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
                 name: "24/7 Music", 
                 sources: [
                   { name: "Hindi Music", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
