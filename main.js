@@ -247,6 +247,15 @@ const channels = [
                 description: "Tamil"
              },
              { 
+                name: "SITI 24X7", 
+                sources: [
+                    { name: "Server 1", url: "https://www.schannels.in/SITI24X7_1/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/cSsxzVa-2j7DQ7ZLaRSS5oV4RVtkfiwIZoccMKSyitWXf5g1UyYcwavRI2rr-9JaBO52e_6T=s176-c-k-c0x00ffffff-no-rj-mo", 
+                category: "News",
+                description: "Telugu"
+             },
+             { 
                 name: "Sangsad TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" }
