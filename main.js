@@ -658,8 +658,8 @@ const channels = [
             { 
                 name: "24/7 Tom And Jerry",
                 sources: [
-                    { name: "Server 1", url: "https://1tv41.icu:8080/robinbrown70@yahoo.com/robinbrown70@2024/66311.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://1tv41.icu:8080/robinbrown70@yahoo.com/robinbrown70@2024/66311&e=.m3u8" },
+                    { name: "Server 1", url: "http://1tv41.icu:8080/live/43761449506/smallwood/66311.m3u8?&Connection=keep-alive" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://1tv41.icu:8080/live/43761449506/smallwood/66311.m3u8?&Connection=keep-alive" },
                 ], 
                 img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
                 category: "Kids",
