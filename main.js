@@ -956,6 +956,15 @@ const channels = [
                 description: "Hindi"
             },
             { 
+                name: "24/7 Bollywood Movies 2", 
+                sources: [
+                    { name: "Playlist", url: "https://vods2.aynaott.com/hindimovies/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/HsvPf09Y/bollywood.jpg", 
+                category: "Movie",
+                description: "Hindi"
+            },
+            { 
                 name: "24/7 Dubbed Movies", 
                 sources: [
                     { name: "Playlist", url: "https://tplay.live/playlist/movies/dubbed-movies/index.m3u8" }
