@@ -1136,7 +1136,24 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "& Pictures HD", 
+                name: "Zee Cinema HD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeecinemahd/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "f56beaac9f124616872c741c9ce4fa4e",
+                            key: "5d40a903238f4ad98abbed1877d4e3d1"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/d61eef03af878ccecfe169b26b6686b0.png", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
+                name: "& Pictures", 
                 sources: [
                     { 
                         name: "Auto", 
@@ -1149,6 +1166,23 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/g22ZV7bZ/pictures.jpg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
+                name: "& Pictures HD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andpictureshd/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "de8045e9f0fb4d03845dcc4a8bd7712a",
+                            key: "6807bd09bda34ada83152908192af6d6"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e8db0bf2b23a55d582824b2d6a955f24.png", 
                 category: "Movie",
                 description: "India"
             },
