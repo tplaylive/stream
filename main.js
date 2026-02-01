@@ -3147,11 +3147,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://delta45tatasky.akamaized.net/out/i/1175.mpd",
+                        url: "https://delta45tatasky.akamaized.net/out/i/1633.mpd",
                         type: "dash",
                         drm: {
-                            kid: "4001ba5c5fe443cdafbcbccc4fff6bf5",
-                            key: "aa4c75fea912156f7009c1a28c854159"
+                            kid: "6f715e0e16cf4b20bc94f6f85023974b",
+                            key: "516785ded0aee1dafae22e2874528b2a"
                         }
                     }
                 ], 
