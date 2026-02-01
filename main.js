@@ -656,16 +656,6 @@ const channels = [
                 description: "English"
             },
             { 
-                name: "24/7 Tom And Jerry",
-                sources: [
-                    { name: "Server 1", url: "http://1tv41.icu:8080/live/43761449506/smallwood/66311.m3u8?&Connection=keep-alive" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://1tv41.icu:8080/live/43761449506/smallwood/66311.m3u8?&Connection=keep-alive" },
-                ], 
-                img: "https://i.postimg.cc/xd5gYkM8/tom-jerry.jpg", 
-                category: "Kids",
-                description: "English"
-            },
-            { 
                 name: "24/7 Music", 
                 sources: [
                   { name: "Hindi Music", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
@@ -3151,5 +3141,22 @@ const channels = [
                 img: "https://i.postimg.cc/QMtrZNRk/bangla-kirtan.jpg", 
                 category: "Religious",
                 description: "Hinduism"
+            },
+              { 
+                name: "Test", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://delta45tatasky.akamaized.net/out/i/1175.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "4001ba5c5fe443cdafbcbccc4fff6bf5",
+                            key: "aa4c75fea912156f7009c1a28c854159"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/m2zr04T2/tnt1.jpg", 
+                category: "Sports",
+                description: "World"
             },
         ];
