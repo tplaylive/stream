@@ -628,6 +628,15 @@ const channels = [
                 description: "English"
             },
             { 
+                name: "BBC Cbeebies",
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/Cbeebies/HLSv3-FTA/Cbeebies.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/uyeShLXK1reEq1zTYVtZkL9IoQb18T-G96q8HqCpb-uAxY4gxaR6KuuUo1KudRQfuDHMYSYcEg=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
                 name: "Power Kids",
                 sources: [
                     { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
@@ -2888,8 +2897,8 @@ const channels = [
             { 
                 name: "BBC Earth", 
                 sources: [
-                    { name: "UK", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" },
                     { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_earth/HLSv3-FTA/BBC_earth.m3u8" },
+                    { name: "UK", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" },
                     { name: "China", url: "https://hls.iill.top/api/BBC-Earth/playlist.m3u8" },
 
                 ], 
