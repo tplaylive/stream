@@ -2899,7 +2899,8 @@ const channels = [
             { 
                 name: "BBC Lifestyle", 
                 sources: [
-                    { name: "Asia", url: "https://hls.iill.top/api/BBC-Lifestyle/playlist.m3u8" }
+                    { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_lifestyle/HLSv3-FTA/BBC_lifestyle.m3u8" },
+                    { name: "China", url: "https://hls.iill.top/api/BBC-Lifestyle/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVYpn7TbifrC432Irpa2jXdlTdmCDDu0ThaQ&s", 
                 category: "Infotainment",
