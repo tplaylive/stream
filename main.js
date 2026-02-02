@@ -2888,8 +2888,9 @@ const channels = [
             { 
                 name: "BBC Earth", 
                 sources: [
-                    { name: "UK 1", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" },
-                    { name: "Asia", url: "https://hls.iill.top/api/BBC-Earth/playlist.m3u8" },
+                    { name: "UK", url: "https://d3u3pfhhvuad9k.cloudfront.net/playlist/amg00793-bbcstudios-bbcearta-lgus/playlist.m3u8" },
+                    { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_earth/HLSv3-FTA/BBC_earth.m3u8" },
+                    { name: "China", url: "https://hls.iill.top/api/BBC-Earth/playlist.m3u8" },
 
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNXOrjX8auopIAAKFRHx1Y-KLi8Ync-CWUfw&s", 
