@@ -2181,7 +2181,8 @@ const channels = [
             { 
                 name: "Ekushey ETV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/ekusheytv.index.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://210.4.72.204/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/ekusheytv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/c4f9c3vr/ekusheetv.jpg", 
                 category: "Mix-Entertainment",
@@ -2240,6 +2241,15 @@ const channels = [
                     { name: "Server 2", url: "https://tplay.live/out/bangladesh/ntv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/xjZDZLjt/ntvbd.jpg", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },
+            { 
+                name: "Deshe Bideshe", 
+                sources: [
+                    { name: "Server 1", url: "https://dbcanada.sonarbanglatv.com/deshebideshe/dbtv/index.m3u8" },
+                ], 
+                img: "https://timetvplus.com/uploads/tv_image/deshe-bideshe-tv.jpg", 
                 category: "Mix-Entertainment",
                 description: "Bengali"
             },
@@ -2700,6 +2710,51 @@ const channels = [
                     { name: "Server 1", url: "https://hls.iill.top/api/Hub-Premier-8/playlist.m3u8" }
                 ], 
                 img: "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279624577%27&EntityType=%27Item%27&EntityId=%27572414%27&Width=1920&Height=1080", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "PSN 1", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSPrime/HLSv3-FTA/SPSPrime.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "PSN 2", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSPlay/HLSv3-FTA/SPSPlay.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "PSN 3", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSNational/HLSv3-FTA/SPSNational.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "PSN 4", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSFight/HLSv3-FTA/SPSFight.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "PSN 5", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSPlus/HLSv3-FTA/SPSPlus.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Sports",
                 description: "World"
             },
