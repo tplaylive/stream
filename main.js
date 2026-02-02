@@ -96,6 +96,42 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "NDTV 24/7", 
+                sources: [
+                    { name: "Server 1", url: "https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678/ndtv24x7/master.m3u8" },
+                ], 
+                img: "https://onlineradiofm.in/assets/image/radio/180/NDTV-24X7-Radio.jpg", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "NDTV India", 
+                sources: [
+                    { name: "Server 1", url: "https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679/ndtvindia/master.m3u8" },
+                ], 
+                img: "https://images.hindustantimes.com/rf/image_size_640x362/HT/p2/2016/11/05/Pictures/_8ba2e79a-a350-11e6-93ed-ab826829dd0b.png", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "India Today", 
+                sources: [
+                    { name: "Server 1", url: "https://indiatodaylive.akamaized.net/hls/live/2014320/indiatoday/indiatodaylive/playlist.m3u8" },
+                ], 
+                img: "https://akm-img-a-in.tosshub.com/indiatoday/images/livetv/indiaToday.jpg", 
+                category: "News",
+                description: "India"
+            },
+            { 
+                name: "India TV Speed News", 
+                sources: [
+                    { name: "Server 1", url: "https://poclive-indiatvnews.akamaized.net/hlslive/Admin/px0219297/live/janya/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/HNUGXVlQ05nqlFouGhScjNXE33T-qaF20GWFjo_fj97Rc6gcv8LNTw1ao5aK_B4OH5_iPLkPRA=s900-c-k-c0x00ffffff-no-rj", 
+                category: "News",
+                description: "India"
+            },
+            { 
                 name: "Zee Bharat",
                 sources: [
                     { 
