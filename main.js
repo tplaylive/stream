@@ -9,6 +9,24 @@ const channels = [
                 description: "India"
              },
              { 
+                name: "Sansad TV 1", 
+                sources: [
+                    { name: "LokSabha", url: "https://hls.media.nic.in/hls/live/lstv/lstv.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/2fK9Y8FCQvlRWuIojyWIywPKRU4TgzfwCTciLzlTOT9wQScACk_7Y9LFuWfBBgoWDZe_UhzQQR0=s900-c-k-c0x00ffffff-no-rj", 
+                category: "News",
+                description: "India"
+             },
+             { 
+                name: "Sansad TV 2", 
+                sources: [
+                    { name: "Rajya Sabha", url: "https://hls.media.nic.in/hls/live/rstv/rstv.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/2fK9Y8FCQvlRWuIojyWIywPKRU4TgzfwCTciLzlTOT9wQScACk_7Y9LFuWfBBgoWDZe_UhzQQR0=s900-c-k-c0x00ffffff-no-rj", 
+                category: "News",
+                description: "India"
+             },
+             { 
                 name: "India News", 
                 sources: [
                     { name: "National", url: "https://newsxott.in/hls/indianewsnational.m3u8" },
