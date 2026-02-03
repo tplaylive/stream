@@ -1163,6 +1163,23 @@ const channels = [
                 description: "Hindi"
             },
             { 
+                name: "Zee Action", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeaction/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "9d7a1917ee3244d198193cdd1ff1feae",
+                            key: "3c3e8d0259f748f1830f713a769760e7"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7909a3977e9d8588d73ccc3653d50bde.png", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Zee South Flix", 
                 sources: [
                     { name: "Playlist", url: "https://amg00862-amg00862c9-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c9-amgplt0173/playlist.m3u8" }
