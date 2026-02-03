@@ -1375,6 +1375,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Anoml Cinema", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeanmolcinema/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "812411cba8bc42c79eb2b19cd78ad3f3",
+                            key: "468a0b8d3d5d42d8a5c41bb875390a74"
+                        }
+                    }
+                ], 
+                img: "https://yt3.googleusercontent.com/vsUsDAS7eY-c-wMy640Se_420J32aYJ-s2Ma_j1TgmZn_Lfw6ZCYTuy-vj1vSO4d3-A_NIz2EGw=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Manoranjan Movies", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-2.pishow.tv/live/228/master.m3u8" },
