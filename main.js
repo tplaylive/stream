@@ -1392,6 +1392,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Pitaara", 
+                sources: [
+                    { name: "Server 1", url: "https://vg-pitaaratvlive.akamaized.net/ptnr-WatchO/title-PitaaraTV/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-583798/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/9e8ecfbe919c4262f25a3019aa5aac26.png", 
+                category: "Movie",
+                description: "Punjabi"
+            },
+            { 
                 name: "Manoranjan Movies", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-2.pishow.tv/live/228/master.m3u8" },
@@ -1400,7 +1409,7 @@ const channels = [
                 category: "Movie",
                 description: "Punjabi"
             },
-              { 
+            { 
                 name: "Maha Movie", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10007/master.m3u8" },
