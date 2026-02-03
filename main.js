@@ -1660,7 +1660,7 @@ const channels = [
                 name: "Zee TV", 
                 sources: [
                     { 
-                        name: "HD", 
+                        name: "SD", 
                         url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetv/default/manifest.mpd",
                         type: "dash",
                         drm: {
@@ -1674,10 +1674,27 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zee TV HD", 
+                sources: [
+                    { 
+                        name: "HD", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetvhd/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "65c3633157574361b191059e46e72968",
+                            key: "78450b11381340c297d96c13183d3744"
+                        }
+                    }
+                ], 
+                img: "https://yt3.googleusercontent.com/yawyROd5jQqRiXHdmttib1ZhZTZ_flA4ACjPpNNdrVFC_J8NWmrlI-Se97YMaCJSvId4s7eV=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "& TV", 
                 sources: [
                     { 
-                        name: "DRM Source", 
+                        name: "SD", 
                         url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtv/default/manifest.mpd",
                         type: "dash",
                         drm: {
@@ -1694,7 +1711,7 @@ const channels = [
                 name: "& TV HD", 
                 sources: [
                     { 
-                        name: "DRM Source", 
+                        name: "HD", 
                         url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Andtvhd/default/index.mpd",
                         type: "dash",
                         drm: {
