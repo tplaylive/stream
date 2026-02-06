@@ -2874,7 +2874,8 @@ const channels = [
                     }
                 ],
                 img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
-                category: "Infotainment",
+                category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
