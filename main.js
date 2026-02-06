@@ -111,6 +111,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/0jjjL9vR/aaj-tak.jpg", 
                 category: "News",
+                package: ["250","500"],
                 description: "India"
             },
             { 
