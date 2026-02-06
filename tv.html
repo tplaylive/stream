@@ -305,6 +305,48 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 .guideClose:hover{background:#e50914}
 
+
+/* ===== Package / Code Bar ===== */
+.accessBar{
+  padding:10px 14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.pkgBtn{
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  cursor:pointer;
+  font-size:12px;
+}
+.pkgBtn:hover{background:rgba(229,9,20,.35);border-color:rgba(229,9,20,.6)}
+.pkgBtn.active{background:rgba(229,9,20,.55);border-color:rgba(229,9,20,.8)}
+.codeInput{
+  flex:1;
+  min-width:160px;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  outline:none;
+  font-size:12px;
+}
+.accessStatus{
+  margin-left:auto;
+  color:#bbb;
+  font-size:12px;
+}
+@media (max-width:600px){
+  .accessStatus{width:100%;margin-left:0}
+}
+
 /* Guide Body */
 .gBody{
   flex:1;
@@ -509,6 +551,15 @@ body{background:#000;color:#fff;overflow:hidden}
         <i class="fas fa-times"></i>
       </button>
     </div>
+
+      <div class="accessBar">
+        <button class="pkgBtn" onclick="selectPackage('150')" title="Free">Basic</button>
+        <button class="pkgBtn" onclick="selectPackage('250')">Standard</button>
+        <button class="pkgBtn" onclick="selectPackage('500')">Premium</button>
+        <input id="accessCode" class="codeInput" placeholder="Enter access code" />
+        <button class="pkgBtn applyBtn" onclick="applyCode()">Apply</button>
+        <span id="accessStatus" class="accessStatus">Access: Basic</span>
+      </div>
     <div class="gBody">
       <div class="cat" id="catPanel"></div>
       <div class="chArea">
@@ -564,6 +615,7 @@ body{background:#000;color:#fff;overflow:hidden}
 
 </div>
   
+<script src="codes.js"></script>
 <script src="main.js"></script>
 <!-- Shaka Player only - HLS removed -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
@@ -608,6 +660,113 @@ let shakaP = null;
 /* State */
 let currentIndex = 0;
 let currentSourceIndex = 0;
+
+/* ===================== Access Control (Packages + Codes) ===================== */
+/*
+  Packages:
+  - Basic (150): free for everyone
+  - Standard (250): requires code
+  - Premium (500): requires code
+
+  IMPORTANT (simple GitHub/static mode):
+  A true "1 code = 5 devices" limit cannot be enforced without a server/database.
+  This implementation is a client-side gate that stores the redeemed tier on each device.
+*/
+const PACKAGE_ORDER = ["150","250","500"];
+
+function tierName(t){
+  return t === "250" ? "Standard" : (t === "500" ? "Premium" : "Basic");
+}
+
+// Max unlocked tier for THIS device
+let unlockedTier = localStorage.getItem("unlockedTier") || "150";
+// Which package user is browsing
+let activePackage = localStorage.getItem("activePackage") || "150";
+
+// Keep activePackage within unlockedTier
+if(PACKAGE_ORDER.indexOf(activePackage) > PACKAGE_ORDER.indexOf(unlockedTier)){
+  activePackage = unlockedTier;
+  localStorage.setItem("activePackage", activePackage);
+}
+
+function updateAccessUI(){
+  const status = document.getElementById("accessStatus");
+  if(status) status.textContent = `Access: ${tierName(unlockedTier)}`;
+  // highlight active package button
+  document.querySelectorAll(".accessBar .pkgBtn").forEach(btn=>{
+    const txt = (btn.textContent||"").toLowerCase();
+    const p = txt.includes("premium") ? "500" : (txt.includes("standard") ? "250" : (txt.includes("basic") ? "150" : null));
+    if(!p) return;
+    btn.classList.toggle("active", p === activePackage);
+    // also visually dim locked packages
+    const locked = PACKAGE_ORDER.indexOf(p) > PACKAGE_ORDER.indexOf(unlockedTier);
+    btn.style.opacity = locked ? "0.6" : "1";
+  });
+}
+
+// Normalize channel packages
+function getChannelPackages(ch){
+  // You will set this manually in main.js:
+  // package: ["150","250","500"] OR ["250","500"] OR ["500"]
+  const p = ch.package ?? ch.packages; // allow either key
+  if(Array.isArray(p)) return p.map(x=>String(x));
+  if(typeof p === "string" || typeof p === "number") return [String(p)];
+  // default = free/basic
+  return ["150"];
+}
+
+function selectPackage(pkg){
+  pkg = String(pkg);
+  if(PACKAGE_ORDER.indexOf(pkg) > PACKAGE_ORDER.indexOf(unlockedTier)){
+    alert("This package requires an access code.");
+    return;
+  }
+  activePackage = pkg;
+  localStorage.setItem("activePackage", activePackage);
+  updateAccessUI();
+  if(guide.classList.contains("show")) buildGrid();
+}
+
+// Redeem code (uses ACCESS_CODES from codes.js)
+function applyCode(){
+  const codeEl = document.getElementById("accessCode");
+  const code = (codeEl?.value || "").trim();
+  if(!code) return alert("Please enter an access code.");
+
+  // ACCESS_CODES is defined in codes.js
+  if(typeof ACCESS_CODES === "undefined" || !ACCESS_CODES){
+    alert("codes.js not loaded.");
+    return;
+  }
+  const entry = ACCESS_CODES[code];
+  if(!entry){
+    alert("Invalid code.");
+    return;
+  }
+
+  const tier = String(entry.tier || "");
+  if(tier !== "250" && tier !== "500"){
+    alert("Invalid tier in codes.js");
+    return;
+  }
+
+  // NOTE: Without a server, device-limit can't be enforced globally.
+  // We still store the unlocked tier locally per device.
+  unlockedTier = tier;
+  localStorage.setItem("unlockedTier", unlockedTier);
+
+  // switch to unlocked package by default
+  activePackage = tier;
+  localStorage.setItem("activePackage", activePackage);
+
+  updateAccessUI();
+  if(guide.classList.contains("show")) buildGrid();
+  alert(`Access granted: ${tierName(unlockedTier)}`);
+}
+
+// Call once at startup
+updateAccessUI();
+
 
 /* Guide state */
 let categories = [];
@@ -1364,6 +1523,10 @@ function getFilteredIndexes(){
     // First check category filter
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
+
+    // Package filter (Basic/Standard/Premium)
+    const pkgs = getChannelPackages(ch);
+    if(!pkgs.includes(activePackage)) continue;
 
     // Then check search filter
     if(q){
