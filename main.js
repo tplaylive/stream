@@ -1,5 +1,16 @@
 const channels = [
-              { 
+               {
+                name: "BBC News", 
+                sources: [
+                    { name: "Server 1", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
+                    { name: "Server 2", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
+                category: "News",
+                package: ["150","250","500"],
+                description: "UK"
+             },
+             { 
                 name: "DD News", 
                 sources: [
                     { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8" }
@@ -111,7 +122,6 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/0jjjL9vR/aaj-tak.jpg", 
                 category: "News",
-                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -473,16 +483,6 @@ const channels = [
                 img: "https://i.postimg.cc/ZKqXrCqn/wion.jpg", 
                 category: "News",
                 description: "India"
-            },
-            {
-                name: "BBC News", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/bdix/news/bbc-news/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
-                category: "News",
-                description: "London"
             },
             { 
                 name: "Al Jazeera", 
