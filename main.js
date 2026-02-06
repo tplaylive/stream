@@ -736,6 +736,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: "Music",
+                package: ["500"],
                 description: "World"
             },
             { 
@@ -745,6 +746,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/QNYG5Kz9/music-india.jpg", 
                 category: "Music",
+                package: ["500"],
                 description: "India"
             },
             { 
@@ -755,6 +757,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/Wb8VmBjp/9xm.jpg", 
                 category: "Music",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
@@ -765,6 +768,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -776,6 +780,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/mrvFm9CF/B4-U-Music.png", 
                 category: "Music",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
@@ -786,6 +791,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/L4f6PQnh/mastiii.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -796,6 +802,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/9Q7G21N6/Deewana.png", 
                 category: "Music",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
@@ -805,6 +812,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/nhhtDKYk/sfg.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -814,6 +822,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/7PmcCFcy/nh-bollyraga.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -825,6 +834,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/pdHkcC7q/yrf-music.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -837,6 +847,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/D0GYG0Dr/zoom.jpg", 
                 category: "Music",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
@@ -846,6 +857,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -857,6 +869,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/wBKM5G7V/e-24.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -868,6 +881,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/h472GJVw/punjabi-hits.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -879,6 +893,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/DfWzDhL6/tabbar-hits.jpg", 
                 category: "Music",
+                package: ["250","500"],
                 description: "India"
             },
             { 
