@@ -1,4 +1,15 @@
 const channels = [
+               {
+                name: "BBC News", 
+                sources: [
+                    { name: "UK", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
+                    { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
+                category: "News",
+                package: ["150","250","500"],
+                description: "World News"
+             },
             { 
                 name: "CNN",
                 sources: [
@@ -14,19 +25,65 @@ const channels = [
                 ],
                 img: "https://play-lh.googleusercontent.com/375NW5yL8owK_hW9igW9sh-YJbda9ZcygpDXuVvK_R7l-yJp-fuhb4qvUw_FE4XW4ms", 
                 category: "News",
+                package: ["150","250","500"],
                 description: "World News"
             },
-               {
-                name: "BBC News", 
+            { 
+                name: "Al Jazeera", 
                 sources: [
-                    { name: "UK", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
-                    { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
+                    { name: "Qatar", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
+                img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
                 category: "News",
                 package: ["150","250","500"],
                 description: "World News"
-             },
+            },
+            { 
+                name: "Reuters", 
+                sources: [
+                    { name: "UK", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951197/hls/playlist.m3u8?ads.xumo_channelId=99951197" }
+                ], 
+                img: "https://www.editorandpublisher.com/uploads/original/20240723-181955-dae-Reuters%20cube.png.jpg", 
+                category: "News",
+                package: ["150","250","500"],
+                description: "World News"
+            },
+            { 
+                name: "Sky News", 
+                sources: [
+                    { name: "UK Stream 1", url: "https://d25w9q07b2mtmw.cloudfront.net/live/master.m3u8" },
+                    { name: "UK Stream 2", url: "https://d3f4oii5n0oeqi.cloudfront.net/11701/88814560/hls/master.m3u8?ads.xumo_channelId=88814560" },
+                    { name: "UK Stream 3", url: "https://linear417-gb-hls1-prd-ak.cdn.skycdp.com/100e/Content/HLS_001_1080_30/Live/channel(skynews)/index_mob.m3u8" },
+                    { name: "UK Stream 4", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951223/hls/master.m3u8?ads.xumo_channelId=99951223" },
+
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSPUYtJoW_VT9YdaHMk9lWuztJJCj4bCtCjg&s", 
+                category: "News",
+                package: ["150","250","500"],
+                description: "World News"
+            },
+            { 
+                name: "Sky News Now", 
+                sources: [
+                    { name: "Stream 1", url: "https://amg00663-skynews-skynewsau-samsungau-r7n40.amagi.tv/playlist.m3u8" },
+
+                ], 
+                img: "https://images-r2.thebrag.com/mw/uploads/2023/03/Sky-News-3.jpg", 
+                category: "News",
+                package: ["500"],
+                description: "Australia"
+            },
+            { 
+                name: "Bloomberg Television", 
+                sources: [
+                    { name: "USA", url: "https://dcfcae89.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1pbl9CbG9vbWJlcmdUVl9ITFM/playlist.m3u8" },
+
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZCiWELnS_hJTOtsTrWDZKkhkmthiH2BfLA&s", 
+                category: "News",
+                package: ["150","250","500"],
+                description: "Global financial and business news"
+            },
              { 
                 name: "DD News", 
                 sources: [
@@ -500,15 +557,6 @@ const channels = [
                 img: "https://i.postimg.cc/ZKqXrCqn/wion.jpg", 
                 category: "News",
                 description: "India"
-            },
-            { 
-                name: "Al Jazeera", 
-                sources: [
-                    { name: "Server 1", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
-                category: "News",
-                description: "Qatar"
             },
             { 
                 name: "Al Ekhbariya", 
