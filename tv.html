@@ -305,48 +305,6 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 .guideClose:hover{background:#e50914}
 
-
-/* ===== Package / Code Bar ===== */
-.accessBar{
-  padding:10px 14px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:center;
-  border-top:1px solid rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.pkgBtn{
-  padding:8px 12px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  cursor:pointer;
-  font-size:12px;
-}
-.pkgBtn:hover{background:rgba(229,9,20,.35);border-color:rgba(229,9,20,.6)}
-.pkgBtn.active{background:rgba(229,9,20,.55);border-color:rgba(229,9,20,.8)}
-.codeInput{
-  flex:1;
-  min-width:160px;
-  padding:8px 10px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  outline:none;
-  font-size:12px;
-}
-.accessStatus{
-  margin-left:auto;
-  color:#bbb;
-  font-size:12px;
-}
-@media (max-width:600px){
-  .accessStatus{width:100%;margin-left:0}
-}
-
 /* Guide Body */
 .gBody{
   flex:1;
@@ -482,6 +440,56 @@ body{background:#000;color:#fff;overflow:hidden}
     font-size:12px;
   }
 }
+
+/* ===== Package Bar (Guide) ===== */
+.packageBar{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 12px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  margin:10px 12px 0 12px;
+  flex-wrap:wrap;
+}
+.packageBar .pkgBtn{
+  background:#111;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+.packageBar .pkgBtn.active{
+  border-color:#e50914;
+}
+.packageBar input{
+  flex:1;
+  min-width:160px;
+  background:#0f0f0f;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  padding:8px 10px;
+  border-radius:10px;
+  outline:none;
+}
+.packageBar .applyBtn{
+  background:#e50914;
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+.packageBar .status{
+  color:#bbb;
+  font-size:13px;
+  margin-left:auto;
+}
+
 </style>
 
 </head>
@@ -551,19 +559,22 @@ body{background:#000;color:#fff;overflow:hidden}
         <i class="fas fa-times"></i>
       </button>
     </div>
-
-      <div class="accessBar">
-        <button class="pkgBtn" onclick="selectPackage('150')" title="Free">Basic</button>
-        <button class="pkgBtn" onclick="selectPackage('250')">Standard</button>
-        <button class="pkgBtn" onclick="selectPackage('500')">Premium</button>
-        <input id="accessCode" class="codeInput" placeholder="Enter access code" />
-        <button class="pkgBtn applyBtn" onclick="applyCode()">Apply</button>
-        <span id="accessStatus" class="accessStatus">Access: Basic</span>
-      </div>
     <div class="gBody">
       <div class="cat" id="catPanel"></div>
       <div class="chArea">
         <div class="searchBox">
+
+          <div class="packageBar" id="packageBar">
+            <button class="pkgBtn" id="pkg150" onclick="selectPackage('150')">Basic (Free)</button>
+            <button class="pkgBtn" id="pkg250" onclick="selectPackage('250')">Standard</button>
+            <button class="pkgBtn" id="pkg500" onclick="selectPackage('500')">Premium</button>
+
+            <input id="codeInput" placeholder="Enter access code" />
+            <button class="applyBtn" onclick="applyCode()">Apply</button>
+
+            <span class="status" id="accessStatus">Access: Basic</span>
+          </div>
+
           <input id="search" placeholder="Search (name/number)..." />
         </div>
         <div class="grid" id="grid"></div>
@@ -661,80 +672,86 @@ let shakaP = null;
 let currentIndex = 0;
 let currentSourceIndex = 0;
 
-/* ===================== Access Control (Packages + Codes) ===================== */
-/*
-  Packages:
-  - Basic (150): free for everyone
-  - Standard (250): requires code
-  - Premium (500): requires code
 
-  IMPORTANT (simple GitHub/static mode):
-  A true "1 code = 5 devices" limit cannot be enforced without a server/database.
-  This implementation is a client-side gate that stores the redeemed tier on each device.
-*/
+/* ===================== Package Access (Basic/Standard/Premium) ===================== */
+/**
+ * Channel object can have:
+ *   package: ["150","250","500"]  // multi-package
+ * or package: "250"               // single
+ * If missing => treated as Basic ("150")
+ */
 const PACKAGE_ORDER = ["150","250","500"];
+let unlockedTier = localStorage.getItem("unlockedTier") || "150"; // max allowed tier
+let activePackage = localStorage.getItem("activePackage") || "150"; // currently browsing/playing package
 
+function normalizePkg(p){
+  const s = String(p || "").trim();
+  return (s === "150" || s === "250" || s === "500") ? s : "150";
+}
 function tierName(t){
-  return t === "250" ? "Standard" : (t === "500" ? "Premium" : "Basic");
+  t = normalizePkg(t);
+  return t === "150" ? "Basic" : (t === "250" ? "Standard" : "Premium");
 }
-
-// Max unlocked tier for THIS device
-let unlockedTier = localStorage.getItem("unlockedTier") || "150";
-// Which package user is browsing
-let activePackage = localStorage.getItem("activePackage") || "150";
-
-// Keep activePackage within unlockedTier
-if(PACKAGE_ORDER.indexOf(activePackage) > PACKAGE_ORDER.indexOf(unlockedTier)){
-  activePackage = unlockedTier;
-  localStorage.setItem("activePackage", activePackage);
+function getDeviceId(){
+  let id = localStorage.getItem("tplay_device_id");
+  if(!id){
+    id = (crypto?.randomUUID ? crypto.randomUUID() : (Math.random().toString(36).slice(2) + Date.now().toString(36)));
+    localStorage.setItem("tplay_device_id", id);
+  }
+  return id;
 }
-
+function getChannelPackages(ch){
+  const p = ch?.package;
+  if(Array.isArray(p)){
+    const pkgs = p.map(normalizePkg);
+    return pkgs.length ? pkgs : ["150"];
+  }
+  if(p) return [normalizePkg(p)];
+  return ["150"];
+}
+function canSelectPackage(pkg){
+  pkg = normalizePkg(pkg);
+  return PACKAGE_ORDER.indexOf(pkg) <= PACKAGE_ORDER.indexOf(normalizePkg(unlockedTier));
+}
 function updateAccessUI(){
   const status = document.getElementById("accessStatus");
   if(status) status.textContent = `Access: ${tierName(unlockedTier)}`;
-  // highlight active package button
-  document.querySelectorAll(".accessBar .pkgBtn").forEach(btn=>{
-    const txt = (btn.textContent||"").toLowerCase();
-    const p = txt.includes("premium") ? "500" : (txt.includes("standard") ? "250" : (txt.includes("basic") ? "150" : null));
-    if(!p) return;
-    btn.classList.toggle("active", p === activePackage);
-    // also visually dim locked packages
-    const locked = PACKAGE_ORDER.indexOf(p) > PACKAGE_ORDER.indexOf(unlockedTier);
-    btn.style.opacity = locked ? "0.6" : "1";
-  });
-}
 
-// Normalize channel packages
-function getChannelPackages(ch){
-  // You will set this manually in main.js:
-  // package: ["150","250","500"] OR ["250","500"] OR ["500"]
-  const p = ch.package ?? ch.packages; // allow either key
-  if(Array.isArray(p)) return p.map(x=>String(x));
-  if(typeof p === "string" || typeof p === "number") return [String(p)];
-  // default = free/basic
-  return ["150"];
-}
+  const b150 = document.getElementById("pkg150");
+  const b250 = document.getElementById("pkg250");
+  const b500 = document.getElementById("pkg500");
+  if(b150) b150.classList.toggle("active", activePackage === "150");
+  if(b250) b250.classList.toggle("active", activePackage === "250");
+  if(b500) b500.classList.toggle("active", activePackage === "500");
 
+  // disable higher packages if locked
+  if(b250) b250.disabled = !canSelectPackage("250");
+  if(b500) b500.disabled = !canSelectPackage("500");
+}
 function selectPackage(pkg){
-  pkg = String(pkg);
-  if(PACKAGE_ORDER.indexOf(pkg) > PACKAGE_ORDER.indexOf(unlockedTier)){
+  pkg = normalizePkg(pkg);
+  if(!canSelectPackage(pkg)){
     alert("This package requires an access code.");
     return;
   }
   activePackage = pkg;
   localStorage.setItem("activePackage", activePackage);
+
+  // If current playing channel is not in this package, jump to first allowed
+  ensurePlayingAllowed();
+
+  buildGrid();
   updateAccessUI();
-  if(guide.classList.contains("show")) buildGrid();
 }
-
-// Redeem code (uses ACCESS_CODES from codes.js)
 function applyCode(){
-  const codeEl = document.getElementById("accessCode");
-  const code = (codeEl?.value || "").trim();
-  if(!code) return alert("Please enter an access code.");
+  const input = document.getElementById("codeInput");
+  const code = (input?.value || "").trim();
 
-  // ACCESS_CODES is defined in codes.js
-  if(typeof ACCESS_CODES === "undefined" || !ACCESS_CODES){
+  if(!code){
+    alert("Please enter a code.");
+    return;
+  }
+  if(typeof ACCESS_CODES === "undefined"){
     alert("codes.js not loaded.");
     return;
   }
@@ -744,30 +761,70 @@ function applyCode(){
     return;
   }
 
-  const tier = String(entry.tier || "");
-  if(tier !== "250" && tier !== "500"){
-    alert("Invalid tier in codes.js");
-    return;
+  const tier = normalizePkg(entry.tier);
+  const maxDevices = Number(entry.maxDevices ?? 5);
+
+  // NOTE: Static GitHub app cannot truly enforce global 5 devices.
+  // This is a per-device record (localStorage) for simple UX.
+  const deviceId = getDeviceId();
+  const key = `tplay_code_devices_${code}`;
+  let devices = [];
+  try{ devices = JSON.parse(localStorage.getItem(key) || "[]"); }catch{ devices = []; }
+  if(!Array.isArray(devices)) devices = [];
+
+  if(!devices.includes(deviceId)){
+    if(devices.length >= maxDevices){
+      alert(`Device limit reached (max ${maxDevices}).`);
+      return;
+    }
+    devices.push(deviceId);
+    localStorage.setItem(key, JSON.stringify(devices));
   }
 
-  // NOTE: Without a server, device-limit can't be enforced globally.
-  // We still store the unlocked tier locally per device.
-  unlockedTier = tier;
-  localStorage.setItem("unlockedTier", unlockedTier);
+  // upgrade unlockedTier if needed
+  if(PACKAGE_ORDER.indexOf(tier) > PACKAGE_ORDER.indexOf(normalizePkg(unlockedTier))){
+    unlockedTier = tier;
+    localStorage.setItem("unlockedTier", unlockedTier);
+  }
 
-  // switch to unlocked package by default
+  // jump to that package view
   activePackage = tier;
   localStorage.setItem("activePackage", activePackage);
 
+  alert(`Access granted: ${tierName(tier)}`);
+  ensurePlayingAllowed();
+  buildGrid();
   updateAccessUI();
-  if(guide.classList.contains("show")) buildGrid();
-  alert(`Access granted: ${tierName(unlockedTier)}`);
 }
+function ensurePlayingAllowed(){
+  // if current channel not allowed in active package, jump to first allowed index
+  const playable = getPlayableIndexes();
+  if(!playable.length) return;
+  if(!playable.includes(currentIndex)){
+    playChannel(playable[0]);
+  }
+}
+function getPlayableIndexes(){
+  const pkg = normalizePkg(activePackage);
+  // safety: if package itself not selectable, treat as Basic
+  const effectivePkg = canSelectPackage(pkg) ? pkg : "150";
+  const idxs = [];
+  for(let i=0;i<channels.length;i++){
+    const pkgs = getChannelPackages(channels[i]);
+    if(pkgs.includes(effectivePkg)) idxs.push(i);
+  }
+  return idxs;
+}
+async function playNextAllowed(dir){
+  const playable = getPlayableIndexes();
+  if(!playable.length) return;
 
-// Call once at startup
-updateAccessUI();
+  let pos = playable.indexOf(currentIndex);
+  if(pos < 0) pos = 0;
 
-
+  pos = (pos + (dir || 1) + playable.length) % playable.length;
+  await playChannel(playable[pos]);
+}
 /* Guide state */
 let categories = [];
 let currentCat = "All";
@@ -1175,6 +1232,7 @@ window.addEventListener("load", () => {
   });
 
   buildCategories();
+  updateAccessUI();
 
   // Start with logo hidden
   hideLogo();
@@ -1223,6 +1281,15 @@ async function playChannel(index){
   hideLogo();
   
   currentIndex = clamp(index, 0, channels.length-1);
+
+  // Safety: never play a channel outside the active package
+  const effectivePkg = canSelectPackage(activePackage) ? normalizePkg(activePackage) : "150";
+  if(!getChannelPackages(channels[currentIndex]).includes(effectivePkg)){
+    const playable = getPlayableIndexes();
+    if(playable.length){
+      currentIndex = playable[0];
+    }
+  }
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
@@ -1346,7 +1413,7 @@ async function failAllSources(msg){
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
-  await playChannel((currentIndex + 1) % channels.length);
+  await playNextAllowed(1);
 }
 
 /* ===================== UI helpers ===================== */
@@ -1408,11 +1475,11 @@ function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
-function nextChannel(){ 
-  playChannel((currentIndex+1) % channels.length); 
+function nextChannel(){
+  playNextAllowed(1);
 }
-function prevChannel(){ 
-  playChannel((currentIndex-1 + channels.length) % channels.length); 
+function prevChannel(){
+  playNextAllowed(-1);
 }
 
 /* ===================== Favorites ===================== */
@@ -1524,9 +1591,11 @@ function getFilteredIndexes(){
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
 
-    // Package filter (Basic/Standard/Premium)
+
+    // Package filter (and safety for locked packages)
+    const effectivePkg = canSelectPackage(activePackage) ? normalizePkg(activePackage) : "150";
     const pkgs = getChannelPackages(ch);
-    if(!pkgs.includes(activePackage)) continue;
+    if(!pkgs.includes(effectivePkg)) continue;
 
     // Then check search filter
     if(q){
