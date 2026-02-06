@@ -441,53 +441,81 @@ body{background:#000;color:#fff;overflow:hidden}
   }
 }
 
-/* ===== Package Bar (Guide) ===== */
-.packageBar{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  padding:10px 12px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
+/* ===== Package Overlay ===== */
+.packageOverlay{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(520px,92vw);max-height:75vh;
+  background:rgba(0,0,0,.94);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  border-radius:16px;
+  padding:0;
+  display:none;
+  flex-direction:column;
+  z-index:160;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.7);
+}
+.packageOverlay.show{display:flex}
+.packageHeader{
+  padding:16px 20px;background:rgba(25,25,25,.98);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.packageHeader b{font-size:18px}
+.packageClose{
+  width:34px;height:34px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.packageClose:hover{background:#e50914}
+.packageBody{flex:1;padding:18px;overflow-y:auto}
+.pkgStatus{font-size:14px;color:#ddd;margin-bottom:12px}
+.pkgGrid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+}
+.pkgCard{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.10);
   border-radius:12px;
-  margin:10px 12px 0 12px;
-  flex-wrap:wrap;
-}
-.packageBar .pkgBtn{
-  background:#111;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.18);
-  padding:8px 12px;
-  border-radius:10px;
-  font-weight:700;
+  padding:10px;
   cursor:pointer;
+  transition:.2s;
 }
-.packageBar .pkgBtn.active{
-  border-color:#e50914;
+.pkgCard:hover{background:rgba(255,255,255,.10)}
+.pkgCard.active{
+  background:rgba(229,9,20,.22);
+  border-left:3px solid #e50914;
 }
-.packageBar input{
+.pkgTop{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.pkgLeft{display:flex;align-items:center;gap:10px;min-width:0}
+.pkgLogo{width:34px;height:34px;border-radius:10px;object-fit:cover;background:#111}
+.pkgName{font-weight:800;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pkgMeta{font-size:12px;color:#bbb;margin-top:6px}
+.pkgLock{font-size:14px;color:#bbb}
+.pkgCodeRow{display:flex;gap:10px;margin-top:14px}
+.pkgCodeRow input{
   flex:1;
-  min-width:160px;
-  background:#0f0f0f;
+  padding:10px 12px;
+  border:none;outline:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.10);
   color:#fff;
-  border:1px solid rgba(255,255,255,.18);
-  padding:8px 10px;
-  border-radius:10px;
-  outline:none;
 }
-.packageBar .applyBtn{
-  background:#e50914;
-  color:#fff;
+.pkgBtn{
+  padding:10px 12px;
   border:none;
-  padding:8px 12px;
-  border-radius:10px;
-  font-weight:800;
+  border-radius:12px;
+  background:rgba(255,255,255,.16);
+  color:#fff;
   cursor:pointer;
 }
-.packageBar .status{
-  color:#bbb;
-  font-size:13px;
-  margin-left:auto;
+.pkgBtn:hover{background:#e50914}
+.pkgHint{margin-top:12px;font-size:12px;color:#aaa}
+@media (max-width:600px){
+  .pkgGrid{grid-template-columns:repeat(2, 1fr);}
 }
 
 </style>
@@ -521,6 +549,7 @@ body{background:#000;color:#fff;overflow:hidden}
       <button class="btn" id="btnMute" title="Mute/Unmute"><i class="fas fa-volume-up" id="muteIcon"></i></button>
       <button class="btn" id="btnFullscreen" title="Fullscreen"><i class="fas fa-expand" id="fullscreenIcon"></i></button>
       <button class="btn" id="btnSettings" title="Settings"><i class="fas fa-cog"></i></button>
+      <button class="btn" id="btnPackage" title="Packages"><i class="fas fa-box"></i></button>
       <button class="btn" id="btnGuide" title="Guide"><i class="fas fa-list"></i></button>
       <button class="btn" id="btnNext" title="Next"><i class="fas fa-chevron-right"></i></button>
       <button class="btn" id="btnFav" title="Favorite"><i class="fas fa-star" id="favIcon"></i></button>
@@ -563,18 +592,6 @@ body{background:#000;color:#fff;overflow:hidden}
       <div class="cat" id="catPanel"></div>
       <div class="chArea">
         <div class="searchBox">
-
-          <div class="packageBar" id="packageBar">
-            <button class="pkgBtn" id="pkg150" onclick="selectPackage('150')">Basic (Free)</button>
-            <button class="pkgBtn" id="pkg250" onclick="selectPackage('250')">Standard</button>
-            <button class="pkgBtn" id="pkg500" onclick="selectPackage('500')">Premium</button>
-
-            <input id="codeInput" placeholder="Enter access code" />
-            <button class="applyBtn" onclick="applyCode()">Apply</button>
-
-            <span class="status" id="accessStatus">Access: Basic</span>
-          </div>
-
           <input id="search" placeholder="Search (name/number)..." />
         </div>
         <div class="grid" id="grid"></div>
@@ -582,6 +599,29 @@ body{background:#000;color:#fff;overflow:hidden}
     </div>
   </div>
   
+
+  <!-- Package Overlay -->
+  <div id="packageOverlay" class="packageOverlay">
+    <div class="packageHeader">
+      <b><i class="fas fa-box"></i> Packages</b>
+      <button class="packageClose" id="btnClosePackage"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="packageBody">
+      <div id="pkgStatus" class="pkgStatus">Access: Basic (Free)</div>
+
+      <div class="pkgGrid" id="pkgGrid"></div>
+
+      <div class="pkgCodeRow">
+        <input id="pkgCodeInput" placeholder="Enter access code" />
+        <button class="pkgBtn" id="btnApplyPkgCode">Apply</button>
+        <button class="pkgBtn" id="btnLogoutPkg">Logout</button>
+      </div>
+
+      <div class="pkgHint">Basic is free. Standard/Premium require a code.</div>
+    </div>
+  </div>
+
   <!-- Settings Overlay -->
   <div id="settingsOverlay" class="settingsOverlay">
     <div class="settingsHeader">
@@ -665,6 +705,13 @@ const serverOptions = document.getElementById("serverOptions");
 const serverChannelName = document.getElementById("serverChannelName");
 const serverCloseBtn = document.getElementById("btnCloseServer");
 
+/* Package Overlay */
+const packageOverlay = document.getElementById("packageOverlay");
+const pkgGrid = document.getElementById("pkgGrid");
+const pkgStatus = document.getElementById("pkgStatus");
+const pkgCodeInput = document.getElementById("pkgCodeInput");
+
+
 /* Players */
 let shakaP = null;
 
@@ -672,159 +719,6 @@ let shakaP = null;
 let currentIndex = 0;
 let currentSourceIndex = 0;
 
-
-/* ===================== Package Access (Basic/Standard/Premium) ===================== */
-/**
- * Channel object can have:
- *   package: ["150","250","500"]  // multi-package
- * or package: "250"               // single
- * If missing => treated as Basic ("150")
- */
-const PACKAGE_ORDER = ["150","250","500"];
-let unlockedTier = localStorage.getItem("unlockedTier") || "150"; // max allowed tier
-let activePackage = localStorage.getItem("activePackage") || "150"; // currently browsing/playing package
-
-function normalizePkg(p){
-  const s = String(p || "").trim();
-  return (s === "150" || s === "250" || s === "500") ? s : "150";
-}
-function tierName(t){
-  t = normalizePkg(t);
-  return t === "150" ? "Basic" : (t === "250" ? "Standard" : "Premium");
-}
-function getDeviceId(){
-  let id = localStorage.getItem("tplay_device_id");
-  if(!id){
-    id = (crypto?.randomUUID ? crypto.randomUUID() : (Math.random().toString(36).slice(2) + Date.now().toString(36)));
-    localStorage.setItem("tplay_device_id", id);
-  }
-  return id;
-}
-function getChannelPackages(ch){
-  const p = ch?.package;
-  if(Array.isArray(p)){
-    const pkgs = p.map(normalizePkg);
-    return pkgs.length ? pkgs : ["150"];
-  }
-  if(p) return [normalizePkg(p)];
-  return ["150"];
-}
-function canSelectPackage(pkg){
-  pkg = normalizePkg(pkg);
-  return PACKAGE_ORDER.indexOf(pkg) <= PACKAGE_ORDER.indexOf(normalizePkg(unlockedTier));
-}
-function updateAccessUI(){
-  const status = document.getElementById("accessStatus");
-  if(status) status.textContent = `Access: ${tierName(unlockedTier)}`;
-
-  const b150 = document.getElementById("pkg150");
-  const b250 = document.getElementById("pkg250");
-  const b500 = document.getElementById("pkg500");
-  if(b150) b150.classList.toggle("active", activePackage === "150");
-  if(b250) b250.classList.toggle("active", activePackage === "250");
-  if(b500) b500.classList.toggle("active", activePackage === "500");
-
-  // disable higher packages if locked
-  if(b250) b250.disabled = !canSelectPackage("250");
-  if(b500) b500.disabled = !canSelectPackage("500");
-}
-function selectPackage(pkg){
-  pkg = normalizePkg(pkg);
-  if(!canSelectPackage(pkg)){
-    alert("This package requires an access code.");
-    return;
-  }
-  activePackage = pkg;
-  localStorage.setItem("activePackage", activePackage);
-
-  // If current playing channel is not in this package, jump to first allowed
-  ensurePlayingAllowed();
-
-  buildGrid();
-  updateAccessUI();
-}
-function applyCode(){
-  const input = document.getElementById("codeInput");
-  const code = (input?.value || "").trim();
-
-  if(!code){
-    alert("Please enter a code.");
-    return;
-  }
-  if(typeof ACCESS_CODES === "undefined"){
-    alert("codes.js not loaded.");
-    return;
-  }
-  const entry = ACCESS_CODES[code];
-  if(!entry){
-    alert("Invalid code.");
-    return;
-  }
-
-  const tier = normalizePkg(entry.tier);
-  const maxDevices = Number(entry.maxDevices ?? 5);
-
-  // NOTE: Static GitHub app cannot truly enforce global 5 devices.
-  // This is a per-device record (localStorage) for simple UX.
-  const deviceId = getDeviceId();
-  const key = `tplay_code_devices_${code}`;
-  let devices = [];
-  try{ devices = JSON.parse(localStorage.getItem(key) || "[]"); }catch{ devices = []; }
-  if(!Array.isArray(devices)) devices = [];
-
-  if(!devices.includes(deviceId)){
-    if(devices.length >= maxDevices){
-      alert(`Device limit reached (max ${maxDevices}).`);
-      return;
-    }
-    devices.push(deviceId);
-    localStorage.setItem(key, JSON.stringify(devices));
-  }
-
-  // upgrade unlockedTier if needed
-  if(PACKAGE_ORDER.indexOf(tier) > PACKAGE_ORDER.indexOf(normalizePkg(unlockedTier))){
-    unlockedTier = tier;
-    localStorage.setItem("unlockedTier", unlockedTier);
-  }
-
-  // jump to that package view
-  activePackage = tier;
-  localStorage.setItem("activePackage", activePackage);
-
-  alert(`Access granted: ${tierName(tier)}`);
-  ensurePlayingAllowed();
-  buildGrid();
-  updateAccessUI();
-}
-function ensurePlayingAllowed(){
-  // if current channel not allowed in active package, jump to first allowed index
-  const playable = getPlayableIndexes();
-  if(!playable.length) return;
-  if(!playable.includes(currentIndex)){
-    playChannel(playable[0]);
-  }
-}
-function getPlayableIndexes(){
-  const pkg = normalizePkg(activePackage);
-  // safety: if package itself not selectable, treat as Basic
-  const effectivePkg = canSelectPackage(pkg) ? pkg : "150";
-  const idxs = [];
-  for(let i=0;i<channels.length;i++){
-    const pkgs = getChannelPackages(channels[i]);
-    if(pkgs.includes(effectivePkg)) idxs.push(i);
-  }
-  return idxs;
-}
-async function playNextAllowed(dir){
-  const playable = getPlayableIndexes();
-  if(!playable.length) return;
-
-  let pos = playable.indexOf(currentIndex);
-  if(pos < 0) pos = 0;
-
-  pos = (pos + (dir || 1) + playable.length) % playable.length;
-  await playChannel(playable[pos]);
-}
 /* Guide state */
 let categories = [];
 let currentCat = "All";
@@ -835,6 +729,40 @@ let focusTileIndex = 0;
 /* Overlay state */
 let isFullscreen = false;
 let serverFocusIndex = 0;
+
+
+/* Packages */
+const PACKAGE_ORDER = ["150","250","500"];
+let unlockedTier = localStorage.getItem("unlockedTier") || "150";
+let activePackage = localStorage.getItem("activePackage") || "150";
+
+function getDeviceId(){
+  let id = localStorage.getItem("deviceId");
+  if(!id){
+    id = Math.random().toString(36).slice(2);
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+}
+
+function getChannelPackages(ch){
+  const p = ch.package;
+  if(Array.isArray(p)) return p;
+  if(typeof p === "string" && p) return [p];
+  return ["150"]; // default basic
+}
+
+function canSelectPackage(pkg){
+  return PACKAGE_ORDER.indexOf(pkg) <= PACKAGE_ORDER.indexOf(unlockedTier);
+}
+
+function countChannelsForPackage(pkg){
+  let c = 0;
+  for(const ch of channels){
+    if(getChannelPackages(ch).includes(pkg)) c++;
+  }
+  return c;
+}
 
 /* Favorites */
 const FAV_KEY = "tplay_favs_v1";
@@ -876,6 +804,110 @@ function toggleServerOverlay(force) {
     updateServerFocus();
   }
 }
+
+/* ===================== Package Functions ===================== */
+function togglePackageOverlay(force){
+  const wantOpen = (typeof force === 'boolean') ? force : !packageOverlay.classList.contains('show');
+
+  if(wantOpen){
+    if (settingsOverlay.classList.contains('show')) toggleSettings(false);
+    if (guide.classList.contains('show')) toggleGuide(false);
+    if (serverOverlay.classList.contains('show')) toggleServerOverlay(false);
+  }
+
+  packageOverlay.classList.toggle('show', wantOpen);
+  if(wantOpen) renderPackageOverlay();
+}
+
+function renderPackageOverlay(){
+  const pkgs = [
+    { id:"150", name:"Basic", logo:"https://i.postimg.cc/RCnCv14W/T-Play.png" },
+    { id:"250", name:"Standard", logo:"https://i.postimg.cc/RCnCv14W/T-Play.png" },
+    { id:"500", name:"Premium", logo:"https://i.postimg.cc/RCnCv14W/T-Play.png" },
+  ];
+
+  pkgGrid.innerHTML = "";
+  for(const p of pkgs){
+    const locked = !canSelectPackage(p.id);
+    const card = document.createElement("div");
+    card.className = "pkgCard" + (activePackage === p.id ? " active" : "");
+    const count = countChannelsForPackage(p.id);
+
+    card.innerHTML = `
+      <div class="pkgTop">
+        <div class="pkgLeft">
+          <img class="pkgLogo" src="${p.logo}" alt="">
+          <div style="min-width:0">
+            <div class="pkgName">${p.name}</div>
+            <div class="pkgMeta">${count} channels</div>
+          </div>
+        </div>
+        <div class="pkgLock">${locked ? "🔒" : "✓"}</div>
+      </div>
+      <div class="pkgMeta" style="margin-top:8px">${p.id}+ Package</div>
+    `;
+
+    card.onclick = () => {
+      if(!canSelectPackage(p.id)){
+        alert("This package requires an access code.");
+        return;
+      }
+      activePackage = p.id;
+      localStorage.setItem("activePackage", activePackage);
+      buildGrid();
+      renderPackageOverlay();
+    };
+
+    pkgGrid.appendChild(card);
+  }
+
+  pkgStatus.textContent =
+    unlockedTier === "150" ? "Access: Basic (Free)" :
+    unlockedTier === "250" ? "Access: Standard" :
+    "Access: Premium";
+}
+
+function applyAccessCode(){
+  const code = (pkgCodeInput.value || "").trim();
+  const entry = (typeof ACCESS_CODES !== "undefined") ? ACCESS_CODES[code] : null;
+
+  if(!entry){
+    alert("Invalid code");
+    return;
+  }
+
+  const deviceId = getDeviceId();
+  entry.devices = Array.isArray(entry.devices) ? entry.devices : [];
+  entry.maxDevices = entry.maxDevices || 5;
+
+  if(!entry.devices.includes(deviceId)){
+    if(entry.devices.length >= entry.maxDevices){
+      alert("Device limit reached (max 5).");
+      return;
+    }
+    entry.devices.push(deviceId);
+  }
+
+  unlockedTier = entry.tier;
+  activePackage = entry.tier;
+
+  localStorage.setItem("unlockedTier", unlockedTier);
+  localStorage.setItem("activePackage", activePackage);
+
+  buildGrid();
+  renderPackageOverlay();
+  alert("Access granted.");
+}
+
+function logoutAccess(){
+  unlockedTier = "150";
+  activePackage = "150";
+  localStorage.setItem("unlockedTier", unlockedTier);
+  localStorage.setItem("activePackage", activePackage);
+  buildGrid();
+  renderPackageOverlay();
+}
+
 
 function loadServerOptions() {
   serverOptions.innerHTML = '';
@@ -1222,7 +1254,11 @@ window.addEventListener("load", () => {
   document.getElementById("btnMute").onclick = toggleMute;
   document.getElementById("btnFullscreen").onclick = toggleFullscreen;
   document.getElementById("btnSettings").onclick = () => toggleSettings();
+  document.getElementById("btnPackage").onclick = () => togglePackageOverlay();
   document.getElementById("btnFav").onclick = toggleFavCurrent;
+  document.getElementById("btnClosePackage").onclick = () => togglePackageOverlay(false);
+  document.getElementById("btnApplyPkgCode").onclick = applyAccessCode;
+  document.getElementById("btnLogoutPkg").onclick = logoutAccess;
 
   // guide search
   search.addEventListener("input", () => { 
@@ -1232,7 +1268,6 @@ window.addEventListener("load", () => {
   });
 
   buildCategories();
-  updateAccessUI();
 
   // Start with logo hidden
   hideLogo();
@@ -1281,15 +1316,6 @@ async function playChannel(index){
   hideLogo();
   
   currentIndex = clamp(index, 0, channels.length-1);
-
-  // Safety: never play a channel outside the active package
-  const effectivePkg = canSelectPackage(activePackage) ? normalizePkg(activePackage) : "150";
-  if(!getChannelPackages(channels[currentIndex]).includes(effectivePkg)){
-    const playable = getPlayableIndexes();
-    if(playable.length){
-      currentIndex = playable[0];
-    }
-  }
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
@@ -1413,7 +1439,7 @@ async function failAllSources(msg){
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
-  await playNextAllowed(1);
+  await (async ()=>{ nextChannel(); })();
 }
 
 /* ===================== UI helpers ===================== */
@@ -1476,10 +1502,30 @@ function updateMuteIcon(){
 }
 
 function nextChannel(){
-  playNextAllowed(1);
+  const playable = getPlayableIndexes();
+  if(!playable.length) return;
+  let pos = playable.indexOf(currentIndex);
+  if(pos === -1) pos = 0;
+  pos = (pos + 1) % playable.length;
+  playChannel(playable[pos]);
 }
+
+function getPlayableIndexes(){
+  const idxs = [];
+  for(let i=0;i<channels.length;i++){
+    const pkgs = getChannelPackages(channels[i]);
+    if(pkgs.includes(activePackage)) idxs.push(i);
+  }
+  return idxs;
+}
+
 function prevChannel(){
-  playNextAllowed(-1);
+  const playable = getPlayableIndexes();
+  if(!playable.length) return;
+  let pos = playable.indexOf(currentIndex);
+  if(pos === -1) pos = 0;
+  pos = (pos - 1 + playable.length) % playable.length;
+  playChannel(playable[pos]);
 }
 
 /* ===================== Favorites ===================== */
@@ -1592,11 +1638,9 @@ function getFilteredIndexes(){
     if(!isFav && !isAll && cat !== currentCat) continue;
 
 
-    // Package filter (and safety for locked packages)
-    const effectivePkg = canSelectPackage(activePackage) ? normalizePkg(activePackage) : "150";
+    // Package filter
     const pkgs = getChannelPackages(ch);
-    if(!pkgs.includes(effectivePkg)) continue;
-
+    if(!pkgs.includes(activePackage)) continue;
     // Then check search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
@@ -1673,6 +1717,7 @@ function buildGrid(){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
   const guideOpen = guide.classList.contains("show");
+  const packageOpen = packageOverlay.classList.contains("show");
   const settingsOpen = settingsOverlay.classList.contains("show");
   const serverOpen = serverOverlay.classList.contains("show");
   
