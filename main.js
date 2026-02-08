@@ -649,15 +649,15 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "NICK JR", 
+                name: "NICK HD+", 
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://zap-live1-ott.izzigo.tv/4/out/u/dash/NICKJRHD/default.mpd",
+                        url: "https://jiotvpllive.cdn.jio.com/bpk-tv/Nick_HD_Plus_BTS/output/index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "1ff80f6edca24a644b8f5b4532e908a4",
-                            key: "273d66feb7edc254d70d73aecddd31f8"
+                            kid: "50c0ac86d9445b3a855fcabae7538aaf",
+                            key: "cf79083218d809d379c2f64acbde561f"
                         }
                     }
                 ], 
