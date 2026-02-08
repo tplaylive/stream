@@ -510,7 +510,8 @@ const channels = [
             { 
                 name: "Ekhon",
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/ekhontv.index.m3u8" }
+                    { name: "Server 1", url: "https://jago-bosta.global.ssl.fastly.net/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/globaltv.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/ekhontv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/KcHxyPzx/ekhon.jpg", 
                 category: "News",
