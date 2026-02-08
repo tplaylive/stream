@@ -518,6 +518,14 @@ body{background:#000;color:#fff;overflow:hidden}
   .pkgGrid{grid-template-columns:repeat(2, 1fr);}
 }
 
+  .settingsBody{
+  flex:1;
+  padding:20px;
+  overflow-y:auto;
+  scroll-behavior:smooth;
+}
+
+
 </style>
 
 </head>
@@ -1737,7 +1745,7 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
-  // Server Overlay- navigation
+/* ===== SERVER OVERLAY REMOTE DISABLED =====
   if (serverOpen) {
     if (["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
       e.preventDefault();
@@ -1747,17 +1755,17 @@ document.addEventListener("keydown", (e) => {
           serverFocusIndex = Math.max(0, serverFocusIndex - 1);
           updateServerFocus();
           break;
-          
-case "ArrowDown":
+
+          case "ArrowDown":
   if(!guideOpen && !settingsOpen){
     toggleSettings(true);
-  } 
-  else if (guideOpen) {
+  } else if (guideOpen) {
     const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
     focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
     updateGridFocus();
   }
   break;
+
 
           
         case "Enter":
@@ -1773,7 +1781,8 @@ case "ArrowDown":
       return;
     }
   }
-
+*/
+  
   // Prevent default for arrow keys to avoid scrolling
   if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S", "g", "G"].includes(e.key)) {
     e.preventDefault();
