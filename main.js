@@ -609,6 +609,60 @@ const channels = [
                 category: "News",
                 description: "Libya"
             },
+            { 
+                name: "Disney Channel", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/zuf794yutz/out/v1/ca3534bfe4f148298b36719204d108e0/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "be9caaa813c5305e761c66ac63645901",
+                            key: "3d40f2990ec5362ca5be3a3c9bb8f8b4"
+                        }
+                    }
+                ], 
+                img: "https://images.seeklogo.com/logo-png/25/1/new-disney-channel-logo-png_seeklogo-255285.png", 
+                category: "Kids",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
+                name: "Disney Junior", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/0qvo3uakfd/out/v1/d62a555c1e5945f3bae88ae4018321d4/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "221e176f3dfabb84ff506d65dd93b09f",
+                            key: "6a97b8d4beed4d4b1697c1488706c6ca"
+                        }
+                    }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNV1Kp7gAqkJn4ChEnSkHT3YKsTEn6roI5mA&s", 
+                category: "Kids",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
+                name: "Disney XD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/jts4tzzv1k/out/v1/8a5b29f7068c415aa371ea95743382e6/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "39cebece8b36640f9ba3f248ecfdf86a",
+                            key: "fad936249e036830aa5bef41bec05326"
+                        }
+                    }
+                ], 
+                img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/CD4826FEC87B2F49DC854B8A74BDACD5AB6C21056C3833D1A0AC77158E76DA12/compose?aspectRatio=1.78&format=webp&width=600", 
+                category: "Kids",
+                package: ["150","250","500"],
+                description: "World"
+            },
             {
                 name: "Duronto",
                 sources: [
