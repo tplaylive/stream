@@ -3271,11 +3271,11 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "History", 
+                name: "History TV", 
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/dr_historyhd.mpd",
+                        url: "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/dr_historyhd/default/index/default/index.mpd",
                         type: "dash",
                         drm: {
                             kid: "a7724b7ca2604c33bb2e963a0319968a",
