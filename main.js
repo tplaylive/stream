@@ -649,19 +649,19 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Nick HD", 
+                name: "NICK JR", 
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://zap-live1-ott.izzigo.tv/2/out/u/dash/NICKHD/default.mpd",
+                        url: "https://zap-live1-ott.izzigo.tv/4/out/u/dash/NICKJRHD/default.mpd",
                         type: "dash",
                         drm: {
-                            kid: "294848a1c20273b5546c204b117fd7fe",
-                            key: "47b4a3e3b2d5bbd54143a6af43268bbd"
+                            kid: "1ff80f6edca24a644b8f5b4532e908a4",
+                            key: "273d66feb7edc254d70d73aecddd31f8"
                         }
                     }
                 ], 
-                img: "https://upload.wikimedia.org/wikipedia/commons/a/af/Nick_HD.png", 
+                img: "https://i.scdn.co/image/ab6761610000517448c209065ea0afd328c8d43e", 
                 category: "Kids",
                 package: ["150","250","500"],
                 description: "World"
