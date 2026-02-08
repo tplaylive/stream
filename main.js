@@ -3470,15 +3470,15 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://linearjitp02-playback.astro.com.my/dash-wv/linear/2610/default_ott.mpd",
+                        url: "https://live-crave.video.9c9media.com/59c2df870a1e8c5b14c4f5ed7e951e1cef9474581754944303887/fe/f/crave/starz1/manifest.mpd?u=li",
                         type: "dash",
                         drm: {
-                            kid: "0e21da304a29298ceca1fdfd1e71e210",
-                            key: "87de38cf3ed2bbcd5d89b63e571bfe21"
+                            kid: "5ebcf53fd1794237aa02af52413e0c2a",
+                            key: "bd2f5d20887507da6f26401b1d95aeee"
                         }
                     }
                 ], 
-                img: "https://pictr.com/images/2025/01/14/x12hIq.png", 
+                img: "https://img.utdstc.com/icon/9d8/186/9d8186272082392409f8604d3499e2a3f6dc6a98acbc7bcc8a2c2f6ec435cec8:200", 
                 category: "Sports",
                 description: "World"
             },
