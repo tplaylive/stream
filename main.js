@@ -664,19 +664,19 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "NICK HD+", 
+                name: "Nick Jr", 
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://jiotvpllive.cdn.jio.com/bpk-tv/Nick_HD_Plus_BTS/output/index.mpd",
+                        url: "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/dr_nickjr/default/index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "50c0ac86d9445b3a855fcabae7538aaf",
-                            key: "cf79083218d809d379c2f64acbde561f"
+                            kid: "bab5c11178b646749fbae87962bf5113",
+                            key: "0ac679aad3b9d619ac39ad634ec76bc8"
                         }
                     }
                 ], 
-                img: "https://i.scdn.co/image/ab6761610000517448c209065ea0afd328c8d43e", 
+                img: "https://i.postimg.cc/BvP8G3sq/nickjr.jpg", 
                 category: "Kids",
                 package: ["150","250","500"],
                 description: "World"
