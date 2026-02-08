@@ -102,6 +102,21 @@ const channels = [
                 package: ["150","250","500"],
                 description: "U.S. politics and culture"
             },
+            { 
+                name: "CGTN", 
+                sources: [
+                  { name: "English", url: "https://english-livebkali.cgtn.com/live/encgtn.m3u8" },
+                  { name: "Arabic", url: "https://arabic-livews.cgtn.com/hls/LSveq57bErWLinBnxosqjisZ220802LSTefTAS9zc9mpU08y3np9TH220802cd/playlist.m3u8" },
+                  { name: "Español", url: "https://espanol-livews.cgtn.com/hls/LSveOGBaBw41Ea7ukkVAUdKQ220802LSTexu6xAuFH8VZNBLE1ZNEa220802cd/playlist.m3u8" },
+                  { name: "Français", url: "https://francais-livews.cgtn.com/hls/LSvev95OuFZtKLc6CeKEFYXj220802LSTeV6PO0Ut9r71Uq3k5goCA220802cd/playlist.m3u8" },
+                  { name: "Русский", url: "https://russian-livews.cgtn.com/hls/LSvexABhNipibK5KRuUkvHZ7220802LSTeze9o8tdFXMHsb1VosgoT220802cd/playlist.m3u8" },
+
+                ], 
+                img: "https://web-summit-avenger.imgix.net/production/logos/original/c7b51ad526fe3d1f4f299f1d802383268c903106.png", 
+                category: "News",
+                package: ["150","250","500"],
+                description: "China"
+            },
              { 
                 name: "DD News", 
                 sources: [
