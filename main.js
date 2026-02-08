@@ -99,6 +99,7 @@ const channels = [
                 ],
                 img: "https://www.tvbeurope.com/wp-content/uploads/2019/01/fox-news-logo.jpg", 
                 category: "News",
+                package: ["150","250","500"],
                 description: "U.S. politics and culture"
             },
              { 
@@ -646,6 +647,23 @@ const channels = [
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: "Kids",
                 description: "India"
+            },
+            { 
+                name: "Nick HD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://zap-live1-ott.izzigo.tv/2/out/u/dash/NICKHD/default.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "294848a1c20273b5546c204b117fd7fe",
+                            key: "47b4a3e3b2d5bbd54143a6af43268bbd"
+                        }
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/a/af/Nick_HD.png", 
+                category: "Kids",
+                description: "World"
             },
             { 
                 name: "Gubbare", 
