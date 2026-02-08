@@ -1748,11 +1748,17 @@ document.addEventListener("keydown", (e) => {
           updateServerFocus();
           break;
           
-        case "ArrowDown":
-          const options = serverOptions.querySelectorAll('.serverOption');
-          serverFocusIndex = Math.min(options.length - 1, serverFocusIndex + 1);
-          updateServerFocus();
-          break;
+case "ArrowDown":
+  if(!guideOpen && !settingsOpen){
+    toggleSettings(true);ে
+  } 
+  else if (guideOpen) {
+    const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
+    focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
+    updateGridFocus();
+  }
+  break;
+
           
         case "Enter":
           if (serverFocusIndex >= 0) {
