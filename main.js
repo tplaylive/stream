@@ -1680,6 +1680,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Romedy Now", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://times-ott-live.akamaized.net/romedynow_wv_drm/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "40f019b86241d23ef075633fd7f1e927",
+                            key: "058dec845bd340178a388edd104a015e"
+                        }
+                    }
+                ], 
+                img: "https://d229kpbsb5jevy.cloudfront.net/timesplay/content/common/logos/channel/logos/nchght.jpeg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Movies Now HD", 
                 sources: [
                     { 
@@ -1710,6 +1727,23 @@ const channels = [
                     }
                 ], 
                 img: "https://d229kpbsb5jevy.cloudfront.net/timesplay/content/common/logos/channel/logos/vunjev.jpeg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
+                name: "MN+", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://times-ott-live.akamaized.net/mnplus_wv_drm/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "40f019b86241d23ef075633fd7f1e927",
+                            key: "058dec845bd340178a388edd104a015e"
+                        }
+                    }
+                ], 
+                img: "https://d229kpbsb5jevy.cloudfront.net/timesplay/content/common/logos/channel/logos/leazcc.jpeg", 
                 category: "Movie",
                 description: "India"
             },
