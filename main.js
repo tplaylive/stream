@@ -3470,15 +3470,15 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://delta45tatasky.akamaized.net/out/i/1633.mpd",
+                        url: "https://linearjitp-playback.astro.com.my/dash-wv/linear/2611/default_ott.mpd",
                         type: "dash",
                         drm: {
-                            kid: "6f715e0e16cf4b20bc94f6f85023974b",
-                            key: "516785ded0aee1dafae22e2874528b2a"
+                            kid: "ad3cb242cde3b687e2398cd21eb9bd10",
+                            key: "6ed9b4976a854a289ce62cac957a55d5"
                         }
                     }
                 ], 
-                img: "https://i.postimg.cc/m2zr04T2/tnt1.jpg", 
+                img: "https://pictr.com/images/2025/01/09/x1bcgO.png", 
                 category: "Sports",
                 description: "World"
             },
