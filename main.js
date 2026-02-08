@@ -3558,11 +3558,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://nog-live1-ott.izzigo.tv/2/out/u/dash/DISCOVERYWORLDHD/default.mpd",
+                        url: "https://zap-live1-ott.izzigo.tv/4/out/u/dash/NICKMUSICSD/default.mpd",
                         type: "dash",
                         drm: {
-                            kid: "ff9f289f4bad2b970deb5b9d56acb84a",
-                            key: "8f920a61965245ffac8bb0c698845ff5"
+                            kid: "96c869392d2e908eaf78a9fcfa8c3107",
+                            key: "cd307966418dafe8fa5e673f8c172f39"
                         }
                     }
                 ], 
