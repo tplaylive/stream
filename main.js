@@ -2079,12 +2079,12 @@ const channels = [
             { 
                 name: "Sony Sab", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=978d421e4729&e=.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/https://tigerhub-bd.vercel.app/SONY/Sab/tracks-v1a1/mono.ts.m3u8" },
                     { name: "Server 2", url: "https://tigerhub-bd.vercel.app/SONY/Sab/tracks-v1a1/mono.ts.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
                 category: "Entertainment",
-                description: "Bangladesh"
+                description: "India"
             },
             { 
                 name: "Sony Entertainment", 
