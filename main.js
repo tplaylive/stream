@@ -3558,11 +3558,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://zap-live1-ott.izzigo.tv/5/out/u/dash/HBO-HD/default.mpd",
+                        url: "https://nog-live1-ott.izzigo.tv/2/out/u/dash/DISCOVERYWORLDHD/default.mpd",
                         type: "dash",
                         drm: {
-                            kid: "df18f6a05bab28d89e5dc01d88f4deb8",
-                            key: "baceb525467c0db22ba83090616c1ad0"
+                            kid: "ff9f289f4bad2b970deb5b9d56acb84a",
+                            key: "8f920a61965245ffac8bb0c698845ff5"
                         }
                     }
                 ], 
