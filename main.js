@@ -1491,7 +1491,7 @@ const channels = [
             { 
                 name: "Sony Max", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_max_hd&e=.m3u8" },
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=893cae26e4f3583b49d7eb86e0c27d19&e=.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
                 category: "Movie",
@@ -1500,7 +1500,7 @@ const channels = [
             { 
                 name: "Sony Max 2", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonymax_2&e=.m3u8" },
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=a99e6ccb22708a383e350b62edb941c4&e=.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/DyM2gMGR/max2.jpg", 
                 category: "Movie",
@@ -1749,7 +1749,7 @@ const channels = [
             { 
                 name: "Sony Pix", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonypix_hd&e=.m3u8" },
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=f47a65615edfde6efab3227bbe657888&e=.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/tggwMqHB/pix.jpg", 
                 category: "Movie",
@@ -1832,6 +1832,7 @@ const channels = [
                 name: "Colors Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8" },
+                    { name: "Server 2", url: "https://mrzplayin.fun/roarzon/stream.php?id=e8bcb5c4e70519342363881aca82c877&e=.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vTQZ4Jg6/colors-bangla.jpg", 
                 category: "Entertainment",
@@ -1885,7 +1886,7 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=707e4efbda57&e=.m3u8" }
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=86ccc06d72b98d2e40d91bebe766fe96&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
                 category: "Entertainment",
@@ -2033,8 +2034,8 @@ const channels = [
             { 
                 name: "Colors", 
                 sources: [
-                    { name: "Server 1", url: "https://streamer2.nexgen.bz/COLORS/index.m3u8" },
-                    
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=62848e3ce5804aa985513a7922ff87b2&e=.m3u8" },
+                    { name: "Server 2", url: "https://streamer2.nexgen.bz/COLORS/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vBL4YjR8/colors.jpg", 
                 category: "Entertainment",
@@ -2719,25 +2720,28 @@ const channels = [
             { 
                 name: "DD Sports", 
                 sources: [
-                    { name: "Server 1", url: "https://bongoflixbd.top/stream.php?id=3b238911-d385-406a-b936-07550f30a4f3&e.m3u8" }
+                    { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8" },
+                    { name: "Server 2", url: "https://cdn-7.pishow.tv/live/1161/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
                 category: "Sports",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
                 name: "Sony Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=afd176a5b887&e=.m3u8" }
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=7482ed5e9c4da0cc7de6aa27dc16c4c4&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mg0RC192/ten1.jpg", 
                 category: "Sports",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
                 name: "Sony Sports 2", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=0a0ad851d705&e=.m3u8" }
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=6f8378e796d7f7cff65333fd3b1d0974&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8SC16G7/ten2.jpg", 
                 category: "Sports",
@@ -2746,19 +2750,21 @@ const channels = [
             { 
                 name: "Sony Sports 3", 
                 sources: [
-                    { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sony_sports_3_hd&e=.m3u8" }
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=0bd594d32d6dc8cee0165bc175eeb862&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/152bjh3Y/ten3.jpg", 
                 category: "Sports",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
                 name: "Sony Sports 5", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=2dece57b30a1&e=.m3u8" }
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=0940a354e290cbf71e9d5d21e2883258&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/qqgZ1jVH/ten5.jpg", 
                 category: "Sports",
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
