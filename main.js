@@ -1659,6 +1659,40 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Starz 1", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://live-crave.video.9c9media.com/59c2df870a1e8c5b14c4f5ed7e951e1cef9474581754944303887/fe/f/crave/starz1/manifest.mpd?u=li",
+                        type: "dash",
+                        drm: {
+                            kid: "5ebcf53fd1794237aa02af52413e0c2a",
+                            key: "bd2f5d20887507da6f26401b1d95aeee"
+                        }
+                    }
+                ], 
+                img: "https://img.utdstc.com/icon/9d8/186/9d8186272082392409f8604d3499e2a3f6dc6a98acbc7bcc8a2c2f6ec435cec8:200", 
+                category: "Movie",
+                description: "World"
+            },
+            { 
+                name: "Starz 2", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://live-crave.video.9c9media.com/65a655714b62d8c989ad80dc30e3035b0bfb65b41754945004845/fe/f/crave/starz2/manifest.mpd?u=li",
+                        type: "dash",
+                        drm: {
+                            kid: "5389bf9aa04e467aac818fac7138f8f4",
+                            key: "ebb8e28d9081a462015de790e76759f0"
+                        }
+                    }
+                ], 
+                img: "https://img.utdstc.com/icon/9d8/186/9d8186272082392409f8604d3499e2a3f6dc6a98acbc7bcc8a2c2f6ec435cec8:200", 
+                category: "Movie",
+                description: "World"
+            },
+            { 
                 name: "Sony Pix", 
                 sources: [
                     { name: "Server 1", url: "https://allottplay.com/tv/toffee/live.php?id=sonypix_hd&e=.m3u8" },
