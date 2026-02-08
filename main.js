@@ -3558,11 +3558,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/zuf794yutz/out/v1/ca3534bfe4f148298b36719204d108e0/cenc.mpd",
+                        url: "https://zap-live1-ott.izzigo.tv/5/out/u/dash/HBO-HD/default.mpd",
                         type: "dash",
                         drm: {
-                            kid: "be9caaa813c5305e761c66ac63645901",
-                            key: "3d40f2990ec5362ca5be3a3c9bb8f8b4"
+                            kid: "df18f6a05bab28d89e5dc01d88f4deb8",
+                            key: "baceb525467c0db22ba83090616c1ad0"
                         }
                     }
                 ], 
