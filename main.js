@@ -2053,8 +2053,8 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=2604a4cd22ee&e=.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
+                    { name: "SD", url: "https://mrzplayin.fun/roarzon/stream.php?id=2d67b743887c973488674aacde2f6fa4&e=.m3u8" },
+                    { name: "HD", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
                 category: "Entertainment",
