@@ -84,6 +84,23 @@ const channels = [
                 package: ["150","250","500"],
                 description: "Global financial and business news"
             },
+            { 
+                name: "Fox News HD",
+                sources: [
+                    { 
+                        name: "USA", 
+                        url: "https://nog-live1-ott.izzigo.tv/2/out/u/dash/FOX-NEWS-HD/default.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "aa611985e0c890fdf50d5c6ed88ad0c0",
+                            key: "61dc9d01e315bf46ee43bc9fe882ebd8"
+                        }
+                    }
+                ],
+                img: "https://www.tvbeurope.com/wp-content/uploads/2019/01/fox-news-logo.jpg", 
+                category: "News",
+                description: "U.S. politics and culture"
+            },
              { 
                 name: "DD News", 
                 sources: [
