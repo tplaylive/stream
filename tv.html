@@ -518,14 +518,6 @@ body{background:#000;color:#fff;overflow:hidden}
   .pkgGrid{grid-template-columns:repeat(2, 1fr);}
 }
 
-  .settingsBody{
-  flex:1;
-  padding:20px;
-  overflow-y:auto;
-  scroll-behavior:smooth;
-}
-
-
 </style>
 
 </head>
@@ -1745,7 +1737,7 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
-/* ===== SERVER OVERLAY REMOTE DISABLED =====
+  // Server Overlay- navigation
   if (serverOpen) {
     if (["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
       e.preventDefault();
@@ -1755,18 +1747,12 @@ document.addEventListener("keydown", (e) => {
           serverFocusIndex = Math.max(0, serverFocusIndex - 1);
           updateServerFocus();
           break;
-
-          case "ArrowDown":
-  if(!guideOpen && !settingsOpen){
-    toggleSettings(true);
-  } else if (guideOpen) {
-    const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
-    focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
-    updateGridFocus();
-  }
-  break;
-
-
+          
+        case "ArrowDown":
+          const options = serverOptions.querySelectorAll('.serverOption');
+          serverFocusIndex = Math.min(options.length - 1, serverFocusIndex + 1);
+          updateServerFocus();
+          break;
           
         case "Enter":
           if (serverFocusIndex >= 0) {
@@ -1781,8 +1767,7 @@ document.addEventListener("keydown", (e) => {
       return;
     }
   }
-*/
-  
+
   // Prevent default for arrow keys to avoid scrolling
   if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S", "g", "G"].includes(e.key)) {
     e.preventDefault();
