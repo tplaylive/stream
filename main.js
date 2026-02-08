@@ -663,6 +663,7 @@ const channels = [
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/a/af/Nick_HD.png", 
                 category: "Kids",
+                package: ["150","250","500"],
                 description: "World"
             },
             { 
