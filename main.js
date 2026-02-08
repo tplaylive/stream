@@ -726,13 +726,22 @@ const channels = [
                 category: "Kids",
                 description: "Urdu"
             },
-            {
-                name: "Animax",
+            { 
+                name: "Animax", 
                 sources: [
-                    { name: "Server 1", url: "https://amg02159-kcglobal-amg02159c1-samsung-in-521.playouts.now.amagi.tv/playlist/amg02159-kcglobal-animax-samsungin/playlist.m3u8" },
+                    { 
+                        name: "Auto", 
+                        url: "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/cg_animax_sd_new/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "92032b0e41a543fb9830751273b8debd",
+                            key: "03f8b65e2af785b10d6634735dbe6c11"
+                        }
+                    }
                 ], 
                 img: "https://i.postimg.cc/8PQrRLN8/Animax.png", 
                 category: "Kids",
+                package: ["150","250","500"],
                 description: "English"
             },
             { 
