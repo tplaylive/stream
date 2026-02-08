@@ -3504,15 +3504,15 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://live-crave.video.9c9media.com/59c2df870a1e8c5b14c4f5ed7e951e1cef9474581754944303887/fe/f/crave/starz1/manifest.mpd?u=li",
+                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/zuf794yutz/out/v1/ca3534bfe4f148298b36719204d108e0/cenc.mpd",
                         type: "dash",
                         drm: {
-                            kid: "5ebcf53fd1794237aa02af52413e0c2a",
-                            key: "bd2f5d20887507da6f26401b1d95aeee"
+                            kid: "be9caaa813c5305e761c66ac63645901",
+                            key: "3d40f2990ec5362ca5be3a3c9bb8f8b4"
                         }
                     }
                 ], 
-                img: "https://img.utdstc.com/icon/9d8/186/9d8186272082392409f8604d3499e2a3f6dc6a98acbc7bcc8a2c2f6ec435cec8:200", 
+                img: "https://i.ibb.co.com/pf4SxjC/knbc.png", 
                 category: "Sports",
                 description: "World"
             },
