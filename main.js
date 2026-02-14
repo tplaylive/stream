@@ -2302,6 +2302,15 @@ const channels = [
                 description: "Tamil"
             },   
             { 
+                name: "Shalini TV", 
+                sources: [
+                    { name: "Server 1", url: "https://stream.singamcloud.in/shalinitv/shalinitv/index.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/oq4TNLaYR0tvJypHi2VH_wWn8MN2MijcMA0lJ3lSYAKn6ce8RjFPJYL_2eTygF18m8nOqcMN=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "Tamil"
+            },   
+            { 
                 name: "Thanthi One", 
                 sources: [
                     { name: "Server 1", url: "https://mumt02.tangotv.in/THANTHIONE/index.m3u8" },
@@ -3883,6 +3892,15 @@ const channels = [
                     { name: "Server 1", url: "https://d2g1vdc6ozl2o8.cloudfront.net/out/v1/0a0dc7d7911b4fddbb4dfc963fdd4b9e/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/cb75e0ad6c6117a19b17f762903a690b.png", 
+                category: "Religious",
+                description: "Hinduism"
+            },
+            { 
+                name: "Santvani Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-2.pishow.tv/live/475/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/4d143f1eb83377f459f6ec5fe3feb959.png", 
                 category: "Religious",
                 description: "Hinduism"
             },
