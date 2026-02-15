@@ -3024,7 +3024,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://tvsen1.aynaott.com/YNMn5kZz8aLm/tracks-v1a1/mono.ts.m3u8" },
                     { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/T-SportHD/index.m3u8" },
-                    { name: "Server 3", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/tsport/index.m3u8" }
+                    { name: "Server 3", url: "https://aynaott.unosottor.workers.dev/bpk-tv/tsportshd.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
