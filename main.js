@@ -2276,6 +2276,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Fakt Marathi", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10002/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/87bc6f3984109dd5ef35e2e4fb1b64cb.png", 
+                category: "Entertainment",
+                description: "Marathi"
+            },
+            { 
                 name: "Sony Marathi", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sonymarathi/index.m3u8" },
@@ -2366,6 +2375,25 @@ const channels = [
                 description: "Malayalam"
             }, 
             { 
+                name: "Asianet", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/asianet/index.m3u8" },
+                ], 
+                img: "https://www.medianews4u.com/wp-content/uploads/2025/09/Asianet-dominates-Malayalam-TV-with-64-prime-time-share-Bigg-Boss-7-leads-the-charge.png", 
+                category: "Entertainment",
+                description: "Malayalam"
+            },
+            { 
+                name: "Mazhavil Manorama", 
+                sources: [
+                    { name: "SD", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/mazhavilmanorama_nim_https/050522/mazhavilmanorama/playlist.m3u8" },
+                    { name: "HD", url: "https://cdn-7.pishow.tv/live/1129/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcbf005fdbbe3c4c5224827def2387b8.png", 
+                category: "Entertainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "Siri Kannada All Time", 
                 sources: [
                     { name: "Server 1", url: "https://mumt02.tangotv.in/SIRIKANNADAALLTIME/index.m3u8" },
@@ -2454,43 +2482,6 @@ const channels = [
                 img: "https://media.licdn.com/dms/image/v2/D4D0BAQFEQlJZEt9u8w/company-logo_200_200/company-logo_200_200/0/1697180175196?e=2147483647&v=beta&t=_qhFwyXTYEWa5QTTUDI3MwI8aefVr39xDxYKItDNLS0", 
                 category: "Entertainment",
                 description: "Pakistan"
-            },
-            { 
-                name: "Sun TV", 
-                sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/suntv/index.m3u8" },
-                ], 
-                img: "https://upload.wikimedia.org/wikipedia/en/6/6a/Sun_TV_logo.svg", 
-                category: "Entertainment",
-                description: "Tamil"
-            },
-            { 
-                name: "Fakt Marathi", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10002/master.m3u8" },
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/87bc6f3984109dd5ef35e2e4fb1b64cb.png", 
-                category: "Entertainment",
-                description: "Marathi"
-            },
-            { 
-                name: "Asianet", 
-                sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/asianet/index.m3u8" },
-                ], 
-                img: "https://www.medianews4u.com/wp-content/uploads/2025/09/Asianet-dominates-Malayalam-TV-with-64-prime-time-share-Bigg-Boss-7-leads-the-charge.png", 
-                category: "Entertainment",
-                description: "Malayalam"
-            },
-            { 
-                name: "Mazhavil Manorama", 
-                sources: [
-                    { name: "SD", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/mazhavilmanorama_nim_https/050522/mazhavilmanorama/playlist.m3u8" },
-                    { name: "HD", url: "https://cdn-7.pishow.tv/live/1129/master.m3u8" },
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcbf005fdbbe3c4c5224827def2387b8.png", 
-                category: "Entertainment",
-                description: "Malayalam"
             },
             { 
                 name: "Bollywood Masala", 
