@@ -1125,6 +1125,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Josh TV", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt03.tangotv.in/JOSHTV/index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgFqwtD-yBJSn8kYOq0IUecer6YFWMKIwkWw&s", 
+                category: "Music",
+                description: "India"
+            },
+            { 
                 name: "PTC Music", 
                 sources: [
                     { name: "Stream 1", url: "https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8" },
