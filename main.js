@@ -1014,11 +1014,31 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Hindi Hits", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt03.tangotv.in/MELODYHITS/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/QxsVs3rq/hh-fw.png", 
+                category: "Music",
+                package: ["150","250","500"],
+                description: "India"
+            },
+            { 
                 name: "Melody Hits", 
                 sources: [
                     { name: "Stream 1", url: "https://mumt03.tangotv.in/MELODYHITS/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vTzwY5LW/mh-fw.png", 
+                category: "Music",
+                package: ["150","250","500"],
+                description: "India"
+            },
+            { 
+                name: "Classic Hits", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt03.tangotv.in/CLASSICHITS/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/FHprhdVG/ch-fw.png", 
                 category: "Music",
                 package: ["150","250","500"],
                 description: "India"
@@ -1176,6 +1196,15 @@ const channels = [
                     { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/saga-music-haryanvi/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/P5RRD2bM/saga-har.jpg", 
+                category: "Music",
+                description: "Haryanvi"
+            },
+            { 
+                name: "Ragni TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/RAGNITV/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: "Music",
                 description: "Haryanvi"
             },
@@ -1801,6 +1830,15 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5aabe347098d412536655472bd144e6a.png", 
                 category: "Movie",
                 description: "Kannada"
+            },
+            { 
+                name: "MH1 Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/MHONEMOVIE/index.m3u8" },
+                ], 
+                img: "https://www.lyngsat.com/logo/tv/mm/mh-1-movies-in.png", 
+                category: "Movie",
+                description: "Punjabi/Bhojpuri"
             },
             { 
                 name: "Zee BollyMovies", 
