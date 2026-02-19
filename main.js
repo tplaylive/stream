@@ -2637,13 +2637,22 @@ const channels = [
                 description: "Telugu"
             },
             { 
+                name: "MH1", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/MHONE/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa5f35e8773cdb342d0e7c4a8152713e.png", 
+                category: "Mix-Entertainment",
+                description: "Punjabi/Hindi"
+            },
+            { 
                 name: "MH1 Dil Se", 
                 sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/MHONEDILSE/index.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/m3UJ83p8sYNsNAJ7lsRelI4UxoF7LLXNWPSrwSGEmdsyhHWo2Q9mv73tyTVW-tp-x8lbZ65f=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Mix-Entertainment",
-                description: "Bhojpuri"
+                description: "Punjabi/Bhojpuri"
             },
             { 
                 name: "RTV", 
