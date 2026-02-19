@@ -1014,6 +1014,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Melody Hits", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt03.tangotv.in/MELODYHITS/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/vTzwY5LW/mh-fw.png", 
+                category: "Music",
+                package: ["150","250","500"],
+                description: "India"
+            },
+            { 
                 name: "Shemaroo Filmigaane", 
                 sources: [
                     { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-filmigaane/playlist.m3u8" }
@@ -1129,7 +1139,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://mumt03.tangotv.in/JOSHTV/index.m3u8" },
                 ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgFqwtD-yBJSn8kYOq0IUecer6YFWMKIwkWw&s", 
+                img: "https://i.postimg.cc/7L2vCFnH/josh-fw.png", 
                 category: "Music",
                 description: "India"
             },
