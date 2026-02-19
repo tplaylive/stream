@@ -2203,6 +2203,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=62848e3ce5804aa985513a7922ff87b2&e=.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/ColorsHD/index.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vBL4YjR8/colors.jpg", 
                 category: "Entertainment",
@@ -2213,7 +2214,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/sabtvhd/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tigerhub-bd.vercel.app/SONY/Sab/tracks-v1a1/mono.ts.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://server.stream-one.fun:80/play/live.php?mac=00:1A:79:84:DA:6E&stream=944604&extension=.m3u8" }
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonysab/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
                 category: "Entertainment",
