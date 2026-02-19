@@ -1170,6 +1170,15 @@ const channels = [
                 description: "Bhojpuri"
             },
             { 
+                name: "Sangeet Marathi", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt02.tangotv.in/SANGEETMARATHI/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_krsl3aXY8SdNBmq2U_JLwb8OsIzHGOR1nbrlaq_h8MvRI=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Music",
+                description: "Marathi"
+            },
+            { 
                 name: "Sangeet Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
