@@ -1016,7 +1016,7 @@ const channels = [
             { 
                 name: "Hindi Hits", 
                 sources: [
-                    { name: "Stream 1", url: "https://mumt03.tangotv.in/MELODYHITS/index.m3u8" },
+                    { name: "Stream 1", url: "https://mumt01.tangotv.in/HINDIHITS/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/QxsVs3rq/hh-fw.png", 
                 category: "Music",
