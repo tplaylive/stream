@@ -1145,7 +1145,7 @@ const channels = [
             { 
                 name: "Tabbar Hits", 
                 sources: [
-                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tabbar-hits/index.m3u8" },
+                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tabbar-hits/index.m3u8?ads.vf=cr_1zfCL21S" },
                     { name: "Stream 2", url: "https://live1.ottlive.co.in/tabbarhitsswift/index.m3u8" },
                     { name: "Stream 3", url: "https://server.livelegitpro.in/punjabihits/index.m3u8" },                
                 ], 
@@ -2164,7 +2164,8 @@ const channels = [
             { 
                 name: "Tara TV", 
                 sources: [
-                    { name: "Server 1", url: "https://legitpro.co.in/taratv/taratv/index.m3u8" }
+                    { name: "Server 1", url: "https://legitpro.co.in/taratv/taratv/index.m3u8" },
+                    { name: "Server 2", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tara-tv/index.m3u8?ads.vf=G9BFeQBhLSm" }
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_njjooSlwTJnKdIZCGueYfSfotEcv0VLNzeeX8C_3735g=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Entertainment",
