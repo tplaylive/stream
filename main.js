@@ -327,7 +327,16 @@ const channels = [
                 img: "https://media.licdn.com/dms/image/v2/C4D0BAQERZwk1iL4m_w/company-logo_200_200/company-logo_200_200/0/1631322422535?e=2147483647&v=beta&t=Dk2eJzcMflN0nQxbryoMPfaCZRSgCmlrPk4A6XbCebI", 
                 category: "News",
                 description: "India"
-             },
+            },
+            { 
+                name: "ET Now", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://212.102.34.8:9080/ETNOW/video.m3u8" }
+                ], 
+                img: "https://www.medianews4u.com/wp-content/uploads/2025/12/ET-NOW-Unveils-a-Powerful-New-Programming-Slate_-All-About-Your-Company-DEEP-DIVE-BrandVerse-and-Year-End-Programming-2025.png", 
+                category: "News",
+                description: "India"
+            },
             { 
                 name: "ET Now Swadesh", 
                 sources: [
@@ -2702,6 +2711,7 @@ const channels = [
             { 
                 name: "Ananda TV", 
                 sources: [
+                    { name: "Playlist", url: "https://aynaott.unosottor.workers.dev/bpk-tv/anandatv.m3u8" },
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/anandatv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/tJZFsRyZ/anandatv.jpg", 
