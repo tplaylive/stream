@@ -2272,6 +2272,7 @@ const channels = [
                 name: "Shemaroo TV", 
                 sources: [
                     { name: "Server 1", url: "https://airtelapp.shemaroo.com/shemarootv/smil:shemarootvadp.smil/playlist.m3u8" },
+                    { name: "Server 2", url: "https://mumt02.tangotv.in/SHEMAROOTV/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fe2abb2de6b079ea2e97ba2902b903fb.png", 
                 category: "Entertainment",
