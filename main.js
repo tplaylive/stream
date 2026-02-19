@@ -446,6 +446,15 @@ const channels = [
                 description: "Telugu"
              },
              { 
+                name: "Nagaland TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10014/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44b5607770003fbe0016e2fcc76c1d27.png", 
+                category: "News",
+                description: "Assamese/English"
+             },
+             { 
                 name: "Sangsad TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" }
@@ -2423,7 +2432,16 @@ const channels = [
                 img: "https://i.postimg.cc/G3PrLGk2/suntv.jpg", 
                 category: "Entertainment",
                 description: "Tamil"
-            },   
+            },
+            { 
+                name: "MK Six", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1253/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/155bad426a169fdc4ba921c24c2af420.png", 
+                category: "Entertainment",
+                description: "Tamil"
+            },
             { 
                 name: "Shalini TV", 
                 sources: [
