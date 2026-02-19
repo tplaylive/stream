@@ -949,11 +949,12 @@ const channels = [
             { 
                 name: "Music India", 
                 sources: [
-                    { name: "Server 1", url: "https://cdn-2.pishow.tv/live/226/master.m3u8" }
+                    { name: "Server 1", url: "https://cdn-2.pishow.tv/live/226/master.m3u8" },
+                    { name: "Server 2", url: "https://mumt05.tangotv.in/MUSICINDIA/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/QNYG5Kz9/music-india.jpg", 
                 category: "Music",
-                package: ["500"],
+                package: ["150","250","500"],
                 description: "India"
             },
             { 
