@@ -1776,6 +1776,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Dhamaka Movies B4U", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-1.pishow.tv/live/235/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/_tSeyztRLJDo4VLxV0xnOFgldKnd7cslKmy7C2voLGri6RMWc_IgHrRf_RGXD3OpeHX4pBxD_g=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "B4U Movies", 
                 sources: [
                     { name: "Server 1", url: "https://cdnb4u.wiseplayout.com/B4U_Movies/master.m3u8" },
