@@ -784,7 +784,7 @@ const channels = [
             { 
                 name: "Cartoon Network", 
                 sources: [
-                    { name: "Hindi", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=8be5ec5d5d7c&e=.m3u8" },
+                    { name: "Hindi", url: "https://mrzplayin.fun/roarzon/stream.php?id=2656a9b9198a7631e0521a2582e998f5&e=.m3u8" },
                     { name: "Urdu", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
@@ -794,7 +794,7 @@ const channels = [
             { 
                 name: "Cartoon Network HD+", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=eb6b38bdd902&e=.m3u8" },                ], 
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=374c459701ac3b0ba6b1bbb7f82ddd65&e=.m3u8" },                ], 
                 img: "https://i.postimg.cc/d06FD9xw/cnhd.jpg", 
                 category: "Kids",
                 description: "Hindi/English"
@@ -2637,6 +2637,15 @@ const channels = [
                 description: "Telugu"
             },
             { 
+                name: "MH1 Dil Se", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/MHONEDILSE/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/m3UJ83p8sYNsNAJ7lsRelI4UxoF7LLXNWPSrwSGEmdsyhHWo2Q9mv73tyTVW-tp-x8lbZ65f=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Mix-Entertainment",
+                description: "Bhojpuri"
+            },
+            { 
                 name: "RTV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
@@ -3432,7 +3441,6 @@ const channels = [
                 ],
                 img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
                 category: "Music",
-                package: ["250","500"],
                 description: "India"
             },
             { 
@@ -3465,6 +3473,15 @@ const channels = [
                             key: "0908be844260409cbac180bf0181da40"
                         }
                     }
+                ], 
+                img: "https://i.postimg.cc/SjFpx6XX/discovery.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "Discovery HD", 
+                sources: [
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=d057550070ff8a4f258a25ebd822f7e8&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/SjFpx6XX/discovery.jpg", 
                 category: "Infotainment",
@@ -3516,6 +3533,15 @@ const channels = [
                             key: "5d3b7195086544c2807aa8c1544e7379"
                         }
                     }
+                ], 
+                img: "https://i.postimg.cc/cHKNTBPr/id.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "Investigation Discovery HD", 
+                sources: [
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=04a07a04a079e75d643dedca798b77bb&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/cHKNTBPr/id.jpg", 
                 category: "Infotainment",
