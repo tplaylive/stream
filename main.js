@@ -1823,13 +1823,13 @@ const channels = [
                 description: "Bhojpuri"
             },
             { 
-                name: "Public Movies", 
+                name: "Movieplex", 
                 sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/PUBLICMOVIES/index.m3u8" },
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/MOVIEPLEX/index.m3u8" },
                 ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5aabe347098d412536655472bd144e6a.png", 
+                img: "https://www.lyngsat.com/logo/tv/mm/movieplex-in.png", 
                 category: "Movie",
-                description: "Kannada"
+                description: "Bhojpuri"
             },
             { 
                 name: "MH1 Movies", 
@@ -1839,6 +1839,15 @@ const channels = [
                 img: "https://www.lyngsat.com/logo/tv/mm/mh-1-movies-in.png", 
                 category: "Movie",
                 description: "Punjabi/Bhojpuri"
+            },
+            { 
+                name: "Public Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/PUBLICMOVIES/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5aabe347098d412536655472bd144e6a.png", 
+                category: "Movie",
+                description: "Kannada"
             },
             { 
                 name: "Zee BollyMovies", 
