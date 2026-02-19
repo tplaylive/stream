@@ -1144,6 +1144,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Punjabi Music HD", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt02.tangotv.in/PUNJABIMUSICHD/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/3J8zY4yf/pm-fw.png", 
+                category: "Music",
+                description: "India"
+            },
+            { 
                 name: "PTC Music", 
                 sources: [
                     { name: "Stream 1", url: "https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8" },
@@ -2275,6 +2284,15 @@ const channels = [
                     { name: "Server 2", url: "https://mumt02.tangotv.in/SHEMAROOTV/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fe2abb2de6b079ea2e97ba2902b903fb.png", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
+                name: "Shemaroo Umang", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/SHEMAROOUMANG/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/e374d0166e26360d753d5b9bb631ed78.png?width=300", 
                 category: "Entertainment",
                 description: "India"
             },
