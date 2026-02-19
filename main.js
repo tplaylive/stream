@@ -1841,6 +1841,15 @@ const channels = [
                 description: "Bhojpuri"
             },
             { 
+                name: "Oscar Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-4.pishow.tv/live/233/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/3q7hOZZ13Ctb2sYwZ8DlCn23p8YypdoYv0YSl41VAfhjCSsol-rGM4eOhjhre8I8f6adk95WWGg=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "Bhojpuri"
+            },
+            { 
                 name: "Movieplex", 
                 sources: [
                     { name: "Server 1", url: "https://mumt04.tangotv.in/MOVIEPLEX/index.m3u8" },
