@@ -724,7 +724,7 @@ const channels = [
             {
                 name: "Sony Yay",
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=7eccfe540a7590406ef28bd40c13ffa0&e=.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYYAY/tracks-v1a1/mono.m3u8" },
                     { name: "Server 2", url: "https://bostaflix.vercel.app/api/roarzone.m3u8?stream=toffee/sonyyay" },
                 ], 
                 img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
@@ -749,9 +749,18 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Sonic", 
+                sources: [
+                    { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONIC/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/a/aa/Nickelodeon_Sonic_logo_2025.png/revision/latest/scale-to-width-down/300?cb=20250606121016", 
+                category: "Kids",
+                description: "India"
+            },
+            { 
                 name: "Nick", 
                 sources: [
-                    { name: "Hindi", url: "https://mrzplayin.fun/roarzon/stream.php?id=e2e42a07550863f8b67f5eb252581f6d&e=.m3u8" },
+                    { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NICK/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: "Kids",
@@ -785,6 +794,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Bal Bharat", 
+                sources: [
+                    { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/BALBHARAT/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/NBgAvACr755c2gd5EK0lKKmeqEnMivDhF2FYd399NRfeZzosNkxsgkrjMOdfh5ZBqv2OTXviH3U=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Kids",
+                description: "India"
+            },
+            { 
                 name: "Pogo", 
                 sources: [
                     { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=667189f69164&e=.m3u8" }
@@ -810,6 +828,24 @@ const channels = [
                 img: "https://i.postimg.cc/d06FD9xw/cnhd.jpg", 
                 category: "Kids",
                 description: "Hindi/English"
+            },
+            { 
+                name: "Hungama", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HUNGAMA/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hungama_TV.svg/250px-Hungama_TV.svg.png", 
+                category: "Kids",
+                description: "Hindi"
+            },
+            { 
+                name: "Super Hungama", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SUPERHUNGAMA/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/7/74/Super_Hungama_Logo.png", 
+                category: "Kids",
+                description: "Hindi"
             },
             { 
                 name: "Minimax", 
@@ -1657,6 +1693,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" },
                     { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
+                    { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARGOLDHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
                 category: "Movie",
@@ -1665,7 +1702,7 @@ const channels = [
             { 
                 name: "Sony Max", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=893cae26e4f3583b49d7eb86e0c27d19&e=.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYMAXHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
                 category: "Movie",
@@ -1907,6 +1944,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Star Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARMOVIESHD/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/STAR_Movies_logo.svg/250px-STAR_Movies_logo.svg.png", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "& Flix", 
                 sources: [
                     { name: "Server 1", url: "https://edge3-moblive.yuppcdn.net/drm/smil:nflixdrm.smil/chunklist_b996000.m3u8" },
@@ -2020,7 +2066,7 @@ const channels = [
             { 
                 name: "Sony Pix", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=f47a65615edfde6efab3227bbe657888&e=.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYPIXHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/tggwMqHB/pix.jpg", 
                 category: "Movie",
@@ -2216,6 +2262,7 @@ const channels = [
                 name: "Star Plus", 
                 sources: [
                     { name: "Server 1", url: "https://live.mncdn.shop/74524e79-5f3a-4824-8202-b9e346acb9a4/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARPLUSHD/tracks-v1a1/mono.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/htNZQ0x0/Star-Plus.jpg", 
@@ -2340,6 +2387,7 @@ const channels = [
                     { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=62848e3ce5804aa985513a7922ff87b2&e=.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/ColorsHD/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/COLORSHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vBL4YjR8/colors.jpg", 
                 category: "Entertainment",
@@ -2359,8 +2407,9 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "SD", url: "https://mrzplayin.fun/roarzon/stream.php?id=2d67b743887c973488674aacde2f6fa4&e=.m3u8" },
-                    { name: "HD", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=2d67b743887c973488674aacde2f6fa4&e=.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYENTHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
                 category: "Entertainment",
@@ -3919,6 +3968,24 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/LsC3pgKH/history.jpg", 
                 category: "Infotainment",
+                description: "World"
+            },
+            { 
+                name: "History TV 18", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HISTORYTVHD/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/6/67/History_tv18_hd.png/revision/latest?cb=20210515171227", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
+                name: "National Geographic", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NATGEOHD/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
+                category: "Infotainment",
                 description: "India"
             },
             { 
@@ -3937,6 +4004,15 @@ const channels = [
                 img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
                 category: "Infotainment",
                 description: "World"
+            },
+            { 
+                name: "National Geographic Wild", 
+                sources: [
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NATGEOWILDHD/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/9MHP15XD/nat-geo-wild.jpg", 
+                category: "Infotainment",
+                description: "India"
             },
             { 
                 name: "National Geographic Wild", 
