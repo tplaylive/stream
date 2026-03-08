@@ -1462,6 +1462,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Colors Bangla Cinema", 
+                sources: [
+                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/COLORSBANGLACINEMA/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Colors_Bangla_Cinema.png", 
+                category: "Movie",
+                description: "Bengali"
+            },
+            { 
                 name: "Cine Jomjomat", 
                 sources: [
                     { name: "Playlist", url: "https://amg13779-amg13779c1-amgplt0173.playout.now3.amagi.tv/playlist/amg13779-amg13779c1-amgplt0173/playlist.m3u8" }
