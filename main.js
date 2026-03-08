@@ -521,7 +521,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://ch24cdn.ncare.live/channel24/ch24office/index.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/news/channel-24/index.m3u8" },
-                    { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8" }
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/CHANNEL24/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/QdqkCSFX/channel-24.png", 
                 category: "News",
@@ -2095,6 +2095,7 @@ const channels = [
                 name: "Sun Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://smart.bengaldigital.live/sun-bangla-paid/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SUNBANGLAHD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Yqvwd2HC/sun-bangla.jpg", 
                 category: "Entertainment",
@@ -2139,7 +2140,8 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=86ccc06d72b98d2e40d91bebe766fe96&e=.m3u8" }
+                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=86ccc06d72b98d2e40d91bebe766fe96&e=.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYAAT/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
                 category: "Entertainment",
@@ -2904,7 +2906,8 @@ const channels = [
                 name: "Channel i", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/CHANNELI/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/4NzjyVPN/channel-i.jpg", 
                 category: "Mix-Entertainment",
@@ -2923,7 +2926,8 @@ const channels = [
             { 
                 name: "ATN Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/ATNBANGLA/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/BbLck5F4/atn-bangla.jpg", 
                 category: "Mix-Entertainment",
