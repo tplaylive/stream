@@ -2976,6 +2976,14 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Nagorik TV", 
+                sources: [
+                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NAGORIK/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Logo_of_Nagorik_TV.svg/250px-Logo_of_Nagorik_TV.svg.png", 
+                category: "Mix-Entertainment",
+                description: "Bengali"
+            },            { 
                 name: "GTV", 
                 sources: [
                     { name: "Server 1", url: "https://tvsen6.aynaott.com/gtvhdforgame/index.m3u8" },
@@ -3577,7 +3585,7 @@ const channels = [
                     }
                 ],
                 img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
-                category: "Music",
+                category: "Infotainment",
                 description: "India"
             },
             { 
