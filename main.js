@@ -568,7 +568,8 @@ const channels = [
             { 
                 name: "DBC News",
                 sources: [
-                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/dbcnews.stream/mono.m3u8" }
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/dbcnews.stream/mono.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/dbc/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/cJGD5HdQ/dbc.jpg", 
                 category: "News",
@@ -2780,7 +2781,8 @@ const channels = [
             { 
                 name: "RTV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/rtv/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Qxh9wGTV/rtv.jpg", 
                 category: "Mix-Entertainment",
@@ -3236,7 +3238,7 @@ const channels = [
                 name: "Star Sports 1", 
                 sources: [
                     { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=18283d4f5f13c0cac5cab4433a0ed8f0&e=.m3u8" },
-                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
+                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
                 category: "Sports",
@@ -3247,7 +3249,7 @@ const channels = [
                 name: "Star Sports 2", 
                 sources: [
                     { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=1e8e3ca973f7808849df688219554a90&e=.m3u8" },
-                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
+                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
