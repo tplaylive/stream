@@ -486,7 +486,8 @@ const channels = [
                 name: "Somoy TV", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" }
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/somoy/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/HsVVr6FH/somoy-tv.png", 
                 category: "News",
@@ -496,7 +497,8 @@ const channels = [
                 name: "Jamuna Television", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" }
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/jamuna/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/dtR7Gh4t/jamuna-tv.png", 
                 category: "News",
@@ -2911,7 +2913,8 @@ const channels = [
             { 
                 name: "Banglavision", 
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8" }
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/banglavision/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/PJxGv57P/banglavision.jpg", 
                 category: "Mix-Entertainment",
