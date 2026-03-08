@@ -1453,6 +1453,15 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Jalsha Movies", 
+                sources: [
+                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/JALSHAMOVIESHD/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://www.indiantvinfo.com/media/2022/12/Jalsha-Movies-Logo.png", 
+                category: "Movie",
+                description: "Bengali"
+            },
+            { 
                 name: "Cine Jomjomat", 
                 sources: [
                     { name: "Playlist", url: "https://amg13779-amg13779c1-amgplt0173.playout.now3.amagi.tv/playlist/amg13779-amg13779c1-amgplt0173/playlist.m3u8" }
