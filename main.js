@@ -43,9 +43,9 @@ const channels = [
                 sources: [
                     { name: "UK", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951197/hls/playlist.m3u8?ads.xumo_channelId=99951197" }
                 ], 
-                img: "https://www.editorandpublisher.com/uploads/original/20240723-181955-dae-Reuters%20cube.png.jpg", 
+                img: "https://i.postimg.cc/L5VfyYXq/reuters.jpg", 
                 category: "News",
-                package: ["150","250","500"],
+                package: ["500"],
                 description: "World News"
             },
             { 
@@ -57,9 +57,9 @@ const channels = [
                     { name: "UK Stream 4", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951223/hls/master.m3u8?ads.xumo_channelId=99951223" },
 
                 ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSPUYtJoW_VT9YdaHMk9lWuztJJCj4bCtCjg&s", 
+                img: "https://i.postimg.cc/02WZxFkm/sky-news.jpg", 
                 category: "News",
-                package: ["150","250","500"],
+                package: ["250","500"],
                 description: "World News"
             },
             { 
@@ -68,7 +68,7 @@ const channels = [
                     { name: "Stream 1", url: "https://amg00663-skynews-skynewsau-samsungau-r7n40.amagi.tv/playlist.m3u8" },
 
                 ], 
-                img: "https://images-r2.thebrag.com/mw/uploads/2023/03/Sky-News-3.jpg", 
+                img: "https://i.postimg.cc/x1NGQdp6/sky-news-now.jpg", 
                 category: "News",
                 package: ["500"],
                 description: "Australia"
@@ -81,7 +81,7 @@ const channels = [
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZCiWELnS_hJTOtsTrWDZKkhkmthiH2BfLA&s", 
                 category: "News",
-                package: ["150","250","500"],
+                package: ["500"],
                 description: "Global financial and business news"
             },
             { 
@@ -97,9 +97,9 @@ const channels = [
                         }
                     }
                 ],
-                img: "https://www.tvbeurope.com/wp-content/uploads/2019/01/fox-news-logo.jpg", 
+                img: "https://i.postimg.cc/15BRz02h/fox-news.jpg", 
                 category: "News",
-                package: ["150","250","500"],
+                package: ["500"],
                 description: "U.S. politics and culture"
             },
             { 
@@ -112,9 +112,9 @@ const channels = [
                   { name: "Русский", url: "https://russian-livews.cgtn.com/hls/LSvexABhNipibK5KRuUkvHZ7220802LSTeze9o8tdFXMHsb1VosgoT220802cd/playlist.m3u8" },
 
                 ], 
-                img: "https://web-summit-avenger.imgix.net/production/logos/original/c7b51ad526fe3d1f4f299f1d802383268c903106.png", 
+                img: "https://i.postimg.cc/nLDtqqRw/cgtn.jpg", 
                 category: "News",
-                package: ["150","250","500"],
+                package: ["500"],
                 description: "China"
             },
              { 
