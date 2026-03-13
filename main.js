@@ -527,7 +527,16 @@ const channels = [
                 category: "News",
                 description: "Assamese/English"
              },
-            { 
+             { 
+                name: "MBCTV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/MBCTV/index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxtjnyTDqsFChVwz0ZS_ww_8GUFnjfnbXmxw&s", 
+                category: "News",
+                description: "Odia"
+             },
+             { 
                 name: "Ekamra Bharat", 
                 sources: [
                     { name: "Server 1", url: "https://live.ekamraott.com/bharat/bharat/index.m3u8" },
@@ -535,7 +544,7 @@ const channels = [
                 img: "https://i.postimg.cc/02p7JKxy/ekamra-bharat.jpg", 
                 category: "News",
                 description: "Odia"
-            },
+             },
              { 
                 name: "Sangsad TV", 
                 sources: [
@@ -3255,6 +3264,15 @@ const channels = [
                     { name: "Server 1", url: "https://live.ekamraott.com/jatra/jatra/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/FK6Wzkbn/ekamra-jatra.jpg", 
+                category: "Mix-Entertainment",
+                description: "Odia"
+            },
+            { 
+                name: "STV", 
+                sources: [
+                    { name: "Server 1", url: "https://amigofx.com:1936/stv/stv/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQT9jZUmc4W3Ir5GzczUlT0nuGJemYEecUhA&s", 
                 category: "Mix-Entertainment",
                 description: "Odia"
             },
