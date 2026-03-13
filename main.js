@@ -29,6 +29,17 @@ const channels = [
                 description: "World News"
             },
             { 
+                name: "CNN Headlines", 
+                sources: [
+                    { name: "Server 1", url: "https://mediapackage-ptcn-source.fullscreen.nz/index.m3u8" },
+
+                ], 
+                img: "https://media.cnn.com/api/v1/images/stellar/prod/cnn-headlines-international-logo.png?c=16x9&q=w_800,c_fill", 
+                category: "English News",
+                package: ["500"],
+                description: "Watch CNN Headlines"
+            },
+            { 
                 name: "Al Jazeera", 
                 sources: [
                     { name: "Qatar", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
@@ -37,6 +48,16 @@ const channels = [
                 category: "English News",
                 package: ["150","250","500"],
                 description: "World News"
+            },
+            { 
+                name: "Press TV", 
+                sources: [
+                    { name: "Qatar", url: "https://live.presstv.ir/hls/presstv.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/mDpyYpdB/presstv.jpg", 
+                category: "English News",
+                package: ["250","500"],
+                description: "Iranian news and documentary"
             },
             { 
                 name: "Reuters", 
@@ -81,8 +102,19 @@ const channels = [
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZCiWELnS_hJTOtsTrWDZKkhkmthiH2BfLA&s", 
                 category: "English News",
-                package: ["500"],
+                package: ["250","500"],
                 description: "Global financial and business news"
+            },
+            { 
+                name: "Bloomberg Originals", 
+                sources: [
+                    { name: "USA", url: "https://f56779ab.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1pbl9CbG9vbWJlcmdPcmlnaW5hbHNfSExT/playlist.m3u8" },
+
+                ], 
+                img: "https://i.postimg.cc/vBbrwFKG/bloomberg-org.jpg", 
+                category: "English News",
+                package: ["500"],
+                description: "featuring stories from Businessweek and Bloomberg News"
             },
             { 
                 name: "Global News", 
@@ -127,7 +159,27 @@ const channels = [
                 category: "English News",
                 package: ["500"],
                 description: "China"
-            },
+             },
+             { 
+                name: "NHK World", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/NHK_World/HLSv3-FTA/NHK_World.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/dtxLjPmL/nhk-world.jpg", 
+                category: "English News",
+                package: ["500"],
+                description: "Japan and Asia"
+             },
+             { 
+                name: "TOI Global", 
+                sources: [
+                    { name: "Server 1", url: "https://live.sli.ke/live/npnhm84gz9/fhd/stream.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/h4QwtVyC/toi.jpg", 
+                category: "English News",
+                package: ["500"],
+                description: "Times of India"
+             },
              { 
                 name: "DD News", 
                 sources: [
