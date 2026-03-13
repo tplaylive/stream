@@ -799,6 +799,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYYAY/tracks-v1a1/mono.m3u8" },
                     { name: "Server 2", url: "https://bostaflix.vercel.app/api/roarzone.m3u8?stream=toffee/sonyyay" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyyay/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
                 category: "Kids",
@@ -1767,6 +1768,7 @@ const channels = [
                     { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" },
                     { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
                     { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARGOLDHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Stream 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/stargold/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
                 category: "Movie",
@@ -1776,6 +1778,7 @@ const channels = [
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYMAXHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
                 category: "Movie",
@@ -3353,7 +3356,7 @@ const channels = [
             { 
                 name: "Sony Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=7482ed5e9c4da0cc7de6aa27dc16c4c4&e=.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS1HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mg0RC192/ten1.jpg", 
                 category: "Sports",
@@ -3363,7 +3366,7 @@ const channels = [
             { 
                 name: "Sony Sports 2", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=6f8378e796d7f7cff65333fd3b1d0974&e=.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS2HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8SC16G7/ten2.jpg", 
                 category: "Sports",
@@ -3372,7 +3375,8 @@ const channels = [
             { 
                 name: "Sony Sports 3", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS3/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/152bjh3Y/ten3.jpg", 
                 category: "Sports",
@@ -3382,7 +3386,8 @@ const channels = [
             { 
                 name: "Sony Sports 5", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS5HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/qqgZ1jVH/ten5.jpg", 
                 category: "Sports",
@@ -3392,7 +3397,7 @@ const channels = [
             { 
                 name: "Star Sports 1", 
                 sources: [
-                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=18283d4f5f13c0cac5cab4433a0ed8f0&e=.m3u8" },
+                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport1/index.m3u8" },
                     { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
@@ -3403,7 +3408,7 @@ const channels = [
             { 
                 name: "Star Sports 2", 
                 sources: [
-                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=1e8e3ca973f7808849df688219554a90&e=.m3u8" },
+                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport2/index.m3u8" },
                     { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
@@ -3424,7 +3429,7 @@ const channels = [
             { 
                 name: "Star Sports Select 2", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=cf33278a403f3b61fc708fb1cc2676df&e=.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARSPORTSSELECT2HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/4/46/Sss-hd2-bronze.png/revision/latest?cb=20170728104956", 
                 category: "Sports",
