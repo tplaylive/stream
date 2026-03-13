@@ -43,7 +43,7 @@ const channels = [
                 sources: [
                     { name: "UK", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951197/hls/playlist.m3u8?ads.xumo_channelId=99951197" }
                 ], 
-                img: "https://i.postimg.cc/L5VfyYXq/reuters.jpg", 
+                img: "https://i.postimg.cc/cHCwD43k/reuters-u.jpg", 
                 category: "News",
                 package: ["500"],
                 description: "World News"
