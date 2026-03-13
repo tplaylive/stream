@@ -1406,6 +1406,15 @@ const channels = [
                 description: "Assamese"
             },
             { 
+                name: "Ekamra Musiq", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/musiq/musiq/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/vmqxMQvJ/ekamra-music.jpg", 
+                category: "Music",
+                description: "Odia"
+            },
+            { 
                 name: "Kappa TV", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1123/master.m3u8" },
