@@ -60,6 +60,16 @@ const channels = [
                 description: "Iranian news and documentary"
             },
             { 
+                name: "RT", 
+                sources: [
+                    { name: "Qatar", url: "https://wisewatchoott.wiseplayout.com/RT/master.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Russia-today-logo.svg/1280px-Russia-today-logo.svg.png", 
+                category: "English News",
+                package: ["250","500"],
+                description: "Russian 24/7 English-language news"
+            },
+            { 
                 name: "Reuters", 
                 sources: [
                     { name: "UK", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951197/hls/playlist.m3u8?ads.xumo_channelId=99951197" }
