@@ -34,7 +34,7 @@ const channels = [
                     { name: "Server 1", url: "https://mediapackage-ptcn-source.fullscreen.nz/index.m3u8" },
 
                 ], 
-                img: "https://media.cnn.com/api/v1/images/stellar/prod/cnn-headlines-international-logo.png?c=16x9&q=w_800,c_fill", 
+                img: "https://i.postimg.cc/x1k88xm4/cnn-headlines.jpg", 
                 category: "English News",
                 package: ["500"],
                 description: "Watch CNN Headlines"
