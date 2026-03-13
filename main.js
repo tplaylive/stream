@@ -527,6 +527,15 @@ const channels = [
                 category: "News",
                 description: "Assamese/English"
              },
+            { 
+                name: "Ekamra Bharat", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/bharat/bharat/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/02p7JKxy/ekamra-bharat.jpg", 
+                category: "News",
+                description: "Odia"
+            },
              { 
                 name: "Sangsad TV", 
                 sources: [
@@ -2011,6 +2020,24 @@ const channels = [
                 description: "Punjabi/Bhojpuri"
             },
             { 
+                name: "Ekamra Cinema", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/cynema/cynema/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/LsghdGxj/ekamra-cinema.jpg", 
+                category: "Movie",
+                description: "Odia"
+            },
+            { 
+                name: "Ekamra Baiscope", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/baiscope/baiscope/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/bvyDnGv4/baiscope.jpg", 
+                category: "Movie",
+                description: "Odia"
+            },
+            { 
                 name: "Public Movies", 
                 sources: [
                     { name: "Server 1", url: "https://mumt04.tangotv.in/PUBLICMOVIES/index.m3u8" },
@@ -3187,6 +3214,51 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Dainik Asha", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/da/da/video.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/cCVQWsdJ/dainikasha.jpg", 
+                category: "Mix-Entertainment",
+                description: "Odia"
+            },
+            { 
+                name: "1 Paschima", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/onepaschima/onepaschima/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/h4ZjjSNG/onepaschima.jpg", 
+                category: "Mix-Entertainment",
+                description: "Odia"
+            },
+            { 
+                name: "Ekamra Nilachakra", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/nilachakra/nilachakra/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/JnjqhDdG/ekamra-nilachakra.jpg", 
+                category: "Mix-Entertainment",
+                description: "Odia"
+            },
+            { 
+                name: "Ekamra Manoranjan", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/manoranjan/manoranjan/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/26F0w9Rt/ekamra-manoranjan.jpg", 
+                category: "Mix-Entertainment",
+                description: "Odia"
+            },
+            { 
+                name: "Ekamra Jatra", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ekamraott.com/jatra/jatra/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/FK6Wzkbn/ekamra-jatra.jpg", 
+                category: "Mix-Entertainment",
+                description: "Odia"
+            },
+            { 
                 name: "Kuwait TV", 
                 sources: [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/kuwait_tv1/hls_roku/index.m3u8" },
@@ -4288,6 +4360,15 @@ const channels = [
                 img: "https://i.postimg.cc/jjmyWm0m/om-bangla-2.jpg", 
                 category: "Religious",
                 description: "Hinduism"
+            },
+            { 
+                name: "Ekamra Paramatma", 
+                sources: [
+                    { name: "Originals", url: "https://live.ekamraott.com/paramatma/paramatma/index.m3u8" }
+                ],
+                img: "https://i.postimg.cc/zvM91RLJ/ekamra-paramatma.jpg", 
+                category: "Religious",
+                description: "Odia "
             },
             { 
                 name: "24/7 Bangla Kirtan", 
