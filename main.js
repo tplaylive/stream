@@ -624,7 +624,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/news/ekattor-tv/index.m3u8" },
-                    { name: "Server 3", url: "https://bongoflixbd.top/stream.php?id=1a7a1365-ae2c-470f-9fb2-25c6e83bb108&e.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/ekattor/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/jjtWwrG9/ekattor-tv.png", 
                 category: "News",
@@ -2196,7 +2196,7 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://tvsen1.aynaott.com/gUX8BJmNc2yF/index.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARJALSHAHD/tracks-v1a1/mono.m3u8" }
                 ], 
@@ -2956,7 +2956,7 @@ const channels = [
             { 
                 name: "Deepto TV", 
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1711/output/index.m3u8" },
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/deeptotv/index.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/bangladesh/deeptotv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/m2tN6sc9/deepto-tv.jpg", 
@@ -3336,7 +3336,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://tvsen1.aynaott.com/YNMn5kZz8aLm/tracks-v1a1/mono.ts.m3u8" },
                     { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/T-SportHD/index.m3u8" },
-                    { name: "Server 3", url: "https://aynaott.unosottor.workers.dev/bpk-tv/tsportshd.m3u8" }
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/tsport/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
