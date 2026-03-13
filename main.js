@@ -6,7 +6,7 @@ const channels = [
                     { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["150","250","500"],
                 description: "World News"
              },
@@ -24,7 +24,7 @@ const channels = [
                     }
                 ],
                 img: "https://play-lh.googleusercontent.com/375NW5yL8owK_hW9igW9sh-YJbda9ZcygpDXuVvK_R7l-yJp-fuhb4qvUw_FE4XW4ms", 
-                category: "News",
+                category: "English News",
                 package: ["150","250","500"],
                 description: "World News"
             },
@@ -34,7 +34,7 @@ const channels = [
                     { name: "Qatar", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["150","250","500"],
                 description: "World News"
             },
@@ -44,7 +44,7 @@ const channels = [
                     { name: "UK", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951197/hls/playlist.m3u8?ads.xumo_channelId=99951197" }
                 ], 
                 img: "https://i.postimg.cc/cHCwD43k/reuters-u.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["500"],
                 description: "World News"
             },
@@ -58,7 +58,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/02WZxFkm/sky-news.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["250","500"],
                 description: "World News"
             },
@@ -69,7 +69,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/x1NGQdp6/sky-news-now.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["500"],
                 description: "Australia"
             },
@@ -80,9 +80,20 @@ const channels = [
 
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZCiWELnS_hJTOtsTrWDZKkhkmthiH2BfLA&s", 
-                category: "News",
+                category: "English News",
                 package: ["500"],
                 description: "Global financial and business news"
+            },
+            { 
+                name: "Global News", 
+                sources: [
+                    { name: "Canada", url: "https://live.corusdigitaldev.com/groupd/live/49a91e7f-1023-430f-8d66-561055f3d0f7/live.isml/.m3u8" },
+
+                ], 
+                img: "https://i.postimg.cc/MGTgYV95/global-news.jpg", 
+                category: "English News",
+                package: ["500"],
+                description: "Business, Health, Politics and World News"
             },
             { 
                 name: "Fox News HD",
@@ -98,7 +109,7 @@ const channels = [
                     }
                 ],
                 img: "https://i.postimg.cc/15BRz02h/fox-news.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["500"],
                 description: "U.S. politics and culture"
             },
@@ -113,7 +124,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/nLDtqqRw/cgtn.jpg", 
-                category: "News",
+                category: "English News",
                 package: ["500"],
                 description: "China"
             },
