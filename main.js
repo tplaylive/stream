@@ -1158,7 +1158,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://mumt01.tangotv.in/HINDIHITS/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/QxsVs3rq/hh-fw.png", 
+                img: "https://i.postimg.cc/LsxnsjGm/hindi-hits.jpg", 
                 category: "Music",
                 package: ["150","250","500"],
                 description: "India"
@@ -1166,9 +1166,9 @@ const channels = [
             { 
                 name: "Evergreen Hits", 
                 sources: [
-                    { name: "Stream 1", url: "https://mumt02.tangotv.in/EVERGREENHITS/index.m3u8" },
+                    { name: "Stream 1", url: "https://mumt02.tangotv.in/EVERGREENHITS2/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/WbYr9L5j/evergreen-hits.jpg", 
+                img: "https://i.postimg.cc/vTg1kDqw/evergreen-hits2.jpg", 
                 category: "Music",
                 package: ["150","250","500"],
                 description: "India"
@@ -1178,7 +1178,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://mumt03.tangotv.in/MELODYHITS/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/vTzwY5LW/mh-fw.png", 
+                img: "https://i.postimg.cc/KYpnR1HC/melody-hits.jpg", 
                 category: "Music",
                 package: ["150","250","500"],
                 description: "India"
@@ -1188,7 +1188,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://mumt03.tangotv.in/CLASSICHITS/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/FHprhdVG/ch-fw.png", 
+                img: "https://i.postimg.cc/Kvbgc7YM/classic-hits.jpg", 
                 category: "Music",
                 package: ["150","250","500"],
                 description: "India"
