@@ -2199,7 +2199,8 @@ const channels = [
             { 
                 name: "Sony Pix", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYPIXHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-pix-hd/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYPIXHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/tggwMqHB/pix.jpg", 
                 category: "Movie",
@@ -3160,7 +3161,8 @@ const channels = [
             { 
                 name: "Global TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/globaltv.index.m3u8" }
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/global-tv/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/globaltv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/SKncg0gg/globaltv.jpg", 
                 category: "Mix-Entertainment",
