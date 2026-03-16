@@ -1262,13 +1262,13 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Punjabi Hits", 
+                name: "Steelbird Music", 
                 sources: [
-                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/punjabi-hits/index.m3u8?ads.vf=nlcgIN1EKyi" },
+                    { name: "Stream 1", url: "https://cdn2.in/SteelbirdMusicTVhls/live.m3u8" },
                     { name: "Stream 2", url: "https://cdn-4.pishow.tv/live/1504/master.m3u8" },
                     { name: "Stream 3", url: "https://server.livelegitpro.in/punjabihits/index.m3u8" },                
                 ], 
-                img: "https://i.postimg.cc/h472GJVw/punjabi-hits.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/93926d5dd30455efa55a1c0a3bb797e9.png", 
                 category: "Music",
                 package: ["250","500"],
                 description: "India"
