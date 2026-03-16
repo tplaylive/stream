@@ -3077,7 +3077,8 @@ const channels = [
             { 
                 name: "Asian TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/asiantv.index.m3u8" }
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/asian-tv/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/asiantv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/021TdcXS/asian.jpg", 
                 category: "Mix-Entertainment",
@@ -3104,7 +3105,7 @@ const channels = [
             { 
                 name: "Channel i", 
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8" },
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/channel-i/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/CHANNELI/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
                 ], 
