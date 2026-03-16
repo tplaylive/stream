@@ -1814,8 +1814,9 @@ const channels = [
             { 
                 name: "Sony Max", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYMAXHD/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-hd/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYMAXHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
                 category: "Movie",
@@ -1824,7 +1825,7 @@ const channels = [
             { 
                 name: "Sony Max 2", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=a99e6ccb22708a383e350b62edb941c4&e=.m3u8" },
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/DyM2gMGR/max2.jpg", 
                 category: "Movie",
@@ -2528,9 +2529,10 @@ const channels = [
             { 
                 name: "Sony Sab", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/sabtvhd/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tigerhub-bd.vercel.app/SONY/Sab/tracks-v1a1/mono.ts.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonysab/index.m3u8" }
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/sabtvhd/index.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tigerhub-bd.vercel.app/SONY/Sab/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonysab/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
                 category: "Entertainment",
@@ -3049,7 +3051,8 @@ const channels = [
             { 
                 name: "Bangla TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/banglatv.index.m3u8" }
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/bangla-tv/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/banglatv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L4bfq0Ys/bangla-tv.jpg", 
                 category: "Mix-Entertainment",
@@ -3058,7 +3061,7 @@ const channels = [
             { 
                 name: "Ananda TV", 
                 sources: [
-                    { name: "Playlist", url: "https://aynaott.unosottor.workers.dev/bpk-tv/anandatv.m3u8" },
+                    { name: "Playlist", url: "https://edge2.roarzone.info:8447/roarzone/edge3/ananda-tv/index.m3u8" },
                     { name: "Playlist", url: "https://tplay.live/out/bangladesh/anandatv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/tJZFsRyZ/anandatv.jpg", 
@@ -3068,7 +3071,8 @@ const channels = [
             { 
                 name: "Bijoy TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/bijoytv.index.m3u8" }
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/bijoy-tv/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/bijoytv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/sggs7Tv2/bijoytv.jpg", 
                 category: "Mix-Entertainment",
@@ -3136,7 +3140,8 @@ const channels = [
             { 
                 name: "Channel S", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/channels.index.m3u8" }
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/channel-s/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/channels.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/nL8s287H/channel-s.jpg", 
                 category: "Mix-Entertainment",
