@@ -2338,7 +2338,7 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=86ccc06d72b98d2e40d91bebe766fe96&e=.m3u8" },
+                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-aath/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYAAT/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
