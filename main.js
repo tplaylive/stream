@@ -1164,6 +1164,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Evergreen Hits", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt02.tangotv.in/EVERGREENHITS/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/WbYr9L5j/evergreen-hits.jpg", 
+                category: "Music",
+                package: ["150","250","500"],
+                description: "India"
+            },
+            { 
                 name: "Melody Hits", 
                 sources: [
                     { name: "Stream 1", url: "https://mumt03.tangotv.in/MELODYHITS/index.m3u8" },
