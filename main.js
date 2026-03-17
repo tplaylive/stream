@@ -2517,6 +2517,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Big Magic", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt05.tangotv.in/BIGMAGIC/index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTshxArWWUTWYmwlcIZGhOXbTw5GraQkf4xjA&s", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Colors", 
                 sources: [
                     { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=62848e3ce5804aa985513a7922ff87b2&e=.m3u8" },
