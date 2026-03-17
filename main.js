@@ -2854,7 +2854,7 @@ const channels = [
                 sources: [
                     { 
                         name: "HD", 
-                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeTamil)/master.mpd",
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeThi)/master.mpd",
                         type: "dash",
                         drm: {
                             kid: "bd7282e920e5437a9b1f01bc6f81795c",
@@ -2862,7 +2862,7 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeThi)/master.mpd", 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKupv9Pff-n6hztryy-Es9h8SCXlxvtmFp4w&s", 
                 category: "Entertainment",
                 description: "India"
             },
