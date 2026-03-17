@@ -1796,6 +1796,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zee Thirai", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeThi)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "bd7282e920e5437a9b1f01bc6f81795c",
+                            key: "99763370f0763b0f7119aab091cc70c8"
+                        }
+                    }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKupv9Pff-n6hztryy-Es9h8SCXlxvtmFp4w&s", 
+                category: "Movie",
+                description: "Tamil Kollywood movies"
+            },
+            { 
                 name: "Zee Bollywood", 
                 sources: [
                     { 
@@ -2846,23 +2863,6 @@ const channels = [
                     }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXAQ8QqR_jJq1z3OK7yqDPRTixOPnGVbF-Zg&s", 
-                category: "Entertainment",
-                description: "India"
-            },
-            { 
-                name: "Zee Thi", 
-                sources: [
-                    { 
-                        name: "HD", 
-                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeThi)/master.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "bd7282e920e5437a9b1f01bc6f81795c",
-                            key: "99763370f0763b0f7119aab091cc70c8"
-                        }
-                    }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKupv9Pff-n6hztryy-Es9h8SCXlxvtmFp4w&s", 
                 category: "Entertainment",
                 description: "India"
             },
