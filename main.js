@@ -2850,6 +2850,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zee Thi", 
+                sources: [
+                    { 
+                        name: "HD", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeTamil)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "bd7282e920e5437a9b1f01bc6f81795c",
+                            key: "99763370f0763b0f7119aab091cc70c8"
+                        }
+                    }
+                ], 
+                img: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeThi)/master.mpd", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Sun TV", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/suntv/index.m3u8" },
