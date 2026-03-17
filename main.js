@@ -985,6 +985,15 @@ const channels = [
                 description: "English"
             },
             { 
+                name: "Toon Googles",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=37" },
+                ], 
+                img: "https://play-lh.googleusercontent.com/AU1wSj49k4rUyt2jv_1Ui3uYwAJIM90tAChT9JMNsqcB2FsVA9bF4fuT27uqn3uDCYk=w240-h480-rw", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
                 name: "Kids Flix",
                 sources: [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=50" },
