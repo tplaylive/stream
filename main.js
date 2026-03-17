@@ -824,6 +824,24 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Sony Yay Tamil", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(SonyYay)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "582e9e382cb0495886afbabdbdb6fbf7",
+                            key: "c0f550839b235443724cd007392b6e40"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7a5c1a5aa0cd931646a7d3d078a740bc.png", 
+                category: "Kids",
+                package: ["150","250","500"],
+                description: "Tamil"
+            },
+            { 
                 name: "Discovery Kids", 
                 sources: [
                     { 
@@ -890,24 +908,6 @@ const channels = [
                     }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Nickelodeon_2023_logo.png", 
-                category: "Kids",
-                package: ["150","250","500"],
-                description: "World"
-            },
-            { 
-                name: "Sony Yay", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(SonyYay)/master.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "582e9e382cb0495886afbabdbdb6fbf7",
-                            key: "c0f550839b235443724cd007392b6e40"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
                 category: "Kids",
                 package: ["150","250","500"],
                 description: "World"
