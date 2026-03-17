@@ -967,38 +967,84 @@ const channels = [
                 description: "English"
             },
             { 
+                name: "Power Kids",
+                sources: [
+                    { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/gr9v9Tt9/pk.jpg", 
+                category: "Kids",
+                description: "Hindi"
+            },
+            { 
                 name: "Zoo Moo",
                 sources: [
                     { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Zoomoo/HLSv3-FTA/Zoomoo.m3u8" },
+                    { name: "Server 2", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=40" },
                 ], 
                 img: "https://i.postimg.cc/3J0Thmrb/zoo-moo.jpg", 
                 category: "Kids",
                 description: "English"
             },
             { 
-                name: "BBC Cbeebies",
-                sources: [
-                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/Cbeebies/HLSv3-FTA/Cbeebies.m3u8" },
-                ], 
-                img: "https://yt3.googleusercontent.com/uyeShLXK1reEq1zTYVtZkL9IoQb18T-G96q8HqCpb-uAxY4gxaR6KuuUo1KudRQfuDHMYSYcEg=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Kids",
-                description: "English"
-            },
-            { 
                 name: "Toon Googles",
                 sources: [
-                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=36" },
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=33" },
                 ], 
                 img: "https://play-lh.googleusercontent.com/AU1wSj49k4rUyt2jv_1Ui3uYwAJIM90tAChT9JMNsqcB2FsVA9bF4fuT27uqn3uDCYk=w240-h480-rw", 
                 category: "Kids",
                 description: "English"
             },
             { 
-                name: "TG Toon Googles",
+                name: "TG Junior",
                 sources: [
-                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=37" },
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=31" },
                 ], 
-                img: "https://play-lh.googleusercontent.com/AU1wSj49k4rUyt2jv_1Ui3uYwAJIM90tAChT9JMNsqcB2FsVA9bF4fuT27uqn3uDCYk=w240-h480-rw", 
+                img: "https://img3.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/480x270/tgjr_1.jpg", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
+                name: "Sparkle Power",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=35" },
+                ], 
+                img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/640x360/sparkle-power-1920-x-1080.jpg", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
+                name: "Afro Kiddos",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=13775" },
+                ], 
+                img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/640x360/B_-dvleanz-xCmycNaftzR56Q_q1iIjayGtFcKA_ILc.jpg", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
+                name: "Eddie's Wonderland",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=294" },
+                ], 
+                img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/480x270/eddies-wonderland-2021_d.jpg", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
+                name: "Gross Out TV",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=41" },
+                ], 
+                img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/640x360/gross-out-1920-x-1080-.jpg", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
+                name: "Camp Spoopy",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=264" },
+                ], 
+                img: "https://img3.static-ottera.com/prod/tg/linear_channel/logo/640x360/camp-spoopy-2021_1920-x-1080_option-5.jpg", 
                 category: "Kids",
                 description: "English"
             },
@@ -1012,13 +1058,13 @@ const channels = [
                 description: "English"
             },
             { 
-                name: "Power Kids",
+                name: "BBC Cbeebies",
                 sources: [
-                    { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
+                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/Cbeebies/HLSv3-FTA/Cbeebies.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/gr9v9Tt9/pk.jpg", 
+                img: "https://yt3.googleusercontent.com/uyeShLXK1reEq1zTYVtZkL9IoQb18T-G96q8HqCpb-uAxY4gxaR6KuuUo1KudRQfuDHMYSYcEg=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Kids",
-                description: "Hindi"
+                description: "English"
             },
             { 
                 name: "24/7 Jungle Book", 
@@ -2295,6 +2341,15 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
                 category: "Movie",
                 description: "India"
+            },
+            { 
+                name: "TG Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=286" },
+                ], 
+                img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/tg-movies-1920-x-1080_1.jpg", 
+                category: "Movie",
+                description: "Kids Movies"
             },
             { 
                 name: "Movie Box", 
@@ -4360,6 +4415,15 @@ const channels = [
                     { name: "Server 1", url: "https://amg13231-actve-amg13231c5-sportstribal-emea-1269.playouts.now.amagi.tv/playlist/amg13231-actvefast-powder-sportstribalemea/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/FzhNb9Jj/popular.jpg", 
+                category: "Infotainment",
+                description: "United States"
+            },
+            { 
+                name: "Guinness World Records", 
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=567" }
+                ], 
+                img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/grw_updated.jpg", 
                 category: "Infotainment",
                 description: "United States"
             },
