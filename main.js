@@ -1124,6 +1124,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://mumt04.tangotv.in/B4UMUSIC/index.m3u8" },
                     { name: "Stream 2", url: "https://cdn-2.pishow.tv/live/415/master.m3u8" },
+                    { name: "Stream 3", url: "https://mumbai-edge.smartplaytv.in/B4uMusic/index.m3u8" },
                     { name: "Stream 3", url: "https://edge2.roarzone.info:8447/roarzone/edge3/b4u-music/index.m3u8" },
                     { name: "Stream 4", url: "https://cdnb4u.wiseplayout.com/B4U_Music/master.m3u8" }
                 ], 
@@ -1285,13 +1286,13 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Tabbar Hits", 
+                name: "Punjabi Hits", 
                 sources: [
-                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/tabbar-hits/index.m3u8?ads.vf=cr_1zfCL21S" },
+                    { name: "Stream 1", url: "https://legitpro.co.in/punjabihits/punjabihits/index.m3u8" },
                     { name: "Stream 2", url: "https://live1.ottlive.co.in/tabbarhitsswift/index.m3u8" },
                     { name: "Stream 3", url: "https://server.livelegitpro.in/punjabihits/index.m3u8" },                
                 ], 
-                img: "https://i.postimg.cc/DfWzDhL6/tabbar-hits.jpg", 
+                img: "https://play-lh.googleusercontent.com/Z5eBTFh01UZmECMBw2buJ3i2mWeRKYu3jgYrmN-byioWwpzOrCImYR6LRAtd53QrueM", 
                 category: "Music",
                 package: ["250","500"],
                 description: "India"
@@ -1442,6 +1443,16 @@ const channels = [
                 img: "https://i.postimg.cc/vmqxMQvJ/ekamra-music.jpg", 
                 category: "Music",
                 description: "Odia"
+            },
+            { 
+                name: "Public Music", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/441/master.m3u8" },
+                    { name: "Server 2", url: "https://mumbai-edge.smartplaytv.in/publicmusickannada/index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_3rFEtXJ4KScIt6kwtLeGN-ZwdSiBA4UZJg&s", 
+                category: "Music",
+                description: "Kannada"
             },
             { 
                 name: "Kappa TV", 
