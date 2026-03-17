@@ -1494,6 +1494,16 @@ const channels = [
                 description: "Malayalam"
             },
             { 
+                name: "Raj Musix Telugu", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-1.pishow.tv/live/1213/master.m3u8" },
+                    { name: "Server 2", url: "https://mumt02.tangotv.in/RAJMUSIXTELUGU/index.m3u8" },
+                ], 
+                img: "https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Raj-Musi-Telugu_TV_white.png", 
+                category: "Music",
+                description: "Telugu"
+            },
+            { 
                 name: "Kalaignar Murasu", 
                 sources: [
                     { name: "Server 1", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/murasu_nim_https/050522/murasu/playlist.m3u8" },
