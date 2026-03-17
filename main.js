@@ -1226,6 +1226,16 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Joo Music", 
+                sources: [
+                    { name: "Stream 1", url: "https://livecdn.live247stream.com/joomusic/tv/playlist.m3u8" }
+                ], 
+                img: "https://image.roku.com/developer_channels/prod/9cf63093182d69095ae19a443776978bb2398161ccc2dbda94e71f200b85f511.png", 
+                category: "Music",
+                package: ["250","500"],
+                description: "Europe & Africa"
+            },
+            { 
                 name: "yrf MUSIC", 
                 sources: [
                     { name: "Stream 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8" },
