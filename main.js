@@ -2385,6 +2385,15 @@ const channels = [
                 description: "Assamese"
             },
             { 
+                name: "Rengoni", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt05.tangotv.in/RENGONI/index.m3u8" }
+                ], 
+                img: "https://pbs.twimg.com/profile_images/880366209404776451/d8zE7-fu.jpg", 
+                category: "Entertainment",
+                description: "Assamese"
+            },
+            { 
                 name: "Pear TV", 
                 sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/PEARTV/index.m3u8" }
