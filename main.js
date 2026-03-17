@@ -2833,6 +2833,23 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Zee Tamil", 
+                sources: [
+                    { 
+                        name: "HD", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(ZeeTamil)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "06e1831ba6f946568bdea62e67ca7317",
+                            key: "f02c40d2006e036104f7726116861d7c"
+                        }
+                    }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXAQ8QqR_jJq1z3OK7yqDPRTixOPnGVbF-Zg&s", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Sun TV", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/suntv/index.m3u8" },
