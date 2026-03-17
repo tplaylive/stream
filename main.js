@@ -745,11 +745,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/zuf794yutz/out/v1/ca3534bfe4f148298b36719204d108e0/cenc.mpd",
+                        url: "https://dash2.antik.sk/stream/hisi_disney_channel/playlist_cbcs.mpd",
                         type: "dash",
                         drm: {
-                            kid: "be9caaa813c5305e761c66ac63645901",
-                            key: "3d40f2990ec5362ca5be3a3c9bb8f8b4"
+                            kid: "11223344556677889900112233445566",
+                            key: "4b80724d0ef86bcb2c21f7999d67739d"
                         }
                     }
                 ], 
@@ -771,7 +771,7 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNV1Kp7gAqkJn4ChEnSkHT3YKsTEn6roI5mA&s", 
+                img: "https://cms-media.clink.services/Mobile_ree4ih.png", 
                 category: "Kids",
                 package: ["150","250","500"],
                 description: "World"
