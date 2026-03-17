@@ -985,6 +985,15 @@ const channels = [
                 description: "English"
             },
             { 
+                name: "Kids Flix",
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=50" },
+                ], 
+                img: "https://play-lh.googleusercontent.com/hMM6boFl8BdsgqeHAycUoyNnyRJZSSeFXPAqA2FesVAxqwjzOVEMoNXMl8-JncB1ZU4", 
+                category: "Kids",
+                description: "English"
+            },
+            { 
                 name: "Power Kids",
                 sources: [
                     { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
@@ -4165,6 +4174,15 @@ const channels = [
                     }
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_mDtpbQ4xPiWFR0hhWISS-9i7jCBDorMcMBeBkEoQ805V4=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Infotainment",
+                description: "World"
+            },
+            { 
+                name: "Cooking Panda", 
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=46" }
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_m7_6cQOwZKkI-RxzJE3e85oFdMoFBEX5iJIrUcOBwEG6A=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Infotainment",
                 description: "World"
             },
