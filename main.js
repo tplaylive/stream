@@ -877,6 +877,24 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Nickelodeon", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Nickelodeon)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "9b10e787fac84ff484c8c7d7f7668925",
+                            key: "7d7d3793e4489f6ebc50d002e4bdbd44"
+                        }
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Nickelodeon_2023_logo.png", 
+                category: "Kids",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
                 name: "Gubbare", 
                 sources: [
                     { name: "Hindi", url: "https://epiconvh.akamaized.net/live/gubbare/master.m3u8" },
