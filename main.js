@@ -895,6 +895,24 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Sony Yay", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(SonyYay)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "582e9e382cb0495886afbabdbdb6fbf7",
+                            key: "c0f550839b235443724cd007392b6e40"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
+                category: "Kids",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
                 name: "Gubbare", 
                 sources: [
                     { name: "Hindi", url: "https://epiconvh.akamaized.net/live/gubbare/master.m3u8" },
