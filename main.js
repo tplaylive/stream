@@ -1296,6 +1296,17 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Only Music", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumbai-edge.smartplaytv.in/OnlyMusic/index.m3u8" },
+                    { name: "Stream 2", url: "https://livestream.unlimitedcdn.com/onlymusic/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-03-12/260312903011.jpg?width=700", 
+                category: "Music",
+                package: ["250","500"],
+                description: "India"
+            },
+            { 
                 name: "Punjabi Hits", 
                 sources: [
                     { name: "Stream 1", url: "https://legitpro.co.in/punjabihits/punjabihits/index.m3u8" },
