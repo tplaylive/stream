@@ -1970,7 +1970,7 @@ const channels = [
                 name: "B4U Movies", 
                 sources: [
                     { name: "Server 1", url: "https://amg00877-b4unew-amg00877c2-xiaomi-in-5489.playouts.now.amagi.tv/playlist.m3u8" },
-                    { name: "Server 2", url: "https://edge2.roarzone.info:8447/roarzone/edge3/b4u-movies-apac/index.m3u8" },
+                    { name: "Server 2", url: "https://mumt02.tangotv.in/B4UMOVIES/index.m3u8" },
                     { name: "Server 3", url: "https://cdnb4u.wiseplayout.com/B4U_Movies/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/tgwF8wQJ/B4-U-Movies.png", 
@@ -1981,7 +1981,8 @@ const channels = [
                 name: "B4U Kadak", 
                 sources: [
                     { name: "Server 1", url: "https://amg00877-b4unew-amg00877c4-xiaomi-in-5473.playouts.now.amagi.tv/playlist.m3u8" },
-                    { name: "Server 2", url: "https://cdnb4u.wiseplayout.com/B4U_Kadak/master.m3u8" },
+                    { name: "Server 2", url: "https://mumt02.tangotv.in/B4UKADAK/index.m3u8" },
+                    { name: "Server 3", url: "https://cdnb4u.wiseplayout.com/B4U_Kadak/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/zvnwCjQB/B4-U-Kadak.png", 
                 category: "Movie",
@@ -1990,7 +1991,8 @@ const channels = [
             { 
                 name: "B4U Bhojpuri", 
                 sources: [
-                    { name: "Server 1", url: "https://cdnb4u.wiseplayout.com/B4U_Bhojpuri/master.m3u8" },
+                    { name: "Server 1", url: "https://mumt05.tangotv.in/B4UBHOJPURI/index.m3u8" },
+                    { name: "Server 2", url: "https://cdnb4u.wiseplayout.com/B4U_Bhojpuri/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/CxJNrcxn/B4-U-Bhojpuri.png", 
                 category: "Movie",
