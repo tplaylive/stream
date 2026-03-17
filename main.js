@@ -3863,47 +3863,36 @@ const channels = [
                 description: "Qatar"
             },
             { 
-                name: "PSN 1", 
+                name: "spoTV", 
                 sources: [
-                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSPrime/HLSv3-FTA/SPSPrime.m3u8" }
+                    { 
+                        name: "Server 1", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(spoTV)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "5b593bd530f1403a8f3eb9b2cd9236c8",
+                            key: "d07c6a7f0b37a4090341e6380ff85060"
+                        }
+                    }
                 ], 
-                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
+                img: "https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A5BC0-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=222", 
                 category: "Sports",
                 description: "World"
             },
             { 
-                name: "PSN 2", 
+                name: "spoTV 2", 
                 sources: [
-                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSPlay/HLSv3-FTA/SPSPlay.m3u8" }
+                    { 
+                        name: "Server 1", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(spoTV2)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "1af079fb8e1d43d890c1d804431ad84c",
+                            key: "3dc40bc5aaf09af8b1572646a45b1242"
+                        }
+                    }
                 ], 
-                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "PSN 3", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSNational/HLSv3-FTA/SPSNational.m3u8" }
-                ], 
-                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "PSN 4", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSFight/HLSv3-FTA/SPSFight.m3u8" }
-                ], 
-                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "PSN 5", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/SPSPlus/HLSv3-FTA/SPSPlus.m3u8" }
-                ], 
-                img: "https://yt3.googleusercontent.com/6ss3NfsrbhKQaiY56yCtgg9NwpAoOYzVzjtWZTgKCm3BWeV4vUiXMYM3vJEebtPapo2M6cUT=s900-c-k-c0x00ffffff-no-rj", 
+                img: "https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A6A70-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=222", 
                 category: "Sports",
                 description: "World"
             },
