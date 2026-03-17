@@ -3478,6 +3478,15 @@ const channels = [
                 description: "Sudan"
             },
             { 
+                name: "Miami TV Fashion", 
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=16283" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW-_x4R5nZ7pvTIvA2oMe2OYHORoTytxVMqw&s", 
+                category: "Fashion",
+                description: "World"
+            },
+            { 
                 name: "Live 1", 
                 sources: [
                     { name: "Server 1", url: "https://dai.google.com/ssai/event/X9tnEM9wQHKUIX6nWcZ4TA/master.m3u8" },
