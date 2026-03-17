@@ -3810,11 +3810,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Server 1", 
-                        url: "https://otte.live.fly.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/ghwcl6hv68/out/v1/83536910d8034e9b9895a20fbe1c1687/cenc.mpd",
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Bein1)/master.mpd",
                         type: "dash",
                         drm: {
-                            kid: "335DAD778109954503DCBB21DC92015F",
-                            key: "24bfd75d436cbf73168a2a2dccd40281"
+                            kid: "d48b6088253c443eb94d27cb7828f707",
+                            key: "e9776141f9e949273a072b0e035070ab"
                         }
                     }
                 ], 
@@ -3827,11 +3827,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Server 1", 
-                        url: "https://aba5sdmaaaaaaaamdwujas5g6mg4r.otte.live.cf.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/8m8cd46i1t/out/v1/83985c68e4174e90a58a1f2c024be4c9/cenc.mpd",
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Bein2)/master.mpd",
                         type: "dash",
                         drm: {
-                            kid: "0b42be2664d7e811d04f3e504e0924c5",
-                            key: "ae24090123b8c72ac5404dc152847cb8"
+                            kid: "efa6ff1acefa43048e8b7adc21d98871",
+                            key: "5d0f448b52a92035e3763c4a60275933"
                         }
                     }
                 ], 
@@ -3844,15 +3844,32 @@ const channels = [
                 sources: [
                     { 
                         name: "Server 1", 
-                        url: "https://aba5sdmaaaaaaaamhq2w5oosrf5ae.otte.live.cf.ww.aiv-cdn.net/syd-nitro/live/clients/dash/enc/q4u5nwaogz/out/v1/18de6d3e65934f3a8de4358e69eab86c/cenc.mpd",
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Bein3)/master.mpd",
                         type: "dash",
                         drm: {
-                            kid: "7995c724a13748ed970840a8ab5bb9b3",
-                            key: "67bdaf1e2175b9ff682fcdf0e2354b1e"
+                            kid: "816ee2f7c19f49ed84276f34541b465b",
+                            key: "ca764a9973b6123a1112cffd3b32010d"
                         }
                     }
                 ], 
                 img: "https://i.postimg.cc/bJRPtBpR/bein3.jpg", 
+                category: "Sports",
+                description: "Qatar"
+            },
+            { 
+                name: "Bein Sports 4", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Bein4)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "d561ff976397473e9b456b44cdffcdd2",
+                            key: "2b6cff42f7fae7e8bc32f3d5c62dc3c2"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/pTQWBdYF/bein.jpg", 
                 category: "Sports",
                 description: "Qatar"
             },
