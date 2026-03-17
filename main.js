@@ -781,11 +781,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/jts4tzzv1k/out/v1/8a5b29f7068c415aa371ea95743382e6/cenc.mpd",
+                        url: "https://dash2.antik.sk/stream/hisi_disney_jr/playlist_cbcs.mpd",
                         type: "dash",
                         drm: {
-                            kid: "39cebece8b36640f9ba3f248ecfdf86a",
-                            key: "fad936249e036830aa5bef41bec05326"
+                            kid: "11223344556677889900112233445566",
+                            key: "4b80724d0ef86bcb2c21f7999d67739d"
                         }
                     }
                 ], 
