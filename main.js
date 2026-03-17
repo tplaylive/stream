@@ -2684,6 +2684,16 @@ const channels = [
                 description: "Marathi"
             },   
             { 
+                name: "Peppers", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/peppers/chunks.m3u8" },
+                    { name: "Server 2", url: "https://cdn-2.pishow.tv/live/1383/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_lRqWi7GK5UoOeKQs1hPj38bMyqPBwEo35pwDVGaw3Qbqs=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "Tamil"
+            },
+            { 
                 name: "Sun TV", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/suntv/index.m3u8" },
