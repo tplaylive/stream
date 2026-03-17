@@ -3863,7 +3863,7 @@ const channels = [
                 description: "Qatar"
             },
             { 
-                name: "spoTV", 
+                name: "SPOTV", 
                 sources: [
                     { 
                         name: "Server 1", 
@@ -3880,7 +3880,7 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "spoTV 2", 
+                name: "SPOTV 2", 
                 sources: [
                     { 
                         name: "Server 1", 
@@ -3893,6 +3893,40 @@ const channels = [
                     }
                 ], 
                 img: "https://qp-pldt-image-resizer-cloud-prod.akamaized.net/image/E55A6A70-C9E1-11EC-9D64-0242AC120002/0-16x9.jpg?width=222", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Premier Sports", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_ps_hd1/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "b8b595299fdf41c1a3481fddeb0b55e4",
+                            key: "cd2b4ad0eb286239a4a022e6ca5fd007"
+                        }
+                    }
+                ], 
+                img: "https://i.imgur.com/GTfUEnU.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Premier Sports 2", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/premiersports2hd/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "59454adb530b4e0784eae62735f9d850",
+                            key: "61100d0b8c4dd13e4eb8b4851ba192cc"
+                        }
+                    }
+                ], 
+                img: "https://i.imgur.com/OWVR172.png", 
                 category: "Sports",
                 description: "World"
             },
