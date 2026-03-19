@@ -1484,15 +1484,6 @@ const channels = [
                 description: "Punjabi"
             },
             { 
-                name: "Saga Music Haryanvi", 
-                sources: [
-                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/saga-music/master.m3u8?ads.vf=btFVPfWJgw8" }
-                ], 
-                img: "https://i.postimg.cc/P5RRD2bM/saga-har.jpg", 
-                category: "Music",
-                description: "Haryanvi"
-            },
-            { 
                 name: "Ragni TV", 
                 sources: [
                     { name: "Server 1", url: "https://mumt04.tangotv.in/RAGNITV/index.m3u8" }
