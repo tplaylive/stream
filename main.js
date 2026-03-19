@@ -510,6 +510,15 @@ const channels = [
                 description: "Tamil"
              },
              { 
+                name: "ETV Andhra Pradesh", 
+                sources: [
+                    { name: "Server 1", url: "https://d14vo2b97spizt.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_AP_H264-3_cloud_in/index.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/5/5f/ETV_Andhra_Pradesh.png/revision/latest?cb=20240314105548", 
+                category: "News",
+                description: "Telugu"
+             },
+             { 
                 name: "SITI 24X7", 
                 sources: [
                     { name: "Server 1", url: "https://www.schannels.in/SITI24X7_1/index.m3u8" }
@@ -2233,6 +2242,15 @@ const channels = [
                 description: "Kannada"
             },
             { 
+                name: "ETV Cinema", 
+                sources: [
+                    { name: "Server 1", url: "https://d1q7j6ha51ro6f.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_CINEMA_H264-3_cloud_in/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/8291f351a574d7886d602ba6d86b825e.png", 
+                category: "Movie",
+                description: "Telugu"
+            },
+            { 
                 name: "Zee BollyMovies", 
                 sources: [
                     { name: "Server 1", url: "https://amg17931-zee-amg17931c8-samsung-th-6526.playouts.now.amagi.tv/playlist.m3u8" },
@@ -2931,7 +2949,25 @@ const channels = [
                 img: "https://yt3.googleusercontent.com/V-a2CieMvWBWCdM6cUh-UZR4z7t3wEXzmn7Zd3p7MTXPWfXGggTSzNCrS1TXGG_pYqPstlnFOVg=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Entertainment",
                 description: "Telugu"
-            },   
+            },  
+            { 
+                name: "ETV Telugu HD", 
+                sources: [
+                    { name: "Server 1", url: "https://d2z3q47xzd535o.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_HD_H264-2_cloud_in/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/23c6235eac966a5e93f152e0eb3eefc0.png", 
+                category: "Entertainment",
+                description: "Telugu"
+            },
+              { 
+                name: "ETV Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://d27tnkf60df3v4.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_PLUS_H264-3_cloud_in/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7a20f635d55450d674220f2e37739da3.png", 
+                category: "Entertainment",
+                description: "Telugu"
+            }, 
             { 
                 name: "Kairali TV", 
                 sources: [
@@ -3259,6 +3295,15 @@ const channels = [
                     { name: "Server 1", url: "https://mumt02.tangotv.in/VISSATV/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-02-11/260211734018.jpg?width=700", 
+                category: "Mix-Entertainment",
+                description: "Telugu"
+            },
+            { 
+                name: "Etv Telangana", 
+                sources: [
+                    { name: "Server 1", url: "https://dssp63pjfajz9.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_TS_H264-3_cloud_in/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/14f02729515b0b48e53c377f47607a9e.png", 
                 category: "Mix-Entertainment",
                 description: "Telugu"
             },
@@ -4651,5 +4696,14 @@ const channels = [
                 img: "https://c.kmpr.in/assets/tv_channels_150/5220.jpg", 
                 category: "Religious",
                 description: "Christian"
+            },
+            { 
+                name: "ETV Life", 
+                sources: [
+                    { name: "Server 1", url: "https://d2cj1h11htct8o.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_LIFE_H264_cloud_in/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0b79cae17adfb14c6c414a426671c735.png", 
+                category: "Religious",
+                description: "Telugu"
             },
         ];
