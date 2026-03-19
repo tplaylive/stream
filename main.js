@@ -1360,6 +1360,26 @@ const channels = [
                 description: "Europe & Africa"
             },
             { 
+                name: "8XM", 
+                sources: [
+                    { name: "Stream 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/8XM-131/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Qd4nc618/8xm.jpg", 
+                category: "Music",
+                package: ["250","500"],
+                description: "Pakistan"
+            },
+            { 
+                name: "Jalwa", 
+                sources: [
+                    { name: "Stream 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/JalwaTV-135/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Qd4nc618/8xm.jpg", 
+                category: "Music",
+                package: ["250","500"],
+                description: "Pakistan"
+            },
+            { 
                 name: "9X Jalwa", 
                 sources: [
                     { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
