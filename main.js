@@ -943,7 +943,8 @@ const channels = [
                 name: "Cartoon Network", 
                 sources: [
                     { name: "Hindi", url: "https://mrzplayin.fun/roarzon/stream.php?id=2656a9b9198a7631e0521a2582e998f5&e=.m3u8" },
-                    { name: "Urdu", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" }
+                    { name: "Urdu", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" },
+                    { name: "Urdu", url: "https://s3.ideationtec.live/Cartoon_Network/Cartoon_Network.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
                 category: "Kids",
@@ -978,7 +979,8 @@ const channels = [
             { 
                 name: "Minimax", 
                 sources: [
-                    { name: "Server 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/disckids-157-1/playlist.m3u8" }
+                    { name: "Server 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/disckids-157-1/playlist.m3u8" },
+                    { name: "Server 2", url: "https://s2.ideationtec.live/MiniMax/MiniMax.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/xC2TbNWn/minimax.jpg", 
                 category: "Kids",
@@ -2100,6 +2102,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Filmax", 
+                sources: [
+                    { name: "Server 1", url: "https://s3.ideationtec.live/Filmax/Filmax.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/TP8mSJ9y/film-max.jpg", 
+                category: "Movie",
+                description: "Pakistan"
+            },
+            { 
                 name: "Bflix Movies", 
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/BFLIX/index.m3u8" },
@@ -2366,6 +2377,24 @@ const channels = [
                     { name: "Server 1", url: "https://ml-pull-hwc.myco.io/MixTV/hls/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/KvFqjytv/mix-h.jpg", 
+                category: "Movie",
+                description: "World"
+            },
+            { 
+                name: "Movies Action", 
+                sources: [
+                    { name: "Server 1", url: "https://shls-live-enc.edgenextcdn.net/out/v1/46079e838e65490c8299f902a7731168/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/FzGVRR9P/movies-action.jpg", 
+                category: "Movie",
+                description: "World"
+            },
+            { 
+                name: "Movies Thriller", 
+                sources: [
+                    { name: "Server 1", url: "https://shls-live-enc.edgenextcdn.net/out/v1/f6d718e841f8442f8374de47f18c93a7/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/63rhkcgD/movies-thriller.jpg", 
                 category: "Movie",
                 description: "World"
             },
@@ -2971,6 +3000,7 @@ const channels = [
                 name: "Aaj Entertainment", 
                 sources: [
                     { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/AAJ_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 2", url: "https://s2.ideationtec.live/AAJ_Entertainment/AAJ_Entertainment.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/dU-Bp46E2XlBaw376I_Boc-0lTEHgBrFJffOK4g1qQvQW5Ah00qL1IYGfWTYjekh8HibJb7nsQ=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Entertainment",
@@ -2980,6 +3010,7 @@ const channels = [
                 name: "Express Entertainment", 
                 sources: [
                     { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/EXPRESS_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 2", url: "https://s3.ideationtec.live/Express_Entertainment/Express_Entertainment.m3u8" },
                 ], 
                 img: "https://r2.thesportsdb.com/images/media/channel/logo/sswurt1476662766.png", 
                 category: "Entertainment",
@@ -2998,6 +3029,7 @@ const channels = [
                 name: "Geo Entertainment", 
                 sources: [
                     { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/GEO_ENTERTAINEMNT/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 2", url: "https://s3.ideationtec.live/GEO_Entertainment/GEO_Entertainment.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/GpLH0TvJ/geo-ent.jpg", 
                 category: "Entertainment",
@@ -3007,6 +3039,7 @@ const channels = [
                 name: "Bol Entertainment", 
                 sources: [
                     { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/BOL_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 2", url: "https://s2.ideationtec.live/BOL_Entertainment_HD/BOL_Entertainment_HD.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/HstckCdt/bol-ent.jpg", 
                 category: "Entertainment",
@@ -3016,6 +3049,7 @@ const channels = [
                 name: "Sab Entertainment", 
                 sources: [
                     { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/SAB_ENTERTAINMENT/tracks-v1a1/mono.ts.m3u8" },
+                    { name: "Server 2", url: "https://s1.ideationtec.live/SAB_Entertainment/SAB_Entertainment.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGE8uyneXAmDlEikCnonDG2YX9SxfvfWnFWg&s", 
                 category: "Entertainment",
@@ -3029,6 +3063,60 @@ const channels = [
                 img: "https://media.licdn.com/dms/image/v2/D4D0BAQFEQlJZEt9u8w/company-logo_200_200/company-logo_200_200/0/1697180175196?e=2147483647&v=beta&t=_qhFwyXTYEWa5QTTUDI3MwI8aefVr39xDxYKItDNLS0", 
                 category: "Entertainment",
                 description: "Pakistan"
+            },
+            { 
+                name: "A Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://s3.ideationtec.live/A_Plus/A_Plus.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/5/5b/A-Plus_TV_Logo.png", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Aur Life", 
+                sources: [
+                    { name: "Server 1", url: "https://s3.ideationtec.live/Aur_Life/Aur_Life.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/HuRtbtQKBU0desDRLArEeqjxI5qIhIKTZcaZeh0oO1ynmZM07V9LU5en4Qg5Q2BnImyxpOLE=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "LTN Family HD", 
+                sources: [
+                    { name: "Server 1", url: "https://s3.ideationtec.live/LTN_Family_HD/LTN_Family_HD.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEvVuUYrmyYYivPTlPlj4Zs833NMboieTgiw&s", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "Mehran TV", 
+                sources: [
+                    { name: "Server 1", url: "https://s2.ideationtec.live/Mehran_TV/Mehran_TV.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/NVrndNv3iCyD8VNX4t9sWCAj-c4iSbUQ9uWYY9zrnEIcQIialwizqgoDeCdO5BkzueGJwuwuKSU=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "Pakistan"
+            },
+            { 
+                name: "MIX Bel Araby", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-hwc.myco.io/MixBelAraby/hls/MixBelAraby_H264-1080p.m3u8?pkg_media=video&pkg_hm=index.m3u8&pkg_svc=1&pkg_vcodec=avc1" },
+                ], 
+                img: "https://media0098.elcinema.com/tvguide/1371_1.png", 
+                category: "Entertainment",
+                description: "Arabic"
+            },
+            { 
+                name: "Mix One", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-hwc.myco.io/MixONE/hls/MixONE_H264-720p.m3u8?pkg_media=video&pkg_hm=index.m3u8&pkg_svc=1&pkg_vcodec=avc1" },
+                ], 
+                img: "https://yt3.googleusercontent.com/GNAHhu67wZNeTbEONgZbP-5l0w9qmBNjNcNtXEqg-8fq8UZsqKRmKDqtg5hgmAAph_bAqLfJ=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Entertainment",
+                description: "Arabic"
             },
             { 
                 name: "Bollywood Masala", 
@@ -3960,7 +4048,8 @@ const channels = [
             { 
                 name: "Discovery Pakistan", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn.live247stream.com/discoverpakistan/web/playlist.m3u8" }
+                    { name: "Server 1", url: "https://livecdn.live247stream.com/discoverpakistan/web/playlist.m3u8" },
+                    { name: "Server 2", url: "https://s3.ideationtec.live/Discover_Pakistan/Discover_Pakistan.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/cH9LLc8m/d-pak.jpg", 
                 category: "Infotainment",
