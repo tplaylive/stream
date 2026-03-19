@@ -1371,6 +1371,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "9X Tashan", 
+                sources: [
+                    { name: "Stream 1", url: "https://9xjio.wiseplayout.com/9X_Tashan/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/34f7a758cc55df62756f64ee1ef78054.png", 
+                category: "Music",
+                description: "Punjabi"
+            },
+            { 
                 name: "E 24", 
                 sources: [
                     { name: "Stream 1", url: "https://amg13643-amg13643c2-amgplt0173.playout.now3.amagi.tv/playlist/amg13643-amg13643c2-amgplt0173/playlist.m3u8" },
@@ -1437,15 +1446,6 @@ const channels = [
                 description: "Punjabi"
             },
             { 
-                name: "Brit Asia TV", 
-                sources: [
-                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/britasiatv/master.m3u8?ads.vf=crMKPnj9RuG" },
-                ], 
-                img: "https://i.postimg.cc/BbM871q3/brit-asia.jpg", 
-                category: "Music",
-                description: "Punjabi"
-            },
-            { 
                 name: "PTC Music", 
                 sources: [
                     { name: "Stream 1", url: "https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8" },
@@ -1460,15 +1460,6 @@ const channels = [
                     { name: "Stream 1", url: "https://cdn-1.pishow.tv/live/449/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/G2BRLcM2/ptc-chakde.jpg", 
-                category: "Music",
-                description: "Punjabi"
-            },
-            { 
-                name: "9X Tashan", 
-                sources: [
-                    { name: "Stream 1", url: "https://9xjio.wiseplayout.com/9X_Tashan/master.m3u8" },
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/34f7a758cc55df62756f64ee1ef78054.png", 
                 category: "Music",
                 description: "Punjabi"
             },
