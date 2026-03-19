@@ -1407,6 +1407,24 @@ const channels = [
                 description: "Punjabi"
             },
             { 
+                name: "Josh TV", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt03.tangotv.in/JOSHTV/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/yY6RNL41/joshtv.jpg", 
+                category: "Music",
+                description: "Punjabi"
+            },
+            { 
+                name: "Punjabi Music HD", 
+                sources: [
+                    { name: "Stream 1", url: "https://mumt02.tangotv.in/PUNJABIMUSICHD/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/d0f62zFZ/punjabi-musichd.jpg", 
+                category: "Music",
+                description: "Punjabi"
+            },
+            { 
                 name: "Punjabi Hits", 
                 sources: [
                     { name: "Stream 1", url: "https://legitpro.co.in/punjabihits/punjabihits/index.m3u8" },
@@ -1424,24 +1442,6 @@ const channels = [
                     { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/britasiatv/master.m3u8?ads.vf=crMKPnj9RuG" },
                 ], 
                 img: "https://i.postimg.cc/BbM871q3/brit-asia.jpg", 
-                category: "Music",
-                description: "Punjabi"
-            },
-            { 
-                name: "Josh TV", 
-                sources: [
-                    { name: "Stream 1", url: "https://mumt03.tangotv.in/JOSHTV/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/7L2vCFnH/josh-fw.png", 
-                category: "Music",
-                description: "Punjabi"
-            },
-            { 
-                name: "Punjabi Music HD", 
-                sources: [
-                    { name: "Stream 1", url: "https://mumt02.tangotv.in/PUNJABIMUSICHD/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/3J8zY4yf/pm-fw.png", 
                 category: "Music",
                 description: "Punjabi"
             },
