@@ -4457,7 +4457,9 @@ const channels = [
             { 
                 name: "History TV 18", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HISTORYTVHD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HISTORYTVHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelhindi-samsungin/playlist.m3u8" },
+                    { name: "Server 3", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8" }
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/6/67/History_tv18_hd.png/revision/latest?cb=20210515171227", 
                 category: "Infotainment",
