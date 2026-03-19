@@ -4314,6 +4314,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Village Cooking Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://glb.bozztv.com/glb/ushba-t10/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/66OTTHSdZwqnz75I-z_sCFmf-EKQ9q4_OZsluCDm3KqPrcauc16Si1gGQuUgqe82Pi05Y2vnpw=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "Travelxp", 
                 sources: [
                     { name: "Server 1", url: "https://travelxp-travelxp-1-eu.rakuten.wurl.tv/playlist.m3u8" }
