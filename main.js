@@ -1365,7 +1365,7 @@ const channels = [
                     { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
                     { name: "Stream 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xjalwa/master.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
+                img: "https://i.postimg.cc/zfqvdBzr/9x-jalwa.png", 
                 category: "Music",
                 package: ["250","500"],
                 description: "India"
