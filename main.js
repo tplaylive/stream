@@ -1548,16 +1548,6 @@ const channels = [
                 description: "Marathi"
             },
             { 
-                name: "Sangeet Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
-                    { name: "Server 2", url: "https://mumt05.tangotv.in/SANGEETBANGLA/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/NGy2zxLw/sangeet-bangla.jpg", 
-                category: "Music",
-                description: "Bangla"
-            },
-            { 
                 name: "Dhoom Music Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/DHOOM/index.m3u8" },
@@ -1568,21 +1558,22 @@ const channels = [
                 description: "Bangla"
             },
             { 
+                name: "Sangeet Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-4.pishow.tv/live/1143/master.m3u8" },
+                    { name: "Server 2", url: "https://mumt05.tangotv.in/SANGEETBANGLA/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/NGy2zxLw/sangeet-bangla.jpg", 
+                category: "Music",
+                description: "Bangla"
+            },
+            { 
                 name: "Bengali Beats", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/tplay/playout/209587/master.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/https://live20.bozztv.com/giatvplayout7/giatv-209587/tracks-v1a1/mono.ts.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/jSLNzXgM/Bengali-Beats.png", 
-                category: "Music",
-                description: "Bangla"
-            },
-            { 
-                name: "Music Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/musicbangla2025.stream/tracks-v1a1/mono.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/8kRX8jMd/music-bangla.jpg", 
                 category: "Music",
                 description: "Bangla"
             },
