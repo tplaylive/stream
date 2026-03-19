@@ -1217,6 +1217,18 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "yrf MUSIC", 
+                sources: [
+                    { name: "Stream 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8" },
+                    { name: "Stream 2", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/yrf-music/master.m3u8" }
+
+                ], 
+                img: "https://i.postimg.cc/pdHkcC7q/yrf-music.jpg", 
+                category: "Music",
+                package: ["250","500"],
+                description: "India"
+            },
+            { 
                 name: "Zoom Music", 
                 sources: [
                     { name: "Stream 1", url: "https://pubads.g.doubleclick.net/ssai/event/JCAm25qkRXiKcK1AJMlvKQ/master.m3u8" },
@@ -1275,18 +1287,6 @@ const channels = [
                 img: "https://i.postimg.cc/9Q7G21N6/Deewana.png", 
                 category: "Music",
                 package: ["150","250","500"],
-                description: "India"
-            },
-            { 
-                name: "yrf MUSIC", 
-                sources: [
-                    { name: "Stream 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8" },
-                    { name: "Stream 2", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/yrf-music/master.m3u8" }
-
-                ], 
-                img: "https://i.postimg.cc/pdHkcC7q/yrf-music.jpg", 
-                category: "Music",
-                package: ["250","500"],
                 description: "India"
             },
             { 
