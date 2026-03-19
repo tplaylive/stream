@@ -2972,7 +2972,7 @@ const channels = [
                     }
                 ], 
                 img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Telugu.png", 
-                category: "Movie",
+                category: "Entertainment",
                 description: "Telugu"
             }, 
             { 
