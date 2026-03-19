@@ -1316,21 +1316,11 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Shemaroo Filmigaane", 
-                sources: [
-                    { name: "Stream 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-filmigaane/playlist.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/nhhtDKYk/sfg.jpg", 
-                category: "Music",
-                package: ["250","500"],
-                description: "India"
-            },
-            { 
                 name: "NH BollyRaga", 
                 sources: [
                     { name: "Stream 1", url: "https://cc-up9j649x4thrj.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-up9j649x4thrj/SBUM/RunnTV/BollyRaga_IN/BollyRaga_IN.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/7PmcCFcy/nh-bollyraga.jpg", 
+                img: "https://i.postimg.cc/fbkbmd2g/nh-br.jpg", 
                 category: "Music",
                 package: ["250","500"],
                 description: "India"
@@ -1686,6 +1676,24 @@ const channels = [
                     { name: "Server 1", url: "https://live20.bozztv.com/giatv/giatv-kpoptvplay/kpoptvplay/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/wMrpYMsN/kpop-music.jpg", 
+                category: "Music",
+                description: "World"
+            },
+            { 
+                name: "24hr K Pop", 
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/akamaissh101/ssh101/24hrkpoptv/chunks.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/4NSw2Y26/24h-kpop.jpg", 
+                category: "Music",
+                description: "World"
+            },
+            { 
+                name: "K-POP by CJ ENM", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-s23bl4el34qh7.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-s23bl4el34qh7/f4acc9ba_daae_4ed0_b836_32126cead919/hls/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/sx6FN3qq/kpop-cj.jpg", 
                 category: "Music",
                 description: "World"
             },
