@@ -1807,6 +1807,23 @@ const channels = [
                 description: "Tamil Kollywood movies"
             },
             { 
+                name: "ZEE Cinemalu", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeecinemalu/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "d27bc072600d431faa7d0c8441a5fb43",
+                            key: "3b61f64edc79497d9da31d612a88f8ea"
+                        }
+                    }
+                ], 
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Cinemalu.png", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Zee Bollywood", 
                 sources: [
                     { 
@@ -2940,16 +2957,24 @@ const channels = [
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9PS3pMceApdbIKsTzMIxPorDNQHAqW2YgdQ&s", 
                 category: "Entertainment",
                 description: "Tamil"
-            }, 
+            },
             { 
-                name: "Studio Yuva", 
+                name: "ZEE Telugu", 
                 sources: [
-                    { name: "Server 1", url: "https://mumt01.tangotv.in/STUDIOYUVA/index.m3u8" },
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetelgu/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "1ce5cd75a6ad44a38a7d1b8dbaf9c330",
+                            key: "657fc8e7d533456cb0644fe03458a4b2"
+                        }
+                    }
                 ], 
-                img: "https://yt3.googleusercontent.com/V-a2CieMvWBWCdM6cUh-UZR4z7t3wEXzmn7Zd3p7MTXPWfXGggTSzNCrS1TXGG_pYqPstlnFOVg=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Entertainment",
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Telugu.png", 
+                category: "Movie",
                 description: "Telugu"
-            },  
+            }, 
             { 
                 name: "ETV Telugu HD", 
                 sources: [
@@ -2965,6 +2990,15 @@ const channels = [
                     { name: "Server 1", url: "https://d27tnkf60df3v4.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_PLUS_H264-3_cloud_in/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7a20f635d55450d674220f2e37739da3.png", 
+                category: "Entertainment",
+                description: "Telugu"
+            }, 
+            { 
+                name: "Studio Yuva", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/STUDIOYUVA/index.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/V-a2CieMvWBWCdM6cUh-UZR4z7t3wEXzmn7Zd3p7MTXPWfXGggTSzNCrS1TXGG_pYqPstlnFOVg=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Entertainment",
                 description: "Telugu"
             }, 
