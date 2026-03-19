@@ -1242,17 +1242,6 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "9X Jalwa", 
-                sources: [
-                    { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
-                    { name: "Stream 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xjalwa/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
-                category: "Music",
-                package: ["250","500"],
-                description: "India"
-            },
-            { 
                 name: "B4U Music", 
                 sources: [
                     { name: "Stream 1", url: "https://mumt04.tangotv.in/B4UMUSIC/index.m3u8" },
@@ -1376,6 +1365,17 @@ const channels = [
                     { name: "Stream 1", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
+                category: "Music",
+                package: ["250","500"],
+                description: "India"
+            },
+            { 
+                name: "9X Jalwa", 
+                sources: [
+                    { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
+                    { name: "Stream 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xjalwa/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
                 category: "Music",
                 package: ["250","500"],
                 description: "India"
