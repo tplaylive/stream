@@ -1360,16 +1360,6 @@ const channels = [
                 description: "Europe & Africa"
             },
             { 
-                name: "Show Box", 
-                sources: [
-                    { name: "Stream 1", url: "https://epiconvh.akamaized.net/live/showbox/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/Vsppw3V5/sb-music.jpg", 
-                category: "Music",
-                package: ["250","500"],
-                description: "India"
-            },
-            { 
                 name: "9X Jalwa", 
                 sources: [
                     { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
