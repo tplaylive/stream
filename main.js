@@ -1220,7 +1220,8 @@ const channels = [
                 name: "9XM", 
                 sources: [
                     { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9XM/master.m3u8" },
-                    { name: "Stream 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" }
+                    { name: "Stream 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xm/master.m3u8" },
+                    { name: "Stream 3", url: "https://9xjio.wiseplayout.com/9XM/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Wb8VmBjp/9xm.jpg", 
                 category: "Music",
@@ -1400,7 +1401,7 @@ const channels = [
                 img: "https://i.postimg.cc/wBKM5G7V/e-24.jpg", 
                 category: "Music",
                 package: ["250","500"],
-                description: "India"
+                description: "Hindi/Punjabi"
             },
             { 
                 name: "Steelbird Music", 
@@ -1412,7 +1413,7 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/93926d5dd30455efa55a1c0a3bb797e9.png", 
                 category: "Music",
                 package: ["250","500"],
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "Only Music", 
@@ -1423,7 +1424,7 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-03-12/260312903011.jpg?width=700", 
                 category: "Music",
                 package: ["250","500"],
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "Punjabi Hits", 
@@ -1435,7 +1436,7 @@ const channels = [
                 img: "https://play-lh.googleusercontent.com/Z5eBTFh01UZmECMBw2buJ3i2mWeRKYu3jgYrmN-byioWwpzOrCImYR6LRAtd53QrueM", 
                 category: "Music",
                 package: ["250","500"],
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "Brit Asia TV", 
@@ -1444,7 +1445,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/BbM871q3/brit-asia.jpg", 
                 category: "Music",
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "Josh TV", 
@@ -1453,7 +1454,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/7L2vCFnH/josh-fw.png", 
                 category: "Music",
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "Punjabi Music HD", 
@@ -1462,7 +1463,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/3J8zY4yf/pm-fw.png", 
                 category: "Music",
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "PTC Music", 
@@ -1471,7 +1472,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/zvj04hnW/ptc-music.jpg", 
                 category: "Music",
-                description: "India"
+                description: "Punjabi"
             },
             { 
                 name: "PTC Chak De", 
@@ -1480,7 +1481,16 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/G2BRLcM2/ptc-chakde.jpg", 
                 category: "Music",
-                description: "India"
+                description: "Punjabi"
+            },
+            { 
+                name: "9X Tashan", 
+                sources: [
+                    { name: "Stream 1", url: "https://9xjio.wiseplayout.com/9X_Tashan/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/34f7a758cc55df62756f64ee1ef78054.png", 
+                category: "Music",
+                description: "Punjabi"
             },
             { 
                 name: "Saga Music Haryanvi", 
@@ -1524,6 +1534,16 @@ const channels = [
                     { name: "Server 1", url: "https://mumt02.tangotv.in/SANGEETMARATHI/index.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_krsl3aXY8SdNBmq2U_JLwb8OsIzHGOR1nbrlaq_h8MvRI=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Music",
+                description: "Marathi"
+            },
+            { 
+                name: "9X Jhakaas", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/6/master.m3u8" },
+                    { name: "Server 2", url: "https://9xjio.wiseplayout.com/9X_Jhakaas/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/59f65220db9d688fbaadde26c62344f6.png", 
                 category: "Music",
                 description: "Marathi"
             },
