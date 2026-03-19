@@ -1183,7 +1183,7 @@ const channels = [
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: "Music",
                 package: ["500"],
-                description: "World"
+                description: "English Songs"
             },
             { 
                 name: "24/7 Music", 
@@ -1193,7 +1193,7 @@ const channels = [
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: "Music",
                 package: ["500"],
-                description: "World"
+                description: "Top Hits "
             },
             { 
                 name: "24/7 Music", 
