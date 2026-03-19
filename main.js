@@ -1569,6 +1569,15 @@ const channels = [
                 description: "Assamese"
             },
             { 
+                name: "Tarang Music", 
+                sources: [
+                    { name: "Server 1", url: "https://livetv.tarangplus.in/tarangmusic-origin/live/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/25rP5nCd/tarang-music.jpg", 
+                category: "Music",
+                description: "Odia"
+            },
+            { 
                 name: "Ekamra Musiq", 
                 sources: [
                     { name: "Server 1", url: "https://live.ekamraott.com/musiq/musiq/index.m3u8" }
