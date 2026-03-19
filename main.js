@@ -1178,12 +1178,32 @@ const channels = [
             { 
                 name: "24/7 Music", 
                 sources: [
-                  { name: "Server 1", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
+                  { name: "Server 1", url: "https://tplay.live/out/music/world-music.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: "Music",
                 package: ["500"],
                 description: "World"
+            },
+            { 
+                name: "24/7 Music", 
+                sources: [
+                  { name: "Server 1", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                category: "Music",
+                package: ["500"],
+                description: "World"
+            },
+            { 
+                name: "24/7 Music", 
+                sources: [
+                  { name: "Server 1", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                category: "Music",
+                package: ["500"],
+                description: "Hindi Songs"
             },
             { 
                 name: "Music India", 
