@@ -1715,53 +1715,6 @@ const channels = [
                 description: "Bengali"
             },
             { 
-                name: "Bongo Movies", 
-                sources: [
-                    { name: "Server 1", url: "https://streams2.sofast.tv/ptnr-runntv/title-Bongo_Movies/sofastplayout/restream/a02e1e3c-eeba-4339-88e1-d6f7e99669e2/master.m3u8" },
-                ], 
-                img: "https://yt3.googleusercontent.com/BmBoIPeUL6mxko43qsipKqKc-tsdoZfE5Jl_kZXvgVNxsWOvN7UTqdMQl_6r1GB2fksOI91qXCw=s176-c-k-c0x00ffffff-no-rj-mo", 
-                category: "Movie",
-                description: "Bengali"
-            },
-            { 
-                name: "Movie Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://alvetv.com/moviebanglatv/8080/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/vHRnL2MH/movie-bangla.jpg", 
-                category: "Movie",
-                description: "Bengali"
-            },
-            { 
-                name: "Filmy Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.145.48.150:90/laosat24/filmytv/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/43r4kMWY/filmi-bangla.jpg", 
-                category: "Movie",
-                description: "Bengali"
-            },
-            { 
-                name: "Sanonda", 
-                sources: [
-                    { name: "Server 1", url: "https://sananda.bengaldigital.live/Sananda/index.m3u8" },
-                    { name: "Server 2", url: "https://live.sanonda.tv/sanonda/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://115.187.41.216:8080/hls/sanandatv/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/TwTnMYrW/sananda.jpg", 
-                category: "Movie",
-                description: "Bengali"
-            },
-            { 
-                name: "Tara Bangla Cinema", 
-                sources: [
-                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://103.145.48.150:90/laosat24/taratv/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/503Bkwmk/tarabanglacinema.jpg", 
-                category: "Movie",
-                description: "Bengali"
-            },
-            { 
                 name: "Jalsha Movies", 
                 sources: [
                     { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/JALSHAMOVIESHD/tracks-v1a1/mono.m3u8" }
