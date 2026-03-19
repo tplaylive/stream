@@ -557,7 +557,7 @@ const channels = [
             { 
                 name: "BTV", 
                 sources: [
-                    { name: "Server 1", url: "https://bongoflixbd.top/stream.php?id=a0e6e9b6-b20b-4f54-82d6-881bef762cfd&e.m3u8" },
+                    { name: "Server 1", url: "https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8" },
                     { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/nzQXt33R/btv.jpg", 
