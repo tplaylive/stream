@@ -1178,8 +1178,8 @@ const channels = [
             { 
                 name: "24/7 Music", 
                 sources: [
-                  { name: "Hindi Music", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
-                  { name: "Hindi Music 2", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
+                  { name: "Hindi Music", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
+                  { name: "Hindi Music 2", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
                   { name: "World Music", url: "https://tplay.live/out/music/world-music.index.m3u8" },
                   { name: "World Music 2", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
                   { name: "World Music 3", url: "https://tplay.live/out/music/world-music3.index.m3u8" },
