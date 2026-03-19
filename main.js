@@ -1488,7 +1488,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://mumt04.tangotv.in/RAGNITV/index.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                img: "https://i.postimg.cc/SQcv7NPS/ragni.jpg", 
                 category: "Music",
                 description: "Haryanvi"
             },
