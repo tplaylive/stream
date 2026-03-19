@@ -1525,7 +1525,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/6/master.m3u8" },
                     { name: "Server 2", url: "https://9xjio.wiseplayout.com/9X_Jhakaas/master.m3u8" }
                 ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/59f65220db9d688fbaadde26c62344f6.png", 
+                img: "https://i.postimg.cc/0jq4rTv0/9xs-jhakkas.jpg", 
                 category: "Music",
                 description: "Marathi"
             },
