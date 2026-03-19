@@ -1385,7 +1385,7 @@ const channels = [
                     { name: "Stream 1", url: "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8" },
                     { name: "Stream 2", url: "https://d14c63magvk61v.cloudfront.net/strm/channels/9xjalwa/master.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/zfqvdBzr/9x-jalwa.png", 
+                img: "https://i.postimg.cc/h4VgFtZS/9x-jalwa.jpg", 
                 category: "Music",
                 package: ["250","500"],
                 description: "India"
@@ -1395,7 +1395,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://9xjio.wiseplayout.com/9X_Tashan/master.m3u8" },
                 ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/34f7a758cc55df62756f64ee1ef78054.png", 
+                img: "https://i.postimg.cc/kMwkxRB1/9x-tashan.jpg", 
                 category: "Music",
                 description: "Punjabi"
             },
