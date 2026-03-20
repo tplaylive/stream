@@ -1199,7 +1199,8 @@ const channels = [
             { 
                 name: "24/7 Music", 
                 sources: [
-                  { name: "Server 1", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
+                  { name: "Server 1", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
+                  { name: "Server 2", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: "Music",
@@ -3592,7 +3593,8 @@ const channels = [
             { 
                 name: "Nagorik TV", 
                 sources: [
-                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NAGORIK/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/NagorikTV/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NAGORIK/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Logo_of_Nagorik_TV.svg/250px-Logo_of_Nagorik_TV.svg.png", 
                 category: "Mix-Entertainment",
