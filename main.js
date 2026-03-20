@@ -511,6 +511,15 @@ const channels = [
                 description: "Tamil"
              },
              { 
+                name: "Jaya Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/http://45.148.145.57/IN_JayaPlus/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ed00e083788380a3523e2ef1d7f33fe8.png", 
+                category: "News",
+                description: "Tamil"
+             },
+             { 
                 name: "ETV Andhra Pradesh", 
                 sources: [
                     { name: "Server 1", url: "https://d14vo2b97spizt.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_AP_H264-3_cloud_in/index.m3u8" }
