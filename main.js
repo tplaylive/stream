@@ -3892,7 +3892,8 @@ const channels = [
             { 
                 name: "Sony Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS1HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyTen1HD/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS1HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mg0RC192/ten1.jpg", 
                 category: "Sports",
@@ -3902,7 +3903,8 @@ const channels = [
             { 
                 name: "Sony Sports 2", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS2HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyTen2HD/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS2HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8SC16G7/ten2.jpg", 
                 category: "Sports",
@@ -3933,8 +3935,9 @@ const channels = [
             { 
                 name: "Star Sports 1", 
                 sources: [
-                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport1/index.m3u8" },
-                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
+                    { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/StarSports1HD/index.m3u8" },
+                    { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport1/index.m3u8" },
+                    { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
                 category: "Sports",
@@ -3944,8 +3947,9 @@ const channels = [
             { 
                 name: "Star Sports 2", 
                 sources: [
-                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport2/index.m3u8" },
-                    { name: "Stream 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
+                    { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/StarSports2HD/index.m3u8" },
+                    { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport2/index.m3u8" },
+                    { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
