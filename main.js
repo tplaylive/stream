@@ -404,7 +404,8 @@ const channels = [
             { 
                 name: "ET Now", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://212.102.34.8:9080/ETNOW/video.m3u8" }
+                    { name: "Server 1", url: "https://pubads.g.doubleclick.net/ssai/event/pJrzNyDoT_K_GwYQsijTsQ/master.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://212.102.34.8:9080/ETNOW/video.m3u8" }
                 ], 
                 img: "https://www.medianews4u.com/wp-content/uploads/2025/12/ET-NOW-Unveils-a-Powerful-New-Programming-Slate_-All-About-Your-Company-DEEP-DIVE-BrandVerse-and-Year-End-Programming-2025.png", 
                 category: "News",
@@ -3740,7 +3741,7 @@ const channels = [
             { 
                 name: "Live 1", 
                 sources: [
-                    { name: "Server 1", url: "https://dai.google.com/ssai/event/X9tnEM9wQHKUIX6nWcZ4TA/master.m3u8" },
+                    { name: "Server 1", url: "https://mix.drmlive.net/mix/playboxtv.m3u8?id=830835320" },
                     { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
                     { name: "Server 3", url: "https://stream.snexus.co/live/SN_WILDLIFE/main_stream.m3u8" }
                 ], 
@@ -3886,6 +3887,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8" },
                     { name: "Server 2", url: "https://cdn-7.pishow.tv/live/1161/master.m3u8" },
+                    { name: "Server 3", url: "https://mix.drmlive.net/mix/playboxtv.m3u8?id=PBha-10569" },
                 ], 
                 img: "https://i.postimg.cc/WzT8m77f/dd-sports.jpg", 
                 category: "Sports",
