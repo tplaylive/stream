@@ -1648,6 +1648,15 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Jaya Max", 
+                sources: [
+                    { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/http://45.148.145.57/IN_D2HJAYAMOVIE/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2160e45255960cfbacc217bfe5ec63d4.png", 
+                category: "Music",
+                description: "Tamil"
+            },
+            { 
                 name: "7S Music", 
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/7SMUSIC/index.m3u8" },
