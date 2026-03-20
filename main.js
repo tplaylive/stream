@@ -1992,6 +1992,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Colors Cineplex", 
+                sources: [
+                    { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/ColorsCineplexHD/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2956db8b77b0f99d5d7d35634f1543bd.png", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
@@ -2008,6 +2017,23 @@ const channels = [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/DyM2gMGR/max2.jpg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
+                name: "Anoml Cinema", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeanmolcinema/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "812411cba8bc42c79eb2b19cd78ad3f3",
+                            key: "468a0b8d3d5d42d8a5c41bb875390a74"
+                        }
+                    }
+                ], 
+                img: "https://yt3.googleusercontent.com/vsUsDAS7eY-c-wMy640Se_420J32aYJ-s2Ma_j1TgmZn_Lfw6ZCYTuy-vj1vSO4d3-A_NIz2EGw=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Movie",
                 description: "India"
             },
@@ -2279,7 +2305,8 @@ const channels = [
             { 
                 name: "Star Movies", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARMOVIESHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARMOVIESHD/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/STAR_Movies_logo.svg/250px-STAR_Movies_logo.svg.png", 
                 category: "Movie",
@@ -2481,9 +2508,10 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARJALSHAHD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARJALSHAHD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: "Entertainment",
@@ -2510,7 +2538,7 @@ const channels = [
                 name: "Colors Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8" },
-                    { name: "Server 2", url: "https://mrzplayin.fun/roarzon/stream.php?id=e8bcb5c4e70519342363881aca82c877&e=.m3u8" },
+                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/ColorsBanglaHD/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vTQZ4Jg6/colors-bangla.jpg", 
                 category: "Entertainment",
@@ -2565,7 +2593,7 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-aath/index.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYAAT/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
@@ -2631,7 +2659,7 @@ const channels = [
             { 
                 name: "Star Plus", 
                 sources: [
-                    { name: "Server 1", url: "https://live.mncdn.shop/74524e79-5f3a-4824-8202-b9e346acb9a4/index.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARPLUSHD/tracks-v1a1/mono.m3u8" },
                     
                 ], 
@@ -2763,7 +2791,7 @@ const channels = [
             { 
                 name: "Colors", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=62848e3ce5804aa985513a7922ff87b2&e=.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/ColorsHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/ColorsHD/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
                     { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/COLORSHD/tracks-v1a1/mono.m3u8" },
@@ -2787,7 +2815,7 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=2d67b743887c973488674aacde2f6fa4&e=.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYENTHD/tracks-v1a1/mono.m3u8" },
                 ], 
