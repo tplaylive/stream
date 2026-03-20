@@ -1994,7 +1994,7 @@ const channels = [
             { 
                 name: "Sony Max", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-hd/index.m3u8" },
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYMAXHD/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
