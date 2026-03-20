@@ -3600,7 +3600,8 @@ const channels = [
             },            { 
                 name: "GTV", 
                 sources: [
-                    { name: "Server 1", url: "https://tvsen6.aynaott.com/gtvhdforgame/index.m3u8" },
+                  
+                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/GaziTV/index.m3u8" },
                     { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/gazitv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/yNLC1Rfw/gtv.jpg", 
