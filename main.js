@@ -1582,6 +1582,16 @@ const channels = [
                 description: "Bangla"
             },
             { 
+                name: "Mon Tv", 
+                sources: [
+                    { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/http://115.187.41.216:8080/hls/montvbangla/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://115.187.41.216:8080/hls/montvbangla/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/KzHXLggC/mon.jpg", 
+                category: "Music",
+                description: "Bangla"
+            },
+            { 
                 name: "Ramdhenu", 
                 sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/RAMDHENU/index.m3u8" }
