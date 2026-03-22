@@ -1741,7 +1741,7 @@ const channels = [
             { 
                 name: "24/7 Bollywood Movies 2", 
                 sources: [
-                    { name: "Playlist", url: "https://vods2.aynaott.com/hindimovies/index.m3u8" }
+                    { name: "Playlist", url: "https://tplay.live/playlist/movies/hindi-movies.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/HsvPf09Y/bollywood.jpg", 
                 category: "Movie",
@@ -3727,11 +3727,11 @@ const channels = [
                 description: "Bengali"
             },
             { 
-                name: "Bongo Drama", 
+                name: "Bangla Drama", 
                 sources: [
-                    { name: "Server 1", url: "https://streams2.sofast.tv/ptnr-runntv/title-Bongo_Drama/sofastplayout/restream/6509864e-6447-4085-9053-c643734bbc1c/master.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/playlist/mix/bangla-drama.index.m3u8" },
                 ], 
-                img: "https://yt3.googleusercontent.com/-WoL9dA-we7-4A1cWu_SHjzRl7e0_sdMrr-lFrznSAIyn__k7Hs89hvW8jV3_DpYP9PzjBQikw=s900-c-k-c0x00ffffff-no-rj", 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVAeszlFWlfcadc7jXVfQQnjZnGLWpMhcqPg&s", 
                 category: "Mix-Entertainment",
                 description: "Bengali"
             },
