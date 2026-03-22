@@ -835,7 +835,7 @@ const channels = [
                 name: "Sony Yay",
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYYAY/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://bostaflix.vercel.app/api/roarzone.m3u8?stream=toffee/sonyyay" },
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyyay/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyyay/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
@@ -2019,7 +2019,7 @@ const channels = [
             { 
                 name: "Star Gold", 
                 sources: [
-                    { name: "Stream 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=3eef0c9777e4ffc85045bb13ffbf12fb&e=.m3u8" },
+                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/stargold/index.m3u8" },
                     { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
                     { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARGOLDHD/tracks-v1a1/mono.m3u8" },
                     { name: "Stream 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/stargold/index.m3u8" },
@@ -2041,7 +2041,7 @@ const channels = [
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYMAXHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
@@ -2846,7 +2846,7 @@ const channels = [
                 name: "Colors", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/ColorsHD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/ColorsHD/index.m3u8" },
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/colors/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
                     { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/COLORSHD/tracks-v1a1/mono.m3u8" },
                 ], 
@@ -2860,7 +2860,7 @@ const channels = [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/sabtvhd/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tigerhub-bd.vercel.app/SONY/Sab/tracks-v1a1/mono.ts.m3u8" },
-                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonysab/index.m3u8" }
+                    { name: "Server 4", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonysab/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
                 category: "Entertainment",
@@ -3830,7 +3830,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://mix.drmlive.net/mix/playboxtv.m3u8?id=830835320" },
                     { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
-                    { name: "Server 3", url: "https://stream.snexus.co/live/SN_WILDLIFE/main_stream.m3u8" }
+                    { name: "Server 3", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
@@ -4017,7 +4017,8 @@ const channels = [
                 name: "Sony Sports 5", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS5HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyten3/index.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS5HD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/qqgZ1jVH/ten5.jpg", 
                 category: "Sports",
