@@ -1807,7 +1807,7 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/GmzS2s5Y/zbs.jpg", 
                 category: "Movie",
-                description: "India"
+                description: "Bangla Movies"
             },
             { 
                 name: "Zee Thirai", 
@@ -1824,7 +1824,7 @@ const channels = [
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKupv9Pff-n6hztryy-Es9h8SCXlxvtmFp4w&s", 
                 category: "Movie",
-                description: "Tamil Kollywood movies"
+                description: "Tamil Movies"
             },
             { 
                 name: "ZEE Cinemalu", 
@@ -1841,7 +1841,24 @@ const channels = [
                 ], 
                 img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Cinemalu.png", 
                 category: "Movie",
-                description: "India"
+                description: "Telugu Movies"
+            },
+            { 
+                name: "ZEE Talkies", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeetalkies/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "f081f32756374c3d8265e1a1e029614e",
+                            key: "356a3a6d8ce34d49a84ad464b20b1a3e"
+                        }
+                    }
+                ], 
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/VGfIqjrc.png", 
+                category: "Movie",
+                description: "Marathi Movies"
             },
             { 
                 name: "Zee Bollywood", 
@@ -2078,7 +2095,7 @@ const channels = [
             { 
                 name: "Shemaroo Bollywood", 
                 sources: [
-                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/shemaroo-bollywood/playlist.m3u8" },
+                    { name: "Server 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00864-shemarooenterta-shemabollywood-ono/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0NW9N0WT/Shemaroo-Bollywood.png", 
                 category: "Movie",
@@ -2650,6 +2667,23 @@ const channels = [
                 description: "Bangla"
             },
             { 
+                name: "Zee Sarthak", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeesarthak/default/devil.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "ecad0b097b574078a4a1bde24bfdb2e5",
+                            key: "568bb13d04db4b738864f6c849474cd5"
+                        }
+                    }
+                ], 
+                img: "https://d388d59m61mm0v.cloudfront.net/optimized/content/common/logos/channel/logos/zee-sarthak.png", 
+                category: "Entertainment",
+                description: "Odia"
+            },
+            { 
                 name: "Rang TV", 
                 sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/RANG/index.m3u8" }
@@ -2899,6 +2933,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Zee Marathi", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeemarathi/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "2a8d6c938ea647248f7a10eedc39f097",
+                            key: "7d81feb84ed84bd88fdc5ca9de3c16da"
+                        }
+                    }
+                ], 
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/4bimlHJj.png", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
                 name: "Fakt Marathi", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10002/master.m3u8" },
@@ -3087,6 +3138,23 @@ const channels = [
                 category: "Entertainment",
                 description: "Malayalam"
             },
+            { 
+                name: "ZEE Kannada", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeekannada/default/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "50e714b65ead453cbfab9b20bed5c79d",
+                            key: "bc08e108b9ee4f65b99cb9dad9532f3f"
+                        }
+                    }
+                ], 
+                img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/1PrOGXAh.png", 
+                category: "Entertainment",
+                description: "Kannada"
+            }, 
             { 
                 name: "Siri Kannada All Time", 
                 sources: [
@@ -3438,8 +3506,9 @@ const channels = [
             { 
                 name: "Deepto TV", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/deeptotv/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/deeptotv.index.m3u8" }
+                    { name: "Server 1", url: "https://byphdgllyk.gpcdn.net/hls/deeptotv/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/deeptotv/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/deeptotv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/m2tN6sc9/deepto-tv.jpg", 
                 category: "Mix-Entertainment",
