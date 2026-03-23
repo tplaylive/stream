@@ -574,16 +574,6 @@ const channels = [
                 description: "Bangladesh"
             },
             { 
-                name: "BTV", 
-                sources: [
-                    { name: "Server 1", url: "https://www.btvlive.gov.bd/live/37f2df30-3edf-42f3-a2ee-6185002c841c/BD/d96eb7f4-83c2-4472-9597-3568390a8ebf/index.m3u8" },
-                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/nzQXt33R/btv.jpg", 
-                category: "Mix-Entertainment",
-                description: "Bangladesh"
-            },
-            { 
                 name: "BTV Chattogram", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/btv-chattagram.index.m3u8" }
@@ -3474,6 +3464,16 @@ const channels = [
                 img: "https://yt3.googleusercontent.com/m3UJ83p8sYNsNAJ7lsRelI4UxoF7LLXNWPSrwSGEmdsyhHWo2Q9mv73tyTVW-tp-x8lbZ65f=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Mix-Entertainment",
                 description: "Punjabi/Bhojpuri"
+            },
+            { 
+                name: "BTV", 
+                sources: [
+                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/btv/index.m3u8" },
+                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/nzQXt33R/btv.jpg", 
+                category: "Mix-Entertainment",
+                description: "Bangladesh"
             },
             { 
                 name: "RTV", 
