@@ -1476,16 +1476,8 @@ const channels = [
                 category: "Music",
                 package: ["250","500"],
                 description: "Punjabi"
-            },
+            },           
             { 
-                name: "Saga Music HD", 
-                sources: [
-                    { name: "Stream 1", url: "https://amg00223-unisys-amg00223c5-lg-in-2048.playouts.now.amagi.tv/playlist/amg00223-sevencolorsbroadcastingprivatelimited-sagamusic-lgin/playlist.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/pLXwzmwP/saga-music.jpg", 
-                category: "Music",
-                description: "Punjabi"
-            },            { 
                 name: "PTC Music", 
                 sources: [
                     { name: "Stream 1", url: "https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8" },
@@ -1503,6 +1495,24 @@ const channels = [
                 category: "Music",
                 description: "Punjabi"
             },
+            { 
+                name: "Saga Music HD", 
+                sources: [
+                    { name: "Stream 1", url: "https://amg00223-unisys-amg00223c5-lg-in-2048.playouts.now.amagi.tv/playlist/amg00223-sevencolorsbroadcastingprivatelimited-sagamusic-lgin/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/pLXwzmwP/saga-music.jpg", 
+                category: "Music",
+                description: "Punjabi"
+            }, 
+            { 
+                name: "Saga Music Haryanvi HD", 
+                sources: [
+                    { name: "Stream 1", url: "https://amg00223-unisys-amg00223c4-lg-in-2049.playouts.now.amagi.tv/playlist/amg00223-sevencolorsbroadcastingprivatelimited-sagamusicharyanvi-lgin/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/P5RRD2bM/saga-har.jpg", 
+                category: "Music",
+                description: "Punjabi"
+            }, 
             { 
                 name: "Ragni TV", 
                 sources: [
