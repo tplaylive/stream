@@ -2336,6 +2336,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/index.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/STAR_Movies_logo.svg/250px-STAR_Movies_logo.svg.png", 
                 category: "Movie",
@@ -2707,6 +2708,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/tracks-v1a1/mono.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/htNZQ0x0/Star-Plus.jpg", 
@@ -4031,8 +4033,8 @@ const channels = [
                 name: "Star Sports 1", 
                 sources: [
                     { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/StarSports1HD/index.m3u8" },
-                    { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport1/index.m3u8" },
-                    { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
+                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport1/index.m3u8" },
+                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
                 category: "Sports",
@@ -4043,8 +4045,8 @@ const channels = [
                 name: "Star Sports 2", 
                 sources: [
                     { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/StarSports2HD/index.m3u8" },
-                    { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/starsport2/index.m3u8" },
-                    { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
+                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.99.249.139/starsport2/index.m3u8" },
+                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
