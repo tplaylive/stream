@@ -3832,7 +3832,7 @@ const channels = [
             { 
                 name: "Live 1", 
                 sources: [
-                    { name: "Server 1", url: "https://mix.drmlive.net/mix/playboxtv.m3u8?id=830835320" },
+                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
                     { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
                     { name: "Server 3", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
                 ], 
