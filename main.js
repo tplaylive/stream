@@ -2053,6 +2053,7 @@ const channels = [
                 name: "Sony Max 2", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-2/index.m3u8" },
+                    { name: "Backup", url: "https://amigofx.com:1936/bigstarmovie/bigstarmovie/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/DyM2gMGR/max2.jpg", 
                 category: "Movie",
