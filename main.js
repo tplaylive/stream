@@ -1758,7 +1758,8 @@ const channels = [
             { 
                 name: "Jalsha Movies", 
                 sources: [
-                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/JALSHAMOVIESHD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/jalshamovies/index.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/JALSHAMOVIESHD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://www.indiantvinfo.com/media/2022/12/Jalsha-Movies-Logo.png", 
                 category: "Movie",
@@ -2621,7 +2622,7 @@ const channels = [
                 name: "Sony Aath", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYAAT/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyaath/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
                 category: "Entertainment",
@@ -2838,7 +2839,7 @@ const channels = [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/ColorsHD/index.m3u8" },
                     { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/colors/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
-                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/COLORSHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/colorshd/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vBL4YjR8/colors.jpg", 
                 category: "Entertainment",
@@ -4288,7 +4289,7 @@ const channels = [
             { 
                 name: "Discovery HD", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=d057550070ff8a4f258a25ebd822f7e8&e=.m3u8" }
+                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/discovery/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/SjFpx6XX/discovery.jpg", 
                 category: "Infotainment",
