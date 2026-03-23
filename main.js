@@ -2122,6 +2122,18 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "NH BollyGold", 
+                sources: [
+                    { name: "Server 1", url: "https://nh-runntv-blygld.cdn.runn.tv/nhstdz/stream/blygld/playlist.m3u8" },
+                    { name: "Server 2", url: "https://csm-e-runntvprdlive-eb.runnads.runn.media/csm/extlive/runntvprd01,nhbollygoldottplay.m3u8" },
+                    { name: "Server 3", url: "https://0dc330e6408b4c3b9ac31fd37b121368.mediatailor.ap-south-1.amazonaws.com/v1/master/d367f9b863a7a04827f71ecab4cbeeb11f78a827/nh-bollygold-airtel/playlist.m3u8" },
+                    { name: "Server 4", url: "https://csm-e-runntvprdlive-eb.runnads.runn.media/csm/extlive/runntvprd01,nhbollygoldvidaa2.m3u8?yo.up=https://nh-vidaa-blygld.cdn.runn.tv/nhstdz/stream/blygld/manifest/&amp;yo.eb.fb=aHR0cHM6Ly9uaC12aWRhYS1ibHlnbGQuY2RuLnJ1bm4udHYvbmhzdGR6L3N0cmVhbS9ibHlnbGQvcGxheWxpc3QubTN1OA==&amp;ads.vidaa_ads_param=1191723366" },
+                ], 
+                img: "https://i.postimg.cc/pdDR2J40/nh-bollygold.jpg", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "South Station", 
                 sources: [
                     { name: "Server 1", url: "https://cc-yw7ztecy8do3q.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-yw7ztecy8do3q/SS_IN.m3u8" },
