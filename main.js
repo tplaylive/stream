@@ -2012,7 +2012,7 @@ const channels = [
                 sources: [
                     { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/stargold/index.m3u8" },
                     { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
-                    { name: "Stream 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARGOLDHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/stargold/index.m3u8" },
                     { name: "Stream 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/stargold/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
@@ -2034,6 +2034,7 @@ const channels = [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
                     { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
+                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonymax/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
                 category: "Movie",
@@ -2334,7 +2335,7 @@ const channels = [
                 name: "Star Movies", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARMOVIESHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/index.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/STAR_Movies_logo.svg/250px-STAR_Movies_logo.svg.png", 
                 category: "Movie",
@@ -2539,7 +2540,7 @@ const channels = [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
-                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARJALSHAHD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starjalsha/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: "Entertainment",
@@ -2705,7 +2706,7 @@ const channels = [
                 name: "Star Plus", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARPLUSHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/htNZQ0x0/Star-Plus.jpg", 
@@ -2862,7 +2863,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYENTHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
                 category: "Entertainment",
