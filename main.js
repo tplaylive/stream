@@ -1999,6 +1999,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Goldmines Action", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/GOLDMINESACTION/index.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/_X6U6bMLF-pTu5wBMFwsSI6aubGrXk2B0kUKdGiLIMqFLyDIne4Ot4ro76BS1S8fX3pWcCwS=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
                 name: "Goldmines Bollywood", 
                 sources: [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/GOLDMINESBOLLYWOOD/index.m3u8" },
