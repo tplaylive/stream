@@ -1271,7 +1271,7 @@ const channels = [
                     { name: "Stream 1", url: "https://mumt04.tangotv.in/B4UMUSIC/index.m3u8" },
                     { name: "Stream 2", url: "https://cdn-2.pishow.tv/live/415/master.m3u8" },
                     { name: "Stream 3", url: "https://mumbai-edge.smartplaytv.in/B4uMusic/index.m3u8" },
-                    { name: "Stream 3", url: "https://edge2.roarzone.info:8447/roarzone/edge3/b4u-music/index.m3u8" },
+                    { name: "Stream 3", url: "https://amg00877-b4unew-amg00877c3-lg-in-5261.playouts.now.amagi.tv/playlist/amg00877-b4unetworkeuropefast-b4umusic-lgin/playlist.m3u8" },
                     { name: "Stream 4", url: "https://cdnb4u.wiseplayout.com/B4U_Music/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mrvFm9CF/B4-U-Music.png", 
@@ -1478,6 +1478,14 @@ const channels = [
                 description: "Punjabi"
             },
             { 
+                name: "Saga Music HD", 
+                sources: [
+                    { name: "Stream 1", url: "https://amg00223-unisys-amg00223c5-lg-in-2048.playouts.now.amagi.tv/playlist/amg00223-sevencolorsbroadcastingprivatelimited-sagamusic-lgin/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/pLXwzmwP/saga-music.jpg", 
+                category: "Music",
+                description: "Punjabi"
+            },            { 
                 name: "PTC Music", 
                 sources: [
                     { name: "Stream 1", url: "https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8" },
@@ -2518,6 +2526,15 @@ const channels = [
                     { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
+                category: "Movie",
+                description: "India"
+            },
+            { 
+                name: "Hollywood Desi", 
+                sources: [
+                    { name: "Playlist", url: "https://cc-u6hadnoh0u6td.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-u6hadnoh0u6td/OTM/OTM_HollywoodActionHindi-SCTE_SAMSUNG/playlist.m3u8" },
+                ], 
+                img: "https://c.kmpr.in/assets/tv_channels_150/7176.jpg", 
                 category: "Movie",
                 description: "India"
             },
