@@ -4047,6 +4047,7 @@ const channels = [
                     { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/StarSports2HD/index.m3u8" },
                     { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.99.249.139/starsport2/index.m3u8" },
                     { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
+                    { name: "Stream 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport2/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
