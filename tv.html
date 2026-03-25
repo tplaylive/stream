@@ -440,84 +440,6 @@ body{background:#000;color:#fff;overflow:hidden}
     font-size:12px;
   }
 }
-
-/* ===== Package Overlay ===== */
-.packageOverlay{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(520px,92vw);max-height:75vh;
-  background:rgba(0,0,0,.94);
-  border:1px solid rgba(255,255,255,.15);
-  backdrop-filter:blur(12px);
-  border-radius:16px;
-  padding:0;
-  display:none;
-  flex-direction:column;
-  z-index:160;
-  overflow:hidden;
-  box-shadow:0 15px 40px rgba(0,0,0,.7);
-}
-.packageOverlay.show{display:flex}
-.packageHeader{
-  padding:16px 20px;background:rgba(25,25,25,.98);
-  border-bottom:1px solid rgba(255,255,255,.12);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.packageHeader b{font-size:18px}
-.packageClose{
-  width:34px;height:34px;border-radius:50%;border:none;
-  background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-}
-.packageClose:hover{background:#e50914}
-.packageBody{flex:1;padding:18px;overflow-y:auto}
-.pkgStatus{font-size:14px;color:#ddd;margin-bottom:12px}
-.pkgGrid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:10px;
-}
-.pkgCard{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:12px;
-  padding:10px;
-  cursor:pointer;
-  transition:.2s;
-}
-.pkgCard:hover{background:rgba(255,255,255,.10)}
-.pkgCard.active{
-  background:rgba(229,9,20,.22);
-  border-left:3px solid #e50914;
-}
-.pkgTop{display:flex;align-items:center;gap:10px;justify-content:space-between}
-.pkgLeft{display:flex;align-items:center;gap:10px;min-width:0}
-.pkgLogo{width:34px;height:34px;border-radius:10px;object-fit:cover;background:#111}
-.pkgName{font-weight:800;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pkgMeta{font-size:12px;color:#bbb;margin-top:6px}
-.pkgLock{font-size:14px;color:#bbb}
-.pkgCodeRow{display:flex;gap:10px;margin-top:14px}
-.pkgCodeRow input{
-  flex:1;
-  padding:10px 12px;
-  border:none;outline:none;
-  border-radius:12px;
-  background:rgba(255,255,255,.10);
-  color:#fff;
-}
-.pkgBtn{
-  padding:10px 12px;
-  border:none;
-  border-radius:12px;
-  background:rgba(255,255,255,.16);
-  color:#fff;
-  cursor:pointer;
-}
-.pkgBtn:hover{background:#e50914}
-.pkgHint{margin-top:12px;font-size:12px;color:#aaa}
-@media (max-width:600px){
-  .pkgGrid{grid-template-columns:repeat(2, 1fr);}
-}
-
 </style>
 
 </head>
@@ -549,7 +471,6 @@ body{background:#000;color:#fff;overflow:hidden}
       <button class="btn" id="btnMute" title="Mute/Unmute"><i class="fas fa-volume-up" id="muteIcon"></i></button>
       <button class="btn" id="btnFullscreen" title="Fullscreen"><i class="fas fa-expand" id="fullscreenIcon"></i></button>
       <button class="btn" id="btnSettings" title="Settings"><i class="fas fa-cog"></i></button>
-      <button class="btn" id="btnPackage" title="Packages"><i class="fas fa-box"></i></button>
       <button class="btn" id="btnGuide" title="Guide"><i class="fas fa-list"></i></button>
       <button class="btn" id="btnNext" title="Next"><i class="fas fa-chevron-right"></i></button>
       <button class="btn" id="btnFav" title="Favorite"><i class="fas fa-star" id="favIcon"></i></button>
@@ -599,29 +520,6 @@ body{background:#000;color:#fff;overflow:hidden}
     </div>
   </div>
   
-
-  <!-- Package Overlay -->
-  <div id="packageOverlay" class="packageOverlay">
-    <div class="packageHeader">
-      <b><i class="fas fa-box"></i> Packages</b>
-      <button class="packageClose" id="btnClosePackage"><i class="fas fa-times"></i></button>
-    </div>
-
-    <div class="packageBody">
-      <div id="pkgStatus" class="pkgStatus">Access: Basic (Free)</div>
-
-      <div class="pkgGrid" id="pkgGrid"></div>
-
-      <div class="pkgCodeRow">
-        <input id="pkgCodeInput" placeholder="Enter access code" />
-        <button class="pkgBtn" id="btnApplyPkgCode">Apply</button>
-        <button class="pkgBtn" id="btnLogoutPkg">Logout</button>
-      </div>
-
-      <div class="pkgHint">Basic is free. Standard/Premium require a code.</div>
-    </div>
-  </div>
-
   <!-- Settings Overlay -->
   <div id="settingsOverlay" class="settingsOverlay">
     <div class="settingsHeader">
@@ -666,7 +564,6 @@ body{background:#000;color:#fff;overflow:hidden}
 
 </div>
   
-<script src="codes.js"></script>
 <script src="main.js"></script>
 <!-- Shaka Player only - HLS removed -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.compiled.js"></script>
@@ -705,13 +602,6 @@ const serverOptions = document.getElementById("serverOptions");
 const serverChannelName = document.getElementById("serverChannelName");
 const serverCloseBtn = document.getElementById("btnCloseServer");
 
-/* Package Overlay */
-const packageOverlay = document.getElementById("packageOverlay");
-const pkgGrid = document.getElementById("pkgGrid");
-const pkgStatus = document.getElementById("pkgStatus");
-const pkgCodeInput = document.getElementById("pkgCodeInput");
-
-
 /* Players */
 let shakaP = null;
 
@@ -729,40 +619,6 @@ let focusTileIndex = 0;
 /* Overlay state */
 let isFullscreen = false;
 let serverFocusIndex = 0;
-
-
-/* Packages */
-const PACKAGE_ORDER = ["150","250","500"];
-let unlockedTier = localStorage.getItem("unlockedTier") || "150";
-let activePackage = localStorage.getItem("activePackage") || "150";
-
-function getDeviceId(){
-  let id = localStorage.getItem("deviceId");
-  if(!id){
-    id = Math.random().toString(36).slice(2);
-    localStorage.setItem("deviceId", id);
-  }
-  return id;
-}
-
-function getChannelPackages(ch){
-  const p = ch.package;
-  if(Array.isArray(p)) return p;
-  if(typeof p === "string" && p) return [p];
-  return ["150"]; // default basic
-}
-
-function canSelectPackage(pkg){
-  return PACKAGE_ORDER.indexOf(pkg) <= PACKAGE_ORDER.indexOf(unlockedTier);
-}
-
-function countChannelsForPackage(pkg){
-  let c = 0;
-  for(const ch of channels){
-    if(getChannelPackages(ch).includes(pkg)) c++;
-  }
-  return c;
-}
 
 /* Favorites */
 const FAV_KEY = "tplay_favs_v1";
@@ -804,110 +660,6 @@ function toggleServerOverlay(force) {
     updateServerFocus();
   }
 }
-
-/* ===================== Package Functions ===================== */
-function togglePackageOverlay(force){
-  const wantOpen = (typeof force === 'boolean') ? force : !packageOverlay.classList.contains('show');
-
-  if(wantOpen){
-    if (settingsOverlay.classList.contains('show')) toggleSettings(false);
-    if (guide.classList.contains('show')) toggleGuide(false);
-    if (serverOverlay.classList.contains('show')) toggleServerOverlay(false);
-  }
-
-  packageOverlay.classList.toggle('show', wantOpen);
-  if(wantOpen) renderPackageOverlay();
-}
-
-function renderPackageOverlay(){
-  const pkgs = [
-    { id:"150", name:"Basic", logo:"https://i.postimg.cc/RCnCv14W/T-Play.png" },
-    { id:"250", name:"Standard", logo:"https://i.postimg.cc/RCnCv14W/T-Play.png" },
-    { id:"500", name:"Premium", logo:"https://i.postimg.cc/RCnCv14W/T-Play.png" },
-  ];
-
-  pkgGrid.innerHTML = "";
-  for(const p of pkgs){
-    const locked = !canSelectPackage(p.id);
-    const card = document.createElement("div");
-    card.className = "pkgCard" + (activePackage === p.id ? " active" : "");
-    const count = countChannelsForPackage(p.id);
-
-    card.innerHTML = `
-      <div class="pkgTop">
-        <div class="pkgLeft">
-          <img class="pkgLogo" src="${p.logo}" alt="">
-          <div style="min-width:0">
-            <div class="pkgName">${p.name}</div>
-            <div class="pkgMeta">${count} channels</div>
-          </div>
-        </div>
-        <div class="pkgLock">${locked ? "🔒" : "✓"}</div>
-      </div>
-      <div class="pkgMeta" style="margin-top:8px">${p.id}+ Package</div>
-    `;
-
-    card.onclick = () => {
-      if(!canSelectPackage(p.id)){
-        alert("This package requires an access code.");
-        return;
-      }
-      activePackage = p.id;
-      localStorage.setItem("activePackage", activePackage);
-      buildGrid();
-      renderPackageOverlay();
-    };
-
-    pkgGrid.appendChild(card);
-  }
-
-  pkgStatus.textContent =
-    unlockedTier === "150" ? "Access: Basic (Free)" :
-    unlockedTier === "250" ? "Access: Standard" :
-    "Access: Premium";
-}
-
-function applyAccessCode(){
-  const code = (pkgCodeInput.value || "").trim();
-  const entry = (typeof ACCESS_CODES !== "undefined") ? ACCESS_CODES[code] : null;
-
-  if(!entry){
-    alert("Invalid code");
-    return;
-  }
-
-  const deviceId = getDeviceId();
-  entry.devices = Array.isArray(entry.devices) ? entry.devices : [];
-  entry.maxDevices = entry.maxDevices || 5;
-
-  if(!entry.devices.includes(deviceId)){
-    if(entry.devices.length >= entry.maxDevices){
-      alert("Device limit reached (max 5).");
-      return;
-    }
-    entry.devices.push(deviceId);
-  }
-
-  unlockedTier = entry.tier;
-  activePackage = entry.tier;
-
-  localStorage.setItem("unlockedTier", unlockedTier);
-  localStorage.setItem("activePackage", activePackage);
-
-  buildGrid();
-  renderPackageOverlay();
-  alert("Access granted.");
-}
-
-function logoutAccess(){
-  unlockedTier = "150";
-  activePackage = "150";
-  localStorage.setItem("unlockedTier", unlockedTier);
-  localStorage.setItem("activePackage", activePackage);
-  buildGrid();
-  renderPackageOverlay();
-}
-
 
 function loadServerOptions() {
   serverOptions.innerHTML = '';
@@ -1254,11 +1006,7 @@ window.addEventListener("load", () => {
   document.getElementById("btnMute").onclick = toggleMute;
   document.getElementById("btnFullscreen").onclick = toggleFullscreen;
   document.getElementById("btnSettings").onclick = () => toggleSettings();
-  document.getElementById("btnPackage").onclick = () => togglePackageOverlay();
   document.getElementById("btnFav").onclick = toggleFavCurrent;
-  document.getElementById("btnClosePackage").onclick = () => togglePackageOverlay(false);
-  document.getElementById("btnApplyPkgCode").onclick = applyAccessCode;
-  document.getElementById("btnLogoutPkg").onclick = logoutAccess;
 
   // guide search
   search.addEventListener("input", () => { 
@@ -1439,7 +1187,7 @@ async function failAllSources(msg){
 
   await new Promise(r => setTimeout(r, 1600));
   showNoSignal(false);
-  await (async ()=>{ nextChannel(); })();
+  await playChannel((currentIndex + 1) % channels.length);
 }
 
 /* ===================== UI helpers ===================== */
@@ -1501,31 +1249,11 @@ function updateMuteIcon(){
   muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
-function nextChannel(){
-  const playable = getPlayableIndexes();
-  if(!playable.length) return;
-  let pos = playable.indexOf(currentIndex);
-  if(pos === -1) pos = 0;
-  pos = (pos + 1) % playable.length;
-  playChannel(playable[pos]);
+function nextChannel(){ 
+  playChannel((currentIndex+1) % channels.length); 
 }
-
-function getPlayableIndexes(){
-  const idxs = [];
-  for(let i=0;i<channels.length;i++){
-    const pkgs = getChannelPackages(channels[i]);
-    if(pkgs.includes(activePackage)) idxs.push(i);
-  }
-  return idxs;
-}
-
-function prevChannel(){
-  const playable = getPlayableIndexes();
-  if(!playable.length) return;
-  let pos = playable.indexOf(currentIndex);
-  if(pos === -1) pos = 0;
-  pos = (pos - 1 + playable.length) % playable.length;
-  playChannel(playable[pos]);
+function prevChannel(){ 
+  playChannel((currentIndex-1 + channels.length) % channels.length); 
 }
 
 /* ===================== Favorites ===================== */
@@ -1637,10 +1365,6 @@ function getFilteredIndexes(){
     if(isFav && !favs.has(ch.name)) continue;
     if(!isFav && !isAll && cat !== currentCat) continue;
 
-
-    // Package filter
-    const pkgs = getChannelPackages(ch);
-    if(!pkgs.includes(activePackage)) continue;
     // Then check search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
@@ -1717,7 +1441,6 @@ function buildGrid(){
 document.addEventListener("keydown", (e) => {
   const inSearch = (document.activeElement === search);
   const guideOpen = guide.classList.contains("show");
-  const packageOpen = packageOverlay.classList.contains("show");
   const settingsOpen = settingsOverlay.classList.contains("show");
   const serverOpen = serverOverlay.classList.contains("show");
   
