@@ -3182,6 +3182,16 @@ const channels = [
                 description: "Malayalam"
             },
             { 
+                name: "Flowers TV", 
+                sources: [
+                    { name: "Server 1", url: "https://jio.drmlive.net/jio/bpk-tv/Flower_TV_MOB/Fallback/index.m3u8" },
+                    { name: "Server 2", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/flowers_nim_https/050522/flowers/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-03-05/260305634006.jpg?width=700", 
+                category: "Entertainment",
+                description: "Malayalam"
+            },
+            { 
                 name: "ZEE Kannada", 
                 sources: [
                     { 
