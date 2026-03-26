@@ -2776,7 +2776,8 @@ const channels = [
             { 
                 name: "Star Bharat", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/lifeokhd/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/lifeokhd/index.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/W176T68d/Star-Bharat.jpg", 
@@ -2901,6 +2902,7 @@ const channels = [
                     { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/colors/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
                     { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/colorshd/index.m3u8" },
+                    { name: "Server 5", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vBL4YjR8/colors.jpg", 
                 category: "Entertainment",
