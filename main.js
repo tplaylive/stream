@@ -3179,7 +3179,7 @@ const channels = [
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcbf005fdbbe3c4c5224827def2387b8.png", 
                 category: "Entertainment",
-                description: "Malayalam"
+                language: "Malayalam"
             },
             { 
                 name: "Flowers TV", 
@@ -3189,7 +3189,7 @@ const channels = [
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-03-05/260305634006.jpg?width=700", 
                 category: "Entertainment",
-                description: "Malayalam"
+                language: "Malayalam"
             },
             { 
                 name: "ZEE Kannada", 
