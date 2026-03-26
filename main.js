@@ -4132,7 +4132,7 @@ const channels = [
             { 
                 name: "Star Sports Select 1", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=b8966a010354b3b97eb8c050ea73460f&e=.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starselect1/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://smartads.in/resources/assets/uploads/product_group/television/star-sports-select-1-hd.png", 
                 category: "Sports",
@@ -4142,7 +4142,7 @@ const channels = [
             { 
                 name: "Star Sports Select 2", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/STARSPORTSSELECT2HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starselect2/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/4/46/Sss-hd2-bronze.png/revision/latest?cb=20170728104956", 
                 category: "Sports",
