@@ -3936,7 +3936,7 @@ const channels = [
                 name: "Live 3", 
                 sources: [
                     { name: "Server 1", url: "https://live-en.aisports.cc/moviebox/device01/playlist.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://178.33.239.54:8080/507a/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten5/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-ariana/index.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
@@ -4064,7 +4064,7 @@ const channels = [
                 name: "Sony Sports 1", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyTen1HD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS1HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten1/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mg0RC192/ten1.jpg", 
                 category: "Sports",
@@ -4075,7 +4075,7 @@ const channels = [
                 name: "Sony Sports 2", 
                 sources: [
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyTen2HD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS2HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten2/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/y8SC16G7/ten2.jpg", 
                 category: "Sports",
