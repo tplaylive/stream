@@ -678,6 +678,15 @@ const channels = [
                 description: "Bangladesh"
             },
             { 
+                name: "Jago News24",
+                sources: [
+                    { name: "Server 1", url: "https://app.ncare.live/live-orgin/jagonews24.stream/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWQJo4a5pILF85Yuw6A5NxG5LHFhBKK1zuHw&s", 
+                category: "News",
+                description: "Bangladesh"
+            },
+            { 
                 name: "News18 Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bangla_NW18_MOB/output01/index.m3u8" }
@@ -3551,7 +3560,8 @@ const channels = [
             { 
                 name: "Mohona Television", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/mohona.index.m3u8" }
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mohonatv.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/mohona.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/vBTXWxQF/mohona.jpg", 
                 category: "Mix-Entertainment",
@@ -3560,7 +3570,8 @@ const channels = [
             { 
                 name: "Desh TV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/deshtv.index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/deshtv.index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/deshtv.stream/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kG5Zpp8y/deshtv.jpg", 
                 category: "Mix-Entertainment",
@@ -3617,8 +3628,9 @@ const channels = [
             { 
                 name: "Ananda TV", 
                 sources: [
-                    { name: "Playlist", url: "https://edge2.roarzone.info:8447/roarzone/edge3/ananda-tv/index.m3u8" },
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/anandatv.index.m3u8" }
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/anandatv.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://edge2.roarzone.info:8447/roarzone/edge3/ananda-tv/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/anandatv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/tJZFsRyZ/anandatv.jpg", 
                 category: "Mix-Entertainment",
@@ -3638,7 +3650,8 @@ const channels = [
                 name: "Asian TV", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/asian-tv/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/asiantv.index.m3u8" }
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/asiantv.index.m3u8" },
+                    { name: "Server 3", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/asian-test-sample-ok-d.stream/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/021TdcXS/asian.jpg", 
                 category: "Mix-Entertainment",
@@ -3696,7 +3709,7 @@ const channels = [
             { 
                 name: "Channel S", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/channel-s/index.m3u8" },
+                    { name: "Server 1", url: "https://app.ncare.live/live-orgin/channels.stream/playlist.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/bangladesh/channels.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/nL8s287H/channel-s.jpg", 
@@ -3706,8 +3719,9 @@ const channels = [
             { 
                 name: "Ekushey ETV", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://210.4.72.204/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/ekusheytv.index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/ekusheytv.index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://ekusheyserver.com/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://210.4.72.204/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/c4f9c3vr/ekusheetv.jpg", 
                 category: "Mix-Entertainment",
@@ -3755,7 +3769,8 @@ const channels = [
                 sources: [
                   
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/GaziTV/index.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/gazitv/index.m3u8" }
+                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/gazitv/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://tvn1.chowdhury-shaheb.com/gazitv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/yNLC1Rfw/gtv.jpg", 
                 category: "Mix-Entertainment",
@@ -3764,7 +3779,8 @@ const channels = [
             { 
                 name: "My TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/mytv.index.m3u8" }
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mytv-up-off.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/mytv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/k4cM8GWx/mytv.jpg", 
                 category: "Mix-Entertainment",
