@@ -3959,11 +3959,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/wf8usag51e/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
+                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://live-pv-ta.amazon.fastly-edge.com:443/lhr-nitro/live/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
                         type: "dash",
                         drm: {
-                            kid: "d0f2e5c39e70c18f29bf77768a1ad89a",
-                            key: "d6853c51fcf37a18905f0609972395d7"
+                            kid: "294b596763cefc22d0c6312939e13d82",
+                            key: "52148f1043d238a487c29e04f1da8a7b"
                         }
                     }
                 ], 
