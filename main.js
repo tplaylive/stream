@@ -4010,11 +4010,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://login.bheem.tv/bpk-tv/22096/output/index.mpd",
+                        url: "https://star-sports-hindi-1.joker-verse.workers.dev/master.mpd",
                         type: "dash",
                         drm: {
-                            kid: "9452bb588219504397cc7dfc407356b5",
-                            key: "1b3fc29b2616b147ebe119f2c6f9a02a"
+                            kid: "fe7718fbb3fb4ba78c07cc0f578744e6",
+                            key: "624e24b1843b459fab0a949609416f0d"
                         }
                     }
                 ], 
