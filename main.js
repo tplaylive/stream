@@ -4001,11 +4001,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/i2pcjr4pe5/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd",
+                        url: "https://login.bheem.tv/bpk-tv/22096/output/index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "192b1115da041585c77200128549efa1",
-                            key: "634e10efe4abbb14be400a3ccbac0258"
+                            kid: "9452bb588219504397cc7dfc407356b5",
+                            key: "1b3fc29b2616b147ebe119f2c6f9a02a"
                         }
                     }
                 ], 
