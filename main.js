@@ -4172,6 +4172,23 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Prime TV", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/lqj6tdomna/out/v1/817aa485206f4456ad594bbf61c1016c/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "680a24e3d3785ea8b3a33a56928ea128",
+                            key: "3f07a7f94f0ac7ee96057224b6a4163d"
+                        }
+                    }
+                ], 
+                img: "https://iili.io/FfrCHqN.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "Fox Sports", 
                 sources: [
                     { name: "Server 1", url: "https://d1jzu95oc8fgt3.cloudfront.net:443/FOX_Sports.m3u8" }
@@ -4179,6 +4196,40 @@ const channels = [
                 img: "https://yt3.googleusercontent.com/TzefJpalKWO0akoDZBlYLwAsgYLhK8OTkdclGr8KHW0V8EIi6uhfQZEpaB2Ln3hKjOgYjgiS4w=s900-c-k-c0x00ffffff-no-rj", 
                 category: "Sports",
                 package: ["150","250","500"],
+                description: "World"
+            },
+            { 
+                name: "Fox Sports 1", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/tmpzbbdj9y/out/v1/962736723a534ba294e7592fef49827b/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "5466ebd70704bdeb657f0abf3c5ca4ef",
+                            key: "bdd79b72d8e48ed483aa623cc38a8a16"
+                        }
+                    }
+                ], 
+                img: "https://iili.io/KYJqv0G.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Fox Sports 2", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/awxnrqkbo5/out/v1/716529a4091947b0877e6cb80dbd6ccb/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "09453ce820d65fbc675de3185f9e454c",
+                            key: "98cff9600995fa381c76fdacf3c7edae"
+                        }
+                    }
+                ], 
+                img: "https://iili.io/KYJC4V9.png", 
+                category: "Sports",
                 description: "World"
             },
             { 
