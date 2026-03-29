@@ -3999,9 +3999,10 @@ const channels = [
             { 
                 name: "Live 4", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
-                    { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
-                    { name: "Server 3", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
+                    { name: "Server 1", url: "https://p4kp.rjmbts.workers.dev/25121.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
+                    { name: "Server 3", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
+                    { name: "Server 4", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
@@ -4019,6 +4020,18 @@ const channels = [
                             key: "2b6cff42f7fae7e8bc32f3d5c62dc3c2"
                         }
                     }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Live 6", 
+                sources: [
+                    { name: "Server 1", url: "https://p4kp.rjmbts.workers.dev/25121.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
+                    { name: "Server 3", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
+                    { name: "Server 4", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
@@ -4188,10 +4201,11 @@ const channels = [
             { 
                 name: "Star Sports 1", 
                 sources: [
-                    { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/StarSports1HD/index.m3u8" },
-                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport1/index.m3u8" },
-                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
-                    { name: "Stream 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten5/tracks-v1a1/mono.m3u8" },
+                    { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten5/tracks-v1a1/mono.m3u8" },
+                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
+                    { name: "Stream 3", url: "https://p4kp.rjmbts.workers.dev/25121.m3u8" },
+                    { name: "Stream 4", url: "https://padmaonline.duckdns.org:8088/StarSports1HD/index.m3u8" },
+                    { name: "Stream 5", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0Nf1hhL0/sst1.jpg", 
                 category: "Sports",
