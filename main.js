@@ -4454,6 +4454,26 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Tennis Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://tennischannel-int-samsunguk.amagi.tv/playlist.m3u8" }
+                ], 
+                img: "https://i.ibb.co.com/HT0W29vz/Tennis-Channel.jpg", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
+                name: "Trace Sport", 
+                sources: [
+                    { name: "Server 1", url: "https://lightning-tracesport-samsungau.amagi.tv/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/f/f4/TraceSSLogo.png", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
                 name: "WWE Network", 
                 sources: [
                     { 
