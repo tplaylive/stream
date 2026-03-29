@@ -3918,9 +3918,15 @@ const channels = [
             { 
                 name: "Live 1", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
-                    { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
-                    { name: "Server 3", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
+                    { 
+                        name: "Server 1", 
+                        url: "https://a166aivottlinear-a.akamaihd.net/OTTB/sin-nitro/live/clients/dash/enc/inpyms8ezu/out/v1/1084d5c9a97a4c5b9f9554c88f486646/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "065051b99bf5cf8d9a3bde5cbde6aaf9",
+                            key: "214bd176832872339ce184338320f9a2"
+                        }
+                    }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
@@ -3931,11 +3937,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Server 1", 
-                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Bein4)/master.mpd",
+                        url: "https://a204aivottepl-a.akamaihd.net/sin-nitro/live/clients/dash/enc/fdb3pubmek/out/v1/aefca6420f944a9482e117f315de535f/cenc.mpd",
                         type: "dash",
                         drm: {
-                            kid: "d561ff976397473e9b456b44cdffcdd2",
-                            key: "2b6cff42f7fae7e8bc32f3d5c62dc3c2"
+                            kid: "7e9239c1982d984a002df3ed049d0756",
+                            key: "1b8a17598129a3618535c8fb05f103fe"
                         }
                     }
                 ], 
@@ -3949,6 +3955,34 @@ const channels = [
                     { name: "Server 1", url: "https://live-en.aisports.cc/moviebox/device01/playlist.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten5/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-ariana/index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Live 4", 
+                sources: [
+                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
+                    { name: "Server 2", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
+                    { name: "Server 3", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Live 5", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://unifi-live2.secureswiftcontent.com/Content/DASH/Live/channel(Bein4)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "d561ff976397473e9b456b44cdffcdd2",
+                            key: "2b6cff42f7fae7e8bc32f3d5c62dc3c2"
+                        }
+                    }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTywSEQroGG4RHEkDjj2LYZYVS_DEoZEB5wjw&s", 
                 category: "Sports",
