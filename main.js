@@ -4460,7 +4460,7 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_INVESTIGATION_DISCOVERY_HD/images/LOGO_HD/image.png", 
+                img: "https://upload.wikimedia.org/wikipedia/commons/a/a9/ID_HD_logo_2017.jpg", 
                 category: "Infotainment",
                 description: "India"
             },
