@@ -4284,6 +4284,57 @@ const channels = [
                 description: "Qatar"
             },
             { 
+                name: "ZIGGO SPORT 1", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://mag03.tvx.prd.tv.odido.nl/wh7f454c46tw75168188_-627298088/PLTV/86/224/3221241590/3221241590.mpd?zoneoffset=0&devkbps=1-7000&servicetype=1&icpid=86&accounttype=1&limitflux=-1&limitdur=-1&tenantId=3103&accountinfo=%7E%7EV2.0%7EqbcsJh_jU5C9BcZc959e_wae44b4867b3417aa76b5db2da20fe46c%7EKZzTWjB8qD1zdgbJjRPVLJX-tV0qiN9RBHC_iseGrsmTSRjj06oGDtGlpSCRGOwF3626cf085c08d024c7e4aafc18c32440%7EExtInfo5Ro3VppWiUusj2ippqUPkQ%3D%3D4a2d2c8ce133f43026d0e31b822b8474%3A20240601012829%3AUTC%2C10001003329222%2C87.212.140.171%2C20240601012829%2C3103_SP1S%2C10001003329222%2C-1%2C0%2C1%2C%2C%2C2%2C3103_Sport1%2C%2C%2C2%2C10000044444303%2C0%2C10000025050255%2CNDEzODg2NTY3MzEwMzI2NzMwNjMwNTY%3D%2C%2C%2C5%2C1%2CEND&GuardEncType=2&RTS=1717205309&from=11&hms_devid=1008&online=1717205309&mag_hms=1008,311,305&_=1717205322621",
+                        type: "dash",
+                        drm: {
+                            kid: "ef34ae91b4f2415e8439b2ad105e7488",
+                            key: "243248d8de1ff8c7c587ee2057317523"
+                        }
+                    }
+                ], 
+                img: "https://i.ibb.co.com/HV2c1Cc/ziggosport.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "ZIGGO SPORT 2", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://mag03.tvx.prd.tv.odido.nl/wh7f454c46tw266117884_-1972819316/PLTV/86/224/3221241560/3221241560.mpd?accountinfo=~~V2.0~OhA1DF4svOZppKxb-t-Ngw144cce44121c63284a33d5453493e5c8~1_Fmlu5PevHMYnEi9Z_HX2goKAd0VHSuxZMoIcAXcawYvG1meqGp2eQ2Ibhjvh7e59e7f6df3d57f23a32024ad67f0f19dc:UTC,",
+                        type: "dash",
+                        drm: {
+                            kid: "3cfa8625f650406ebf6a4d1ea737f572",
+                            key: "0534e747c70b364aa7210e1bf3191df0"
+                        }
+                    }
+                ], 
+                img: "https://i.ibb.co.com/3fNq3Dr/ziggosport2.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "ZIGGO SPORT 3", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://mag02.tvx.prd.tv.odido.nl/wh7f454c46tw407556707_-381738111/PLTV/86/224/3221241511/3221241511.mpd?accountinfo=~~V2.0~yVi0dMX4icO5Ka9e92EQfg8812e1c1044f7d357066472e3ee99ef4~2dRB9E-vDtoAbYl169LbcJpxUgWVJtbeU_PlhGfNUflphvljOb5VaEhxruETYG9qcccaf5c5b655bf7504ed7ec5a1dd798f:UTC,",
+                        type: "dash",
+                        drm: {
+                            kid: "4dbea4b5713a4aa1ae3a2544cd522fc7",
+                            key: "a8323ea99b2d6200a48e1bc27322d548"
+                        }
+                    }
+                ], 
+                img: "https://i.ibb.co.com/b2Q0RdR/ziggosport3.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "SPOTV", 
                 sources: [
                     { 
