@@ -4223,6 +4223,23 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Premier League TV", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://fsly.stream.peacocktv.com/Content/CMAF_CTR-4s/Live/channel(vc1021n07j)/master.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "002046c9a49b9ab1cdb6616bec5d26c3",
+                            key: "d2f92f6b7edc9a1a05d393ba0c20ef9e"
+                        }
+                    }
+                ], 
+                img: "https://iili.io/KWCtSja.png", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "Fox Sports", 
                 sources: [
                     { name: "Server 1", url: "https://d1jzu95oc8fgt3.cloudfront.net:443/FOX_Sports.m3u8" }
