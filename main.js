@@ -4172,6 +4172,16 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Fox Sports", 
+                sources: [
+                    { name: "Server 1", url: "https://d1jzu95oc8fgt3.cloudfront.net:443/FOX_Sports.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/TzefJpalKWO0akoDZBlYLwAsgYLhK8OTkdclGr8KHW0V8EIi6uhfQZEpaB2Ln3hKjOgYjgiS4w=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
                 name: "Bein Sports 1", 
                 sources: [
                     { 
