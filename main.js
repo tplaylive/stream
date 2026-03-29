@@ -1683,11 +1683,11 @@ const channels = [
                 description: "Tamil"
             },
             { 
-                name: "Jaya Max", 
+                name: "Tunes 6 Music", 
                 sources: [
-                    { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/http://45.148.145.57/IN_D2HJAYAMOVIE/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://stream.d6-pro.com/tunes6music/live/video.m3u8" },
                 ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2160e45255960cfbacc217bfe5ec63d4.png", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/1db45bfc850c95f573a5546a4e3274f7.png", 
                 category: "Music",
                 description: "Tamil"
             },
@@ -2744,6 +2744,15 @@ const channels = [
                 description: "Odia"
             },
             { 
+                name: "Tarang TV", 
+                sources: [
+                    { name: "Server 1", url: "https://livetv.tarangplus.in/tarangtv-origin/live/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/TARANG_TV.jpg/1280px-TARANG_TV.jpg", 
+                category: "Entertainment",
+                description: "Odia"
+            },
+            { 
                 name: "Rang TV", 
                 sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/RANG/index.m3u8" }
@@ -2983,6 +2992,15 @@ const channels = [
                     { name: "Server 1", url: "https://live-dangal2.akamaized.net/liveabr/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/HWyjSjkQ/Dangal-2.png", 
+                category: "Entertainment",
+                description: "India"
+            },
+            { 
+                name: "Nazara", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-p1izg43bk7sj5.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-p1izg43bk7sj5/DIYC/PMSL/IN10/Nazara_IN_B/Nazara_IN_B.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/85PWMDdN/nazara.jpg", 
                 category: "Entertainment",
                 description: "India"
             },
@@ -3378,177 +3396,6 @@ const channels = [
                 description: "Arabic"
             },
             { 
-                name: "Bollywood Masala", 
-                sources: [
-                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-masala/index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/d1VDH0pY/Bollywood-Masala.png", 
-                category: "Entertainment",
-                description: "India"
-            },
-            { 
-                name: "24/7 CID Bengali", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/mix/cid-bengali.index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/nz4WS5nT/cid-bengali.jpg", 
-                category: "Entertainment",
-                description: "Bengali"
-            },
-            { 
-                name: "24/7 Crime Patrol Bengali", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/mix/crime-patrol-bengali.index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/FFSwCT9W/crime-patrol.jpg", 
-                category: "Entertainment",
-                description: "Bengali"
-            },
-            { 
-                name: "24/7 Humayun Ahmed", 
-                sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/mix/humayun-ahmed/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/mZ7yRY36/ha24-7.jpg", 
-                category: "Entertainment",
-                description: "Bengali"
-            },
-            { 
-                name: "Hi Dost!", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt03.tangotv.in/HIDOST/index.m3u8" },
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQot7JfQIDygBtPDLKqP4lomWHllkOpnhtrow&s", 
-                category: "Mix-Entertainment",
-                description: "English/Hindi"
-            },
-            { 
-                name: "Manoranjan TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-1.pishow.tv/live/1013/master.m3u8" }
-                ], 
-                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Manoranjan_TV.png", 
-                category: "Mix-Entertainment",
-                description: "Hindi"
-            },
-            { 
-                name: "Kaumudy TV", 
-                sources: [
-                    { name: "Server 1", url: "https://oqgdrkxby4rm-hls-live.5centscdn.com/kaumudytv/live.stream/playlist.m3u8" }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5d7wjWkHY_VaaFcpji37s3CZwssMsXSxLZlgvTlgWYzfZBEexD1_f-ocxH0kBZBYitPA&usqp=CAU", 
-                category: "Mix-Entertainment",
-                description: "Malayalam"
-            },
-            { 
-                name: "Kannur Vision", 
-                sources: [
-                    { name: "Server 1", url: "https://stream.logichost.in/kannurvision/live/playlist.m3u8" }
-                ], 
-                img: "https://play-lh.googleusercontent.com/667r12fkQRMAXtdves9sb6D9QRjxNn5gY9UjSNsQkYjAfh_YyIvVwtkt8t0LWujWT7U", 
-                category: "Mix-Entertainment",
-                description: "Malayalam"
-            },
-            { 
-                name: "Kairali We", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1530/master.m3u8" }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXFziJMtfaHaW2j77isHF0VepKF9qs78qCow&s", 
-                category: "Mix-Entertainment",
-                description: "Malayalam"
-            },
-            { 
-                name: "Darshana TV", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/DARSHANATV/index.m3u8" }
-                ], 
-                img: "https://media.licdn.com/dms/image/v2/C560BAQEL49S7MytBgg/company-logo_200_200/company-logo_200_200/0/1637128620818?e=2147483647&v=beta&t=woB6D-yxeJR4Fy-tsMnFG-QyioX4CC52V2WWezMVRwE", 
-                category: "Mix-Entertainment",
-                description: "Malayalam"
-            },
-            { 
-                name: "Kalaignar TV", 
-                sources: [
-                    { name: "Server 1", url: "https://segment.yuppcdn.net/240122/kalaignartv/playlist.m3u8" }
-                ], 
-                img: "https://upload.wikimedia.org/wikipedia/en/3/3a/Kalaignar_logo.jpg", 
-                category: "Mix-Entertainment",
-                description: "Tamil"
-            },
-            { 
-                name: "Madhimugam TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1476/master.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2ba9fac03ad789ed0eac205fad948d12.png", 
-                category: "Mix-Entertainment",
-                description: "Tamil"
-            },
-            { 
-                name: "Tamilan TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn.zionmediait.com/zionmediaitserver2024/97484f5ce6da96e496a9b87c439835d0.sdp/playlist.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6c862e3b037757f287141c2d553da1b1.png", 
-                category: "Mix-Entertainment",
-                description: "Tamil"
-            },
-            { 
-                name: "Malar TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/473/master.m3u8" }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ1Uz2UXWDNxARKK2evE0wVMbx-OnqP85IfA&s", 
-                category: "Mix-Entertainment",
-                description: "Tamil"
-            },
-            { 
-                name: "Vasanth TV", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/VASANTHTV/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5761fa88d426be19ba1d457c027d3049.png", 
-                category: "Mix-Entertainment",
-                description: "Tamil"
-            },
-            { 
-                name: "Vissa TV", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt02.tangotv.in/VISSATV/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-02-11/260211734018.jpg?width=700", 
-                category: "Mix-Entertainment",
-                description: "Telugu"
-            },
-            { 
-                name: "Etv Telangana", 
-                sources: [
-                    { name: "Server 1", url: "https://dssp63pjfajz9.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_TS_H264-3_cloud_in/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/14f02729515b0b48e53c377f47607a9e.png", 
-                category: "Mix-Entertainment",
-                description: "Telugu"
-            },
-            { 
-                name: "MH1", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/MHONE/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa5f35e8773cdb342d0e7c4a8152713e.png", 
-                category: "Mix-Entertainment",
-                description: "Punjabi/Hindi"
-            },
-            { 
-                name: "MH1 Dil Se", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt01.tangotv.in/MHONEDILSE/index.m3u8" }
-                ], 
-                img: "https://yt3.googleusercontent.com/m3UJ83p8sYNsNAJ7lsRelI4UxoF7LLXNWPSrwSGEmdsyhHWo2Q9mv73tyTVW-tp-x8lbZ65f=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Mix-Entertainment",
-                description: "Punjabi/Bhojpuri"
-            },
-            { 
                 name: "BTV", 
                 sources: [
                     { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/btv/index.m3u8" },
@@ -3817,15 +3664,6 @@ const channels = [
                 description: "Bengali"
             },
             { 
-                name: "Bangla Drama", 
-                sources: [
-                    { name: "Server 1", url: "https://tplay.live/playlist/mix/bangla-drama.index.m3u8" },
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVAeszlFWlfcadc7jXVfQQnjZnGLWpMhcqPg&s", 
-                category: "Mix-Entertainment",
-                description: "Bengali"
-            },
-            { 
                 name: "Dainik Asha", 
                 sources: [
                     { name: "Server 1", url: "https://live.ekamraott.com/da/da/video.m3u8" },
@@ -3880,6 +3718,168 @@ const channels = [
                 description: "Odia"
             },
             { 
+                name: "Hi Dost!", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/HIDOST/index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQot7JfQIDygBtPDLKqP4lomWHllkOpnhtrow&s", 
+                category: "Mix-Entertainment",
+                description: "English/Hindi"
+            },
+            { 
+                name: "Manoranjan TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-1.pishow.tv/live/1013/master.m3u8" }
+                ], 
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Manoranjan_TV.png", 
+                category: "Mix-Entertainment",
+                description: "Hindi"
+            },
+            { 
+                name: "PTC Punjabi Gold", 
+                sources: [
+                    { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/3e22a9c278db4e3eb779afd42e41b0a6/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/4fbe8341125d6bb98fc3b30f06a56d72.png", 
+                category: "Mix-Entertainment",
+                description: "Punjabi"
+            },
+            { 
+                name: "PTC Punjabi", 
+                sources: [
+                    { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6e14bac6d0384e129521a4d005188bfb/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/833455c80d73a6f34a8184277358d8fc.png", 
+                category: "Mix-Entertainment",
+                description: "Punjabi"
+            },
+            { 
+                name: "MH1", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/MHONE/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa5f35e8773cdb342d0e7c4a8152713e.png", 
+                category: "Mix-Entertainment",
+                description: "Punjabi/Hindi"
+            },
+            { 
+                name: "MH1 Dil Se", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/MHONEDILSE/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/m3UJ83p8sYNsNAJ7lsRelI4UxoF7LLXNWPSrwSGEmdsyhHWo2Q9mv73tyTVW-tp-x8lbZ65f=s900-c-k-c0x00ffffff-no-rj", 
+                category: "Mix-Entertainment",
+                description: "Punjabi/Bhojpuri"
+            },
+            { 
+                name: "Kaumudy TV", 
+                sources: [
+                    { name: "Server 1", url: "https://oqgdrkxby4rm-hls-live.5centscdn.com/kaumudytv/live.stream/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5d7wjWkHY_VaaFcpji37s3CZwssMsXSxLZlgvTlgWYzfZBEexD1_f-ocxH0kBZBYitPA&usqp=CAU", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
+                name: "Kannur Vision", 
+                sources: [
+                    { name: "Server 1", url: "https://stream.logichost.in/kannurvision/live/playlist.m3u8" }
+                ], 
+                img: "https://play-lh.googleusercontent.com/667r12fkQRMAXtdves9sb6D9QRjxNn5gY9UjSNsQkYjAfh_YyIvVwtkt8t0LWujWT7U", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
+                name: "Kairali We", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1530/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXFziJMtfaHaW2j77isHF0VepKF9qs78qCow&s", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
+                name: "Darshana TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/DARSHANATV/index.m3u8" }
+                ], 
+                img: "https://media.licdn.com/dms/image/v2/C560BAQEL49S7MytBgg/company-logo_200_200/company-logo_200_200/0/1637128620818?e=2147483647&v=beta&t=woB6D-yxeJR4Fy-tsMnFG-QyioX4CC52V2WWezMVRwE", 
+                category: "Mix-Entertainment",
+                description: "Malayalam"
+            },
+            { 
+                name: "Kalaignar TV", 
+                sources: [
+                    { name: "Server 1", url: "https://segment.yuppcdn.net/240122/kalaignartv/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/3/3a/Kalaignar_logo.jpg", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
+                name: "Madhimugam TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1476/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2ba9fac03ad789ed0eac205fad948d12.png", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
+                name: "Tamilan TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn.zionmediait.com/zionmediaitserver2024/97484f5ce6da96e496a9b87c439835d0.sdp/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6c862e3b037757f287141c2d553da1b1.png", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
+                name: "Malar TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-3.pishow.tv/live/473/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ1Uz2UXWDNxARKK2evE0wVMbx-OnqP85IfA&s", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
+                name: "Vaanavil TV", 
+                sources: [
+                    { name: "Server 1", url: "https://6n3yope4d9ok-hls-live.5centscdn.com/vaanavil/TV.stream/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/1b9e425af2f6a04da031c75db5f82ca1.png", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
+                name: "Vasanth TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/VASANTHTV/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5761fa88d426be19ba1d457c027d3049.png", 
+                category: "Mix-Entertainment",
+                description: "Tamil"
+            },
+            { 
+                name: "Vissa TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt02.tangotv.in/VISSATV/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-02-11/260211734018.jpg?width=700", 
+                category: "Mix-Entertainment",
+                description: "Telugu"
+            },
+            { 
+                name: "Etv Telangana", 
+                sources: [
+                    { name: "Server 1", url: "https://dssp63pjfajz9.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_TS_H264-3_cloud_in/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/14f02729515b0b48e53c377f47607a9e.png", 
+                category: "Mix-Entertainment",
+                description: "Telugu"
+            },
+            { 
                 name: "Kuwait TV", 
                 sources: [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/kuwait_tv1/hls_roku/index.m3u8" },
@@ -3905,6 +3905,42 @@ const channels = [
                 img: "https://static.wikia.nocookie.net/logopedia/images/c/cc/Sudan_TV_logo_2000.png", 
                 category: "Mix-Entertainment",
                 description: "Sudan"
+            },
+            { 
+                name: "Bangla Drama", 
+                sources: [
+                    { name: "Server 1", url: "https://tplay.live/playlist/mix/bangla-drama.index.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVAeszlFWlfcadc7jXVfQQnjZnGLWpMhcqPg&s", 
+                category: "24/7-Entertainment",
+                description: "Bengali"
+            },
+            { 
+                name: "America's Got Talent", 
+                sources: [
+                    { name: "Server 1", url: "https://d2mexh8isep4mf.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-wp08v1ibrni4i/AmericasGotTalent_GB.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/TP54h9Gp/gt.jpg", 
+                category: "24/7-Entertainment",
+                description: "English"
+            },
+            { 
+                name: "American Idol", 
+                sources: [
+                    { name: "Server 1", url: "https://d2yn8dyffvmgy.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-2mt12zhezzrsh/AmericanIdol_GB.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/2SVvf9FW/idols.jpg", 
+                category: "24/7-Entertainment",
+                description: "English"
+            },
+            { 
+                name: "Bollywood Masala", 
+                sources: [
+                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-masala/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/d1VDH0pY/Bollywood-Masala.png", 
+                category: "Fashion",
+                description: "India"
             },
             { 
                 name: "Miami TV Fashion", 
@@ -4849,7 +4885,7 @@ const channels = [
             { 
                 name: "Epic", 
                 sources: [
-                    { name: "Server 1", url: "https://epiconvh.akamaized.net/live/epic/master.m3u8" }
+                    { name: "Server 1", url: "https://cc-czbq30x55knit.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-czbq30x55knit/DIYC/PMSL/IN10/Epic_TV_IN_B/Epic_TV_IN_B.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/c1X91C4M/epic.jpg", 
                 category: "Infotainment",
