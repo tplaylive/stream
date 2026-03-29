@@ -4010,11 +4010,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://star-sports-hindi-1.joker-verse.workers.dev/master.mpd",
+                        url: "https://anywhere.pwisetthon.com/https://play.mokakdaoni.me/proxy/main.php/https://jiotvbpkmob.cdn.jio.com/bpk-tv/Star_Sports_HD1_Hindi_BTS/output/index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "fe7718fbb3fb4ba78c07cc0f578744e6",
-                            key: "624e24b1843b459fab0a949609416f0d"
+                            kid: "400131994b445d8c8817202248760fda",
+                            key: "2d56cb6f07a75b9aff165d534ae2bfc4"
                         }
                     }
                 ], 
