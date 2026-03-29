@@ -2605,10 +2605,11 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
-                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starjalsha/index.m3u8" }
+                    { name: "Server 1", url: "https://playztv-apps.pages.dev/star-jalsha/index.m3u8" },
+                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
+                    { name: "Server 5", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starjalsha/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: "Entertainment",
