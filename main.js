@@ -971,7 +971,16 @@ const channels = [
             { 
                 name: "Cartoon Network HD+", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=374c459701ac3b0ba6b1bbb7f82ddd65&e=.m3u8" },                ], 
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22096/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "9452bb588219504397cc7dfc407356b5",
+                            key: "1b3fc29b2616b147ebe119f2c6f9a02a"
+                        }
+                    }
+                ], 
                 img: "https://i.postimg.cc/d06FD9xw/cnhd.jpg", 
                 category: "Kids",
                 description: "Hindi/English"
@@ -4326,6 +4335,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Animal Planet HD Hindi",
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://login.bheem.tv/bpk-tv/22052/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "8aaf27b53099505a8307b7df2f61b46c",
+                            key: "83692149a2e59a8aae8e39ed6a1f6325"
+                        }
+                    }
+                ],
+                img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
+                category: "Infotainment",
+                description: "India"
+            },
+            { 
                 name: "Discovery Pakistan", 
                 sources: [
                     { name: "Server 1", url: "https://livecdn.live247stream.com/discoverpakistan/web/playlist.m3u8" },
@@ -4424,9 +4450,17 @@ const channels = [
             { 
                 name: "Investigation Discovery HD", 
                 sources: [
-                    { name: "Server 1", url: "https://mrzplayin.fun/roarzon/stream.php?id=04a07a04a079e75d643dedca798b77bb&e=.m3u8" }
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22076/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "30da751b70f05b5297d18d0c33c29f0c",
+                            key: "86796e309d13495992282149f0957f74"
+                        }
+                    }
                 ], 
-                img: "https://i.postimg.cc/cHKNTBPr/id.jpg", 
+                img: "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_INVESTIGATION_DISCOVERY_HD/images/LOGO_HD/image.png", 
                 category: "Infotainment",
                 description: "India"
             },
