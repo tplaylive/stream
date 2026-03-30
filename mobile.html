@@ -1023,38 +1023,6 @@
             }
         }
 
-        // Load Channel
-        function loadChannel(index) {
-            document.querySelectorAll(".channel-item").forEach(item => {
-                item.classList.remove("active");
-            });
-
-            if (channelMap.has(index)) {
-                channelMap.get(index).classList.add("active");
-            }
-
-            const channel = filteredChannels[index];
-            currentChannelIndex = index;
-            currentBackupSources = channel.sources;
-            currentBackupIndex = 0;
-
-            // Update poster image
-            if (channel.img) {
-                posterImage.src = channel.img;
-                posterImage.style.display = "block";
-            }
-
-            sourceMenu.innerHTML = "";
-            channel.sources.forEach((source, i) => {
-                const option = document.createElement("option");
-                option.value = i;
-                option.textContent = source.name + (source.drm ? " (DRM)" : "");
-                sourceMenu.appendChild(option);
-            });
-
-            loadSource(0);
-        }
-
         // Load Channels List
         function loadChannels() {
             channelList.innerHTML = "";
@@ -1099,12 +1067,6 @@
 
             currentCategory = category;
             loadChannels();
-            
-            // Reset channel map for filtered channels
-            channelMap.clear();
-            if (filteredChannels.length > 0) {
-                loadChannel(0);
-            }
         }
 
         // Filter Channels by Search
@@ -1118,6 +1080,180 @@
                     item.style.display = "none";
                 }
             });
+        }
+
+        // Load Channel (AD SYSTEM REMOVED)
+        function loadChannel(index) {
+            document.querySelectorAll(".channel-item").forEach(item => {
+                item.classList.remove("active");
+            });
+
+            if (channelMap.has(index)) {
+                channelMap.get(index).classList.add("active");
+            }
+
+            const channel = filteredChannels[index];
+            currentChannelIndex = index;
+            currentBackupSources = channel.sources;
+            currentBackupIndex = 0;
+
+            sourceMenu.innerHTML = "";
+            channel.sources.forEach((source, i) => {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = source.name + (source.drm ? " (DRM)" : "");
+                sourceMenu.appendChild(option);
+            });
+
+            loadSource(0);
+        }
+
+        // Load Source
+        function loadSource(sourceIndex) {
+            cleanupPlayers();
+
+            const source = currentBackupSources[sourceIndex];
+            currentChannelUrl = source.url;
+            currentBackupIndex = sourceIndex;
+
+            loadingOverlay.style.display = "flex";
+            errorMessage.style.display = "none";
+
+            // Handle DASH streams (with or without DRM)
+            if (source.type === 'dash') {
+                if (!shakaPlayer) {
+                    shakaPlayer = initShakaPlayer();
+                    if (!shakaPlayer) {
+                        showError('Shaka Player initialization failed');
+                        loadingOverlay.style.display = "none";
+                        tryNextBackup();
+                        return;
+                    }
+                }
+
+                // Configure DRM if present
+                if (source.drm) {
+                    shakaPlayer.configure({
+                        drm: {
+                            clearKeys: {
+                                [source.drm.kid]: source.drm.key
+                            }
+                        }
+                    });
+                } else {
+                    // Clear any existing DRM config for non-DRM streams
+                    shakaPlayer.configure({
+                        drm: {
+                            clearKeys: {}
+                        }
+                    });
+                }
+
+                // Load the DASH stream
+                shakaPlayer.load(source.url).then(() => {
+                    loadingOverlay.style.display = "none";
+                    errorMessage.style.display = "none";
+                    video.play().catch(e => {
+                        console.error("Failed to autoplay:", e);
+                    });
+                }).catch((error) => {
+                    console.error('Shaka Player error:', error);
+                    showError('Failed to load DASH stream: ' + error.message);
+                    loadingOverlay.style.display = "none";
+                    tryNextBackup();
+                });
+                
+                return;
+            }
+
+            // Handle HLS streams
+            if (Hls.isSupported() && !isIOS) {
+                hls = new Hls({
+                    maxBufferLength: 30,
+                    backBufferLength: 30,
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    abrEwmaDefaultEstimate: 500000,
+                    abrEwmaSlowVoD: 30000
+                });
+
+                hls.loadSource(source.url);
+                hls.attachMedia(video);
+
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    populateQualityMenu();
+                    video.play().catch(e => {
+                        console.error("Failed to autoplay:", e);
+                        loadingOverlay.style.display = "none";
+                    });
+                });
+
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error("HLS error:", data);
+                    if (data.fatal) {
+                        switch(data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                showError("Network error. Trying backup source...");
+                                tryNextBackup();
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                showError("Media error. Trying backup source...");
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                showError("Unrecoverable error. Trying backup source...");
+                                tryNextBackup();
+                                break;
+                        }
+                    }
+                });
+            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                video.src = source.url;
+                video.addEventListener("loadedmetadata", function() {
+                    video.play().catch(e => {
+                        console.error("Failed to autoplay:", e);
+                        loadingOverlay.style.display = "none";
+                    });
+                });
+            } else {
+                showError("Your browser doesn't support HLS playback.");
+            }
+        }
+
+        // Try Next Backup Source
+        function tryNextBackup() {
+            currentBackupIndex++;
+            if (currentBackupIndex < currentBackupSources.length) {
+                loadSource(currentBackupIndex);
+            } else {
+                showError("No Signal");
+            }
+        }
+
+        // Populate Quality Menu
+        function populateQualityMenu() {
+            if (!hls) return;
+
+            qualityMenu.innerHTML = "";
+            const autoOption = document.createElement("option");
+            autoOption.value = -1;
+            autoOption.textContent = "Auto";
+            qualityMenu.appendChild(autoOption);
+
+            if (hls.levels && hls.levels.length > 1) {
+                hls.levels.forEach((level, index) => {
+                    const option = document.createElement("option");
+                    option.value = index;
+                    option.textContent = level.height + "p";
+                    qualityMenu.appendChild(option);
+                });
+
+                hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) {
+                    qualityMenu.value = data.level;
+                });
+            } else {
+                qualityMenu.style.display = "none";
+            }
         }
 
         // Control Functions
@@ -1159,9 +1295,7 @@
         }
 
         function requestFullscreen() {
-            if (video.webkitEnterFullscreen) {
-                video.webkitEnterFullscreen();
-            }
+            video.webkitEnterFullscreen();
         }
 
         function togglePiP() {
@@ -1173,91 +1307,22 @@
         }
 
         function nextChannel() {
-            if (filteredChannels.length > 0) {
-                const nextIndex = (currentChannelIndex + 1) % filteredChannels.length;
-                loadChannel(nextIndex);
-            }
+            const nextIndex = (currentChannelIndex + 1) % filteredChannels.length;
+            loadChannel(nextIndex);
         }
 
         function prevChannel() {
-            if (filteredChannels.length > 0) {
-                const prevIndex = (currentChannelIndex - 1 + filteredChannels.length) % filteredChannels.length;
-                loadChannel(prevIndex);
-            }
+            const prevIndex = (currentChannelIndex - 1 + filteredChannels.length) % filteredChannels.length;
+            loadChannel(prevIndex);
         }
 
         function showError(message) {
             errorText.textContent = message;
             errorMessage.style.display = "block";
-            setTimeout(() => {
-                if (errorMessage.style.display === "block") {
-                    errorMessage.style.display = "none";
-                }
-            }, 5000);
         }
 
         // Initialize player when page loads
-        window.addEventListener("load", function() {
-            // Volume slider setup
-            volumeSlider.addEventListener("input", function() {
-                video.volume = this.value;
-                if (video.volume == 0) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                }
-                if (video.muted) {
-                    video.muted = false;
-                }
-            });
-
-            video.addEventListener("play", function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                isPlaying = true;
-                posterImage.style.display = "none";
-            });
-
-            video.addEventListener("pause", function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                isPlaying = false;
-            });
-
-            video.addEventListener("waiting", function() {
-                loadingOverlay.style.display = "flex";
-            });
-
-            video.addEventListener("playing", function() {
-                loadingOverlay.style.display = "none";
-                errorMessage.style.display = "none";
-            });
-
-            video.addEventListener("error", function(e) {
-                console.error("Video error:", e);
-                loadingOverlay.style.display = "none";
-                showError("Failed to play this source. Trying backup...");
-                tryNextBackup();
-            });
-
-            channelSearch.addEventListener("input", function() {
-                filterChannels();
-            });
-
-            qualityMenu.addEventListener("change", function() {
-                if (hls && this.value != -1) {
-                    hls.currentLevel = parseInt(this.value);
-                }
-            });
-
-            sourceMenu.addEventListener("change", function() {
-                loadSource(parseInt(this.value));
-            });
-
-            loadChannels();
-
-            if (channels.length > 0) {
-                loadChannel(0);
-            }
-        });
+        window.addEventListener("load", initPlayer);
 
         // Handle fullscreen changes
         document.addEventListener("webkitfullscreenchange", function() {
