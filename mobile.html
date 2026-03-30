@@ -726,6 +726,7 @@
                 <button onclick="filterCategory('Sports', event)">Sports</button>
                 <button onclick="filterCategory('Infotainment', event)">Infotainment</button>
                 <button onclick="filterCategory('Religious', event)">Religious</button>
+                <button onclick="filterCategory('Bengali', event)">Bengali</button>
             </div>
 
             <div class="channel-list" id="channelList"></div>
@@ -971,7 +972,7 @@
         function loadChannels() {
             channelList.innerHTML = "";
             filteredChannels = channels.filter(channel =>
-                currentCategory === 'all' || channel.category === currentCategory
+                currentCategory === 'all' || channel.category.includes(currentCategory)
             );
 
             filteredChannels.forEach((channel, index) => {
