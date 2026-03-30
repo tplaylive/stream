@@ -2542,46 +2542,6 @@ const channels = [
                 description: "Egypt"
             },
             { 
-                name: "Rasi Hollywood HD", 
-                sources: [
-                    { 
-                        name: "Server 1", 
-                        url: "https://rasinetworks.in/live/rasihollywoodhd/index.mpd",
-                        type: "dash",
-                    }
-                ], 
-                img: "https://livetv.ashokadigital.net/upload/logo/1742386628_Rasi%20Hollywood.png", 
-                category: ["Movie", "Tamil", "India"],
-                description: "Tamil"
-            },
-            { 
-                name: "Superfine Films", 
-                sources: [
-                    { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
-                category: ["Movie", "Hindi", "India"],
-                description: "India"
-            },
-            { 
-                name: "Hollywood Desi", 
-                sources: [
-                    { name: "Playlist", url: "https://cc-u6hadnoh0u6td.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-u6hadnoh0u6td/OTM/OTM_HollywoodActionHindi-SCTE_SAMSUNG/playlist.m3u8" },
-                ], 
-                img: "https://c.kmpr.in/assets/tv_channels_150/7176.jpg", 
-                category: ["Movie", "Hindi", "India"],
-                description: "India"
-            },
-            { 
-                name: "TG Movies", 
-                sources: [
-                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=286" },
-                ], 
-                img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/tg-movies-1920-x-1080_1.jpg", 
-                category: ["Movie", "English", "USA"],
-                description: "Kids Movies"
-            },
-            { 
                 name: "Movie Box", 
                 sources: [
                     { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-210731/tracks-v1a1/mono.ts.m3u8" },
@@ -2607,6 +2567,98 @@ const channels = [
                 img: "https://i.postimg.cc/ncHCB2vs/best-action.png", 
                 category: ["Movie", "English", "India"],
                 description: "World"
+            },
+            { 
+                name: "TG Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=286" },
+                ], 
+                img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/tg-movies-1920-x-1080_1.jpg", 
+                category: ["Movie", "English", "USA"],
+                description: "Kids Movies"
+            },
+            { 
+                name: "Hollywood Desi", 
+                sources: [
+                    { name: "Playlist", url: "https://cc-u6hadnoh0u6td.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-u6hadnoh0u6td/OTM/OTM_HollywoodActionHindi-SCTE_SAMSUNG/playlist.m3u8" },
+                ], 
+                img: "https://c.kmpr.in/assets/tv_channels_150/7176.jpg", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Superfine Films", 
+                sources: [
+                    { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Rasi Hollywood HD", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasihollywoodhd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386628_Rasi%20Hollywood.png", 
+                category: ["Movie", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi Cinema", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasicinemahd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/RasiCinema.png", 
+                category: ["Movie", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi Cinemax", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasicinemaxhd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/RasiCinemax.png", 
+                category: ["Movie", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi Movies", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasimovieshd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386556_RASI%20MOVIES%20LOGO%20HD.png", 
+                category: ["Movie", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi Classic", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasiclassichd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386659_Rasi%20Classic%20HD-2%20(1).png", 
+                category: ["Movie", "Tamil", "India"],
+                description: "Tamil"
             },
             { 
                 name: "Star Jalsha", 
@@ -3865,6 +3917,45 @@ const channels = [
                     { name: "Server 1", url: "https://mumt04.tangotv.in/VASANTHTV/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5761fa88d426be19ba1d457c027d3049.png", 
+                category: ["Mix-Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi TV HD", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasitvhd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386440_RASI%20TV%20logo%20HD.png", 
+                category: ["Mix-Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi Tamil HD", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasitamilhd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386498_RASI%20TAMIL%20%20LOGO%20HD.png", 
+                category: ["Mix-Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Rasi Comedy HD", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasicomedyhd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386692_Rasi%20Comedy%20copy.png", 
                 category: ["Mix-Entertainment", "Tamil", "India"],
                 description: "Tamil"
             },
