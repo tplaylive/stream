@@ -1301,17 +1301,36 @@
 
         // iOS specific setup
         if (isIOS) {
-            document.querySelectorAll(".ios-fullscreen-btn").forEach(btn => {
+            const allControlBtns = document.querySelectorAll(".control-btn, .mute-btn, .nav-btn");
+            allControlBtns.forEach(btn => {
                 btn.style.display = "flex";
             });
-
-            document.querySelectorAll(".control-btn:not(.ios-fullscreen-btn)").forEach(btn => {
-                btn.style.display = "none";
-            });
-
+            
             video.setAttribute("playsinline", "true");
             video.setAttribute("webkit-playsinline", "true");
         }
+
+        // Initialize player when page loads
+        window.addEventListener("load", initPlayer);
+
+        // Handle fullscreen changes
+        document.addEventListener("webkitfullscreenchange", function() {
+            if (document.webkitFullscreenElement) {
+                video.style.objectFit = "contain";
+            } else {
+                video.style.objectFit = zoomModes[zoomIndex];
+            }
+        });
+
+        document.addEventListener('fullscreenchange', () => {
+            const isFull = !!document.fullscreenElement;
+            if (isFull) {
+                const fullscreenVideo = document.fullscreenElement.querySelector('video') || document.fullscreenElement;
+                fullscreenVideo.style.objectFit = zoomModes[zoomIndex];
+            } else {
+                video.style.objectFit = zoomModes[zoomIndex];
+            }
+        });
     </script>
 
     <script src="main.js"></script>
