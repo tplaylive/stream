@@ -1005,13 +1005,13 @@ const channels = [
                 description: "Hindi"
             },
             { 
-                name: "Super Hungama", 
+                name: "Wow Kidz", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SUPERHUNGAMA/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://yuppparoriglin.akamaized.net//181224//smil:wowkidztelgu.smil//playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b" }
                 ], 
-                img: "https://upload.wikimedia.org/wikipedia/en/7/74/Super_Hungama_Logo.png", 
-                category: ["Kids", "Hindi", "India"],
-                description: "Hindi"
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXu_mcDc_8bL8zA2VXrbKADGFXSW_j5WfRnQ&s", 
+                category: ["Kids", "Tamil", "India"],
+                description: "India"
             },
             { 
                 name: "Minimax", 
