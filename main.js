@@ -5329,4 +5329,13 @@ const channels = [
                 category: "Religious",
                 description: "Telugu"
             },
+            { 
+                name: "Sri Sankara TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d2gvyg6lvauoko.cloudfront.net/230226/srisankaratamil/chunks.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6e3aeb3373d2689cc87459517914a769.png", 
+                category: ["Religious", "Tamil", "Kannada", "India"],
+                description: "Tamil"
+            },
         ];
