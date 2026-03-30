@@ -6,7 +6,7 @@ const channels = [
                     { name: "Asia", url: "https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World News"
              },
@@ -24,7 +24,7 @@ const channels = [
                     }
                 ],
                 img: "https://play-lh.googleusercontent.com/375NW5yL8owK_hW9igW9sh-YJbda9ZcygpDXuVvK_R7l-yJp-fuhb4qvUw_FE4XW4ms", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World News"
             },
@@ -35,7 +35,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/3xKMbd8F/cnn-h.jpg", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["500"],
                 description: "Watch CNN Headlines"
             },
@@ -45,7 +45,7 @@ const channels = [
                     { name: "Qatar", url: "https://live-hls-web-aje-fa.thehlive.com/AJE/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/50TpLNKY/aljazeera.jpg", 
-                category: "English News",
+                category: ["News", "English", "Qatar"],
                 package: ["150","250","500"],
                 description: "World News"
             },
@@ -55,7 +55,7 @@ const channels = [
                     { name: "Qatar", url: "https://live.presstv.ir/hls/presstv.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/mDpyYpdB/presstv.jpg", 
-                category: "English News",
+                category: ["News", "English", "Iran"],
                 package: ["250","500"],
                 description: "Iranian news and documentary"
             },
@@ -65,7 +65,7 @@ const channels = [
                     { name: "Qatar", url: "https://wisewatchoott.wiseplayout.com/RT/master.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Russia-today-logo.svg/1280px-Russia-today-logo.svg.png", 
-                category: "English News",
+                category: ["News", "English", "Russia"],
                 package: ["250","500"],
                 description: "Russian 24/7 English-language news"
             },
@@ -75,7 +75,7 @@ const channels = [
                     { name: "UK", url: "https://dbrb49pjoymg4.cloudfront.net/10001/99951197/hls/playlist.m3u8?ads.xumo_channelId=99951197" }
                 ], 
                 img: "https://i.postimg.cc/cHCwD43k/reuters-u.jpg", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["500"],
                 description: "World News"
             },
@@ -89,7 +89,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/02WZxFkm/sky-news.jpg", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["250","500"],
                 description: "World News"
             },
@@ -100,7 +100,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/x1NGQdp6/sky-news-now.jpg", 
-                category: "English News",
+                category: ["News", "English", "Australia"],
                 package: ["500"],
                 description: "Australia"
             },
@@ -111,7 +111,7 @@ const channels = [
 
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZCiWELnS_hJTOtsTrWDZKkhkmthiH2BfLA&s", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["250","500"],
                 description: "Global financial and business news"
             },
@@ -122,7 +122,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/vBbrwFKG/bloomberg-org.jpg", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["500"],
                 description: "featuring stories from Businessweek and Bloomberg News"
             },
@@ -133,7 +133,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/MGTgYV95/global-news.jpg", 
-                category: "English News",
+                category: ["News", "English", "Canada"],
                 package: ["500"],
                 description: "Business, Health, Politics and World News"
             },
@@ -151,7 +151,7 @@ const channels = [
                     }
                 ],
                 img: "https://i.postimg.cc/15BRz02h/fox-news.jpg", 
-                category: "English News",
+                category: ["News", "English", "USA"],
                 package: ["500"],
                 description: "U.S. politics and culture"
             },
@@ -166,7 +166,7 @@ const channels = [
 
                 ], 
                 img: "https://i.postimg.cc/nLDtqqRw/cgtn.jpg", 
-                category: "English News",
+                category: ["News", "English", "China"],
                 package: ["500"],
                 description: "China"
              },
@@ -176,7 +176,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/NHK_World/HLSv3-FTA/NHK_World.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/dtxLjPmL/nhk-world.jpg", 
-                category: "English News",
+                category: ["News", "English", "Japan"],
                 package: ["500"],
                 description: "Japan and Asia"
              },
@@ -186,7 +186,7 @@ const channels = [
                     { name: "Server 1", url: "https://live.sli.ke/live/npnhm84gz9/fhd/stream.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/h4QwtVyC/toi.jpg", 
-                category: "English News",
+                category: ["News", "English", "India"],
                 package: ["500"],
                 description: "Times of India"
              },
@@ -196,7 +196,7 @@ const channels = [
                     { name: "Server 1", url: "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/c4y3Vd73/dd.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -205,7 +205,7 @@ const channels = [
                     { name: "LokSabha", url: "https://hls.media.nic.in/hls/live/lstv/lstv.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/2fK9Y8FCQvlRWuIojyWIywPKRU4TgzfwCTciLzlTOT9wQScACk_7Y9LFuWfBBgoWDZe_UhzQQR0=s900-c-k-c0x00ffffff-no-rj", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -214,7 +214,7 @@ const channels = [
                     { name: "Rajya Sabha", url: "https://hls.media.nic.in/hls/live/rstv/rstv.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/2fK9Y8FCQvlRWuIojyWIywPKRU4TgzfwCTciLzlTOT9wQScACk_7Y9LFuWfBBgoWDZe_UhzQQR0=s900-c-k-c0x00ffffff-no-rj", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -227,7 +227,7 @@ const channels = [
                     { name: "Uttar Pradesh", url: "https://newsxott.in/hls/indianewsupuk.m3u8" },
                 ], 
                 img: "https://karthavya.com/wp-content/uploads/2019/07/India-News-Live.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -237,7 +237,7 @@ const channels = [
                     { name: "News X World", url: "https://newsxott.in/hls/newsxworld.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/zwrmWphe47oXEHVndsokIHupuBpVWq2_a_LCxiV_JA0YmaosO7S3kMeFyTNhNLUO8ovmT3hDfX0=s900-c-k-c0x00ffffff-no-rj", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -246,7 +246,7 @@ const channels = [
                     { name: "Server 1", url: "https://xlbor37ydvaj-hls-live.wmncdn.net/firstindianewstv1/live.stream/index.m3u8" }
                 ], 
                 img: "https://play-lh.googleusercontent.com/iJZoVQx0zOCpmQ-z_ey2Y2NspoXA2vjQDm49KPioIzUka9sT8-HAEnmdQXuzxSwauQ=w600-h300-pc0xffffff-pd", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -255,7 +255,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_India_NW18_MOB/output01/index.m3u8" }
                 ], 
                 img: "https://erp.adgully.com/artical_image/a4f638aa199ee1ccb9ffdc24d9c2af25.jpeg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -264,7 +264,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Odia_NW18_MOB/output01/index.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_lKSOQ8zd8GU5-2gdBlhzeXM8JyUd-2_4UK7Y9bOzOrPa4=s900-c-k-c0x00ffffff-no-rj", 
-                category: "News",
+                category: ["News", "Odia", "India"],
                 description: "India"
             },
             { 
@@ -273,7 +273,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Urdu_NW18_MOB/output01/index.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/f/f7/News18_Urdu_logo.png", 
-                category: "News",
+                category: ["News", "Urdu", "India"],
                 description: "India"
             },
             { 
@@ -282,7 +282,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Kerala_NW18_MOB/output01/index.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/0/05/News18_Kerala.png", 
-                category: "News",
+                category: ["News", "Malayalam", "India"],
                 description: "India"
             },
             { 
@@ -291,7 +291,7 @@ const channels = [
                     { name: "Server 1", url: "https://aajtaklive-amd.akamaized.net/hls/live/2014416/aajtak/aajtaklive/live_404p/chunks.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/7/77/Aaj_Tak_logo.svg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -301,7 +301,7 @@ const channels = [
                     { name: "Server 2", url: "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0jjjL9vR/aaj-tak.jpg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -310,7 +310,7 @@ const channels = [
                     { name: "Server 1", url: "https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678/ndtv24x7/master.m3u8" },
                 ], 
                 img: "https://onlineradiofm.in/assets/image/radio/180/NDTV-24X7-Radio.jpg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -319,7 +319,7 @@ const channels = [
                     { name: "Server 1", url: "https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679/ndtvindia/master.m3u8" },
                 ], 
                 img: "https://images.hindustantimes.com/rf/image_size_640x362/HT/p2/2016/11/05/Pictures/_8ba2e79a-a350-11e6-93ed-ab826829dd0b.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -328,7 +328,7 @@ const channels = [
                     { name: "Server 1", url: "https://indiatodaylive.akamaized.net/hls/live/2014320/indiatoday/indiatodaylive/playlist.m3u8" },
                 ], 
                 img: "https://akm-img-a-in.tosshub.com/indiatoday/images/livetv/indiaToday.jpg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -337,7 +337,7 @@ const channels = [
                     { name: "Server 1", url: "https://poclive-indiatvnews.akamaized.net/hlslive/Admin/px0219297/live/janya/master.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/HNUGXVlQ05nqlFouGhScjNXE33T-qaF20GWFjo_fj97Rc6gcv8LNTw1ao5aK_B4OH5_iPLkPRA=s900-c-k-c0x00ffffff-no-rj", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -354,7 +354,7 @@ const channels = [
                     }
                 ],
                 img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/TknReKLD.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -371,7 +371,7 @@ const channels = [
                     }
                 ],
                 img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/5zkMvEbF.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -388,7 +388,7 @@ const channels = [
                     }
                 ],
                 img: "https://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/vExrDK9r.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -398,7 +398,7 @@ const channels = [
                     { name: "Server 2", url: "https://pubads.g.doubleclick.net/ssai/event/DXkHhH2QSnma-HnE3QJqlA/master.m3u8" },
                 ], 
                 img: "https://media.licdn.com/dms/image/v2/C4D0BAQERZwk1iL4m_w/company-logo_200_200/company-logo_200_200/0/1631322422535?e=2147483647&v=beta&t=Dk2eJzcMflN0nQxbryoMPfaCZRSgCmlrPk4A6XbCebI", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -408,7 +408,7 @@ const channels = [
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://212.102.34.8:9080/ETNOW/video.m3u8" }
                 ], 
                 img: "https://www.medianews4u.com/wp-content/uploads/2025/12/ET-NOW-Unveils-a-Powerful-New-Programming-Slate_-All-About-Your-Company-DEEP-DIVE-BrandVerse-and-Year-End-Programming-2025.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -417,7 +417,7 @@ const channels = [
                     { name: "Server 1", url: "https://d32gxr3r1ksq2p.cloudfront.net/master.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8s5ukJJCvsZwP7vO8PlUKJHwlnyHZqBiYlA&s", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -426,7 +426,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_Awaaz_NW18_MOB/output01/master.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/f/f8/CNBC_Awwaz_2025.svg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -435,7 +435,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_Bazaar_NW18_MOB/output01/master.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/27307b18067a6f2784b1597da20426ff.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -444,7 +444,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNBC_TV18_NW18_MOB/output01/index.m3u8" }
                 ], 
                 img: "https://media.licdn.com/dms/image/v2/D4D0BAQGXbP9MEGQ2MA/company-logo_200_200/B4DZcIT5xiGgAI-/0/1748191125673/cnbc_tv18_logo?e=2147483647&v=beta&t=KFbzWG-tLyBsxJILxVo9cAiyFHaZP_BPhTVOCTH_AFc", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -453,7 +453,7 @@ const channels = [
                     { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/CNN_News18_NW18_MOB/output01/index.m3u8" }
                 ], 
                 img: "https://erp.adgully.com/artical_image/43d69552e24c92ea14e14bca3007eb78.jpeg", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "India"
              },
              { 
@@ -462,7 +462,7 @@ const channels = [
                     { name: "Server 1", url: "https://server.thelegitpro.in/kashishnews/kashishnews/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/8d69aeee54fa6a6d9feae943d972eaa7.png", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "Jharkhand & Bihar"
              },
              { 
@@ -471,7 +471,7 @@ const channels = [
                     { name: "Server 1", url: "https://mumt02.tangotv.in/NEWS11BHARAT/index.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZwZ9A80iMUyTVqQDL6AdzrUmpZdxO090eUA&s", 
-                category: "News",
+                category: ["News", "Hindi", "India"],
                 description: "Jharkhand & Bihar"
              },
              { 
@@ -480,7 +480,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1469/master.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/6/6e/Kairali_TV.svg", 
-                category: "News",
+                category: ["News", "Malayalam", "India"],
                 description: "Malayalam"
              },
              { 
@@ -489,7 +489,7 @@ const channels = [
                     { name: "Server 1", url: "https://mmtvnews1.akamaized.net/v1/master/673630b269b766886555eebfddd4f27f3de3ab50/mmtvNewsCampaign1/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0a22e24d565a1f951c03e2008216de15.png", 
-                category: "News",
+                category: ["News", "Malayalam", "India"],
                 description: "Malayalam"
              },
              { 
@@ -498,7 +498,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1481/master.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-MXv3hLTU1hj3ZUPC8g5RH4-0J7CbrakGzA&s", 
-                category: "News",
+                category: ["News", "Malayalam", "India"],
                 description: "Malayalam"
              },
              { 
@@ -507,7 +507,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1606/master.m3u8" }
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/d/d1/Malai_Murasu.png/revision/latest?cb=20191229035538", 
-                category: "News",
+                category: ["News", "Tamil", "India"],
                 description: "Tamil"
              },
              { 
@@ -516,7 +516,7 @@ const channels = [
                     { name: "Server 1", url: "https://satoshi-cors.herokuapp.com/http://45.148.145.57/IN_JayaPlus/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ed00e083788380a3523e2ef1d7f33fe8.png", 
-                category: "News",
+                category: ["News", "Tamil", "India"],
                 description: "Tamil"
              },
              { 
@@ -525,7 +525,7 @@ const channels = [
                     { name: "Server 1", url: "https://d14vo2b97spizt.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_AP_H264-3_cloud_in/index.m3u8" }
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/5/5f/ETV_Andhra_Pradesh.png/revision/latest?cb=20240314105548", 
-                category: "News",
+                category: ["News", "Telugu", "India"],
                 description: "Telugu"
              },
              { 
@@ -534,7 +534,7 @@ const channels = [
                     { name: "Server 1", url: "https://www.schannels.in/SITI24X7_1/index.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/cSsxzVa-2j7DQ7ZLaRSS5oV4RVtkfiwIZoccMKSyitWXf5g1UyYcwavRI2rr-9JaBO52e_6T=s176-c-k-c0x00ffffff-no-rj-mo", 
-                category: "News",
+                category: ["News", "Telugu", "India"],
                 description: "Telugu"
              },
              { 
@@ -543,7 +543,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10014/master.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44b5607770003fbe0016e2fcc76c1d27.png", 
-                category: "News",
+                category: ["News", "Assamese", "India"],
                 description: "Assamese/English"
              },
              { 
@@ -552,7 +552,7 @@ const channels = [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/MBCTV/index.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxtjnyTDqsFChVwz0ZS_ww_8GUFnjfnbXmxw&s", 
-                category: "News",
+                category: ["News", "Odia", "India"],
                 description: "Odia"
              },
              { 
@@ -561,7 +561,7 @@ const channels = [
                     { name: "Server 1", url: "https://live.ekamraott.com/bharat/bharat/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/02p7JKxy/ekamra-bharat.jpg", 
-                category: "News",
+                category: ["News", "Odia", "India"],
                 description: "Odia"
              },
              { 
@@ -728,7 +728,7 @@ const channels = [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/MBCTV/index.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTcLnb_i5kxG-7DhXERKQ3kAZaQihpn8gvlA&s", 
-                category: "News",
+                category: ["News", "Odia", "India"],
                 description: "Odia"
             },
             { 
@@ -737,7 +737,7 @@ const channels = [
                     { name: "Server 1", url: "https://d7x8z4yuq42qn.cloudfront.net/index_1.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/ZKqXrCqn/wion.jpg", 
-                category: "News",
+                category: ["News", "English", "India"],
                 description: "India"
             },
             { 
@@ -746,7 +746,7 @@ const channels = [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/al_ekhbariya/hls_roku/index.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/e/e3/%D8%A7%D9%84%D9%82%D9%86%D8%A7.png", 
-                category: "News",
+                category: ["News", "Arabic", "Saudi Arabia"],
                 description: "Saudi Arabia"
             },
             { 
@@ -755,7 +755,7 @@ const channels = [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/libya_al_watanya/hls_roku/index.m3u8" }
                 ], 
                 img: "https://i.imgur.com/KSUny9D.jpeg", 
-                category: "News",
+                category: ["News", "Arabic", "Libya"],
                 description: "Libya"
             },
             { 
@@ -772,7 +772,7 @@ const channels = [
                     }
                 ], 
                 img: "https://images.seeklogo.com/logo-png/25/1/new-disney-channel-logo-png_seeklogo-255285.png", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World"
             },
@@ -790,7 +790,7 @@ const channels = [
                     }
                 ], 
                 img: "https://cms-media.clink.services/Mobile_ree4ih.png", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World"
             },
@@ -808,7 +808,7 @@ const channels = [
                     }
                 ], 
                 img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/CD4826FEC87B2F49DC854B8A74BDACD5AB6C21056C3833D1A0AC77158E76DA12/compose?aspectRatio=1.78&format=webp&width=600", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World"
             },
@@ -873,7 +873,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/Gt38t22F/d-kids.jpg", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -882,7 +882,7 @@ const channels = [
                     { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONIC/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/a/aa/Nickelodeon_Sonic_logo_2025.png/revision/latest/scale-to-width-down/300?cb=20250606121016", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -891,7 +891,7 @@ const channels = [
                     { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NICK/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -908,7 +908,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/BvP8G3sq/nickjr.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World"
             },
@@ -926,7 +926,7 @@ const channels = [
                     }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Nickelodeon_2023_logo.png", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World"
             },
@@ -936,7 +936,7 @@ const channels = [
                     { name: "Hindi", url: "https://epiconvh.akamaized.net/live/gubbare/master.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/0/01/Gubbare-TV_channel.jpg", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -945,7 +945,7 @@ const channels = [
                     { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/BALBHARAT/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/NBgAvACr755c2gd5EK0lKKmeqEnMivDhF2FYd399NRfeZzosNkxsgkrjMOdfh5ZBqv2OTXviH3U=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -954,7 +954,7 @@ const channels = [
                     { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=667189f69164&e=.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -965,8 +965,18 @@ const channels = [
                     { name: "Urdu", url: "https://s3.ideationtec.live/Cartoon_Network/Cartoon_Network.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "India"
+            },
+            { 
+                name: "Cartoon Network", 
+                sources: [
+                    { name: "Urdu", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" },
+                    { name: "Urdu", url: "https://s3.ideationtec.live/Cartoon_Network/Cartoon_Network.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
+                category: ["Kids", "Urdu", "Pakistan"],
+                description: "Pakistan"
             },
             { 
                 name: "Cartoon Network HD+", 
@@ -982,7 +992,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/d06FD9xw/cnhd.jpg", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "English", "India"],
                 description: "Hindi/English"
             },
             { 
@@ -991,7 +1001,7 @@ const channels = [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HUNGAMA/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hungama_TV.svg/250px-Hungama_TV.svg.png", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "Hindi"
             },
             { 
@@ -1000,7 +1010,7 @@ const channels = [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SUPERHUNGAMA/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/7/74/Super_Hungama_Logo.png", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "Hindi"
             },
             { 
@@ -1010,7 +1020,7 @@ const channels = [
                     { name: "Server 2", url: "https://s2.ideationtec.live/MiniMax/MiniMax.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/xC2TbNWn/minimax.jpg", 
-                category: "Kids",
+                category: ["Kids", "Urdu", "Pakistan"],
                 description: "Urdu"
             },
             { 
@@ -1027,7 +1037,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/8PQrRLN8/Animax.png", 
-                category: "Kids",
+                category: ["Kids", "English", "India"],
                 package: ["150","250","500"],
                 description: "English"
             },
@@ -1037,7 +1047,7 @@ const channels = [
                     { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/gr9v9Tt9/pk.jpg", 
-                category: "Kids",
+                category: ["Kids", "Hindi", "India"],
                 description: "Hindi"
             },
             { 
@@ -1047,7 +1057,7 @@ const channels = [
                     { name: "Server 2", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=40" },
                 ], 
                 img: "https://i.postimg.cc/3J0Thmrb/zoo-moo.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1056,7 +1066,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=33" },
                 ], 
                 img: "https://play-lh.googleusercontent.com/AU1wSj49k4rUyt2jv_1Ui3uYwAJIM90tAChT9JMNsqcB2FsVA9bF4fuT27uqn3uDCYk=w240-h480-rw", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1065,7 +1075,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=31" },
                 ], 
                 img: "https://img3.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/480x270/tgjr_1.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1074,7 +1084,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=35" },
                 ], 
                 img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/640x360/sparkle-power-1920-x-1080.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1083,7 +1093,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=13775" },
                 ], 
                 img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/640x360/B_-dvleanz-xCmycNaftzR56Q_q1iIjayGtFcKA_ILc.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1092,7 +1102,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=294" },
                 ], 
                 img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/480x270/eddies-wonderland-2021_d.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1101,7 +1111,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=41" },
                 ], 
                 img: "https://img2.static-ottera.com/prod/tg/linear_channel/thumbnails/widescreen/640x360/gross-out-1920-x-1080-.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1110,7 +1120,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=264" },
                 ], 
                 img: "https://img3.static-ottera.com/prod/tg/linear_channel/logo/640x360/camp-spoopy-2021_1920-x-1080_option-5.jpg", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1119,7 +1129,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=50" },
                 ], 
                 img: "https://play-lh.googleusercontent.com/hMM6boFl8BdsgqeHAycUoyNnyRJZSSeFXPAqA2FesVAxqwjzOVEMoNXMl8-JncB1ZU4", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
@@ -1128,7 +1138,7 @@ const channels = [
                     { name: "Server 1", url: "https://cdn4.skygo.mn/live/disk1/Cbeebies/HLSv3-FTA/Cbeebies.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/uyeShLXK1reEq1zTYVtZkL9IoQb18T-G96q8HqCpb-uAxY4gxaR6KuuUo1KudRQfuDHMYSYcEg=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Kids",
+                category: ["Kids", "English", "USA"],
                 description: "English"
             },
             { 
