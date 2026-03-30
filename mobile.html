@@ -855,6 +855,43 @@
             return player;
         }
 
+        // Load DRM Source
+        async function loadDrmSource(source) {
+            try {
+                loadingOverlay.style.display = "flex";
+                errorMessage.style.display = "none";
+
+                if (!shakaPlayer) {
+                    shakaPlayer = initShakaPlayer();
+                    if (!shakaPlayer) {
+                        throw new Error('Shaka Player initialization failed');
+                    }
+                }
+
+                if (source.drm) {
+                    await shakaPlayer.configure({
+                        drm: {
+                            clearKeys: {
+                                [source.drm.kid]: source.drm.key
+                            }
+                        }
+                    });
+                }
+
+                await shakaPlayer.load(source.url);
+
+                loadingOverlay.style.display = "none";
+                errorMessage.style.display = "none";
+
+                await video.play();
+
+            } catch (error) {
+                console.error('Error loading DRM content:', error);
+                showError('Failed to load DRM content: ' + error.message);
+                loadingOverlay.style.display = "none";
+            }
+        }
+
         // Cleanup Players
         function cleanupPlayers() {
             if (hls) {
@@ -872,154 +909,61 @@
             video.load();
         }
 
-        // Load Source - Updated for non-DRM DASH support
-        function loadSource(sourceIndex) {
-            cleanupPlayers();
-
-            const source = currentBackupSources[sourceIndex];
-            currentChannelUrl = source.url;
-            currentBackupIndex = sourceIndex;
-
-            loadingOverlay.style.display = "flex";
-            errorMessage.style.display = "none";
-
-            // Handle DASH streams (with or without DRM)
-            if (source.type === 'dash') {
-                if (!shakaPlayer) {
-                    shakaPlayer = initShakaPlayer();
-                    if (!shakaPlayer) {
-                        showError('Shaka Player initialization failed');
-                        loadingOverlay.style.display = "none";
-                        tryNextBackup();
-                        return;
-                    }
-                }
-
-                // Configure DRM if present
-                if (source.drm) {
-                    shakaPlayer.configure({
-                        drm: {
-                            clearKeys: {
-                                [source.drm.kid]: source.drm.key
-                            }
-                        }
-                    });
+        // Initialize Player
+        function initPlayer() {
+            volumeSlider.addEventListener("input", function() {
+                video.volume = this.value;
+                if (video.volume == 0) {
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
                 } else {
-                    // Clear any existing DRM config for non-DRM streams
-                    shakaPlayer.configure({
-                        drm: {
-                            clearKeys: {}
-                        }
-                    });
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
                 }
+            });
 
-                // Load the DASH stream
-                shakaPlayer.load(source.url).then(() => {
-                    loadingOverlay.style.display = "none";
-                    errorMessage.style.display = "none";
-                    video.play().catch(e => {
-                        console.error("Failed to autoplay:", e);
-                    });
-                }).catch((error) => {
-                    console.error('Shaka Player error:', error);
-                    showError('Failed to load DASH stream: ' + error.message);
-                    loadingOverlay.style.display = "none";
-                    tryNextBackup();
-                });
-                
-                return;
-            }
+            video.addEventListener("play", function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+                posterImage.style.display = "none";
+            });
 
-            // Handle HLS streams
-            if (Hls.isSupported() && !isIOS) {
-                hls = new Hls({
-                    maxBufferLength: 30,
-                    backBufferLength: 30,
-                    enableWorker: true,
-                    lowLatencyMode: true,
-                    abrEwmaDefaultEstimate: 500000,
-                    abrEwmaSlowVoD: 30000
-                });
+            video.addEventListener("pause", function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying = false;
+            });
 
-                hls.loadSource(source.url);
-                hls.attachMedia(video);
+            video.addEventListener("waiting", function() {
+                loadingOverlay.style.display = "flex";
+            });
 
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    populateQualityMenu();
-                    video.play().catch(e => {
-                        console.error("Failed to autoplay:", e);
-                        loadingOverlay.style.display = "none";
-                    });
-                });
-
-                hls.on(Hls.Events.ERROR, function(event, data) {
-                    console.error("HLS error:", data);
-                    if (data.fatal) {
-                        switch(data.type) {
-                            case Hls.ErrorTypes.NETWORK_ERROR:
-                                showError("Network error. Trying backup source...");
-                                tryNextBackup();
-                                break;
-                            case Hls.ErrorTypes.MEDIA_ERROR:
-                                showError("Media error. Trying backup source...");
-                                hls.recoverMediaError();
-                                break;
-                            default:
-                                showError("Unrecoverable error. Trying backup source...");
-                                tryNextBackup();
-                                break;
-                        }
-                    }
-                });
-            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                video.src = source.url;
-                video.addEventListener("loadedmetadata", function() {
-                    video.play().catch(e => {
-                        console.error("Failed to autoplay:", e);
-                        loadingOverlay.style.display = "none";
-                    });
-                });
-            } else {
-                showError("Your browser doesn't support HLS playback.");
+            video.addEventListener("playing", function() {
                 loadingOverlay.style.display = "none";
-            }
-        }
+                errorMessage.style.display = "none";
+            });
 
-        // Try Next Backup Source
-        function tryNextBackup() {
-            currentBackupIndex++;
-            if (currentBackupIndex < currentBackupSources.length) {
-                loadSource(currentBackupIndex);
-            } else {
-                showError("No Signal");
+            video.addEventListener("error", function() {
                 loadingOverlay.style.display = "none";
-            }
-        }
+                showError("Failed to play this source. Trying backup...");
+                tryNextBackup();
+            });
 
-        // Populate Quality Menu
-        function populateQualityMenu() {
-            if (!hls) return;
+            channelSearch.addEventListener("input", function() {
+                filterChannels();
+            });
 
-            qualityMenu.innerHTML = "";
-            const autoOption = document.createElement("option");
-            autoOption.value = -1;
-            autoOption.textContent = "Auto";
-            qualityMenu.appendChild(autoOption);
+            qualityMenu.addEventListener("change", function() {
+                if (hls) {
+                    hls.currentLevel = parseInt(this.value);
+                }
+            });
 
-            if (hls.levels && hls.levels.length > 1) {
-                hls.levels.forEach((level, index) => {
-                    const option = document.createElement("option");
-                    option.value = index;
-                    option.textContent = level.height + "p";
-                    qualityMenu.appendChild(option);
-                });
+            sourceMenu.addEventListener("change", function() {
+                loadSource(parseInt(this.value));
+            });
 
-                hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) {
-                    qualityMenu.value = data.level;
-                });
-                qualityMenu.style.display = "block";
-            } else {
-                qualityMenu.style.display = "none";
+            loadChannels();
+
+            if (channels.length > 0) {
+                loadChannel(0);
             }
         }
 
