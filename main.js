@@ -2596,6 +2596,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Superfine Films Tamil", 
+                sources: [
+                    { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/suptam/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
+                category: ["Movie", "Tamil", "India"],
+                description: "India"
+            },
+            { 
                 name: "Rasi Hollywood HD", 
                 sources: [
                     { 
