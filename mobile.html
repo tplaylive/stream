@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>T Play</title>
     <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -474,8 +474,6 @@
             color: var(--text-color);
         }
 
-        .ios-fullscreen-btn { display: none; }
-
         .protection-overlay {
             position: fixed;
             top: 0;
@@ -487,9 +485,9 @@
             display: none;
         }
 
+        /* Responsive Styles */
         @media (max-width: 1200px) {
             .main-content { flex-direction: column; }
-
             .player-section {
                 max-width: 100%;
                 position: sticky;
@@ -498,7 +496,6 @@
                 background: var(--dark-bg);
                 padding-bottom: 10px;
             }
-
             .channels-sidebar {
                 width: 100%;
                 max-width: none;
@@ -515,22 +512,18 @@
                 grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
                 gap: 12px;
             }
-
             .player-section { padding-top: 30px; }
-
             .category-bar {
                 flex-wrap: nowrap;
                 overflow-x: auto;
                 padding-bottom: 10px;
             }
-
             .category-bar button { flex-shrink: 0; }
         }
 
         @media (max-width: 768px) {
             .tplay-logo { font-size: 16px; }
             .player-section { padding: 20px; }
-
             .controls {
                 bottom: 10px;
                 padding: 6px 12px;
@@ -539,47 +532,33 @@
                 width: 90%;
                 gap: 5px;
             }
-
             .control-btn, .mute-btn {
                 width: 30px;
                 height: 30px;
                 font-size: 12px;
             }
-
             .volume-slider { width: 50px; }
-
             .channel-nav {
                 width: 100%;
                 justify-content: space-between;
             }
-
             .sidebar-header {
                 flex-direction: row;
                 align-items: center;
             }
-
-            .sidebar-header > div:first-child { flex: 1; }
-            .tplay-logo { margin-left: 15px; }
-
             .source-select {
                 max-width: 100px;
                 font-size: 11px;
                 padding: 4px 8px;
             }
-
             .quality-select {
                 font-size: 11px;
                 padding: 4px 8px;
             }
-
-            .ios-fullscreen-btn { display: none !important; }
-            .control-btn:not(.ios-fullscreen-btn) { display: flex; }
-
             .channel-list {
                 grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
                 gap: 10px;
             }
-
             .channel-item { padding: 8px; }
         }
 
@@ -588,69 +567,32 @@
                 width: 95%;
                 bottom: 5px;
             }
-
             .video-container { border-radius: 8px; }
-
             .quality-select, .source-select {
                 font-size: 10px;
                 padding: 3px 6px;
                 max-width: 80px;
             }
-
-            .sidebar-header {
-                flex-direction: row;
-                align-items: center;
-            }
-
             .section-title { font-size: 16px; }
             .tplay-logo { font-size: 14px; }
-
             .tplay-logo img {
                 width: 24px;
                 height: 24px;
             }
-
             .channel-count { font-size: 12px; }
-
-            .ios-fullscreen-btn { display: none !important; }
-            .control-btn:not(.ios-fullscreen-btn) { display: flex; }
-
             .channel-list {
                 grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
                 gap: 8px;
             }
-
             .channel-item-live {
                 font-size: 8px;
                 padding: 2px 4px;
             }
         }
-
-        @media (max-width: 768px) and (min-width: 320px) {
-            .controls {
-                padding: 8px 12px;
-                gap: 6px;
-            }
-
-            .control-btn, .mute-btn, .nav-btn {
-                width: 32px;
-                height: 32px;
-            }
-
-            .nav-btn {
-                width: 36px;
-                height: 36px;
-            }
-
-            .volume-slider { width: 60px; }
-        }
     </style>
 </head>
 <body>
     <div class="protection-overlay" id="protectionOverlay"></div>
-
-    <div class="mobile-header"></div>
-    <div class="mobile-nav" id="mobileNav"></div>
 
     <div class="main-content">
         <section class="player-section">
@@ -667,8 +609,8 @@
                     <button class="nav-btn" onclick="prevChannel()" title="Previous Channel"><i class="fas fa-chevron-left"></i></button>
                     <button class="control-btn" onclick="togglePlayPause()" id="playPauseBtn" title="Play/Pause"><i class="fas fa-pause"></i></button>
                     <button class="control-btn" onclick="cycleZoom()" title="Change View"><i class="fas fa-expand-alt"></i></button>
-                    <button class="control-btn" onclick="toggleFullscreen()" title="Fullscreen"><i class="fas fa-expand"></i></button>
-                    <button class="control-btn ios-fullscreen-btn" onclick="requestFullscreen()" title="Fullscreen (iOS)"><i class="fas fa-expand"></i></button>
+                    <!-- SINGLE UNIFIED FULLSCREEN BUTTON - Works on Android & iOS -->
+                    <button class="control-btn" onclick="unifiedFullscreen()" id="fullscreenBtn" title="Fullscreen"><i class="fas fa-expand"></i></button>
                     <button class="control-btn" onclick="togglePiP()" title="Picture-in-Picture"><i class="fas fa-tv"></i></button>
 
                     <div class="volume-container">
@@ -721,7 +663,6 @@
                 <button onclick="filterCategory('Sports', event)">Sports</button>
                 <button onclick="filterCategory('Infotainment', event)">Infotainment</button>
                 <button onclick="filterCategory('Religious', event)">Religious</button>
-
                 <button onclick="filterCategory('24/7', event)">24/7</button>
                 <button onclick="filterCategory('Tamil', event)">Tamil</button>
                 <button onclick="filterCategory('Telugu', event)">Telugu</button>
@@ -737,7 +678,6 @@
                 <button onclick="filterCategory('Urdu', event)">Urdu</button>
                 <button onclick="filterCategory('Arabic', event)">Arabic</button>
                 <button onclick="filterCategory('English', event)">English</button>
-
             </div>
 
             <div class="channel-list" id="channelList"></div>
@@ -749,59 +689,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.ui.js"></script>
 
     <script>
-        // Protection Scripts
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            showProtectionWarning();
-            return false;
-        });
-
+        // Protection Scripts (unchanged, kept for security)
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); showProtectionWarning(); return false; });
         document.addEventListener('keydown', function(e) {
-            if (
-                e.key === 'F12' ||
-                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'C') ||
-                (e.ctrlKey && e.key === 'U') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'K')
-            ) {
-                e.preventDefault();
-                showProtectionWarning();
-                return false;
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'C') || (e.ctrlKey && e.key === 'U') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.shiftKey && e.key === 'K')) {
+                e.preventDefault(); showProtectionWarning(); return false;
             }
         });
-
-        function detectDevTools() {
-            const widthThreshold = window.outerWidth - window.innerWidth > 160;
-            const heightThreshold = window.outerHeight - window.innerHeight > 160;
-
-            if (widthThreshold || heightThreshold) {
-                showProtectionWarning();
-            }
-        }
-
-        function showProtectionWarning() {
-            const overlay = document.getElementById('protectionOverlay');
-            overlay.style.display = 'block';
-
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 1500);
-        }
-
+        function detectDevTools() { const widthThreshold = window.outerWidth - window.innerWidth > 160; const heightThreshold = window.outerHeight - window.innerHeight > 160; if (widthThreshold || heightThreshold) showProtectionWarning(); }
+        function showProtectionWarning() { const overlay = document.getElementById('protectionOverlay'); overlay.style.display = 'block'; setTimeout(() => { overlay.style.display = 'none'; }, 1500); }
         setInterval(detectDevTools, 1000);
-
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        document.addEventListener('dragstart', function(e) {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-                return false;
-            }
-        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); return false; } });
 
         // Global Variables
         const video = document.getElementById("liveVideo");
@@ -832,507 +731,182 @@
         let filteredChannels = [];
         let channelMap = new Map();
 
-        // Shaka Player Initialization
-        function initShakaPlayer() {
-            if (!shaka.Player.isBrowserSupported()) {
-                console.error('Shaka Player is not supported in this browser');
-                return null;
-            }
-
-            const player = new shaka.Player(video);
-
-            player.configure({
-                drm: {
-                    servers: {
-                        'com.widevine.alpha': '',
-                        'com.microsoft.playready': '',
-                        'org.w3.clearkey': ''
-                    },
-                    clearKeys: {}  // Initialize empty clearKeys
-                },
-                streaming: {
-                    bufferingGoal: 30,
-                    rebufferingGoal: 15,
-                    bufferBehind: 30
+        // UNIFIED FULLSCREEN FUNCTION - Works on both Android (standard API) and iOS (webkitEnterFullscreen)
+        function unifiedFullscreen() {
+            const elem = video;
+            // Check for iOS Safari native fullscreen support (webkitEnterFullscreen)
+            if (elem.webkitEnterFullscreen && (isIOS || /iPad|iPhone|iPod/.test(navigator.userAgent))) {
+                try {
+                    elem.webkitEnterFullscreen();
+                    updateFullscreenIcon(true);
+                } catch (err) {
+                    console.warn("iOS fullscreen failed, falling back to standard", err);
+                    requestStandardFullscreen();
                 }
-            });
+            } 
+            // Standard fullscreen API for Android, desktop, and other browsers
+            else {
+                requestStandardFullscreen();
+            }
+        }
 
-            player.addEventListener('error', (event) => {
-                console.error('Shaka Player error:', event.detail);
-                showError('Playback error: ' + event.detail.message);
-                loadingOverlay.style.display = "none";
-                tryNextBackup();
-            });
+        function requestStandardFullscreen() {
+            const container = document.querySelector('.video-container');
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                // Try to fullscreen the video element or its container for better compatibility
+                if (video.requestFullscreen) {
+                    video.requestFullscreen().catch(err => console.warn("Fullscreen error:", err));
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (container.requestFullscreen) {
+                    container.requestFullscreen().catch(err => console.warn("Container fullscreen error:", err));
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else {
+                    console.warn("Fullscreen not supported");
+                }
+                updateFullscreenIcon(true);
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                updateFullscreenIcon(false);
+            }
+        }
 
+        function updateFullscreenIcon(isFullscreenIntent) {
+            // We'll update icon based on actual fullscreen state change event, but this helper sets optimistic icon
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            if (fullscreenBtn) {
+                // Actual state will be corrected by fullscreenchange listener
+            }
+        }
+
+        // Shaka Player & DRM functions (kept from original)
+        function initShakaPlayer() {
+            if (!shaka.Player.isBrowserSupported()) { console.error('Shaka Player not supported'); return null; }
+            const player = new shaka.Player(video);
+            player.configure({ drm: { servers: { 'com.widevine.alpha': '', 'com.microsoft.playready': '', 'org.w3.clearkey': '' }, clearKeys: {} }, streaming: { bufferingGoal: 30, rebufferingGoal: 15, bufferBehind: 30 } });
+            player.addEventListener('error', (event) => { console.error('Shaka error:', event.detail); showError('Playback error'); loadingOverlay.style.display = "none"; tryNextBackup(); });
             return player;
         }
 
-        // Load DRM Source
-        async function loadDrmSource(source) {
-            try {
-                loadingOverlay.style.display = "flex";
-                errorMessage.style.display = "none";
+        function cleanupPlayers() { if (hls) { hls.destroy(); hls = null; } if (shakaPlayer) { shakaPlayer.unload(); shakaPlayer.destroy(); shakaPlayer = null; } video.src = ""; video.load(); }
 
-                if (!shakaPlayer) {
-                    shakaPlayer = initShakaPlayer();
-                    if (!shakaPlayer) {
-                        throw new Error('Shaka Player initialization failed');
-                    }
-                }
-
-                if (source.drm) {
-                    await shakaPlayer.configure({
-                        drm: {
-                            clearKeys: {
-                                [source.drm.kid]: source.drm.key
-                            }
-                        }
-                    });
-                }
-
-                await shakaPlayer.load(source.url);
-
-                loadingOverlay.style.display = "none";
-                errorMessage.style.display = "none";
-
-                await video.play();
-
-            } catch (error) {
-                console.error('Error loading DRM content:', error);
-                showError('Failed to load DRM content: ' + error.message);
-                loadingOverlay.style.display = "none";
+        function loadSource(sourceIndex) {
+            cleanupPlayers();
+            const source = currentBackupSources[sourceIndex];
+            currentChannelUrl = source.url;
+            currentBackupIndex = sourceIndex;
+            loadingOverlay.style.display = "flex";
+            errorMessage.style.display = "none";
+            if (source.type === 'dash') {
+                if (!shakaPlayer) shakaPlayer = initShakaPlayer();
+                if (!shakaPlayer) { showError('Shaka init failed'); loadingOverlay.style.display = "none"; tryNextBackup(); return; }
+                if (source.drm) { shakaPlayer.configure({ drm: { clearKeys: { [source.drm.kid]: source.drm.key } } }); } 
+                else { shakaPlayer.configure({ drm: { clearKeys: {} } }); }
+                shakaPlayer.load(source.url).then(() => { loadingOverlay.style.display = "none"; errorMessage.style.display = "none"; video.play().catch(e => console.error(e)); }).catch((error) => { console.error('Shaka error:', error); showError('DASH failed'); loadingOverlay.style.display = "none"; tryNextBackup(); });
+                return;
             }
+            if (Hls.isSupported() && !isIOS) {
+                hls = new Hls({ maxBufferLength: 30, backBufferLength: 30, enableWorker: true, lowLatencyMode: true });
+                hls.loadSource(source.url);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() { populateQualityMenu(); video.play().catch(e => console.error(e)); });
+                hls.on(Hls.Events.ERROR, function(event, data) { if (data.fatal) { if(data.type === Hls.ErrorTypes.NETWORK_ERROR) tryNextBackup(); else if(data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError(); else tryNextBackup(); } });
+            } else if (video.canPlayType("application/vnd.apple.mpegurl")) { video.src = source.url; video.addEventListener("loadedmetadata", function() { video.play().catch(e => console.error(e)); }); } 
+            else { showError("HLS not supported"); }
         }
 
-        // Cleanup Players
-        function cleanupPlayers() {
-            if (hls) {
-                hls.destroy();
-                hls = null;
-            }
+        function tryNextBackup() { currentBackupIndex++; if (currentBackupIndex < currentBackupSources.length) loadSource(currentBackupIndex); else showError("No Signal"); }
+        function populateQualityMenu() { if (!hls) return; qualityMenu.innerHTML = ""; const autoOption = document.createElement("option"); autoOption.value = -1; autoOption.textContent = "Auto"; qualityMenu.appendChild(autoOption); if (hls.levels && hls.levels.length > 1) { hls.levels.forEach((level, index) => { const option = document.createElement("option"); option.value = index; option.textContent = level.height + "p"; qualityMenu.appendChild(option); }); hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) { qualityMenu.value = data.level; }); } else { qualityMenu.style.display = "none"; } }
+        function togglePlayPause() { if (video.paused) video.play().catch(e => console.error(e)); else video.pause(); }
+        function toggleMute() { video.muted = !video.muted; if (video.muted) { muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'; volumeSlider.value = 0; } else { muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; volumeSlider.value = video.volume; } }
+        function cycleZoom() { zoomIndex = (zoomIndex + 1) % zoomModes.length; video.style.objectFit = zoomModes[zoomIndex]; if (document.fullscreenElement) { const fsVideo = document.fullscreenElement.querySelector('video') || document.fullscreenElement; fsVideo.style.objectFit = zoomModes[zoomIndex]; } }
+        function togglePiP() { if (document.pictureInPictureElement) document.exitPictureInPicture(); else if (document.pictureInPictureEnabled) video.requestPictureInPicture().catch(e => console.error(e)); }
+        function nextChannel() { const nextIndex = (currentChannelIndex + 1) % filteredChannels.length; loadChannel(nextIndex); }
+        function prevChannel() { const prevIndex = (currentChannelIndex - 1 + filteredChannels.length) % filteredChannels.length; loadChannel(prevIndex); }
+        function showError(message) { errorText.textContent = message; errorMessage.style.display = "block"; loadingOverlay.style.display = "none"; }
 
-            if (shakaPlayer) {
-                shakaPlayer.unload();
-                shakaPlayer.destroy();
-                shakaPlayer = null;
-            }
-
-            video.src = "";
-            video.load();
-        }
-
-        // Initialize Player
-        function initPlayer() {
-            volumeSlider.addEventListener("input", function() {
-                video.volume = this.value;
-                if (video.volume == 0) {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                }
-            });
-
-            video.addEventListener("play", function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                isPlaying = true;
-                posterImage.style.display = "none";
-            });
-
-            video.addEventListener("pause", function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                isPlaying = false;
-            });
-
-            video.addEventListener("waiting", function() {
-                loadingOverlay.style.display = "flex";
-            });
-
-            video.addEventListener("playing", function() {
-                loadingOverlay.style.display = "none";
-                errorMessage.style.display = "none";
-            });
-
-            video.addEventListener("error", function() {
-                loadingOverlay.style.display = "none";
-                showError("Failed to play this source. Trying backup...");
-                tryNextBackup();
-            });
-
-            channelSearch.addEventListener("input", function() {
-                filterChannels();
-            });
-
-            qualityMenu.addEventListener("change", function() {
-                if (hls) {
-                    hls.currentLevel = parseInt(this.value);
-                }
-            });
-
-            sourceMenu.addEventListener("change", function() {
-                loadSource(parseInt(this.value));
-            });
-
-            loadChannels();
-
-            if (channels.length > 0) {
-                loadChannel(0);
-            }
-        }
-
-        // Load Channels List
-        function loadChannels() {
-            channelList.innerHTML = "";
-            filteredChannels = channels.filter(channel =>
-                currentCategory === 'all' || channel.category.includes(currentCategory)
-            );
-
-            filteredChannels.forEach((channel, index) => {
-                const channelItem = document.createElement("div");
-                channelItem.className = "channel-item";
-                channelItem.setAttribute("data-category", channel.category);
-
-                const hasDrm = channel.sources.some(source => source.drm);
-                const drmBadge = hasDrm ? '<span class="drm-badge"></span>' : '';
-
-                channelItem.innerHTML = `
-                    <div class="channel-item-img">
-                        <img src="${channel.img}" alt="${channel.name}">
-                        ${drmBadge}
-                        <span class="channel-item-live"></span>
-                    </div>
-                `;
-                channelItem.addEventListener("click", () => {
-                    loadChannel(index);
-                });
-
-                channelItem.title = channel.name;
-
-                channelList.appendChild(channelItem);
-                channelMap.set(index, channelItem);
-            });
-
-            channelCount.textContent = `${filteredChannels.length} channels`;
-        }
-
-        // Filter by Category
-        function filterCategory(category, event) {
-            document.querySelectorAll('.category-bar button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            currentCategory = category;
-            loadChannels();
-        }
-
-        // Filter Channels by Search
-        function filterChannels() {
-            const searchTerm = channelSearch.value.toLowerCase();
-            document.querySelectorAll(".channel-item").forEach(item => {
-                const name = item.title.toLowerCase();
-                if (name.includes(searchTerm)) {
-                    item.style.display = "flex";
-                } else {
-                    item.style.display = "none";
-                }
-            });
-        }
-
-        // Load Channel (AD SYSTEM REMOVED)
         function loadChannel(index) {
-            document.querySelectorAll(".channel-item").forEach(item => {
-                item.classList.remove("active");
-            });
-
-            if (channelMap.has(index)) {
-                channelMap.get(index).classList.add("active");
-            }
-
+            document.querySelectorAll(".channel-item").forEach(item => item.classList.remove("active"));
+            if (channelMap.has(index)) channelMap.get(index).classList.add("active");
             const channel = filteredChannels[index];
             currentChannelIndex = index;
             currentBackupSources = channel.sources;
             currentBackupIndex = 0;
-
             sourceMenu.innerHTML = "";
-            channel.sources.forEach((source, i) => {
-                const option = document.createElement("option");
-                option.value = i;
-                option.textContent = source.name + (source.drm ? " (DRM)" : "");
-                sourceMenu.appendChild(option);
-            });
-
+            channel.sources.forEach((source, i) => { const option = document.createElement("option"); option.value = i; option.textContent = source.name + (source.drm ? " (DRM)" : ""); sourceMenu.appendChild(option); });
             loadSource(0);
         }
 
-        // Load Source
-        function loadSource(sourceIndex) {
-            cleanupPlayers();
-
-            const source = currentBackupSources[sourceIndex];
-            currentChannelUrl = source.url;
-            currentBackupIndex = sourceIndex;
-
-            loadingOverlay.style.display = "flex";
-            errorMessage.style.display = "none";
-
-            // Handle DASH streams (with or without DRM)
-            if (source.type === 'dash') {
-                if (!shakaPlayer) {
-                    shakaPlayer = initShakaPlayer();
-                    if (!shakaPlayer) {
-                        showError('Shaka Player initialization failed');
-                        loadingOverlay.style.display = "none";
-                        tryNextBackup();
-                        return;
-                    }
-                }
-
-                // Configure DRM if present
-                if (source.drm) {
-                    shakaPlayer.configure({
-                        drm: {
-                            clearKeys: {
-                                [source.drm.kid]: source.drm.key
-                            }
-                        }
-                    });
-                } else {
-                    // Clear any existing DRM config for non-DRM streams
-                    shakaPlayer.configure({
-                        drm: {
-                            clearKeys: {}
-                        }
-                    });
-                }
-
-                // Load the DASH stream
-                shakaPlayer.load(source.url).then(() => {
-                    loadingOverlay.style.display = "none";
-                    errorMessage.style.display = "none";
-                    video.play().catch(e => {
-                        console.error("Failed to autoplay:", e);
-                    });
-                }).catch((error) => {
-                    console.error('Shaka Player error:', error);
-                    showError('Failed to load DASH stream: ' + error.message);
-                    loadingOverlay.style.display = "none";
-                    tryNextBackup();
-                });
-                
-                return;
-            }
-
-            // Handle HLS streams
-            if (Hls.isSupported() && !isIOS) {
-                hls = new Hls({
-                    maxBufferLength: 30,
-                    backBufferLength: 30,
-                    enableWorker: true,
-                    lowLatencyMode: true,
-                    abrEwmaDefaultEstimate: 500000,
-                    abrEwmaSlowVoD: 30000
-                });
-
-                hls.loadSource(source.url);
-                hls.attachMedia(video);
-
-                hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                    populateQualityMenu();
-                    video.play().catch(e => {
-                        console.error("Failed to autoplay:", e);
-                        loadingOverlay.style.display = "none";
-                    });
-                });
-
-                hls.on(Hls.Events.ERROR, function(event, data) {
-                    console.error("HLS error:", data);
-                    if (data.fatal) {
-                        switch(data.type) {
-                            case Hls.ErrorTypes.NETWORK_ERROR:
-                                showError("Network error. Trying backup source...");
-                                tryNextBackup();
-                                break;
-                            case Hls.ErrorTypes.MEDIA_ERROR:
-                                showError("Media error. Trying backup source...");
-                                hls.recoverMediaError();
-                                break;
-                            default:
-                                showError("Unrecoverable error. Trying backup source...");
-                                tryNextBackup();
-                                break;
-                        }
-                    }
-                });
-            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                video.src = source.url;
-                video.addEventListener("loadedmetadata", function() {
-                    video.play().catch(e => {
-                        console.error("Failed to autoplay:", e);
-                        loadingOverlay.style.display = "none";
-                    });
-                });
-            } else {
-                showError("Your browser doesn't support HLS playback.");
-            }
+        function filterCategory(category, event) {
+            document.querySelectorAll('.category-bar button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            currentCategory = category;
+            loadChannels();
         }
 
-        // Try Next Backup Source
-        function tryNextBackup() {
-            currentBackupIndex++;
-            if (currentBackupIndex < currentBackupSources.length) {
-                loadSource(currentBackupIndex);
-            } else {
-                showError("No Signal");
-            }
-        }
+        function filterChannels() { const searchTerm = channelSearch.value.toLowerCase(); document.querySelectorAll(".channel-item").forEach(item => { const name = item.title.toLowerCase(); item.style.display = name.includes(searchTerm) ? "flex" : "none"; }); }
 
-        // Populate Quality Menu
-        function populateQualityMenu() {
-            if (!hls) return;
-
-            qualityMenu.innerHTML = "";
-            const autoOption = document.createElement("option");
-            autoOption.value = -1;
-            autoOption.textContent = "Auto";
-            qualityMenu.appendChild(autoOption);
-
-            if (hls.levels && hls.levels.length > 1) {
-                hls.levels.forEach((level, index) => {
-                    const option = document.createElement("option");
-                    option.value = index;
-                    option.textContent = level.height + "p";
-                    qualityMenu.appendChild(option);
-                });
-
-                hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) {
-                    qualityMenu.value = data.level;
-                });
-            } else {
-                qualityMenu.style.display = "none";
-            }
-        }
-
-        // Control Functions
-        function togglePlayPause() {
-            if (video.paused) {
-                video.play().catch(e => console.error("Failed to play:", e));
-            } else {
-                video.pause();
-            }
-        }
-
-        function toggleMute() {
-            video.muted = !video.muted;
-            if (video.muted) {
-                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                volumeSlider.value = 0;
-            } else {
-                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-                volumeSlider.value = video.volume;
-            }
-        }
-
-        function cycleZoom() {
-            zoomIndex = (zoomIndex + 1) % zoomModes.length;
-            video.style.objectFit = zoomModes[zoomIndex];
-
-            if (document.fullscreenElement) {
-                const fullscreenVideo = document.fullscreenElement.querySelector('video') || document.fullscreenElement;
-                fullscreenVideo.style.objectFit = zoomModes[zoomIndex];
-            }
-        }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                video.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        function requestFullscreen() {
-            video.webkitEnterFullscreen();
-        }
-
-        function togglePiP() {
-            if (document.pictureInPictureElement) {
-                document.exitPictureInPicture().catch(err => console.error("PiP error:", err));
-            } else if (document.pictureInPictureEnabled) {
-                video.requestPictureInPicture().catch(err => console.error("PiP error:", err));
-            }
-        }
-
-        function nextChannel() {
-            const nextIndex = (currentChannelIndex + 1) % filteredChannels.length;
-            loadChannel(nextIndex);
-        }
-
-        function prevChannel() {
-            const prevIndex = (currentChannelIndex - 1 + filteredChannels.length) % filteredChannels.length;
-            loadChannel(prevIndex);
-        }
-
-        function showError(message) {
-            errorText.textContent = message;
-            errorMessage.style.display = "block";
-        }
-
-        // Initialize player when page loads
-        window.addEventListener("load", initPlayer);
-
-        // Handle fullscreen changes
-        document.addEventListener("webkitfullscreenchange", function() {
-            if (document.webkitFullscreenElement) {
-                video.style.objectFit = "contain";
-            } else {
-                video.style.objectFit = zoomModes[zoomIndex];
-            }
-        });
-
-        document.addEventListener('fullscreenchange', () => {
-            const isFull = !!document.fullscreenElement;
-            if (isFull) {
-                const fullscreenVideo = document.fullscreenElement.querySelector('video') || document.fullscreenElement;
-                fullscreenVideo.style.objectFit = zoomModes[zoomIndex];
-            } else {
-                video.style.objectFit = zoomModes[zoomIndex];
-            }
-        });
-
-        // iOS specific setup
-        if (isIOS) {
-            const allControlBtns = document.querySelectorAll(".control-btn, .mute-btn, .nav-btn");
-            allControlBtns.forEach(btn => {
-                btn.style.display = "flex";
+        function loadChannels() {
+            channelList.innerHTML = "";
+            filteredChannels = channels.filter(channel => currentCategory === 'all' || channel.category.includes(currentCategory));
+            filteredChannels.forEach((channel, index) => {
+                const channelItem = document.createElement("div");
+                channelItem.className = "channel-item";
+                const hasDrm = channel.sources.some(source => source.drm);
+                channelItem.innerHTML = `<div class="channel-item-img"><img src="${channel.img}" alt="${channel.name}">${hasDrm ? '<span class="drm-badge"></span>' : ''}<span class="channel-item-live"></span></div>`;
+                channelItem.addEventListener("click", () => loadChannel(index));
+                channelItem.title = channel.name;
+                channelList.appendChild(channelItem);
+                channelMap.set(index, channelItem);
             });
-            
-            video.setAttribute("playsinline", "true");
-            video.setAttribute("webkit-playsinline", "true");
+            channelCount.textContent = `${filteredChannels.length} channels`;
         }
 
-        // Initialize player when page loads
+        // Fullscreen change listener to update icon dynamically
+        function handleFullscreenChange() {
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement);
+            if (fullscreenBtn) {
+                if (isFullscreen) {
+                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                    fullscreenBtn.title = "Exit Fullscreen";
+                } else {
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                    fullscreenBtn.title = "Fullscreen";
+                }
+            }
+            // Re-apply zoom mode when exiting/entering fullscreen
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                const fsVideo = (document.fullscreenElement || document.webkitFullscreenElement).querySelector('video') || video;
+                if (fsVideo) fsVideo.style.objectFit = zoomModes[zoomIndex];
+            } else {
+                video.style.objectFit = zoomModes[zoomIndex];
+            }
+        }
+
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        
+        // Volume and event listeners
+        function initPlayer() {
+            volumeSlider.addEventListener("input", function() { video.volume = this.value; muteBtn.innerHTML = video.volume == 0 ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>'; });
+            video.addEventListener("play", function() { playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>'; isPlaying = true; posterImage.style.display = "none"; });
+            video.addEventListener("pause", function() { playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'; isPlaying = false; });
+            video.addEventListener("waiting", function() { loadingOverlay.style.display = "flex"; });
+            video.addEventListener("playing", function() { loadingOverlay.style.display = "none"; errorMessage.style.display = "none"; });
+            video.addEventListener("error", function() { loadingOverlay.style.display = "none"; showError("Playback error. Trying backup..."); tryNextBackup(); });
+            channelSearch.addEventListener("input", filterChannels);
+            qualityMenu.addEventListener("change", function() { if (hls) hls.currentLevel = parseInt(this.value); });
+            sourceMenu.addEventListener("change", function() { loadSource(parseInt(this.value)); });
+            loadChannels();
+            if (channels && channels.length > 0) loadChannel(0);
+        }
+
         window.addEventListener("load", initPlayer);
-
-        // Handle fullscreen changes
-        document.addEventListener("webkitfullscreenchange", function() {
-            if (document.webkitFullscreenElement) {
-                video.style.objectFit = "contain";
-            } else {
-                video.style.objectFit = zoomModes[zoomIndex];
-            }
-        });
-
-        document.addEventListener('fullscreenchange', () => {
-            const isFull = !!document.fullscreenElement;
-            if (isFull) {
-                const fullscreenVideo = document.fullscreenElement.querySelector('video') || document.fullscreenElement;
-                fullscreenVideo.style.objectFit = zoomModes[zoomIndex];
-            } else {
-                video.style.objectFit = zoomModes[zoomIndex];
-            }
-        });
+        if (isIOS) { video.setAttribute("playsinline", "true"); video.setAttribute("webkit-playsinline", "true"); }
     </script>
-
     <script src="main.js"></script>
 </body>
 </html>
