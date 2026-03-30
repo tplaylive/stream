@@ -1207,28 +1207,50 @@ const channels = [
             { 
                 name: "24/7 Music", 
                 sources: [
-                  { name: "Server 1", url: "https://tplay.live/out/music/world-music.index.m3u8" },
+                  { name: "Playlist", url: "https://tplay.live/out/music/world-music.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
-                category: ["Music", "24/7", "English", "India"],
+                category: ["Music", "24/7", "English", "World"],
                 package: ["500"],
                 description: "English Songs"
             },
             { 
                 name: "24/7 Music", 
                 sources: [
-                  { name: "Server 1", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
-                  { name: "Server 2", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
+                  { name: "Playlist", url: "https://tplay.live/out/music/world-music2.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
-                category: ["Music", "24/7", "Hindi", "India"],
+                category: ["Music", "24/7", "English", "World"],
                 package: ["500"],
-                description: "Top Hits "
+                description: "English Songs"
             },
             { 
                 name: "24/7 Music", 
                 sources: [
-                  { name: "Server 1", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
+                    { 
+                        name: "Playlist", 
+                        url: "https://rasinetworks.in/live/rasimusichd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                category: ["Music", "24/7", "Tamil", "India"],
+                description: "Tamil Songs"
+            },
+            { 
+                name: "24/7 Music", 
+                sources: [
+                  { name: "Playlist", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                category: ["Music", "24/7", "Hindi", "India"],
+                package: ["500"],
+                description: "Hindi Songs"
+            },
+            { 
+                name: "24/7 Music", 
+                sources: [
+                  { name: "Playlist", url: "https://tplay.live/out/music/indian-music2.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
                 category: ["Music", "24/7", "Hindi", "India"],
@@ -1690,23 +1712,6 @@ const channels = [
                         url: "https://rasinetworks.in/live/rasimusichd/index.mpd",
                         type: "dash",
                     }
-                ], 
-                img: "https://livetv.ashokadigital.net/upload/logo/1742386594_RASI%20MUSIC%20LOGO%20HD.png", 
-                category: ["Music", "Tamil", "India"],
-                description: "Tamil"
-            },
-            { 
-               name: "Rasi Music HD", 
-               sources: [
-                { 
-                name: "Server 1", 
-                url: "https://rasinetworks.in/live/rasimusichd/index.mpd",
-                type: "dash",
-                headers: {
-                      "Referer": "https://rasinetworks.in/",
-                       "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                   }
-                 }
                 ], 
                 img: "https://livetv.ashokadigital.net/upload/logo/1742386594_RASI%20MUSIC%20LOGO%20HD.png", 
                 category: ["Music", "Tamil", "India"],
