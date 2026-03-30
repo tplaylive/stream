@@ -1683,6 +1683,19 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Rasi Music HD", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasimusichd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386594_RASI%20MUSIC%20LOGO%20HD.png", 
+                category: "Music",
+                description: "Tamil"
+            },
+            { 
                 name: "Tunes 6 Music", 
                 sources: [
                     { name: "Server 1", url: "https://stream.d6-pro.com/tunes6music/live/video.m3u8" },
