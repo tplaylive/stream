@@ -2542,6 +2542,19 @@ const channels = [
                 description: "Egypt"
             },
             { 
+                name: "Rasi Hollywood HD", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://rasinetworks.in/live/rasihollywoodhd/index.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://livetv.ashokadigital.net/upload/logo/1742386628_Rasi%20Hollywood.png", 
+                category: ["Movie", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
                 name: "Superfine Films", 
                 sources: [
                     { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
