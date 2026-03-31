@@ -740,6 +740,52 @@ const channels = [
                 category: ["News", "English", "India"],
                 description: "India"
             },
+
+            { 
+                name: "Avenues", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/Avenews,.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/8CFJwHTt/avenues.jpg", 
+                category: ["News", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "ABC News", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/ABCNews576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/9FfLHB9J/abc-news-nepali.jpg", 
+                category: ["News", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "Sagarmatha", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/Sagarmatha.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/kGZCvg8S/sagarmatha.jpg", 
+                category: ["News", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "Mountain", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/Mountain576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/gJfcRTSt/mountain.jpg", 
+                category: ["News", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "NTV News", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/NtvNews576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/263gW5sF/ntv-plus.jpg", 
+                category: ["News", "Nepali", "Nepal"],
+                description: ""
+            },
             { 
                 name: "Al Ekhbariya", 
                 sources: [
@@ -3009,9 +3055,9 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sethd/index.m3u8" },
-                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C66/master.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
+                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
                 category: ["Entertainment", "Hindi", "India"],
@@ -3987,6 +4033,97 @@ const channels = [
                 description: "Telugu"
             },
             { 
+                name: "Kantipur TV HD", 
+                sources: [
+                    { name: "Server 1", url: "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/2yF06LmF/kantipur.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "AP1 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/AP1576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/jS83J74M/ap1.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "Prime HD", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/PrimeTV576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/d39KGzXp/prime.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "Himalaya", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/HimalayaTv576.stream/playlist.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C8/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/d3rSkQqn/himalaya.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "NTV", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/Ntv576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/vZwFYjvG/ntv.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "NTV Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/NtvPlus576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/263gW5sF/ntv-plus.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "NTV Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/NtvPlus576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/263gW5sF/ntv-plus.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "Janata", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/Jantatv.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/MKm3jjX1/janata.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "Image", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/Image576.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/jSC90SdN/image.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
+                name: "YOHO TV", 
+                sources: [
+                    { name: "Server 1", url: "https://webott.viatv.com.np/v0t1/YohoTV.stream/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/4xfqXLdY/yoho.jpg", 
+                category: ["Mix-Entertainment", "Nepali", "Nepal"],
+                description: ""
+            },
+            { 
                 name: "Kuwait TV", 
                 sources: [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/kuwait_tv1/hls_roku/index.m3u8" },
@@ -4333,11 +4470,11 @@ const channels = [
             { 
                 name: "Star Sports 2", 
                 sources: [
-                    { name: "Stream 1", url: "https://p4kp.rjmbts.workers.dev/7455.m3u8" },
-                    { name: "Stream 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starsports2/tracks-v1a1/mono.m3u8" },
-                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport2/index.m3u8" },
-                    { name: "Stream 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport2/index.m3u8" },
-                    { name: "Stream 5", url: "https://padmaonline.duckdns.org:8088/StarSports2HD/index.m3u8" },
+                    { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starsports2/tracks-v1a1/mono.m3u8" },
+                    { name: "Stream 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C250/master.m3u8" },
+                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport2/index.m3u8" },
+                    { name: "Stream 4", url: "https://padmaonline.duckdns.org:8088/StarSports2HD/index.m3u8" },
+                    { name: "Stream 5", url: "https://p4kp.rjmbts.workers.dev/7455.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wxtTsjKK/sst2.jpg", 
                 category: "Sports",
@@ -5038,18 +5175,26 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/LsC3pgKH/history.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "World"
             },
             { 
-                name: "History TV 18", 
+                name: "History TV 18 English", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HISTORYTVHD/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelhindi-samsungin/playlist.m3u8" },
-                    { name: "Server 3", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8" }
+                    { name: "Server 1", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C202/master.m3u8" },
                 ], 
-                img: "https://static.wikia.nocookie.net/logopedia/images/6/67/History_tv18_hd.png/revision/latest?cb=20210515171227", 
-                category: "Infotainment",
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/f89bad9075c009869645a1af78c33978.png", 
+                category: ["Infotainment", "English", "India"],
+                description: "India"
+            },
+            { 
+                name: "History TV 18 Hindi", 
+                sources: [
+                    { name: "Server 1", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelhindi-samsungin/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/a672c84c9b640aff36b88b9c3a4e4c70.png", 
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
