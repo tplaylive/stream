@@ -4782,18 +4782,10 @@ const channels = [
             { 
                 name: "WWE Network", 
                 sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://fsly.stream.peacocktv.com/Content/CMAF_CTR-4s/Live/channel(vc106wh3yw)/master.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "00208c93f4358213b52220898b962385",
-                            key: "8ae6063167228e350dd132d4a1573102"
-                        }
-                    }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C490/master.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/8/8c/WWE_Network_logo.jpeg", 
-                category: "Sports",
+                category: ["Sports", "24/7", "English", "USA"],
                 description: "World"
             },
             { 
