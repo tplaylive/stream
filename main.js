@@ -1021,6 +1021,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "POGO", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22603/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "747bbd76538e54aba7b84da4d5dc5aba",
+                            key: "bd594239af2c1befc5d117cc72c83f33"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
+                category: ["Kids", "Hindi", "India"],
+                description: "Hindi"
+            },
+            { 
                 name: "Cartoon Network", 
                 sources: [
                     { name: "Hindi", url: "https://mrzplayin.fun/roarzon/stream.php?id=2656a9b9198a7631e0521a2582e998f5&e=.m3u8" },
@@ -1040,6 +1057,23 @@ const channels = [
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
                 category: ["Kids", "Urdu", "Pakistan"],
                 description: "Pakistan"
+            },
+            { 
+                name: "Cartoon Network", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22602/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "9b7de008a1685b9fa1aa9e0b8d5cac0a",
+                            key: "9ae9aef552a4182de0eb9ab2fae86a17"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
+                category: ["Kids", "Hindi", "India"],
+                description: "Hindi"
             },
             { 
                 name: "Cartoon Network HD+", 
@@ -3271,7 +3305,109 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcea7fce3598bc29fd4db2d2ba6d22f7.png", 
                 category: ["Entertainment", "Tamil", "India"],
                 description: "Tamil"
-            },   
+            },
+            { 
+                name: "Jaya TV HD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22376/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "240e85c531b3557b9f80f460de9d3632",
+                            key: "1e152dddc7f6e7d7ff8bbea884907c24"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/38564ce8c8aaac2c0529abbc55318d6f.png", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "India"
+            },
+            { 
+                name: "Jaya Max", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22374/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "ab7b51986d1d5c71ae7a3eccfa387547",
+                            key: "90543e8dd493f5dc0e105ce32fd964e0"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2160e45255960cfbacc217bfe5ec63d4.png", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "India"
+            },
+            { 
+                name: "Jaya Movie", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22373/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "db45a6ff634252209fd4b66847078456",
+                            key: "134f625213a09e244ebceb257c22b2f3"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/J_Movies.png", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "India"
+            },
+            { 
+                name: "Chithiram", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22378/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "928e0f5213fc5a7ebeb0bd8cbd4d1442",
+                            key: "22b778641744694ad3de2822ee018d38"
+                        }
+                    }
+                ], 
+                img: "https://yt3.googleusercontent.com/VfehqpmL-G5zlPGITYe2BlRuoW_BLm4mOmRSXxIze8jSPzJjQ4TShN-FCR_cn8kImVm2gGHvgnw=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "India"
+            },
+            { 
+                name: "Sirippoli", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22379/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "b0bef7a3d07f5b9c8b4b2de472da7718",
+                            key: "3139f66c3e590441bec542fcf16dcaca"
+                        }
+                    }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/7/74/Sirippoli_tv.jpg/revision/latest?cb=20191224115900", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "India"
+            },
+            { 
+                name: "Vendhar TV", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22380/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "9d40de25714e5bfea8d4416e122cbe1f",
+                            key: "cf4e7638142ca8ee949de71f6c77a85f"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ce5de13ed1621e06c89426c3f9665e69.png", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "India"
+            },
             { 
                 name: "Brio TV", 
                 sources: [
@@ -3328,9 +3464,43 @@ const channels = [
             { 
                 name: "Kairali TV", 
                 sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22412/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "1382b4f8623151e88c52787ae11f11ab",
+                            key: "de71cbb248a62cc2c4a66c8546b49d7d"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ea4af867a91ddeb85fb5990c9be079e5.png", 
+                category: ["Entertainment", "Malayalam", "India"],
+                description: "Malayalam"
+            }, 
+            { 
+                name: "Kairali TV", 
+                sources: [
                     { name: "Server 1", url: "https://mumt01.tangotv.in/KAIRALI/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ea4af867a91ddeb85fb5990c9be079e5.png", 
+                category: ["Entertainment", "Malayalam", "India"],
+                description: "Malayalam"
+            },
+            { 
+                name: "Kairali We", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22411/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "a78509d336ba5e58a79f80792b648c47",
+                            key: "e4da90d5040db158a71c04e8ac48f2cc"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/f3c39d6579c9ffe19e491f59647dda49.png", 
                 category: ["Entertainment", "Malayalam", "India"],
                 description: "Malayalam"
             }, 
@@ -3346,9 +3516,26 @@ const channels = [
             { 
                 name: "Asianet", 
                 sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22389/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "c0c3d8692a6a574e9a731ff7ed7ca7fe",
+                            key: "87eed062e3b13bd639f5cba89b83ea33"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e8c1375787d09c2bc90f7e4ba420ea50.png", 
+                category: ["Entertainment", "Malayalam", "India"],
+                description: "Malayalam"
+            }, 
+            { 
+                name: "Asianet", 
+                sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/asianet/index.m3u8" },
                 ], 
-                img: "https://www.medianews4u.com/wp-content/uploads/2025/09/Asianet-dominates-Malayalam-TV-with-64-prime-time-share-Bigg-Boss-7-leads-the-charge.png", 
+                img: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Asianet_2023_logo.png", 
                 category: ["Entertainment", "Malayalam", "India"],
                 description: "Malayalam"
             },
@@ -3372,6 +3559,23 @@ const channels = [
                 category: ["Entertainment", "Malayalam", "India"],
                 language: "Malayalam"
             },
+            { 
+                name: "Amrita TV", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22391/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "513e09e96cd355198d22a63f3259452f",
+                            key: "8b5c7793bba86d6e885fc08b9ff9e5e0"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e8c1375787d09c2bc90f7e4ba420ea50.png", 
+                category: ["Entertainment", "Malayalam", "India"],
+                description: "Malayalam"
+            }, 
             { 
                 name: "ZEE Kannada", 
                 sources: [
@@ -4866,11 +5070,11 @@ const channels = [
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/animalplanet/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/RFm9McDx/animal-planet.png", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
-                name: "Animal Planet HD",
+                name: "Animal Planet HD English",
                 sources: [
                     { 
                         name: "Server 1", 
@@ -4883,7 +5087,7 @@ const channels = [
                     }
                 ],
                 img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -4900,7 +5104,7 @@ const channels = [
                     }
                 ],
                 img: "https://i.postimg.cc/Kzq6TNxy/animalplanethd.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -4910,7 +5114,7 @@ const channels = [
                     { name: "Server 2", url: "https://s3.ideationtec.live/Discover_Pakistan/Discover_Pakistan.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/cH9LLc8m/d-pak.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Urdu", "Pakistan"],
                 description: "Pakistan"
             },
             { 
@@ -4919,11 +5123,11 @@ const channels = [
                     { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Discovery_Asia/HLSv3-FTA/Discovery_Asia.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/7hkmbg85/d-asia.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "China"],
                 description: "Asia"
             },
             { 
-                name: "Discovery", 
+                name: "Discovery Hindi", 
                 sources: [
                     { 
                         name: "Auto", 
@@ -4935,8 +5139,25 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://i.postimg.cc/SjFpx6XX/discovery.jpg", 
-                category: "Infotainment",
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e64feb36373831590b6ffc3e59434c31.png", 
+                category: ["Infotainment", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Discovery Tamil", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22652/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "c6cb0bcbeac25fb286fed851e41de38c",
+                            key: "955c54f2cac8783fafccae5e5f9cdf8d"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2670c4e7ecb615377ef6c72f09872027.png", 
+                category: ["Infotainment", "Tamil", "India"],
                 description: "India"
             },
             { 
@@ -4944,8 +5165,8 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/discovery/index.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/SjFpx6XX/discovery.jpg", 
-                category: "Infotainment",
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0116263a14aa056e0105b013dbeb9cf9.png", 
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -4962,7 +5183,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/vZMgj4YQ/d-sci.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -4979,7 +5200,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/0ySHyHDk/d-turbo.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -4996,7 +5217,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/cHKNTBPr/id.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -5013,7 +5234,7 @@ const channels = [
                     }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/a/a9/ID_HD_logo_2017.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -5022,7 +5243,7 @@ const channels = [
                     { name: "Server 1", url: "https://cc-y2z89muounal4.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-y2z89muounal4/IQJW/WBD/HouseOfCrime_IN/HouseOfCrime_IN.m3u8" }
                 ], 
                 img: "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IN4600004HW_20250416T005413SQUARE.png", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -5031,7 +5252,7 @@ const channels = [
                     { name: "Server 1", url: "https://cc-zko1curyce7jh.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-zko1curyce7jh/IQJW/WBD/XXtremeJobs_IN/XXtremeJobs_IN.m3u8" }
                 ], 
                 img: "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IN46000011Q_20250205T004626SQUARE.png", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -5040,7 +5261,7 @@ const channels = [
                     { name: "Server 1", url: "https://cc-oq5ndvigrlkaa.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-oq5ndvigrlkaa/IQJW/WBD/FoodieHub_IN/FoodieHub_IN.m3u8" }
                 ], 
                 img: "https://cdn.sportika.net/cropped-foodie-hub(1).png", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -5049,7 +5270,7 @@ const channels = [
                     { name: "Server 1", url: "https://cc-qgrxgp51645lw.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-qgrxgp51645lw/IQJW/WBD/WildFlix_IN/WildFlix_IN.m3u8" }
                 ], 
                 img: "https://tvpnlogopus.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IN460000585_20250416T020413SQUARE.png", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -5058,7 +5279,7 @@ const channels = [
                     { name: "Server 1", url: "https://amg01821-lovetvchannels-lovetheplanetuksamsung-samsunguk-apopw.amagi.tv/ts-eu-w1-n2/playlist/amg01821-lovetvchannels-lovetheplanetuksamsung-samsunguk/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/VLJ8Bbbc/love-the-planet.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "United States"
             },
             { 
@@ -5075,7 +5296,7 @@ const channels = [
                     }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Love_Nature_logo_%282025%29.svg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "United States"
             },
             { 
@@ -5087,7 +5308,7 @@ const channels = [
 
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNXOrjX8auopIAAKFRHx1Y-KLi8Ync-CWUfw&s", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "World"
             },
             { 
@@ -5097,7 +5318,7 @@ const channels = [
                     { name: "China", url: "https://hls.iill.top/api/BBC-Lifestyle/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVYpn7TbifrC432Irpa2jXdlTdmCDDu0ThaQ&s", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "World"
             },
             { 
@@ -5106,7 +5327,7 @@ const channels = [
                     { name: "Server 1", url: "https://d30jgtzu0azlqq.cloudfront.net/playlist/samsungus-insighttv/playlist.m3u8" }
                 ], 
                 img: "https://cdn.uc.assets.prezly.com/92770c71-9d6f-400f-8311-38e9cfec52c2/InWild_landscape-green.png", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "Netherlands"],
                 description: "Netherlands"
             },
             { 
@@ -5115,7 +5336,7 @@ const channels = [
                     { name: "Server 1", url: "https://d30jgtzu0azlqq.cloudfront.net/playlist/samsungus-insighttv/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvNWNOQ2CVYM3nP66GmeQlS_1D-tNJo4GnjX4_1fSMozIMfIN_oHrKwi3C2zVsZbB9E90&usqp=CAU", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "Netherlands"],
                 description: "Netherlands"
             },
             { 
@@ -5132,7 +5353,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/63p7Yght/tlc-1.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "India"],
                 description: "India"
             },
             { 
@@ -5149,7 +5370,7 @@ const channels = [
                     }
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_mDtpbQ4xPiWFR0hhWISS-9i7jCBDorMcMBeBkEoQ805V4=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "China"],
                 description: "World"
             },
             { 
@@ -5158,7 +5379,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=46" }
                 ], 
                 img: "https://yt3.googleusercontent.com/ytc/AIdro_m7_6cQOwZKkI-RxzJE3e85oFdMoFBEX5iJIrUcOBwEG6A=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "World"
             },
             { 
@@ -5167,7 +5388,7 @@ const channels = [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/FOODFOOD/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/SRRYryQS/foodfood.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "World"
             },
             { 
@@ -5176,7 +5397,7 @@ const channels = [
                     { name: "Server 1", url: "https://dg3721c3ez5m0.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_ABHIRUCHI_H264_cloud-in/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/6QMwP2Hc/etv-abhiruchi.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Telugu", "India"],
                 description: "India"
             },
             { 
@@ -5185,7 +5406,7 @@ const channels = [
                     { name: "Server 1", url: "https://glb.bozztv.com/glb/ushba-t10/index.m3u8" }
                 ], 
                 img: "https://yt3.googleusercontent.com/66OTTHSdZwqnz75I-z_sCFmf-EKQ9q4_OZsluCDm3KqPrcauc16Si1gGQuUgqe82Pi05Y2vnpw=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Infotainment",
+                category: ["Infotainment", "Telugu", "24/7", "India"],
                 description: "India"
             },
             { 
@@ -5194,7 +5415,7 @@ const channels = [
                     { name: "Server 1", url: "https://travelxp-travelxp-1-eu.rakuten.wurl.tv/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/zGdP4tPR/travelxp.png", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "World"
             },
             { 
@@ -5203,7 +5424,7 @@ const channels = [
                     { name: "Server 1", url: "https://0472.org/hls/cgtnd.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/7ZKXqmzp/cgtn-docu.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "China"],
                 description: "China"
             },
             { 
@@ -5212,7 +5433,7 @@ const channels = [
                     { name: "Server 1", url: "https://ml-pull-hwc.myco.io/CGTN/hls/index.m3u8" }
                 ], 
                 img: "https://d2gpx7np84fwh1.cloudfront.net/external/d2y2efdi5wgkcl.cloudfront.net/fit-in/688x464/media-io/2025/10/17/Channel_Logo.80dcf707.png?width=1920", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "China"],
                 description: "China"
             },
             { 
@@ -5221,7 +5442,7 @@ const channels = [
                     { name: "Server 1", url: "https://cc-czbq30x55knit.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-czbq30x55knit/DIYC/PMSL/IN10/Epic_TV_IN_B/Epic_TV_IN_B.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/c1X91C4M/epic.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -5266,7 +5487,7 @@ const channels = [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NATGEOHD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "India"],
                 description: "India"
             },
             { 
@@ -5283,7 +5504,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "World"
             },
             { 
@@ -5292,7 +5513,7 @@ const channels = [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NATGEOWILDHD/tracks-v1a1/mono.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/9MHP15XD/nat-geo-wild.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "USA"],
                 description: "India"
             },
             { 
@@ -5309,7 +5530,7 @@ const channels = [
                     }
                 ], 
                 img: "https://i.postimg.cc/9MHP15XD/nat-geo-wild.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "Hindi", "USA"],
                 description: "World"
             },
             { 
@@ -5318,7 +5539,7 @@ const channels = [
                     { name: "Server 1", url: "https://mediapackage-hgtv-source.fullscreen.nz/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/tCVphVLB/hgtv.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "UK"],
                 description: "UK"
             },
             { 
@@ -5327,7 +5548,7 @@ const channels = [
                     { name: "Server 1", url: "https://jukin-weatherspy-2-in.samsung.wurl.tv/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcy7OdZhH0RGal0eWFF9vozfxB4n77mFX7mc9-SBxs69k44vJKhneDA5FhrW8SHdBNcA&usqp=CAU", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "Weather"
             },
             { 
@@ -5336,7 +5557,7 @@ const channels = [
                     { name: "Server 1", url: "https://amg13231-actve-amg13231c5-sportstribal-emea-1269.playouts.now.amagi.tv/playlist/amg13231-actvefast-powder-sportstribalemea/playlist.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/FzhNb9Jj/popular.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "United States"
             },
             { 
@@ -5345,7 +5566,7 @@ const channels = [
                     { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=567" }
                 ], 
                 img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/grw_updated.jpg", 
-                category: "Infotainment",
+                category: ["Infotainment", "English", "USA"],
                 description: "United States"
             },
             { 
@@ -5354,7 +5575,7 @@ const channels = [
                     { name: "Server 1", url: "https://932y4x26ljv8-hls-live.5centscdn.com/victers/tv.stream/playlist.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRw5j21VYGJhzIzhCA-EZ51uIbdDNMBe96CA&s", 
-                category: "Infotainment",
+                category: ["Infotainment", "Malayalam", "India"],
                 description: "Malayalam"
             },
             { 
@@ -5363,7 +5584,7 @@ const channels = [
                     { name: "Server 1", url: "https://5k8q87azdy4v-hls-live.wmncdn.net/MAKKAL/271ddf829afeece44d8732757fba1a66.sdp/playlist.m3u8" }
                 ], 
                 img: "https://play-lh.googleusercontent.com/ipwuom_ArR-0tJ21BVOOWR85CTXFG57eEf24M_kN6AXVb9iXM61ijrk9PzUwLtkd1A=w600-h300-pc0xffffff-pd", 
-                category: "Infotainment",
+                category: ["Infotainment", "Tamil", "India"],
                 description: "Tamil"
             },
             { 
