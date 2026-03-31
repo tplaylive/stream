@@ -537,15 +537,7 @@ const channels = [
                 category: ["News", "Telugu", "India"],
                 description: "Telugu"
              },
-             { 
-                name: "Nagaland TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10014/master.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44b5607770003fbe0016e2fcc76c1d27.png", 
-                category: ["News", "Assamese", "India"],
-                description: "Assamese/English"
-             },
+
              { 
                 name: "MBCTV", 
                 sources: [
@@ -563,6 +555,114 @@ const channels = [
                 img: "https://i.postimg.cc/02p7JKxy/ekamra-bharat.jpg", 
                 category: ["News", "Odia", "India"],
                 description: "Odia"
+             },
+             { 
+                name: "MBC TV Odisha", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt03.tangotv.in/MBCTV/index.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTcLnb_i5kxG-7DhXERKQ3kAZaQihpn8gvlA&s", 
+                category: ["News", "Odia", "India"],
+                description: "Odia"
+             },
+             { 
+                name: "Nagaland TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10014/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44b5607770003fbe0016e2fcc76c1d27.png", 
+                category: ["News", "Assamese", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "News Live", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10011/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/987db636160bb68e54edcc8a28174dbb.png", 
+                category: ["News", "Assamese", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "ND24", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10009/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6d4646c268dc11a5f4cca475de3e252b.png", 
+                category: ["News", "Assamese", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "Northeast Live", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10015/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/af0805180c02dafc110162325e6d02f4.png", 
+                category: ["News", "Assamese", "Hindi", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "DY 365", 
+                sources: [
+                    { name: "Server 1", url: "hhttps://cdn-6.pishow.tv/live/10001/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/60bde8480db9ae5e7779d0390f4922be.png", 
+                category: ["News", "Assamese", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "NKTV Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10013/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQuFhrrg5ZWLKw6wESjUJw_PzLeotEPGS4aA&s", 
+                category: ["News", "Assamese", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "NKTV Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10012/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/19882e79d666c48e72d1bda6e4678ee7.png", 
+                category: ["News", "Assamese", "India"],
+                description: "Assamese"
+             },
+             { 
+                name: "News18 Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bangla_NW18_MOB/output01/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/Dydmbp8n/news18-bangla.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+            },
+            { 
+                name: "ABP Ananda", 
+                sources: [
+                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ananda/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+            },
+            { 
+                name: "Zee 24 Ghanta", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-zee24ghantaa-xiaomi/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/pdgPSKps/zee-24ghanta.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+            },
+            { 
+                name: "Kolkata TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/KOLKATATV/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/mkVfbs7P/kolkatatv.jpg", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
              },
              { 
                 name: "Sangsad TV", 
@@ -685,51 +785,6 @@ const channels = [
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWQJo4a5pILF85Yuw6A5NxG5LHFhBKK1zuHw&s", 
                 category: ["News", "Bengali", "Bangladesh"],
                 description: "Bangladesh"
-            },
-            { 
-                name: "News18 Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://n18syndication.akamaized.net/bpk-tv/News18_Bangla_NW18_MOB/output01/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/Dydmbp8n/news18-bangla.png", 
-                category: ["News", "Bengali", "India"],
-                description: "India"
-            },
-            { 
-                name: "ABP Ananda", 
-                sources: [
-                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ananda/master.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
-                category: ["News", "Bengali", "India"],
-                description: "India"
-            },
-            { 
-                name: "Zee 24 Ghanta", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01412-xiaomiasia-zee24ghantaa-xiaomi/playlist.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/pdgPSKps/zee-24ghanta.png", 
-                category: ["News", "Bengali", "India"],
-                description: "India"
-            },
-            { 
-                name: "Kolkata TV", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt01.tangotv.in/KOLKATATV/index.m3u8" }
-                ], 
-                img: "https://i.postimg.cc/mkVfbs7P/kolkatatv.jpg", 
-                category: ["News", "Bengali", "India"],
-                description: "India"
-            },
-            { 
-                name: "MBC TV Odisha", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt03.tangotv.in/MBCTV/index.m3u8" }
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTcLnb_i5kxG-7DhXERKQ3kAZaQihpn8gvlA&s", 
-                category: ["News", "Odia", "India"],
-                description: "Odia"
             },
             { 
                 name: "WION", 
@@ -2924,7 +2979,8 @@ const channels = [
             { 
                 name: "Rang TV", 
                 sources: [
-                    { name: "Server 1", url: "https://mumt01.tangotv.in/RANG/index.m3u8" }
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/RANG/index.m3u8" },
+                    { name: "Server 2", url: "https://cdn-7.pishow.tv/live/10017/master.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0a5c79b522b0934ea9b2806dd9b8339f.png", 
                 category: ["Entertainment", "Assamese", "India"],
@@ -2936,6 +2992,15 @@ const channels = [
                     { name: "Server 1", url: "https://mumt05.tangotv.in/RENGONI/index.m3u8" }
                 ], 
                 img: "https://pbs.twimg.com/profile_images/880366209404776451/d8zE7-fu.jpg", 
+                category: ["Entertainment", "Assamese", "India"],
+                description: "Assamese"
+            },
+            { 
+                name: "Jonack", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-6.pishow.tv/live/10006/master.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmYGjpabqQX8Wch3j6EpftLRPbG2VgyOkr1A&s", 
                 category: ["Entertainment", "Assamese", "India"],
                 description: "Assamese"
             },
