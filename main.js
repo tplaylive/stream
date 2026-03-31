@@ -4135,7 +4135,7 @@ const channels = [
             { 
                 name: "Live 6", 
                 sources: [
-                    { name: "Server 1", url: "https://p4kp.rjmbts.workers.dev/22148.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C190/master.m3u8" },
                     { name: "Server 2", url: "https://sm-monirul.top/RoarZone/play.php?id=ZWRnZTIvc3Rhci1zcG9ydHMtMQ==&e=.m3u8" },
                     { name: "Server 3", url: "https://p4kp.rjmbts.workers.dev/7455.m3u8" },
                     { name: "Server 4", url: "https://stream.snexus.co/live/SHARQ_GAME_TV/main_stream.m3u8" },
