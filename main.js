@@ -918,8 +918,25 @@ const channels = [
                         }
                     }
                 ], 
-                img: "https://i.postimg.cc/Gt38t22F/d-kids.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/712c7af9b6a340cddd92140b6f92e54c.png", 
                 category: ["Kids", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Discovery Kids Telugu", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://login.bheem.tv/bpk-tv/22646/output/index.mpd?",
+                        type: "dash",
+                        drm: {
+                            kid: "53d406746e3f5f8488ea3b3b9b7006e3",
+                            key: "33fcad4800a1e67b1c53622a21bc6fb9"
+                        }
+                    }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/b5c9a2413d5efbe5f995ab5f39e4264d.png", 
+                category: ["Kids", "Telugu", "India"],
                 description: "India"
             },
             { 
@@ -3034,11 +3051,10 @@ const channels = [
             { 
                 name: "Colors", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/ColorsHD/index.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/colors/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/colors/index.m3u8" },
-                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/colorshd/index.m3u8" },
-                    { name: "Server 5", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/ColorsHD/index.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/colorshd/index.m3u8" },
+                    { name: "Server 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C45/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vBL4YjR8/colors.jpg", 
                 category: ["Entertainment", "Hindi", "India"],
@@ -3048,11 +3064,20 @@ const channels = [
                 name: "Sony Sab", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/sabtvhd/index.m3u8" },
-                    { name: "Server 3", url: "https://sm-monirul.top/RoarZone/play.php?id=ZWRnZTMvc29ueS1zYWItaGQ=&e=.m3u8" },
+                    { name: "Server 2", url: "https://sm-monirul.top/RoarZone/play.php?id=ZWRnZTMvc29ueS1zYWItaGQ=&e=.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C64/master.m3u8" },
                     { name: "Server 4", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonysab/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
+                category: ["Entertainment", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Sony Pal", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C106/master.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/9FxH1Qxp/sony-pal.jpg", 
                 category: ["Entertainment", "Hindi", "India"],
                 description: "India"
             },
