@@ -4412,8 +4412,9 @@ const channels = [
             { 
                 name: "Sony Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyTen1HD/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten1/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten1/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C65/master.m3u8" },
+                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SonyTen1HD/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/mg0RC192/ten1.jpg", 
                 category: "Sports",
@@ -4423,8 +4424,9 @@ const channels = [
             { 
                 name: "Sony Sports 2", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyTen2HD/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten2/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten2/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C72/master.m3u8" },
+                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SonyTen2HD/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/y8SC16G7/ten2.jpg", 
                 category: "Sports",
@@ -4433,7 +4435,7 @@ const channels = [
             { 
                 name: "Sony Sports 3", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS3/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C73/master.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/152bjh3Y/ten3.jpg", 
@@ -4442,11 +4444,21 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Sony Sports 4", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C244/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/MGPqJsYm/ten4.jpg", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "India"
+            },
+            { 
                 name: "Sony Sports 5", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyten3/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYSPORTS5HD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C61/master.m3u8" }
+                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
+                    { name: "Server 3", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyten3/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/qqgZ1jVH/ten5.jpg", 
                 category: "Sports",
@@ -4457,8 +4469,8 @@ const channels = [
                 name: "Star Sports 1", 
                 sources: [
                     { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten5/tracks-v1a1/mono.m3u8" },
-                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn2.chowdhury-shaheb.com/starsport1/index.m3u8" },
-                    { name: "Stream 3", url: "https://p4kp.rjmbts.workers.dev/25121.m3u8" },
+                    { name: "Stream 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C248/master.m3u8" },
+                    { name: "Stream 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C283/master.m3u8" },
                     { name: "Stream 4", url: "https://padmaonline.duckdns.org:8088/StarSports1HD/index.m3u8" },
                     { name: "Stream 5", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/starsport1/index.m3u8" },
                 ], 
@@ -4500,6 +4512,16 @@ const channels = [
                 category: "Sports",
                 package: ["150","250","500"],
                 description: "India"
+            },
+            { 
+                name: "Sky Sports Cricket", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C688/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/P5YhzxMD/sky-cric.jpg", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "World"
             },
             { 
                 name: "Willow", 
@@ -4588,6 +4610,26 @@ const channels = [
                 img: "https://iili.io/KYJC4V9.png", 
                 category: "Sports",
                 description: "World"
+            },
+            { 
+                name: "Kantipur Max", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C413/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/wB1Hmg1s/knt-max.jpg", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "Nepal"
+            },
+            { 
+                name: "Kantipur Max 2", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C190/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/wB1Hmg1s/knt-max.jpg", 
+                category: "Sports",
+                package: ["150","250","500"],
+                description: "Nepal"
             },
             { 
                 name: "Bein Sports 1", 
