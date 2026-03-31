@@ -879,7 +879,7 @@ const channels = [
             {
                 name: "Sony Yay",
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYYAY/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C39/master.m3u8" },
                     { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyyay/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyyay/index.m3u8" },
                 ], 
@@ -934,7 +934,7 @@ const channels = [
             { 
                 name: "Nick", 
                 sources: [
-                    { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NICK/tracks-v1a1/mono.m3u8" },
+                    { name: "Hindi", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: ["Kids", "Hindi", "India"],
@@ -988,7 +988,7 @@ const channels = [
             { 
                 name: "Bal Bharat", 
                 sources: [
-                    { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/BALBHARAT/tracks-v1a1/mono.m3u8" },
+                    { name: "Hindi", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/NBgAvACr755c2gd5EK0lKKmeqEnMivDhF2FYd399NRfeZzosNkxsgkrjMOdfh5ZBqv2OTXviH3U=s900-c-k-c0x00ffffff-no-rj", 
                 category: ["Kids", "Hindi", "India"],
@@ -997,7 +997,7 @@ const channels = [
             { 
                 name: "Pogo", 
                 sources: [
-                    { name: "Server 1", url: "https://livecdn-bostaflix.global.ssl.fastly.net/live.php?id=667189f69164&e=.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C200/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
                 category: ["Kids", "Hindi", "India"],
@@ -2146,9 +2146,9 @@ const channels = [
             { 
                 name: "Star Gold", 
                 sources: [
-                    { name: "Stream 1", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/stargold/index.m3u8" },
-                    { name: "Stream 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/stargold/index.m3u8" },
-                    { name: "Stream 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/stargold/index.m3u8" },
+                    { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/stargold/tracks-v1a1/mono.m3u8" },
+                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/stargold/index.m3u8" },
+                    { name: "Stream 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C103/master.m3u8" },
                     { name: "Stream 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/stargold/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
@@ -2159,6 +2159,7 @@ const channels = [
                 name: "Colors Cineplex", 
                 sources: [
                     { name: "Stream 1", url: "https://padmaonline.duckdns.org:8088/ColorsCineplexHD/index.m3u8" },
+                    { name: "Stream 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C121/master.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2956db8b77b0f99d5d7d35634f1543bd.png", 
                 category: ["Movie", "Hindi", "India"],
@@ -2167,10 +2168,12 @@ const channels = [
             { 
                 name: "Sony Max", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
-                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonymax/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonymax/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonymax/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C62/master.m3u8" },
+                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
+                    { name: "Server 5", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
+                    { name: "Server 6", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
                 category: ["Movie", "Hindi", "India"],
@@ -2179,7 +2182,8 @@ const channels = [
             { 
                 name: "Sony Max 2", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-2/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C111/master.m3u8" },
+                    { name: "Server 2", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-2/index.m3u8" },
                     { name: "Backup", url: "https://amigofx.com:1936/bigstarmovie/bigstarmovie/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/DyM2gMGR/max2.jpg", 
@@ -2572,7 +2576,7 @@ const channels = [
                 name: "Sony Pix", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-pix-hd/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONYPIXHD/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C42/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/tggwMqHB/pix.jpg", 
                 category: ["Movie", "English", "India"],
@@ -2908,7 +2912,7 @@ const channels = [
             { 
                 name: "Star Bharat", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C301/master.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://217.20.112.199:8888/lifeokhd/index.m3u8" },
                     
                 ], 
@@ -4456,7 +4460,7 @@ const channels = [
             { 
                 name: "Sony Sports 5", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C61/master.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C61/master.m3u8" },
                     { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
                     { name: "Server 3", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyten3/index.m3u8" },
                 ], 
