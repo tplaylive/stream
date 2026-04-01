@@ -3336,6 +3336,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Colors Tamil", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/COLORS_TAMIL/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/nV2zd4j7/colors-tamil-1.jpg", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
                 name: "Sun TV", 
                 sources: [
                     { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/suntv/index.m3u8" },
