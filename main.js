@@ -2353,6 +2353,7 @@ const channels = [
                 name: "Shemaroo Bollywood", 
                 sources: [
                     { name: "Server 1", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00864-shemarooenterta-shemabollywood-ono/playlist.m3u8" },
+                    { name: "Server 2", url: "https://mumbai-edge.smartplaytv.in/ShemaroBollywood/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/0NW9N0WT/Shemaroo-Bollywood.png", 
                 category: ["Movie", "Hindi", "India"],
@@ -2401,6 +2402,7 @@ const channels = [
                 name: "The Movie Club", 
                 sources: [
                     { name: "Server 1", url: "https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-mp2ar4ca425xo.m3u8" },
+                    { name: "Server 2", url: "https://mumbai-edge.smartplaytv.in/TheMovieClub/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/bvZJXWvK/tmc.jpg", 
                 category: ["Movie", "Hindi", "India"],
@@ -2567,6 +2569,7 @@ const channels = [
                 name: "Ekamra Cinema", 
                 sources: [
                     { name: "Server 1", url: "https://live.ekamraott.com/cynema/cynema/index.m3u8" },
+                    { name: "Server 2", url: "https://mumbai-edge.smartplaytv.in/ekamracinema/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/LsghdGxj/ekamra-cinema.jpg", 
                 category: ["Movie", "Odia", "India"],
@@ -2762,20 +2765,29 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Superfine Films", 
+                name: "RUN Thrillers", 
                 sources: [
-                    { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
+                    { name: "Server 1", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
                 ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
+                img: "https://dnuk7lvye3m03.cloudfront.net/runntv/platform/channels/P_RUNTHR/TV/thumbnail/logo_web.png", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Superfine Films Hindi", 
+                sources: [
+                    { name: "Server 1", url: "https://supflm.cdn.runn.tv/runntv/stream/p_supjio/playlist.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/Ky7rsfHOvQXOImmc1rHYtrgzJJstpFJQ7g6qgTan-iPgw5thP5vjic6iTqzk_qjuKeqLCqPUhQ=s900-c-k-c0x00ffffff-no-rj", 
                 category: ["Movie", "Hindi", "India"],
                 description: "India"
             },
             { 
                 name: "Superfine Films Tamil", 
                 sources: [
-                    { name: "Playlist", url: "https://supflm.cdn.runn.tv/runntv/stream/suptam/playlist.m3u8" },
+                    { name: "Server 1", url: "https://supflm.cdn.runn.tv/runntv/stream/suptam/playlist.m3u8" },
                 ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a5f8b8d698133ad07c19b5c7a56a7de6.png?width=300", 
+                img: "https://yt3.googleusercontent.com/ZgcEXEs5p68kfy7XRit12tc8buuPjRtjQD-qiPWw0uixmUBMX3dPX-nRry5eHRGomLg0SBJ1=s900-c-k-c0x00ffffff-no-rj", 
                 category: ["Movie", "Tamil", "India"],
                 description: "India"
             },
