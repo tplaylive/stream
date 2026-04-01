@@ -1013,6 +1013,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Nick Tamil", 
+                sources: [
+                    { name: "Tamil", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/NICK/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
+                category: ["Kids", "Tamil", "India"],
+                description: "India"
+            },
+            { 
                 name: "Nick Jr", 
                 sources: [
                     { 
@@ -1064,6 +1073,15 @@ const channels = [
                 ], 
                 img: "https://yt3.googleusercontent.com/NBgAvACr755c2gd5EK0lKKmeqEnMivDhF2FYd399NRfeZzosNkxsgkrjMOdfh5ZBqv2OTXviH3U=s900-c-k-c0x00ffffff-no-rj", 
                 category: ["Kids", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Pogo Tamil", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/POGO/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
+                category: ["Kids", "Tamil", "India"],
                 description: "India"
             },
             { 
@@ -1148,13 +1166,13 @@ const channels = [
                 description: "Hindi/English"
             },
             { 
-                name: "Hungama", 
+                name: "Disney", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/HUNGAMA/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hungama_TV.svg/250px-Hungama_TV.svg.png", 
-                category: ["Kids", "Hindi", "India"],
-                description: "Hindi"
+                category: ["Kids", "Tamil", "India"],
+                description: "Tamil"
             },
             { 
                 name: "Wow Kidz", 
@@ -2593,9 +2611,10 @@ const channels = [
             { 
                 name: "Star Movies", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/index.m3u8" },
-                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/index.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_MOVIES_HD/index.m3u8" },
+                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/STAR_Movies_logo.svg/250px-STAR_Movies_logo.svg.png", 
                 category: ["Movie", "English", "India"],
@@ -3309,12 +3328,12 @@ const channels = [
                 description: "Marathi"
             },   
             { 
-                name: "Peppers", 
+                name: "Star Vijay", 
                 sources: [
-                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/peppers/chunks.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_VIJAY/index.m3u8" },
                     { name: "Server 2", url: "https://cdn-2.pishow.tv/live/1383/master.m3u8" },
                 ], 
-                img: "https://yt3.googleusercontent.com/ytc/AIdro_lRqWi7GK5UoOeKQs1hPj38bMyqPBwEo35pwDVGaw3Qbqs=s900-c-k-c0x00ffffff-no-rj", 
+                img: "https://i.postimg.cc/4yDVmXQV/star-vijay.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
                 description: "Tamil"
             },
@@ -3347,9 +3366,27 @@ const channels = [
             { 
                 name: "Sun TV", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/suntv/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/SUN_TV/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/G3PrLGk2/suntv.jpg", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Sun Life", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/SUN_LIFE/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Wz8QMmnw/sun-life.jpg", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "K TV", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/K_TV/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/T3VnQkmx/ktv.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
                 description: "Tamil"
             },
@@ -3359,6 +3396,16 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-3.pishow.tv/live/1253/master.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/155bad426a169fdc4ba921c24c2af420.png", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Peppers", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/peppers/chunks.m3u8" },
+                    { name: "Server 2", url: "https://cdn-2.pishow.tv/live/1383/master.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_lRqWi7GK5UoOeKQs1hPj38bMyqPBwEo35pwDVGaw3Qbqs=s900-c-k-c0x00ffffff-no-rj", 
                 category: ["Entertainment", "Tamil", "India"],
                 description: "Tamil"
             },
@@ -4550,7 +4597,7 @@ const channels = [
             { 
                 name: "Live 4", 
                 sources: [
-                    { name: "Server 1", url: "https://p4kp.rjmbts.workers.dev/25121.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_SPORTS_1_HD/index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
                     { name: "Server 3", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
                     { name: "Server 4", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
