@@ -4619,6 +4619,19 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "24/7 Fashion", 
+                sources: [
+                    { name: "Playlist 1", url: "https://glb.bozztv.com/glb/ushba-m5/index.m3u8" },
+                    { name: "Playlist 2", url: "https://glb.bozztv.com/glb/ushba-m6/index.m3u8" },
+                    { name: "Playlist 3", url: "https://glb.bozztv.com/glb/ushba-m7/index.m3u8" },
+                    { name: "Playlist 4", url: "https://glb.bozztv.com/glb/ushba-m8/index.m3u8" },
+                    { name: "Playlist 5", url: "https://glb.bozztv.com/glb/ushba-m9/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
+                category: ["Fashion", "24/7", "English", "USA"],
+                description: "World"
+            },
+            { 
                 name: "Live 1", 
                 sources: [
                     { 
