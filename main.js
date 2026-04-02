@@ -842,6 +842,15 @@ const channels = [
                 description: ""
             },
             { 
+                name: "CCTV 4", 
+                sources: [
+                    { name: "Server 1", url: "https://global.cgtn.cicc.media.caton.cloud/master/cgtn-america.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/263gW5sF/ntv-plus.jpg", 
+                category: ["News", "Chinese", "China"],
+                description: ""
+            },
+            { 
                 name: "Al Ekhbariya", 
                 sources: [
                     { name: "Arabic", url: "https://cdn-globecast.akamaized.net/live/eds/al_ekhbariya/hls_roku/index.m3u8" }
