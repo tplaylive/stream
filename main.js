@@ -665,11 +665,19 @@ const channels = [
                 description: "India"
              },
              { 
+                name: "BTV News", 
+                sources: [
+                    { name: "Server 1", url: "https://tplay.live/out/news/btv-news.index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/7hdvpw4F/btv-news.jpg", 
+                category: ["News", "Bengali", "Bangladesh"],
+               description: "Bangladesh"
+            },
+             { 
                 name: "Sangsad TV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/btv-sangsad/index.m3u8" },
-                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://tplay.live/out/news/btv-news.index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/news/btv-sangsad/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/RVR9YF6Y/sangsad.jpg", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -3937,8 +3945,9 @@ const channels = [
             { 
                 name: "BTV", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/btv/index.m3u8" },
-                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/news/btv-hd/index.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/btv/index.m3u8" },
+                    { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/nzQXt33R/btv.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
