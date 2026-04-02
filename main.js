@@ -668,7 +668,8 @@ const channels = [
                 name: "Sangsad TV", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/out/news/bd-sangsad.index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://tplay.live/out/news/btv-news.index.m3u8" }
+                    { name: "Server 2", url: "https://tplay.live/out/news/btv-sangsad/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://tplay.live/out/news/btv-news.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/RVR9YF6Y/sangsad.jpg", 
                 category: ["News", "Bengali", "Bangladesh"],
