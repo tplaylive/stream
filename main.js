@@ -697,7 +697,8 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/somoy/index.m3u8" },
-                    { name: "Server 3", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
+                    { name: "Server 3", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/somoyt000011226615544544.stream/playlist.m3u8" },
+                    { name: "Server 4", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/HsVVr6FH/somoy-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -707,8 +708,9 @@ const channels = [
                 name: "Jamuna Television", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/jamuna-test-sample-ok.stream/playlist.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/jamuna/index.m3u8" },
+                    { name: "Server 4", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/dtR7Gh4t/jamuna-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -762,6 +764,7 @@ const channels = [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/ekattor/index.m3u8" },
                     { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8" },
                     { name: "Server 3", url: "https://tplay.live/out/news/ekattor-tv/index.m3u8" },
+                    { name: "Server 4", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/ekattor.stream/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/jjtWwrG9/ekattor-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -932,6 +935,16 @@ const channels = [
                 category: ["Kids", "English", "USA"],
                 package: ["150","250","500"],
                 description: "World"
+            },
+            {
+                name: "Kids Creation",
+                sources: [
+                    { name: "Server 1", url: "https://flc2.technohaat.com/kidscreation_test/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/kidscreation_test/playlist.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/qisdOKO83UOuYiwPvL8tZAKj2UJxOcrV08C4EbRsuQDNsCgSZICMqWVsJTYqnMUql074_aoLHQ=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Kids", "Bengali", "Bangladesh"],
+                description: "Bangladesh"
             },
             {
                 name: "Duronto",
@@ -1855,6 +1868,24 @@ const channels = [
                 ], 
                 img: "https://i.postimg.cc/jSLNzXgM/Bengali-Beats.png", 
                 category: ["Music", "Bengali", "India"],
+                description: "Bangla"
+            },
+            { 
+                name: "Channel 16", 
+                sources: [
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel16bd.stream/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://www.jagobd.com/wp-content/uploads/2026/01/channel16.jpeg", 
+                category: ["Music", "Bengali", "Bangladesh"],
+                description: "Bangla"
+            },
+            { 
+                name: "ATN Music", 
+                sources: [
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/atnmusic.stream/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQPj5iTBCJZuCESElF9UMc-RPCL_WSwPSh4w&s", 
+                category: ["Music", "Bengali", "Bangladesh"],
                 description: "Bangla"
             },
             { 
@@ -5837,9 +5868,19 @@ const channels = [
                 description: "Islam"
             },
             { 
+                name: "Islamic TV", 
+                sources: [
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1724/output/index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/islamictvbd.stream/playlist.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/9/90/Islamic_TV_New_Logo.png", 
+                category: "Religious",
+                description: "Islam"
+            },
+            { 
                 name: "Madani Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/madanibangla.index.m3u8" },
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/islamictvbd.stream/playlist.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/BvfMPnSP/madani-bangla.jpg", 
                 category: "Religious",
@@ -5875,9 +5916,20 @@ const channels = [
             { 
                 name: "Islam Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/islamchbangla.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://live-islamtv-bangla.simplestreamcdn.com/live12/islamtv_bangla/bitrate1.isml/live.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/islamchbangla.stream/tracks-v1a1/mono.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPhxUqZi3tzsjdt5rn7AWyC2CQgH8z14fd2g&s", 
+                category: "Religious",
+                description: "Islam"
+            },
+            { 
+                name: "Azan TV", 
+                sources: [
+                    { name: "Server 1", url: "https://dbcanada.sonarbanglatv.com/azantv/atv/index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/azantv.stream/playlist.m3u8" },
+                ], 
+                img: "https://www.jagobd.com/wp-content/uploads/2019/04/azantvs.jpg", 
                 category: "Religious",
                 description: "Islam"
             },
