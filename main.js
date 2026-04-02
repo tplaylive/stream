@@ -2895,7 +2895,7 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://playztv-apps.pages.dev/star-jalsha/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starjalsha/index.m3u8" },
                     { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
                     { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
@@ -2926,7 +2926,8 @@ const channels = [
                 name: "Colors Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8" },
-                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/ColorsBanglaHD/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorsbangla/index.m3u8" },
+                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/ColorsBanglaHD/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vTQZ4Jg6/colors-bangla.jpg", 
                 category: ["Entertainment", "Bengali", "India"],
@@ -3613,7 +3614,16 @@ const channels = [
                 category: ["Entertainment", "Telugu", "India"],
                 description: "Telugu"
             },
-              { 
+            { 
+                name: "ETV Telugu HD USA", 
+                sources: [
+                    { name: "Server 1", url: "https://livegeorouus.akamaized.net/100823/etvhd_2500/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/23c6235eac966a5e93f152e0eb3eefc0.png", 
+                category: ["Entertainment", "Telugu", "India"],
+                description: "Telugu"
+            },
+            { 
                 name: "ETV Plus", 
                 sources: [
                     { name: "Server 1", url: "https://d27tnkf60df3v4.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_PLUS_H264-3_cloud_in/index.m3u8" },
