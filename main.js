@@ -686,7 +686,7 @@ const channels = [
             { 
                 name: "BTV Chattogram", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/btv-chattagram.index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/news/btv-chattagram.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/mgvdN3ZW/btv-cht.jpg", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -696,8 +696,8 @@ const channels = [
                 name: "Somoy TV", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/somoy/index.m3u8" },
-                    { name: "Server 3", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/somoy/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/HsVVr6FH/somoy-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -707,8 +707,8 @@ const channels = [
                 name: "Jamuna Television", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/jamuna/index.m3u8" },
-                    { name: "Server 3", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" }
+                    { name: "Server 2", url: "https://tplay.live/out/news/jamuna-tv/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/jamuna/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/dtR7Gh4t/jamuna-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -717,9 +717,9 @@ const channels = [
             { 
                 name: "Independent TV",
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/independent/index.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/news/independent-tv/index.m3u8" },
-                    { name: "Server 3", url: "https://bongoflixbd.top/stream.php?id=22f28ae5-8c15-4904-b9f6-70bbd94cbc43&e.m3u8" },
+                    { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8" },
 
                 ], 
                 img: "https://i.postimg.cc/3rL7TH81/Independent-TV.png", 
@@ -729,9 +729,9 @@ const channels = [
             { 
                 name: "Channel 24",
                 sources: [
-                    { name: "Server 1", url: "https://ch24cdn.ncare.live/channel24/ch24office/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/channel-24/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/CHANNEL24/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/channel24/index.m3u8" },
+                    { name: "Server 2", url: "https://ch24cdn.ncare.live/channel24/ch24office/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/news/channel-24/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/QdqkCSFX/channel-24.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -759,9 +759,9 @@ const channels = [
             { 
                 name: "Ekattor Television",
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/ekattor-tv/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/ekattor/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/ekattor/index.m3u8" },
+                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/news/ekattor-tv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/jjtWwrG9/ekattor-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -770,8 +770,9 @@ const channels = [
             { 
                 name: "ATN News",
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/atn-news/index.m3u8" },
-                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnnews/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/news/atn-news/index.m3u8" },
+                    { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ZRFCxYdp/atn-news.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -2054,10 +2055,20 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "Movie Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/moviebangla/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://alvetv.com/moviebanglatv/8080/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/vHRnL2MH/movie-bangla.jpg", 
+                category: ["Movie", "Bengali", "India"],
+                description: "Bengali"
+            },
+            { 
                 name: "Jalsha Movies", 
                 sources: [
                     { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/jalshamovies/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/JALSHAMOVIESHD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/jalshamovies/index.m3u8" },
                 ], 
                 img: "https://www.indiantvinfo.com/media/2022/12/Jalsha-Movies-Logo.png", 
                 category: ["Movie", "Bengali", "India"],
@@ -2661,7 +2672,7 @@ const channels = [
             { 
                 name: "Star Movies", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starmovies/index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_MOVIES_HD/index.m3u8" },
                     { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
@@ -2934,6 +2945,16 @@ const channels = [
                 description: "Bangla"
             },
             { 
+                name: "Zee Bangla HD", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
+
+                ], 
+                img: "https://i.postimg.cc/wj9Q6Mj6/zee-bangla.jpg", 
+                category: ["Entertainment", "Bengali", "India"],
+                description: "Bangla"
+            },
+            { 
                 name: "Colors Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8" },
@@ -2993,8 +3014,9 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyaath/index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyaath/index.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyaath/index.m3u8" },
+                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
                 category: ["Entertainment", "Bengali", "India"],
@@ -3096,9 +3118,9 @@ const channels = [
             { 
                 name: "Star Plus", 
                 sources: [
-                    { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
-                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starplus/index.m3u8" },
+                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/htNZQ0x0/Star-Plus.jpg", 
@@ -4096,7 +4118,7 @@ const channels = [
                 name: "Banglavision", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/banglavision/index.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/banglavision/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/PJxGv57P/banglavision.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4106,7 +4128,8 @@ const channels = [
                 name: "ATN Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/ATNBANGLA/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnbangla/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/atn-bangla.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/BbLck5F4/atn-bangla.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4195,8 +4218,9 @@ const channels = [
             { 
                 name: "NTV", 
                 sources: [
-                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/ntv.index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/ntv/index.m3u8" },
+                    { name: "Server 2", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/index.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/ntv.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/xjZDZLjt/ntvbd.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4740,105 +4764,11 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "TNT Sports 1", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://live-pv-ta.amazon.fastly-edge.com:443/lhr-nitro/live/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "294b596763cefc22d0c6312939e13d82",
-                            key: "52148f1043d238a487c29e04f1da8a7b"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/m2zr04T2/tnt1.jpg", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "TNT Sports 2", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "9f51f3dc6313ac8bc668e2d9d1c04dfa",
-                            key: "74bc63e5a193454a91ca494975db33f9"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/cCVdsK0P/tnt2.jpg", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "TNT Sports 3", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://livestream.sunnxt.com/a4b4f71a8b4344f3a280e906657a517a/GeminiLifeB_IN_index.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "96d5157791ea4817a66a419e285a137f",
-                            key: "d6d0ad2a9a6cc56e18d7557c7c693a37"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/Bvq4Qffp/tnt3.jpg", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "TNT Sports 4", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://livestream.sunnxt.com/6a6520e446604c6e9840e5bf3a3a7d95/GeminiMusicHDB_IN_index.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "76230567f3c04513a7e5d1249ab65983",
-                            key: "4ee6dc9a99d894dc41b0878d6ea22790"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/SQwXQRTK/tnt4.jpg", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "Ten Cricket", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://edge4-moblive.yuppcdn.net/drm2/smil:tencricketdrm1.smil/manifest.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "9872e439f21f4a299cab249c6554daa3",
-                            key: "0cdfcfe0d0f1fbe100554ce3ef4c4665"
-                        }
-                    }
-                ], 
-                img: "https://i.postimg.cc/fTNwg9q7/ten-cric.jpg", 
-                category: "Sports",
-                description: "World"
-            },
-            { 
-                name: "Geo Super", 
-                sources: [
-                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/GEO_SUPER/tracks-v1a1/mono.ts.m3u8" },
-                ], 
-                img: "https://flix.bdtype.com/uploads/tv_image/geo-super.jpg", 
-                category: "Sports",
-                description: "Pakistan"
-            },
-            { 
                 name: "T Sports", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/tsports1/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/tsports1/index.m3u8" },
                     { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/T-SportHD/index.m3u8" },
-                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://tvn1.chowdhury-shaheb.com/tsport/index.m3u8" }
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/tsports1/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/DZbVq4jM/t-sports.jpg", 
                 category: "Sports",
@@ -4959,6 +4889,33 @@ const channels = [
                 category: "Sports",
                 package: ["150","250","500"],
                 description: "India"
+            },
+
+            { 
+                name: "Ten Cricket", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://edge4-moblive.yuppcdn.net/drm2/smil:tencricketdrm1.smil/manifest.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "9872e439f21f4a299cab249c6554daa3",
+                            key: "0cdfcfe0d0f1fbe100554ce3ef4c4665"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/fTNwg9q7/ten-cric.jpg", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "Geo Super", 
+                sources: [
+                    { name: "Server 1", url: "https://ml-pull-dvc-myco.io:2096/GEO_SUPER/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://flix.bdtype.com/uploads/tv_image/geo-super.jpg", 
+                category: "Sports",
+                description: "Pakistan"
             },
             { 
                 name: "Sky Sports Cricket", 
@@ -5245,6 +5202,75 @@ const channels = [
                     }
                 ], 
                 img: "https://i.imgur.com/OWVR172.png", 
+                category: "Sports",
+                description: "World"
+            },
+
+            { 
+                name: "TNT Sports 1", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://live-pv-ta.amazon.fastly-edge.com:443/lhr-nitro/live/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "294b596763cefc22d0c6312939e13d82",
+                            key: "52148f1043d238a487c29e04f1da8a7b"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/m2zr04T2/tnt1.jpg", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "TNT Sports 2", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "9f51f3dc6313ac8bc668e2d9d1c04dfa",
+                            key: "74bc63e5a193454a91ca494975db33f9"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/cCVdsK0P/tnt2.jpg", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "TNT Sports 3", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://livestream.sunnxt.com/a4b4f71a8b4344f3a280e906657a517a/GeminiLifeB_IN_index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "96d5157791ea4817a66a419e285a137f",
+                            key: "d6d0ad2a9a6cc56e18d7557c7c693a37"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/Bvq4Qffp/tnt3.jpg", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
+                name: "TNT Sports 4", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://livestream.sunnxt.com/6a6520e446604c6e9840e5bf3a3a7d95/GeminiMusicHDB_IN_index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "76230567f3c04513a7e5d1249ab65983",
+                            key: "4ee6dc9a99d894dc41b0878d6ea22790"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/SQwXQRTK/tnt4.jpg", 
                 category: "Sports",
                 description: "World"
             },
@@ -5698,7 +5724,7 @@ const channels = [
             { 
                 name: "National Geographic", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/NATGEOHD/tracks-v1a1/mono.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/natgeo/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
                 category: ["Infotainment", "Hindi", "India"],
