@@ -4754,11 +4754,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/lsdasbvglv/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd",
+                        url: "https://livestream.sunnxt.com/a4b4f71a8b4344f3a280e906657a517a/GeminiLifeB_IN_index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "a93c1cbfdccd23233bac13540c693e7f",
-                            key: "2f6ab2e6693eb847eff3c9da8f9d01fc"
+                            kid: "96d5157791ea4817a66a419e285a137f",
+                            key: "d6d0ad2a9a6cc56e18d7557c7c693a37"
                         }
                     }
                 ], 
@@ -4771,11 +4771,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://anywhere.pwisetthon.com/https://play.mokakdaoni.me/proxy/main.php/https://jiotvbpkmob.cdn.jio.com/bpk-tv/Star_Sports_HD1_Hindi_BTS/output/index.mpd",
+                        url: "https://livestream.sunnxt.com/6a6520e446604c6e9840e5bf3a3a7d95/GeminiMusicHDB_IN_index.mpd",
                         type: "dash",
                         drm: {
-                            kid: "400131994b445d8c8817202248760fda",
-                            key: "2d56cb6f07a75b9aff165d534ae2bfc4"
+                            kid: "76230567f3c04513a7e5d1249ab65983",
+                            key: "4ee6dc9a99d894dc41b0878d6ea22790"
                         }
                     }
                 ], 
