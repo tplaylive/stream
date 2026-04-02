@@ -1070,6 +1070,7 @@ const channels = [
                 name: "Gubbare", 
                 sources: [
                     { name: "Hindi", url: "https://epiconvh.akamaized.net/live/gubbare/master.m3u8" },
+                    { name: "Test", url: "https://2025.telegram-akshaybk29.workers.dev/channel?id=1" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/0/01/Gubbare-TV_channel.jpg", 
                 category: ["Kids", "Hindi", "India"],
@@ -3629,6 +3630,15 @@ const channels = [
                     { name: "Server 1", url: "https://d27tnkf60df3v4.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_PLUS_H264-3_cloud_in/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7a20f635d55450d674220f2e37739da3.png", 
+                category: ["Entertainment", "Telugu", "India"],
+                description: "Telugu"
+            },
+            { 
+                name: "ETV Josh", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-uyh1ow5zouoio.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-uyh1ow5zouoio/WWBI/Amagi/ETV_Josh_IN/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/9MsMLCT4/etv-main.jpg", 
                 category: ["Entertainment", "Telugu", "India"],
                 description: "Telugu"
             }, 
