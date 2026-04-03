@@ -2970,7 +2970,7 @@ const channels = [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starjalsha/index.m3u8" },
                     { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
                     { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
-                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://tvn1.chowdhury-shaheb.com/starjalsha/index.m3u8" },
+                    { name: "Server 4", url: "https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8" },
                     { name: "Server 5", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starjalsha/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
@@ -2998,6 +2998,7 @@ const channels = [
                 name: "Zee Bangla HD", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
+                    { name: "Server 2", url: "https://catchup.yuppcdn.net/amazonv2/36/preview/zeebangla/master/chunklist.m3u8" },
 
                 ], 
                 img: "https://i.postimg.cc/wj9Q6Mj6/zee-bangla.jpg", 
@@ -3010,6 +3011,7 @@ const channels = [
                     { name: "Server 1", url: "https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorsbangla/index.m3u8" },
                     { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/ColorsBanglaHD/index.m3u8" },
+                    { name: "Server 4", url: "https://yupptvcatchupire.yuppcdn.net/preview/colorsbanglahd/800.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vTQZ4Jg6/colors-bangla.jpg", 
                 category: ["Entertainment", "Bengali", "India"],
@@ -3169,8 +3171,9 @@ const channels = [
                 name: "Star Plus", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starplus/index.m3u8" },
-                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
-                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C51/master.m3u8" },
+                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
                     
                 ], 
                 img: "https://i.postimg.cc/htNZQ0x0/Star-Plus.jpg", 
