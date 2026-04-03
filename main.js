@@ -1131,14 +1131,15 @@ const channels = [
             { 
                 name: "Pogo Tamil", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/POGO/index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/POGO/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C200/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
                 category: ["Kids", "Tamil", "India"],
                 description: "India"
             },
             { 
-                name: "Pogo", 
+                name: "Pogo Hindi", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C200/master.m3u8" }
                 ], 
@@ -5058,7 +5059,8 @@ const channels = [
             { 
                 name: "Kantipur Max", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C413/master.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C413/master.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C183/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/wB1Hmg1s/knt-max.jpg", 
                 category: "Sports",
