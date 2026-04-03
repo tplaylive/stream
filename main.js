@@ -1478,25 +1478,12 @@ const channels = [
             { 
                 name: "24/7 Music", 
                 sources: [
-                    { 
-                        name: "Playlist", 
-                        url: "https://rasinetworks.in/live/rasimusichd/index.mpd",
-                        type: "dash",
-                    }
+                  { name: "Playlist", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C93/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
-                category: ["Music", "24/7", "Tamil", "India"],
-                description: "Tamil Songs"
-            },
-            { 
-                name: "24/7 Music", 
-                sources: [
-                  { name: "Playlist", url: "https://tplay.live/out/music/indian-music.index.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/Jzqh6SSX/tplay.jpg", 
-                category: ["Music", "24/7", "Hindi", "India"],
+                category: ["Music", "24/7", "Nepali", "Nepal"],
                 package: ["500"],
-                description: "Hindi Songs"
+                description: "Nepali Songs"
             },
             { 
                 name: "24/7 Music", 
@@ -5456,7 +5443,8 @@ const channels = [
             { 
                 name: "Discovery HD", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/discovery/index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C91/master.m3u8" },
+                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/discovery/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0116263a14aa056e0105b013dbeb9cf9.png", 
                 category: ["Infotainment", "English", "India"],
