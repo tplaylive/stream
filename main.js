@@ -2099,6 +2099,15 @@ const channels = [
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://alvetv.com/moviebanglatv/8080/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vHRnL2MH/movie-bangla.jpg", 
+                category: ["Movie", "Bengali", "Bangladesh"],
+                description: "Bengali"
+            },
+            { 
+                name: "Sananda", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://live.sanandatelevision.in/sananda/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/8zZs3Z8v/sananda.jpg", 
                 category: ["Movie", "Bengali", "India"],
                 description: "Bengali"
             },
