@@ -638,14 +638,25 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "ABP Ananda", 
+                name: "TV9 Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://d2l4ar6y3mrs4k.cloudfront.net/live-streaming/ananda-livetv/master.m3u8" }
+                    { name: "Server 1", url: "https://vg-tv9yupp.akamaized.net/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-563504/main.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/5ae4eeadbb6f44f6be84d033be2ba6eb.png", 
                 category: ["News", "Bengali", "India"],
                 description: "India"
             },
+            { 
+                name: "Republic Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://vg-republictvlive.akamaized.net/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-456368/main.m3u8" },
+                    { name: "Server 2", url: "https://vg-republictvyupp.akamaized.net/ptnr-yuppt/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-613605/main.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/f11228378d280692f211cc09b3f48cd1.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+             },
+
             { 
                 name: "Zee 24 Ghanta", 
                 sources: [
@@ -655,6 +666,16 @@ const channels = [
                 category: ["News", "Bengali", "India"],
                 description: "India"
             },
+             { 
+                name: "Calcutta News", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/calcuttanews/chunks.m3u8" },
+                    { name: "Server 2", url: "https://legitpro.co.in/cnnnews/tracks-v1a1/mono.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/b4ad619d5bd6dfa8a0eb3c4efc216ae3.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+             },
             { 
                 name: "Kolkata TV", 
                 sources: [
@@ -664,6 +685,51 @@ const channels = [
                 category: ["News", "Bengali", "India"],
                 description: "India"
              },
+             { 
+                name: "Samay Kolkata", 
+                sources: [
+                    { name: "Server 1", url: "https://server.livelegitpro.in/samaykolkata/samaykolkata/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ee9954b737d955c0302e52eaf6bbf3d7.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+             },
+             { 
+                name: "Digital Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://digitalbangla.livebox.co.in/digitalbanglahls/live.m3u8" }
+                ], 
+                img: "https://www.onlinechannels.live/wp-content/uploads/2021/01/Digital-Bangla.jpg", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+             },
+             { 
+                name: "24 Hours TV", 
+                sources: [
+                    { name: "Server 1", url: "https://server.livelegitpro.in/24hourstv/24hourstv/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/60b7dddaa99f3db26dc5307e794fae00.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+             },
+             { 
+                name: "R Plus News", 
+                sources: [
+                    { name: "Server 1", url: "https://thelegitpro.in/pntv/rplusnews24x7/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/ce460fc820fffafe1ca664fd2d45d4ef.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+             },
+             { 
+                name: "ABP Ananda", 
+                sources: [
+                    { name: "Server 1", url: "https://d2l4ar6y3mrs4k.cloudfront.net/live-streaming/ananda-livetv/master.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
+                category: ["News", "Bengali", "India"],
+                description: "India"
+            },
              { 
                 name: "BTV News", 
                 sources: [
@@ -4286,6 +4352,34 @@ const channels = [
                 description: "Bengali"
             },
             { 
+                name: "CTVN AKD Plus", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/ctvnakdplus/chunks.m3u8" },
+                    { name: "Server 2", url: "https://legitpro.co.in/ctvnakdplus/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e70fef551276105f2782923689908e29.png", 
+                category: ["Mix-Entertainment", "Bengali", "India"],
+                description: "Bengali"
+            },
+            { 
+                name: "D24 Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://digitalbangla.livebox.co.in/D24ENTERTAINMENThls/live.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/PdSY2cDQmRJdh74nzS-R7fNnuC5tJSAED9FbJ8f-ehbd2EyotFd99MeJhDKSjZEJzYmg4Tu3wxY=s160-c-k-c0x00ffffff-no-rj", 
+                category: ["Mix-Entertainment", "Bengali", "India"],
+                description: "Bengali"
+            },
+            { 
+                name: "STV", 
+                sources: [
+                    { name: "Server 1", url: "https://amigofx.com:1936/stv/stv/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQT9jZUmc4W3Ir5GzczUlT0nuGJemYEecUhA&s", 
+                category: ["Mix-Entertainment", "Odia", "India"],
+                description: "Odia"
+            },
+            { 
                 name: "Dainik Asha", 
                 sources: [
                     { name: "Server 1", url: "https://live.ekamraott.com/da/da/video.m3u8" },
@@ -4327,15 +4421,6 @@ const channels = [
                     { name: "Server 1", url: "https://live.ekamraott.com/jatra/jatra/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/FK6Wzkbn/ekamra-jatra.jpg", 
-                category: ["Mix-Entertainment", "Odia", "India"],
-                description: "Odia"
-            },
-            { 
-                name: "STV", 
-                sources: [
-                    { name: "Server 1", url: "https://amigofx.com:1936/stv/stv/playlist.m3u8" },
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQT9jZUmc4W3Ir5GzczUlT0nuGJemYEecUhA&s", 
                 category: ["Mix-Entertainment", "Odia", "India"],
                 description: "Odia"
             },
