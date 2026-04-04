@@ -817,7 +817,7 @@ const channels = [
             { 
                 name: "Ekhon",
                 sources: [
-                    { name: "Server 1", url: "https://jago-bosta.global.ssl.fastly.net/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/globaltv.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/globaltv.stream/playlist.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/bangladesh/ekhontv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/KcHxyPzx/ekhon.jpg", 
@@ -4096,7 +4096,7 @@ const channels = [
             { 
                 name: "RTV", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/rtv/index.m3u8" },
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/rtv-sg.stream/tracks-v1a1/mono.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/Qxh9wGTV/rtv.jpg", 
@@ -4185,7 +4185,7 @@ const channels = [
             { 
                 name: "Bijoy TV", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/bijoy-tv/index.m3u8" },
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/rtv-sg.stream/playlist.m3u8" },
                     { name: "Server 2", url: "https://tplay.live/out/bangladesh/bijoytv.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/sggs7Tv2/bijoytv.jpg", 
@@ -4196,8 +4196,8 @@ const channels = [
                 name: "Asian TV", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/asian-tv/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/asiantv.index.m3u8" },
-                    { name: "Server 3", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/asian-test-sample-ok-d.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/asian-test-sample-ok-d.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/asiantv.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/021TdcXS/asian.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4215,7 +4215,8 @@ const channels = [
             { 
                 name: "Channel 9", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/channel9.index.m3u8" }
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel9hd.stream/playlist.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/channel9.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/76Xhyb76/channel-9.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4225,7 +4226,7 @@ const channels = [
                 name: "Channel i", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/channel-i/index.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/CHANNELI/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channeli-8-org.stream/playlist.m3u8" },
                     { name: "Server 3", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/4NzjyVPN/channel-i.jpg", 
@@ -4246,8 +4247,9 @@ const channels = [
                 name: "ATN Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnbangla/index.m3u8" },
-                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/atn-bangla.index.m3u8" }
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/atnbd-8-org.stream/playlist.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnbangla/index.m3u8" },
+                    { name: "Server 4", url: "https://tplay.live/out/bangladesh/atn-bangla.index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/BbLck5F4/atn-bangla.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4266,9 +4268,10 @@ const channels = [
             { 
                 name: "Ekushey ETV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/ekusheytv.index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://ekusheyserver.com/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://210.4.72.204/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://ekusheyserver.com/etvlivesn.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/ekusheytv.index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://ekusheyserver.com/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://210.4.72.204/hls-live/livepkgr/_definst_/liveevent/livestream3.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/c4f9c3vr/ekusheetv.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4287,7 +4290,8 @@ const channels = [
             { 
                 name: "Maasranga", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/maasranga.index.m3u8" }
+                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/maasranga.index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnbangla/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/h41QbPKw/maasranga.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4316,7 +4320,7 @@ const channels = [
                 sources: [
                   
                     { name: "Server 1", url: "https://padmaonline.duckdns.org:8088/GaziTV/index.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://tvn2.chowdhury-shaheb.com/gazitv/index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/gazibdz.stream/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://tvn1.chowdhury-shaheb.com/gazitv/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/yNLC1Rfw/gtv.jpg", 
