@@ -640,7 +640,7 @@ const channels = [
             { 
                 name: "ABP Ananda", 
                 sources: [
-                    { name: "Server 1", url: "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/abp-ananda/master.m3u8" }
+                    { name: "Server 1", url: "https://d2l4ar6y3mrs4k.cloudfront.net/live-streaming/ananda-livetv/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/HjGW7XCJ/abp-ananda.png", 
                 category: ["News", "Bengali", "India"],
