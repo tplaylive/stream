@@ -3102,7 +3102,9 @@ const channels = [
             { 
                 name: "Ruposhi Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://cdn-4.pishow.tv/live/1039/master.m3u8" },
+                    { name: "Server 1", url: "https://mumt05.tangotv.in/RUPASIBANGLA/index.m3u8" },
+                    { name: "Server 2", url: "https://cdn-4.pishow.tv/live/1039/master.m3u8" },
+                    { name: "Server 3", url: "https://livegeoroueu.akamaized.net/28072023/smil:rupashibangla.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b" },
                 ], 
                 img: "https://i.postimg.cc/8c1LTnTZ/ruposhi-bangla.jpg", 
                 category: ["Entertainment", "Bengali", "India"],
