@@ -1889,7 +1889,7 @@ const channels = [
             { 
                 name: "Music Bangla", 
                 sources: [
-                    { name: "Server 1", url: "http://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/musicbangla2025.stream/playlist.m3u8" },
+                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/musicbangla2025.stream/playlist.m3u8" },
                 ], 
                 img: "https://www.jagobd.com/wp-content/uploads/2024/12/mb.jpg?x71442", 
                 category: ["Music", "Bengali", "Bangladesh"],
