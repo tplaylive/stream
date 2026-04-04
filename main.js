@@ -4017,7 +4017,7 @@ const channels = [
             { 
                 name: "BTV", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/news/btv-hd/index.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/news/btv-hd.index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/btv/index.m3u8" },
                     { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" }
                 ], 
