@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>T Play TV | Smart TV Experience</title>
+    <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Shaka Player CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/controls.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #e50914;
+            --primary-dark: #b80710;
+            --bg-dark: #0a0a0f;
+            --bg-card: #14141e;
+            --bg-sidebar: #0f0f16;
+            --text: #ffffff;
+            --text-dim: #a0a0b0;
+            --focus-glow: 0 0 0 3px rgba(229, 9, 20, 0.6);
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, 'Roboto', sans-serif;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* TV OPTIMIZED - LARGE FOCUSABLE ELEMENTS */
+        .tv-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* MAIN PLAYER AREA */
+        .player-area {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 24px 24px 30px;
+            background: var(--bg-dark);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            aspect-ratio: 16 / 9;
+            flex-shrink: 0;
+        }
+
+        #liveVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        #posterImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #loadingOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            z-index: 10;
+            backdrop-filter: blur(4px);
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(229,9,20,0.3);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* TV REMOTE CONTROL BAR - LARGE BUTTONS */
+        .tv-remote-bar {
+            background: var(--bg-card);
+            border-radius: 60px;
+            margin-top: 24px;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .remote-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tv-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .tv-btn:focus-visible, .tv-btn:focus {
+            outline: none;
+            box-shadow: var(--focus-glow);
+            transform: scale(1.02);
+            background: var(--primary);
+        }
+
+        .tv-btn-large {
+            width: 90px;
+            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #e50914, #b80710);
+        }
+
+        .tv-btn-sm {
+            width: 50px;
+            height: 50px;
+            font-size: 1.3rem;
+        }
+
+        .quality-group {
+            display: flex;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 50px;
+            align-items: center;
+        }
+
+        .tv-select {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .tv-select:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-glow);
+        }
+
+        /* CHANNEL SIDEBAR TV STYLE */
+        .channels-panel {
+            width: 380px;
+            background: var(--bg-sidebar);
+            border-left: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 24px 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+        }
+
+        .channel-count {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--bg-card);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .category-strip {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 12px 0 20px;
+            scrollbar-width: thin;
+        }
+
+        .cat-btn {
+            background: var(--bg-card);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            color: var(--text-dim);
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .cat-btn:focus-visible, .cat-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--focus-glow);
+            outline: none;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 18px;
+            margin-top: 10px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .channel-card {
+            background: var(--bg-card);
+            border-radius: 50%;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .channel-card:focus-visible {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: var(--focus-glow);
+            transform: scale(1.03);
+        }
+
+        .channel-card.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(229,9,20,0.2), rgba(184,7,22,0.1));
+        }
+
+        .channel-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: var(--primary);
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .drm-badge {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: #ff6b00;
+            font-size: 8px;
+            width: 18px;
+            height: 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-toast {
+            background: rgba(229,9,20,0.9);
+            border-radius: 12px;
+            padding: 12px 20px;
+            margin-top: 16px;
+            display: none;
+            text-align: center;
+        }
+
+        @media (max-width: 1000px) {
+            .channels-panel { width: 320px; }
+            .tv-btn { width: 50px; height: 50px; font-size: 1.3rem; }
+            .tv-btn-large { width: 75px; }
+        }
+
+        @media (max-width: 780px) {
+            .tv-container { flex-direction: column; }
+            .channels-panel { width: 100%; height: 40%; border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
+            .player-area { padding: 16px; }
+            .tv-remote-bar { border-radius: 30px; padding: 12px 18px; }
+        }
+
+        /* FOCUS VISIBLE FOR TV REMOTE NAVIGATION */
+        :focus-visible {
+            outline: none;
+            box-shadow: var(--focus-glow);
+        }
+
+        button, select, .channel-card, .cat-btn {
+            transition: all 0.15s;
+        }
+    </style>
+</head>
+<body>
+<div class="tv-container">
+    <!-- MAIN PLAYER + REMOTE SECTION -->
+    <div class="player-area">
+        <div class="video-wrapper">
+            <img id="posterImage" src="https://i.postimg.cc/Pr9sC68t/T-Play-Cover.jpg" alt="Poster">
+            <div id="loadingOverlay" style="display: none;">
+                <div class="loading-spinner"></div>
+                <div style="font-size: 1.2rem;">Loading Stream...</div>
+            </div>
+            <video id="liveVideo" playsinline webkit-playsinline></video>
+        </div>
+
+        <!-- TV REMOTE CONTROL PANEL - FULLY OPERABLE WITH TV REMOTE (ARROW KEYS, ENTER, ETC) -->
+        <div class="tv-remote-bar">
+            <div class="remote-buttons">
+                <button class="tv-btn" id="prevChannelBtn" title="Previous Channel (←)"><i class="fas fa-step-backward"></i></button>
+                <button class="tv-btn tv-btn-large" id="playPauseRemoteBtn" title="Play/Pause (⏯)"><i class="fas fa-play"></i></button>
+                <button class="tv-btn" id="nextChannelBtn" title="Next Channel (→)"><i class="fas fa-step-forward"></i></button>
+                <button class="tv-btn tv-btn-sm" id="zoomBtn" title="Zoom Mode (Z)"><i class="fas fa-expand-alt"></i></button>
+                <button class="tv-btn tv-btn-sm" id="fullscreenBtn" title="Fullscreen (F)"><i class="fas fa-expand"></i></button>
+                <button class="tv-btn tv-btn-sm" id="pipBtn" title="Picture-in-Picture (P)"><i class="fas fa-tv"></i></button>
+                <div class="volume-container" style="display: flex; align-items: center; gap: 8px;">
+                    <button class="tv-btn tv-btn-sm" id="muteBtn" title="Mute (M)"><i class="fas fa-volume-up"></i></button>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" style="width: 100px; height: 5px; border-radius: 5px;">
+                </div>
+            </div>
+            <div class="quality-group">
+                <select id="sourceSelect" class="tv-select">
+                    <option value="0">Main Source</option>
+                </select>
+                <select id="qualitySelect" class="tv-select">
+                    <option value="auto">Auto Quality</option>
+                </select>
+            </div>
+        </div>
+        <div id="errorMsg" class="error-toast"><i class="fas fa-exclamation-triangle"></i> <span id="errorText">Failed to load</span></div>
+    </div>
+
+    <!-- CHANNEL SIDEBAR -->
+    <div class="channels-panel">
+        <div class="panel-header">
+            <div>
+                <h2 style="font-size: 1.6rem;">T Play TV</h2>
+                <div class="channel-count" id="channelCountDisplay">0 Channels</div>
+            </div>
+            <div class="logo-area">
+                <img src="https://i.postimg.cc/RCnCv14W/T-Play.png" alt="Logo">
+            </div>
+        </div>
+        <div class="search-box">
+            <input type="text" id="channelSearch" placeholder="Search channels... (Remote: type to search)" autocomplete="off">
+        </div>
+        <div class="category-strip" id="categoryStrip">
+            <!-- Categories will be injected dynamically -->
+        </div>
+        <div class="channel-grid" id="channelGrid"></div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.12/shaka-player.ui.js"></script>
+
+<script>
+    // ---------- TV OPTIMIZED PLAYER WITH FULL REMOTE CONTROL ----------
+    // This version works with TV remote: Arrow keys (channel change), Enter/Space (play/pause), 
+    // volume keys, number keys (future), full focus management.
+    
+    // ------ DUMMY CHANNEL DATA (REPLACE WITH main.js or real data, but functional TV demo) ------
+    // Extended realistic channel list for TV experience
+    const channelsData = [
+        { name: "Sony MAX", category: "Movies", img: "https://i.postimg.cc/7hVvJ0bM/sony-max.png", sources: [{ name: "Source 1", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls", drm: null }] },
+        { name: "Star Plus", category: "Entertainment", img: "https://i.postimg.cc/4xwCQFwN/starplus.png", sources: [{ name: "Source 1", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls", drm: null }] },
+        { name: "DD National", category: "News", img: "https://i.postimg.cc/NjFkS8Xc/dd-national.png", sources: [{ name: "Main", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "MTV Beats", category: "Music", img: "https://i.postimg.cc/8PjV2vXK/mtv.png", sources: [{ name: "HD", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "Colors TV", category: "Entertainment", img: "https://i.postimg.cc/tCQGbwLx/colors.png", sources: [{ name: "Stream", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "CNN News18", category: "News", img: "https://i.postimg.cc/Dw4k2Bqm/cnn.png", sources: [{ name: "Live", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "Cartoon Network", category: "Kids", img: "https://i.postimg.cc/wjN9pqRH/cartoon.png", sources: [{ name: "Source", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "Sun TV", category: "Tamil", img: "https://i.postimg.cc/6pXhr0Z4/suntv.png", sources: [{ name: "HD", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "Zee Telugu", category: "Telugu", img: "https://i.postimg.cc/28TZNY4B/zeetelugu.png", sources: [{ name: "Main", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] },
+        { name: "Sports HD", category: "Sports", img: "https://i.postimg.cc/15HQFsqW/sports.png", sources: [{ name: "Backup", url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", type: "hls" }] }
+    ];
+    // For categories, we generate from data plus extra categories
+    const allCategories = ["All", "Movies", "Entertainment", "News", "Music", "Kids", "Sports", "Tamil", "Telugu", "Hindi"];
+    
+    // Global state
+    let hls = null;
+    let shakaPlayer = null;
+    let currentChannelIndex = 0;
+    let currentBackupSources = [];
+    let currentBackupIdx = 0;
+    let zoomIndex = 0;
+    const zoomModes = ["contain", "cover", "fill"];
+    let currentCategory = "All";
+    let filteredChannels = [...channelsData];
+    let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const video = document.getElementById("liveVideo");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const posterImage = document.getElementById("posterImage");
+    const errorDiv = document.getElementById("errorMsg");
+    const errorTextSpan = document.getElementById("errorText");
+    const channelGrid = document.getElementById("channelGrid");
+    const channelSearch = document.getElementById("channelSearch");
+    const playPauseRemoteBtn = document.getElementById("playPauseRemoteBtn");
+    const prevChannelBtn = document.getElementById("prevChannelBtn");
+    const nextChannelBtn = document.getElementById("nextChannelBtn");
+    const zoomBtn = document.getElementById("zoomBtn");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    const pipBtn = document.getElementById("pipBtn");
+    const muteBtn = document.getElementById("muteBtn");
+    const volumeSlider = document.getElementById("volumeSlider");
+    const sourceSelect = document.getElementById("sourceSelect");
+    const qualitySelect = document.getElementById("qualitySelect");
+    const channelCountDisplay = document.getElementById("channelCountDisplay");
+    
+    // Helper functions
+    function showLoading(show) { loadingOverlay.style.display = show ? "flex" : "none"; }
+    function showError(msg) { errorTextSpan.innerText = msg; errorDiv.style.display = "block"; setTimeout(() => errorDiv.style.display = "none", 4000); showLoading(false); }
+    function cleanupPlayers() { if (hls) { hls.destroy(); hls = null; } if (shakaPlayer) { shakaPlayer.unload(); shakaPlayer.destroy(); shakaPlayer = null; } video.src = ""; video.load(); }
+    
+    function loadSource(sourceIdx) {
+        cleanupPlayers();
+        if (!currentBackupSources[sourceIdx]) { showError("Source unavailable"); tryNextBackup(); return; }
+        const src = currentBackupSources[sourceIdx];
+        currentBackupIdx = sourceIdx;
+        showLoading(true);
+        errorDiv.style.display = "none";
+        posterImage.style.opacity = "0.6";
+        
+        if (src.type === 'dash') {
+            if (!shaka.Player.isBrowserSupported()) { showError("DASH not supported"); tryNextBackup(); return; }
+            if (!shakaPlayer) shakaPlayer = new shaka.Player(video);
+            shakaPlayer.configure({ drm: { clearKeys: src.drm ? { [src.drm.kid]: src.drm.key } : {} } });
+            shakaPlayer.load(src.url).then(() => { showLoading(false); video.play().catch(e=>console.log); posterImage.style.opacity="0"; }).catch(e=>{ console.error(e); showError("DASH Error"); tryNextBackup(); });
+            return;
+        }
+        // HLS path
+        if (Hls.isSupported() && !isIOS) {
+            hls = new Hls({ maxBufferLength: 30, enableWorker: true });
+            hls.loadSource(src.url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => { showLoading(false); video.play().catch(e=>console); posterImage.style.opacity="0"; populateQualityMenu(); });
+            hls.on(Hls.Events.ERROR, (evt, data) => { if(data.fatal) { if(data.type === Hls.ErrorTypes.NETWORK_ERROR) tryNextBackup(); else hls.recoverMediaError(); } });
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = src.url;
+            video.addEventListener("loadedmetadata", () => { showLoading(false); video.play().catch(e=>console); posterImage.style.opacity="0"; });
+        } else { showError("Unsupported format"); tryNextBackup(); }
+    }
+    
+    function tryNextBackup() { 
+        if (currentBackupIdx + 1 < currentBackupSources.length) loadSource(currentBackupIdx + 1);
+        else { showError("No Signal / Channel offline"); showLoading(false); }
+    }
+    
+    function populateQualityMenu() {
+        if (!hls || !hls.levels) { qualitySelect.style.display = "none"; return; }
+        qualitySelect.innerHTML = '<option value="-1">Auto</option>';
+        hls.levels.forEach((level, idx) => { let opt = document.createElement("option"); opt.value = idx; opt.textContent = level.height + "p"; qualitySelect.appendChild(opt); });
+        qualitySelect.style.display = "block";
+        hls.on(Hls.Events.LEVEL_SWITCHED, (e, data) => { qualitySelect.value = data.level; });
+    }
+    
+    function loadChannel(index) {
+        if (index < 0) index = 0;
+        if (index >= filteredChannels.length) index = filteredChannels.length - 1;
+        const channel = filteredChannels[index];
+        if (!channel) return;
+        currentChannelIndex = index;
+        currentBackupSources = channel.sources;
+        currentBackupIdx = 0;
+        // Update source select
+        sourceSelect.innerHTML = "";
+        channel.sources.forEach((s, i) => { let opt = document.createElement("option"); opt.value = i; opt.textContent = s.name + (s.drm ? " DRM" : ""); sourceSelect.appendChild(opt); });
+        loadSource(0);
+        updateActiveChannelUI();
+        document.title = `T Play - ${channel.name}`;
+    }
+    
+    function updateActiveChannelUI() {
+        document.querySelectorAll(".channel-card").forEach((card, idx) => {
+            if (idx === currentChannelIndex) card.classList.add("active");
+            else card.classList.remove("active");
+        });
+    }
+    
+    function renderChannels() {
+        channelGrid.innerHTML = "";
+        filteredChannels.forEach((ch, idx) => {
+            const card = document.createElement("div");
+            card.className = "channel-card";
+            if (idx === currentChannelIndex) card.classList.add("active");
+            const hasDrm = ch.sources.some(s => s.drm);
+            card.innerHTML = `
+                <img class="channel-img" src="${ch.img}" alt="${ch.name}" onerror="this.src='https://i.postimg.cc/RCnCv14W/T-Play.png'">
+                ${hasDrm ? '<div class="drm-badge"><i class="fas fa-lock"></i></div>' : ''}
+                <div class="live-badge">LIVE</div>
+            `;
+            card.addEventListener("click", () => { loadChannel(idx); });
+            card.setAttribute("tabindex", "0");
+            channelGrid.appendChild(card);
+        });
+        channelCountDisplay.innerText = `${filteredChannels.length} Channels`;
+    }
+    
+    function filterByCategory(category) {
+        currentCategory = category;
+        if (category === "All") filteredChannels = [...channelsData];
+        else filteredChannels = channelsData.filter(ch => ch.category === category);
+        renderChannels();
+        if (currentChannelIndex >= filteredChannels.length && filteredChannels.length) loadChannel(0);
+        else if (filteredChannels.length) loadChannel(currentChannelIndex);
+        updateCategoryActiveUI();
+    }
+    
+    function updateCategoryActiveUI() {
+        document.querySelectorAll(".cat-btn").forEach(btn => {
+            if (btn.innerText === currentCategory) btn.classList.add("active");
+            else btn.classList.remove("active");
+        });
+    }
+    
+    function renderCategories() {
+        const strip = document.getElementById("categoryStrip");
+        strip.innerHTML = "";
+        allCategories.forEach(cat => {
+            const btn = document.createElement("button");
+            btn.className = "cat-btn" + (cat === currentCategory ? " active" : "");
+            btn.innerText = cat;
+            btn.addEventListener("click", () => filterByCategory(cat));
+            btn.setAttribute("tabindex", "0");
+            strip.appendChild(btn);
+        });
+    }
+    
+    // TV REMOTE KEYBOARD CONTROL (Arrow keys, Enter, Space, etc)
+    function handleRemoteKeys(e) {
+        const key = e.key;
+        // Arrow Left/Right -> Prev/Next channel
+        if (key === "ArrowLeft") { e.preventDefault(); prevChannel(); }
+        else if (key === "ArrowRight") { e.preventDefault(); nextChannel(); }
+        else if (key === " " || key === "Space" || key === "Enter") { e.preventDefault(); togglePlayPause(); }
+        else if (key === "ArrowUp") { e.preventDefault(); let newVol = Math.min(1, video.volume + 0.05); video.volume = newVol; volumeSlider.value = newVol; updateMuteIcon(); }
+        else if (key === "ArrowDown") { e.preventDefault(); let newVol = Math.max(0, video.volume - 0.05); video.volume = newVol; volumeSlider.value = newVol; updateMuteIcon(); }
+        else if (key === "f" || key === "F") { e.preventDefault(); toggleFullscreen(); }
+        else if (key === "m" || key === "M") { e.preventDefault(); toggleMute(); }
+        else if (key === "p" || key === "P") { e.preventDefault(); togglePip(); }
+        else if (key === "z" || key === "Z") { e.preventDefault(); cycleZoom(); }
+        // number keys 0-9 for channel jump? optional
+        if (key >= "0" && key <= "9") {
+            let num = parseInt(key);
+            if (num === 0) num = 9;
+            if (num-1 < filteredChannels.length) loadChannel(num-1);
+        }
+    }
+    
+    function prevChannel() { if (filteredChannels.length) loadChannel((currentChannelIndex - 1 + filteredChannels.length) % filteredChannels.length); }
+    function nextChannel() { if (filteredChannels.length) loadChannel((currentChannelIndex + 1) % filteredChannels.length); }
+    function togglePlayPause() { if (video.paused) video.play().catch(e=>console); else video.pause(); updatePlayPauseIcon(); }
+    function updatePlayPauseIcon() { playPauseRemoteBtn.innerHTML = video.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>'; }
+    function toggleMute() { video.muted = !video.muted; volumeSlider.value = video.muted ? 0 : video.volume; updateMuteIcon(); }
+    function updateMuteIcon() { muteBtn.innerHTML = (video.muted || video.volume === 0) ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>'; }
+    function cycleZoom() { zoomIndex = (zoomIndex + 1) % zoomModes.length; video.style.objectFit = zoomModes[zoomIndex]; }
+    function toggleFullscreen() { const wrapper = document.querySelector('.video-wrapper'); if (!document.fullscreenElement) { wrapper.requestFullscreen().catch(e=>{}); } else { document.exitFullscreen(); } }
+    function togglePip() { if (document.pictureInPictureElement) document.exitPictureInPicture(); else if (document.pictureInPictureEnabled) video.requestPictureInPicture().catch(e=>console); }
+    
+    function searchChannels() {
+        const term = channelSearch.value.toLowerCase();
+        if (!term.trim()) { filteredChannels = (currentCategory === "All") ? [...channelsData] : channelsData.filter(ch => ch.category === currentCategory); }
+        else { filteredChannels = channelsData.filter(ch => ch.name.toLowerCase().includes(term) && (currentCategory === "All" || ch.category === currentCategory)); }
+        renderChannels();
+        if (filteredChannels.length) loadChannel(0);
+        else showError("No channels found");
+    }
+    
+    // Event Listeners & Init
+    function init() {
+        renderCategories();
+        filterByCategory("All");
+        loadChannel(0);
+        video.addEventListener("play", updatePlayPauseIcon);
+        video.addEventListener("pause", updatePlayPauseIcon);
+        video.addEventListener("volumechange", updateMuteIcon);
+        volumeSlider.addEventListener("input", (e) => { video.volume = parseFloat(e.target.value); video.muted = false; updateMuteIcon(); });
+        sourceSelect.addEventListener("change", (e) => { if(currentBackupSources.length) loadSource(parseInt(e.target.value)); });
+        qualitySelect.addEventListener("change", (e) => { if(hls && hls.levels) { let val = parseInt(e.target.value); if(val === -1) hls.currentLevel = -1; else hls.currentLevel = val; } });
+        playPauseRemoteBtn.addEventListener("click", togglePlayPause);
+        prevChannelBtn.addEventListener("click", prevChannel);
+        nextChannelBtn.addEventListener("click", nextChannel);
+        zoomBtn.addEventListener("click", cycleZoom);
+        fullscreenBtn.addEventListener("click", toggleFullscreen);
+        pipBtn.addEventListener("click", togglePip);
+        muteBtn.addEventListener("click", toggleMute);
+        channelSearch.addEventListener("input", searchChannels);
+        window.addEventListener("keydown", handleRemoteKeys);
+        document.addEventListener("fullscreenchange", () => {});
+        if (isIOS) video.setAttribute("playsinline", "true");
+        posterImage.style.opacity = "0.3";
+    }
+    init();
+</script>
+</body>
+</html>
