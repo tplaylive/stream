@@ -1328,12 +1328,22 @@ function toggleGuide(force){
 }
 
 function buildCategories(){
-  const set = new Set(channels.map(c => c.category || "General"));
+  const set = new Set();
+
+  channels.forEach(c => {
+    if (Array.isArray(c.category)) {
+      c.category.forEach(cat => set.add(cat));
+    } else {
+      set.add(c.category || "General");
+    }
+  });
+
   categories = ["★ Favorites", "All", ...[...set].sort()];
   currentCat = "All";
   focusCatIndex = categories.indexOf(currentCat);
   buildCategoriesUI();
 }
+
 function buildCategoriesUI(){
   catPanel.innerHTML = "";
   categories.forEach((c, idx) => {
@@ -1351,6 +1361,7 @@ function buildCategoriesUI(){
     catPanel.appendChild(d);
   });
 }
+
 function getFilteredIndexes(){
   const q = (search.value || "").trim().toLowerCase();
   const isFav = currentCat === "★ Favorites";
@@ -1360,20 +1371,30 @@ function getFilteredIndexes(){
   for(let i=0;i<channels.length;i++){
     const ch = channels[i];
     const cat = ch.category || "General";
-    
-    // First check category filter
-    if(isFav && !favs.has(ch.name)) continue;
-    if(!isFav && !isAll && cat !== currentCat) continue;
 
-    // Then check search filter
+    let matchCategory = false;
+
+    if (Array.isArray(cat)) {
+      matchCategory = cat.includes(currentCat);
+    } else {
+      matchCategory = (cat === currentCat);
+    }
+
+    if (isFav && !favs.has(ch.name)) continue;
+    if (!isFav && !isAll && !matchCategory) continue;
+
+    // Search filter
     if(q){
-      const hay = `${i+1} ${ch.name||""} ${cat} ${ch.description||""}`.toLowerCase();
+      const hay = `${i+1} ${ch.name||""} ${Array.isArray(cat)?cat.join(" "):cat} ${ch.description||""}`.toLowerCase();
       if(!hay.includes(q)) continue;
     }
+
     idxs.push(i);
   }
   return idxs;
 }
+
+
 
 function updateGridFocus(){
   const tiles = grid.querySelectorAll(".tile");
