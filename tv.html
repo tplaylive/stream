@@ -1083,7 +1083,7 @@ async function tryLoadSourceLoop(){
   const sources = ch.sources || [];
 
   if(!sources.length){
-    await failAllSources("No sources. Switching next channel…");
+    await failAllSources("This channel is currently not available on T Play.");
     return;
   }
 
@@ -1098,7 +1098,7 @@ async function tryLoadSourceLoop(){
     currentSourceIndex++;
   }
 
-  await failAllSources("Switching next channel…");
+  await failAllSources("This channel is currently not available on T Play.");
 }
 
 async function loadSource(srcIdx){
@@ -1185,9 +1185,9 @@ async function failAllSources(msg){
   setBadge("NO SIGNAL", "err");
   hideLogo();
 
-  await new Promise(r => setTimeout(r, 1600));
-  showNoSignal(false);
-  await playChannel((currentIndex + 1) % channels.length);
+  //await new Promise(r => setTimeout(r, 1600));
+  showNoSignal(true);
+  //await playChannel((currentIndex + 1) % channels.length);
 }
 
 /* ===================== UI helpers ===================== */
