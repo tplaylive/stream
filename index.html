@@ -1,222 +1,413 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T Play</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>T Play</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    :root {
+      --bg-deep: #070b1a;
+      --glass-bg: rgba(10, 16, 28, 0.75);
+      --glass-border: rgba(59, 130, 246, 0.25);
+      --accent: #2b5cff;
+      --accent-hover: #3b6eff;
+      --text-light: #f0f3ff;
+      --text-muted: #9aa5d9;
+      --card-radius: 1.75rem;
+    }
 
-<style>
-:root{
-  --bg:#050814;
-  --card:#0b1020;
-  --border:#1f2a6b;
-  --accent:#2b5cff;
-  --text:#ffffff;
-  --muted:#aab2d5;
-}
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: radial-gradient(ellipse at 20% 30%, #0a1025, #020617);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      color: var(--text-light);
+    }
 
-/* RESET */
-*{box-sizing:border-box}
-html,body{height:100%;margin:0}
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1rem env(safe-area-inset-right) 1.5rem env(safe-area-inset-left);
+    }
 
-/* MOBILE SAFE HEIGHT FIX */
-body{
-  min-height:100svh;
-  min-height:100dvh;
-  min-height:calc(var(--vh, 1vh) * 100);
-  background:var(--bg);
-  color:var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
 
-/* MAIN CONTAINER */
-.container{
-  width:min(900px,94%);
-  text-align:center;
+    .card {
+      background: rgba(12, 20, 32, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: var(--card-radius);
+      padding: 1.2rem 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+      text-align: center;
+      outline: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.4);
+    }
 
-  /* Notch / gesture safe */
-  padding:
-    env(safe-area-inset-top)
-    env(safe-area-inset-right)
-    env(safe-area-inset-bottom)
-    env(safe-area-inset-left);
-}
+    .card:hover {
+      transform: translateY(-3px);
+      background: rgba(20, 32, 50, 0.85);
+      border-color: var(--accent);
+      box-shadow: 0 12px 22px -10px rgba(0, 0, 0, 0.5);
+    }
 
-h1{
-  margin:0 0 10px;
-  font-size:28px;
-}
+    .card:focus-visible {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+      transform: scale(1.01);
+    }
 
-.subtitle{
-  color:var(--muted);
-  margin-bottom:30px;
-  font-size:15px;
-}
+    .icon {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #e0eaff, #8fb0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transition: all 0.2s;
+    }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
+    .card:hover .icon {
+      transform: scale(1.03);
+    }
 
-@media (max-width:768px){
-  .grid{grid-template-columns:1fr}
-  .subtitle{margin-bottom:22px}
-}
+    .title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: #eef3ff;
+      margin-top: 0.1rem;
+    }
 
-/* CARD */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:30px 20px;
-  cursor:pointer;
-  outline:none;
-  transition:.15s ease;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:16px;
-}
+    .desc {
+      font-size: 0.75rem;
+      color: #a5b3da;
+      line-height: 1.3;
+      font-weight: 400;
+      padding: 0 0.3rem;
+    }
 
-.card:hover{
-  background:#10183a;
-}
+    .extra-card-wrapper {
+      margin-top: 0;
+    }
 
-.card:focus-visible{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(43,92,255,.35);
-}
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      padding: 0.8rem 0.5rem;
+      border-top: 1px solid rgba(72, 110, 180, 0.3);
+      font-size: 0.75rem;
+      color: #7b8bbc;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      backdrop-filter: blur(4px);
+    }
 
-.icon{
-  font-size:46px;
-  color:#dbe2ff;
-}
+    .footer a {
+      color: #9eb1e6;
+      text-decoration: none;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
 
-.title{
-  font-size:18px;
-  font-weight:700;
-}
+    .footer a:hover {
+      color: white;
+      text-shadow: 0 0 4px #3b82f6;
+    }
 
-.desc{
-  font-size:14px;
-  color:var(--muted);
-}
+    .footer i {
+      font-size: 0.7rem;
+    }
 
-/* FOOTER */
-.footer{
-  margin-top:26px;
-  font-size:13px;
-  color:var(--muted);
-}
-</style>
+    /* responsive: tablet and mobile */
+    @media (max-width: 780px) {
+      .grid {
+        gap: 1rem;
+      }
+      .title {
+        font-size: 1rem;
+      }
+      .icon {
+        font-size: 1.9rem;
+      }
+      .desc {
+        font-size: 0.7rem;
+      }
+      .card {
+        padding: 1rem 0.6rem;
+        gap: 0.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 1rem;
+      }
+      .card {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 1rem;
+        padding: 0.9rem 1.2rem;
+        align-items: center;
+      }
+      .card .icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+      }
+      .card .title {
+        font-size: 1.1rem;
+      }
+      .card .desc {
+        font-size: 0.7rem;
+      }
+      .card > div:not(.icon) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .footer {
+        flex-direction: column;
+        gap: 0.6rem;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0.5rem;
+      }
+      .card {
+        padding: 0.75rem 1rem;
+      }
+      .title {
+        font-size: 1rem;
+      }
+      .icon {
+        font-size: 1.8rem;
+      }
+      .desc {
+        font-size: 0.65rem;
+      }
+    }
+
+    .no-header {
+      display: block;
+    }
+    
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card {
+      animation: fadeUp 0.35s ease forwards;
+      opacity: 0;
+    }
+  </style>
 </head>
-
 <body>
-
 <div class="container">
-  <h1></h1>
-  <div class="subtitle">Select your device to continue</div>
-
+  
   <div class="grid">
-    <!-- TV -->
-    <div class="card" tabindex="0" data-url="https://tplay.live/tv">
+    <!-- TV Card -->
+    <div class="card" tabindex="0" data-url="https://tplay.live/tv" role="button" aria-label="Open TV version">
       <div class="icon"><i class="fa-solid fa-tv"></i></div>
-      <div class="title">TV</div>
-      <div class="desc">Smart TV / Android TV / Fire TV</div>
+      <div>
+        <div class="title">TV</div>
+        <div class="desc">Smart TV · Android TV · Fire TV</div>
+      </div>
     </div>
 
-    <!-- Mobile -->
-    <div class="card" tabindex="0" data-url="https://tplay.live/mobile">
-      <div class="icon"><i class="fa-solid fa-mobile-screen"></i></div>
-      <div class="title">Mobile</div>
-      <div class="desc">Android / iPhone / Touch devices</div>
+    <div class="card" tabindex="0" data-url="https://tplay.live/mobile" role="button" aria-label="Open Mobile version">
+      <div class="icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+      <div>
+        <div class="title">Mobile</div>
+        <div class="desc">iOS · Android · Touch interface</div>
+      </div>
     </div>
 
-    <!-- Laptop / PC -->
-    <div class="card" tabindex="0" data-url="https://tplay.live/mix">
-      <div class="icon"><i class="fa-solid fa-laptop"></i></div>
-      <div class="title">Mix</div>
-      <div class="desc">2.0 mix ui</div>
+    <div class="card" tabindex="0" data-url="https://tplay.live/mobile" role="button" aria-label="Open Desktop version">
+      <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
+      <div>
+        <div class="title">Laptop / PC</div>
+        <div class="desc">Windows · Linux · macOS</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extra-card-wrapper">
+    <div class="card" tabindex="0" data-url="https://tplay.live/Advertisement" role="button" aria-label="Advertisement opportunities">
+      <div class="icon"><i class="fa-solid fa-chart-simple"></i></div>
+      <div>
+        <div class="title">Advertisement</div>
+        <div class="desc">Advertise on our channels</div>
+      </div>
     </div>
   </div>
 
   <div class="footer">
-    Remote • Keyboard • Mouse • Touch supported
+    <span><i class="fa-regular fa-copyright"></i> tplay.live</span>
+    <a href="mailto:tplaybd@proton.me"><i class="fa-regular fa-envelope"></i> tplaybd@proton.me</a>
+    <a href="https://t.me/tplaybd" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> t.me/tplaybd</a>
   </div>
 </div>
 
 <script>
-/* ===== MOBILE VIEWPORT HEIGHT FIX ===== */
-function setVH(){
-  document.documentElement.style.setProperty(
-    '--vh',
-    window.innerHeight * 0.01 + 'px'
-  );
-}
-setVH();
-window.addEventListener('resize', setVH);
-
-/* ===== INTERACTION ===== */
-const cards = [...document.querySelectorAll(".card")];
-
-function go(url){
-  window.location.href = url;
-}
-
-// Click + Touch
-cards.forEach(card=>{
-  card.addEventListener("click",()=>go(card.dataset.url));
-  card.addEventListener("touchend",e=>{
-    e.preventDefault();
-    go(card.dataset.url);
-  },{passive:false});
-
-  // Enter / Space
-  card.addEventListener("keydown",e=>{
-    if(e.key==="Enter" || e.key===" "){
-      e.preventDefault();
-      go(card.dataset.url);
+  (function() {
+    function setVH() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
-  });
-});
-
-// TV Remote Navigation
-document.addEventListener("keydown",e=>{
-  const arrows=["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"];
-  if(!arrows.includes(e.key)) return;
-
-  const active=document.activeElement;
-  const index=cards.indexOf(active);
-  if(index===-1) return;
-
-  const cols = window.innerWidth <= 768 ? 1 : 3;
-  let next=index;
-
-  if(e.key==="ArrowRight") next=index+1;
-  if(e.key==="ArrowLeft") next=index-1;
-  if(e.key==="ArrowDown") next=index+cols;
-  if(e.key==="ArrowUp") next=index-cols;
-
-  next=Math.max(0,Math.min(cards.length-1,next));
-  if(next!==index){
-    cards[next].focus();
-    e.preventDefault();
-  }
-});
-
-// Auto focus first card (TV friendly)
-window.addEventListener("load",()=>{
-  cards[0].focus();
-});
+    setVH();
+    window.addEventListener('resize', setVH);
+    
+    const cards = Array.from(document.querySelectorAll('.card'));
+    
+    function navigateTo(url) {
+      if (!url) return;
+      window.location.href = url;
+    }
+    
+    cards.forEach(card => {
+      // click & pointer
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetUrl = card.dataset.url;
+        if (targetUrl) navigateTo(targetUrl);
+      });
+      
+      card.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        const targetUrl = card.dataset.url;
+        if (targetUrl) navigateTo(targetUrl);
+      }, { passive: false });
+      
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const targetUrl = card.dataset.url;
+          if (targetUrl) navigateTo(targetUrl);
+        }
+      });
+    });
+    
+    function getGridColumnsCount() {
+      return window.innerWidth <= 640 ? 1 : 3;
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+      if (!arrowKeys.includes(e.key)) return;
+      
+      const activeElement = document.activeElement;
+      if (!activeElement || !cards.includes(activeElement)) return;
+      
+      const currentIndex = cards.indexOf(activeElement);
+      if (currentIndex === -1) return;
+      
+      const cols = getGridColumnsCount();
+      let nextIndex = currentIndex;
+      
+      switch (e.key) {
+        case 'ArrowRight':
+          nextIndex = currentIndex + 1;
+          break;
+        case 'ArrowLeft':
+          nextIndex = currentIndex - 1;
+          break;
+        case 'ArrowDown':
+          nextIndex = currentIndex + cols;
+          break;
+        case 'ArrowUp':
+          nextIndex = currentIndex - cols;
+          break;
+        default: return;
+      }
+      
+      if (nextIndex >= 0 && nextIndex < cards.length) {
+        cards[nextIndex].focus();
+        e.preventDefault();
+        cards[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+      }
+    });
+    
+    window.addEventListener('load', () => {
+      if (cards.length) {
+        cards[0].focus();
+      }
+      cards.forEach((card, idx) => {
+        card.style.animationDelay = `${idx * 0.05}s`;
+        card.style.opacity = '1';
+      });
+    });
+    
+    if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) {
+      const style = document.createElement('style');
+      style.textContent = `.card:active { transform: scale(0.97); background: rgba(43,92,255,0.2); transition: 0.05s; }`;
+      document.head.appendChild(style);
+    }
+    
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        cards.forEach(card => {
+          const url = card.dataset.url;
+          if (url && url.startsWith('https://tplay.live')) {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = url;
+            link.as = 'document';
+            document.head.appendChild(link);
+          }
+        });
+      });
+    }
+    
+    const advCard = document.querySelector('.extra-card-wrapper .card');
+    if (advCard && !advCard.dataset.url) {
+      advCard.dataset.url = 'https://tplay.live/Advertisement';
+    }
+  })();
 </script>
-
 </body>
 </html>
