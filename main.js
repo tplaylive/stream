@@ -1124,7 +1124,7 @@ const channels = [
             { 
                 name: "Nick Tamil", 
                 sources: [
-                    { name: "Tamil", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/NICK/index.m3u8" },
+                    { name: "Tamil", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/NICK/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: ["Kids", "Tamil", "India"],
@@ -1197,7 +1197,7 @@ const channels = [
             { 
                 name: "Pogo Tamil", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/POGO/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/POGO/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C200/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
@@ -2037,6 +2037,16 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Sun Music", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/SUN_MUSIC/index.m3u8" },
+                    { name: "Server 2", url: "https://segment.yuppcdn.net/050522/murasu/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/Sun_Music_HD.png", 
+                category: ["Music", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
                 name: "Rasi Music HD", 
                 sources: [
                     { 
@@ -2787,7 +2797,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starmovies/index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_MOVIES_HD/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/STAR_MOVIES_HD/index.m3u8" },
                     { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/STAR_Movies_logo.svg/250px-STAR_Movies_logo.svg.png", 
@@ -3531,8 +3541,9 @@ const channels = [
             { 
                 name: "Star Vijay", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_VIJAY/index.m3u8" },
-                    { name: "Server 2", url: "https://cdn-2.pishow.tv/live/1383/master.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/STAR_VIJAY/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/STAR_VIJAY/index.m3u8" },
+                    { name: "Server 3", url: "https://cdn-2.pishow.tv/live/1383/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/4yDVmXQV/star-vijay.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
@@ -3558,7 +3569,18 @@ const channels = [
             { 
                 name: "Colors Tamil", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/COLORS_TAMIL/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/COLORS_TAMIL/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/COLORS_TAMIL/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/nV2zd4j7/colors-tamil-1.jpg", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Colors Tamil HD", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/COLORS_TAMIL/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/COLORS_TAMIL/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/nV2zd4j7/colors-tamil-1.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
@@ -3567,7 +3589,19 @@ const channels = [
             { 
                 name: "Sun TV", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/SUN_TV/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/SUN_TV/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/SUN_TV/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/SUN_TV/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/G3PrLGk2/suntv.jpg", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "Sun TV HD", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/SUN_TV_HD/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/SUN_TV/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/G3PrLGk2/suntv.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
@@ -3576,7 +3610,7 @@ const channels = [
             { 
                 name: "Sun Life", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/SUN_LIFE/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/SUN_LIFE/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Wz8QMmnw/sun-life.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
@@ -3585,7 +3619,18 @@ const channels = [
             { 
                 name: "K TV", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/K_TV/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/K_TV/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/K_TV/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/T3VnQkmx/ktv.jpg", 
+                category: ["Entertainment", "Tamil", "India"],
+                description: "Tamil"
+            },
+            { 
+                name: "K TV HD", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/K_TV/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/K_TV/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/T3VnQkmx/ktv.jpg", 
                 category: ["Entertainment", "Tamil", "India"],
@@ -4855,7 +4900,7 @@ const channels = [
             { 
                 name: "Live 4", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/STAR_SPORTS_1_HD/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/STAR_SPORTS_1_HD/index.m3u8" },
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://46.225.94.157/hls/espn/index.m3u8" },
                     { name: "Server 3", url: "https://sdmmt162.provegooott.com/1_.m3u8" },
                     { name: "Server 4", url: "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00451-dazn-daznringside-lgus/playlist.m3u8" }
