@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>T Play</title>
+    <meta name="description" content="Submit your details to book T Play Advertisement">
+    <!-- EmailJS for reliable email delivery -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fc 0%, #eef2f8 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles - More Refined */
+        .header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0a2e3f 0%, #1b5e4a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.75rem;
+        }
+        .header .subhead {
+            font-size: 1.05rem;
+            color: #4a627a;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1.25rem;
+        }
+        .badge {
+            background: white;
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1b5e4a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid rgba(27,94,74,0.2);
+        }
+        .badge i {
+            margin-right: 6px;
+            font-size: 0.75rem;
+        }
+
+        /* Channel Grid - Modern Cards */
+        .channels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .channel-card {
+            background: #ffffff;
+            border-radius: 1.75rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            width: 360px;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid rgba(203, 213, 225, 0.5);
+            overflow: hidden;
+            backdrop-filter: blur(0px);
+        }
+        .channel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.12);
+            border-color: #cbdde9;
+        }
+        .channel-logo {
+            background: linear-gradient(145deg, #fefefe 0%, #fafcff 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .channel-logo img {
+            max-width: 160px;
+            max-height: 100px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+        }
+        .channel-info {
+            padding: 1.6rem;
+        }
+        .channel-info h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #0f2f44;
+            letter-spacing: -0.3px;
+        }
+        .channel-meta {
+            display: flex;
+            gap: 0.65rem;
+            margin-bottom: 1.4rem;
+            flex-wrap: wrap;
+        }
+        .channel-meta span {
+            background: #eef3f0;
+            padding: 0.25rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1f6e55;
+        }
+        .package-group {
+            margin: 1.2rem 0 1rem 0;
+        }
+        .package-label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            margin-bottom: 0.9rem;
+            color: #2c5a7a;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .package-label i {
+            color: #1b6b4c;
+        }
+        .package-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .package-btn {
+            background: #ffffff;
+            border: 1.5px solid #e2edf2;
+            border-radius: 60px;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .package-btn:hover {
+            background: #f5faff;
+            border-color: #9bbecf;
+            transform: scale(1.01);
+        }
+        .package-btn.selected {
+            background: #1b4d3e;
+            border-color: #1b4d3e;
+            color: white;
+            box-shadow: 0 4px 12px rgba(27,77,62,0.25);
+        }
+        .package-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .package-price {
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: -0.2px;
+        }
+        .selected-price-display {
+            margin: 1rem 0 0.8rem 0;
+            background: #f1f9f5;
+            border-radius: 60px;
+            padding: 0.65rem;
+            text-align: center;
+            font-weight: 600;
+            color: #146b4c;
+            font-size: 0.8rem;
+            border-left: 3px solid #1b6b4c;
+        }
+        .book-now-btn {
+            background: #0f3b2c;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .book-now-btn i {
+            font-size: 0.85rem;
+        }
+        .book-now-btn:hover {
+            background: #1b5e48;
+            transform: translateY(-2px);
+        }
+
+        /* Booking Form - Elegant */
+        .booking-section {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.2rem;
+            margin-top: 1rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(203, 213, 225, 0.5);
+            backdrop-filter: blur(2px);
+        }
+        .form-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #0f2f44;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .form-title i {
+            color: #1b6b4c;
+            font-size: 1.5rem;
+        }
+        .form-sub {
+            font-size: 0.85rem;
+            color: #5f7d9c;
+            margin-bottom: 1.8rem;
+            border-left: 3px solid #8db5a2;
+            padding-left: 1rem;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.3rem;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .input-group label {
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: #2c4c6e;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .input-group label i {
+            font-size: 0.7rem;
+            color: #1b6b4c;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border-radius: 44px;
+            border: 1.5px solid #e2edf2;
+            background: white;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1b6b4c;
+            box-shadow: 0 0 0 3px rgba(27,107,76,0.1);
+        }
+        input[readonly] {
+            background-color: #f9fbfd;
+            border-color: #e9edf2;
+            color: #1f5a48;
+            font-weight: 500;
+        }
+        .submit-btn {
+            background: linear-gradient(105deg, #1b6b4c 0%, #0f4d37 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.3px;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(105deg, #0f543b 0%, #0a3d2a 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(27,107,76,0.3);
+        }
+        .selected-channel-badge {
+            background: #f1f9f5;
+            border-radius: 60px;
+            padding: 0.9rem 1.4rem;
+            margin-bottom: 1.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-left: 4px solid #1b6b4c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .selected-channel-badge i {
+            font-size: 1rem;
+            color: #1b6b4c;
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1a2c3e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            z-index: 1200;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            font-size: 0.85rem;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            backdrop-filter: blur(8px);
+            background: rgba(26,44,62,0.92);
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.7rem;
+            color: #7c8ea0;
+            border-top: 1px solid #dce5ec;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 760px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            body {
+                padding: 1rem;
+            }
+            .booking-section {
+                padding: 1.5rem;
+            }
+        }
+        .note {
+            font-size: 0.7rem;
+            color: #6f8fae;
+            margin-top: 1rem;
+            text-align: center;
+            background: #fafcfd;
+            padding: 0.8rem;
+            border-radius: 44px;
+        }
+        .required-star {
+            color: #dc4c3a;
+            font-size: 0.7rem;
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><i class="" style="font-size: 2rem; background: none; -webkit-background-clip: unset; background-clip: unset; color: #1b6b4c;"></i> T Play</h1>
+        <div class="subhead">Submit your details to book T Play Advertisement</div>
+        <div class="badge-container">
+            <span class="badge"><i class="fas fa-star"></i> Affordable</span>
+            <span class="badge"><i class="fas fa-key"></i> Easy</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Effective</span>
+            <span class="badge"><i class="fas fa-globe-americas"></i> Worldwide Service</span>
+        </div>
+    </div>
+
+    <!-- Three Premium Channels -->
+    <div class="channels-grid">
+        <!-- Oxygen Music -->
+        <div class="channel-card" data-channel-id="oxygen" data-channel-name="Oxygen Music">
+            <div class="channel-logo">
+                <img src="https://i.postimg.cc/8z1kS0G5/Oxygen-Music.jpg" alt="Oxygen Music logo" onerror="this.src='https://placehold.co/300x120?text=Oxygen+Music'">
+            </div>
+            <div class="channel-info">
+                <h3>Oxygen Music</h3>
+                <h5>Oxygen Music is a English music channel founded in 2024 by T Play. It features the current and best of Hollywood songs. Advertising in Oxygen Music can drive sales for your brand as well as boost your brand recognition.</h5>
+                <div class="channel-meta">
+                <span><i class="fas fa-language"></i> English </span><span><i class="fas fa-music"></i> Music </span></div>
+                <div class="package-group">
+                    <div class="package-label"><i class="fas fa-clock"></i> Select campaign duration</div>
+                    <div class="package-options" data-channel="oxygen">
+                        <div class="package-btn" data-days="1" data-price="10">
+                            <span class="package-name"><i class="far fa-clock"></i> 1 Day Campaign</span>
+                            <span class="package-price">$10 USD</span>
+                        </div>
+                        <div class="package-btn" data-days="15" data-price="100">
+                            <span class="package-name"><i class="fas fa-chart-simple"></i> 15 Days Campaign</span>
+                            <span class="package-price">$100 USD</span>
+                        </div>
+                        <div class="package-btn" data-days="30" data-price="200">
+                            <span class="package-name"><i class="fas fa-crown"></i> 30 Days (Monthly)</span>
+                            <span class="package-price">$200 USD</span>
+                        </div>
+                    </div>
+                    <div class="selected-price-display" id="priceDisplay-oxygen">No package selected</div>
+                    <button class="book-now-btn" data-channel="Oxygen Music"><i class="fas fa-check-circle"></i> Book this channel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deewana -->
+        <div class="channel-card" data-channel-id="deewana" data-channel-name="Deewana">
+            <div class="channel-logo">
+                <img src="https://i.postimg.cc/9Q7G21N6/Deewana.png" alt="Deewana logo" onerror="this.src='https://placehold.co/300x120?text=Deewana'">
+            </div>
+            <div class="channel-info">
+                <h3>Deewana</h3>
+                <h5>Deewana is a Hindi music channel founded in 2025 by T Play. It features the current and best of Bollywood songs. Advertising in Deewana can drive sales for your brand as well as boost your brand recognition.</h5>
+                <div class="channel-meta">
+                <span><i class="fas fa-language"></i> Hindi </span><span><i class="fas fa-music"></i> Music </span></div>
+                <div class="package-group">
+                    <div class="package-label"><i class="fas fa-clock"></i> Select campaign duration</div>
+                    <div class="package-options" data-channel="deewana">
+                        <div class="package-btn" data-days="1" data-price="10">
+                            <span class="package-name"><i class="far fa-clock"></i> 1 Day Campaign</span>
+                            <span class="package-price">$10 USD</span>
+                        </div>
+                        <div class="package-btn" data-days="15" data-price="100">
+                            <span class="package-name"><i class="fas fa-chart-simple"></i> 15 Days Campaign</span>
+                            <span class="package-price">$100 USD</span>
+                        </div>
+                        <div class="package-btn" data-days="30" data-price="200">
+                            <span class="package-name"><i class="fas fa-crown"></i> 30 Days (Monthly)</span>
+                            <span class="package-price">$200 USD</span>
+                        </div>
+                    </div>
+                    <div class="selected-price-display" id="priceDisplay-deewana">No package selected</div>
+                    <button class="book-now-btn" data-channel="Deewana"><i class="fas fa-check-circle"></i> Book this channel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bengali Beats -->
+        <div class="channel-card" data-channel-id="bengali" data-channel-name="Bengali Beats">
+            <div class="channel-logo">
+                <img src="https://i.postimg.cc/jSLNzXgM/Bengali-Beats.png" alt="Bengali Beats logo" onerror="this.src='https://placehold.co/300x120?text=Bengali+Beats'">
+            </div>
+            <div class="channel-info">
+                <h3>Bengali Beats</h3>
+                <h5>Bengali Beats is a Bengali music channel founded in 2023 by T Play. It features the current and best of Dhallywood songs. Advertising in Bengali Beats can drive sales for your brand as well as boost your brand recognition.</h5>
+                <div class="channel-meta">
+                <span><i class="fas fa-language"></i> Bengali </span><span><i class="fas fa-music"></i> Music </span></div>
+                <div class="package-group">
+                    <div class="package-label"><i class="fas fa-clock"></i> Select campaign duration</div>
+                    <div class="package-options" data-channel="bengali">
+                        <div class="package-btn" data-days="1" data-price="10">
+                            <span class="package-name"><i class="far fa-clock"></i> 1 Day Campaign</span>
+                            <span class="package-price">$10 USD</span>
+                        </div>
+                        <div class="package-btn" data-days="15" data-price="100">
+                            <span class="package-name"><i class="fas fa-chart-simple"></i> 15 Days Campaign</span>
+                            <span class="package-price">$100 USD</span>
+                        </div>
+                        <div class="package-btn" data-days="30" data-price="200">
+                            <span class="package-name"><i class="fas fa-crown"></i> 30 Days (Monthly)</span>
+                            <span class="package-price">$200 USD</span>
+                        </div>
+                    </div>
+                    <div class="selected-price-display" id="priceDisplay-bengali">No package selected</div>
+                    <button class="book-now-btn" data-channel="Bengali Beats"><i class="fas fa-check-circle"></i> Book this channel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Form Section -->
+    <div class="booking-section" id="bookingFormSection">
+        <div class="form-title">
+            <i class="fas fa-file-signature"></i> Booking request
+        </div>
+        <div class="form-sub">Complete the form to reserve your advertising slots. Our team will confirm availability within 24 hours via email.</div>
+        <div id="selectedPreview" class="selected-channel-badge">
+            <i class="fas fa-info-circle"></i> No channel selected. Click "Book this channel" on any channel above.
+        </div>
+        <form id="bookingForm">
+            <div class="two-col">
+                <div class="input-group">
+                    <label><i class="fas fa-user"></i> Full name <span class="required-star">*</span></label>
+                    <input type="text" id="fullName" placeholder="e.g. Michael Chen" required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-phone-alt"></i> Phone number <span class="required-star">*</span></label>
+                    <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-envelope"></i> Email address <span class="required-star">*</span></label>
+                    <input type="email" id="email" placeholder="client@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-tower-broadcast"></i> Channel</label>
+                    <input type="text" id="channelField" placeholder="Auto-filled" readonly required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-tag"></i> Package (duration)</label>
+                    <input type="text" id="packageField" placeholder="Auto-filled" readonly required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-dollar-sign"></i> Total price (USD)</label>
+                    <input type="text" id="priceField" placeholder="Auto-filled" readonly required>
+                </div>
+                <div class="full-width input-group">
+                    <label><i class="fas fa-pen-alt"></i> Additional notes (optional)</label>
+                    <input type="text" id="extraNotes" placeholder="Preferred time slot, sponsorship details, creative requirements...">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Submit booking request</button>
+            <div class="note"><i class="fas fa-lock"></i> Your request is encrypted and sent to tplaybd@proton.me. We'll reply within 24h.</div>
+        </form>
+    </div>
+    <footer>
+        <span><i class="fas fa-check-circle"></i> Authorized Partner</span>
+        <span><i class="fas fa-globe"></i> Global TV Advertising</span>
+        <span><i class="fas fa-headset"></i> 24/7 Support</span>
+        <span>© T Play — All rights reserved</span>
+    </footer>
+</div>
+<div id="toastMsg" class="toast-msg"></div>
+
+<script>
+    // EmailJS initialization (public key for reliable delivery)
+    (function() {
+        emailjs.init("O7QnJ5T7IbUvHfVWx");
+    })();
+
+    // State for selected packages per channel
+    const selectedPackages = {
+        oxygen: { days: null, price: null },
+        deewana: { days: null, price: null },
+        bengali: { days: null, price: null }
+    };
+
+    function updatePriceDisplay(channelId, days, price) {
+        const displayDiv = document.getElementById(`priceDisplay-${channelId}`);
+        if (displayDiv) {
+            if (days && price) {
+                let durationName = days === 1 ? "1 Day" : (days === 15 ? "15 Days" : "30 Days (Monthly)");
+                displayDiv.innerHTML = `Selected: ${durationName} — $${price} USD`;
+                displayDiv.style.background = "#e6f4ef";
+            } else {
+                displayDiv.innerHTML = `No package selected`;
+                displayDiv.style.background = "#f1f9f5";
+            }
+        }
+    }
+
+    // Attach package selection listeners
+    document.querySelectorAll('.channel-card').forEach(card => {
+        const channelId = card.getAttribute('data-channel-id');
+        const packageBtns = card.querySelectorAll('.package-btn');
+        
+        packageBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const days = parseInt(btn.getAttribute('data-days'));
+                const price = parseInt(btn.getAttribute('data-price'));
+                
+                if (selectedPackages[channelId]) {
+                    selectedPackages[channelId] = { days, price };
+                }
+                updatePriceDisplay(channelId, days, price);
+                
+                // Update selected visual state
+                const allPkg = card.querySelectorAll('.package-btn');
+                allPkg.forEach(p => p.classList.remove('selected'));
+                btn.classList.add('selected');
+                
+                const channelName = card.querySelector('h3')?.innerText || "Channel";
+                showToast(`${channelName}: ${days} days selected ($${price} USD)`, 1800);
+            });
+        });
+        
+        // Book button logic with smooth scroll and form fill
+        const bookBtn = card.querySelector('.book-now-btn');
+        bookBtn.addEventListener('click', () => {
+            const channelNameRaw = bookBtn.getAttribute('data-channel');
+            const channelIdRef = card.getAttribute('data-channel-id');
+            const pkg = selectedPackages[channelIdRef];
+            if (!pkg || !pkg.days) {
+                showToast(`⚠️ Please select a package (1, 15 or 30 days) for ${channelNameRaw} first.`, 3000);
+                return;
+            }
+            
+            let durationDisplay = "";
+            if (pkg.days === 1) durationDisplay = "1 Day ($10 USD)";
+            else if (pkg.days === 15) durationDisplay = "15 Days ($100 USD)";
+            else durationDisplay = "30 Days ($200 USD)";
+            
+            document.getElementById('channelField').value = channelNameRaw;
+            document.getElementById('packageField').value = durationDisplay;
+            document.getElementById('priceField').value = `${pkg.price} USD`;
+            document.getElementById('selectedPreview').innerHTML = `<i class="fas fa-check-circle" style="color:#1b6b4c;"></i> Selected: ${channelNameRaw} | ${durationDisplay} | Total $${pkg.price} USD. Complete your details below.`;
+            
+            document.getElementById('bookingFormSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Form submission with EmailJS + fallback mailto
+    const form = document.getElementById('bookingForm');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        const fullName = document.getElementById('fullName').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const channel = document.getElementById('channelField').value.trim();
+        const packageDur = document.getElementById('packageField').value.trim();
+        const priceVal = document.getElementById('priceField').value.trim();
+        const extraMsg = document.getElementById('extraNotes').value.trim();
+        
+        if (!fullName || !phone || !email || !channel || !packageDur || !priceVal) {
+            showToast("❌ Please fill all required fields: name, phone, email, channel and package.", 3500);
+            return;
+        }
+        if (!email.includes('@') || email.indexOf('.') === -1 || email.length < 5) {
+            showToast("📧 Please enter a valid email address.", 2500);
+            return;
+        }
+        
+        const submitBtn = document.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending request...';
+        submitBtn.disabled = true;
+        
+        const templateParams = {
+            to_email: "tplaybd@proton.me",
+            from_name: fullName,
+            user_phone: phone,
+            user_email: email,
+            channel_name: channel,
+            package_duration: packageDur,
+            total_price: priceVal,
+            extra_notes: extraMsg || "No additional notes",
+            reply_to: email
+        };
+        
+        try {
+            await emailjs.send("service_p7h2vvd", "template_3yhf6tf", templateParams);
+            showToast("Booking request sent successfully! We'll reply within 24 hours.", 5000);
+            // Reset form & selections
+            document.getElementById('fullName').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('extraNotes').value = '';
+            document.getElementById('channelField').value = '';
+            document.getElementById('packageField').value = '';
+            document.getElementById('priceField').value = '';
+            document.getElementById('selectedPreview').innerHTML = '<i class="fas fa-info-circle"></i> No channel selected. Click "Book this channel" on any channel above.';
+            
+            // Reset all channel packages
+            for (let ch of ['oxygen', 'deewana', 'bengali']) {
+                selectedPackages[ch] = { days: null, price: null };
+                updatePriceDisplay(ch, null, null);
+                const cardDiv = document.querySelector(`.channel-card[data-channel-id="${ch}"]`);
+                if (cardDiv) {
+                    const btns = cardDiv.querySelectorAll('.package-btn');
+                    btns.forEach(btn => btn.classList.remove('selected'));
+                }
+            }
+        } catch (error) {
+            console.error("EmailJS error:", error);
+            const mailBody = `Name: ${fullName}%0APhone: ${phone}%0AEmail: ${email}%0AChannel: ${channel}%0APackage: ${packageDur}%0APrice: ${priceVal}%0AAdditional Notes: ${extraMsg}`;
+            window.open(`mailto:tplaybd@proton.me?subject=TV%20Ad%20Booking%20Request%20from%20${encodeURIComponent(fullName)}&body=${mailBody}`, '_blank');
+            showToast("📨 Automatic email failed. Your default email client will open — please send the request manually.", 5000);
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    
+    function showToast(message, duration = 3000) {
+        const toast = document.getElementById('toastMsg');
+        toast.innerText = message;
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, duration);
+    }
+</script>
+</body>
+</html>
