@@ -3090,10 +3090,11 @@ const channels = [
                 name: "Zee Bangla HD", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/zeeban/index.m3u8" },
                     { name: "Server 2", url: "https://catchup.yuppcdn.net/amazonv2/36/preview/zeebangla/master/chunklist.m3u8" },
 
                 ], 
-                img: "https://i.postimg.cc/wj9Q6Mj6/zee-bangla.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/40ed05bf2dda8c8d71cd428f4030be6c.png", 
                 category: ["Entertainment", "Bengali", "India"],
                 description: "Bangla"
             },
