@@ -248,24 +248,25 @@ body{background:#000;color:#fff;overflow:hidden}
   font-size:12px;color:#aaa;margin-top:4px;
 }
 
-/* ================= GUIDE (MODAL STYLE) ================= */
+/* ================= REDESIGNED GUIDE (MODERN SCREENSHOT STYLE) ================= */
 .guide{
   position:absolute;
   top:50%;
   left:50%;
-  transform:translate(-50%,-50%) scale(.95);
-  width:min(520px,94vw);
-  height:min(80vh,520px);
-  background:rgba(0,0,0,.94);
-  border:1px solid rgba(255,255,255,.15);
-  backdrop-filter:blur(12px);
-  border-radius:18px;
+  transform:translate(-50%,-50%) scale(0.96);
+  width:min(1100px, 94vw);
+  height:min(85vh, 750px);
+  background:rgba(12,12,18,0.96);
+  backdrop-filter:blur(20px);
+  border-radius:28px;
   display:none;
   flex-direction:column;
-  z-index:130; 
+  z-index:130;
   opacity:0;
-  transition:.25s ease;
-  box-shadow:0 20px 50px rgba(0,0,0,.8);
+  transition:all 0.25s cubic-bezier(0.2,0.9,0.4,1.1);
+  box-shadow:0 25px 50px -12px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.12);
 }
 .guide.show{
   display:flex;
@@ -274,171 +275,215 @@ body{background:#000;color:#fff;overflow:hidden}
 }
 
 /* Guide Header */
-.gTop{
-  padding:14px 18px;
+.guide-header{
+  padding:18px 24px;
+  background:rgba(0,0,0,0.5);
+  border-bottom:1px solid rgba(255,255,255,0.1);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  position:relative;
 }
-.gTop b{font-size:14px; flex:1;}
-.gTop span{
+.guide-header h2{
+  font-size:1.5rem;
+  font-weight:700;
+  background:linear-gradient(135deg, #fff, #e50914);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  letter-spacing:-0.3px;
+}
+.guide-header span{
   font-size:12px;
-  color:#bbb;
-  margin-left:10px;
+  color:#aaa;
+  background:rgba(255,255,255,0.08);
+  padding:6px 12px;
+  border-radius:40px;
 }
-
-/* Guide Close Button */
 .guideClose{
-  width:34px;
-  height:34px;
+  width:36px;
+  height:36px;
   border-radius:50%;
   border:none;
-  background:rgba(255,255,255,.1);
+  background:rgba(255,255,255,0.1);
   color:#fff;
   cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-shrink:0;
-  margin-left:10px;
+  transition:0.2s;
 }
-.guideClose:hover{background:#e50914}
+.guideClose:hover{background:#e50914; transform:rotate(90deg);}
 
-/* Guide Body */
-.gBody{
-  flex:1;
+/* Two-column layout */
+.guide-body{
   display:flex;
+  flex:1;
   overflow:hidden;
 }
 
-/* Categories */
-.cat{
-  width:150px;
-  min-width:120px;
+/* Left categories panel */
+.categories-panel{
+  width:180px;
+  background:rgba(0,0,0,0.4);
+  border-right:1px solid rgba(255,255,255,0.08);
   overflow-y:auto;
+  padding:12px 0;
 }
-.catItem{
-  padding:12px;
-  color:#bbb;
+.category-item{
+  padding:12px 20px;
+  margin:4px 12px;
+  border-radius:40px;
+  font-size:14px;
+  font-weight:500;
+  color:#ddd;
   cursor:pointer;
-  user-select:none;
+  transition:all 0.2s;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
-.catItem.focus{
+.category-item i{width:20px; font-size:14px; opacity:0.7;}
+.category-item:hover{background:rgba(255,255,255,0.08); color:#fff;}
+.category-item.active{
   background:#e50914;
-  color:#fff;
+  color:white;
+  box-shadow:0 4px 12px rgba(229,9,20,0.3);
 }
+.category-item.active i{opacity:1;}
 
-/* Channel Area */
-.chArea{
+/* Right side: search + channel grid */
+.channels-area{
   flex:1;
   display:flex;
   flex-direction:column;
   overflow:hidden;
+  background:rgba(0,0,0,0.2);
 }
 .searchBox{
-  padding:10px;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:16px 20px;
+  background:rgba(0,0,0,0.3);
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
 .searchBox input{
   width:100%;
-  padding:5px 5px;
+  padding:12px 18px;
   border:none;
   outline:none;
-  border-radius:18px;
-  background:rgba(255,255,255,.1);
+  border-radius:48px;
+  background:rgba(255,255,255,0.1);
   color:#fff;
+  font-size:14px;
+  backdrop-filter:blur(4px);
+  transition:0.2s;
 }
+.searchBox input:focus{background:rgba(255,255,255,0.18); box-shadow:0 0 0 2px rgba(229,9,14,0.4);}
+.searchBox input::placeholder{color:rgba(255,255,255,0.5);}
 
+/* Channel Grid - Logo grid exactly like screenshot */
 .grid{
   flex:1;
   overflow-y:auto;
-  padding:8px;
+  padding:20px 24px;
   display:grid;
-  gap:6px;
-  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
-}
-  
-/* ===== Guide: Logo-only Grid (Round + Focus Ring) ===== */
-.tile.logoOnly{
-  position:relative;
-  justify-content:center;
-  align-items:center;
-  padding:16px;
-  background:transparent;
-  border:none;
+  grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));
+  gap:20px 16px;
+  align-content:start;
 }
 
+/* Tile design - round logos */
+.tile.logoOnly{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  cursor:pointer;
+  transition:all 0.2s ease;
+  position:relative;
+  background:transparent;
+  border-radius:20px;
+  padding:12px 8px;
+}
+.tile.logoOnly .logo-wrapper{
+  position:relative;
+  width:90px;
+  height:90px;
+  margin-bottom:10px;
+}
 .tile.logoOnly .logo{
-  width:80px;
-  height:80px;
+  width:100%;
+  height:100%;
   object-fit:contain;
   border-radius:50%;
-  background:#111;
-  padding:10px;
-  transition:.2s ease;
+  background:rgba(20,20,30,0.8);
+  padding:12px;
+  transition:all 0.25s cubic-bezier(0.2,0.9,0.4,1.1);
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
 }
-
+.tile.logoOnly .channel-name{
+  font-size:13px;
+  font-weight:500;
+  text-align:center;
+  color:#eee;
+  max-width:110px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-top:6px;
+}
 .tile.logoOnly .favBtn{
   position:absolute;
-  top:8px;
-  right:8px;
-  width:26px;
-  height:26px;
+  top:-4px;
+  right:-4px;
+  width:28px;
+  height:28px;
+  background:rgba(0,0,0,0.7);
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(0,0,0,.75);
-  color:#bbb; 
-  font-size:13px;
-  box-shadow:0 2px 6px rgba(0,0,0,.6);
-  opacity:1;
+  color:#fff9f0;
+  font-size:12px;
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,0.2);
+  transition:0.2s;
+  pointer-events:auto;
 }
+.tile.logoOnly .favBtn i{pointer-events:none;}
+.tile.logoOnly .favBtn.on{color:#ffb347; background:rgba(0,0,0,0.85);}
 
-.tile.logoOnly .favBtn.on{
-  color:#ffd54a;
-  background:rgba(0,0,0,.85);
+/* Focus ring like screenshot */
+.tile.logoOnly.focus{
+  transform:scale(1.02);
 }
-
 .tile.logoOnly.focus .logo{
-  transform:scale(1.12);
-  box-shadow:
-    0 0 0 3px #e50914,
-    0 0 20px rgba(229,9,20,.7);
+  transform:scale(1.1);
+  box-shadow:0 0 0 3px #e50914, 0 0 0 6px rgba(229,9,20,0.3), 0 12px 28px black;
+}
+.tile.logoOnly.focus .channel-name{
+  color:#e50914;
+  font-weight:bold;
 }
 
-/* hover polish */
-.tile.logoOnly:hover .logo{
-  transform:scale(1.08);
+/* Scrollbar */
+.grid::-webkit-scrollbar, .categories-panel::-webkit-scrollbar{
+  width:5px;
+}
+.grid::-webkit-scrollbar-track, .categories-panel::-webkit-scrollbar-track{
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+}
+.grid::-webkit-scrollbar-thumb, .categories-panel::-webkit-scrollbar-thumb{
+  background:#e50914;
+  border-radius:10px;
 }
 
-/* ================= MOBILE SCALE (SAME DESIGN) ================= */
-@media (max-width:600px){
-  .guide{
-    width:96vw;
-    height:85vh;
-  }
-  .cat{
-    width:90px;
-  }
-  .grid{
-    grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
-  }
-  .btn{
-    width:40px;
-    height:40px;
-  }
-  
-  /* Mobile Guide header text */
-  .gTop span{
-    font-size:10px;
-    display:none;
-  }
-  
-  .gTop b{
-    font-size:12px;
-  }
+/* Mobile adjustment */
+@media (max-width:700px){
+  .categories-panel{width:130px;}
+  .grid{grid-template-columns:repeat(auto-fill, minmax(100px, 1fr)); gap:12px; padding:16px;}
+  .tile.logoOnly .logo-wrapper{width:70px; height:70px;}
+  .tile.logoOnly .channel-name{font-size:11px;}
+  .guide-header h2{font-size:1.2rem;}
+  .guide-header span{display:none;}
 }
 </style>
 
@@ -500,20 +545,20 @@ body{background:#000;color:#fff;overflow:hidden}
     </div>
   </div>
 
-  <!-- Left Guide -->
+  <!-- REDESIGNED GUIDE (Modern Screenshot Style) -->
   <div id="guide" class="guide">
-    <div class="gTop">
-      <b>Channel Guide</b>
-      <span>←/→ Cat • ↑/↓/→ Tiles • OK Play • ESC Back</span>
+    <div class="guide-header">
+      <h2><i class="fas fa-tv" style="margin-right: 8px; color:#e50914;"></i>Channel Guide</h2>
+      <span><i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> Cat • <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i> Navigate • OK Play</span>
       <button class="guideClose" id="btnCloseGuide">
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <div class="gBody">
-      <div class="cat" id="catPanel"></div>
-      <div class="chArea">
+    <div class="guide-body">
+      <div class="categories-panel" id="catPanel"></div>
+      <div class="channels-area">
         <div class="searchBox">
-          <input id="search" placeholder="Search (name/number)..." />
+          <input id="search" placeholder="Search channel..." />
         </div>
         <div class="grid" id="grid"></div>
       </div>
@@ -571,6 +616,21 @@ body{background:#000;color:#fff;overflow:hidden}
 <script>
 const video = document.getElementById("video");
 const videoLogoWatermark = document.getElementById("videoLogoWatermark");
+
+        // Protection Scripts (unchanged, kept for security)
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); showProtectionWarning(); return false; });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'C') || (e.ctrlKey && e.key === 'U') || (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.shiftKey && e.key === 'K')) {
+                e.preventDefault(); showProtectionWarning(); return false;
+            }
+        });
+        function detectDevTools() { const widthThreshold = window.outerWidth - window.innerWidth > 160; const heightThreshold = window.outerHeight - window.innerHeight > 160; if (widthThreshold || heightThreshold) showProtectionWarning(); }
+        function showProtectionWarning() { const overlay = document.getElementById('protectionOverlay'); overlay.style.display = 'block'; setTimeout(() => { overlay.style.display = 'none'; }, 1500); }
+        setInterval(detectDevTools, 1000);
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+        document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); return false; } });
+
+
 
 /* UI */
 const loading = document.getElementById("loading");
@@ -703,7 +763,6 @@ function updateServerFocus() {
     option.classList.remove('active');
     if (index === serverFocusIndex) {
       option.classList.add('active');
-      // Scroll into view
       const container = serverOptions;
       const optionRect = option.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
@@ -731,7 +790,6 @@ function selectServer(index) {
   setBadge(`Switching to ${sourceName}...`, 'warn');
   toggleServerOverlay(false);
   
-  // Reload the source
   showLoading(true);
   setTimeout(() => {
     loadSource(currentSourceIndex).then(success => {
@@ -826,7 +884,6 @@ function loadAvailableResolutions() {
     }));
   }
   
-  // If no dynamic qualities found
   if (qualities.length === 0) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -835,9 +892,8 @@ function loadAvailableResolutions() {
     return;
   }
   
-  // Add Auto option first
   const autoOption = document.createElement('div');
-  autoOption.className = `settingsOption active`; // Always active for Shaka
+  autoOption.className = `settingsOption active`;
   autoOption.innerHTML = `
     <div class="optionLabel">Auto (Best)</div>
     <div class="optionValue">✓</div>
@@ -851,7 +907,6 @@ function loadAvailableResolutions() {
   };
   resolutionList.appendChild(autoOption);
   
-  // Add available qualities
   qualities.forEach(quality => {
     const option = document.createElement('div');
     option.className = `settingsOption ${quality.selected ? 'active' : ''}`;
@@ -889,12 +944,11 @@ function loadAudioTracks() {
       audioTracks = tracks.map((lang, index) => ({
         id: index,
         label: lang ? ` ${lang.toUpperCase()}` : 'Unknown',
-        selected: index === 0 // Default to first
+        selected: index === 0
       }));
     }
   }
   
-  // If no audio tracks found
   if (audioTracks.length === 0) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -933,7 +987,6 @@ function loadServerSources() {
   const ch = channels[currentIndex];
   const sources = ch.sources || [];
   
-  // If no multiple sources
   if (sources.length <= 1) {
     const noOpt = document.createElement('div');
     noOpt.className = 'noOptions';
@@ -961,7 +1014,6 @@ function selectServerSource(index, name) {
   setBadge(`Switched to ${name}`, 'live');
   toggleSettings(false);
   
-  // Reload the source
   showLoading(true);
   setTimeout(() => {
     loadSource(currentSourceIndex).then(success => {
@@ -983,7 +1035,7 @@ guideCloseBtn.onclick = function() {
 };
 
 guideCloseBtn.addEventListener("touchstart", function(e) {
-  e.stopPropagation(); // Prevent event bubbling
+  e.stopPropagation();
   toggleGuide(false);
 }, {passive: true});
 
@@ -994,11 +1046,9 @@ window.addEventListener("load", () => {
     return;
   }
 
-  // auto mute OFF
   video.muted = false;
   video.volume = 1;
 
-  // buttons (for mouse users)
   document.getElementById("btnPrev").onclick = prevChannel;
   document.getElementById("btnNext").onclick = nextChannel;
   document.getElementById("btnGuide").onclick = () => toggleGuide();
@@ -1008,7 +1058,6 @@ window.addEventListener("load", () => {
   document.getElementById("btnSettings").onclick = () => toggleSettings();
   document.getElementById("btnFav").onclick = toggleFavCurrent;
 
-  // guide search
   search.addEventListener("input", () => { 
     focusTileIndex = 0; 
     buildGrid(); 
@@ -1017,7 +1066,6 @@ window.addEventListener("load", () => {
 
   buildCategories();
 
-  // Start with logo hidden
   hideLogo();
 
   const saved = localStorage.getItem("lastChannel");
@@ -1067,7 +1115,6 @@ async function playChannel(index){
   localStorage.setItem("lastChannel", String(currentIndex));
   currentSourceIndex = 0;
 
-  // UI updates
   updateNowPlayingUI();
   buildGrid();
 
@@ -1115,16 +1162,13 @@ async function loadSource(srcIdx){
   await cleanupPlayers();
 
   try{
-    // Check if Shaka Player is supported
     if(!shaka.Player.isBrowserSupported()) {
       throw new Error("Shaka Player not supported in this browser");
     }
 
-    // Always use Shaka Player for both DASH and HLS
     shaka.polyfill.installAll();
     shakaP = new shaka.Player(video);
 
-    // Configure for better compatibility
     const config = {
       drm: { 
         clearKeys: {}
@@ -1143,17 +1187,14 @@ async function loadSource(srcIdx){
       }
     };
 
-    // Add DRM if available
     if(src.drm?.kid && src.drm?.key){
       config.drm.clearKeys[src.drm.kid] = src.drm.key;
     }
 
     await shakaP.configure(config);
 
-    // Load the stream
     await shakaP.load(src.url);
 
-    // Try to play
     try{
       video.muted = false;
       await video.play();
@@ -1184,10 +1225,6 @@ async function failAllSources(msg){
   showNoSignal(true, msg);
   setBadge("NO SIGNAL", "err");
   hideLogo();
-
-  //await new Promise(r => setTimeout(r, 1600));
-  showNoSignal(true);
-  //await playChannel((currentIndex + 1) % channels.length);
 }
 
 /* ===================== UI helpers ===================== */
@@ -1283,7 +1320,7 @@ function toggleFavByChannelIndex(idx){
   buildGrid();
 }
 
-/* ===================== Guide (left overlay) ===================== */
+/* ===================== REDESIGNED GUIDE FUNCTIONS (FIXED FOCUS) ===================== */
 function toggleGuide(force){
   const wantOpen = (typeof force === "boolean") ? force : !guide.classList.contains("show");
   
@@ -1297,6 +1334,7 @@ function toggleGuide(force){
       buildCategoriesUI();
       buildGrid();
 
+      // Find current channel position in filtered list and set focus
       const pos = filteredIndexes.indexOf(currentIndex);
       focusTileIndex = pos >= 0 ? pos : 0;
       updateGridFocus();
@@ -1315,7 +1353,7 @@ function toggleGuide(force){
     buildCategoriesUI();
     buildGrid();
 
-    // Find current channel in filtered list
+    // Find current channel position in filtered list and set focus
     const pos = filteredIndexes.indexOf(currentIndex);
     focusTileIndex = pos >= 0 ? pos : 0;
     updateGridFocus();
@@ -1338,7 +1376,7 @@ function buildCategories(){
     }
   });
 
-  categories = ["★ Favorites", "All", ...[...set].sort()];
+  categories = ["Favorites", "All", "News", "Kids", "Music", "Movie", "Entertainment", "Mix-Entertainment", "Sports", "Infotainment", "Religious", , ...[...set].sort()];
   currentCat = "All";
   focusCatIndex = categories.indexOf(currentCat);
   buildCategoriesUI();
@@ -1348,12 +1386,15 @@ function buildCategoriesUI(){
   catPanel.innerHTML = "";
   categories.forEach((c, idx) => {
     const d = document.createElement("div");
-    d.className = "catItem" + (idx===focusCatIndex ? " focus" : "");
-    d.textContent = c;
+    d.className = "category-item" + (idx===focusCatIndex ? " active" : "");
+    let icon = "fa-tv";
+    if(c === "Favorites") icon = "fa-star";
+    else if(c === "All") icon = "fa-th-large";
+    d.innerHTML = `<i class="fas ${icon}"></i> <span>${c}</span>`;
     d.onclick = () => {
       focusCatIndex = idx;
       currentCat = categories[focusCatIndex];
-      focusTileIndex = 0;
+      focusTileIndex = 0;  // Reset to first tile when changing category
       buildCategoriesUI();
       buildGrid();
       updateGridFocus();
@@ -1364,7 +1405,7 @@ function buildCategoriesUI(){
 
 function getFilteredIndexes(){
   const q = (search.value || "").trim().toLowerCase();
-  const isFav = currentCat === "★ Favorites";
+  const isFav = currentCat === "Favorites";
   const isAll = currentCat === "All";
 
   const idxs = [];
@@ -1383,7 +1424,6 @@ function getFilteredIndexes(){
     if (isFav && !favs.has(ch.name)) continue;
     if (!isFav && !isAll && !matchCategory) continue;
 
-    // Search filter
     if(q){
       const hay = `${i+1} ${ch.name||""} ${Array.isArray(cat)?cat.join(" "):cat} ${ch.description||""}`.toLowerCase();
       if(!hay.includes(q)) continue;
@@ -1394,10 +1434,8 @@ function getFilteredIndexes(){
   return idxs;
 }
 
-
-
 function updateGridFocus(){
-  const tiles = grid.querySelectorAll(".tile");
+  const tiles = grid.querySelectorAll(".tile.logoOnly");
   tiles.forEach((tile, idx) => {
     tile.classList.remove("focus");
     if(idx === focusTileIndex){
@@ -1418,9 +1456,13 @@ function updateGridFocus(){
 
 function buildGrid(){
   filteredIndexes = getFilteredIndexes();
+  
+  // IMPORTANT FIX: Only reset focusTileIndex if it's out of bounds
+  // Don't reset it arbitrarily when rebuilding grid
   if(focusTileIndex >= filteredIndexes.length){
     focusTileIndex = Math.max(0, filteredIndexes.length - 1);
   }
+  // Keep focusTileIndex as is otherwise - this preserves the focused channel
 
   grid.innerHTML = "";
 
@@ -1430,7 +1472,7 @@ function buildGrid(){
 
     const tile = document.createElement("div");
     tile.className = "tile logoOnly" + (tileIdx === focusTileIndex ? " focus" : "");
-    tile.dataset.channelIndex = chIdx; // Add data attribute for easy access
+    tile.dataset.channelIndex = chIdx;
 
     tile.onclick = () => {
       focusTileIndex = tileIdx;
@@ -1440,16 +1482,21 @@ function buildGrid(){
     };
 
     tile.innerHTML = `
-      <img class="logo" src="${ch.img || ""}" alt="${escapeHtml(ch.name || "")}">
-      <button class="favBtn ${favOn ? "on":""}" title="Favorite">
-        <i class="fas fa-star"></i>
-      </button>
+      <div class="logo-wrapper">
+        <img class="logo" src="${ch.img || ""}" alt="${escapeHtml(ch.name || "")}" onerror="this.src='https://i.imgur.com/oZ1zQxv.png'">
+        <button class="favBtn ${favOn ? "on":""}" title="Favorite">
+          <i class="fas fa-star"></i>
+        </button>
+      </div>
+      <div class="channel-name">${escapeHtml(ch.name || "")}</div>
     `;
 
     const favBtn = tile.querySelector(".favBtn");
     favBtn.onclick = (e) => {
       e.stopPropagation();
       toggleFavByChannelIndex(chIdx);
+      // Update the fav button appearance immediately
+      favBtn.classList.toggle("on");
     };
 
     grid.appendChild(tile);
@@ -1481,7 +1528,6 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
-  // Server Overlay- navigation
   if (serverOpen) {
     if (["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) {
       e.preventDefault();
@@ -1512,21 +1558,18 @@ document.addEventListener("keydown", (e) => {
     }
   }
 
-  // Prevent default for arrow keys to avoid scrolling
   if(["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape", "f", "F", "s", "S", "g", "G"].includes(e.key)) {
     e.preventDefault();
   }
 
-  /* ---- Simple Remote Mapping ---- */
   switch(e.key){
     case "ArrowLeft":
       if(!guideOpen && !settingsOpen && !serverOpen){
         prevChannel();
       } else if (guideOpen) {
-        // Guide open: LEFT for category navigation (previous category)
         focusCatIndex = Math.max(0, focusCatIndex-1);
         currentCat = categories[focusCatIndex];
-        focusTileIndex = 0;
+        focusTileIndex = 0;  // Reset to first tile when changing category
         buildCategoriesUI();
         buildGrid();
         updateGridFocus();
@@ -1537,10 +1580,9 @@ document.addEventListener("keydown", (e) => {
       if(!guideOpen && !settingsOpen && !serverOpen){
         nextChannel();
       } else if (guideOpen) {
-        // Guide open: RIGHT for category navigation (next category)
         focusCatIndex = Math.min(categories.length-1, focusCatIndex+1);
         currentCat = categories[focusCatIndex];
-        focusTileIndex = 0;
+        focusTileIndex = 0;  // Reset to first tile when changing category
         buildCategoriesUI();
         buildGrid();
         updateGridFocus();
@@ -1549,34 +1591,29 @@ document.addEventListener("keydown", (e) => {
 
     case "ArrowUp":
       if(!guideOpen && !settingsOpen && !serverOpen){
-        toggleGuide(true); // Open Guide
+        toggleGuide(true);
       } else if (guideOpen) {
-        // Guide open: UP for tile navigation (previous row)
-        const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
-        focusTileIndex = Math.max(0, focusTileIndex - cols);
+        const cols = Math.max(1, Math.floor(grid.clientWidth / 140));
+        focusTileIndex = Math.max(0, focusTileIndex - 1);
         updateGridFocus();
       }
       break;
 
     case "ArrowDown":
       if(!guideOpen && !settingsOpen && !serverOpen){
-        // Down Arrow now opens server selection
         toggleServerOverlay(true);
       } else if (guideOpen) {
-        // Guide open: DOWN for tile navigation (next row)
-        const cols = Math.max(1, Math.floor(grid.clientWidth / 240));
-        focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + cols);
+        const cols = Math.max(1, Math.floor(grid.clientWidth / 140));
+        focusTileIndex = Math.min(filteredIndexes.length-1, focusTileIndex + 1);
         updateGridFocus();
       }
       break;
 
     case "Enter":
       if(!guideOpen && !settingsOpen && !serverOpen){
-        // Single click: Play/Pause
         if(okClickTimer){
           clearTimeout(okClickTimer);
           okClickTimer = null;
-          // Double click: Toggle Favorite
           toggleFavCurrent();
           setBadge("Favorite updated", "live");
         } else {
@@ -1586,10 +1623,8 @@ document.addEventListener("keydown", (e) => {
           }, DOUBLE_CLICK_DELAY);
         }
       } else if (guideOpen) {
-        // Guide open: Enter to select channel
         if(filteredIndexes.length > 0 && focusTileIndex < filteredIndexes.length){
           const chIdx = filteredIndexes[focusTileIndex];
-          console.log("Playing channel:", chIdx + 1, channels[chIdx]?.name);
           toggleGuide(false);
           setTimeout(() => {
             playChannel(chIdx);
