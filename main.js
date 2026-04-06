@@ -1290,6 +1290,19 @@ const channels = [
                 description: "Hindi/English"
             },
             { 
+                name: "Cartoonito", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/boomerang/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Cartoonito_-_Logo_2021.svg/3840px-Cartoonito_-_Logo_2021.svg.png", 
+                category: ["Kids", "English", "UK"],
+                description: "Asia Pacific"
+            },
+            { 
                 name: "Disney", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" }
@@ -2968,6 +2981,23 @@ const channels = [
                 img: "https://i.postimg.cc/6q0JD7ZB/lotus-macau.png", 
                 category: ["Movie", "English", "China"],
                 description: "China"
+            },
+            { 
+                name: "HITS Movies", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/dr_hitsmovies/default/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "f56b57b32d7e4b2cb21748c0b56761a7",
+                            key: "3df06a89aa01b32655a77d93e09e266f"
+                        }
+                    }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/4/4a/HITS_MOVIES_ASIA.png/revision/latest?cb=20210828003911", 
+                category: ["Movie", "English", "Singapore"],
+                description: "Singapore"
             },
             { 
                 name: "Hollywood Desi", 
@@ -4828,7 +4858,33 @@ const channels = [
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/KIX_logo.svg", 
                 category: ["Mix-Entertainment", "English", "Chinese", "China"],
-                description: "China"
+                description: "Hongkong"
+            },
+            { 
+                name: "Rock Entertainment", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/rock_entertainment/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Rock_Entertainment.png/330px-Rock_Entertainment.png", 
+                category: ["Mix-Entertainment", "English", "Singapore"],
+                description: "Asian"
+            },
+            { 
+                name: "Warner TV", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/warner/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Warner2018LA.png", 
+                category: ["Mix-Entertainment", "English", "USA"],
+                description: "Asia Pacific"
             },
             { 
                 name: "Kuwait TV", 
