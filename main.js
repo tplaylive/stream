@@ -2480,7 +2480,17 @@ const channels = [
                     { name: "Server 5", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
                     { name: "Server 6", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/Z55d92mk/sony-max.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/57e4ad4c3ce4bbd8f07af436ffb50704.png", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Sony Max 1", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/hh/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C111/master.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Logo_of_Sony_Max_1.jpg/500px-Logo_of_Sony_Max_1.jpg", 
                 category: ["Movie", "Hindi", "India"],
                 description: "India"
             },
@@ -2491,7 +2501,7 @@ const channels = [
                     { name: "Server 2", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-max-2/index.m3u8" },
                     { name: "Backup", url: "https://amigofx.com:1936/bigstarmovie/bigstarmovie/playlist.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/DyM2gMGR/max2.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/cce8e3fc70618f75a417651c88c97150.png", 
                 category: ["Movie", "Hindi", "India"],
                 description: "India"
             },
