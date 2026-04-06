@@ -937,9 +937,13 @@ const channels = [
             { 
                 name: "CCTV 4", 
                 sources: [
-                    { name: "Server 1", url: "https://global.cgtn.cicc.media.caton.cloud/master/cgtn-america.m3u8" }
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/boomerang/manifest.mpd",
+                        type: "dash",
+                    }
                 ], 
-                img: "https://i.postimg.cc/263gW5sF/ntv-plus.jpg", 
+                img: "https://upload.wikimedia.org/wikipedia/he/f/f6/1920px-CCTV-4_Logo.svg.png", 
                 category: ["News", "Chinese", "China"],
                 description: ""
             },
