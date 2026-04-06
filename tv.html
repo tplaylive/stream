@@ -1175,11 +1175,9 @@ async function loadSource(srcIdx){
       },
       streaming: {
         bufferingGoal: 30,
-        rebufferingGoal: 10,
+        rebufferingGoal: 15,
         bufferBehind: 30,
         ignoreTextStreamFailures: true,
-        smallGapLimit: 2.0,
-        jumpLargeGaps: true
       },
       abr: {
         enabled: true,
