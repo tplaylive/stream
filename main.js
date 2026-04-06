@@ -763,8 +763,9 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/somoy/index.m3u8" },
-                    { name: "Server 3", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/somoyt000011226615544544.stream/playlist.m3u8" },
-                    { name: "Server 4", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/205/index.m3u8" },
+                    { name: "Server 4", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/somoyt000011226615544544.stream/playlist.m3u8" },
+                    { name: "Server 5", url: "https://tplay.live/out/news/somoy-tv/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/HsVVr6FH/somoy-tv.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -839,9 +840,10 @@ const channels = [
             { 
                 name: "ATN News",
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnnews/index.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/news/atn-news/index.m3u8" },
-                    { name: "Server 3", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
+                    { name: "Server 1", url: "https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnnews/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/203/index.m3u8" },
+                    { name: "Server 4", url: "https://tplay.live/out/news/atn-news/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/ZRFCxYdp/atn-news.png", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -850,8 +852,9 @@ const channels = [
             { 
                 name: "DBC News",
                 sources: [
-                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/dbcnews.stream/mono.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/dbc/index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/204/index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/dbcnews.stream/mono.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/dbc/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/cJGD5HdQ/dbc.jpg", 
                 category: ["News", "Bengali", "Bangladesh"],
@@ -1106,7 +1109,7 @@ const channels = [
             { 
                 name: "Sonic", 
                 sources: [
-                    { name: "Hindi", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SONIC/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/601/index.m3u8" },
                 ], 
                 img: "https://static.wikia.nocookie.net/logopedia/images/a/aa/Nickelodeon_Sonic_logo_2025.png/revision/latest/scale-to-width-down/300?cb=20250606121016", 
                 category: ["Kids", "Hindi", "India"],
@@ -1115,7 +1118,8 @@ const channels = [
             { 
                 name: "Nick", 
                 sources: [
-                    { name: "Hindi", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/601/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: ["Kids", "Hindi", "India"],
@@ -2190,7 +2194,7 @@ const channels = [
             { 
                 name: "Jalsha Movies", 
                 sources: [
-                    { name: "Server 1", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/jalshamovies/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/303/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/jalshamovies/index.m3u8" },
                 ], 
                 img: "https://www.indiantvinfo.com/media/2022/12/Jalsha-Movies-Logo.png", 
@@ -2452,11 +2456,20 @@ const channels = [
                 name: "Star Gold", 
                 sources: [
                     { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/stargold/tracks-v1a1/mono.m3u8" },
-                    { name: "Stream 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/stargold/index.m3u8" },
+                    { name: "Stream 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/402/index.m3u8" },
                     { name: "Stream 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C103/master.m3u8" },
                     { name: "Stream 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/stargold/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/7YJXRsp7/gold.jpg", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
+                name: "Star Gold Romance", 
+                sources: [
+                    { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/409/index.m3u8" },
+                ], 
+                img: "https://cdn.jiostar.com/jiostar/wp-content/uploads/2024/11/Star-Gold-Romance.png", 
                 category: ["Movie", "Hindi", "India"],
                 description: "India"
             },
@@ -2474,7 +2487,7 @@ const channels = [
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonymax/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonymax/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/404/index.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C62/master.m3u8" },
                     { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
                     { name: "Server 5", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
@@ -2815,7 +2828,7 @@ const channels = [
                 name: "Star Movies", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starmovies/index.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starmovies/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/501/index.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/STAR_MOVIES_HD/index.m3u8" },
                     { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/StarMoviesHD/index.m3u8" },
                 ], 
@@ -3089,9 +3102,10 @@ const channels = [
             { 
                 name: "Zee Bangla HD", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/zeeban/index.m3u8" },
-                    { name: "Server 2", url: "https://catchup.yuppcdn.net/amazonv2/36/preview/zeebangla/master/chunklist.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/zeeban/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/301/index.m3u8" },
+                    { name: "Server 4", url: "https://catchup.yuppcdn.net/amazonv2/36/preview/zeebangla/master/chunklist.m3u8" },
 
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/40ed05bf2dda8c8d71cd428f4030be6c.png", 
@@ -3101,7 +3115,7 @@ const channels = [
             { 
                 name: "Colors Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://tvsen3.aynaott.com/u3LkNQ7UHhFX/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/304/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorsbangla/index.m3u8" },
                     { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/ColorsBanglaHD/index.m3u8" },
                     { name: "Server 4", url: "https://yupptvcatchupire.yuppcdn.net/preview/colorsbanglahd/800.m3u8" },
@@ -3163,7 +3177,8 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyaath/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/8/index.m3u8" },
-                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/306/index.m3u8" },
+                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/3bc4288071a532cad74816bab70acd05.png", 
                 category: ["Entertainment", "Bengali", "India"],
@@ -3266,7 +3281,7 @@ const channels = [
                 name: "Star Plus", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starplus/index.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starplus/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/401/index.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C51/master.m3u8" },
                     { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/StarPlusHD/index.m3u8" },
                     
@@ -3401,7 +3416,7 @@ const channels = [
                 name: "Colors", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/ColorsHD/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/405/index.m3u8" },
                     { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/colorshd/index.m3u8" },
                     { name: "Server 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C45/master.m3u8" },
                 ], 
@@ -3433,9 +3448,10 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C66/master.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
-                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/403/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C66/master.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
+                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e93d8803c883ab337e40d171a8ed02e5.png", 
                 category: ["Entertainment", "Hindi", "India"],
@@ -3805,6 +3821,15 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "Star Maa", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/408/index.m3u8" },
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/d/df/Star_maa.png/revision/latest?cb=20210520145908", 
+                category: ["Entertainment", "Telugu", "India"],
+                description: "Telugu"
+            },
+            { 
                 name: "ZEE Telugu", 
                 sources: [
                     { 
@@ -4161,8 +4186,9 @@ const channels = [
             { 
                 name: "RTV", 
                 sources: [
-                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/rtv-sg.stream/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/210/index.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/rtv-sg.stream/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 3", url: "https://tplay.live/out/bangladesh/rtv.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/Qxh9wGTV/rtv.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4211,7 +4237,8 @@ const channels = [
             { 
                 name: "Boishakhi TV", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/out/bangladesh/boishakhitv.index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/211/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/boishakhitv.index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/rFWQgTRD/boishakhi.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -4290,7 +4317,7 @@ const channels = [
             { 
                 name: "Channel i", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/channel-i/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/207/index.m3u8" },
                     { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channeli-8-org.stream/playlist.m3u8" },
                     { name: "Server 3", url: "https://tplay.live/out/bangladesh/channeli.index.m3u8" }
                 ], 
@@ -4355,8 +4382,9 @@ const channels = [
             { 
                 name: "Maasranga", 
                 sources: [
-                    { name: "Server 1", url: "https://tplay.live/out/bangladesh/maasranga.index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnbangla/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/206/index.m3u8" },
+                    { name: "Server 2", url: "https://tplay.live/out/bangladesh/maasranga.index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/atnbangla/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/h41QbPKw/maasranga.jpg", 
                 category: ["Mix-Entertainment", "Bengali", "Bangladesh"],
@@ -5620,7 +5648,8 @@ const channels = [
                 name: "Discovery HD", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C91/master.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/discovery/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/801/index.m3u8" },
+                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/discovery/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0116263a14aa056e0105b013dbeb9cf9.png", 
                 category: ["Infotainment", "English", "India"],
@@ -5941,7 +5970,8 @@ const channels = [
             { 
                 name: "National Geographic", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/natgeo/index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/802/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/natgeo/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/05pWTnLq/nat-geo.jpg", 
                 category: ["Infotainment", "Hindi", "India"],
