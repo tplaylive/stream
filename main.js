@@ -5144,7 +5144,8 @@ const channels = [
             { 
                 name: "Willow", 
                 sources: [
-                    { name: "Server 1", url: "https://d36r8jifhgsk5j.cloudfront.net/Willow_TV.m3u8" }
+                    { name: "Server 1", url: "https://d36r8jifhgsk5j.cloudfront.net/Willow_TV.m3u8" },
+                    { name: "Server 2", url: "https://game.denver69.fun/Series/willow.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/L4b8S5Df/willow.jpg", 
                 category: "Sports",
