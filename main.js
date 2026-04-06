@@ -939,7 +939,7 @@ const channels = [
                 sources: [
                     { 
                         name: "Server 1", 
-                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/boomerang/manifest.mpd",
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/CCTV_4/manifest.mpd",
                         type: "dash",
                     }
                 ], 
