@@ -2978,8 +2978,21 @@ const channels = [
                     { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Lotus/HLSv3-FTA/Lotus.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/6q0JD7ZB/lotus-macau.png", 
-                category: ["Movie", "English", "China"],
+                category: ["Movie", "English", "Chinese", "China"],
                 description: "China"
+            },
+            { 
+                name: "Thrill", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/thrill/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Thrill_logo.svg/330px-Thrill_logo.svg.png", 
+                category: ["Movie", "English", "Chinese", "China"],
+                description: ""
             },
             { 
                 name: "Cinemax", 
