@@ -2487,7 +2487,7 @@ const channels = [
             { 
                 name: "Sony Max 1", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/hh/index.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/sony-max1.index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C111/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/C1xZ14W8/max1.png", 
@@ -2508,7 +2508,7 @@ const channels = [
             { 
                 name: "Sony Wah", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/wah/index.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/sony-wah.index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/b022a333da9863994f6df346c8183c7f.png", 
                 category: ["Movie", "Hindi", "India"],
@@ -3059,11 +3059,10 @@ const channels = [
             { 
                 name: "Star Jalsha", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starjalsha/index.m3u8" },
-                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://tvn2.chowdhury-shaheb.com/starjalsha/index.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/star-jalsha.index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starjalsha/index.m3u8" },
+                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
                     { name: "Server 4", url: "https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8" },
-                    { name: "Server 5", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starjalsha/index.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/WpQ9PsZ3/star-jalsha.jpg", 
                 category: ["Entertainment", "Bengali", "India"],
@@ -3089,9 +3088,9 @@ const channels = [
             { 
                 name: "Zee Bangla HD", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/zeeban/index.m3u8" },
-                    { name: "Server 2", url: "https://catchup.yuppcdn.net/amazonv2/36/preview/zeebangla/master/chunklist.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/zee-bangla.index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/zeebangla/index.m3u8" },
+                    { name: "Server 3", url: "https://catchup.yuppcdn.net/amazonv2/36/preview/zeebangla/master/chunklist.m3u8" },
 
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/40ed05bf2dda8c8d71cd428f4030be6c.png", 
@@ -3161,8 +3160,8 @@ const channels = [
             { 
                 name: "Sony Aath", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyaath/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/8/index.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/sony-aath.index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyaath/index.m3u8" },
                     { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/3bc4288071a532cad74816bab70acd05.png", 
@@ -3412,8 +3411,8 @@ const channels = [
             { 
                 name: "Sony Sab", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/sab/index.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/sony-sab.index.m3u8" },
+                    { name: "Server 2", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C64/master.m3u8" },
                     { name: "Server 4", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonysab/index.m3u8" }
                 ], 
@@ -3424,7 +3423,7 @@ const channels = [
             { 
                 name: "Sony Pal", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C106/master.m3u8" },
+                    { name: "Server 1", url: "https://tplay.live/out/entertainment/sony-pal.index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/9405dcc6dcddf846aa98d2c7bfe0e9fa.png", 
                 category: ["Entertainment", "Hindi", "India"],
