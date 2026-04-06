@@ -5788,6 +5788,19 @@ const channels = [
                 description: "Asia"
             },
             { 
+                name: "Discovery", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/disco/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://logodownload.org/wp-content/uploads/2017/04/discovery-channel-logo-0.png", 
+                category: ["Mix-Entertainment", "English", "USA"],
+                description: "English"
+            },
+            { 
                 name: "Discovery Hindi", 
                 sources: [
                     { 
