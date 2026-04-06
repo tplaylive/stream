@@ -2,7 +2,7 @@ const channels = [
                {
                 name: "BBC News", 
                 sources: [
-                    { name: "UK", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://tplay.live/out/news/bbc-news/index.m3u8" },
+                    { name: "UK", url: "https://tplay.live/out/news/bbc-news/index.m3u8" },
                     { name: "Asia", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://cdn4.skygo.mn/live/disk1/BBC_News/HLSv3-FTA/BBC_News.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/s2679ZP4/bbc.jpg", 
