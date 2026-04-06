@@ -2955,16 +2955,6 @@ const channels = [
                 description: "Egypt"
             },
             { 
-                name: "Movie Box", 
-                sources: [
-                    { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-210731/tracks-v1a1/mono.ts.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/xdVgw5yG/movie-box.png", 
-                category: ["Movie", "English", "China"],
-                description: "Asia"
-            },
-
-            { 
                 name: "Best Action", 
                 sources: [
                     { name: "Best-Action", url: "https://streams2.sofast.tv/ptnr-yupptv/title-BEST_ACTION_YUPPTV/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/9a4a5412-ca99-48d3-9013-d1811b95b9d2/manifest.m3u8" },
@@ -2974,6 +2964,15 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Movie Box", 
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/giatvplayout7/giatv-210731/tracks-v1a1/mono.ts.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/xdVgw5yG/movie-box.png", 
+                category: ["Movie", "English", "China"],
+                description: "Asia"
+            },
+            { 
                 name: "Lotus Macau", 
                 sources: [
                     { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Lotus/HLSv3-FTA/Lotus.m3u8" },
@@ -2981,6 +2980,71 @@ const channels = [
                 img: "https://i.postimg.cc/6q0JD7ZB/lotus-macau.png", 
                 category: ["Movie", "English", "China"],
                 description: "China"
+            },
+            { 
+                name: "Cinemax", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/cinemax/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/f/f0/611-cinemax.png", 
+                category: ["Movie", "English", "USA"],
+                description: ""
+            },
+            { 
+                name: "HBO", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/hbo/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://download.logo.wine/logo/HBO/HBO-Logo.wine.png", 
+                category: ["Movie", "English", "USA"],
+                description: ""
+            },
+            { 
+                name: "HBO Family", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/hbofamily/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/HBO_Family_Asia_logo.svg/1280px-HBO_Family_Asia_logo.svg.png", 
+                category: ["Movie", "English", "USA"],
+                description: ""
+            },
+            { 
+                name: "HBO Hits", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/hbohits/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/f/fc/HBOHits-ASIA.png", 
+                category: ["Movie", "English", "USA"],
+                description: ""
+            },
+            { 
+                name: "HBO Signature", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/hbosignature/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/a/af/HBO_Signature_Asia.png", 
+                category: ["Movie", "English", "USA"],
+                description: ""
             },
             { 
                 name: "HITS Movies", 
@@ -4884,6 +4948,19 @@ const channels = [
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Warner2018LA.png", 
                 category: ["Mix-Entertainment", "English", "USA"],
+                description: "Asia Pacific"
+            },
+            { 
+                name: "AXN", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/axn/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/d/d0/AXN_Logo_2015.png", 
+                category: ["Movie", "English", "USA"],
                 description: "Asia Pacific"
             },
             { 
