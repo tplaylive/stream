@@ -2496,6 +2496,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Sony Wah", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/wah/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/b022a333da9863994f6df346c8183c7f.png", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
                 name: "Anoml Cinema", 
                 sources: [
                     { 
