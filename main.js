@@ -3161,10 +3161,10 @@ const channels = [
                 name: "Sony Aath", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyaath/index.m3u8" },
-                    { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyaath/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/8/index.m3u8" },
                     { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/y8WtVLd6/sony-aath.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/3bc4288071a532cad74816bab70acd05.png", 
                 category: ["Entertainment", "Bengali", "India"],
                 description: "Bangla"
             },
