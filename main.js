@@ -4925,6 +4925,19 @@ const channels = [
                 description: ""
             },
             { 
+                name: "K+", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/kplus/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/d/d8/K-Plus_%282013%29.svg/revision/latest?cb=20240723011130", 
+                category: ["Mix-Entertainment", "Korean", "South Korea"],
+                description: "South Korean"
+            },
+            { 
                 name: "Kix", 
                 sources: [
                     { 
