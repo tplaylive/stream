@@ -2490,7 +2490,7 @@ const channels = [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/hh/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C111/master.m3u8" },
                 ], 
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Logo_of_Sony_Max_1.jpg/500px-Logo_of_Sony_Max_1.jpg", 
+                img: "https://i.postimg.cc/C1xZ14W8/max1.png", 
                 category: ["Movie", "Hindi", "India"],
                 description: "India"
             },
@@ -3412,11 +3412,11 @@ const channels = [
                 name: "Sony Sab", 
                 sources: [
                     { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
-                    { name: "Server 2", url: "https://sm-monirul.top/RoarZone/play.php?id=ZWRnZTMvc29ueS1zYWItaGQ=&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/sab/index.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C64/master.m3u8" },
                     { name: "Server 4", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonysab/index.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/kMQ4KLhT/sab.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/1c988cc725451c2480c56865af4d59d8.png", 
                 category: ["Entertainment", "Hindi", "India"],
                 description: "India"
             },
@@ -3425,7 +3425,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C106/master.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/9FxH1Qxp/sony-pal.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/9405dcc6dcddf846aa98d2c7bfe0e9fa.png", 
                 category: ["Entertainment", "Hindi", "India"],
                 description: "India"
             },
@@ -3436,7 +3436,7 @@ const channels = [
                     { name: "Server 2", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
                     { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/ydq1SThV/set.jpg", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e93d8803c883ab337e40d171a8ed02e5.png", 
                 category: ["Entertainment", "Hindi", "India"],
                 description: "India"
             },
