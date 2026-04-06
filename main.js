@@ -2816,6 +2816,15 @@ const channels = [
                 description: "Telugu"
             },
             { 
+                name: "TG Movies", 
+                sources: [
+                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=286" },
+                ], 
+                img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/tg-movies-1920-x-1080_1.jpg", 
+                category: ["Movie", "English", "USA"],
+                description: "Kids Movies"
+            },
+            { 
                 name: "Zee BollyMovies", 
                 sources: [
                     { name: "Server 1", url: "https://amg17931-zee-amg17931c8-samsung-th-6526.playouts.now.amagi.tv/playlist.m3u8" },
@@ -2941,15 +2950,7 @@ const channels = [
                 category: ["Movie", "English", "China"],
                 description: "Asia"
             },
-            { 
-                name: "Lotus Macau", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Lotus/HLSv3-FTA/Lotus.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/6q0JD7ZB/lotus-macau.png", 
-                category: ["Movie", "English", "China"],
-                description: "China"
-            },
+
             { 
                 name: "Best Action", 
                 sources: [
@@ -2960,13 +2961,13 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "TG Movies", 
+                name: "Lotus Macau", 
                 sources: [
-                    { name: "Server 1", url: "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=286" },
+                    { name: "Server 1", url: "https://cdn.skygo.mn/live/disk1/Lotus/HLSv3-FTA/Lotus.m3u8" },
                 ], 
-                img: "https://img1.static-ottera.com/prod/tg/linear_channel/logo/480x270/tg-movies-1920-x-1080_1.jpg", 
-                category: ["Movie", "English", "USA"],
-                description: "Kids Movies"
+                img: "https://i.postimg.cc/6q0JD7ZB/lotus-macau.png", 
+                category: ["Movie", "English", "China"],
+                description: "China"
             },
             { 
                 name: "Hollywood Desi", 
@@ -4815,6 +4816,19 @@ const channels = [
                 img: "https://i.postimg.cc/4xfqXLdY/yoho.jpg", 
                 category: ["Mix-Entertainment", "Nepali", "Nepal"],
                 description: ""
+            },
+            { 
+                name: "Kix", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://cdn10jtedge.indihometv.com/atm/DASH/kix/manifest.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/KIX_logo.svg", 
+                category: ["Mix-Entertainment", "English", "Chinese", "China"],
+                description: "China"
             },
             { 
                 name: "Kuwait TV", 
