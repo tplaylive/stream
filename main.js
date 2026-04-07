@@ -6677,6 +6677,15 @@ const channels = [
                 description: "Local"
             },
             { 
+                name: "UCN Domjur", 
+                sources: [
+                    { name: "Server 1", url: "https://www.playontv.in/iptv/stream.php?id=21&e=.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/zvhQ64qS/unnamed.jpg", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
                 name: "UB Enter 10 HD", 
                 sources: [
                     { name: "Server 1", url: "https://live-stream.utkalbongo.com/utkalbongo/stream21/hls/ubdemo.m3u8" }
@@ -6691,6 +6700,15 @@ const channels = [
                     { name: "Server 1", url: "https://playontv.online/riddhinetworklive/index.m3u8" }
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPcoj09QrwKZbSw_0mhvgvlkuuVdWVlvYKkA&s", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
+                name: "BHI Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://server.livelegitpro.in/bhichannel/bhichannel/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/s1d5HN2Q/unnamed.png", 
                 category: ["Local", "Bengali", "India"],
                 description: "Local"
             },
