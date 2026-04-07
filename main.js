@@ -695,15 +695,6 @@ const channels = [
                 description: "India"
              },
              { 
-                name: "Digital Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://digitalbangla.livebox.co.in/digitalbanglahls/live.m3u8" }
-                ], 
-                img: "https://www.onlinechannels.live/wp-content/uploads/2021/01/Digital-Bangla.jpg", 
-                category: ["News", "Bengali", "India"],
-                description: "India"
-             },
-             { 
                 name: "24 Hours TV", 
                 sources: [
                     { name: "Server 1", url: "https://server.livelegitpro.in/24hourstv/24hourstv/index.m3u8" }
@@ -4719,15 +4710,6 @@ const channels = [
                 description: "Bengali"
             },
             { 
-                name: "D24 Entertainment", 
-                sources: [
-                    { name: "Server 1", url: "https://digitalbangla.livebox.co.in/D24ENTERTAINMENThls/live.m3u8" },
-                ], 
-                img: "https://yt3.googleusercontent.com/PdSY2cDQmRJdh74nzS-R7fNnuC5tJSAED9FbJ8f-ehbd2EyotFd99MeJhDKSjZEJzYmg4Tu3wxY=s160-c-k-c0x00ffffff-no-rj", 
-                category: ["Mix-Entertainment", "Bengali", "India"],
-                description: "Bengali"
-            },
-            { 
                 name: "STV", 
                 sources: [
                     { name: "Server 1", url: "https://amigofx.com:1936/stv/stv/playlist.m3u8" },
@@ -6700,6 +6682,24 @@ const channels = [
                     { name: "Server 1", url: "https://live-stream.utkalbongo.com/utkalbongo/stream21/hls/ubdemo.m3u8" }
                 ], 
                 img: "https://static.wikia.nocookie.net/etv-gspn-bangla/images/2/20/UB_Enter10_HD.png/revision/latest/scale-to-width-down/1200?cb=20250530034440", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+             { 
+                name: "Digital Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://digitalbangla.livebox.co.in/digitalbanglahls/live.m3u8" }
+                ], 
+                img: "https://www.onlinechannels.live/wp-content/uploads/2021/01/Digital-Bangla.jpg", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+             },
+            { 
+                name: "D24 Entertainment", 
+                sources: [
+                    { name: "Server 1", url: "https://digitalbangla.livebox.co.in/D24ENTERTAINMENThls/live.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/PdSY2cDQmRJdh74nzS-R7fNnuC5tJSAED9FbJ8f-ehbd2EyotFd99MeJhDKSjZEJzYmg4Tu3wxY=s160-c-k-c0x00ffffff-no-rj", 
                 category: ["Local", "Bengali", "India"],
                 description: "Local"
             },
