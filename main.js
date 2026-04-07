@@ -5730,6 +5730,19 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "MUTV", 
+                sources: [
+                    { 
+                        name: "Server 1", 
+                        url: "https://fastly.live.brightcove.com/6374053280112/eu-west-1/6058004203001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoiYXplMnp5LmVncmVzcy55ODN1ZWIiLCJhY2NvdW50X2lkIjoiNjA1ODAwNDIwMzAwMSIsImVobiI6ImZhc3RseS5saXZlLmJyaWdodGNvdmUuY29tIiwiaXNzIjoiYmxpdmUtcGxheWJhY2stc291cmNlLWFwaSIsInN1YiI6InBhdGhtYXB0b2tlbiIsImF1ZCI6WyI2MDU4MDA0MjAzMDAxIl0sImp0aSI6IjYzNzQwNTMyODAxMTIifQ.CpuijBxTUYZTaso6UHbVTjXMcRD3m5x7cL4ygwCFL48/playlist-dash.mpd",
+                        type: "dash",
+                    }
+                ], 
+                img: "https://mutv.manutd.com/assets/images/fav_icon.png", 
+                category: ["Sports", "English", "USA"],
+                description: "English"
+            },
+            { 
                 name: "WWE Network", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C490/master.m3u8" },
@@ -5811,7 +5824,7 @@ const channels = [
                     }
                 ], 
                 img: "https://logodownload.org/wp-content/uploads/2017/04/discovery-channel-logo-0.png", 
-                category: ["Mix-Entertainment", "English", "USA"],
+                category: ["Infotainment", "English", "USA"],
                 description: "English"
             },
             { 
