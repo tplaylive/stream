@@ -6676,4 +6676,22 @@ const channels = [
                 category: ["Local", "Bengali", "India"],
                 description: "Local"
             },
+            { 
+                name: "Kaliyaganj Sankirtan", 
+                sources: [
+                    { name: "Server 1", url: "https://server.playontv.in/mmix/index.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/pVQfPFBB/kaliyaganjsankirtan.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
+                name: "Kaliyaganj TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live-stream.utkalbongo.com/utkalbongo/stream1/hls/kaliyaganjtvlive.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/BZCSSSPS/kaliyaganjtv.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
         ];
