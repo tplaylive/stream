@@ -6685,7 +6685,16 @@ const channels = [
                 category: ["Local", "Bengali", "India"],
                 description: "Local"
             },
-             { 
+            { 
+                name: "Riddhi Network", 
+                sources: [
+                    { name: "Server 1", url: "https://playontv.online/riddhinetworklive/index.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPcoj09QrwKZbSw_0mhvgvlkuuVdWVlvYKkA&s", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
                 name: "Digital Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://digitalbangla.livebox.co.in/digitalbanglahls/live.m3u8" }
