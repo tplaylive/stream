@@ -6694,4 +6694,13 @@ const channels = [
                 category: ["Local", "Bengali", "India"],
                 description: "Local"
             },
+            { 
+                name: "UB Enter 10 HD", 
+                sources: [
+                    { name: "Server 1", url: "https://live-stream.utkalbongo.com/utkalbongo/stream21/hls/ubdemo.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/etv-gspn-bangla/images/2/20/UB_Enter10_HD.png/revision/latest/scale-to-width-down/1200?cb=20250530034440", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
         ];
