@@ -5355,6 +5355,23 @@ const channels = [
                 description: "World"
             },
             { 
+                name: "Willow", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://a201aivottlinear-a.akamaihd.net/OTTB/iad-nitro/live/clients/dash/enc/qlpqns8shq/out/v1/e36da545ab714b6a99b76c2b1fefd32f/cenc.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "24837c0b78e80b056a09495d0fd051b3",
+                            key: "5b90f3987781ea409190739762d2005e"
+                        }
+                    }
+                ], 
+                img: "https://i.postimg.cc/L4b8S5Df/willow.jpg", 
+                category: "Sports",
+                description: "World"
+            },
+            { 
                 name: "Prime TV", 
                 sources: [
                     { 
@@ -5629,11 +5646,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://cors-everywhere-wc8b4.ondigitalocean.app/https://live-pv-ta.amazon.fastly-edge.com:443/lhr-nitro/live/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
+                        url: "https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/live/dash/enc/bsaaetko8v/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
                         type: "dash",
                         drm: {
-                            kid: "294b596763cefc22d0c6312939e13d82",
-                            key: "52148f1043d238a487c29e04f1da8a7b"
+                            kid: "d0f2e5c39e70c18f29bf77768a1ad89a",
+                            key: "d6853c51fcf37a18905f0609972395d7"
                         }
                     }
                 ], 
@@ -5646,7 +5663,7 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
+                        url: "https://a151aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/live/dash/enc/f0qvkrra8j/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
                         type: "dash",
                         drm: {
                             kid: "9f51f3dc6313ac8bc668e2d9d1c04dfa",
@@ -5663,11 +5680,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://livestream.sunnxt.com/a4b4f71a8b4344f3a280e906657a517a/GeminiLifeB_IN_index.mpd",
+                        url: "https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/live/dash/enc/lsdasbvglv/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd",
                         type: "dash",
                         drm: {
-                            kid: "96d5157791ea4817a66a419e285a137f",
-                            key: "d6d0ad2a9a6cc56e18d7557c7c693a37"
+                            kid: "a93c1cbfdccd23233bac13540c693e7f",
+                            key: "2f6ab2e6693eb847eff3c9da8f9d01fc"
                         }
                     }
                 ], 
@@ -5680,11 +5697,11 @@ const channels = [
                 sources: [
                     { 
                         name: "Auto", 
-                        url: "https://livestream.sunnxt.com/6a6520e446604c6e9840e5bf3a3a7d95/GeminiMusicHDB_IN_index.mpd",
+                        url: "https://a151aivottlinear-a.akamaihd.net/OTTB/sin-nitro/live/dash/enc/i2pcjr4pe5/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd",
                         type: "dash",
                         drm: {
-                            kid: "76230567f3c04513a7e5d1249ab65983",
-                            key: "4ee6dc9a99d894dc41b0878d6ea22790"
+                            kid: "192b1115da041585c77200128549efa1",
+                            key: "634e10efe4abbb14be400a3ccbac0258"
                         }
                     }
                 ], 
