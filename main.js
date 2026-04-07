@@ -965,60 +965,6 @@ const channels = [
                 category: ["News", "Arabic", "Libya"],
                 description: "Libya"
             },
-            { 
-                name: "Disney Channel", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://dash2.antik.sk/stream/hisi_disney_channel/playlist_cbcs.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "11223344556677889900112233445566",
-                            key: "4b80724d0ef86bcb2c21f7999d67739d"
-                        }
-                    }
-                ], 
-                img: "https://images.seeklogo.com/logo-png/25/1/new-disney-channel-logo-png_seeklogo-255285.png", 
-                category: ["Kids", "English", "USA"],
-                package: ["150","250","500"],
-                description: "World"
-            },
-            { 
-                name: "Disney Junior", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://dash2.antik.sk/stream/hisi_disney_jr/playlist_cbcs.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "11223344556677889900112233445566",
-                            key: "edef8ba979d64acea3c827dcd51d21ed"
-                        }
-                    }
-                ], 
-                img: "https://cms-media.clink.services/Mobile_ree4ih.png", 
-                category: ["Kids", "English", "USA"],
-                package: ["150","250","500"],
-                description: "World"
-            },
-            { 
-                name: "Disney XD", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://dash2.antik.sk/stream/hisi_disney_jr/playlist_cbcs.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "11223344556677889900112233445566",
-                            key: "4b80724d0ef86bcb2c21f7999d67739d"
-                        }
-                    }
-                ], 
-                img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/CD4826FEC87B2F49DC854B8A74BDACD5AB6C21056C3833D1A0AC77158E76DA12/compose?aspectRatio=1.78&format=webp&width=600", 
-                category: ["Kids", "English", "USA"],
-                package: ["150","250","500"],
-                description: "World"
-            },
             {
                 name: "Kids Creation",
                 sources: [
@@ -1309,11 +1255,67 @@ const channels = [
             { 
                 name: "Disney", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptu.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" }
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" },
                 ], 
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hungama_TV.svg/250px-Hungama_TV.svg.png", 
-                category: ["Kids", "Tamil", "India"],
-                description: "Tamil"
+                img: "https://static.wikia.nocookie.net/dreamfiction/images/a/a5/Disney_Channel_in_Hindi_logo.png/revision/latest?cb=20220316213211", 
+                category: ["Kids", "Hindi", "India"],
+                description: "Hindi"
+            },
+
+            { 
+                name: "Disney Channel", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://dash2.antik.sk/stream/hisi_disney_channel/playlist_cbcs.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "11223344556677889900112233445566",
+                            key: "4b80724d0ef86bcb2c21f7999d67739d"
+                        }
+                    }
+                ], 
+                img: "https://images.seeklogo.com/logo-png/25/1/new-disney-channel-logo-png_seeklogo-255285.png", 
+                category: ["Kids", "English", "USA"],
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
+                name: "Disney Junior", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://dash2.antik.sk/stream/hisi_disney_jr/playlist_cbcs.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "11223344556677889900112233445566",
+                            key: "edef8ba979d64acea3c827dcd51d21ed"
+                        }
+                    }
+                ], 
+                img: "https://cms-media.clink.services/Mobile_ree4ih.png", 
+                category: ["Kids", "English", "USA"],
+                package: ["150","250","500"],
+                description: "World"
+            },
+            { 
+                name: "Disney XD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://dash2.antik.sk/stream/hisi_disney_jr/playlist_cbcs.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "11223344556677889900112233445566",
+                            key: "4b80724d0ef86bcb2c21f7999d67739d"
+                        }
+                    }
+                ], 
+                img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/CD4826FEC87B2F49DC854B8A74BDACD5AB6C21056C3833D1A0AC77158E76DA12/compose?aspectRatio=1.78&format=webp&width=600", 
+                category: ["Kids", "English", "USA"],
+                package: ["150","250","500"],
+                description: "World"
             },
             { 
                 name: "Wow Kidz Tamil", 
@@ -1343,6 +1345,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Power Kids",
+                sources: [
+                    { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/gr9v9Tt9/pk.jpg", 
+                category: ["Kids", "Hindi", "India"],
+                description: "Hindi"
+            },
+            { 
                 name: "Minimax", 
                 sources: [
                     { name: "Server 1", url: "https://vodzong.mjunoon.tv:8087/streamtest/disckids-157-1/playlist.m3u8" },
@@ -1369,15 +1380,6 @@ const channels = [
                 category: ["Kids", "English", "India"],
                 package: ["150","250","500"],
                 description: "English"
-            },
-            { 
-                name: "Power Kids",
-                sources: [
-                    { name: "Server 1", url: "https://cc-j2qrmdlg5y7lg.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-j2qrmdlg5y7lg/powerkids.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/gr9v9Tt9/pk.jpg", 
-                category: ["Kids", "Hindi", "India"],
-                description: "Hindi"
             },
             { 
                 name: "Zoo Moo",
