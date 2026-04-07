@@ -1861,6 +1861,15 @@ const channels = [
                 description: "Punjabi"
             },
             { 
+                name: "MH1", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/MHONE/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa5f35e8773cdb342d0e7c4a8152713e.png", 
+                category: ["Music", "Punjabi", "India"],
+                description: "Punjabi Music"
+            },
+            { 
                 name: "Saga Music HD", 
                 sources: [
                     { name: "Stream 1", url: "https://amg00223-unisys-amg00223c5-lg-in-2048.playouts.now.amagi.tv/playlist/amg00223-sevencolorsbroadcastingprivatelimited-sagamusic-lgin/playlist.m3u8" },
@@ -2046,6 +2055,15 @@ const channels = [
                 description: "Telugu"
             },
             { 
+                name: "ETV Music", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-szivnms4rlah6.akamaized.net/WWBI/Amagi/ETV_Music_IN/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2RNrjFccwhjJV-ort5wgqqvyGs5kpGfVGPg&s", 
+                category: ["Music", "Telugu", "India"],
+                description: "Telugu"
+            },
+            { 
                 name: "Kalaignar Murasu", 
                 sources: [
                     { name: "Server 1", url: "https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/murasu_nim_https/050522/murasu/playlist.m3u8" },
@@ -2097,6 +2115,51 @@ const channels = [
                 description: "Tamil"
             },
             { 
+                name: "K-POP by CJ ENM", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-s23bl4el34qh7.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-s23bl4el34qh7/f4acc9ba_daae_4ed0_b836_32126cead919/hls/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/sx6FN3qq/kpop-cj.jpg", 
+                category: ["Music", "English", "Korean", "Korea"],
+                description: "World"
+            },
+            { 
+                name: "24hr K Pop", 
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/akamaissh101/ssh101/24hrkpoptv/chunks.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/4NSw2Y26/24h-kpop.jpg", 
+                category: ["Music", "English", "Korean", "Korea"],
+                description: "World"
+            },
+            { 
+                name: "New KPOP", 
+                sources: [
+                    { name: "Server 1", url: "https://newidco-newkid-1-eu.xiaomi.wurl.tv/playlist.m3u8" }
+                ], 
+                img: "https://pbs.twimg.com/profile_images/1574980809127141376/sTw4-M6__400x400.jpg", 
+                category: ["Music", "English", "Korean", "Korea"],
+                description: "World"
+            },
+            { 
+                name: "K Pop", 
+                sources: [
+                    { name: "Server 1", url: "https://live20.bozztv.com/giatv/giatv-kpoptvplay/kpoptvplay/playlist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/wMrpYMsN/kpop-music.jpg", 
+                category: ["Music", "English", "Korean", "Korea"],
+                description: "World"
+            },
+            { 
+                name: "Deluxe Music", 
+                sources: [
+                    { name: "Server 1", url: "https://sdn-global-live-streaming-packager-cache.3qsdn.com/13456/13456_264_live.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/9F9d3TyJ/d-music.jpg", 
+                category: ["Music", "English", "World"],
+                description: "World"
+            },
+            { 
                 name: "Oxygen Music", 
                 sources: [
                     { name: "Server 1", url: "https://tplay.live/originals/oxygen-music/index.m3u8" },
@@ -2115,39 +2178,111 @@ const channels = [
                 description: "World"
             },
             { 
-                name: "Deluxe Music", 
+                name: "CMC", 
                 sources: [
-                    { name: "Server 1", url: "https://sdn-global-live-streaming-packager-cache.3qsdn.com/13456/13456_264_live.m3u8" }
+                    { name: "Server 1", url: "https://cmc-cmctv-cineverse.amagi.tv/playlist.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/9F9d3TyJ/d-music.jpg", 
-                category: ["Music", "English", "World"],
+                img: "https://upload.wikimedia.org/wikipedia/commons/e/ea/California_Music_Channel_Logo_%28cropped%29.png", 
+                category: ["Music", "English", "California"],
+                description: "San Francisco"
+            },
+            { 
+                name: "Juice TV", 
+                sources: [
+                    { name: "Server 1", url: "https://juicex.nz/hls/mystream.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/3/38/Juice_TV_Logo.png", 
+                category: ["Music", "English", "New Zealand"],
                 description: "World"
             },
             { 
-                name: "K Pop", 
+                name: "Total Music 80S", 
                 sources: [
-                    { name: "Server 1", url: "https://live20.bozztv.com/giatv/giatv-kpoptvplay/kpoptvplay/playlist.m3u8" }
+                    { name: "Server 1", url: "https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_80s/SA_LIVE_hls_enc/master.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/wMrpYMsN/kpop-music.jpg", 
-                category: ["Music", "English", "Korean", "Korea"],
+                img: "https://static.elektamedia.com/ch/tmc_80s.png", 
+                category: ["Music", "English", "UK"],
                 description: "World"
             },
             { 
-                name: "24hr K Pop", 
+                name: "Total Music 2000S", 
                 sources: [
-                    { name: "Server 1", url: "https://live20.bozztv.com/akamaissh101/ssh101/24hrkpoptv/chunks.m3u8" }
+                    { name: "Server 1", url: "https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_00s/SA_LIVE_hls_enc/master.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/4NSw2Y26/24h-kpop.jpg", 
-                category: ["Music", "English", "Korean", "Korea"],
+                img: "https://static.elektamedia.com/ch/tmc_00s.png", 
+                category: ["Music", "English", "UK"],
                 description: "World"
             },
             { 
-                name: "K-POP by CJ ENM", 
+                name: "Total Music", 
                 sources: [
-                    { name: "Server 1", url: "https://cc-s23bl4el34qh7.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-s23bl4el34qh7/f4acc9ba_daae_4ed0_b836_32126cead919/hls/playlist.m3u8" }
+                    { name: "Server 1", url: "https://cdn.global.elektamedia.com/live/c7eds/Totalmusic/SA_LIVE_hls_enc/master.m3u8" }
                 ], 
-                img: "https://i.postimg.cc/sx6FN3qq/kpop-cj.jpg", 
-                category: ["Music", "English", "Korean", "Korea"],
+                img: "https://static.wikitide.net/indietvwiki/e/e1/Totalmusic_Main_Logo.png", 
+                category: ["Music", "English", "UK"],
+                description: "World"
+            },
+            { 
+                name: "Total Music Dance", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_Dance/SA_LIVE_hls_enc/master.m3u8" }
+                ], 
+                img: "https://static.elektamedia.com/ch/tmc_dance.png", 
+                category: ["Music", "English", "UK"],
+                description: "World"
+            },
+            { 
+                name: "Total Music Concerts", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_Concerts/SA_LIVE_hls_enc/master.m3u8" }
+                ], 
+                img: "https://static.elektamedia.com/ch/tmc_concerts.png", 
+                category: ["Music", "English", "UK"],
+                description: "World"
+            },
+            { 
+                name: "AMUSIC Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://mn-nl.mncdn.com/amusictv/amusicsrt.stream/chunklist.m3u8" }
+                ], 
+                img: "https://i.postimg.cc/Y0gjK7Nt/amusic-channel.jpg", 
+                category: ["Music", "English", "Nigeria"],
+                description: "World"
+            },
+            { 
+                name: "Bok TV", 
+                sources: [
+                    { name: "Server 1", url: "https://livestream2.bokradio.co.za/hls/Bok5c.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/5xB_UYxcBO5CPahYeIANbBOl1pdzj8IsLzjHxxdAnAT2JWGyGjMkqW5bZnty3juWehdcCxVb=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Music", "English", "South Africa"],
+                description: "World"
+            },
+            { 
+                name: "MBC Loud", 
+                sources: [
+                    { name: "Server 1", url: "https://d2lfa0y84k5bwn.cloudfront.net/out/v1/86dd4506a70c4d7fb35e2ab50296d9a3/index.m3u8" }
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/a/ae/LOUD_FM.svg/revision/latest/scale-to-width-down/200?cb=20250711111939", 
+                category: ["Music", "English", "Saudi Arabia"],
+                description: "World"
+            },
+            { 
+                name: "M1", 
+                sources: [
+                    { name: "Server 1", url: "https://m-1.data.lt/m-1/smil:m-1.smil/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/M1_%282025%29.png", 
+                category: ["Music", "Arabic", "Saudi Arabia"],
+                description: "World"
+            },
+            { 
+                name: "Fon Music", 
+                sources: [
+                    { name: "Server 1", url: "https://tntm.mediacdn.ru/cdn/tntmusic/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/FON_MUSIC_Logo_2026.webp/250px-FON_MUSIC_Logo_2026.webp.png", 
+                category: ["Music", "Russian", "Russia"],
                 description: "World"
             },
             { 
@@ -4668,15 +4803,6 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/833455c80d73a6f34a8184277358d8fc.png", 
                 category: ["Mix-Entertainment", "Punjabi", "India"],
                 description: "Punjabi"
-            },
-            { 
-                name: "MH1", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/MHONE/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa5f35e8773cdb342d0e7c4a8152713e.png", 
-                category: ["Mix-Entertainment", "Punjabi", "Hindi", "India"],
-                description: "Punjabi/Hindi"
             },
             { 
                 name: "MH1 Dil Se", 
