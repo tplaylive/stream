@@ -6631,4 +6631,49 @@ const channels = [
                 category: ["Religious", "Tamil", "Kannada", "India"],
                 description: "Tamil"
             },
+            { 
+                name: "Zillar Barta", 
+                sources: [
+                    { name: "Server 1", url: "https://server.zillarbarta.com/zillarbarta/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/zillarbarta.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
+                name: "ZB Cinema", 
+                sources: [
+                    { name: "Server 1", url: "https://server.zillarbarta.com/ZBCINEMA/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/ZBCINEMA.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
+                name: "ZB Cartoon", 
+                sources: [
+                    { name: "Server 1", url: "https://server.zillarbarta.com/zbcatun/video.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/edfaebe9084c7a7c494b0e61a48aad39.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
+                name: "ZB Music", 
+                sources: [
+                    { name: "Server 1", url: "https://server.zillarbarta.com/zbmusic/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/db6bac6d85113d0b667ee8bb14f1f2d9.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
+            { 
+                name: "ZB Bhakti", 
+                sources: [
+                    { name: "Server 1", url: "https://server.zillarbarta.com/zbbhakti/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/008a17ffe63d7510373dbbf43393cbc5.png", 
+                category: ["Local", "Bengali", "India"],
+                description: "Local"
+            },
         ];
