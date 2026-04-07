@@ -2776,6 +2776,8 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-mp2ar4ca425xo.m3u8" },
                     { name: "Server 2", url: "https://mumbai-edge.smartplaytv.in/TheMovieClub/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://d3gnyty2vddhsg.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/pb-ytipwjqub3kf8/TMC2_IN.m3u8?ads.ads_cdn=cf&ads.cdn=cf" },
+                    { name: "Server 4", url: "https://d3gnyty2vddhsg.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/pb-ytipwjqub3kf8/TMC2_IN.m3u8?ads.ads_cdn=cf&ads.cdn=cf" },
                 ], 
                 img: "https://i.postimg.cc/bvZJXWvK/tmc.jpg", 
                 category: ["Movie", "Hindi", "India"],
