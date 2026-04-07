@@ -1140,6 +1140,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Hungama", 
+                sources: [
+                    { name: "Hindi", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/HUNGAMA/index.m3u8" },
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hungama_TV.svg/1280px-Hungama_TV.svg.png", 
+                category: ["Kids", "Hindi", "India"],
+                description: "India"
+            },
+            { 
                 name: "Green Gold TV", 
                 sources: [
                     { name: "Server 1", url: "https://vglivessai.akamaized.net/eu/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/675a37e5-f517-434e-adae-d25ae1706340/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b" }
