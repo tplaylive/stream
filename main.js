@@ -6521,8 +6521,17 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/akaal_tv/hls1_smart_akaal/akaal_tv.m3u8" },
                 ], 
                 img: "https://www.sikhentrepreneur.com/wp-content/uploads/2013/09/akaalch.png", 
-                category: "Religious",
+                category: ["Religious", "Punjabi", "India"],
                 description: "Sikhism"
+            },
+            { 
+                name: "Fateh TV", 
+                sources: [
+                    { name: "Server 1", url: "https://ott.livelegitpro.in/fatehtv/fatehtv/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7bc9db532221ac5dd1e42439465e8a79.png", 
+                category: ["Religious", "Punjabi", "India"],
+                description: ""
             },
             { 
                 name: "Shubh TV", 
@@ -6539,15 +6548,6 @@ const channels = [
                     { name: "Server 1", url: "https://cdn-2.pishow.tv/live/475/master.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/4d143f1eb83377f459f6ec5fe3feb959.png", 
-                category: "Religious",
-                description: "Hinduism"
-            },
-            { 
-                name: "Om", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt01.tangotv.in/OMTV/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/baff06610cc2d29677de762afb7911cf.png", 
                 category: "Religious",
                 description: "Hinduism"
             },
@@ -6597,13 +6597,433 @@ const channels = [
                 description: "Christian"
             },
             { 
+                name: "Channel Win", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn.smartstream.video/smartstream-us/channelwinlive/channelwinlive/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcef01a80f3a55a04bdc52e4fffb013d.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "India TV Yoga", 
+                sources: [
+                    { name: "Server 1", url: "https://vg-indiatvyupp.akamaized.net/ptnr-indiatv_monitoring/title-IndiaTV_Yoga_Non_SSAI/v1/vglive-sk-385006/main.m3u8" },
+                    { name: "Server 2", url: "https://csm-e-runntvprdlive-eb.runnads.runn.media/csm/extlive/runntvprd01,indiatvyogavidaa2.m3u8?yo.up=https://vidaa-indiatv.cdn.runn.tv/v1/vglive-sk-385006/" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/20da64eb81ce2051d3abe81fb74eb345.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Total Bhakti", 
+                sources: [
+                    { name: "Server 1", url: "https://d34z4embz0hjf6.cloudfront.net/out/v1/d55b3323a9f142638f897378f0b526fe/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/5802371total_bhakti_hd.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Hare Krsna", 
+                sources: [
+                    { name: "Server 1", url: "https://zenga.hk.harekrsnatv.com/harekrsna/tv/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7ed2ed4938f80e6a615b40607c739883.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthatv.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44dd8cb2d466527269869987655cec66.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha UK", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthauk.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44dd8cb2d466527269869987655cec66.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha USA", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthausa.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/44dd8cb2d466527269869987655cec66.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha Bhajan", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:bhajan.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/43afe00d2cd1377ae40115ddd88921f5.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha Prime", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthaprime1.smil/master.m3u8" }
+                ], 
+                img: "https://www.lyngsat.com/logo/tv/aa/aastha-prime-in.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Satsang TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d2vfwvjxwtwq1t.cloudfront.net/out/v1/6b24239d5517495b986e7705490c6e65/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/5534104satsang.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Satsang Digital", 
+                sources: [
+                    { name: "Server 1", url: "https://d1ji7e9jbzm5g8.cloudfront.net/out/v1/769f22f64d80442889306b9c4abea63c/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/3269519SATSANG_DIGITAL_LOGO.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sanskar Digital", 
+                sources: [
+                    { name: "Server 1", url: "https://deatfcv3xdvi3.cloudfront.net/out/v1/7a43dd2f64e34ec28da1b4bd6923251a/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/6996SANSKAR_DIGITAL.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sanskar", 
+                sources: [
+                    { name: "Server 1", url: "https://d26idhjf0y1p2g.cloudfront.net/out/v1/cd66dd25b9774cb29943bab54bbf3e2f/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/56888741566764sanskar.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sanskar UK", 
+                sources: [
+                    { name: "Server 1", url: "https://d34z4embz0hjf6.cloudfront.net/out/v1/7ac2789ff9a544a49337d1ffc54ce61c/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/62109032442526sanska_uk.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sanskar USA", 
+                sources: [
+                    { name: "Server 1", url: "https://d2netiedy8cz3x.cloudfront.net/out/v1/9bf6fa4ac8d6432cb98da13b121ba3c2/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/2799232sanskar_usa.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Shubh", 
+                sources: [
+                    { name: "Server 1", url: "https://d2g1vdc6ozl2o8.cloudfront.net/out/v1/0a0dc7d7911b4fddbb4dfc963fdd4b9e/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/1410047subh_logo_new.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Shubh Cinema", 
+                sources: [
+                    { name: "Server 1", url: "https://d393sxaxig6bax.cloudfront.net/out/v1/589cf2cf44bf42bb941e817a2240d62e/index.m3u8" }
+                ], 
+                img: "https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/4964141subh_cinema_logo_new.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Vedic", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:vedic.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/eb3a6a636f9786dbf5416cc424ef2698.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Dharm Sandesh", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:arihant.smil/master.m3u8" },
+                    { name: "Server 2", url: "https://cdn-2.pishow.tv/live/1455/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7dd00c328c787e5533c49df277e7d85b.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Divya", 
+                sources: [
+                    { name: "Server 1", url: "https://pitaara-lg.vgcdn.net/v1/vglive-sk-906482/playlist.m3u8" },
+                    { name: "Server 2", url: "https://vg-pitaaratvlive.akamaized.net/v1/vglive-sk-906482/playlist.m3u8" },
+                    { name: "Server 3", url: "https://cc-bbm8etf5o08pz.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-bbm8etf5o08pz/Live/Divya_Samsung/playlist.m3u8" },
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/2/23/Divya.png/revision/latest?cb=20230126171053", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Divya Bhajan", 
+                sources: [
+                    { name: "Server 1", url: "https://pitaara-lg.vgcdn.net/v1/vglive-sk-987805/playlist.m3u8" },
+                    { name: "Server 2", url: "https://vg-pitaaratvyupp.akamaized.net/ptnr-yupptv/title-Divya_Bhajan/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/vglive-sk-218913/playlist.m3u8" },
+                ], 
+                img: "https://d229kpbsb5jevy.cloudfront.net/tv/150/150/bnw/Divya-Bhajan_white.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Bhakti Play", 
+                sources: [
+                    { name: "Server 1", url: "https://cc-pisq3rszc5kpz.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-pisq3rszc5kpz/OTM/OTM_BhaktiFlix-SCTE_SAMSUNG/playlist.m3u8" },
+                    { name: "Server 2", url: "https://onetakemedia.vgcdn.net/vglive-sk-548610/playlist.m3u8" },
+                ], 
+                img: "https://bhaktiplay.com/images/icons/logo.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Anand TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live1.ottlive.co.in/anandtv/anandtv/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7817e5c6961d48ed2ffd4fc148d9c9c9.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Ishwar TV", 
+                sources: [
+                    { name: "Server 1", url: "https://6n3yow8pl9ok-hls-live.5centscdn.com/ishwartvlive/tv.stream/playlist.m3u8" },
+                ], 
+                img: "https://static.wikia.nocookie.net/logopedia/images/9/9e/Ishwar.png/revision/latest?cb=20210510132201", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sadhna TV", 
+                sources: [
+                    { name: "Server 1", url: "https://6n3yow8pl9ok-hls-live.5centscdn.com/sadhanalivetv/live.stream/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6c2c0c985c06b1c550e0e4af72d87d18.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Shree Shyam TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cloudcdn.in/live/shreeshyamtv/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/16fdbadb1fa71acded9d91fb1fbf2647.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Kripa TV", 
+                sources: [
+                    { name: "Server 1", url: "https://umangmedia.livebox.co.in/Kripatvhls/live.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/16a92aaec52db84f96dcb0084252aadc.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Vedant Ras Swar Shree", 
+                sources: [
+                    { name: "Server 1", url: "https://live.ottlive.co.in/vedantswarshree/vedantswarshree/index.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/f15e8f5bcfe9fe8bec26803d7abe3803.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Vidhata Darshan TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn2.in/VidhataDarshanTvhls/live.m3u8" },
+                ], 
+                img: "https://d3jnkp3lrs2hd5.cloudfront.net/images/320x180/8c41db01-52d2-4c57-b5f1-3e1007403e90.jpg", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "MH One Shraddha", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/MHONESHRADDHA/tracks-v1a1/mono.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_nT-EPNVjSidwe80cabijIY6rKxhnLDGGzPZwOwoKPSrQ=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Disha TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/dishatv/playlist.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-02-21/260221599022.jpg?width=700", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sharnam TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/sharanamtv/chunks.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59ad81d5fb3b208cedcd3be904ff57d.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Subharti TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/subhartitv/chunks.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/be6de867af7ba5ec1981b0a71cc85c17.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sai Leela TV", 
+                sources: [
+                    { name: "Server 1", url: "https://server.thelegitpro.in/saileelatv/saileelatv/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-01-26/2601261407009.jpg?width=700", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aadinath TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d2gvyg6lvauoko.cloudfront.net/230226/aadinathtv/chunks.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/dbf970ec4e130047778b39e674bdd293.png?width=300", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Awakening TV", 
+                sources: [
+                    { name: "Server 1", url: "https://d2gvyg6lvauoko.cloudfront.net/230226/awakeningtv/chunks.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/86e0fb81e5e54a238b51440f34720905.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Sarv Dharm Sangam", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/sarvdharmsangam/chunks.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/cacbd93588fb35c8a65c86fcf4310dc0.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha Tamil", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthatamil.smil/playlist.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/zI-vHdlQouRXb32l3k2FGfmIZvW2xQX1wYFl2cWihbGG-jLreQiUXJwBmspsrZOE2HK9PW540A=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Religious", "Tamil", "India"],
+                description: ""
+            },
+            { 
+                name: "Matha TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live.mathatv.in/mathatv/mathatv/index.m3u8" }
+                ], 
+                img: "https://play-lh.googleusercontent.com/g5zYMmLwiKGcah_KvelGEB2ot1VTbB3HrjZpR2hs0qDevPM6eosAhs1TxXVLkO55sU4=w240-h480-rw", 
+                category: ["Religious", "Tamil", "India"],
+                description: ""
+            },
+            { 
+                name: "Om", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt01.tangotv.in/OMTV/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/baff06610cc2d29677de762afb7911cf.png", 
+                category: ["Religious", "Tamil", "India"],
+                description: ""
+            },
+            { 
+                name: "Sairam TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/SAIRAMTV/index.m3u8" }
+                ], 
+                img: "https://www.lyngsat.com/logo/tv/ss/sairam_tv_in.png", 
+                category: ["Religious", "Tamil", "India"],
+                description: ""
+            },
+            { 
+                name: "Mahaa Bhakti", 
+                sources: [
+                    { name: "Server 1", url: "https://d1msejlow1t3l4.cloudfront.net/fta/mahaabhakti/chunks.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0127f7f59e1b1b714be76545172cdba0.png", 
+                category: ["Religious", "Telugu", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha Telugu", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthatelugu.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/a7658662e8db886e7c232fcc2ff4f06e.png?width=300", 
+                category: ["Religious", "Telugu", "India"],
+                description: ""
+            },
+            { 
                 name: "ETV Life", 
                 sources: [
                     { name: "Server 1", url: "https://d2cj1h11htct8o.cloudfront.net/v1/master/9d43eacaed199f8d5883927e7aef514a8a08e108/ETV_LIFE_H264_cloud_in/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0b79cae17adfb14c6c414a426671c735.png", 
-                category: "Religious",
-                description: "Telugu"
+                category: ["Religious", "Telugu", "India"],
+                description: ""
+            },
+            { 
+                name: "Bhakthi TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumbai-edge.smartplaytv.in/BhakthiTv/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/090b8ff724392b045741ebf301cd0232.png", 
+                category: ["Religious", "Telugu", "India"],
+                description: ""
+            },
+            { 
+                name: "Shakthi TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumbai-edge.smartplaytv.in/ShakthiTV/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/090b8ff724392b045741ebf301cd0232.png", 
+                category: ["Religious", "Telugu", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha Kannada", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthakannada.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/epgdata/ad217194b27304622a2af5a20808dfb0.png?width=300", 
+                category: ["Religious", "Kannada", "India"],
+                description: ""
             },
             { 
                 name: "Sri Sankara TV", 
@@ -6611,8 +7031,116 @@ const channels = [
                     { name: "Server 1", url: "https://d2gvyg6lvauoko.cloudfront.net/230226/srisankaratamil/chunks.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6e3aeb3373d2689cc87459517914a769.png", 
-                category: ["Religious", "Tamil", "Kannada", "India"],
-                description: "Tamil"
+                category: ["Religious", "Kannada", "India"],
+                description: ""
+            },
+            { 
+                name: "Divine TV", 
+                sources: [
+                    { name: "Server 1", url: "https://bozztv.com/gfaith/gfaith-divine/index.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/yH-6zqZ4au4F824e13zChJ3qTpcLp16tqOj4wt-To-dto6kLwgN4Yb8ddjSuBGNzO8rP-r3FgA=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Harvest TV", 
+                sources: [
+                    { name: "Server 1", url: "https://7mbd4ogkr3gx-hls-live.wmncdn.net/harvestenglish/d1796a22d24e8696c7d5d0b5c349fdd2.sdp/playlist.m3u8" }
+                ], 
+                img: "https://upload.wikimedia.org/wikipedia/en/4/4f/HarvestTV.png", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Harvest USA", 
+                sources: [
+                    { name: "Server 1", url: "https://7mbd4ogkr3gx-hls-live.wmncdn.net/harvestusa/d57ffba6564caea2fee3f4085f19a098.sdp/playlist.m3u8" }
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTypH9ZT29a2rlzGSOPtFZaWt9Xno_4mWrqdA&s", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Power Vision TV", 
+                sources: [
+                    { name: "Server 1", url: "https://yuppnimresmum.akamaized.net/28072023/smil:powervision.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/a0d72853bf6a3c525cbbfe31a8d59143.png", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Shalom", 
+                sources: [
+                    { name: "Server 1", url: "https://d2c4zqo2rb5uf1.cloudfront.net/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6d3dc3c4a92e37b0e066a6a3c622d9a1.png", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Shalom Global", 
+                sources: [
+                    { name: "Server 1", url: "https://d28xtgmk9tfk6b.cloudfront.net/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/6d3dc3c4a92e37b0e066a6a3c622d9a1.png", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Goodness TV", 
+                sources: [
+                    { name: "Server 1", url: "https://yuppnimrestreammum.akamaized.net/181224/smil:goodness.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/cd8d073149adb23365796bcab600654d.png", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Word to World", 
+                sources: [
+                    { name: "Server 1", url: "https://live.wmncdn.net/worldtoworld/d0dbe915091d400bd8ee7f27f0791303.sdp/playlist.m3u8" }
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_lRENk-82RD1twI2WhvN7cADlV5CWarZqvL0V8OIiS1Fg=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Religious", "Malayalam", "India"],
+                description: ""
+            },
+            { 
+                name: "Aastha Gujarati", 
+                sources: [
+                    { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthagujrati.smil/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/shows/2026-04-01/2604011255011.jpg?width=700", 
+                category: ["Religious", "Gujarati", "India"],
+                description: ""
+            },
+            { 
+                name: "Shiksha TV", 
+                sources: [
+                    { name: "Server 1", url: "https://5dd3981940faa.streamlock.net/shikshatvhd/shikshatvhd/playlist.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0b797ee2869f07fa3d8d1cdfd1e8bf86.png", 
+                category: ["Religious", "Gujarati", "India"],
+                description: ""
+            },
+            { 
+                name: "Shree Sanatan TV", 
+                sources: [
+                    { name: "Server 1", url: "https://sanatan.valamtv.in/hls/shree/bhattji.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/d76fb7f0552e61a59eda72085b55d069.png", 
+                category: ["Religious", "Gujarati", "India"],
+                description: ""
+            },
+            { 
+                name: "Valam Dayro TV", 
+                sources: [
+                    { name: "Server 1", url: "https://dayro.valamtv.in/hls/shree/bhattji.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/ValamTVDayro.png", 
+                category: ["Religious", "Gujarati", "India"],
+                description: ""
             },
             { 
                 name: "Zillar Barta", 
