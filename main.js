@@ -6425,7 +6425,7 @@ const channels = [
             { 
                 name: "Madani Channnel English", 
                 sources: [
-                    { name: "Server 1", url: "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8" },
+                    { name: "Server 1", url: "https://streaming.madanichannel.tv/static/streaming-playlists/hls/c6a600b0-82cb-454a-8953-2bb2bb372edc/master.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJs9L2Bi_GC7qF_mXpeiPVnRKETXyWMVSr7Q&s", 
                 category: ["Religious", "English", "Pakistan"],
