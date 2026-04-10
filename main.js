@@ -6463,7 +6463,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8" },
                 ], 
-                img: "https://static.wikia.nocookie.net/etv-gspn-bangla/images/a/ae/Madani_Channel_Bangla_logo.png/revision/latest?cb=20231128143429", 
+                img: "https://m1pfxzepyyyj.merlincdn.net/content/6/BJ/169578/logo_50.png?v=638436903936385279", 
                 category: ["Religious", "Bengali", "Bangladesh"],
                 description: "Islam"
             },
