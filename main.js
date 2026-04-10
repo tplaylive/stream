@@ -6538,7 +6538,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvUrdu/index.m3u8" },
                 ], 
-                img: "https://www.madanichannel.tv/img/madani-channel-logo.png", 
+                img: "https://m1pfxzepyyyj.merlincdn.net/content/J/kE/169575/logo_50.png?v=638436890142481410", 
                 category: ["Religious", "Urdu", "Pakistan"],
                 description: "Islam"
             },
@@ -6547,7 +6547,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://streaming.madanichannel.tv/static/streaming-playlists/hls/b9790f10-cb0d-4e30-82bf-84a756234e58/master.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/BvfMPnSP/madani-bangla.jpg", 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_s1QIH4x4Ru0DufX_CNlWhPvPU3o91ZcA9w&s", 
                 category: ["Religious", "Urdu", "Pakistan"],
                 description: "Islam"
             },
