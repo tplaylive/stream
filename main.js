@@ -6414,12 +6414,66 @@ const channels = [
                 description: "Tamil"
             },
             { 
-                name: "Peace TV", 
+                name: "Peace TV English", 
+                sources: [
+                    { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvEnglish/index.m3u8" },
+                ], 
+                img: "https://m1pfxzepyyyj.merlincdn.net/content/Q/k_/169572/logo_50.png?v=638436887129585083", 
+                category: ["Religious", "English", "UAE"],
+                description: "Islam"
+            },
+            { 
+                name: "Madani Channnel English", 
+                sources: [
+                    { name: "Server 1", url: "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJs9L2Bi_GC7qF_mXpeiPVnRKETXyWMVSr7Q&s", 
+                category: ["Religious", "English", "Pakistan"],
+                description: "Islam"
+            },
+            { 
+                name: "Saudi Quran TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_quran/hls_roku/index.m3u8" },
+                ], 
+                img: "https://yt3.googleusercontent.com/ytc/AIdro_mesiGG76gww2WnpFVUFbMz-s2d4IjJJVhDqJuCVscqKLY=s900-c-k-c0x00ffffff-no-rj", 
+                category: ["Religious", "Arabic", "Saudi Arabia"],
+                description: "Islam"
+            },
+            { 
+                name: "Saudi Sunnah TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_sunnah/hls_roku/index.m3u8" },
+                ], 
+                img: "https://www.lyngsat.com/logo/tv/ss/sunna-tv-sa.png", 
+                category: ["Religious", "Arabic", "Saudi Arabia"],
+                description: "Islam"
+            },
+            { 
+                name: "Shquran Tv", 
+                sources: [
+                    { name: "Server 1", url: "https://live.kwikmotion.com/sharjahtvquranlive/shqurantv.smil/playlist.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/g03Jqxvn/sharjahtvquranlive.jpg", 
+                category: ["Religious", "Arabic", "Saudi Arabia"],
+                description: "Islam"
+            },
+            { 
+                name: "Peace TV Bangla", 
                 sources: [
                     { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvBangla/index.m3u8" },
                 ], 
-                img: "https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/jzxlzmgwj9tfpyv8ldpf", 
-                category: "Religious",
+                img: "https://static.wikia.nocookie.net/etv-gspn-bangla/images/a/ae/Madani_Channel_Bangla_logo.png/revision/latest?cb=20231128143429", 
+                category: ["Religious", "Bengali", "Bangladesh"],
+                description: "Islam"
+            },
+            { 
+                name: "Madani Channnel Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://streaming.madanichannel.tv/static/streaming-playlists/hls/d3e49b76-ac06-4689-a641-9200445b647f/master.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/BvfMPnSP/madani-bangla.jpg", 
+                category: ["Religious", "Bengali", "Bangladesh"],
                 description: "Islam"
             },
             { 
@@ -6429,53 +6483,7 @@ const channels = [
                     { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/islamictvbd.stream/playlist.m3u8" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/9/90/Islamic_TV_New_Logo.png", 
-                category: "Religious",
-                description: "Islam"
-            },
-            { 
-                name: "Madani Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/islamictvbd.stream/playlist.m3u8" },
-                ], 
-                img: "https://i.postimg.cc/BvfMPnSP/madani-bangla.jpg", 
-                category: "Religious",
-                description: "Islam"
-            },
-            { 
-                name: "Mercy TV", 
-                sources: [
-                    { name: "Server 1", url: "https://5dd3981940faa.streamlock.net/mercytv/mercytv/playlist.m3u8" },
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXMFfcf9s50fsWGifUc9Do21MCTfRN6Y9-yw&s", 
-                category: "Religious",
-                description: "Islam"
-            },
-            { 
-                name: "Tehzeeb TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-4.pishow.tv/live/239/master.m3u8" },
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/411855530af18a02490ab43f57ddfe38.png", 
-                category: "Religious",
-                description: "Islam"
-            },
-            { 
-                name: "Ilm TV", 
-                sources: [
-                    { name: "Originals", url: "https://tplay.live/originals/ilm-tv/index.m3u8" }
-                ],
-                img: "https://i.postimg.cc/tTkx4MWv/ilm.jpg", 
-                category: "Religious",
-                description: "Islam"
-            },
-            { 
-                name: "Islam Bangla", 
-                sources: [
-                    { name: "Server 1", url: "https://live-islamtv-bangla.simplestreamcdn.com/live12/islamtv_bangla/bitrate1.isml/live.m3u8" },
-                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/islamchbangla.stream/tracks-v1a1/mono.m3u8" },
-                ], 
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPhxUqZi3tzsjdt5rn7AWyC2CQgH8z14fd2g&s", 
-                category: "Religious",
+                category: ["Religious", "Bengali", "Bangladesh"],
                 description: "Islam"
             },
             { 
@@ -6485,71 +6493,27 @@ const channels = [
                     { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/azantv.stream/playlist.m3u8" },
                 ], 
                 img: "https://www.jagobd.com/wp-content/uploads/2019/04/azantvs.jpg", 
-                category: "Religious",
+                category: ["Religious", "Bengali", "Bangladesh"],
                 description: "Islam"
             },
             { 
-                name: "Shquran Tv", 
+                name: "Islam Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://live.kwikmotion.com/sharjahtvquranlive/shqurantv.smil/playlist.m3u8" },
+                    { name: "Server 1", url: "https://live-islamtv-bangla.simplestreamcdn.com/live12/islamtv_bangla/bitrate1.isml/live.m3u8" },
+                    { name: "Server 2", url: "https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDDEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFsaWRtaW51aiPhnPTI2/islamchbangla.stream/tracks-v1a1/mono.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/g03Jqxvn/sharjahtvquranlive.jpg", 
-                category: "Religious",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPhxUqZi3tzsjdt5rn7AWyC2CQgH8z14fd2g&s", 
+                category: ["Religious", "Bengali", "Bangladesh"],
                 description: "Islam"
             },
             { 
-                name: "Saudi Quran TV", 
+                name: "Ilm TV", 
                 sources: [
-                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_quran/hls_roku/index.m3u8" },
-                ], 
-                img: "https://yt3.googleusercontent.com/ytc/AIdro_mesiGG76gww2WnpFVUFbMz-s2d4IjJJVhDqJuCVscqKLY=s900-c-k-c0x00ffffff-no-rj", 
-                category: "Religious",
+                    { name: "Originals", url: "https://tplay.live/originals/ilm-tv/index.m3u8" }
+                ],
+                img: "https://i.postimg.cc/tTkx4MWv/ilm.jpg", 
+                category: ["Religious", "Bengali", "India"],
                 description: "Islam"
-            },
-            { 
-                name: "Saudi Sunnah TV", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/saudi_sunnah/hls_roku/index.m3u8" },
-                ], 
-                img: "https://www.lyngsat.com/logo/tv/ss/sunna-tv-sa.png", 
-                category: "Religious",
-                description: "Islam"
-            },
-            { 
-                name: "Akaal Channel", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/akaal_tv/hls1_smart_akaal/akaal_tv.m3u8" },
-                ], 
-                img: "https://www.sikhentrepreneur.com/wp-content/uploads/2013/09/akaalch.png", 
-                category: ["Religious", "Punjabi", "India"],
-                description: "Sikhism"
-            },
-            { 
-                name: "Fateh TV", 
-                sources: [
-                    { name: "Server 1", url: "https://ott.livelegitpro.in/fatehtv/fatehtv/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7bc9db532221ac5dd1e42439465e8a79.png", 
-                category: ["Religious", "Punjabi", "India"],
-                description: ""
-            },
-            { 
-                name: "Shubh TV", 
-                sources: [
-                    { name: "Server 1", url: "https://d2g1vdc6ozl2o8.cloudfront.net/out/v1/0a0dc7d7911b4fddbb4dfc963fdd4b9e/index.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/cb75e0ad6c6117a19b17f762903a690b.png", 
-                category: "Religious",
-                description: "Hinduism"
-            },
-            { 
-                name: "Santvani Channel", 
-                sources: [
-                    { name: "Server 1", url: "https://cdn-2.pishow.tv/live/475/master.m3u8" }
-                ], 
-                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/4d143f1eb83377f459f6ec5fe3feb959.png", 
-                category: "Religious",
-                description: "Hinduism"
             },
             { 
                 name: "Om Bangla", 
@@ -6557,7 +6521,7 @@ const channels = [
                     { name: "Originals", url: "https://tplay.live/originals/om-bangla/index.m3u8" }
                 ],
                 img: "https://i.postimg.cc/jjmyWm0m/om-bangla-2.jpg", 
-                category: "Religious",
+                category: ["Religious", "Bengali", "India"],
                 description: "Hinduism"
             },
             { 
@@ -6566,35 +6530,26 @@ const channels = [
                     { name: "Originals", url: "https://live.ekamraott.com/paramatma/paramatma/index.m3u8" }
                 ],
                 img: "https://i.postimg.cc/zvM91RLJ/ekamra-paramatma.jpg", 
-                category: "Religious",
+                category: ["Religious", "Odia", "India"],
                 description: "Odia "
             },
             { 
-                name: "24/7 Bangla Kirtan", 
+                name: "Peace TV Urdu", 
                 sources: [
-                    { name: "Playlist", url: "https://tplay.live/playlist/mix/bangla-kirtan/index.m3u8" }
+                    { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvUrdu/index.m3u8" },
                 ], 
-                img: "https://i.postimg.cc/QMtrZNRk/bangla-kirtan.jpg", 
-                category: "Religious",
-                description: "Hinduism"
+                img: "https://www.madanichannel.tv/img/madani-channel-logo.png", 
+                category: ["Religious", "Urdu", "Pakistan"],
+                description: "Islam"
             },
             { 
-                name: "Paras Gold", 
+                name: "Madani Channnel Urdu", 
                 sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/PARASGOLD/index.m3u8" }
+                    { name: "Server 1", url: "https://streaming.madanichannel.tv/static/streaming-playlists/hls/b9790f10-cb0d-4e30-82bf-84a756234e58/master.m3u8" },
                 ], 
-                img: "https://www.lyngsat.com/logo/tv/pp/paras-gold-in.png", 
-                category: "Religious",
-                description: "Jainism"
-            },
-            { 
-                name: "Aaseervatham TV", 
-                sources: [
-                    { name: "Server 1", url: "https://mumt04.tangotv.in/AASEERVATHAMTV/index.m3u8" }
-                ], 
-                img: "https://c.kmpr.in/assets/tv_channels_150/5220.jpg", 
-                category: "Religious",
-                description: "Christian"
+                img: "https://i.postimg.cc/BvfMPnSP/madani-bangla.jpg", 
+                category: ["Religious", "Urdu", "Pakistan"],
+                description: "Islam"
             },
             { 
                 name: "Channel Win", 
@@ -6604,6 +6559,24 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/bcef01a80f3a55a04bdc52e4fffb013d.png", 
                 category: ["Religious", "Hindi", "India"],
                 description: ""
+            },
+            { 
+                name: "Mercy TV", 
+                sources: [
+                    { name: "Server 1", url: "https://5dd3981940faa.streamlock.net/mercytv/mercytv/playlist.m3u8" },
+                ], 
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXMFfcf9s50fsWGifUc9Do21MCTfRN6Y9-yw&s", 
+                category: ["Religious", "Hindi", "India"],
+                description: "Islam"
+            },
+            { 
+                name: "Tehzeeb TV", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-4.pishow.tv/live/239/master.m3u8" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/411855530af18a02490ab43f57ddfe38.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: "Islam"
             },
             { 
                 name: "India TV Yoga", 
@@ -6936,6 +6909,42 @@ const channels = [
                 description: ""
             },
             { 
+                name: "Santvani Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-2.pishow.tv/live/475/master.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/4d143f1eb83377f459f6ec5fe3feb959.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: "Hinduism"
+            },
+            { 
+                name: "Paras Gold", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/PARASGOLD/index.m3u8" }
+                ], 
+                img: "https://www.lyngsat.com/logo/tv/pp/paras-gold-in.png", 
+                category: ["Religious", "Hindi", "India"],
+                description: "Jainism"
+            },
+            { 
+                name: "Akaal Channel", 
+                sources: [
+                    { name: "Server 1", url: "https://cdn-globecast.akamaized.net/live/eds/akaal_tv/hls1_smart_akaal/akaal_tv.m3u8" },
+                ], 
+                img: "https://www.sikhentrepreneur.com/wp-content/uploads/2013/09/akaalch.png", 
+                category: ["Religious", "Punjabi", "India"],
+                description: "Sikhism"
+            },
+            { 
+                name: "Fateh TV", 
+                sources: [
+                    { name: "Server 1", url: "https://ott.livelegitpro.in/fatehtv/fatehtv/index.m3u8" }
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/7bc9db532221ac5dd1e42439465e8a79.png", 
+                category: ["Religious", "Punjabi", "India"],
+                description: ""
+            },
+            { 
                 name: "Aastha Tamil", 
                 sources: [
                     { name: "Server 1", url: "https://aasthaott.akamaized.net/110923/smil:aasthatamil.smil/playlist.m3u8" }
@@ -6970,6 +6979,15 @@ const channels = [
                 img: "https://www.lyngsat.com/logo/tv/ss/sairam_tv_in.png", 
                 category: ["Religious", "Tamil", "India"],
                 description: ""
+            },
+            { 
+                name: "Aaseervatham TV", 
+                sources: [
+                    { name: "Server 1", url: "https://mumt04.tangotv.in/AASEERVATHAMTV/index.m3u8" }
+                ], 
+                img: "https://c.kmpr.in/assets/tv_channels_150/5220.jpg", 
+                category: ["Religious", "Tamil", "India"],
+                description: "Christian"
             },
             { 
                 name: "Mahaa Bhakti", 
@@ -7141,6 +7159,15 @@ const channels = [
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/ValamTVDayro.png", 
                 category: ["Religious", "Gujarati", "India"],
                 description: ""
+            },
+            { 
+                name: "Peace TV Chinese", 
+                sources: [
+                    { name: "Server 1", url: "https://dzkyvlfyge.erbvr.com/PeaceTvChinese/index.m3u8" },
+                ], 
+                img: "https://m1pfxzepyyyj.merlincdn.net/content/8/9W/169581/logo_50.png?v=638436913732579756", 
+                category: ["Religious", "Chinese", "China"],
+                description: "Islam"
             },
             { 
                 name: "Zillar Barta", 
