@@ -7286,4 +7286,22 @@ const channels = [
                 category: ["Local", "Bengali", "India"],
                 description: "Local"
             },
+            { 
+                name: "CDO Network", 
+                sources: [
+                    { name: "Server 1", url: "https://cdotvlive.in/CDONETWORKhls/stream.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/g0FKJRRJ/CDO-Network.png", 
+                category: ["Local", "Nagpuri", "India"],
+                description: "Local"
+            },
+            { 
+                name: "CDO Sadri", 
+                sources: [
+                    { name: "Server 1", url: "https://cdotvlive.in/CDOSADRIhls/stream.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/yNcSrbDH/CDO-SADRI.png", 
+                category: ["Local", "Nagpuri", "India"],
+                description: "Local"
+            },
         ];
