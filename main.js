@@ -2617,6 +2617,23 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Star Gold Select HD", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://jiocdn.tulnit.fun/stream.php/Star_Gold_Select_HD_BTS/output/index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "2cb38dd5e6235bd9936ad7a29bc7ffd8",
+                            key: "281d7b329be4e22d4e0e3e1d508ba2a4"
+                        }
+                    }
+                ], 
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Gold_Select_HD.png", 
+                category: ["Movie", "Hindi", "India"],
+                description: "India"
+            },
+            { 
                 name: "Star Gold Romance", 
                 sources: [
                     { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/409/index.m3u8" },
@@ -2783,23 +2800,6 @@ const channels = [
                     { name: "Server 1", url: "https://mumt03.tangotv.in/ALLTIMEMOVIES/index.m3u8" },
                 ], 
                 img: "https://yt3.googleusercontent.com/U4INXhwmEUOABHoemQBpI6C9t4jb9iBmDvZ3ZT3lAb9Au_jVl32NL8XDpy-9cBjRJ2LP69Ovzg=s160-c-k-c0x00ffffff-no-rj", 
-                category: ["Movie", "Hindi", "India"],
-                description: "India"
-            },
-            { 
-                name: "Anoml Cinema", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeeanmolcinema/default/manifest.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "812411cba8bc42c79eb2b19cd78ad3f3",
-                            key: "468a0b8d3d5d42d8a5c41bb875390a74"
-                        }
-                    }
-                ], 
-                img: "https://yt3.googleusercontent.com/vsUsDAS7eY-c-wMy640Se_420J32aYJ-s2Ma_j1TgmZn_Lfw6ZCYTuy-vj1vSO4d3-A_NIz2EGw=s900-c-k-c0x00ffffff-no-rj", 
                 category: ["Movie", "Hindi", "India"],
                 description: "India"
             },
