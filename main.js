@@ -5365,7 +5365,7 @@ const channels = [
             { 
                 name: "Sony Sports 4", 
                 sources: [
-                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000119186&e=.m3u8" }
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000119186&e=.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C244/master.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fe0fd39301254ce313504ad3f80e3ef5.png", 
