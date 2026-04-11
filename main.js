@@ -6301,7 +6301,8 @@ const channels = [
                 name: "History TV 18 English", 
                 sources: [
                     { name: "Server 1", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C202/master.m3u8" },
+                    { name: "Server 2", url: "https://n18syndication.akamaized.net/bpk-tv/History_HD_NW18_MOB/output01/master.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C202/master.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/f89bad9075c009869645a1af78c33978.png", 
                 category: ["Infotainment", "English", "India"],
@@ -6311,6 +6312,7 @@ const channels = [
                 name: "History TV 18 Hindi", 
                 sources: [
                     { name: "Server 1", url: "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelhindi-samsungin/playlist.m3u8" },
+                    { name: "Server 2", url: "https://n18syndication.akamaized.net/bpk-tv/History_HD_NW18_MOB/output01/master.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/a672c84c9b640aff36b88b9c3a4e4c70.png", 
                 category: ["Infotainment", "Hindi", "India"],
@@ -7314,4 +7316,744 @@ const channels = [
                 category: ["Local", "Nagpuri", "India"],
                 description: "Local"
             },
+            { 
+                name: "KC TV", 
+                sources: [
+                    { name: "Server 1", url: "https://rtmp.bmlive.net/bms/kctv/stream.m3u8" },
+                ], 
+                img: "https://play-lh.googleusercontent.com/qAyUZPMllAhkhcuNK-3sCcnSC6SGT83oytQjtMNwLGiXXO7P5qZb6yg3Dp0jahi5fkA=w512-h960-rw", 
+                category: ["Local", "Tamil", "India"],
+                description: "Local"
+            },
+            { 
+                name: "KC Music", 
+                sources: [
+                    { name: "Server 1", url: "https://rtmp.bmlive.net/bms/kcmusic/index.m3u8" },
+                ], 
+                img: "https://bmcloud.in/apptest/uploads/6936d2ffdb5e8.png", 
+                category: ["Local", "Tamil", "India"],
+                description: "Local"
+            },
+            { 
+                name: "Oli TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live.olidigital.in/olitv/olitv/index.m3u8" },
+                ], 
+                img: "https://i.ibb.co/XfvTQyJn/main-removebg-preview.png", 
+                category: ["Local", "Tamil", "India"],
+                description: "Local"
+            },
+            { 
+                name: "Time TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live.olidigital.in/timetv/timetv/index.m3u8" },
+                ], 
+                img: "https://play-lh.googleusercontent.com/pGvPUIyZtW1-kPduEn593l_WAzeaLuEgl1oiT3-jXOPEPJ65zeeuCJQFVdsA0_fkb2Ss=w512-h960-rw", 
+                category: ["Local", "Tamil", "India"],
+                description: "Local"
+            },
+            { 
+                name: "Moon TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live.maxtn.in/moontv/moontv/index.m3u8" },
+                ], 
+                img: "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/MoonTV.png", 
+                category: ["Local", "Tamil", "India"],
+                description: "Local"
+            },
+            { 
+                name: "NTN TV", 
+                sources: [
+                    { name: "Server 1", url: "https://live.skystream.in/live/ntntv/index.m3u8?hls_ctx=1314owa2" },
+                ], 
+                img: "https://play-lh.googleusercontent.com/V4GL0XO3McjRFJeANzwgRZDjI3UPIEjhMtfq4L9oVthSJo1loNfvkBuoSYE8BdDLvfY=w512-h960-rw", 
+                category: ["Local", "Tamil", "India"],
+                description: "Local"
+            },
+
+
+    {
+        "name": "Sana TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://galaxyott.live/hls/sanatv.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/sanatv.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Panruti; Cuddalore"
+    },
+    {
+        "name": "Sana TV (DistroTV)",
+        "sources": [
+            { "name": "Server 1", "url": "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/sana-tv/index.m3u8?ads.vf=VcGQSvUuGWi" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/sanatv.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Panruti; Cuddalore"
+    },
+    {
+        "name": "Sana TV (Tata Play)",
+        "sources": [
+            { "name": "Server 1", "url": "https://cable75tataplay.akamaized.net/hls/sanatv.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/sanatv.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Panruti; Cuddalore"
+    },
+    {
+        "name": "Sana Plus",
+        "sources": [
+            { "name": "Server 1", "url": "https://galaxyott.live/hls/sanaplus.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/sanaplus.png",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Panruti; Cuddalore"
+    },
+    {
+        "name": "Sana Plus (Tata Play)",
+        "sources": [
+            { "name": "Server 1", "url": "https://cable74tataplay.akamaized.net/hls/sanaplus.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/sanaplus.png",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Panruti; Cuddalore"
+    },
+    {
+        "name": "NTC TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://galaxyott.live/hls/ntv.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/ntvtamil.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Pattukkottai; Thanjavur"
+    },
+    {
+        "name": "NTC TV (Tata Play)",
+        "sources": [
+            { "name": "Server 1", "url": "https://cable85tataplay.akamaized.net/live/ntvpkt/index.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/ntvtamil.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Pattukkottai; Thanjavur"
+    },
+    {
+        "name": "Ultimate TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.galaxyott.live/live/utv/index.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/utvtamil.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Trichy"
+    },
+    {
+        "name": "Ultimate TV (Tata Play)",
+        "sources": [
+            { "name": "Server 1", "url": "https://cable92tataplay.akamaized.net/live/utv/index.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/utvtamil.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Trichy"
+    },
+    {
+        "name": "Anandham TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://server.sscloud7.in/live/anandhamtv/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1753975377_ANANTHAM%20TV%20LOGO.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tenkasi"
+    },
+    {
+        "name": "Suriya TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://galaxyott.live/hls/suryatv.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1732170490_WhatsApp_Image_2024-11-21_at_11.10.20_AM-removebg-preview%20(2).png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tiruvannamalai"
+    },
+    {
+        "name": "Subin TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.galaxyott.live/live/subintv/index.m3u8" }
+        ],
+        "img": "https://subintv.in/SUBINLOGO.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Alangulam; Tenkasi"
+    },
+    {
+        "name": "Subin TV (Tata Play)",
+        "sources": [
+            { "name": "Server 1", "url": "https://cable88tataplay.akamaized.net/live/subintv/index.m3u8" }
+        ],
+        "img": "https://subintv.in/SUBINLOGO.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Alangulam; Tenkasi"
+    },
+    {
+        "name": "Subin TV (Phoenix)",
+        "sources": [
+            { "name": "Server 1", "url": "http://subintv.phoenixcreations.online/subintv/subintv/playlist.m3u8" }
+        ],
+        "img": "https://subintv.in/SUBINLOGO.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Alangulam; Tenkasi"
+    },
+    {
+        "name": "Dharsan TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://galaxyott.live/hls/dharshantv.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/dharshantvtamil.png",
+        "category": ["Devotional", "Hindu", "Local", "Tamil", "India"],
+        "description": "Kanchipuram"
+    },
+    {
+        "name": "Dharsan TV (Tata Play)",
+        "sources": [
+            { "name": "Server 1", "url": "https://cable91tataplay.akamaized.net/live/dharshantv/index.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/dharshantvtamil.png",
+        "category": ["Devotional", "Hindu", "Local", "Tamil", "India"],
+        "description": "Kanchipuram"
+    },
+    {
+        "name": "Rock TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://apis.avmediawork.in/tvhls/rocktv.m3u8" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/suriyantvtamil.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Salem"
+    },
+    {
+        "name": "Suriyan TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.sscloud7.com/live/suriyantv/index.m3u8" }
+        ],
+        "img": "https://ltsk-cdn.s3.eu-west-1.amazonaws.com/jumpstart/Temp_Live/cdn/HLS/Channel/transparentImages/Suriyan-tv-logo_2000_X_1125_Transpharent.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Surandai; Tenkasi"
+    },
+    {
+        "name": "Aaryaa TV (Jio)",
+        "sources": [
+            { "name": "Server 1", "url": "https://m3uplay.com/leo/live.m3u8?id=3395&format=.m3u8", "http_referrer": "https://m3uplay.com" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1751968987_AARYAA%20TV.png",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Erode"
+    },
+    {
+        "name": "Aaryaa TV (Cloud7)",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.sscloud7.in/live/aaryaatv/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1751968987_AARYAA%20TV.png",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Erode"
+    },
+    {
+        "name": "Roja TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.rojatv.cloud/rojatv/rojatv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/FqstwB7oxZ8xnKFYgcc8NaBytJvPdhc62AfU4ZvmkmM3UPYdllCKrkD30RJEwjIFNDLz=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "Roja Movies",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.rojatv.cloud/rojatv/rojatv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/OI5HmCytC3TzhwE8dBGtZzgHaZ9qpSGH4AorISFfpZOe-ytCd367BV-iQMK55TBvhp32S1t2t1G6wLbfFeCgBg=w512-h960-rw",
+        "category": ["Movies", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "Bhagyam TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://m3uplay.com/leo/live.m3u8?id=3358&format=.m3u8", "http_referrer": "https://m3uplay.com" }
+        ],
+        "img": "https://jiotvimages.cdn.jio.com/dare_images/images/aanadhamtvtamil.png",
+        "category": ["Devotional", "Hindu", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "KC TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://rtmp.bmlive.net/bms/kctv/stream.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/qAyUZPMllAhkhcuNK-3sCcnSC6SGT83oytQjtMNwLGiXXO7P5qZb6yg3Dp0jahi5fkA=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "KC Music",
+        "sources": [
+            { "name": "Server 1", "url": "https://rtmp.bmlive.net/bms/kcmusic/index.m3u8" }
+        ],
+        "img": "https://bmcloud.in/apptest/uploads/6936d2ffdb5e8.png",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "Raga TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.onecloudlive.in/ragatv/ragatvhd/index.m3u8" }
+        ],
+        "img": "https://ragatvchannel.com/images/logo.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Salem"
+    },
+    {
+        "name": "Om Sakthi TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live1.sscloud7.com/live/omsakthitv/index.mpd" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1746107774_rannig%20logo%20copy%20(1).png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Sankarankovil; Tenkasi"
+    },
+    {
+        "name": "Oli TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.olidigital.in/olitv/olitv/index.m3u8" }
+        ],
+        "img": "https://i.ibb.co/XfvTQyJn/main-removebg-preview.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Gudiyatham; Vellore"
+    },
+    {
+        "name": "Time TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.olidigital.in/timetv/timetv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/pGvPUIyZtW1-kPduEn593l_WAzeaLuEgl1oiT3-jXOPEPJ65zeeuCJQFVdsA0_fkb2Ss=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Ariyalur"
+    },
+    {
+        "name": "Moon TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.maxtn.in/moontv/moontv/index.m3u8" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/MoonTV.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tirunelveli"
+    },
+    {
+        "name": "NTN TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.skystream.in/live/ntntv/index.m3u8?hls_ctx=1314owa2" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/V4GL0XO3McjRFJeANzwgRZDjI3UPIEjhMtfq4L9oVthSJo1loNfvkBuoSYE8BdDLvfY=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Nagapattinam"
+    },
+    {
+        "name": "Kumari TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://play.applelive.in/kumaritv/gvkumaritv.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/5BbVPm_jHSHPVY3XLhfYjpJJtXi1qVV3jlJ9i-cTE0gckC_LSEBKftLgU6uX_UMXgQ=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Nagercoil; Kanyakumari"
+    },
+    {
+        "name": "Sakthi TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.sscloud7.in/live/sakthitv/index.m3u8" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/SakthiTV.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Cuddalore"
+    },
+    {
+        "name": "Prime TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.applelive.in/primetv/primetv/index.m3u8" }
+        ],
+        "img": "https://sscloud7.in/app/sscloud7/assets/tvchannels/phoenixtv-tvchannelavathar-phoenixtv1752744323.jpg",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Nagapattinam"
+    },
+    {
+        "name": "MP TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.sscloud7.in/live/mptv/index.m3u8" }
+        ],
+        "img": "https://sscloud7.in/app/sscloud7/assets/tvchannels/phoenixtv-tvchannelavathar-phoenixtv1725124407.PNG",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "Vedha TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://skystream.in/live/vedha6528/index.m3u8" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/VedhaTV.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kumbakonam"
+    },
+    {
+        "name": "Deiva Oli",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.sscloud7.in/live/deivaoli/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/OZC3XALE6RuarHXPuMoaP89xjuuui3_gV_xuk-W4Va_3y4PW-oN8HiwLKhrFZbcWtw=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Thoothukudi"
+    },
+    {
+        "name": "G Music",
+        "sources": [
+            { "name": "Server 1", "url": "https://rtmp.applelive.in/gmusic/gmusic/index.m3u8" }
+        ],
+        "img": "https://bmcloud.in/apptest/uploads/693b05704a9f7.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Vellore"
+    },
+    {
+        "name": "Dtv",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.d6-pro.com/Dtv/live/index.m3u8" }
+        ],
+        "img": "https://tamilradios.org/wp-content/uploads/2025/01/dtv.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "Dbhakthi",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.d6-pro.com/Dbhakhi/live/index.m3u8" }
+        ],
+        "img": "https://tamilradios.org/wp-content/uploads/2025/01/d-bhakthi.png",
+        "category": ["Devotional", "Hindu", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "Vani TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.maxtn.in/vanitv/vanitv/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1732168603_WhatsApp%20Image%202024-11-21%20at%2011.05.55%20AM.jpeg",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "State-wide"
+    },
+    {
+        "name": "Max Movies",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.maxtn.in/maxmovies/maxmovies/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1732168422_WhatsApp%20Image%202024-11-21%20at%2010.18.47%20AM.jpeg",
+        "category": ["Movies", "Local", "Tamil", "India"],
+        "description": "State-wide"
+    },
+    {
+        "name": "Max Music",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.maxtn.in/maxmusic/maxmusic/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1732168750_WhatsApp%20Image%202024-11-21%20at%2011.05.55%20AM%20(1).jpeg",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "State-wide"
+    },
+    {
+        "name": "TDN",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.maxtn.in/tdn/tdn/index.m3u8" }
+        ],
+        "img": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS161LApA9ludazwEnknn6ssA9iUrmGNUq8pZGYetXAjCVG5Aku",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "7 Green 4K",
+        "sources": [
+            { "name": "Server 1", "url": "https://account33.livebox.co.in/7GREEN4Khls/live.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1739599670_IMG_20250215_113627_583.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kanchipuram"
+    },
+    {
+        "name": "Tharun Movies",
+        "sources": [
+            { "name": "Server 1", "url": "https://streaming.livebox.co.in/tharunmovieshls/live.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1739599242_IMG_20250215_111845_234.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kanchipuram"
+    },
+    {
+        "name": "MN TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://mntv.livebox.co.in/mntvhls/live.m3u8" }
+        ],
+        "img": "https://mntv.in/style/images/logo-dark.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Dharmapuri"
+    },
+    {
+        "name": "MN Music",
+        "sources": [
+            { "name": "Server 1", "url": "https://mntv.livebox.co.in/musichls/live.m3u8" }
+        ],
+        "img": "https://tamilradios.org/wp-content/uploads/2025/01/mn-music.jpg",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Dharmapuri"
+    },
+    {
+        "name": "Boobsh TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://rtmp.applelive.in/boobsh/boobsh/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1743337212_1000035047-removebg-preview.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "GEM TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://gemtv.circle7stream.com/gem/fcce47a8559e30755582c396ce7fce9e.sdp/playlist.m3u8" }
+        ],
+        "img": "https://yt3.googleusercontent.com/0POAEUrXj9S3H6jYBYF8D894bb599adV9t18qJmUdrcYpAYUdKonTWku7QYVHU0WeRnmstkQ=s900-c-k-c0x00ffffff-no-rj",
+        "category": ["News", "Local", "Tamil", "India"],
+        "description": "State-wide"
+    },
+    {
+        "name": "YET TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.yettelevision.com:5443/LiveApp/streams/yettv.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1752314659_Y2.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "State-wide"
+    },
+    {
+        "name": "ACP TV",
+        "sources": [
+            { "name": "Server 1", "url": "http://103.87.105.51:8080/acphd/acphd.m3u8?psk=123456" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1746108596_ACP%20TV%20LOGO%2026-Mar-2025%2014-57-40%20(2)-1.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "ACP Classic",
+        "sources": [
+            { "name": "Server 1", "url": "http://103.87.105.51:8080/acpclassic/acpclassic.m3u8?psk=123456" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1746108655_ACP%20TV%20LOGO%2026-Mar-2025%2014-57-40%20(2)-2.png",
+        "category": ["Classic", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "ACP Isai Oli",
+        "sources": [
+            { "name": "Server 1", "url": "http://103.87.105.51:8080/acpisaioli/acpisaioli.m3u8?psk=123456" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1762800961_WhatsApp%20Image%202025-11-10%20at%202.03.57%20PM.jpeg",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "Succes TV Tamil",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.onecloudlive.in/successtv/successtvhd/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/s5QfLQXyMf5LyjbX-4lY3EMuOw_tPP3oX3zwg_9Hn8h6EoiqNrpFnwjpRLhu88C4un4=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kanchipuram"
+    },
+    {
+        "name": "Asoka TV",
+        "sources": [
+            { "name": "Server 1", "url": "http://ipcloud.live/asokatv/asokahd/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/kpymS-jKwGoysI-ZssDRhUsw9SHRvoav3v_aSYjkj98O6CsbAhTagRk5WeFJJQMMUQ=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Coimbatore"
+    },
+    {
+        "name": "No 1 TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.skystream.in/live/no1tv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/Eapxu6L5_J4aGmI3ZEUscBPXLbvRqLDsAEidxIdNWit-VzhZoPpzQgQVhQoHc53i_A=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "PR TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://play.applelive.in/prtv/prtv.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1752245098_PR%20TV%20LOGO%20PNG.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Nagercoil; Kanyakumari"
+    },
+    {
+        "name": "Thalapathy TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://play.applelive.in/thalapathytv/thalapathytv.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1739547835_WhatsApp_Image_2025-02-14_at_8.57.35_PM-removebg-preview.png",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Nagercoil; Kanyakumari"
+    },
+    {
+        "name": "Riya TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://play.applelive.in/riyatv/riyatv.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1757780950_unnamed%20(4).webp",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kanyakumari"
+    },
+    {
+        "name": "Nila TV Nellai",
+        "sources": [
+            { "name": "Server 1", "url": "https://ipcloud.live/nilatvnellai/nilahd/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/BVXB5IAcSl02FcbLoYLdISNds5SwoeUhJ3oKgpkIWvYffybYh-Eu5lZFkx5HjNA2SLhW=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tirunelveli"
+    },
+    {
+        "name": "Dark Television",
+        "sources": [
+            { "name": "Server 1", "url": "https://play.applelive.in/darktv/darktv.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/GPwEalUw7RIHmutwfZpIS1RtFSIXYk6nzvht_bnRj8nT2PW-WqcDX4LjZeqTSLDwwT0=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kanyakumari"
+    },
+    {
+        "name": "Harin TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://ipcloud.live/harintv/harintvhd/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/-iWhUlatkv3AL80Z6gNlG692UfuqdfAYBWcLQzzapbDs5NtceyHYSXx6mW-_Fc_7P3Sm=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Kanyakumari"
+    },
+    {
+        "name": "Phoenix TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.onecloudlive.in/phoenixtv/phoenixtv/index.m3u8" }
+        ],
+        "img": "https://livetv.ashokadigital.net/upload/logo/1753871451_Untitled%202-%20Copy%20copy.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tirupattur"
+    },
+    {
+        "name": "Tamil TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.onecloudlive.in/tamiltv/tamiltvhd/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/zwEQ6odzkSZuztPobJRc4whT3UYw4XximWSiIAWd4OLpOFK_TjVxrm3HJbhGd9jvDQ=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Ramanathapuram"
+    },
+    {
+        "name": "Nila TV Pannur",
+        "sources": [
+            { "name": "Server 1", "url": "https://live.olidigital.in/nilatv/nilatv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/-AJSA_oGQROLDwiwj6J1GAzUee1WIh3zwUSj8wGZYNwaRn0JUSDYTYkCdKLvoiJr8j33=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Pannur; Thiruvallur"
+    },
+    {
+        "name": "Sky Plus TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://ipcloud.live/skytv/skytv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/ApkLVeNBOSyeOx-ciN8PXlqUkBhGg2TmufFq8aei1tu2k8i9SU5PYR5byRI9C42dT4I=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tiruchengode"
+    },
+    {
+        "name": "Vasantham TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://stream.onecloudlive.in/dhandapani/vasanthamtv/index.m3u8" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/VasanthamTV.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "Paavai TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://ipcloud.live/paavai/live/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/QqeM-vu6XSHC2RnsHIavFBogRePV9Tife_VuLTzn9wdJIpDksMV31ha7dd7U5uoJtw=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tirupattur"
+    },
+    {
+        "name": "Advika TV",
+        "sources": [
+            { "name": "Server 1", "url": "rtmp://stream.advikadigital.in/advika/advika" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/GpP7fx3D7WauJEGYJkj8lJGuRVE3m5IqTKDqK74HIRhk2M_Hg49TSwlcP_oUUPKEt8ij=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "SS Music",
+        "sources": [
+            { "name": "Server 1", "url": "rtmp://stream.advikadigital.in/advika/ssmusic" }
+        ],
+        "img": "",
+        "category": ["Music", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "Sree Saravanaa TV",
+        "sources": [
+            { "name": "Server 1", "url": "rtmp://stream.advikadigital.in/advika/saravana" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/SriSaravana.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "Veerbox",
+        "sources": [
+            { "name": "Server 1", "url": "rtmp://stream.advikadigital.in/advika/veerbox" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/Veerbox.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Madurai"
+    },
+    {
+        "name": "Deavathai TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://hdbox.singamcloud.in/Deavathaitv/Deavathaitv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/TD_XAFnpLJk1A9pT-vMW1dImZDTRpN7UZ8F8KGWy8u0z7LnG19MWeiTtnRJenT4-YlA=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "SMCV TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://singamcloud.in/smcvtv/smcvtv/index.m3u8" }
+        ],
+        "img": "https://play-lh.googleusercontent.com/QHY-UJodq8HOSLN6waYq91yJMCsu1Cq5toOX6PRffCrE2A8sl-MOdifsRgmq-rl3eA=w512-h960-rw",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Unknown"
+    },
+    {
+        "name": "Yogaa TV",
+        "sources": [
+            { "name": "Server 1", "url": "https://ipcloud.live/yogaatv/yogaatv/index.m3u8" }
+        ],
+        "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/YogaaTV.png",
+        "category": ["PLC", "Local", "Tamil", "India"],
+        "description": "Tenkasi"
+    }
         ];
