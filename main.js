@@ -987,9 +987,10 @@ const channels = [
             {
                 name: "Sony Yay",
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C39/master.m3u8" },
-                    { name: "Server 2", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyyay/index.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyyay/index.m3u8" },
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://tvsky-bostaflix.global.ssl.fastly.net/sliv/stream.m3u8?id=1000001971&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C39/master.m3u8" },
+                    { name: "Server 3", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyyay/index.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyyay/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
                 category: ["Kids", "Bengali", "India"],
