@@ -2639,11 +2639,12 @@ const channels = [
                 name: "Sony Max", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonymax/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/404/index.m3u8" },
-                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C62/master.m3u8" },
-                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
-                    { name: "Server 5", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
-                    { name: "Server 6", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
+                    { name: "Server 2", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009247&e=.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/404/index.m3u8" },
+                    { name: "Server 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C62/master.m3u8" },
+                    { name: "Server 5", url: "https://padmaonline.duckdns.org:8088/SonyMaxHD/index.m3u8" },
+                    { name: "Server 6", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonymax/index.m3u8" },
+                    { name: "Server 7", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonymax/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/57e4ad4c3ce4bbd8f07af436ffb50704.png", 
                 category: ["Movie", "Hindi", "India"],
@@ -2673,7 +2674,8 @@ const channels = [
             { 
                 name: "Sony Wah", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/wah/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009253&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/wah/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/b022a333da9863994f6df346c8183c7f.png", 
                 category: ["Movie", "Hindi", "India"],
@@ -3079,7 +3081,7 @@ const channels = [
             { 
                 name: "Sony Pix", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-pix-hd/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009258&e=.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C42/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/tggwMqHB/pix.jpg", 
@@ -3425,7 +3427,7 @@ const channels = [
                 name: "Sony Aath", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyaath/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/8/index.m3u8" },
+                    { name: "Server 2", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009255&e=.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/306/index.m3u8" },
                     { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyAath/index.m3u8" },
                 ], 
@@ -3676,7 +3678,7 @@ const channels = [
             { 
                 name: "Sony Sab", 
                 sources: [
-                    { name: "Server 1", url: "https://edge2.roarzone.info:8447/roarzone/edge3/sony-sab-hd/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009248&e=.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/sab/index.m3u8" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C64/master.m3u8" },
                     { name: "Server 4", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonysab/index.m3u8" }
@@ -3688,7 +3690,8 @@ const channels = [
             { 
                 name: "Sony Pal", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C106/master.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009273&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C106/master.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/9405dcc6dcddf846aa98d2c7bfe0e9fa.png", 
                 category: ["Entertainment", "Hindi", "India"],
@@ -3697,10 +3700,11 @@ const channels = [
             { 
                 name: "Sony Entertainment", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/403/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C66/master.m3u8" },
-                    { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
-                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009246&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/403/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C66/master.m3u8" },
+                    { name: "Server 4", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/sonyentten/index.m3u8" },
+                    { name: "Server 5", url: "https://padmaonline.duckdns.org:8088/SETHD/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/e93d8803c883ab337e40d171a8ed02e5.png", 
                 category: ["Entertainment", "Hindi", "India"],
@@ -3799,7 +3803,7 @@ const channels = [
             { 
                 name: "Sony Marathi", 
                 sources: [
-                    { name: "Server 1", url: "https://anywhere.pwisetthon.com/http://217.20.112.199/sonymarathi/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009259&e=.m3u8" },
                 ], 
                 img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4wRjk798Ys8XdOzogPeYLsXGPP4w_8KZEXA&s", 
                 category: ["Entertainment", "Marathi", "India"],
@@ -5321,10 +5325,11 @@ const channels = [
             { 
                 name: "Sony Sports 1", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/119/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten1/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C65/master.m3u8" },
-                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyTen1HD/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009276&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/119/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten1/tracks-v1a1/mono.m3u8" },
+                    { name: "Server 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C65/master.m3u8" },
+                    { name: "Server 5", url: "https://padmaonline.duckdns.org:8088/SonyTen1HD/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2d1d6a00aed9cfb469595f76744b5ebd.png", 
                 category: "Sports",
@@ -5335,9 +5340,10 @@ const channels = [
                 name: "Sony Sports 2", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/sonyten2/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/120/index.m3u8" },
-                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C72/master.m3u8" },
-                    { name: "Server 4", url: "https://padmaonline.duckdns.org:8088/SonyTen2HD/index.m3u8" },
+                    { name: "Server 2", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009277&e=.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/120/index.m3u8" },
+                    { name: "Server 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C72/master.m3u8" },
+                    { name: "Server 5", url: "https://padmaonline.duckdns.org:8088/SonyTen2HD/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/9c0fc822845789953d3be9c29bb6f0cd.png", 
                 category: "Sports",
@@ -5346,9 +5352,10 @@ const channels = [
             { 
                 name: "Sony Sports 3", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/121/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C73/master.m3u8" },
-                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" }
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009278&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/121/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C73/master.m3u8" },
+                    { name: "Server 4", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/c063708662593e2a313084f6c0a3f496.png", 
                 category: "Sports",
@@ -5358,7 +5365,8 @@ const channels = [
             { 
                 name: "Sony Sports 4", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C244/master.m3u8" }
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000119186&e=.m3u8" }
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C244/master.m3u8" }
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/fe0fd39301254ce313504ad3f80e3ef5.png", 
                 category: "Sports",
@@ -5368,9 +5376,10 @@ const channels = [
             { 
                 name: "Sony Sports 5", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C61/master.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
-                    { name: "Server 3", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyten3/index.m3u8" },
+                    { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009275&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C61/master.m3u8" },
+                    { name: "Server 3", url: "https://anywhere.pwisetthon.com/http://103.99.249.139/sonyten3/index.m3u8" },
+                    { name: "Server 4", url: "https://satoshi-cors.herokuapp.com/http://103.99.249.139/sonyten3/index.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0a963bb67c1528daa7e694c522ca491d.png", 
                 category: "Sports",
