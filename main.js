@@ -2617,23 +2617,6 @@ const channels = [
                 description: "India"
             },
             { 
-                name: "Star Gold Select HD", 
-                sources: [
-                    { 
-                        name: "Auto", 
-                        url: "https://jiocdn.tulnit.fun/stream.php/Star_Gold_Select_HD_BTS/output/index.mpd",
-                        type: "dash",
-                        drm: {
-                            kid: "2cb38dd5e6235bd9936ad7a29bc7ffd8",
-                            key: "281d7b329be4e22d4e0e3e1d508ba2a4"
-                        }
-                    }
-                ], 
-                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Gold_Select_HD.png", 
-                category: ["Movie", "Hindi", "India"],
-                description: "India"
-            },
-            { 
                 name: "Star Gold Romance", 
                 sources: [
                     { name: "Stream 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/409/index.m3u8" },
@@ -8744,6 +8727,24 @@ const channels = [
         "img": "https://raw.githubusercontent.com/amazeyourself/tamil-local-iptv/refs/heads/main/logos/MDNTV.png",
         "category": ["PLC", "Local", "Tamil", "India"],
         "description": "Unknown"
-    }
+    },
+
+              { 
+                name: "Test", 
+                sources: [
+                    { 
+                        name: "Auto", 
+                        url: "https://tulnit.fun/sun/stream.php/bf76ee92dd01473bb2eb57d137294484/SunBanglaB_IN_index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "01f7b9f7bf7e425f86d6dfd478390e3f",
+                            key: "5fde68100a7856d055038236ffc7c84a"
+                        }
+                    }
+                ], 
+                img: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Gold_Select_HD.png", 
+                category: ["", "", ""],
+                description: "India"
+            },
   
         ];
