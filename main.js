@@ -3361,12 +3361,19 @@ const channels = [
             { 
                 name: "Sun Bangla", 
                 sources: [
-                    { name: "Server 1", url: "https://smart.bengaldigital.live/sun-bangla-paid/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/SUNBANGLAHD/tracks-v1a1/mono.m3u8" }
+                    { 
+                        name: "Auto", 
+                        url: "https://tulnit.fun/sun/stream.php/bf76ee92dd01473bb2eb57d137294484/SunBanglaB_IN_index.mpd",
+                        type: "dash",
+                        drm: {
+                            kid: "01f7b9f7bf7e425f86d6dfd478390e3f",
+                            key: "5fde68100a7856d055038236ffc7c84a"
+                        }
+                    }
                 ], 
                 img: "https://i.postimg.cc/Yqvwd2HC/sun-bangla.jpg", 
                 category: ["Entertainment", "Bengali", "India"],
-                description: "Bangla"
+                description: "India"
             },
             { 
                 name: "Enterr10 Bangla", 
