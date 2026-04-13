@@ -1278,10 +1278,11 @@ const channels = [
                 description: "Asia Pacific"
             },
             { 
-                name: "Disney", 
+                name: "Disney Hindi", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" },
+                    { name: "Server 1", url: "https://tulnit.fun/ck/stream.m3u8?e=aHR0cDovL2Fqa2lwdHYucmlkc3lzLmluL3JpcHR2L2xpdmUvRElTTkVZX0NIQU5ORUwvaW5kZXgubTN1OA==" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/DISNEY_CHANNEL/index.m3u8" },
                 ], 
                 img: "https://static.wikia.nocookie.net/dreamfiction/images/a/a5/Disney_Channel_in_Hindi_logo.png/revision/latest?cb=20220316213211", 
                 category: ["Kids", "Hindi", "India"],
