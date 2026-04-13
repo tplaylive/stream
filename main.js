@@ -3351,7 +3351,7 @@ const channels = [
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/304/index.m3u8" },
                     { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorsbangla/index.m3u8" },
-                    { name: "Server 3", url: "https://padmaonline.duckdns.org:8088/ColorsBanglaHD/index.m3u8" },
+                    { name: "Server 3", url: "https://api.naariclothing.com/dd/live.m3u8?id=756&token=JITENDRA_KUMAR" },
                     { name: "Server 4", url: "https://yupptvcatchupire.yuppcdn.net/preview/colorsbanglahd/800.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/vTQZ4Jg6/colors-bangla.jpg", 
