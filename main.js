@@ -1100,6 +1100,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "Nick Jr India", 
+                sources: [
+                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ajkiptv.ridsys.in/riptv/live/NICK_JR/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/BvP8G3sq/nickjr.jpg", 
+                category: ["Kids", "Hindi", "India"],
+                description: "India"
+            },
+            { 
                 name: "Nick Jr", 
                 sources: [
                     { 
