@@ -3332,7 +3332,7 @@ const channels = [
                 name: "Star Jalsha", 
                 sources: [
                     { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/starjalsha/index.m3u8" },
-                    { name: "Server 2", url: "https://padmaonline.duckdns.org:8088/StarJalshaHD/index.m3u8" },
+                    { name: "Server 2", url: "https://cors-proxy.cooks.fyi/http://180.94.28.28:8097//STAR-JALSHA/index.fmp4.m3u8?token=e009bfd5fbfaba1006f7c34f860bbcac2ec89596-67fdf9ff38949fb20343b0487454c38f-1776070284-1776066684&remote=no_check_ip" },
                     { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/302/index.m3u8" },
                     { name: "Server 4", url: "https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8" },
                     { name: "Server 5", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/starjalsha/index.m3u8" }
