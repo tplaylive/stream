@@ -1051,26 +1051,39 @@ const channels = [
             { 
                 name: "Sonic", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/601/index.m3u8" },
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=815&token=JITENDRA_KUMAR" },
                 ], 
-                img: "https://static.wikia.nocookie.net/logopedia/images/a/aa/Nickelodeon_Sonic_logo_2025.png/revision/latest/scale-to-width-down/300?cb=20250606121016", 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/210654745245a6d79a978f0494586052.png", 
                 category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
-                name: "Nick", 
+                name: "Nick Hindi", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/601/index.m3u8" },
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=545&token=JITENDRA_KUMAR" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/601/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: ["Kids", "Hindi", "India"],
                 description: "India"
             },
             { 
+                name: "Nick Bangla", 
+                sources: [
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=1341&token=JITENDRA_KUMAR" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C186/master.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/601/index.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
+                category: ["Kids", "Bengali", "India"],
+                description: "India"
+            },
+            { 
                 name: "Nick Tamil", 
                 sources: [
-                    { name: "Tamil", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/NICK/index.m3u8" },
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=546&token=JITENDRA_KUMAR" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://ptuf.ridsys.in/riptv/live/NICK/index.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/W1gnHqtC/nick.jpg", 
                 category: ["Kids", "Tamil", "India"],
@@ -1162,7 +1175,8 @@ const channels = [
             { 
                 name: "Pogo Hindi", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C200/master.m3u8" }
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=559&token=JITENDRA_KUMAR" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C200/master.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/L5tFKBL4/pogo.jpg", 
                 category: ["Kids", "Hindi", "India"],
@@ -1188,9 +1202,9 @@ const channels = [
             { 
                 name: "Cartoon Network", 
                 sources: [
-                    { name: "Hindi", url: "https://mrzplayin.fun/roarzon/stream.php?id=2656a9b9198a7631e0521a2582e998f5&e=.m3u8" },
-                    { name: "Urdu", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" },
-                    { name: "Urdu", url: "https://s3.ideationtec.live/Cartoon_Network/Cartoon_Network.m3u8" }
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=816&token=JITENDRA_KUMAR" },
+                    { name: "Server 2", url: "https://vodzong.mjunoon.tv:8087/streamtest/cartoon-network-87/playlist.m3u8" },
+                    { name: "Server 3", url: "https://s3.ideationtec.live/Cartoon_Network/Cartoon_Network.m3u8" }
                 ], 
                 img: "https://i.postimg.cc/d1K0Drvh/Cn.png", 
                 category: ["Kids", "Hindi", "India"],
