@@ -2628,7 +2628,7 @@ const channels = [
             { 
                 name: "Colors Cineplex", 
                 sources: [
-                    { name: "Stream 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=756&token=JITENDRA_KUMAR" },
+                    { name: "Stream 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=482&token=JITENDRA_KUMAR" },
                     { name: "Stream 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C121/master.m3u8" },
                 ], 
                 img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/2956db8b77b0f99d5d7d35634f1543bd.png", 
