@@ -3666,6 +3666,15 @@ const channels = [
                 description: "India"
             },
             { 
+                name: "MTV", 
+                sources: [
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=248&token=JITENDRA_KUMAR" },
+                ], 
+                img: "https://jiotvimages.cdn.jio.com/dare_images/images/channel/dd31feecea35b168edef5b73d95fa378.png", 
+                category: ["Entertainment", "Hindi", "India"],
+                description: "India"
+            },
+            { 
                 name: "Sony Sab", 
                 sources: [
                     { name: "Server 1", url: "https://mhdtvhub.com/sliv/stream.php?id=1000009248&e=.m3u8" },
