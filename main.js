@@ -3656,8 +3656,8 @@ const channels = [
             { 
                 name: "Colors", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz2.zibobdixserver.top/405/index.m3u8" },
+                    { name: "Server 1", url: "https://api.naariclothing.com/dd/live.m3u8?id=144&token=JITENDRA_KUMAR" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://stvlive.net:8080/colorshd/tracks-v1a1/mono.m3u8" },
                     { name: "Server 3", url: "https://warm-caverns-48629-92fab798385f.herokuapp.com/http://103.175.242.10:8080/colorshd/index.m3u8" },
                     { name: "Server 4", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C45/master.m3u8" },
                 ], 
