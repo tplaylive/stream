@@ -643,16 +643,16 @@
                     <button class="nav-btn" onclick="nextChannel()" title="Next Channel"><i class="fas fa-chevron-right"></i></button>
 
                     <select class="source-select" id="sourceMenu">
-                        <option value="0">Main Source</option>
+                        <option value="0">Source</option>
                     </select>
 
                     <select class="quality-select" id="qualityMenu">
-                        <option value="auto">Auto Quality</option>
+                        <option value="auto">Quality</option>
                     </select>
 
                     <!-- NEW: Audio Language Selector Button -->
                     <select class="audio-select" id="audioMenu">
-                        <option value="default">Default Audio</option>
+                        <option value="default">language</option>
                     </select>
                 </div>
             </div>
@@ -909,7 +909,7 @@
             audioMenu.innerHTML = "";
             const defaultOption = document.createElement("option");
             defaultOption.value = "default";
-            defaultOption.textContent = "Default Audio";
+            defaultOption.textContent = "Language";
             audioMenu.appendChild(defaultOption);
             
             if (audioLanguages.size > 0) {
@@ -937,7 +937,7 @@
         // Audio language for HLS
         function populateHlsAudioMenu() {
             if (!hls || !hls.audioTracks || hls.audioTracks.length === 0) {
-                audioMenu.innerHTML = '<option value="default">Default Audio</option>';
+                audioMenu.innerHTML = '<option value="default">language</option>';
                 audioMenu.disabled = true;
                 return;
             }
@@ -945,7 +945,7 @@
             audioMenu.innerHTML = "";
             const defaultOption = document.createElement("option");
             defaultOption.value = "default";
-            defaultOption.textContent = "Default Audio";
+            defaultOption.textContent = "language";
             audioMenu.appendChild(defaultOption);
             
             hls.audioTracks.forEach((track, index) => {
@@ -991,7 +991,7 @@
             errorMessage.style.display = "none";
             
             // Reset audio menu
-            audioMenu.innerHTML = '<option value="default">Default Audio</option>';
+            audioMenu.innerHTML = '<option value="default">language</option>';
             audioMenu.disabled = true;
             
             if (source.type === 'dash') {
@@ -1049,7 +1049,7 @@
                 video.src = source.url; 
                 video.addEventListener("loadedmetadata", function() { 
                     video.play().catch(e => console.error(e));
-                    audioMenu.innerHTML = '<option value="default">Default Audio</option>';
+                    audioMenu.innerHTML = '<option value="default">language</option>';
                     audioMenu.disabled = true;
                 }); 
             } 
