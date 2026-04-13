@@ -2356,7 +2356,7 @@ const channels = [
             { 
                 name: "Colors Bangla Cinema", 
                 sources: [
-                    { name: "Playlist", url: "https://anywhere.pwisetthon.com/http://203.18.159.115/COLORSBANGLACINEMA/tracks-v1a1/mono.m3u8" }
+                    { name: "Playlist", url: "https://api.naariclothing.com/dd/live.m3u8?id=1657&token=JITENDRA_KUMAR" }
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Colors_Bangla_Cinema.png", 
                 category: ["Movie", "Bengali", "India"],
