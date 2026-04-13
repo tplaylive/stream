@@ -996,6 +996,16 @@ const channels = [
                 category: ["Kids", "Bengali", "India"],
                 description: "India"
             },
+            {
+                name: "Sony Yay",
+                sources: [
+                    { name: "Server 1", url: "https://api.naariclothing.com/stream.m3u8?id=1000001971" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C39/master.m3u8" },
+                ], 
+                img: "https://i.postimg.cc/1413YzhR/yay.jpg", 
+                category: ["Kids", "Hindi", "India"],
+                description: "India"
+            },
             { 
                 name: "Sony Yay Tamil", 
                 sources: [
@@ -2667,8 +2677,9 @@ const channels = [
             { 
                 name: "Sony Max 1", 
                 sources: [
-                    { name: "Server 1", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/hh/index.m3u8" },
-                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C111/master.m3u8" },
+                    { name: "Server 1", url: "https://tulnit.fun/dd/live.php?id=3418&token=JITENDRA_KUMAR&e=.m3u8" },
+                    { name: "Server 2", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=https://genz.zibobdixserver.top/hh/index.m3u8" },
+                    { name: "Server 3", url: "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://maxotts.maxdigitaltv.com/x-media/C111/master.m3u8" },
                 ], 
                 img: "https://i.postimg.cc/C1xZ14W8/max1.png", 
                 category: ["Movie", "Hindi", "India"],
