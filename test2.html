@@ -856,7 +856,7 @@
             qualityMenu.innerHTML = "";
             const autoOption = document.createElement("option");
             autoOption.value = "auto";
-            autoOption.textContent = "Auto Quality";
+            autoOption.textContent = "Quality";
             qualityMenu.appendChild(autoOption);
             
             if (uniqueResolutions.size > 0) {
@@ -1146,7 +1146,7 @@
             channel.sources.forEach((source, i) => { 
                 const option = document.createElement("option"); 
                 option.value = i; 
-                option.textContent = source.name + (source.drm ? " (DRM)" : ""); 
+                option.textContent = source.name + (source.drm ? "" : ""); 
                 sourceMenu.appendChild(option); 
             });
             loadSource(0);
