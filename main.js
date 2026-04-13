@@ -1139,7 +1139,7 @@ const channels = [
                 name: "Gubbare", 
                 sources: [
                     { name: "Hindi", url: "https://epiconvh.akamaized.net/live/gubbare/master.m3u8" },
-                    { name: "Test", url: "https://2025.telegram-akshaybk29.workers.dev/channel?id=1" },
+                    { name: "Test", url: "https://tulnit.fun/ck/stream.m3u8?e=aHR0cDovL2Fqa2lwdHYucmlkc3lzLmluL3JpcHR2L2xpdmUvRElTTkVZX0NIQU5ORUwvaW5kZXgubTN1OA==" },
                 ], 
                 img: "https://upload.wikimedia.org/wikipedia/en/0/01/Gubbare-TV_channel.jpg", 
                 category: ["Kids", "Hindi", "India"],
