@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>T Play – Android App on Google Play</title>
+  <!-- Font Awesome for icons (Play Store style) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f8f9fa;
+      font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 1.5rem 1rem;
+      color: #202124;
+    }
+
+    /* Main card – mimics Play Store detail page */
+    .play-card {
+      max-width: 720px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      padding: 1.8rem 1.5rem 2.2rem;
+    }
+
+    /* Header: icon + basic info */
+    .app-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .app-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 22px;
+      background: #e8eaed;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .app-title-section {
+      flex: 1;
+    }
+
+    .app-name {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: #1a1a1a;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+
+    .developer {
+      font-size: 0.95rem;
+      color: #01875f;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .version-badge {
+      display: inline-block;
+      background: #f1f3f4;
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #5f6368;
+      margin-right: 0.5rem;
+    }
+
+    .rating-container {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #5f6368;
+    }
+
+    .stars {
+      color: #fbbc04;
+      letter-spacing: 1px;
+    }
+
+    .rating-text {
+      font-weight: 500;
+    }
+
+    /* Install button area */
+    .install-area {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .install-btn {
+      background: #01875f;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 2px 8px rgba(1,135,95,0.3);
+      letter-spacing: 0.2px;
+      text-decoration: none;
+    }
+
+    .install-btn:hover {
+      background: #016b4b;
+    }
+
+    .install-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* About / description */
+    .description-section {
+      margin: 1.8rem 0 2rem;
+    }
+
+    .description-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #3c4043;
+      margin-bottom: 1.2rem;
+      word-break: break-word;
+    }
+
+    .info-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+      color: #5f6368;
+    }
+
+    .info-chip {
+      background: #f1f3f4;
+      border-radius: 24px;
+      padding: 0.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+    }
+
+    /* Screenshots section - placeholder ready */
+    .screenshots-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2rem 0 1.2rem;
+      color: #202124;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .screenshots-grid {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.8rem;
+      scrollbar-width: thin;
+      scrollbar-color: #c4c7c5 #f1f3f4;
+    }
+
+    .screenshots-grid::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .screenshots-grid::-webkit-scrollbar-thumb {
+      background: #c4c7c5;
+      border-radius: 10px;
+    }
+
+    .screenshot-item {
+      flex: 0 0 auto;
+      width: 160px;
+      height: 280px;
+      background: #e8eaed;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #5f6368;
+      font-size: 0.8rem;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px dashed #bdc1c6;
+      transition: all 0.2s;
+      text-align: center;
+      padding: 0.8rem;
+      background: #f8f9fa;
+    }
+
+    .screenshot-item i {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: #9aa0a6;
+    }
+
+    .screenshot-item span {
+      background: rgba(255,255,255,0.7);
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+    }
+
+    /* Placeholder for future images - will be replaced */
+    .screenshot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Additional metadata */
+    .meta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 2rem;
+      border-top: 1px solid #e8eaed;
+      padding-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #5f6368;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .meta-label {
+      font-weight: 500;
+      color: #202124;
+    }
+
+    .footer-note {
+      margin-top: 1.8rem;
+      font-size: 0.8rem;
+      color: #80868b;
+      text-align: center;
+      border-top: 1px solid #e8eaed;
+      padding-top: 1.2rem;
+    }
+
+    .footer-note a {
+      color: #01875f;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .install-area {
+        margin-left: 0;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .screenshot-item {
+        width: 140px;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="play-card">
+    
+    <!-- App Icon + Name + Version + Rating -->
+    <div class="app-header">
+      <img 
+        src="https://www.metatvapk.com/wp-content/uploads/2025/09/T-Play-Icon-mhjZ.png" 
+        alt="T Play app icon" 
+        class="app-icon"
+        onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2290%22 height=%2290%22 viewBox=%220 0 90 90%22%3E%3Crect width=%2290%22 height=%2290%22 rx=%2220%22 fill=%22%234285F4%22/%3E%3Ctext x=%2250%25%22 y=%2255%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2228%22 font-weight=%22bold%22%3ET%3C/text%3E%3C/svg%3E';"
+      >
+      <div class="app-title-section">
+        <h1 class="app-name">T Play</h1>
+        <div class="developer">T Play Studio</div>
+        <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+          <span class="version-badge"><i class="far fa-check-circle"></i> Version 3.0</span>
+          <div class="rating-container">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+            <span class="rating-text">4.5</span>
+          </div>
+        </div>
+      </div>
+      <!-- ✅ Install button with GitHub APK link -->
+      <div class="install-area">
+        <a href="https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%203.0.apk" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="install-btn">
+          <i class="fas fa-download"></i> Install
+        </a>
+      </div>
+    </div>
+
+    <!-- Short description -->
+    <div class="description-section">
+      <p class="description-text">
+        <strong>T Play</strong> is your ultimate entertainment hub for Android. Stream, discover and enjoy a world of content optimized for mobile. Smooth performance, personalized recommendations, and an ever-growing library. Designed for users worldwide.
+      </p>
+      <div class="info-chips">
+        <div class="info-chip"><i class="fas fa-mobile-alt"></i> Android</div>
+        <div class="info-chip"><i class="fas fa-globe-americas"></i> Global</div>
+        <div class="info-chip"><i class="fas fa-shield-alt"></i> Safe</div>
+        <div class="info-chip"><i class="fas fa-sync-alt"></i> Updated</div>
+      </div>
+    </div>
+
+    <!-- Screenshots section with 6 placeholder slots (ready for links) -->
+    <div>
+      <div class="screenshots-title">
+        <i class="fas fa-images"></i> Screenshots
+      </div>
+      <div class="screenshots-grid" id="screenshotContainer">
+        <!-- 6 screenshot placeholders - dynamic update possible later -->
+        <div class="screenshot-item" data-index="0">
+          <div class="screenshot-placeholder">
+            <i class="fas fa-image"></i>
+            <span>Screenshot 1</span>
+            <small style="margin-top: 4px;">(update later)</small>
+          </div>
+        </div>
+        <div class="screenshot-item" data-index="1">
+          <div class="screenshot-placeholder">
+            <i class="fas fa-image"></i>
+            <span>Screenshot 2</span>
+            <small style="margin-top: 4px;">(update later)</small>
+          </div>
+        </div>
+        <div class="screenshot-item" data-index="2">
+          <div class="screenshot-placeholder">
+            <i class="fas fa-image"></i>
+            <span>Screenshot 3</span>
+            <small style="margin-top: 4px;">(update later)</small>
+          </div>
+        </div>
+        <div class="screenshot-item" data-index="3">
+          <div class="screenshot-placeholder">
+            <i class="fas fa-image"></i>
+            <span>Screenshot 4</span>
+            <small style="margin-top: 4px;">(update later)</small>
+          </div>
+        </div>
+        <div class="screenshot-item" data-index="4">
+          <div class="screenshot-placeholder">
+            <i class="fas fa-image"></i>
+            <span>Screenshot 5</span>
+            <small style="margin-top: 4px;">(update later)</small>
+          </div>
+        </div>
+        <div class="screenshot-item" data-index="5">
+          <div class="screenshot-placeholder">
+            <i class="fas fa-image"></i>
+            <span>Screenshot 6</span>
+            <small style="margin-top: 4px;">(update later)</small>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:0.75rem; color:#80868b; margin-top:0.5rem; text-align:right;">
+        <i class="fas fa-arrow-right"></i> swipe to see more
+      </p>
+    </div>
+
+    <!-- Additional app info -->
+    <div class="meta-list">
+      <div class="meta-item">
+        <span class="meta-label">Updated</span>
+        <span>May 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Size</span>
+        <span>Varies with device</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Installs</span>
+        <span>10,000,000+</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Current Version</span>
+        <span>3.0</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Requires Android</span>
+        <span>5.0 and up</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Content Rating</span>
+        <span>Everyone</span>
+      </div>
+    </div>
+
+    <!-- ✅ Footer with additional direct APK download link -->
+    <div class="footer-note">
+      <i class="fas fa-shield-alt"></i> Play Protect verified • English (Worldwide) • © T Play
+      <br>
+      <a href="https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%203.0.apk" 
+         target="_blank" 
+         rel="noopener noreferrer">
+        <i class="fas fa-download"></i> Direct APK Download
+      </a>
+    </div>
+  </div>
+
+  <!-- Optional: small script to help you update screenshots later via console or code -->
+  <script>
+    // This code helps you update screenshot images easily.
+    // When you have your 4-6 screenshot URLs, you can call updateScreenshots() function
+    // or modify the array below and refresh.
+    
+    (function() {
+      // Placeholder: future screenshot URLs can be added here.
+      // Example: "https://example.com/screen1.png"
+      // Replace the array with your actual image links.
+      const screenshotUrls = [
+        "", // Screenshot 1
+        "", // Screenshot 2
+        "", // Screenshot 3
+        "", // Screenshot 4
+        "", // Screenshot 5
+        ""  // Screenshot 6
+      ];
+
+      // Function to update screenshots programmatically
+      window.updateScreenshots = function(urls) {
+        const container = document.getElementById('screenshotContainer');
+        if (!container) return;
+        const items = container.querySelectorAll('.screenshot-item');
+        
+        items.forEach((item, index) => {
+          if (urls[index] && urls[index].trim() !== '') {
+            // Replace placeholder with actual image
+            item.innerHTML = ''; // clear placeholder
+            const img = document.createElement('img');
+            img.src = urls[index];
+            img.alt = `T Play screenshot ${index + 1}`;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '18px';
+            img.style.display = 'block';
+            img.onerror = function() {
+              // fallback if image fails
+              item.innerHTML = `<div class="screenshot-placeholder"><i class="fas fa-exclamation-triangle"></i><span>Image error</span></div>`;
+            };
+            item.appendChild(img);
+            item.style.border = 'none';
+            item.style.background = 'transparent';
+            item.style.padding = '0';
+          } else {
+            // keep placeholder if no URL provided
+            item.innerHTML = `<div class="screenshot-placeholder"><i class="fas fa-image"></i><span>Screenshot ${index+1}</span><small>(update later)</small></div>`;
+            item.style.border = '1px dashed #bdc1c6';
+            item.style.background = '#f8f9fa';
+            item.style.padding = '0.8rem';
+          }
+        });
+      };
+
+      // You can call this function later with your links.
+      // Example usage (paste in console when you have URLs):
+      // updateScreenshots([
+      //   "https://your-image-link.com/1.png",
+      //   "https://your-image-link.com/2.png",
+      //   ...
+      // ]);
+      
+      // For now, we keep placeholders.
+      console.log('T Play page ready. Use updateScreenshots(arrayOfUrls) to insert real screenshots.');
+    })();
+  </script>
+</body>
+</html>
