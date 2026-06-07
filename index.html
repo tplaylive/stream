@@ -1,413 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>T Play</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://i.postimg.cc/RCnCv14W/T-Play.png" type="image/png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>T Play - Download Mobile & TV App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-      --bg-deep: #070b1a;
-      --glass-bg: rgba(10, 16, 28, 0.75);
-      --glass-border: rgba(59, 130, 246, 0.25);
-      --accent: #2b5cff;
-      --accent-hover: #3b6eff;
-      --text-light: #f0f3ff;
-      --text-muted: #9aa5d9;
-      --card-radius: 1.75rem;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgb(10, 15, 30), rgb(2, 5, 18));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    body {
-      min-height: 100vh;
-      min-height: 100dvh;
-      background: radial-gradient(ellipse at 20% 30%, #0a1025, #020617);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-      color: var(--text-light);
-    }
+        /* animated background orbs */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 150, 255, 0.2), transparent 70%);
+            top: -150px;
+            left: -150px;
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 18s infinite alternate;
+        }
 
-    .container {
-      max-width: 1100px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 1rem env(safe-area-inset-right) 1.5rem env(safe-area-inset-left);
-    }
+        body::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 80, 120, 0.15), transparent 70%);
+            bottom: -200px;
+            right: -200px;
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 22s infinite alternate-reverse;
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+            100% { transform: translate(40px, 40px) scale(1.2); opacity: 0.8; }
+        }
 
-    .card {
-      background: rgba(12, 20, 32, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      border-radius: var(--card-radius);
-      padding: 1.2rem 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-      text-align: center;
-      outline: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.4);
-    }
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
 
-    .card:hover {
-      transform: translateY(-3px);
-      background: rgba(20, 32, 50, 0.85);
-      border-color: var(--accent);
-      box-shadow: 0 12px 22px -10px rgba(0, 0, 0, 0.5);
-    }
+        /* main card */
+        .download-card {
+            background: rgba(20, 28, 45, 0.55);
+            backdrop-filter: blur(16px);
+            border-radius: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2.8rem 2.2rem 3.2rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
 
-    .card:focus-visible {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-      transform: scale(1.01);
-    }
+        .logo-area {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
 
-    .icon {
-      font-size: 2.2rem;
-      background: linear-gradient(135deg, #e0eaff, #8fb0ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transition: all 0.2s;
-    }
+        .logo-wrapper {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 999px;
+            padding: 0.6rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
 
-    .card:hover .icon {
-      transform: scale(1.03);
-    }
+        .logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            border-radius: 32px;
+            transition: transform 0.25s;
+        }
 
-    .title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      color: #eef3ff;
-      margin-top: 0.1rem;
-    }
+        .logo:hover {
+            transform: scale(1.03);
+        }
 
-    .desc {
-      font-size: 0.75rem;
-      color: #a5b3da;
-      line-height: 1.3;
-      font-weight: 400;
-      padding: 0 0.3rem;
-    }
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #FFFFFF, #A0C0FF, #6C8CFF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
 
-    .extra-card-wrapper {
-      margin-top: 0;
-    }
+        .badge {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .footer {
-      margin-top: 2rem;
-      text-align: center;
-      padding: 0.8rem 0.5rem;
-      border-top: 1px solid rgba(72, 110, 180, 0.3);
-      font-size: 0.75rem;
-      color: #7b8bbc;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.2rem;
-      backdrop-filter: blur(4px);
-    }
+        .badge span {
+            background: rgba(108, 140, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #ccdeff;
+            border: 1px solid rgba(108, 140, 255, 0.6);
+            display: inline-block;
+        }
 
-    .footer a {
-      color: #9eb1e6;
-      text-decoration: none;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-weight: 500;
-    }
+        .description {
+            text-align: center;
+            color: #cddeff;
+            max-width: 550px;
+            margin: 0 auto 2.8rem auto;
+            font-size: 1rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
 
-    .footer a:hover {
-      color: white;
-      text-shadow: 0 0 4px #3b82f6;
-    }
+        /* double button row */
+        .download-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.8rem;
+        }
 
-    .footer i {
-      font-size: 0.7rem;
-    }
+        .download-item {
+            flex: 1;
+            min-width: 260px;
+            background: rgba(12, 18, 32, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.25s;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 25px -12px black;
+        }
 
-    /* responsive: tablet and mobile */
-    @media (max-width: 780px) {
-      .grid {
-        gap: 1rem;
-      }
-      .title {
-        font-size: 1rem;
-      }
-      .icon {
-        font-size: 1.9rem;
-      }
-      .desc {
-        font-size: 0.7rem;
-      }
-      .card {
-        padding: 1rem 0.6rem;
-        gap: 0.5rem;
-      }
-    }
+        .download-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(100, 150, 255, 0.6);
+            background: rgba(20, 30, 55, 0.8);
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
+        }
 
-    @media (max-width: 640px) {
-      .grid {
-        grid-template-columns: 1fr;
-        max-width: 380px;
-        margin-left: auto;
-        margin-right: auto;
-        gap: 1rem;
-      }
-      .card {
-        flex-direction: row;
-        justify-content: flex-start;
-        text-align: left;
-        gap: 1rem;
-        padding: 0.9rem 1.2rem;
-        align-items: center;
-      }
-      .card .icon {
-        font-size: 2rem;
-        flex-shrink: 0;
-      }
-      .card .title {
-        font-size: 1.1rem;
-      }
-      .card .desc {
-        font-size: 0.7rem;
-      }
-      .card > div:not(.icon) {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-      }
-      .footer {
-        flex-direction: column;
-        gap: 0.6rem;
-        align-items: center;
-      }
-    }
+        .icon-circle {
+            font-size: 3rem;
+            background: linear-gradient(145deg, #1e2a4a, #0e1628);
+            width: 85px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            border-radius: 60px;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), 0 8px 20px rgba(0,0,0,0.4);
+        }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 0.5rem;
-      }
-      .card {
-        padding: 0.75rem 1rem;
-      }
-      .title {
-        font-size: 1rem;
-      }
-      .icon {
-        font-size: 1.8rem;
-      }
-      .desc {
-        font-size: 0.65rem;
-      }
-    }
+        .download-item h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
 
-    .no-header {
-      display: block;
-    }
-    
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .card {
-      animation: fadeUp 0.35s ease forwards;
-      opacity: 0;
-    }
-  </style>
+        .version {
+            font-size: 0.8rem;
+            color: #9bb5ff;
+            letter-spacing: 0.3px;
+            margin-bottom: 1.2rem;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(95deg, #2b3b6e, #1a253f);
+            padding: 0.9rem 1.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,240,0.25);
+            margin-top: 0.8rem;
+        }
+
+        .btn-download i {
+            font-size: 1.2rem;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(95deg, #3e5490, #24345a);
+            gap: 16px;
+            border-color: #7a9cff;
+            box-shadow: 0 5px 15px rgba(0, 100, 255, 0.3);
+        }
+
+        /* features */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+
+        .feature-item {
+            background: rgba(0,0,0,0.35);
+            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #b9ceff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-item i {
+            font-size: 0.9rem;
+            color: #6c9eff;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #7e8fb0;
+        }
+
+        @media (max-width: 680px) {
+            .download-card {
+                padding: 2rem 1.2rem;
+                border-radius: 2rem;
+            }
+            h1 {
+                font-size: 2.3rem;
+            }
+            .icon-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 2.3rem;
+            }
+            .download-item h3 {
+                font-size: 1.4rem;
+            }
+            .btn-download {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-  
-  <div class="grid">
-    <!-- TV Card -->
-    <div class="card" tabindex="0" data-url="https://tplay.live/tv" role="button" aria-label="Open TV version">
-      <div class="icon"><i class="fa-solid fa-tv"></i></div>
-      <div>
-        <div class="title">TV</div>
-        <div class="desc">Smart TV · Android TV · Fire TV</div>
-      </div>
-    </div>
+    <div class="download-card">
+        <div class="logo-area">
+            <div class="logo-wrapper">
+                <img class="logo" src="https://github.com/tplaylive/stream/blob/main/TPlay.png" alt="T Play Logo" onerror="this.src='https://placehold.co/110x110?text=TPlay'">
+            </div>
+        </div>
+        <h1>T Play</h1>
+        <div class="badge"><span>✦ Anytime Anywhwre ✦</span></div>
+        <div class="description">
+            High-performance streaming for mobile & Android TV. Download the official APK and enjoy seamless playback everywhere.
+        </div>
 
-    <div class="card" tabindex="0" data-url="https://tplay.live/mobile" role="button" aria-label="Open Mobile version">
-      <div class="icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-      <div>
-        <div class="title">Mobile</div>
-        <div class="desc">iOS · Android · Touch interface</div>
-      </div>
-    </div>
+        <div class="download-row">
+            <!-- Mobile App Card -->
+            <div class="download-item">
+                <div class="icon-circle">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile</h3>
+                <div class="version">Version 3.3 | Android</div>
+                <a href="YOUR_MOBILE_APK_URL" class="btn-download" download>
+                    <i class="fas fa-download"></i> Download APK
+                </a>
+            </div>
 
-    <div class="card" tabindex="0" data-url="https://tplay.live/mobile" role="button" aria-label="Open Desktop version">
-      <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
-      <div>
-        <div class="title">Laptop / PC</div>
-        <div class="desc">Windows · Linux · macOS</div>
-      </div>
-    </div>
-  </div>
+            <!-- TV App Card -->
+            <div class="download-item">
+                <div class="icon-circle">
+                    <i class="fas fa-tv"></i>
+                </div>
+                <h3>TV</h3>
+                <div class="version">Version 1.0 | Android TV</div>
+                <a href="YOUR_TV_APK_URL" class="btn-download" download>
+                    <i class="fas fa-download"></i> Download APK
+                </a>
+            </div>
+        </div>
 
-  <div class="extra-card-wrapper">
-    <div class="card" tabindex="0" data-url="https://tplay.live/Advertisement" role="button" aria-label="Advertisement opportunities">
-      <div class="icon"><i class="fa-solid fa-chart-simple"></i></div>
-      <div>
-        <div class="title">Advertisement</div>
-        <div class="desc">Advertise on our channels</div>
-      </div>
+        <div class="features">
+            <div class="feature-item"><i class="fas fa-globe"></i> Worldwide access</div>
+            <div class="feature-item"><i class="fas fa-shield-alt"></i> Secure direct link</div>
+            <div class="feature-item"><i class="fas fa-play-circle"></i> Optimized streaming</div>
+            <div class="feature-item"><i class="fas fa-tachometer-alt"></i> Lightweight & fast</div>
+        </div>
+        <div class="footer-note">
+            ⚡ Enable "Install from unknown sources" if needed. Official T Play distribution.
+        </div>
     </div>
-  </div>
-
-  <div class="footer">
-    <span><i class="fa-regular fa-copyright"></i> tplay.live</span>
-    <a href="mailto:tplaybd@proton.me"><i class="fa-regular fa-envelope"></i> tplaybd@proton.me</a>
-    <a href="https://t.me/tplaybd" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> t.me/tplaybd</a>
-  </div>
 </div>
-
-<script>
-  (function() {
-    function setVH() {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-    setVH();
-    window.addEventListener('resize', setVH);
-    
-    const cards = Array.from(document.querySelectorAll('.card'));
-    
-    function navigateTo(url) {
-      if (!url) return;
-      window.location.href = url;
-    }
-    
-    cards.forEach(card => {
-      // click & pointer
-      card.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const targetUrl = card.dataset.url;
-        if (targetUrl) navigateTo(targetUrl);
-      });
-      
-      card.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        const targetUrl = card.dataset.url;
-        if (targetUrl) navigateTo(targetUrl);
-      }, { passive: false });
-      
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const targetUrl = card.dataset.url;
-          if (targetUrl) navigateTo(targetUrl);
-        }
-      });
-    });
-    
-    function getGridColumnsCount() {
-      return window.innerWidth <= 640 ? 1 : 3;
-    }
-    
-    document.addEventListener('keydown', (e) => {
-      const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-      if (!arrowKeys.includes(e.key)) return;
-      
-      const activeElement = document.activeElement;
-      if (!activeElement || !cards.includes(activeElement)) return;
-      
-      const currentIndex = cards.indexOf(activeElement);
-      if (currentIndex === -1) return;
-      
-      const cols = getGridColumnsCount();
-      let nextIndex = currentIndex;
-      
-      switch (e.key) {
-        case 'ArrowRight':
-          nextIndex = currentIndex + 1;
-          break;
-        case 'ArrowLeft':
-          nextIndex = currentIndex - 1;
-          break;
-        case 'ArrowDown':
-          nextIndex = currentIndex + cols;
-          break;
-        case 'ArrowUp':
-          nextIndex = currentIndex - cols;
-          break;
-        default: return;
-      }
-      
-      if (nextIndex >= 0 && nextIndex < cards.length) {
-        cards[nextIndex].focus();
-        e.preventDefault();
-        cards[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault();
-      }
-    });
-    
-    window.addEventListener('load', () => {
-      if (cards.length) {
-        cards[0].focus();
-      }
-      cards.forEach((card, idx) => {
-        card.style.animationDelay = `${idx * 0.05}s`;
-        card.style.opacity = '1';
-      });
-    });
-    
-    if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) {
-      const style = document.createElement('style');
-      style.textContent = `.card:active { transform: scale(0.97); background: rgba(43,92,255,0.2); transition: 0.05s; }`;
-      document.head.appendChild(style);
-    }
-    
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        cards.forEach(card => {
-          const url = card.dataset.url;
-          if (url && url.startsWith('https://tplay.live')) {
-            const link = document.createElement('link');
-            link.rel = 'prefetch';
-            link.href = url;
-            link.as = 'document';
-            document.head.appendChild(link);
-          }
-        });
-      });
-    }
-    
-    const advCard = document.querySelector('.extra-card-wrapper .card');
-    if (advCard && !advCard.dataset.url) {
-      advCard.dataset.url = 'https://tplay.live/Advertisement';
-    }
-  })();
-</script>
 </body>
 </html>
