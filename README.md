@@ -1,11 +1,9 @@
-# T Play - Anytime Anywhere
-
 <div align="center">
   <img src="https://github.com/tplaylive/stream/blob/main/TPlay.png" alt="T Play Logo" width="120" style="border-radius: 32px;">
 
   <p align="center">
     <strong>Seamless Entertainment on Mobile & Android TV</strong><br>
-    Stream anywhere, anytime — lightweight, fast, and optimized for all devices.
+    Stream anytime, anywhere — lightweight, fast, and optimized for all devices.
   </p>
 
   <!-- Badges -->
