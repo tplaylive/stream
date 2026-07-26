@@ -25,4 +25,4 @@ Get the latest official APKs:
 | Device | Version | Download Link |
 | :----- | :------ | :------------ |
 | **Mobile (Android)** | `v3.3` | [⬇️ Download Mobile APK](https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%203.3.apk) |
-| **Android TV** | `v1.0` | [⬇️ Download TV APK](https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%20TV%201.0.apk) |
+| **Android TV** | `v1.1` | [⬇️ Download TV APK](https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%20TV%201.1.apk) |
