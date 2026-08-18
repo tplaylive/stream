@@ -10,7 +10,7 @@
   <p>
     <img src="https://img.shields.io/badge/Platform-Android-brightgreen.svg" alt="Platform: Android">
     <img src="https://img.shields.io/badge/Android%20TV-Supported-blue.svg" alt="Android TV">
-    <img src="https://img.shields.io/badge/Version-Mobile%203.6-blueviolet" alt="Mobile Version">
+    <img src="https://img.shields.io/badge/Version-Mobile%203.7-blueviolet" alt="Mobile Version">
     <img src="https://img.shields.io/badge/Version%20TV-1.2-red" alt="TV Version">
     <img src="https://img.shields.io/badge/License-Proprietary-lightgrey" alt="License">
   </p>
