@@ -10,7 +10,7 @@
   <p>
     <img src="https://img.shields.io/badge/Platform-Android-brightgreen.svg" alt="Platform: Android">
     <img src="https://img.shields.io/badge/Android%20TV-Supported-blue.svg" alt="Android TV">
-    <img src="https://img.shields.io/badge/Version-Mobile%203.9-blueviolet" alt="Mobile Version">
+    <img src="https://img.shields.io/badge/Version-Mobile%204.1-blueviolet" alt="Mobile Version">
     <img src="https://img.shields.io/badge/Version%20TV-1.7-red" alt="TV Version">
     <img src="https://img.shields.io/badge/License-Proprietary-lightgrey" alt="License">
   </p>
@@ -24,5 +24,5 @@ Get the latest official APKs:
 
 | Device | Version | Download Link |
 | :----- | :------ | :------------ |
-| **Mobile (Android)** | `v3.9` | [⬇️ Download Mobile APK](https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%203.9.apk) |
+| **Mobile (Android)** | `v4.1` | [⬇️ Download Mobile APK](https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%204.1.apk) |
 | **Android TV** | `v1.7` | [⬇️ Download TV APK](https://github.com/tplaylive/stream/raw/refs/heads/main/T%20Play%20TV%201.7.apk) |
